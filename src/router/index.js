@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router';
 import LandingPage from "../components/Page/LandingPage.vue";
 import LoginPage from "../components/Page/LoginPage.vue";
 import MapPage from "../components/Page/MapPage.vue";
+import InscriptionPage from "../components/Page/InscriptionPage.vue"
 
 const routes = [
     {
@@ -18,6 +19,11 @@ const routes = [
         path: '/mapPage',
         name: 'MapPage',
         component: MapPage,
+    },
+    {
+        path: '/inscriptionPage',
+        name: 'InscriptionPage',
+        component: InscriptionPage,
     },
 ];
 

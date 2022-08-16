@@ -1,48 +1,23 @@
 <template>
-  <div>Connexion</div>
+  <div>Inscription</div>
   <button v-if="!pro" v-on:click="pro = false" style="background: #959595"> Connexion Standard</button>
   <button v-if="!pro" v-on:click="pro = true"> Connexion Professionelle</button>
   <button v-if="pro" v-on:click="pro = false" > Connexion Standard</button>
   <button v-if="pro" v-on:click="pro = true"  style="background: #959595"> Connexion Professionelle</button>
+  
+  <br>
   <form v-show="pro">
-     <label>Code d'authentification:</label>
-    <input type="code" required v-model="code">
-    <label>Code authentification oublie ?</label>
-    <br>
-    <label>Email ou Nom d'utilisateur:</label>
-    <input type="email"   required v-model="email">
-
-    <label>Mot de passe:</label>
-    <input type="password"   required v-model="password">
-    <label>Mot de passe oublie ?</label>
-    
+    <div style="text-align: center;">Cet espace est destiner est reserves aux professionelles qui souhaitent nous rejoindre pour optimiser au mieux l'expérience de nos utilisateurs. </div>
   </form>
 
   <form v-show="!pro">
-    <label>Email ou Nom d'utilisateur:</label>
-    <input type="email"   required v-model="email">
-
-    <label>Mot de passe:</label>
-    <input type="password"   required v-model="password">
-    <label>Mot de passe oublie ?</label>
+    <div style="text-align: center;">Commencer à decouvrir des maintenant et sans limite !</div>
   </form>
-
-  <button> Connexion</button>
-  <br>
-  <label>ou</label>
-  <br>
-  <button @click="(openInscriptionPage)">Inscription</button>
-  <br>
 
 </template>
 
 <script>
 export default {
-  methods: {
-    openInscriptionPage() {
-      this.$router.push("/inscriptionPage");
-    },
-  },
   data () {
     return {
       pro: false
@@ -52,14 +27,6 @@ export default {
 </script>
 
 <style>
-  #app {
-    font-family: Avenir, Helvetica, Arial, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-align: center;
-    color: #2c3e50;
-    margin-top: 60px;
-  }
   form {
     max-width: 420px;
     margin: 30px auto;
@@ -108,18 +75,13 @@ export default {
     cursor: pointer;
   }
   button {
-    background-color: #50bfff;
-    color: #fff;
-    /* background: white; */
+    background: white;
     border: 0;
     padding: 10px 20px;
-    margin-top: 0px;
+    margin-top: 20px;
     color: black;
     border-radius: 200px;
     border: 2px solid rgb(192, 150, 40);
-  }
-  br {
-    margin-top: 800px;
   }
   .submit {
     text-align: center;

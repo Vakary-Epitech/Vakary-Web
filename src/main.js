@@ -7,8 +7,8 @@ import store from './store/store.js'
 
 
 // const gAuthOptions = { clientId: gauthClient, scope: 'email', prompt: 'consent', fetch_basic_profile: false }
-// app.use(GAuth, gAuthOptions)
 const app = createApp(App);
-app.mount('#app');
+// app.use(GAuth, gAuthOptions)
 app.use(router);
 app.use(store);
+app.mount('#app');
