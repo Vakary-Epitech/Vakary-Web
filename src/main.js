@@ -10,13 +10,14 @@ import { fas } from '@fortawesome/free-solid-svg-icons'
 import { fab } from '@fortawesome/free-brands-svg-icons';
 import { far } from '@fortawesome/free-regular-svg-icons';
 import { dom } from "@fortawesome/fontawesome-svg-core";
+import i18n from './i18n'
 
 library.add(fab);
 library.add(fas);
 library.add(far);
 dom.watch();
 
-const app = createApp(App);
+const app = createApp(App).use(i18n);
 app.component("font-awesome-icon", FontAwesomeIcon);
 app.use(router);
 app.use(store);

@@ -1,8 +1,5 @@
 import { shallowMount } from '@vue/test-utils'
 import ProfilePage from '@/components/Page/ProfilePage.vue'
-import LandingPage from '@/components/Page/LandingPage.vue'
-import LoginPage from '@/components/Page/LoginPage.vue'
-import MapPage from '@/components/Page/MapPage.vue'
 
 test('getComponent ProfilePage', () => {
   const wrapper = shallowMount(ProfilePage)
