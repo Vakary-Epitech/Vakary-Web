@@ -17,8 +17,9 @@ library.add(fas);
 library.add(far);
 dom.watch();
 
-const app = createApp(App).use(i18n);
+const app = createApp(App);
 app.component("font-awesome-icon", FontAwesomeIcon);
+app.use(i18n);
 app.use(router);
 app.use(store);
 app.mount('#app');
