@@ -13,8 +13,12 @@
 
 <script>
 export default {
+  mounted() {
+    this.$store.dispatch("retrievedCurrentUserPosition");
+    this.$store.dispatch("retrievedMarkerData");
+  },
   beforeCreate() {
-      this.$router.push("/");
+    this.$router.push("/");
   },
   methods: {
     openLandingPage() {
