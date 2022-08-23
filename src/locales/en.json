@@ -11,5 +11,8 @@
     "lastEventAttended": "Last Event Attended",
     "totalKm": "Total Km Traveled",
     "cityPass": "City Pass"
+  },
+  "mobilePage": {
+    "title": ""
   }
 }
