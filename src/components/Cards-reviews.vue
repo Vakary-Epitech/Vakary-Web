@@ -11,19 +11,19 @@
 </template>
 
 <script>
-    export default {
-        name: 'CardReviews',
-        props: {
-            username: {
-                type: String,
-                required: true
-            },
-            review: {
-                type: String,
-                required: true
-            },
-        }
-    };
+export default {
+    name: 'CardReviews',
+    props: {
+        username: {
+            type: String,
+            required: true
+        },
+        review: {
+            type: String,
+            required: true
+        },
+    }
+};
 </script>
 
 <style>
