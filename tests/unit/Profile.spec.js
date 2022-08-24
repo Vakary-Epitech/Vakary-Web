@@ -10,19 +10,19 @@ describe("ProfilePage", () => {
         }
       }
     })
+  }),
+  test('getComponent ProfilePage', () => {
+    const wrapper = shallowMount(ProfilePage, {
+      global: {
+        mocks: {
+          $t: (msg) => msg
+        }
+      }
+    })
+    wrapper.getComponent(ProfilePage)
   })
 })
 
-test('getComponent ProfilePage', () => {
-  const wrapper = shallowMount(ProfilePage, {
-    global: {
-      mocks: {
-        $t: (msg) => msg
-      }
-    }
-  })
-  wrapper.getComponent(ProfilePage)
-})
 
 test('isVisible', () => {
   const wrapper = shallowMount(ProfilePage, {

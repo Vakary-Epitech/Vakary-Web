@@ -73,6 +73,6 @@
 
 .image {
     width: 30vw;
-    height: 80vh;
+    height: 100vh;
 }
 </style>
