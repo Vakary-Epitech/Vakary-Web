@@ -11,19 +11,21 @@
 </template>
 
 <script>
-    export default {
-        name: 'CardReviews',
-        props: {
-            username: {
-                type: String,
-                required: true
-            },
-            review: {
-                type: String,
-                required: true
-            },
-        }
-    };
+//this component is used to display the reviews of the user with a card
+//it takes the username and the review as parameters
+export default {
+    name: 'CardReviews',
+    props: {
+        username: {
+            type: String,
+            required: true
+        },
+        review: {
+            type: String,
+            required: true
+        },
+    }
+};
 </script>
 
 <style>

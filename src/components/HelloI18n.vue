@@ -8,14 +8,14 @@ import { useI18n } from 'vue-i18n'
 export default defineComponent({
   name: 'HelloI18n',
   setup() {
-    const { t } = useI18n({
+    const { translate } = useI18n({
       inheritLocale: true,
       useScope: 'local'
     })
 
     // Something todo ..
 
-    return { t }
+    return { translate }
   }
 })
 </script>
