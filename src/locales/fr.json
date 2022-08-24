@@ -1,0 +1,15 @@
+{
+    "message": "bonjour i18n !!",
+    "profilePage": {
+        "edit": "Editer le profil",
+        "info": "Description",
+        "save": "Enregistrer",
+        "comments": "Commentaires",
+        "likes": "J'aime",
+        "favoriteCity": "Ville préférée",
+        "lastPlaceVisited": "Dernier lieu visité",
+        "lastEventAttended": "Dernier événement visité",
+        "totalKm": "Km total",
+        "cityPass": "Pass de ville"
+      }
+}
