@@ -11,5 +11,13 @@
         "lastEventAttended": "Dernier événement visité",
         "totalKm": "Km total",
         "cityPass": "Pass de ville"
+      },
+    "mobilePage": {
+        "title": "Êtes-vous prêt à voyager et à decouvrir ?",
+        "text1": "VAKARY est un outil pour créer des itinéraire touristiques personnalisé grâce aux régions partenaire qui alimentent notre application",
+        "text2": "L'application propose un formulaire simple et rapide pour générer un itinéraire précis qui vons conviendra au mieux",
+        "text3": "Vous pourrez retrouver une description précise des points d'intérêt, avec des informations sur des évènements, et la possibilité d'écouter un audio guide",
+        "text4": "Une fonctionnalité de groupe a été mise en place pour permettre un partage d'itinéraire simple quand vous voyagez en famille ou entre amis",
+        "text5": "L'application embarque une fonction payanté qui vous permet d'avoir un itinéraire travaillé par des professionnels du voyage, qui vous conseillerons les meilleurs endroits à visiter à l'endroit où vous vous trouvez !"
       }
 }

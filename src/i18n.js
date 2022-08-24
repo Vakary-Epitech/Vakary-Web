@@ -5,8 +5,8 @@ import en from './locales/en.json'
 
 export default createI18n({
   legacy: false,
-  locale: 'en',
-  fallbackLocale: 'en',
+  locale: 'fr',
+  fallbackLocale: 'fr',
   globalInjection: true,
   messages: {
     en: en,

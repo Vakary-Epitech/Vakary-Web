@@ -1,6 +1,6 @@
 <template>
   <div class="app">
-    <div class="container">
+    <div>
       <router-view v-slot="{ Component }">
         <transition>
           <component :is="Component" :key="this.$route.path"></component>
@@ -10,6 +10,7 @@
       <button @click="(openLoginPage)">Login</button>
       <button @click="(openMapPage)">Map</button>
       <button @click="(openProfilePage)">Profile</button>
+      <button @click="(openMobilePage)">Mobile</button>
     </div>
   </div>
 </template>
@@ -31,6 +32,9 @@ export default {
     },
     openProfilePage() {
       this.$router.push("/profilePage");
+    },
+    openMobilePage() {
+      this.$router.push("/mobilePage");
     },
   },
 };
