@@ -2,7 +2,9 @@ import { createRouter, createWebHistory } from 'vue-router';
 import LandingPage from "../components/Page/LandingPage.vue";
 import LoginPage from "../components/Page/LoginPage.vue";
 import MapPage from "../components/Page/MapPage.vue";
-import InscriptionPage from "../components/Page/InscriptionPage.vue"
+import InscriptionPageStandard from "../components/Page/InscriptionPageStandard.vue"
+import InscriptionPagePro from "../components/Page/InscriptionPagePro.vue"
+import ChoiceCreation from "../components/Page/ChoiceCreation.vue"
 
 const routes = [
     {
@@ -21,9 +23,19 @@ const routes = [
         component: MapPage,
     },
     {
-        path: '/inscriptionPage',
-        name: 'InscriptionPage',
-        component: InscriptionPage,
+        path: '/inscriptionPageStandard',
+        name: 'InscriptionPageStandard',
+        component: InscriptionPageStandard,
+    },
+    {
+        path: '/inscriptionPagePro',
+        name: 'InscriptionPagePro',
+        component: InscriptionPagePro,
+    },
+    {
+        path: '/choiceCreation',
+        name: 'ChoiceCreation',
+        component: ChoiceCreation,
     },
 ];
 

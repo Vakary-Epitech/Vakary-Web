@@ -29,9 +29,11 @@
 
   <button> Connexion</button>
   <br>
+  <img src="../../assets/google.png" >
+  <br>
   <label>ou</label>
   <br>
-  <button @click="(openInscriptionPage)">Inscription</button>
+  <button @click="(openChoiceCreation)">Inscription</button>
   <br>
 
 </template>
@@ -39,8 +41,8 @@
 <script>
 export default {
   methods: {
-    openInscriptionPage() {
-      this.$router.push("/inscriptionPage");
+    openChoiceCreation() {
+      this.$router.push("/choiceCreation");
     },
   },
   data () {
