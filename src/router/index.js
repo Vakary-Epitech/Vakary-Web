@@ -1,23 +1,23 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import LandingPage from "../components/Page/LandingPage.vue";
-import LoginPage from "../components/Page/LoginPage.vue";
-import MapPage from "../components/Page/MapPage.vue";
+import VakaryHome from "../components/VakaryHome.vue";
+import VakaryWeb from "../components/VakaryWeb.vue";
+import App from "../App.vue";
 
 const routes = [
     {
         path: '/',
-        name: 'LandingPage',
-        component: LandingPage,
+        name: 'App',
+        component: App,
     },
     {
-        path: '/loginPage',
-        name: 'LoginPage',
-        component: LoginPage,
+        path: '/VakaryHome',
+        name: 'VakaryHome',
+        component: VakaryHome,
     },
     {
-        path: '/mapPage',
-        name: 'MapPage',
-        component: MapPage,
+        path: '/VakaryWeb',
+        name: 'VakaryWeb',
+        component: VakaryWeb,
     },
 ];
 
