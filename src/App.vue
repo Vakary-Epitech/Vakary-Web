@@ -1,13 +1,17 @@
 <template>
   <div class="app">
-    <router-view v-slot="{ Component }">
-      <transition>
-        <component :is="Component" :key="this.$route.path"></component>
-      </transition>
-    </router-view>
-    <button @click="(openLandingPage)">Landing</button>
-    <button @click="(openLoginPage)">Login</button>
-    <button @click="(openMapPage)">Map</button>
+    <div>
+      <router-view v-slot="{ Component }">
+        <transition>
+          <component :is="Component" :key="this.$route.path"></component>
+        </transition>
+      </router-view>
+      <button @click="(openLandingPage)">Landing</button>
+      <button @click="(openLoginPage)">Login</button>
+      <button @click="(openMapPage)">Map</button>
+      <button @click="(openProfilePage)">Profile</button>
+      <button @click="(openMobilePage)">Mobile</button>
+    </div>
   </div>
 </template>
 
@@ -25,6 +29,12 @@ export default {
     },
     openMapPage() {
       this.$router.push("/mapPage");
+    },
+    openProfilePage() {
+      this.$router.push("/profilePage");
+    },
+    openMobilePage() {
+      this.$router.push("/mobilePage");
     },
   },
 };
