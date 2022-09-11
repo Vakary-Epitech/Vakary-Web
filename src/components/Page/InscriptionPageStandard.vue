@@ -48,7 +48,7 @@
 
   <!-- <div v-if="docState === 'saved'" style="text-align: center;">Cet espace est destiner est reserves aux professionelles qui souhaitent nous rejoindre pour optimiser au mieux l'expérience de nos utilisateurs. </div> -->
   <div class="btn-container">
-    <Transition name="slide-right">
+    <Transition name="fade" mode="out-in">
       <div v-if="docState === '1'" style="text-align: center; align-items: center;"> 
         Quel nom d'utilisateur voulez-vous utiliser?
         <input v-model="name"  style="width: 20%; text-align: center; align-items: center; margin-left: 40%;" placeholder="Nom utilisateur"/>
@@ -103,22 +103,15 @@ button {
     border: 2px solid rgb(192, 150, 40);
   }
 
-.slide-right-enter-active{
-  transition: 1s ease-in;
-}
-.slide-right-leave-active {
-  transition: 1s ease-out;
-}
+  .fade-enter-active,
+  .fade-leave-active {
+    transition: opacity 0.5s ease;
+  }
 
-.slide-right-enter-from {
-  opacity: 0;
-  transform: translateX(400px);
-}
-
-.slide-right-leave-to {
-  opacity: 0;
-  transform: translateX(-400px);
-} 
+  .fade-enter-from,
+  .fade-leave-to {
+    opacity: 0;
+  }
   /* .slide-fade-enter-active {
   transition: all 0.3s ease-out;
 }

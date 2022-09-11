@@ -12,6 +12,7 @@
         city: '',
         postalcode: '',
         citizenNumber: '',
+        email: '',
         name: '',
         mdp: '',
         mdpconfirm: '',
@@ -23,30 +24,30 @@
   
 
 <template>
-<div class="btn-container">
-    <Transition name="slide-right">
+<div>
+    <Transition name="fade" mode="out-in">
       <div v-if="docState === '1'" style="text-align: center; align-items: center;"> 
-        Quel nom d'utilisateur voulez-vous utiliser?
-        <input v-model="name"  style="width: 20%; text-align: center; align-items: center; margin-left: 40%;" placeholder="Nom utilisateur"/>
-        Quel mail voulez-vous utiliser ?
-        <input v-model="email"  style="width: 20%; text-align: center; align-items: center; margin-left: 40%;" placeholder="Mail"/>
+        Comment se nomme la ville/village que vous représenté ?
+        <input v-model="city"  style="width: 20%; text-align: center; align-items: center; margin-left: 40%;" placeholder="ex: Nancy"/>
+        Quel est le code postal ?
+        <input v-model="postalcode"  style="width: 20%; text-align: center; align-items: center; margin-left: 40%;" placeholder="ex: 54000"/>
+        Quel est le nombre d'habitant ?
+        <input v-model="citizenNumber"  style="width: 20%; text-align: center; align-items: center; margin-left: 40%;" placeholder="ex: 10 000"/>
       </div>
       <div v-else-if="docState === '2'" style="text-align: center;">
+        Quel adresse mail voulez-vous utiliser ?
+        <input v-model="mdp"  style="width: 20%; text-align: center; align-items: center; margin-left: 40%;" placeholder="ex: Nancy@nancy.fr"/>
         Quel mot de passe voulez-vous utiliser ?
         <input v-model="mdp"  style="width: 20%; text-align: center; align-items: center; margin-left: 40%;" placeholder="°°°°°"/>
         Confirmer votre mot de passe ?
         <input v-model="mdpconfirm"  style="width: 20%; text-align: center; align-items: center; margin-left: 40%;" placeholder="°°°°°"/>
       </div>
       <div v-else-if="docState === '3'" style="text-align: center;">
-        Repondez a la question de votre choix
+        Selectionner un document d'authentification prouvant que vous représentez bien une mairie associé à une ville ou à un village,
         <select style="width: 20%; text-align: center; align-items: center; margin-left: 40%;" v-model="selected">
-          <option disabled value="">Please select one</option>
-          <option>Quel est le nom de votre animal de compagnie ?</option>
-          <option>Quel est le nom de votre mère ?</option>
-          <option>Quel est la marque de votre première voiture ?</option>
+          <option>Document 1</option>
+          <option>Document 2</option>
         </select>
-        Quel est votre reponse ?
-        <input v-model="answerquestion"  style="width: 20%; text-align: center; align-items: center; margin-left: 40%;" placeholder="ex: Popy"/>
       </div>
       <div v-else-if="docState === '4'">
         Termine
@@ -73,20 +74,13 @@ button {
     border: 2px solid rgb(192, 150, 40);
   }
 
-.slide-right-enter-active{
-  transition: 1s ease-in;
-}
-.slide-right-leave-active {
-  transition: 1s ease-out;
-}
+  .fade-enter-active,
+  .fade-leave-active {
+    transition: opacity 0.5s ease;
+  }
 
-.slide-right-enter-from {
-  opacity: 0;
-  transform: translateX(400px);
-}
-
-.slide-right-leave-to {
-  opacity: 0;
-  transform: translateX(-400px);
-}
+  .fade-enter-from,
+  .fade-leave-to {
+    opacity: 0;
+  }
 </style>

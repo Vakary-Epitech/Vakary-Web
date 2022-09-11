@@ -5,6 +5,7 @@ import MapPage from "../components/Page/MapPage.vue";
 import InscriptionPageStandard from "../components/Page/InscriptionPageStandard.vue"
 import InscriptionPagePro from "../components/Page/InscriptionPagePro.vue"
 import ChoiceCreation from "../components/Page/ChoiceCreation.vue"
+import ForgetPassword from "../components/Page/ForgetPassword.vue"
 
 const routes = [
     {
@@ -36,6 +37,11 @@ const routes = [
         path: '/choiceCreation',
         name: 'ChoiceCreation',
         component: ChoiceCreation,
+    },
+    {
+        path: '/forgetPassword',
+        name: 'ForgetPassword',
+        component: ForgetPassword,
     },
 ];
 

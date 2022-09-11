@@ -89,8 +89,6 @@ input, select {
     padding: 10px 6px;
     width: 100%;
     box-sizing: border-box;
-    border-bottom: 1px solid #ddd;
-    border-radius: 200px;
     border: 2px solid rgb(192, 150, 40);
     color: #959595;
 }

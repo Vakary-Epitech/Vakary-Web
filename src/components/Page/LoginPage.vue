@@ -24,7 +24,7 @@
 
     <label>Mot de passe:</label>
     <input type="password"   required v-model="password">
-    <label>Mot de passe oublie ?</label>
+    <button @click="(openForgetPassword)">Mot de passe oublie ?</button>
   </form>
 
   <button> Connexion</button>
@@ -44,6 +44,9 @@ export default {
     openChoiceCreation() {
       this.$router.push("/choiceCreation");
     },
+    openForgetPassword() {
+      this.$router.push("/forgetPassword")
+    }
   },
   data () {
     return {
@@ -86,8 +89,8 @@ export default {
     width: 100%;
     box-sizing: border-box;
     border-bottom: 1px solid #ddd;
-    border-radius: 200px;
-    border: 2px solid rgb(192, 150, 40);
+    /* border-radius: 200px; */
+    /* border: 2px solid rgb(192, 150, 40); */
     color: #959595;
   }
   input[type="checkbox"] {
