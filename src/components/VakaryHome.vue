@@ -1,15 +1,8 @@
 <template>
   <div id="app">
-
-    <!-- utilisation de router-view pour la navigation entre chaque page -->
-    <router-view v-slot="{ Component }">
-      <transition>
-        <component :is="Component" :key="this.$route.path"></component>
-      </transition>
-    </router-view>
-
     <!-- boutton pour changer de page -->
     <button @click="openVakaryWeb">Vakary Web</button>
+    <button @click="openGroup">Group</button>
 
     <!-- début de l'html/css pour la création de la page Web de Vakary -->
     <div class="containerTitle">
@@ -73,12 +66,15 @@
 
 <script>
 export default {
-  name: "app",
+  name: "vakaryHome",
 
   // créations de la méthode pour avec une fonction pour changer de page
   methods: {
     openVakaryWeb() {
       this.$router.push("/VakaryWeb");
+    },
+    openGroup() {
+      this.$router.push("/Group");
     },
   },
 };

@@ -1,13 +1,6 @@
 <template>
     <div id="app">
-      
-      <!-- utilisation de router-view pour la navigation entre chaque page -->
-      <router-view v-slot="{ Component }">
-          <transition>
-            <component :is="Component" :key="this.$route.path"></component>
-          </transition>
-        </router-view>
-      
+
         <!-- boutton pour changer de page -->
       <button @click="(openVakaryHome)">Vakary Home</button>
       
@@ -51,7 +44,7 @@
   <script>
 import Product from './Product';
   export default {
-    name: 'app',
+    name: 'vakaryWebPresentation',
     components: {
       Product
     },
