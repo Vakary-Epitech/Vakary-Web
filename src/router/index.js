@@ -4,7 +4,7 @@ import LoginPage from "../components/Page/LoginPage.vue";
 import MapPage from "../components/Page/MapPage.vue";
 import InscriptionPageStandard from "../components/Page/InscriptionPageStandard.vue"
 import InscriptionPagePro from "../components/Page/InscriptionPagePro.vue"
-import ChoiceCreation from "../components/Page/ChoiceCreation.vue"
+import SelectAccount from "../components/Page/SelectAccount.vue"
 import ForgetPassword from "../components/Page/ForgetPassword.vue"
 import ProfilePage from "../components/Page/ProfilePage.vue";
 import MobilePage from "../components/Page/MobilePage.vue";
@@ -36,9 +36,9 @@ const routes = [
         component: InscriptionPagePro,
     },
     {
-        path: '/choiceCreation',
-        name: 'ChoiceCreation',
-        component: ChoiceCreation,
+        path: '/SelectAccount',
+        name: 'SelectAccount',
+        component: SelectAccount,
     },
     {
         path: '/forgetPassword',

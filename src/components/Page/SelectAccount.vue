@@ -1,30 +1,32 @@
 <template>
-    <div>Inscription</div>
+    <span>Inscription</span>
     <button v-if="!pro" v-on:click="pro = false" style="background: #959595"> Connexion Standard</button>
     <button v-if="!pro" v-on:click="pro = true"> Connexion Professionelle</button>
     <button v-if="pro" v-on:click="pro = false" > Connexion Standard</button>
     <button v-if="pro" v-on:click="pro = true"  style="background: #959595"> Connexion Professionelle</button>
-    <br>
     
     <div v-show="!pro" style="align-items: center">
-        <img src="../../assets/StandardPhoto.png">
+        <img src="../../assets/StandardProfilePhoto.png">
         <br>
         Commencer à decouvrir des maintenant sans limite !
     </div>
     <div v-show="pro" style="align-items: center">
-        <img style="align-items: center" src="../../assets/ProPhoto.png">
+        <img style="align-items: center" src="../../assets/ProProfilePhoto.png">
         <br>
         Cet espace est destiner au professionel qui souhaite nous rejoindre pour optimiser au mieux l'expérience de nos utilisateurs.
     </div>
-    <br>
     <button v-show="!pro" @click="(openInscriptionPageStandard)">Créer mon compte</button>
     <button v-show="pro" @click="(openInscriptionPagePro)">Créer mon compte</button>
-    <br>
   
   </template>
   
-  <script>
+<script>
   export default {
+    data () {
+      return {
+        pro: false
+      }
+    },
     methods: {
       openInscriptionPageStandard() {
         this.$router.push("/inscriptionPageStandard");
@@ -32,13 +34,7 @@
       openInscriptionPagePro() {
         this.$router.push("/inscriptionPagePro");
       },
-
     },
-    data () {
-      return {
-        pro: false
-      }
-    }
   }
   </script>
   

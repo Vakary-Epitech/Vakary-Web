@@ -5,23 +5,20 @@
   <button v-if="pro" v-on:click="pro = false" > Connexion Standard</button>
   <button v-if="pro" v-on:click="pro = true"  style="background: #959595"> Connexion Professionelle</button>
   <form v-show="pro">
-     <label>Code d'authentification:</label>
+    <label>Code d'authentification:</label>
     <input type="code" required v-model="code">
     <label>Code authentification oublie ?</label>
     <br>
     <label>Email ou Nom d'utilisateur:</label>
     <input type="email"   required v-model="email">
-
     <label>Mot de passe:</label>
     <input type="password"   required v-model="password">
     <label>Mot de passe oublie ?</label>
-    
   </form>
 
   <form v-show="!pro">
     <label>Email ou Nom d'utilisateur:</label>
     <input type="email"   required v-model="email">
-
     <label>Mot de passe:</label>
     <input type="password"   required v-model="password">
     <button @click="(openForgetPassword)">Mot de passe oublie ?</button>
@@ -33,26 +30,26 @@
   <br>
   <label>ou</label>
   <br>
-  <button @click="(openChoiceCreation)">Inscription</button>
+  <button @click="(openSelectAccount)">Inscription</button>
   <br>
 
 </template>
 
 <script>
 export default {
+  data () {
+    return {
+      pro: false
+    }
+  },
   methods: {
-    openChoiceCreation() {
-      this.$router.push("/choiceCreation");
+    openSelectAccount() {
+      this.$router.push("/SelectAccount");
     },
     openForgetPassword() {
       this.$router.push("/forgetPassword")
     }
   },
-  data () {
-    return {
-      pro: false
-    }
-  }
 }
 </script>
 
