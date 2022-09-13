@@ -2,6 +2,8 @@ import { createRouter, createWebHistory } from 'vue-router';
 import LandingPage from "../components/Page/LandingPage.vue";
 import LoginPage from "../components/Page/LoginPage.vue";
 import MapPage from "../components/Page/MapPage.vue";
+import ProfilePage from "../components/Page/ProfilePage.vue";
+import MobilePage from "../components/Page/MobilePage.vue";
 
 const routes = [
     {
@@ -18,6 +20,16 @@ const routes = [
         path: '/mapPage',
         name: 'MapPage',
         component: MapPage,
+    },
+    {
+        path: '/profilePage',
+        name: 'ProfilePage',
+        component: ProfilePage,
+    },
+    {
+        path: '/mobilePage',
+        name: 'MobilePage',
+        component: MobilePage,
     },
 ];
 

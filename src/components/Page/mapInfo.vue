@@ -1,5 +1,5 @@
 <template>
-    <h1>COMPONENT</h1>
+    <h2>Map</h2>
 </template>
 
 <script>
