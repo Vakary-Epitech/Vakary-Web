@@ -8,6 +8,7 @@ import SelectAccount from "../components/Page/SelectAccount.vue"
 import ForgetPassword from "../components/Page/ForgetPassword.vue"
 import ProfilePage from "../components/Page/ProfilePage.vue";
 import MobilePage from "../components/Page/MobilePage.vue";
+import SettingsPage from "../components/Page/SettingsPage.vue"
 
 const routes = [
     {
@@ -54,6 +55,11 @@ const routes = [
         path: '/mobilePage',
         name: 'MobilePage',
         component: MobilePage,
+    },
+    {
+        path: '/settingsPage',
+        name: 'SettingsPage',
+        component: SettingsPage,
     },
 ];
 
