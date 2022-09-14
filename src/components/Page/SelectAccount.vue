@@ -1,5 +1,5 @@
 <template>
-    <span>Inscription</span>
+    <span>Inscription</span><br>
     <button v-if="!pro" v-on:click="pro = false" style="background: #959595"> Connexion Standard</button>
     <button v-if="!pro" v-on:click="pro = true"> Connexion Professionelle</button>
     <button v-if="pro" v-on:click="pro = false" > Connexion Standard</button>
@@ -17,6 +17,7 @@
     </div>
     <button v-show="!pro" @click="(openInscriptionPageStandard)">Créer mon compte</button>
     <button v-show="pro" @click="(openInscriptionPagePro)">Créer mon compte</button>
+    <br>
   
   </template>
   

@@ -26,7 +26,8 @@
 
   <button> Connexion</button>
   <br>
-  <img src="../../assets/google.png" >
+  <br>
+  <img src="../../assets/google.png" width="100" height="100">
   <br>
   <label>ou</label>
   <br>

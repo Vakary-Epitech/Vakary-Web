@@ -1,25 +1,25 @@
 <template>
-  <div>
+  <div class="pro-form">
     <Transition name="fade" mode="out-in">
-      <div v-if="docState === '1'" style="text-align: center; align-items: center;"> 
+      <div v-if="docState === '1'" > 
         Comment se nomme la ville/village que vous représenté ?
-        <input v-model="city"  style="width: 20%; text-align: center; align-items: center; margin-left: 40%;" placeholder="ex: Nancy"/>
+        <input v-model="city" placeholder="ex: Nancy"/>
         Quel est le code postal ?
-        <input v-model="postalcode"  style="width: 20%; text-align: center; align-items: center; margin-left: 40%;" placeholder="ex: 54000"/>
+        <input v-model="postalcode" placeholder="ex: 54000"/>
         Quel est le nombre d'habitant ?
-        <input v-model="citizenNumber"  style="width: 20%; text-align: center; align-items: center; margin-left: 40%;" placeholder="ex: 10 000"/>
+        <input v-model="citizenNumber" placeholder="ex: 10 000"/>
       </div>
-      <div v-else-if="docState === '2'" style="text-align: center;">
+      <div v-else-if="docState === '2'">
         Quel adresse mail voulez-vous utiliser ?
-        <input v-model="email"  style="width: 20%; text-align: center; align-items: center; margin-left: 40%;" placeholder="ex: Nancy@nancy.fr"/>
+        <input v-model="email"   placeholder="ex: Nancy@nancy.fr"/>
         Quel mot de passe voulez-vous utiliser ?
-        <input v-model="mdp"  style="width: 20%; text-align: center; align-items: center; margin-left: 40%;" placeholder="°°°°°"/>
+        <input v-model="mdp" placeholder="°°°°°"/>
         Confirmer votre mot de passe ?
-        <input v-model="mdpconfirm"  style="width: 20%; text-align: center; align-items: center; margin-left: 40%;" placeholder="°°°°°"/>
+        <input v-model="mdpconfirm" placeholder="°°°°°"/>
       </div>
-      <div v-else-if="docState === '3'" style="text-align: center;">
+      <div v-else-if="docState === '3'">
         Sélectionner un document d'authentification prouvant que vous représentez bien une mairie associée à une ville ou à un village,
-        <select style="width: 20%; text-align: center; align-items: center; margin-left: 40%;" v-model="selected">
+        <select  v-model="selected">
           <option>Document 1</option>
           <option>Document 2</option>
         </select>
@@ -70,6 +70,19 @@ button {
     border-radius: 200px;
     border: 2px solid rgb(192, 150, 40);
   }
+
+#pro-form {
+  text-align: center; 
+  align-items: center;
+}
+
+input {
+  width: 20%; 
+  text-align: center; 
+  align-items: center; 
+  margin-left: 40%;
+  /* background-color: red; */
+}
 
   .fade-enter-active,
   .fade-leave-active {
