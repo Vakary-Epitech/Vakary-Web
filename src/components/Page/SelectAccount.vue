@@ -1,31 +1,33 @@
 <template>
+  <div>
     <span>Inscription</span><br>
-    <button v-if="!pro" v-on:click="pro = false" style="background: #959595"> Connexion Standard</button>
-    <button v-if="!pro" v-on:click="pro = true"> Connexion Professionelle</button>
-    <button v-if="pro" v-on:click="pro = false" > Connexion Standard</button>
-    <button v-if="pro" v-on:click="pro = true"  style="background: #959595"> Connexion Professionelle</button>
-    
-    <div v-show="!pro" style="align-items: center">
-        <img src="../../assets/StandardProfilePhoto.png">
-        <br>
-        Commencer à decouvrir des maintenant sans limite !
+    <button v-if="buttonState === 1" style="background: #959595">Connexion Standard</button>
+    <button v-if="buttonState === 1" @click="buttonState = 2">Connexion Professionelle</button>
+
+    <button v-if="buttonState === 2" @click="buttonState = 1">Connexion Standard</button>
+    <button v-if="buttonState === 2"  style="background: #959595">Connexion Professionelle</button>
+
+    <div v-if="buttonState === 1" style="text-align: center; align-items: center;"> 
+      <img src="../../assets/StandardProfilePhoto.png">
+      <br>
+      Commencer à decouvrir des maintenant sans limite !<br>
+      <button @click="(openInscriptionPageStandard)">Créer mon compte</button>
     </div>
-    <div v-show="pro" style="align-items: center">
-        <img style="align-items: center" src="../../assets/ProProfilePhoto.png">
+
+    <div v-if="buttonState === 2" style="text-align: center; align-items: center;"> 
+      <img style="align-items: center" src="../../assets/ProProfilePhoto.png">
         <br>
-        Cet espace est destiner au professionel qui souhaite nous rejoindre pour optimiser au mieux l'expérience de nos utilisateurs.
+        Cet espace est destiner au professionel qui souhaite nous rejoindre pour optimiser au mieux l'expérience de nos utilisateurs.<br>
+        <button @click="(openInscriptionPagePro)">Créer mon compte</button>
     </div>
-    <button v-show="!pro" @click="(openInscriptionPageStandard)">Créer mon compte</button>
-    <button v-show="pro" @click="(openInscriptionPagePro)">Créer mon compte</button>
-    <br>
-  
-  </template>
-  
+  </div>
+</template>
+
 <script>
   export default {
     data () {
       return {
-        pro: false
+        buttonState: 1,
       }
     },
     methods: {
@@ -41,7 +43,7 @@
   
 <style>
 
-button {
+/* button {
     background: white;
     border: 0;
     padding: 10px 20px;
@@ -124,6 +126,6 @@ button {
     color: #ff0062;
     margin-top: 10px;
     font-size: 0.8em;
-    font-weight: bold;
-}
+    font-weight: bold; 
+ */
 </style>

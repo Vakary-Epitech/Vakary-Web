@@ -57,7 +57,7 @@ export default {
 </script>
 
 <style>
-  #app {
+  /* #app {
     font-family: Avenir, Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -77,8 +77,7 @@ export default {
     color: #aaa;
     display: inline-block;
     margin: 25px 0 15px;
-    font-size: 0.6em;
-    /* text-transform: uppercase; */
+    font-size: 0.6em; 
     letter-spacing: 1px;
     font-weight: bold;
   }
@@ -89,8 +88,6 @@ export default {
     width: 100%;
     box-sizing: border-box;
     border-bottom: 1px solid #ddd;
-    /* border-radius: 200px; */
-    /* border: 2px solid rgb(192, 150, 40); */
     color: #959595;
   }
   input[type="checkbox"] {
@@ -115,7 +112,6 @@ export default {
   button {
     background-color: #50bfff;
     color: #fff;
-    /* background: white; */
     border: 0;
     padding: 10px 20px;
     margin-top: 0px;
@@ -134,5 +130,5 @@ export default {
     margin-top: 10px;
     font-size: 0.8em;
     font-weight: bold;
-  }
+  } */
 </style>
