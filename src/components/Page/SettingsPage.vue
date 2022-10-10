@@ -1,5 +1,9 @@
 <template>
-    <div>Test</div>
+    <button>DarkMode</button>
+    <button>Nom d'utilisateur</button>
+    <button>Mot de passe</button>
+    <button>Deconnexion</button>
+    <br>
   
 </template>
 

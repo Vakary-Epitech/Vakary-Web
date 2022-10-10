@@ -1,12 +1,11 @@
 <template>
-  <div>
-    <div class="pro-form">
+  <div class="pro-form">
     <Transition name="fade" mode="out-in">
       <div v-if="docState === 1" class="buttonProForm"> 
         Comment se nomme la ville/village que vous représenté ?
-        <input v-model="city" placeholder="ex: Nancy" class="textProForm"/>
+        <input v-model="city" placeholder="ex: Everywhere" class="textProForm"/>
         Quel est le code postal ?
-        <input v-model="postalcode" placeholder="ex: 54000" class="textProForm"/>
+        <input v-model="postalCode" placeholder="ex: 54000" class="textProForm"/>
         Quel est le nombre d'habitant ?
         <input v-model="citizenNumber" placeholder="ex: 10 000" class="textProForm"/>
       </div>
@@ -16,7 +15,7 @@
         Quel mot de passe voulez-vous utiliser ?
         <input v-model="mdp" placeholder="°°°°°"/>
         Confirmer votre mot de passe ?
-        <input v-model="mdpconfirm" placeholder="°°°°°"/>
+        <input v-model="mdpConfirm" placeholder="°°°°°"/>
       </div>
       <div v-else-if="docState === 3" class="buttonProForm">
         Sélectionner un document d'authentification prouvant que vous représentez bien une mairie associée à une ville ou à un village,
@@ -29,12 +28,12 @@
         Termine
       </div>
     </Transition>
-    </div>
+  </div>
+
+  <div>
     <button v-if="docState === 1" @click="docState = 2">Suivant</button>
     <button v-if="docState === 2" @click="docState = 3">Suivant</button>
     <button v-if="docState === 3" @click="docState = 4">Suivant</button>
-    <br>
-
   </div>
 </template>
 
@@ -44,13 +43,13 @@
       return {
         docState: 1,
         city: '',
-        postalcode: '',
+        postalCode: '',
         citizenNumber: '',
         email: '',
         name: '',
         mdp: '',
-        mdpconfirm: '',
-        document: '',
+        mdpConfirm: '',
+        documentSent: '',
       }
     }
   }
@@ -85,20 +84,19 @@
 }
 
 .input {
-  width: 20%; 
-  text-align: center; 
-  align-items: center; 
-  margin-left: 40%;
-  background-color: red;
+width: 20%; 
+text-align: center; 
+align-items: center; 
+margin-left: 40%;
 }
 
-  .fade-enter-active,
-  .fade-leave-active {
-    transition: opacity 0.5s ease;
-  }
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s ease;
+}
 
-  .fade-enter-from,
-  .fade-leave-to {
-    opacity: 0;
-  }
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
 </style>

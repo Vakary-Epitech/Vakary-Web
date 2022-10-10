@@ -1,41 +1,36 @@
 <template>
-  <div>Connexion</div>
-  <button v-if="!pro" v-on:click="pro = false" style="background: #959595"> Connexion Standard</button>
-  <button v-if="!pro" v-on:click="pro = true"> Connexion Professionelle</button>
-  <button v-if="pro" v-on:click="pro = false" > Connexion Standard</button>
-  <button v-if="pro" v-on:click="pro = true"  style="background: #959595"> Connexion Professionelle</button>
-  <form v-show="pro">
-    <label>Code d'authentification:</label>
-    <input type="code" required v-model="code">
-    <label>Code authentification oublie ?</label>
-    <br>
-    <label>Email ou Nom d'utilisateur:</label>
-    <input type="email"   required v-model="email">
-    <label>Mot de passe:</label>
-    <input type="password"   required v-model="password">
-    <label>Mot de passe oublie ?</label>
-  </form>
-
-  <form v-show="!pro">
-    <label>Email ou Nom d'utilisateur:</label>
-    <input type="email"   required v-model="email">
-    <label>Mot de passe:</label>
-    <input type="password"   required v-model="password">
-    <button @click="(openForgetPassword)">Mot de passe oublie ?</button>
-  </form>
-
-  <button> Connexion</button>
-  <br>
-  <br>
-  <button>
-    <img src="../../assets/google.png" width="100" height="100">
-  </button>
-  <br>
-  <label>ou</label>
-  <br>
-  <button @click="(openSelectAccount)">Inscription</button>
-  <br>
-
+  <div>
+    <div>Connexion</div>
+    <button v-if="!pro" v-on:click="pro = false" class="buttonSelectLogin"> Connexion Standard</button>
+    <button v-if="!pro" v-on:click="pro = true"> Connexion Professionelle</button>
+    <button v-if="pro" v-on:click="pro = false" > Connexion Standard</button>
+    <button v-if="pro" v-on:click="pro = true"  class="buttonSelectLogin"> Connexion Professionelle</button>
+    <form v-show="pro">
+      <label>Code d'authentification:</label>
+      <input type="code" required v-model="code">
+      <label>Code authentification oublie ?</label>
+      <label>Email ou Nom d'utilisateur:</label>
+      <input type="email" required v-model="email">
+      <label>Mot de passe:</label>
+      <input type="password" required v-model="password">
+      <label>Mot de passe oublie ?</label>
+    </form>
+  
+    <form v-show="!pro">
+      <label>Email ou Nom d'utilisateur:</label>
+      <input type="email" required v-model="email">
+      <label>Mot de passe:</label>
+      <input type="password" required v-model="password">
+      <button @click="(openForgetPassword)">Mot de passe oublie ?</button>
+    </form>
+  
+    <button> Connexion</button>
+    <button>
+      <img src="../../assets/google.png" width="100" height="100">
+    </button>
+    <label>ou</label>
+    <button @click="(openSelectAccount)">Inscription</button>
+  </div>
 </template>
 
 <script>
@@ -47,7 +42,7 @@ export default {
   },
   methods: {
     openSelectAccount() {
-      this.$router.push("/SelectAccount");
+      this.$router.push("/selectAccount");
     },
     openForgetPassword() {
       this.$router.push("/forgetPassword")
@@ -57,78 +52,9 @@ export default {
 </script>
 
 <style>
-  /* #app {
-    font-family: Avenir, Helvetica, Arial, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-align: center;
-    color: #2c3e50;
-    margin-top: 60px;
-  }
-  form {
-    max-width: 420px;
-    margin: 30px auto;
-    background: white;
-    text-align: left;
-    padding: 40px;
-    border-radius: 10px;
-  }
-  label {
-    color: #aaa;
-    display: inline-block;
-    margin: 25px 0 15px;
-    font-size: 0.6em; 
-    letter-spacing: 1px;
-    font-weight: bold;
-  }
-  input, select {
-    background-color: withe;;
-    display: block;
-    padding: 10px 6px;
-    width: 100%;
-    box-sizing: border-box;
-    border-bottom: 1px solid #ddd;
-    color: #959595;
-  }
-  input[type="checkbox"] {
-    display: inline-block;
-    width: 16px;
-    margin: 0 10px 0 0;
-    position: relative;
-    top: 2px;
-  }
-  .pill {
-    display: inline-block;
-    margin: 20px 10px 0 0;
-    padding: 6px 12px;
-    background: #eee;
-    border-radius: 20px;
-    font-size: 12px;
-    letter-spacing: 1px;
-    font-weight: bold;
-    color: #777;
-    cursor: pointer;
-  }
-  button {
-    background-color: #50bfff;
-    color: #fff;
-    border: 0;
-    padding: 10px 20px;
-    margin-top: 0px;
-    color: black;
-    border-radius: 200px;
-    border: 2px solid rgb(192, 150, 40);
-  }
-  br {
-    margin-top: 800px;
-  }
-  .submit {
-    text-align: center;
-  }
-  .error {
-    color: #ff0062;
-    margin-top: 10px;
-    font-size: 0.8em;
-    font-weight: bold;
-  } */
+
+.buttonSelectLogin {
+  background: #959595;
+}
+
 </style>

@@ -1,5 +1,6 @@
 <template>
     <div class="container">
+        <button @click="(openSettingsPage)">Settings</button>
         <div class="row" v-if="!editMode">
             <div class="mb-5">
                 <img class="background-picture" :src="user.background" alt="background-picture">
@@ -152,6 +153,9 @@ export default {
             this.editMode = false
             //envoyer a l'api
             
+        },
+        openSettingsPage() {
+            this.$router.push("/settingsPage");
         },
     },
     components: {

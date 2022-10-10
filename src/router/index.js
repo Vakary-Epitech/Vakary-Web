@@ -37,7 +37,7 @@ const routes = [
         component: InscriptionPagePro,
     },
     {
-        path: '/SelectAccount',
+        path: '/selectAccount',
         name: 'SelectAccount',
         component: SelectAccount,
     },
