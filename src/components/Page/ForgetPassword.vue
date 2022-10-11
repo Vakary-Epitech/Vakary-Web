@@ -10,7 +10,7 @@
           <option>Quel est la marque de votre première voiture ?</option>
         </select>
         Quel est votre reponse?
-        <input class="inputForgetPassword" v-model="answer" placeholder="ex: Nancy"/>
+        <input class="inputForgetPassword" v-model="mysteryQuestionAnswer" placeholder="ex: Nancy"/>
         Quel est votre mail?
         <input v-model="email" placeholder="Email"/>
 
@@ -24,7 +24,7 @@
   export default {
     data () {
       return {
-        answer: '',
+        mysteryQuestionAnswer: '',
         email: '',
       }
     },
