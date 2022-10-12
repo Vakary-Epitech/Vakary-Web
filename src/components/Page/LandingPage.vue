@@ -6,10 +6,10 @@
 </template>
 
 <script>
-  import TopBar from '../Shared/TopBar.vue';
+  import TopBar from '../UI/TopBar.vue';
   export default {
     components: {
-      'top-bar': TopBar
+      TopBar
     }
   }
 </script>
