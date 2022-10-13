@@ -24,7 +24,7 @@
 
 <script>
     export default {
-        name: 'TopBar',
+        name: 'topBar',
         methods: {
             openLandingPage() {
                 this.$router.push("/");
@@ -46,59 +46,59 @@
 </script>
 
 <style>
-    #app {
-        margin-top: 0;
-    }
+#app {
+    margin-top: 0;
+}
 
-    .addBorder {
-        border-bottom: 1px solid #000000;
-    }
+.addBorder {
+    border-bottom: 1px solid #000000;
+}
 
-    .row{
-        margin-left: 0 !important;
-    }
+.row{
+    margin-left: 0 !important;
+}
 
-    .logo {
-        width: auto;
-        height: 50px;
-        cursor: pointer;
-    }
+.logo {
+    width: auto;
+    height: 50px;
+    cursor: pointer;
+}
 
-    .default-color {
-        color: #000642;
-    }
+.default-color {
+    color: #000642;
+}
 
-    .default-color:hover {
-        color: #C09628;
-    }
+.default-color:hover {
+    color: #C09628;
+}
 
-    .to-page {
-        border: none;
-        background-color: #fff;
-    }
+.to-page {
+    border: none;
+    background-color: #fff;
+}
 
-    .register-button {
-        background-color: #000642;
-        color: #C09628;
-        border: 3px #000642 solid;
-        border-radius: 20px;
-    }
+.register-button {
+    background-color: #000642;
+    color: #C09628;
+    border: 3px #000642 solid;
+    border-radius: 20px;
+}
 
-    .register-button:hover {
-        background-color: #C09628;
-        color: #000642;
-        border: 3px #C09628 solid;
-        font-size: 20px;
-    }
+.register-button:hover {
+    background-color: #C09628;
+    color: #000642;
+    border: 3px #C09628 solid;
+    font-size: 20px;
+}
 
-    .connexion-button {
-        background-color: #fff;
-        border: 3px #000642 solid;
-        border-radius: 20px;
-    }
+.connexion-button {
+    background-color: #fff;
+    border: 3px #000642 solid;
+    border-radius: 20px;
+}
 
-    .connexion-button:hover {
-        font-size: 20px;
-        border: 3px #C09628 solid;
-    }
+.connexion-button:hover {
+    font-size: 20px;
+    border: 3px #C09628 solid;
+}
 </style>
