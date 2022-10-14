@@ -1,23 +1,30 @@
 <template>
   <div>
-    <GMapMap :center="userPosition" :zoom="12" map-type-id="terrain" style="width: 100vw; height: 70vh" ref="myMapRef">
+    
+    <GMapMap :center="userPosition" :options="options" :zoom="12" style="width: 100vw; height: 70vh" ref="myMapRef">
+      <GMapMarker :position="userPosition" />
       <GMapMarker :key="marker.label" v-for="marker in markersData" :position="marker.geolocalisation"
-        :title="marker.label" :clickable="true" @click="openInfoWindow(marker.label, marker.geolocalisation)">
-        <GMapInfoWindow :closeclick="true" @closeclick="openInfoWindow(null)" :opened="openedMarkerID === marker.label">
-          <div>
-            <li>Label : {{ marker.label }}</li>
-            <li>description : {{ marker.description }}</li>
-          </div>
-        </GMapInfoWindow>
-      </GMapMarker>
-      <map-info></map-info>
-      <GMapPolyline :path="path" :editable="true" ref="polyline" />
+      :title="marker.label" :clickable="true" @click="openInfoWindow(marker.label, marker.geolocalisation)">
+      <GMapInfoWindow :closeclick="true" @closeclick="openInfoWindow(null)" :opened="openedMarkerID === marker.label">
+            <div>
+              <div class="col-12">
+                <h4>{{ marker.label }}</h4>
+              </div>
+              <div class="col-12">
+                <span>{{ marker.description }}</span>
+              </div>
+            </div>
+          </GMapInfoWindow>
+        </GMapMarker>
+        <map-info></map-info>
+        <GMapPolyline :path="path" ref="polyline" />
     </GMapMap>
     <div>
       Map Page</div>
     <div>
       <button @click="increaseWaypointsIndex">Increase waypoints index</button>
       <button @click="drawPathBetweenSelectedPoint">Draw path between selected point</button>
+      <button @click="infos">Infos</button>
     </div>
     <div>
       <span>selected Point : {{ $store.state.mapStore.selectedMarker }}</span>
@@ -45,6 +52,23 @@ export default {
       waypoints: [],
       currentWaypointIndex: 0,
       path: [],
+      options: {
+        disableDefaultUI: true,              
+        styles: [
+          {
+            featureType: 'landscape',
+            stylers: [{ visibility: 'off' }],
+          },
+          {
+            featureType: 'poi',
+            stylers: [{ visibility: 'off' }],
+          },
+          {
+            featureType: 'transit',
+            stylers: [{ visibility: 'off' }],
+          }
+        ],
+      },
       locomotionMethod: [
         { id: 1, locomotionType: "walking" },
         { id: 2, locomotionType: "driving" },
@@ -68,14 +92,52 @@ export default {
   methods: {
     addCenterControl(controlDiv) {
       const controlUI = document.createElement('div');
-
+      controlUI.id = 'centerControl';
       controlDiv.appendChild(controlUI);
       if (this.currentWaypointIndex == this.path.length - 1) {
         controlUI.innerHTML = '<div style="background: white; padding: 1rem;"><h2>Finished</h2></div>'
       } else {
         const currentWaypoint = this.waypoints[this.currentWaypointIndex];
-        controlUI.innerHTML = '<div style="background: white; padding: 1rem; margin-top: 10px"><li>' + currentWaypoint.duration.text + '</li><li>' + currentWaypoint.distance.text + '</li><li>' + currentWaypoint.instruction + '</li></div>';
+        controlUI.innerHTML = '<div style="background: white; padding: 1rem; margin-top: 10px"><div class="col-12 text-start">Duration: ' + currentWaypoint.duration.text + '</div><div class="col-12 text-start">Distance: ' + currentWaypoint.distance.text + '</div><div class="col-12 text-start">' + currentWaypoint.instruction + '</div></div>';
       }
+    },
+
+    infos() {
+      if (this.$store.state.mapStore.selectedMarker.length < 2 || this.waypoints.length == 0) {
+        return;
+      }
+      let totalTime = 0;
+      let totalDistance = 0;
+      for (let i = 0; i < this.waypoints.length; i++) {
+        totalTime += this.waypoints[i].duration.value;
+        totalDistance += this.waypoints[i].distance.value;
+      }
+      let hours = Math.floor(totalTime / 3600);
+      let minutes = Math.floor((totalTime % 3600) / 60);
+      let seconds = totalTime % 60;
+      let time = "";
+      if (hours > 0) {
+        time = hours + "h " + minutes + "m " + seconds + "s";
+      } else {
+        time = minutes + "m " + seconds + "s";
+      }
+      let km = Math.floor(totalDistance / 1000);
+      let m = totalDistance % 1000;
+      let distance = "";
+      if (km > 0) {
+        distance = km + "." + m + "km";
+      } else {
+        distance = m + "m";
+      }
+      const infoDiv = document.createElement('div');
+      infoDiv.id = 'infoDiv';
+      this.$refs.myMapRef.$mapPromise.then((map) => {
+        infoDiv.innerHTML = '<div style="background: white; padding: 1rem;"><h3>Total Time :' + time + '</h3><h3>Total Distance: ' + distance + '</h3></div>'
+        map.controls[google.maps.ControlPosition.TOP_RIGHT].clear(); // eslint-disable-line no-undef
+        map.controls[google.maps.ControlPosition.TOP_RIGHT].push( // eslint-disable-line no-undef
+          infoDiv
+        );
+      });    
     },
 
     increaseWaypointsIndex() {
