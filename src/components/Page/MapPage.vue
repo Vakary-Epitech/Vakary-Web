@@ -17,7 +17,7 @@
           </GMapInfoWindow>
         </GMapMarker>
         <map-info></map-info>
-        <GMapPolyline :path="path" ref="polyline" />
+        <GMapPolyline :options="{strokeColor:'#000642'}"  :path="path" ref="polyline" />
     </GMapMap>
     <div>
       Map Page</div>
