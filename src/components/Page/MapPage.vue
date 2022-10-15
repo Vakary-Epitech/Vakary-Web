@@ -39,12 +39,12 @@
 </template>
 
 <script>
-import MapInfo from './mapInfo.vue';
+import mapInfo from './MapInfo.vue';
 
 export default {
   name: 'App',
   components: {
-    MapInfo,
+    mapInfo,
   },
   data() {
     return {
