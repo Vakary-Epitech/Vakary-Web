@@ -2,13 +2,13 @@ import { createRouter, createWebHistory } from 'vue-router';
 import VakaryHome from "../components/VakaryHome.vue";
 import VakaryWeb from "../components/VakaryWeb.vue";
 import Group from "../components/Group.vue";
-import App from "../App.vue";
+// import App from "../App.vue";
 
 const routes = [
     {
         path: '/',
-        name: 'App',
-        component: App,
+        name: 'VakaryHome',
+        component: VakaryHome,
     },
     {
         path: '/VakaryHome',

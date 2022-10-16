@@ -1,10 +1,15 @@
 <template>
     <div id="app">
+        <!-- transition pour afficher la modal de la création d'un nouveau groupe -->
         <transition name="fade" appear>
-            <div class="modal-overlay" v-if="showModal" @click="showModal = false"></div>
+            <div class="modal-overlay" v-if="CreateGroup" @click="CreateGroup = false"></div>
         </transition>
+        <!-- modal de la création de groupe
+        -ajouter le back
+        -modifier le design si besoin
+         -->
         <transition name="pop" appear>
-            <div class="modal" role="dialog" v-if="showModal">
+            <div class="modal" role="dialog" v-if="CreateGroup">
                 <h1>Créer votre nouveau groupe</h1>
                 <div>
                     <h4>Nom du groupe</h4>
@@ -12,8 +17,10 @@
                 </div>
                 <div>
                     <h4>Adresse mail des membres</h4>
-                    <input class="inputForm" placeholder="exemple@exemple.com" type="text" v-model="mailMember" />
-                    <h6> {{mailMember}} </h6>
+                    <input class="inputForm" placeholder="exemple@exemple.com" type="text" @keydown.enter="addMembers" v-model="mailMember" />                    
+                    <h6 v-for="member in listMembers" :key="member.mail">
+                        {{member.mail}}
+                    </h6>
                 </div>
                 <div>
                     <h4>Photo du groupe</h4>
@@ -35,17 +42,23 @@ export default {
     name: "createGroup",
     methods: {
         sendMessage() {
-            this.emitter.emit("modalshow");
+            this.emitter?.emit("modalshow");
             this.showModal = false;
+        },
+        addMembers() {
+            this.listMembers.push({ mail: this.mailMember })
+            this.mailMember = "";
         }
     },
     data() {
         return {
-            showModal: true,
-            mailMember : ""
+            CreateGroup: true,
+            mailMember: "",
+            firstName: "",
+            listMembers: []
         }
     },
-    updated(){
+    updated() {
         console.log(this.mailMember)
 
     },
@@ -96,6 +109,7 @@ body {
 .modal {
     position: absolute;
     position: fixed;
+    background: #e4e4e4;
     top: 0;
     right: 0;
     bottom: 0;
@@ -103,11 +117,10 @@ body {
     margin: auto;
     text-align: center;
     width: 40%;
-    height: 60%;
+    height: 65%;
     padding: 2rem;
     border-radius: 1rem;
     box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
-    background: #FFF;
     z-index: 999;
     transform: none;
 }

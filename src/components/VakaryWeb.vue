@@ -98,7 +98,7 @@ import Product from './Product';
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 100vh;
+    height: 110vh;
   }
   .Subtitle {
     color: #888888;
