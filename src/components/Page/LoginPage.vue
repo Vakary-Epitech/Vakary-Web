@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="login">
     <div>Connexion</div>
     <button v-if="!pro" v-on:click="pro = false" class="buttonSelectLogin"> Connexion Standard</button>
     <button v-if="!pro" v-on:click="pro = true"> Connexion Professionelle</button>
@@ -56,5 +56,34 @@ export default {
 .buttonSelectLogin {
   background: #959595;
 }
+.login {
+  background-color: var(--background-color-primary);
+}
+
+.login button {
+    display: flex; 
+    flex-direction: column;
+    text-align: center; 
+    align-items: center;
+    background: white;
+    margin: 10px auto;
+    border: 0;
+    color: black;
+    background-color: var(--background-color-secondary);
+    color: var(--text-primary-color);
+    border: 2px solid rgb(192, 150, 40);
+    border-radius: 20px;
+}
+
+.login input {
+    background-color: var(--background-color-secondary);
+    border-color: var(--text-primary-color);
+    margin: 10px auto;
+}
+
+.login label {
+  color: var(--text-primary-color);
+}
+
 
 </style>

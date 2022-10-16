@@ -16,6 +16,7 @@
 </template>
 
 <script>
+import ThemeButton from "../src/components/Theme/ThemeButton.vue";
 export default {
   beforeCreate() {
       this.$router.push("/");
@@ -37,6 +38,7 @@ export default {
       this.$router.push("/mobilePage");
     },
   },
+  components: { ThemeButton },
 };
 </script>
 
@@ -47,6 +49,18 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  background-color: var(--background-color-primary);
+  min-height: 100vh;
+}
+
+.app button {
+  background: white;
+  margin: 10px auto;
+  border: 0;
+  color: black;
+  background-color: var(--background-color-secondary);
+  color: var(--text-primary-color);
+  border: 2px solid rgb(192, 150, 40);
+  border-radius: 20px;
 }
 </style>

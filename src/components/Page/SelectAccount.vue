@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="SelectAccount">
     <span>Inscription</span>
     <button v-if="goNextFormButtonState === 1" class="buttonSelectAccount">Connexion Standard</button>
     <button v-if="goNextFormButtonState === 1" @click="goNextFormButtonState = 2">Connexion Professionelle</button>
@@ -9,35 +9,39 @@
 
     <div v-if="goNextFormButtonState === 1" class="profileImageDisplay"> 
       <img src="../../assets/StandardProfilePhoto.png">
-      Commencer à decouvrir des maintenant sans limite !
+      <span>
+        Commencer à decouvrir des maintenant sans limite !
+      </span>
       <button @click="(openInscriptionPageStandard)">Créer mon compte</button>
     </div>
 
     <div v-if="goNextFormButtonState === 2" class="profileImageDisplay"> 
       <img class="profileImageDisplay" src="../../assets/ProProfilePhoto.png">
-        Cet espace est destiner au professionel qui souhaite nous rejoindre pour optimiser au mieux l'expérience de nos utilisateurs.
+        <span>
+          Cet espace est destiner au professionel qui souhaite nous rejoindre pour optimiser au mieux l'expérience de nos utilisateurs.
+        </span>
         <button @click="(openInscriptionPagePro)">Créer mon compte</button>
     </div>
   </div>
 </template>
 
 <script>
-  export default {
-    data () {
-      return {
-          goNextFormButtonState: 1,
-      }
+export default {
+  data () {
+    return {
+        goNextFormButtonState: 1,
+    }
+  },
+  methods: {
+    openInscriptionPageStandard() {
+      this.$router.push("/inscriptionPageStandard");
     },
-    methods: {
-      openInscriptionPageStandard() {
-        this.$router.push("/inscriptionPageStandard");
-      },
-      openInscriptionPagePro() {
-        this.$router.push("/inscriptionPagePro");
-      },
+    openInscriptionPagePro() {
+      this.$router.push("/inscriptionPagePro");
     },
-  }
-  </script>
+  },
+}
+</script>
   
 <style>
 
@@ -48,6 +52,29 @@
 
 .buttonSelectAccount {
   background: #959595;
+}
+
+.SelectAccount {
+  background-color: var(--background-color-primary);
+}
+
+.SelectAccount button{
+  display: flex; 
+  flex-direction: column;
+  text-align: center; 
+  align-items: center;
+  background: white;
+  margin: 10px auto;
+  border: 0;
+  color: black;
+  background-color: var(--background-color-secondary);
+  color: var(--text-primary-color);
+  border: 2px solid rgb(192, 150, 40);
+  border-radius: 20px;
+}
+
+.SelectAccount span {
+  color: var(--text-primary-color);
 }
 
 </style>

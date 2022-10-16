@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="ForgetPassword">
     <span>Vous avez oublié votre mot de passe ? <br> Pas de panique ! Répondez à la question secrete de votre choix <br> et confirmez-nous votre adresse mail et nous vous permettrons <br> d´en créer un nouveau !</span>
     <span>
       Repondez a la question de votre choix
@@ -60,4 +60,40 @@ button {
   align-items: center; 
   margin-left: 40%;
 }
+
+.ForgetPassword {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--background-color-primary);
+  align-items: center;
+  text-align: center;
+}
+
+.ForgetPassword button {
+    display: flex; 
+    flex-direction: column;
+    text-align: center; 
+    align-items: center;
+    background: white;
+    margin: 10px auto;
+    border: 0;
+    color: black;
+    background-color: var(--background-color-secondary);
+    color: var(--text-primary-color);
+    border: 2px solid rgb(192, 150, 40);
+    border-radius: 20px;
+}
+
+
+.ForgetPassword input {
+  background-color: var(--background-color-secondary);
+  border-color: var(--text-primary-color);
+  margin: 10px auto;
+}
+
+.ForgetPassword span {
+  color: var(--text-primary-color);
+}
+
+
 </style>

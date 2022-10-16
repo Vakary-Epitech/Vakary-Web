@@ -85,6 +85,28 @@
   border-radius: 200px;
 }
 
+.button-page-standard button {
+    display: flex; 
+    flex-direction: column;
+    text-align: center; 
+    align-items: center;
+    background: white;
+    margin: 10px auto;
+    border: 0;
+    color: black;
+    background-color: var(--background-color-secondary);
+    color: var(--text-primary-color);
+    border: 2px solid rgb(192, 150, 40);
+    border-radius: 20px;
+}
+
+.button-page-standard div {
+    color: var(--text-primary-color);
+    background-color: var(--background-color-secondary);
+    border-radius: 10px;
+    margin: 10px auto;
+}
+
 .fade-enter-active,
 .fade-leave-active {
   transition: opacity 0.5s ease;
