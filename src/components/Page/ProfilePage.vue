@@ -97,7 +97,7 @@
 </template>
 
 <script>
-import cardReviews from '../UI/Cards-reviews.vue';
+import cardReviews from '../UI/CardsReviews.vue';
 import topBar from '../UI/TopBar.vue';
 export default {
     data () {
