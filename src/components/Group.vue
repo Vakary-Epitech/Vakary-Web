@@ -1,7 +1,7 @@
 <template>
     <div id="app">
         <!-- boutton pour changer de page -->
-        <button @click="(openVakaryHome)">Vakary Home</button>
+        <!-- <button @click="(openVakaryHome)">Vakary Home</button> -->
         <img class="logoVakary" @click="showModal = true" :src="require('./../assets/Logo_vect.png')" />
         <!-- transition pour afficher la modale avec la liste des groupes -->
         <transition name="fade" appear>

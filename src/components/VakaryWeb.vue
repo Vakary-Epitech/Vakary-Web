@@ -2,7 +2,7 @@
     <div id="app">
 
         <!-- boutton pour changer de page -->
-      <button @click="(openVakaryHome)">Vakary Home</button>
+      <!-- <button @click="(openVakaryHome)">Vakary Home</button> -->
       
       <!-- début de l'html/css pour la création de la page Web de Vakary -->
       <h1 class="VakaryTitle">VAKARY</h1>
