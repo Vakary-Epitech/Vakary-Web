@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import ThemeButton from "../src/components/Theme/ThemeButton.vue";
+import themeButton from "../src/components/Theme/ThemeButton.vue";
 export default {
   beforeCreate() {
       this.$router.push("/");
@@ -38,7 +38,7 @@ export default {
       this.$router.push("/mobilePage");
     },
   },
-  components: { ThemeButton },
+  components: { themeButton },
 };
 </script>
 

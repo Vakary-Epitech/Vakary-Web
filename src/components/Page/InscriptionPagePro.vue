@@ -1,5 +1,5 @@
 <template>
-  <div class="pro-form">
+  <div class="proForm">
     <Transition name="fade" mode="out-in">
       <div v-if="docState === 1" class="buttonProForm"> 
         Comment se nomme la ville/village que vous représenté ?
@@ -57,7 +57,7 @@
 
 <style>
 
-.pro-form {
+.proForm {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
@@ -66,7 +66,7 @@
   background-color: var(--background-color-primary);
 }
 
-.pro-form button {
+.proForm button {
     display: flex; 
     flex-direction: column;
     text-align: center; 
@@ -81,7 +81,7 @@
     border-radius: 20px;
 }
 
-.pro-form div {
+.proForm div {
     color: var(--text-primary-color);
     background-color: var(--background-color-secondary);
     border-radius: 10px;

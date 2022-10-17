@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import ThemeButton from "../Theme/ThemeButton.vue";
+import themeButton from "../Theme/ThemeButton.vue";
 export default {
     data() {
       return {
@@ -21,7 +21,7 @@ export default {
         changePassword: 0,
         }
     },
-    components: { ThemeButton },
+    components: { themeButton },
 };
 </script>
 

@@ -1,5 +1,5 @@
 <template>
-  <div class="SelectAccount">
+  <div class="selectAccount">
     <span>Inscription</span>
     <button v-if="goNextFormButtonState === 1" class="buttonSelectAccount">Connexion Standard</button>
     <button v-if="goNextFormButtonState === 1" @click="goNextFormButtonState = 2">Connexion Professionelle</button>
@@ -54,11 +54,11 @@ export default {
   background: #959595;
 }
 
-.SelectAccount {
+.selectAccount {
   background-color: var(--background-color-primary);
 }
 
-.SelectAccount button{
+.selectAccount button{
   display: flex; 
   flex-direction: column;
   text-align: center; 
@@ -73,7 +73,7 @@ export default {
   border-radius: 20px;
 }
 
-.SelectAccount span {
+.selectAccount span {
   color: var(--text-primary-color);
 }
 

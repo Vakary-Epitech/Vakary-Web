@@ -1,5 +1,5 @@
 <template>
-  <div class="ForgetPassword">
+  <div class="forgetPassword">
     <span>Vous avez oublié votre mot de passe ? <br> Pas de panique ! Répondez à la question secrete de votre choix <br> et confirmez-nous votre adresse mail et nous vous permettrons <br> d´en créer un nouveau !</span>
     <span>
       Repondez a la question de votre choix
@@ -13,7 +13,6 @@
         <input class="inputForgetPassword" v-model="mysteryQuestionAnswer" placeholder="ex: Nancy"/>
         Quel est votre mail?
         <input v-model="email" placeholder="Email"/>
-
         <button class="inputForgetPassword" @click="(openLoginPage)">Revenir sur la page de connexion</button>
     </span>
   </div>
@@ -32,7 +31,6 @@
       openLoginPage() {
         this.$router.push("/loginPage");
       },
-
     },
   }
   </script>
@@ -61,7 +59,7 @@ button {
   margin-left: 40%;
 }
 
-.ForgetPassword {
+.forgetPassword {
   display: flex;
   flex-direction: column;
   background-color: var(--background-color-primary);
@@ -69,7 +67,7 @@ button {
   text-align: center;
 }
 
-.ForgetPassword button {
+.forgetPassword button {
     display: flex; 
     flex-direction: column;
     text-align: center; 
@@ -85,13 +83,13 @@ button {
 }
 
 
-.ForgetPassword input {
+.forgetPassword input {
   background-color: var(--background-color-secondary);
   border-color: var(--text-primary-color);
   margin: 10px auto;
 }
 
-.ForgetPassword span {
+.forgetPassword span {
   color: var(--text-primary-color);
 }
 
