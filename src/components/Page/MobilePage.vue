@@ -1,3 +1,10 @@
+<!-- This component is used for the presentation of the mobile application Vakary
+     The page is not complete yet, it still needs all the mobile screenshots + video
+     The structure is using the bootstrap grid system and structured as follow: 
+        - a container-fluid
+        - div row 
+        - div col 
+     It is using as well the i18n system for a translation system -->
 <template>
     <topBar class="col-12"/>
     <div class="container-fluid">

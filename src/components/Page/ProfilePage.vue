@@ -1,3 +1,9 @@
+<!-- This component is used for the profile of the user
+     The structure is using the bootstrap grid system and structured as follow: 
+        - a container
+        - div row 
+        - div col 
+     It is using as well the i18n system for a translation system -->
 <template>
     <top-bar class="col-12"/>
     <div class="container">
@@ -22,11 +28,9 @@
         <div class="row" v-if="editMode">
             <div class="mb-5 clickable">
                 <img @click="openFileExplorer('background')" class="background-picture" :src="user.background" alt="background-picture">
-                <!-- <i class="fa-solid fa-camera"></i> -->
             </div>
             <div class="image">
                 <img @click="openFileExplorer('picture')" class="profile-picture clickable" :src="user.image" alt="profile-picture">
-                <!-- <i class="camera-picture fa-solid fa-camera"></i> -->
             </div>
             <div class="col-6 offset-3 mt-5">
                 <textarea class="mt-2" v-model="user.pseudo" :placeholder="user.pseudo" rows="1" cols="30" maxlength="24">Write stuff here...</textarea>

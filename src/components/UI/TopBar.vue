@@ -1,23 +1,28 @@
+<!-- This component is used for the top bar of the website
+     The structure is using the bootstrap grid system and structured as follow: 
+        - div row 
+        - div col 
+     It is using as well the i18n system for a translation system -->
 <template>
     <div class="row addBorder mt-3">
         <div class="col-2 mb-3">
             <img @click="(openMobilePage)" class="logo" src="../../assets/Logo_vect.svg">
         </div>
         <div class="col-2 my-auto">
-            <button class="default-color to-page" @click="(openMobilePage)">Application Web</button>
+            <button class="default-color to-page" @click="(openMobilePage)">{{ $t("topBar.web") }}</button>
         </div>
         <div class="col-2 my-auto">
-            <button class="default-color to-page" @click="(openMobilePage)">Application Mobile</button>
+            <button class="default-color to-page" @click="(openMobilePage)">{{ $t("topBar.mobile") }}</button>
         </div>
         <div class="col-2 my-auto">
-            <button class="default-color to-page" @click="(openMobilePage)">VIP</button>
+            <button class="default-color to-page" @click="(openMobilePage)">{{ $t("topBar.vip") }}</button>
         </div>
         <div class="col-2 my-auto">
-            <button class="default-color connexion-button" @click="(openLoginPage)">Connexion</button>
+            <button class="default-color connexion-button" @click="(openLoginPage)">{{ $t("topBar.signup") }}</button>
             
         </div>
         <div class="col-2 my-auto">
-            <button class="register-button" @click="(openMobilePage)">Inscription</button>
+            <button class="register-button" @click="(openMobilePage)">{{ $t("topBar.signin") }}</button>
         </div>
     </div>
 </template>
