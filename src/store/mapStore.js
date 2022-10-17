@@ -3,13 +3,15 @@ const mapStore = {
         marker: [],
         selectedMarker: [],
         selectedMethodOfLocomotion: "walking",
+        selectedTypeOfInterest: [],
+        tripTime: "",
     },
     mutations: {
         UPDATE_MARKER_ARRAY(state, marker) {
             state.marker = marker;
         },
         ADD_GEOLOCALISATION_OF_MARKER(state, geolocalisation) {
-            state.selectedMarker.push (geolocalisation);
+            state.selectedMarker.push(geolocalisation);
         },
         RESET_SELECTED_MARKER(state) {
             state.selectedMarker = [];

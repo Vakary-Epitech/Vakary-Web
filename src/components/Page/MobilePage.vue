@@ -1,8 +1,7 @@
 <template>
     <div class="container-fluid">
         <div class="row bg-white">
-            <iframe class="bg-video"
-                src="https://www.youtube.com/embed/tgbNymZ7vqY?autoplay=1&mute=1">
+            <iframe class="bg-video" src="https://www.youtube.com/embed/tgbNymZ7vqY?autoplay=1&mute=1">
             </iframe>
             <div class="col-12">
                 <h1>{{ $t("mobilePage.title") }}</h1>
@@ -13,12 +12,14 @@
                 <h1>{{ $t("mobilePage.text1") }}</h1>
             </div>
             <div class="col-6">
-                <img class="image" src="https://codelabs.developers.google.com/static/codelabs/google-maps-in-flutter/img/71c460c73b1e061e.png">
+                <img class="image"
+                    src="https://codelabs.developers.google.com/static/codelabs/google-maps-in-flutter/img/71c460c73b1e061e.png">
             </div>
         </div>
         <div class="row bg-white">
             <div class="col-6">
-                <img class="image" src="https://codelabs.developers.google.com/static/codelabs/google-maps-in-flutter/img/71c460c73b1e061e.png">
+                <img class="image"
+                    src="https://codelabs.developers.google.com/static/codelabs/google-maps-in-flutter/img/71c460c73b1e061e.png">
             </div>
             <div class="col-6 my-auto">
                 <h1>{{ $t("mobilePage.text2") }}</h1>
@@ -29,12 +30,14 @@
                 <h1>{{ $t("mobilePage.text3") }}</h1>
             </div>
             <div class="col-6">
-                <img class="image" src="https://codelabs.developers.google.com/static/codelabs/google-maps-in-flutter/img/71c460c73b1e061e.png">
+                <img class="image"
+                    src="https://codelabs.developers.google.com/static/codelabs/google-maps-in-flutter/img/71c460c73b1e061e.png">
             </div>
         </div>
         <div class="row bg-white">
             <div class="col-6">
-                <img class="image" src="https://codelabs.developers.google.com/static/codelabs/google-maps-in-flutter/img/71c460c73b1e061e.png">
+                <img class="image"
+                    src="https://codelabs.developers.google.com/static/codelabs/google-maps-in-flutter/img/71c460c73b1e061e.png">
             </div>
             <div class="col-6 my-auto">
                 <h1>{{ $t("mobilePage.text4") }}</h1>
@@ -55,14 +58,13 @@
 </script>
 
 <style scoped>
-
 .bg-white {
     background-color: #fff;
     color: #000642;
 }
 
 .bg-blue {
-    background-color:#000642;
+    background-color: #000642;
     color: #c09628;
 }
 
