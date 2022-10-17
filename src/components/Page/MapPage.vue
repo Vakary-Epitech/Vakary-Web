@@ -35,8 +35,19 @@
     <div>
       <div v-for="locomotionType in locomotionMethod" :key="locomotionType.id">
         <span>{{ locomotionType.locomotionType }}</span>
-        <input type="radio" :value=locomotionType.locomotionType v-model="$store.state.mapStore.selectedMethodOfLocomotion" />
+        <input type="radio" :value=locomotionType.locomotionType
+          v-model="$store.state.mapStore.selectedMethodOfLocomotion" />
       </div>
+    </div>
+    <div>
+      <h2>FAKE PROFILE</h2>
+      <input v-model="$store.state.mapStore.tripTime" placeholder="Number of hour of the trip">
+      <p>Duration of the trip: {{ $store.state.mapStore.tripTime }}h</p>
+      <div v-for="POI in possibleType" :key="POI.id">
+        <span>{{ POI.POIType }}</span>
+        <input type="checkbox" :value=POI.POIType v-model="$store.state.mapStore.selectedTypeOfInterest" />
+      </div>
+      {{ $store.state.mapStore.selectedTypeOfInterest }}
     </div>
   </div>
 </template>
@@ -80,6 +91,19 @@ export default {
         { id: 4, locomotionType: "transit" },
       ],
       selectedLocomotionType: "walking",
+      possibleType: [
+        { id: 1, POIType: "CulturalSite" },
+        { id: 2, POIType: "PointOfInterest" },
+        { id: 3, POIType: "RemarkableBuilding" },
+        { id: 4, POIType: "ReligiousSite" },
+        { id: 5, POIType: "PlaceOfInterest" },
+        { id: 6, POIType: "ParkAndGarden" },
+        { id: 7, POIType: "RemembranceSite" },
+        { id: 8, POIType: "MilitaryCemetery" },
+        { id: 9, POIType: "ArcheologicalSite" },
+        { id: 10, POIType: "SportsEvent" },
+        { id: 11, POIType: "EntertainmentAndEvent" }
+      ],
     }
   },
   computed: {
@@ -175,20 +199,23 @@ export default {
           this.path = [];
           let index = 0;
 
-          steps.data.forEach(element => {
-            let points = {};
-            points.duration = element.duration;
-            points.instruction = element.html_instructions;
-            points.distance = element.distance;
-            points.location = element.start_location;
-            this.waypoints.push(points);
-            this.path.push(element.start_location);
-            if (index == steps.data.length - 1) {
-              points.location = element.end_location;
+          steps.data.forEach(waypoint => {
+            console.log(waypoint)
+            waypoint.steps.forEach(element => {
+              let points = {};
+              points.duration = element.duration;
+              points.instruction = element.html_instructions;
+              points.distance = element.distance;
+              points.location = element.start_location;
               this.waypoints.push(points);
-              this.path.push(element.end_location);
-            }
-            index += 1;
+              this.path.push(element.start_location);
+              if (index == steps.data.length - 1) {
+                points.location = element.end_location;
+                this.waypoints.push(points);
+                this.path.push(element.end_location);
+              }
+              index += 1;
+            })
           });
           this.$refs.myMapRef.$mapPromise.then((map) => {
             const centerControlDiv = document.createElement('div');

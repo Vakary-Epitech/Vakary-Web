@@ -26,6 +26,7 @@ const apiStore = {
                 try {
                     axios.post(wording.serverAdress + "getData").then((markerData) => {
                         context.commit('UPDATE_MARKER_ARRAY', markerData.data);
+                        console.log(markerData.data);
                         resolve(markerData);
                     }).catch((error) => {
                         reject(error);
@@ -38,7 +39,14 @@ const apiStore = {
         calculatePath() {
             return new Promise((resolve, reject) => {
                 try {
-                    axios.post(wording.serverAdress + "getWaypoints", { selectedMarker: this.state.mapStore.selectedMarker, methodOfLocomotion:  this.state.mapStore.selectedMethodOfLocomotion }).then((path) => {
+                    const userProfile = {
+                        selectedTypeOfInterest: this.state.mapStore.selectedTypeOfInterest,
+                        tripTime: this.state.mapStore.tripTime,
+                        methodOfLocomotion: this.state.mapStore.selectedMethodOfLocomotion,
+                        currentLocation: this.state.userStore.currentUserLocation,
+                    };
+                    
+                    axios.post(wording.serverAdress + "getWaypoints", { selectedMarker: this.state.mapStore.selectedMarker, userProfile: userProfile }).then((path) => {
                         console.log(path);
                         resolve(path);
                     }).catch((error) => {
