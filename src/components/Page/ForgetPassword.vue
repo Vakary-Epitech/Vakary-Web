@@ -35,7 +35,7 @@
   }
   </script>
   
-<style>
+<style scoped>
 
 .button {
     background: white;

@@ -33,9 +33,8 @@ export default {
 }
 
 :root.dark-theme {
-    --background-color-primary: #1e1e1e;
-    --background-color-secondary: #2d2d30;
-    --accent-color: #3f3f3f;
+    --background-color-primary: #504e4e;
+    --accent-color: #5d5c5c;
     --text-primary-color: #ddd;
 }
 
