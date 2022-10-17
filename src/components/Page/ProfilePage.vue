@@ -1,108 +1,119 @@
+<!-- This component is used for the profile of the user
+     The structure is using the bootstrap grid system and structured as follow: 
+        - a container
+        - div row 
+        - div col 
+     It is using as well the i18n system for a translation system -->
 <template>
-    <div class="container">
-        <div class="row" v-if="!editMode">
-            <div class="mb-5">
-                <img class="background-picture" :src="user.background" alt="background-picture">
+    <div>
+        <top-bar class="col-12" />
+        <div class="container">
+            <button @click="(openSettingsPage)">Paramètres</button>
+            <div class="row" v-if="!editMode">
+                <div class="mb-5">
+                    <img class="background-picture" :src="user.background" alt="background-picture">
+                </div>
+                <div class="image">
+                    <img class="profile-picture" :src="user.image" alt="profile-picture">
+                </div>
+                <div class="col-6 offset-3 mt-5">
+                    <h1>{{user.pseudo}}</h1>
+                </div>
+                <div class="col-1">
+                    <button @click="edit" class="btn btn-primary">{{ $t("profilePage.edit") }}</button>
+                </div>
+                <div class="col-12 mt-3">
+                    <span>{{ $t("profilePage.info") }}</span><br>
+                    <p>{{user.info}}</p>
+                </div>
             </div>
-            <div class="image">
-                <img class="profile-picture" :src="user.image" alt="profile-picture">
+            <div class="row" v-if="editMode">
+                <div class="mb-5 clickable">
+                    <img @click="openFileExplorer('background')" class="background-picture" :src="user.background"
+                        alt="background-picture">
+                    <!-- <i class="fa-solid fa-camera"></i> -->
+                </div>
+                <div class="image">
+                    <img @click="openFileExplorer('picture')" class="profile-picture clickable" :src="user.image"
+                        alt="profile-picture">
+                    <!-- <i class="camera-picture fa-solid fa-camera"></i> -->
+                </div>
+                <div class="col-6 offset-3 mt-5">
+                    <textarea class="mt-2" v-model="user.pseudo" :placeholder="user.pseudo" rows="1" cols="30"
+                        maxlength="24">Write stuff here...</textarea>
+                    {{user.pseudo.length}}/24
+                </div>
+                <div class="col-1">
+                    <button @click="save" class="btn btn-primary">{{ $t("profilePage.save") }}</button>
+                </div>
+                <div class="col-6 mt-3 offset-3">
+                    <span>{{ $t("profilePage.info") }}</span><br>
+                    <textarea v-model="user.info" :placeholder="user.info" rows="5" cols="80"
+                        maxlength="300">Write stuff here...</textarea>
+                    {{user.info.length}}/300
+                </div>
             </div>
-            <div class="col-6 offset-3 mt-5">
-                <h1>{{user.pseudo}}</h1>
-            </div>
-            <div class="col-1">
-                <button @click="edit" class="btn btn-primary">{{ $t("profilePage.edit") }}</button>
-            </div>
-            <div class="col-12 mt-3">
-                <span>{{ $t("profilePage.info") }}</span><br>
-                <p>{{user.info}}</p>
-            </div>
-        </div>
-        <div class="row" v-if="editMode">
-            <div class="mb-5 clickable">
-                <img @click="openFileExplorer('background')" class="background-picture" :src="user.background"
-                    alt="background-picture">
-                <!-- <i class="fa-solid fa-camera"></i> -->
-            </div>
-            <div class="image">
-                <img @click="openFileExplorer('picture')" class="profile-picture clickable" :src="user.image"
-                    alt="profile-picture">
-                <!-- <i class="camera-picture fa-solid fa-camera"></i> -->
-            </div>
-            <div class="col-6 offset-3 mt-5">
-                <textarea class="mt-2" v-model="user.pseudo" :placeholder="user.pseudo" rows="1" cols="30"
-                    maxlength="24">Write stuff here...</textarea>
-                {{user.pseudo.length}}/24
-            </div>
-            <div class="col-1">
-                <button @click="save" class="btn btn-primary">{{ $t("profilePage.save") }}</button>
-            </div>
-            <div class="col-6 mt-3 offset-3">
-                <span>{{ $t("profilePage.info") }}</span><br>
-                <textarea v-model="user.info" :placeholder="user.info" rows="5" cols="80"
-                    maxlength="300">Write stuff here...</textarea>
-                {{user.info.length}}/300
-            </div>
-        </div>
-        <div class="row">
             <div class="row">
-                <div class="col-3 offset-3">
-                    <span>{{ $t("profilePage.comments") }}</span><br>
-                    <p>{{user.comments}}</p>
-                </div>
-                <div class="col-3">
-                    <span>{{ $t("profilePage.likes") }}</span><br>
-                    <p>{{user.likes}}</p>
-                </div>
-            </div>
-            <div class="col-12">
-                <span>{{ $t("profilePage.favoriteCity") }}</span><br>
-                <p>{{user.favoriteCity}}</p>
-            </div>
-            <div class="col-12">
-                <span>{{ $t("profilePage.lastPlaceVisited") }}</span><br>
-                <p>{{user.lastPlaceVisited}}</p>
-            </div>
-            <div class="col-12">
-                <span>{{ $t("profilePage.lastEventAttended") }}</span><br>
-                <p>{{user.lastEventAttended}}</p>
-            </div>
-            <div class="col-12">
-                <span>{{ $t("profilePage.totalKm") }}</span><br>
-                <p>{{user.totalKm}}</p>
-            </div>
-            <div class="col-12 mb-3">
-                <span>{{ $t("profilePage.cityPass") }}</span><br>
-                <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-                    <div class="carousel-inner">
-                        <div class="carousel-item active">
-                            <img :src="user.cityPass.img1" class="cityPass" alt="...">
-                        </div>
-                        <div class="carousel-item">
-                            <img :src="user.cityPass.img2" class="cityPass" alt="...">
-                        </div>
+                <div class="row">
+                    <div class="col-3 offset-3">
+                        <span>{{ $t("profilePage.comments") }}</span><br>
+                        <p>{{user.comments}}</p>
                     </div>
-                    <button class="carousel-control-prev black" type="button" data-bs-target="#carouselExampleControls"
-                        data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Previous</span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"
-                        data-bs-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Next</span>
-                    </button>
+                    <div class="col-3">
+                        <span>{{ $t("profilePage.likes") }}</span><br>
+                        <p>{{user.likes}}</p>
+                    </div>
                 </div>
+                <div class="col-12">
+                    <span>{{ $t("profilePage.favoriteCity") }}</span><br>
+                    <p>{{user.favoriteCity}}</p>
+                </div>
+                <div class="col-12">
+                    <span>{{ $t("profilePage.lastPlaceVisited") }}</span><br>
+                    <p>{{user.lastPlaceVisited}}</p>
+                </div>
+                <div class="col-12">
+                    <span>{{ $t("profilePage.lastEventAttended") }}</span><br>
+                    <p>{{user.lastEventAttended}}</p>
+                </div>
+                <div class="col-12">
+                    <span>{{ $t("profilePage.totalKm") }}</span><br>
+                    <p>{{user.totalKm}}</p>
+                </div>
+                <div class="col-12 mb-3">
+                    <span>{{ $t("profilePage.cityPass") }}</span><br>
+                    <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <img :src="user.cityPass.img1" class="cityPass" alt="...">
+                            </div>
+                            <div class="carousel-item">
+                                <img :src="user.cityPass.img2" class="cityPass" alt="...">
+                            </div>
+                        </div>
+                        <button class="carousel-control-prev black" type="button"
+                            data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"
+                            data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
+                </div>
+                <card-reviews class="col-4 mb-3" :username="user.pseudo" :review="user.info" />
+                <card-reviews class="col-4" :username="user.pseudo" :review="user.info" />
+                <card-reviews class="col-4" :username="user.pseudo" :review="user.likes" />
             </div>
-            <cards-reviews class="col-4 mb-3" :username="user.pseudo" :review="user.info" />
-            <cards-reviews class="col-4" :username="user.pseudo" :review="user.info" />
-            <cards-reviews class="col-4" :username="user.pseudo" :review="user.likes" />
         </div>
     </div>
 </template>
 
 <script>
-import CardReviews from '../ui/Cards-reviews.vue';
+import cardReviews from '../UI/CardsReviews.vue';
+import topBar from '../UI/TopBar.vue';
 export default {
     data() {
         return {
@@ -159,9 +170,13 @@ export default {
             //envoyer a l'api
 
         },
+        openSettingsPage() {
+            this.$router.push("/settingsPage");
+        },
     },
     components: {
-        'cards-reviews': CardReviews
+        cardReviews,
+        topBar,
     },
 }
 </script>
@@ -215,5 +230,28 @@ textarea {
 
 .carousel-control-prev {
     filter: invert(100%);
+}
+
+.container {
+    background-color: var(--background-color-primary);
+}
+
+.container button {
+    background: white;
+    color: black;
+    background-color: var(--background-color-secondary);
+    color: var(--text-primary-color);
+    border: 2px solid rgb(192, 150, 40);
+    border-radius: 20px;
+}
+
+.container div {
+    color: var(--text-primary-color);
+
+}
+
+.container input {
+    background-color: var(--background-color-secondary);
+    border-color: var(--text-primary-color);
 }
 </style>

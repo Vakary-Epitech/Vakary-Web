@@ -1,4 +1,12 @@
+<!-- This component is used for the presentation of the mobile application Vakary
+     The page is not complete yet, it still needs all the mobile screenshots + video
+     The structure is using the bootstrap grid system and structured as follow: 
+        - a container-fluid
+        - div row 
+        - div col 
+     It is using as well the i18n system for a translation system -->
 <template>
+    <topBar class="col-12"/>
     <div class="container-fluid">
         <div class="row bg-white">
             <iframe class="bg-video" src="https://www.youtube.com/embed/tgbNymZ7vqY?autoplay=1&mute=1">
@@ -55,6 +63,12 @@
 </template>
 
 <script>
+import topBar from '../UI/TopBar.vue';
+export default {
+components: {
+    topBar
+}
+}
 </script>
 
 <style scoped>

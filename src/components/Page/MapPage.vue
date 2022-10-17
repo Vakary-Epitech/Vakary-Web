@@ -1,6 +1,9 @@
+<!-- This component is used for the map page of the website
+     It is not using the i18n system yet for a translation system => only available in english atm -->
+
 <template>
   <div>
-    
+    <top-bar class="col-12"/> 
     <GMapMap :center="userPosition" :options="options" :zoom="12" style="width: 100vw; height: 70vh" ref="myMapRef">
       <GMapMarker :position="userPosition" />
       <GMapMarker :key="marker.label" v-for="marker in markersData" :position="marker.geolocalisation"
@@ -51,10 +54,11 @@
 
 <script>
 import mapInfo from './MapInfo.vue';
-
+import topBar from '../UI/TopBar.vue';
 export default {
   name: 'App',
   components: {
+    topBar,
     mapInfo,
   },
   data() {
@@ -127,6 +131,8 @@ export default {
     },
 
     infos() {
+      // This function is used to get the informations about the path between two points
+      // Display informations about the path like the total duration and the total distance
       if (this.$store.state.mapStore.selectedMarker.length < 2 || this.waypoints.length == 0) {
         return;
       }
