@@ -1,3 +1,5 @@
+<!-- This component is used to display the reviews of the user with a card
+     It takes the username and the review as parameters -->
 <template>
     <div>
         <div class="card">
@@ -11,8 +13,6 @@
 </template>
 
 <script>
-//this component is used to display the reviews of the user with a card
-//it takes the username and the review as parameters
 export default {
     name: 'CardReviews',
     props: {

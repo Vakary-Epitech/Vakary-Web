@@ -14,5 +14,12 @@
   },
   "mobilePage": {
     "title": ""
+  },
+  "topBar": {
+    "web": "Web Application",
+    "mobile": "Mobile Application",
+    "vip": "VIP",
+    "signup": "Sign-up",
+    "signin": "Sign-in"
   }
 }
