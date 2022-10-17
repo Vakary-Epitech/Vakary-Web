@@ -96,7 +96,7 @@
 </template>
 
 <script>
-import CardReviews from '../Cards-reviews.vue';
+import CardReviews from '../ui/Cards-reviews.vue';
 export default {
     data () {
             return {
