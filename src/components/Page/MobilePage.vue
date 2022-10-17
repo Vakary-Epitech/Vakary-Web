@@ -1,4 +1,5 @@
 <template>
+    <topBar class="col-12"/>
     <div class="container-fluid">
         <div class="row bg-white">
             <iframe class="bg-video"
@@ -52,6 +53,12 @@
 </template>
 
 <script>
+import topBar from '../UI/TopBar.vue';
+export default {
+components: {
+    topBar
+}
+}
 </script>
 
 <style scoped>
