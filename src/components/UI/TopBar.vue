@@ -50,16 +50,12 @@
     };
 </script>
 
-<style>
-#app {
-    margin-top: 0;
-}
-
+<style scoped>
 .addBorder {
     border-bottom: 1px solid #000000;
 }
 
-.row{
+.row {
     margin-left: 0 !important;
 }
 

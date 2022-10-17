@@ -4,8 +4,8 @@ import VakaryWeb from "../components/VakaryWeb.vue";
 import Group from "../components/Group.vue";
 // import App from "../App.vue";
 // import LandingPage from "../components/Page/LandingPage.vue";
-// import LoginPage from "../components/Page/LoginPage.vue";
-// import MapPage from "../components/Page/MapPage.vue";
+import LoginPage from "../components/Page/LoginPage.vue";
+import MapPage from "../components/Page/MapPage.vue";
 import InscriptionPageStandard from "../components/Page/InscriptionPageStandard.vue"
 import InscriptionPagePro from "../components/Page/InscriptionPagePro.vue"
 import SelectAccount from "../components/Page/SelectAccount.vue"
@@ -69,6 +69,16 @@ const routes = [
         path: '/settingsPage',
         name: 'SettingsPage',
         component: SettingsPage,
+    },
+    {
+        path: '/loginPage',
+        name: 'LoginPage',
+        component: LoginPage,
+    },
+    {
+        path: '/mapPage',
+        name: 'MapPage',
+        component: MapPage,
     },
 ];
 
