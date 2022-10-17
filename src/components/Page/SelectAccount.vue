@@ -43,7 +43,7 @@ export default {
 }
 </script>
   
-<style>
+<style scoped>
 
 .profileImageDisplay {
   align-items: center; 

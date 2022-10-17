@@ -6,7 +6,7 @@
         <input v-if="showChange === 1" v-model="text">
         <div>Jyzo</div>
         <button @click="showChange = 2">Changer votre mot de passe</button>
-        <input  v-if="showChange === 2" v-model="text">
+        <input v-if="showChange === 2" v-model="text">
         <button>Deconnexion</button>
     </div>
 </template>
@@ -15,10 +15,10 @@
 import themeButton from "../Theme/ThemeButton.vue";
 export default {
     data() {
-      return {
-        showChange: 0,
-        changeUsername: 0,
-        changePassword: 0,
+        return {
+            showChange: 0,
+            changeUsername: 0,
+            changePassword: 0,
         }
     },
     components: { themeButton },
@@ -26,13 +26,10 @@ export default {
 </script>
 
 <style>
-
 :root {
     --background-color-primary: white;
-    --background-color-secondary: #ebebeb;
     --accent-color: #cacaca;
     --text-primary-color: #222;
-    --element-size: 4rem;
 }
 
 :root.dark-theme {
@@ -51,9 +48,9 @@ export default {
 }
 
 .settings button {
-    display: flex; 
+    display: flex;
     flex-direction: column;
-    text-align: center; 
+    text-align: center;
     align-items: center;
     background: white;
     margin: 10px auto;
@@ -75,5 +72,4 @@ export default {
     border-color: var(--text-primary-color);
     margin: 10px auto;
 }
-
 </style>
