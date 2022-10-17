@@ -1,6 +1,7 @@
 <template>
     <top-bar class="col-12"/>
     <div class="container">
+        <button @click="(openSettingsPage)">Paramètres</button>
         <div class="row" v-if="!editMode">
             <div class="mb-5">
                 <img class="background-picture" :src="user.background" alt="background-picture">
@@ -155,6 +156,9 @@ export default {
             //envoyer a l'api
             
         },
+        openSettingsPage() {
+            this.$router.push("/settingsPage");
+        },
     },
     components: {
         cardReviews,
@@ -209,5 +213,28 @@ textarea {
 .carousel-control-prev {
     filter: invert(100%);
 }
+.container {
+    background-color: var(--background-color-primary);
+}
+
+.container button {
+    background: white;
+    color: black;
+    background-color: var(--background-color-secondary);
+    color: var(--text-primary-color);
+    border: 2px solid rgb(192, 150, 40);
+    border-radius: 20px;
+}
+
+.container div {
+    color: var(--text-primary-color);
+    
+}
+
+.container input {
+    background-color: var(--background-color-secondary);
+    border-color: var(--text-primary-color);
+}
+
 
 </style>
