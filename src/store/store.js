@@ -1,11 +1,13 @@
 import { createStore } from 'vuex'
+import apiStore from './apiStore'
+import userStore from './userStore'
+import mapStore from './mapStore';
 
 const store = createStore({
-    state: {
-    },
-    mutations: {
-    },
-    actions: {
+    modules: {
+        apiStore: apiStore, //Communication with api
+        userStore: userStore, //Store every user information, action and mutation
+        mapStore: mapStore, //Store every map information, action and mutation
     },
 });
 

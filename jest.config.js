@@ -12,4 +12,5 @@ module.exports = {
     '!src/main.js',
     '!src/App.vue',
   ],
+  preset: '@vue/cli-plugin-unit-jest'
 }

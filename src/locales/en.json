@@ -1,0 +1,25 @@
+{
+  "message": "hello i18n !!",
+  "profilePage": {
+    "edit": "Edit",
+    "info": "Description",
+    "save": "Save",
+    "comments": "Comments",
+    "likes": "Likes",
+    "favoriteCity": "Favorite city",
+    "lastPlaceVisited": "Last Place Visited",
+    "lastEventAttended": "Last Event Attended",
+    "totalKm": "Total Km Traveled",
+    "cityPass": "City Pass"
+  },
+  "mobilePage": {
+    "title": ""
+  },
+  "topBar": {
+    "web": "Web Application",
+    "mobile": "Mobile Application",
+    "vip": "VIP",
+    "signup": "Sign-up",
+    "signin": "Sign-in"
+  }
+}
