@@ -1,5 +1,6 @@
 <template>
   <div>
+    <top-bar class="col-12"/>
     
     <GMapMap :center="userPosition" :options="options" :zoom="12" style="width: 100vw; height: 70vh" ref="myMapRef">
       <GMapMarker :position="userPosition" />
@@ -40,10 +41,11 @@
 
 <script>
 import mapInfo from './MapInfo.vue';
-
+import topBar from '../UI/TopBar.vue';
 export default {
   name: 'App',
   components: {
+    topBar,
     mapInfo,
   },
   data() {
