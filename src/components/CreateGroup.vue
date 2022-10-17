@@ -71,7 +71,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .html {
     height: 100%;
     background: #FFF;

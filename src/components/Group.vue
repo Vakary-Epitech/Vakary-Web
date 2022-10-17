@@ -87,7 +87,7 @@ export default {
 };
 </script>
   
-<style lang="css">
+<style scoped>
 .groupCard {
     background: #000642;
     height: 113px;

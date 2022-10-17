@@ -21,7 +21,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
   .product {
     flex: 1 1 33.333%;
     width: 100%;

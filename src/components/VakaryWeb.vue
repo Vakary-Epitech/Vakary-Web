@@ -85,7 +85,7 @@ import Product from './Product';
   };
   </script>
   
-  <style lang="css">
+  <style scoped>
   
   .products {
     display: flex;

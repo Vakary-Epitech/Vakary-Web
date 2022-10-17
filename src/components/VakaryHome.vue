@@ -80,7 +80,7 @@ export default {
 };
 </script>
 
-<style lang="css">
+<style scoped>
 
 .sizeMax {
   width: 550px;
