@@ -1,4 +1,5 @@
 <template>
+    <top-bar class="col-12"/>
     <div class="container">
         <button @click="(openSettingsPage)">Paramètres</button>
         <div class="row" v-if="!editMode">
@@ -89,15 +90,16 @@
                     </button>
                 </div>
             </div>
-        <cards-reviews class="col-4 mb-3" :username="user.pseudo" :review="user.info"/>
-        <cards-reviews class="col-4" :username="user.pseudo" :review="user.info"/>
-        <cards-reviews class="col-4" :username="user.pseudo" :review="user.likes"/>
+        <card-reviews class="col-4 mb-3" :username="user.pseudo" :review="user.info"/>
+        <card-reviews class="col-4" :username="user.pseudo" :review="user.info"/>
+        <card-reviews class="col-4" :username="user.pseudo" :review="user.likes"/>
         </div>
     </div>
 </template>
 
 <script>
-import CardReviews from '../Cards-reviews.vue';
+import cardReviews from '../UI/CardsReviews.vue';
+import topBar from '../UI/TopBar.vue';
 export default {
     data () {
             return {
@@ -159,7 +161,8 @@ export default {
         },
     },
     components: {
-        'cards-reviews': CardReviews
+        cardReviews,
+        topBar,
     },
 }
 </script>

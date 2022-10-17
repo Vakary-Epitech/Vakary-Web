@@ -2,6 +2,7 @@ import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router/index.js'
 import store from './store/store.js'
+import VueGoogleMaps from '@fawmi/vue-google-maps'
 import "bootstrap/dist/css/bootstrap.min.css"
 import "bootstrap"
 import { library } from "@fortawesome/fontawesome-svg-core";
@@ -18,6 +19,12 @@ library.add(far);
 dom.watch();
 
 const app = createApp(App);
+app.use(VueGoogleMaps, {
+    load: {
+        key: process.env.VUE_APP_GOOGLE_MAPS_API_KEY,
+    },
+});
+
 app.component("font-awesome-icon", FontAwesomeIcon);
 app.use(i18n);
 app.use(router);
