@@ -37,7 +37,7 @@
   
 <style>
 
-button {
+.button {
     background: white;
     background-color: white;
     border: 0;
