@@ -1,5 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import LandingPage from "../components/Page/LandingPage.vue";
+import VakaryHome from "../components/VakaryHome.vue";
+import VakaryWeb from "../components/VakaryWeb.vue";
+import Group from "../components/Group.vue";
 import LoginPage from "../components/Page/LoginPage.vue";
 import MapPage from "../components/Page/MapPage.vue";
 import InscriptionPageStandard from "../components/Page/InscriptionPageStandard.vue"
@@ -13,18 +15,18 @@ import SettingsPage from "../components/Page/SettingsPage.vue"
 const routes = [
     {
         path: '/',
-        name: 'LandingPage',
-        component: LandingPage,
+        name: 'VakaryHome',
+        component: VakaryHome,
     },
     {
-        path: '/loginPage',
-        name: 'LoginPage',
-        component: LoginPage,
+        path: '/VakaryWeb',
+        name: 'VakaryWeb',
+        component: VakaryWeb,
     },
     {
-        path: '/mapPage',
-        name: 'MapPage',
-        component: MapPage,
+        path: '/Group',
+        name: 'Group',
+        component: Group,
     },
     {
         path: '/inscriptionPageStandard',
@@ -60,6 +62,16 @@ const routes = [
         path: '/settingsPage',
         name: 'SettingsPage',
         component: SettingsPage,
+    },
+    {
+        path: '/loginPage',
+        name: 'LoginPage',
+        component: LoginPage,
+    },
+    {
+        path: '/mapPage',
+        name: 'MapPage',
+        component: MapPage,
     },
 ];
 
