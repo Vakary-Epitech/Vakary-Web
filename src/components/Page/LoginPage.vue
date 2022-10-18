@@ -1,6 +1,6 @@
 <template>
   <div class="login">
-    <div>Connexion</div>
+    <label>Connexion</label>
     <button v-if="!pro" v-on:click="pro = false" class="buttonSelectLogin"> Connexion Standard</button>
     <button v-if="!pro" v-on:click="pro = true"> Connexion Professionelle</button>
     <button v-if="pro" v-on:click="pro = false" > Connexion Standard</button>

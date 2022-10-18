@@ -113,7 +113,7 @@
 
 <script>
 import cardReviews from '../UI/CardsReviews.vue';
-import topBar from '../UI/TopBar.vue';
+// import topBar from '../UI/TopBar.vue';
 export default {
     data() {
         return {
@@ -176,15 +176,12 @@ export default {
     },
     components: {
         cardReviews,
-        topBar,
+        // topBar,
     },
 }
 </script>
-
 <style scoped>
 .profile-picture {
-    width: 200px;
-    height: 200px;
     border-radius: 50%;
     border: 1px solid black;
 }
