@@ -46,7 +46,7 @@ const apiStore = {
                         currentLocation: this.state.userStore.currentUserLocation,
                     };
                     
-                    axios.post(wording.serverAdress + "getWaypoints", { selectedMarker: this.state.mapStore.selectedMarker, userProfile: userProfile }).then((path) => {
+                    axios.post(wording.serverAdress + "getWaypoints", { userProfile: userProfile }).then((path) => {
                         console.log(path);
                         resolve(path);
                     }).catch((error) => {
