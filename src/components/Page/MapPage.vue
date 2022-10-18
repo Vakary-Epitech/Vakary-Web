@@ -3,24 +3,24 @@
 
 <template>
   <div>
-    <top-bar class="col-12"/> 
+    <top-bar class="col-12" />
     <GMapMap :center="userPosition" :options="options" :zoom="12" style="width: 100vw; height: 70vh" ref="myMapRef">
       <GMapMarker :position="userPosition" />
       <GMapMarker :key="marker.label" v-for="marker in markersData" :position="marker.geolocalisation"
-      :title="marker.label" :clickable="true" @click="openInfoWindow(marker.label, marker.geolocalisation)">
-      <GMapInfoWindow :closeclick="true" @closeclick="openInfoWindow(null)" :opened="openedMarkerID === marker.label">
-            <div>
-              <div class="col-12">
-                <h4>{{ marker.label }}</h4>
-              </div>
-              <div class="col-12">
-                <span>{{ marker.description }}</span>
-              </div>
+        :title="marker.label" :clickable="true" @click="openInfoWindow(marker.label, marker.geolocalisation)">
+        <GMapInfoWindow :closeclick="true" @closeclick="openInfoWindow(null)" :opened="openedMarkerID === marker.label">
+          <div>
+            <div class="col-12">
+              <h4>{{ marker.label }}</h4>
             </div>
-          </GMapInfoWindow>
-        </GMapMarker>
-        <map-info></map-info>
-        <GMapPolyline :options="{strokeColor:'#000642'}"  :path="path" ref="polyline" />
+            <div class="col-12">
+              <span>{{ marker.description }}</span>
+            </div>
+          </div>
+        </GMapInfoWindow>
+      </GMapMarker>
+      <map-info></map-info>
+      <GMapPolyline :options="{strokeColor:'#000642'}" :path="path" ref="polyline" />
     </GMapMap>
     <div>
       Map Page</div>
@@ -68,7 +68,7 @@ export default {
       currentWaypointIndex: 0,
       path: [],
       options: {
-        disableDefaultUI: true,              
+        disableDefaultUI: true,
         styles: [
           {
             featureType: 'landscape',
@@ -167,7 +167,7 @@ export default {
         map.controls[google.maps.ControlPosition.TOP_RIGHT].push( // eslint-disable-line no-undef
           infoDiv
         );
-      });    
+      });
     },
 
     increaseWaypointsIndex() {
@@ -193,39 +193,37 @@ export default {
     },
 
     drawPathBetweenSelectedPoint() {
-      if (this.$store.state.mapStore.selectedMarker.length == 2) {
-        this.$store.dispatch("calculatePath").then((steps) => {
-          this.waypoints = [];
-          this.path = [];
-          let index = 0;
+      this.$store.dispatch("calculatePath").then((steps) => {
+        this.waypoints = [];
+        this.path = [];
+        let index = 0;
 
-          steps.data.forEach(waypoint => {
-            console.log(waypoint)
-            waypoint.steps.forEach(element => {
-              let points = {};
-              points.duration = element.duration;
-              points.instruction = element.html_instructions;
-              points.distance = element.distance;
-              points.location = element.start_location;
+        steps.data.forEach(waypoint => {
+          console.log(waypoint)
+          waypoint.steps.forEach(element => {
+            let points = {};
+            points.duration = element.duration;
+            points.instruction = element.html_instructions;
+            points.distance = element.distance;
+            points.location = element.start_location;
+            this.waypoints.push(points);
+            this.path.push(element.start_location);
+            if (index == steps.data.length - 1) {
+              points.location = element.end_location;
               this.waypoints.push(points);
-              this.path.push(element.start_location);
-              if (index == steps.data.length - 1) {
-                points.location = element.end_location;
-                this.waypoints.push(points);
-                this.path.push(element.end_location);
-              }
-              index += 1;
-            })
-          });
-          this.$refs.myMapRef.$mapPromise.then((map) => {
-            const centerControlDiv = document.createElement('div');
-            this.addCenterControl(centerControlDiv, map);
-            map.controls[google.maps.ControlPosition.TOP_LEFT].push( // eslint-disable-line no-undef
-              centerControlDiv
-            );
-          });
+              this.path.push(element.end_location);
+            }
+            index += 1;
+          })
         });
-      }
+        this.$refs.myMapRef.$mapPromise.then((map) => {
+          const centerControlDiv = document.createElement('div');
+          this.addCenterControl(centerControlDiv, map);
+          map.controls[google.maps.ControlPosition.TOP_LEFT].push( // eslint-disable-line no-undef
+            centerControlDiv
+          );
+        });
+      });
     },
   },
 }

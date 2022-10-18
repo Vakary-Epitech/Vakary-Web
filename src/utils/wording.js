@@ -1,3 +1,3 @@
 module.exports = {
-    serverAdress: "http://localhost:80/" 
+    serverAdress: " https://api-eip.smartbazaar.app/" 
 };
