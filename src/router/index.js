@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import VakaryHome from "../components/VakaryHome.vue";
-import VakaryWeb from "../components/VakaryWeb.vue";
-import Group from "../components/Group.vue";
+import VakaryHome from "../components/Page/VakaryHome.vue";
+import VakaryWeb from "../components/Page/VakaryWeb.vue";
+import Group from "../components/Page/Group.vue";
 import LoginPage from "../components/Page/LoginPage.vue";
 import MapPage from "../components/Page/MapPage.vue";
 import InscriptionPageStandard from "../components/Page/InscriptionPageStandard.vue"

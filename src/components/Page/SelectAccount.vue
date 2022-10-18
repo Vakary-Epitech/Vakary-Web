@@ -8,7 +8,7 @@
     <button v-if="goNextFormButtonState === 2"  class="buttonSelectAccount">Connexion Professionelle</button>
 
     <div v-if="goNextFormButtonState === 1" class="profileImageDisplay"> 
-      <img src="../../assets/StandardProfilePhoto.png">
+      <img src="@/assets/StandardProfilePhoto.png">
       <span>
         Commencer à decouvrir des maintenant sans limite !
       </span>
@@ -16,7 +16,7 @@
     </div>
 
     <div v-if="goNextFormButtonState === 2" class="profileImageDisplay"> 
-      <img class="profileImageDisplay" src="../../assets/ProProfilePhoto.png">
+      <img class="profileImageDisplay" src="@/assets/ProProfilePhoto.png">
         <span>
           Cet espace est destiner au professionel qui souhaite nous rejoindre pour optimiser au mieux l'expérience de nos utilisateurs.
         </span>

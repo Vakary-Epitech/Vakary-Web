@@ -7,7 +7,7 @@
       <!-- début de l'html/css pour la création de la page Web de Vakary -->
       <h1 class="VakaryTitle">VAKARY</h1>
       <h3 class="Subtitle">Vos vacances selon vos envies</h3>
-      <img class="action" :src="require('./../assets/presentation_vakary.png')" />
+      <img class="action" :src="require('@/assets/presentation_vakary.png')" />
       <h2 class="Title">Dites nous quelles sont vos hobbies et passions parmis nos nombreuses propositions</h2>
       
       <!-- utilisation du component product, dans le but d'afficher les 3 cards dans la page -->
@@ -15,34 +15,34 @@
         <Product v-for="product in products" :key="product.title" :product="product" />
       </section>
       <h1 class="Title">Organisé votre journée à l'avance sur notre application web</h1>
-      <img class="action" :src="require('./../assets/mapPresentation.png')" />
+      <img class="action" :src="require('@/assets/mapPresentation.png')" />
       <div>
         <div class="parentVakaryWeb">
           <h1 class="leftTitleVakaryWeb">Ne perdez plus de temps</h1>
-          <img class="rightPhoneVakaryWeb" :src="require('./../assets/telMap.png')" />
+          <img class="rightPhoneVakaryWeb" :src="require('@/assets/telMap.png')" />
           <h3 class="leftSubtitleVakaryWeb">Profitez de votre journée avec notre itinéraire personnalisé</h3>
         </div>
         <div class="parentVakaryWeb">
           <h1 class="rightTitleVakaryWeb">Visite guidée</h1>
-          <img class="leftPhoneVakaryWeb" :src="require('./../assets/telPlaceStan.png')" />
+          <img class="leftPhoneVakaryWeb" :src="require('@/assets/telPlaceStan.png')" />
           <h3 class="rightSubtitleVakaryWeb">Notre partenariat avec nos guides touristiques nous permettent d'avoir les meilleurs
             résumés</h3>
         </div>
       </div>
       <h1 class="Title">Découvrez les monuments les plus visités</h1>
-      <img class="action" :src="require('./../assets/parisPresentation.png')" />
+      <img class="action" :src="require('@/assets/parisPresentation.png')" />
       <h1 class="Title">Et les moins connus</h1>
-      <img class="action" :src="require('./../assets/chateauPasConnu.png')" />
+      <img class="action" :src="require('@/assets/chateauPasConnu.png')" />
       <div class="parentQrCodeVakaryWeb">
         <h1 class="rightTitleQrCodeVakaryWeb">QR Code</h1>
-        <img class="leftQrCodeVakaryWeb" :src="require('./../assets/qrcode.jpeg')" />
+        <img class="leftQrCodeVakaryWeb" :src="require('@/assets/qrcode.jpeg')" />
         <h3 class="rightSubtitleVakaryWeb">Téléchargez directement notre application pour l'essayer</h3>
       </div>
     </div>
   </template>
   
   <script>
-import Product from './Product';
+import Product from '@/components/UI/Product';
   export default {
     name: 'vakaryWebPresentation',
     components: {
@@ -56,21 +56,21 @@ import Product from './Product';
             title: 'Parc & Jardin',
             color: 'green',
             bgtext: 'PARC',
-            src: require('./../assets/parc.jpg'),
+            src: require('@/assets/parc.jpg'),
             desc: 'Pour le côté Nature et découverte'
           },
           {
             title: 'Evenement',
             color: 'blue',
             bgtext: 'EVENEMENT',
-            src: require('./../assets/marcheNoel.jpg'),
+            src: require('@/assets/marcheNoel.jpg'),
             desc: 'Profiter des événements temporaires'
           },
           {
             title: 'Musée',
             color: 'pink',
             bgtext: 'MUSEE',
-            src: require('./../assets/musee.jpg'),
+            src: require('@/assets/musee.jpg'),
             desc: 'Pour la culture et histoire'
           }
         ]

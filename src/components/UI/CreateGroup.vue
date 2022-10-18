@@ -76,7 +76,6 @@ export default {
     height: 100%;
     background: #FFF;
     color: #000;
-    /* font-size: 62.5%; */
 }
 
 body {
@@ -84,7 +83,6 @@ body {
     margin: 0;
     display: grid;
     place-items: center;
-    /* font-size: 1.4rem; */
 }
 
 .buttonSave {
@@ -125,11 +123,6 @@ body {
     z-index: 999;
     transform: none;
 }
-
-/* .modal h1 {
-    margin: 0 0 1rem;
-} */
-
 .modal-overlay {
     content: '';
     position: absolute;

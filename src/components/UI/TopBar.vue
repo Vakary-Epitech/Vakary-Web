@@ -6,7 +6,7 @@
 <template>
     <div class="row addBorder mt-3">
         <div class="col-2 mb-3">
-            <img @click="(openMobilePage)" class="logo" src="../../assets/Logo_vect.svg">
+            <img @click="(openMobilePage)" class="logo" src="@/assets/Logo_vect.svg">
         </div>
         <div class="col-2 my-auto">
             <button class="default-color to-page" @click="(openMobilePage)">{{ $t("topBar.web") }}</button>

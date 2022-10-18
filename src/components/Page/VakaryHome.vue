@@ -7,11 +7,11 @@
     <!-- début de l'html/css pour la création de la page Web de Vakary -->
     <div class="containerTitle">
       <h1 class="title">Prêt à découvrir votre monde ?</h1>
-      <img class="planete" :src="require('./../assets/terree.gif')" />
+      <img class="planete" :src="require('@/assets/terree.gif')" />
     </div>
     <div class="parentVakaryHome">
       <h1 class="leftTitleVakaryHome">Explorer sans limite selon vos envies</h1>
-      <img class="rightPicture" :src="require('./../assets/Paris8k.jpeg')" />
+      <img class="rightPicture" :src="require('@/assets/Paris8k.jpeg')" />
       <h3 class="leftSubtitleVakaryHome">
         Vakary, c'est l'outil parfait pour maximiser l'expérience touristique
         urbaine en réduisant au maximum votre temps de préparation d'un séjour.
@@ -19,7 +19,7 @@
     </div>
     <div class="parentVakaryHome">
       <h1 class="rightTitleVakaryHome">Préparer votre sejour</h1>
-      <img class="sizeMax" :src="require('./../assets/mapPresentation.png')" />
+      <img class="sizeMax" :src="require('@/assets/mapPresentation.png')" />
       <h3 class="rightSubtitleVakaryHome">
         Vakary vous donne un aperçu complet de ce que vous pouvez explorer avant
         même d'y être !
@@ -27,7 +27,7 @@
     </div>
     <div class="parentVakaryHome">
       <h1 class="leftTitleVakaryHome">Foncez tête baissée !!</h1>
-      <img class="sizeMaxTel" :src="require('./../assets/telMap.png')" />
+      <img class="sizeMaxTel" :src="require('@/assets/telMap.png')" />
       <h3 class="leftSubtitleVakaryHome">
         Peut importe où vous êtes, créez un itinéraire qui vous ressemble en
         quelque click !
@@ -43,21 +43,21 @@
   </div>
   <div class="parentVakaryHome">
       <h1 class="leftTitleVakaryHome">Créez votre goupe</h1>
-      <img class="sizeMaxTel" :src="require('./../assets/telProfil.png')" />
+      <img class="sizeMaxTel" :src="require('@/assets/telProfil.png')" />
       <h3 class="leftSubtitleVakaryHome">
         Partager tous avec les personnes qui participe à votre expéditions.
       </h3>
     </div>
     <div class="parentVakaryHome">
       <h1 class="leftTitleVakaryHome">Partagez votre experience</h1>
-      <img class="sizeMaxTel" :src="require('./../assets/telProfil.png')" />
+      <img class="sizeMaxTel" :src="require('@/assets/telProfil.png')" />
       <h3 class="leftSubtitleVakaryHome">
         Donnez votre expérience sur chaque point d’intérêt pour aider la communauté.
       </h3>
     </div>
     <div class="parentVakaryHome">
       <h1 class="leftTitleVakaryHome">Rejoignez la communauté VIP</h1>
-      <img class="sizeMaxTel" :src="require('./../assets/logoVIP.jpeg')" />
+      <img class="sizeMaxTel" :src="require('@/assets/logoVIP.jpeg')" />
       <h3 class="leftSubtitleVakaryHome">
         Vos itinéraire seront travailler par des professionnels avec leurs avis et leurs recommendations 
       </h3>

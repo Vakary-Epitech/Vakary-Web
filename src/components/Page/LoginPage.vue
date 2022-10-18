@@ -26,7 +26,7 @@
   
     <button> Connexion</button>
     <button>
-      <img src="../../assets/google.png" width="100" height="100">
+      <img src="@/assets/google.png" width="100" height="100">
     </button>
     <label>ou</label>
     <button @click="(openSelectAccount)">Inscription</button>

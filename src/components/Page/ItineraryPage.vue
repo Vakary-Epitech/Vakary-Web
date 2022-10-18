@@ -1,7 +1,7 @@
 <template>
     <div class="main-box">
         <div>
-            <img src="../../assets/New-York-City-banner.jpg" alt="beauf">
+            <img src="@/assets/New-York-City-banner.jpg" alt="beauf">
         </div>
         <h2>
             Create your itinerary
