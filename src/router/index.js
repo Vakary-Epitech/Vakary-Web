@@ -11,6 +11,7 @@ import ForgetPassword from "../components/Page/ForgetPassword.vue"
 import ProfilePage from "../components/Page/ProfilePage.vue";
 import MobilePage from "../components/Page/MobilePage.vue";
 import SettingsPage from "../components/Page/SettingsPage.vue"
+import ItineraryPage from "../components/Page/ItineraryPage.vue"
 
 const routes = [
     {
@@ -62,6 +63,11 @@ const routes = [
         path: '/settingsPage',
         name: 'SettingsPage',
         component: SettingsPage,
+    },
+    {
+        path: '/itineraryPage',
+        name: 'ItineraryPage',
+        component: ItineraryPage,
     },
     {
         path: '/loginPage',
