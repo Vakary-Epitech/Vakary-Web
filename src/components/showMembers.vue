@@ -36,7 +36,7 @@
                     <!-- bouton pour ajouter un membre à un groupe qui existe deja -->
                     <div v-if="addMember">
                         <h4>Ajouter un membre</h4>
-                        <input class="inputForm" placeholder="exemple@exemple.com" type="text" v-model="mailMember" />
+                        <input class="inputFormShowMembers" placeholder="exemple@exemple.com" type="text" v-model="mailMember" />
                         <button @click="addMember = false" accesskey="s">sauvegarder</button>
                     </div>
                 </div>
@@ -148,11 +148,12 @@ body {
     cursor: pointer;
 }
 
-.inputForm {
+.inputFormShowMembers {
     border-color: #000642;
     border-radius: 5px;
     height: 20px;
     width: 70%;
+    font-size: 10px;
 }
 
 .modalshowMembers {

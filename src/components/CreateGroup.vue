@@ -9,15 +9,15 @@
         -modifier le design si besoin
          -->
         <transition name="pop" appear>
-            <div class="modal" role="dialog" v-if="CreateGroup">
+            <div class="modalCreateGroup" role="dialog" v-if="CreateGroup">
                 <h1>Créer votre nouveau groupe</h1>
                 <div>
                     <h4>Nom du groupe</h4>
-                    <input placeholder="Vacances Famille" class="inputForm" type="text" v-model="firstName" />
+                    <input placeholder="Vacances Famille" class="inputFormCreateGroupe" type="text" v-model="firstName" />
                 </div>
                 <div>
                     <h4>Adresse mail des membres</h4>
-                    <input class="inputForm" placeholder="exemple@exemple.com" type="text" @keydown.enter="addMembers" v-model="mailMember" />                    
+                    <input class="inputFormCreateGroupe" placeholder="exemple@exemple.com" type="text" @keydown.enter="addMembers" v-model="mailMember" />                    
                     <h6 v-for="member in listMembers" :key="member.mail">
                         {{member.mail}}
                     </h6>
@@ -99,14 +99,15 @@ body {
     cursor: pointer;
 }
 
-.inputForm {
+.inputFormCreateGroupe {
     border-color: #000642;
     border-radius: 5px;
     height: 20px;
     width: 70%;
+    font-size: 10px;
 }
 
-.modal {
+.modalCreateGroup {
     position: absolute;
     position: fixed;
     background: #e4e4e4;
@@ -117,7 +118,7 @@ body {
     margin: auto;
     text-align: center;
     width: 40%;
-    height: 65%;
+    height: 80%;
     padding: 2rem;
     border-radius: 1rem;
     box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);

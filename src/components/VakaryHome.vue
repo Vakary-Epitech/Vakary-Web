@@ -33,7 +33,7 @@
         quelque click !
       </h3>
     </div>
-    <div class="container">
+    <div class="containerHome">
         <h1>Nous avons pensez à tout</h1>
         <h3>
           Vous trouverez toujours une activitée à faire, même si vous pensiez
@@ -144,7 +144,7 @@ export default {
 
 }
 
-.container {
+.containerHome {
   background-color: red;
   height: 40vh;
   display: flex;

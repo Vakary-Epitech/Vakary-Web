@@ -17,8 +17,6 @@
                     <div class="plusCreateGroup">
                         <font-awesome-icon @click="createGroupe" icon="fa-solid fa-plus" />
                     </div>
-                    <div class="card" style="width: 18rem;">
-                    </div>
                 </div>
                 <!-- card de groupe avec la photo de groupe & le nom du groupe -->
                 <div @click="showGroupe" class="groupCard" >
