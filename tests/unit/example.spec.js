@@ -15,44 +15,12 @@ describe('CreateGroup.vue', () => {
 })
 
 
-describe('CreateGroupe.vue', () => {
-  it('renders props.msg when passed', () => {
-    const wrapper = mount(CreateGroup)
-
-    wrapper.find('button').trigger("click")
-
-    expect(wrapper.vm.showModal).toEqual(false)
-  })
-})
-
 describe('Group.vue', () => {
   it('renders props.msg when passed', () => {
     const wrapper = mount(Group)
 
     expect(wrapper.vm.showModal).toEqual(false)
     expect(wrapper.vm.createGroup).toEqual(false)
-  })
-})
-
-
-
-describe('Group.vue', () => {
-  it('renders props.msg when passed', () => {
-    const wrapper = mount(Group)
-
-    wrapper.find('#show').trigger("click")
-
-    expect(wrapper.vm.showModal).toEqual(true)
-  })
-})
-
-describe('Group.vue', () => {
-  it('renders props.msg when passed', () => {
-    const msg = 'Vakary Home'
-    const wrapper = shallowMount(Group, {
-      props: { msg }
-    })
-    expect(wrapper.text()).toContain(msg)
   })
 })
 
