@@ -9,17 +9,12 @@
       <button @click="(openMobilePage)">Mobile</button>
       <button @click="(openGroupPage)">Groupe</button>
       <button @click="(openWebPage)">Web</button>
+      <button @click="(openitineraryPage)">Itinerary</button>
       <router-view v-slot="{ Component }">
         <transition>
           <component :is="Component" :key="this.$route.path"></component>
         </transition>
       </router-view>
-      <!-- <button @click="(openLandingPage)">Landing</button>
-      <button @click="(openLoginPage)">Login</button>
-      <button @click="(openMapPage)">Map</button>
-      <button @click="(openProfilePage)">Profile</button>
-      <button @click="(openMobilePage)">Mobile</button>
-      <button @click="(openGroupPage)">Groupe</button> -->
     </div>
   </div>
 </template>
@@ -49,6 +44,9 @@ export default {
     },
     openMobilePage() {
       this.$router.push("/mobilePage");
+    },
+    openitineraryPage() {
+      this.$router.push("/itineraryPage");
     },
     openGroupPage() {
       this.$router.push("/Group");

@@ -14,6 +14,8 @@ import { fab } from '@fortawesome/free-brands-svg-icons';
 import { far } from '@fortawesome/free-regular-svg-icons';
 import { dom } from "@fortawesome/fontawesome-svg-core";
 import i18n from './i18n'
+import ElementPlus from 'element-plus'
+import 'element-plus/dist/index.css'
 
 library.add(fab);
 library.add(fas);
@@ -30,6 +32,7 @@ app.use(VueGoogleMaps, {
 
 app.component("font-awesome-icon", FontAwesomeIcon);
 app.use(i18n);
+app.use(ElementPlus)
 app.use(router);
 app.use(store);
 // app.config.globalProperties.emitter = emitter;

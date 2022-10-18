@@ -14,7 +14,6 @@ describe('CreateGroup.vue', () => {
   })
 })
 
-
 describe('Group.vue', () => {
   it('renders props.msg when passed', () => {
     const wrapper = mount(Group)
