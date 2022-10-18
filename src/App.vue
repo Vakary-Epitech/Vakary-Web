@@ -11,6 +11,7 @@
       <button @click="(openMapPage)">Map</button>
       <button @click="(openProfilePage)">Profile</button>
       <button @click="(openMobilePage)">Mobile</button>
+      <button @click="(openitineraryPage)">Itinerary</button>
     </div>
   </div>
 </template>
@@ -40,6 +41,9 @@ export default {
     },
     openMobilePage() {
       this.$router.push("/mobilePage");
+    },
+    openitineraryPage() {
+      this.$router.push("/itineraryPage");
     },
   },
   components: { themeButton },
