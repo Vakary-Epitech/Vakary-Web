@@ -12,7 +12,7 @@ import MobilePage from "@/components/Page/MobilePage.vue";
 import SettingsPage from "@/components/Page/SettingsPage.vue"
 import ItineraryPage from "@/components/Page/ItineraryPage.vue"
 import LandingPage from "@/components/Page/LandingPage.vue"
-import SubscriptionType from "@/components/Page/SubscriptionType.vue"
+import RegistrationType from "@/components/Page/RegistrationType.vue"
 
 const routes = [
     {
@@ -36,9 +36,9 @@ const routes = [
         component: Group,
     },
     {
-        path: '/SubscriptionType',
-        name: 'SubscriptionType',
-        component: SubscriptionType,
+        path: '/RegistrationType',
+        name: 'RegistrationType',
+        component: RegistrationType,
     },
     {
         path: '/inscriptionPagePro',

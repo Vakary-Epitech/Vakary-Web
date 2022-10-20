@@ -25,7 +25,7 @@
     </div>
     <div class="elementHorizontalyCentered loginPageInscriptionContainer">
       <label class="newToText">New to Vakary ? </label>
-      <button class="InscriptionButton blueVakaryButton" @click="(openSubscriptionSelection)">Inscription</button>
+      <button class="InscriptionButton blueVakaryButton" @click="(openRegistrationSelection)">Inscription</button>
     </div>
     <button class="basicVakaryButton" v-if="!pro" v-on:click="pro = true"> Connexion Professionelle</button>
     <button class="basicVakaryButton" v-if="pro" v-on:click="pro = false"> Connexion Standard</button>
@@ -40,8 +40,8 @@ export default {
     }
   },
   methods: {
-    openSubscriptionSelection() {
-      this.$router.push("/subscriptionType");
+    openRegistrationSelection() {
+      this.$router.push("/registrationType");
     },
     openForgetPassword() {
       this.$router.push("/forgetPassword")

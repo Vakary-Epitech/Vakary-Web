@@ -1,5 +1,5 @@
 <template>
-    <div class="subscriptionTypeContainer">
+    <div class="registrationTypeContainer">
         <div class="optionFrame">
             <img src="@/assets/Logo_vect.svg" class="logoSize elementBasicMargin elementHorizontalyCentered" />
             <b class="mediumTitle">Inscription Aventurier </b>
@@ -38,7 +38,7 @@ export default {
 @import "@/components/Style/Position.scss";
 @import "@/components/Style/Text.scss";
 
-.subscriptionTypeContainer {
+.registrationTypeContainer {
     display: flex;
     flex-direction: row;
     justify-content: center;
