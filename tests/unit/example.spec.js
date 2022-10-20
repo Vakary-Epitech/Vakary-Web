@@ -1,8 +1,8 @@
 import { mount, shallowMount } from '@vue/test-utils'
-import CreateGroup from '@/components/CreateGroup.vue'
-import Group from '@/components/Group.vue'
-import VakaryHome from '@/components/VakaryHome.vue'
-import VakaryWeb from '@/components/VakaryWeb.vue'
+import CreateGroup from '@/components/UI/CreateGroup.vue'
+import Group from '@/components/Page/Group.vue'
+import VakaryHome from '@/components/Page/VakaryHome.vue'
+import VakaryWeb from '@/components/Page/VakaryWeb.vue'
 
 describe('CreateGroup.vue', () => {
   it('renders props.msg when passed', () => {

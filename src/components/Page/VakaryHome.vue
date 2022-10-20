@@ -1,10 +1,5 @@
 <template>
   <div id="app">
-    <!-- boutton pour changer de page -->
-    <!-- <button @click="openVakaryWeb">Vakary Web</button>
-    <button @click="openGroup">Group</button> -->
-
-    <!-- début de l'html/css pour la création de la page Web de Vakary -->
     <div class="containerTitle">
       <h1 class="title">Prêt à découvrir votre monde ?</h1>
       <img class="planete" :src="require('@/assets/terree.gif')" />

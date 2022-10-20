@@ -23,7 +23,7 @@ module.exports = defineConfig({
         alias: {
           '@': path.resolve(__dirname, "./src"),
         },
-        extensions: ['.js', '.vue', '.json', '.png', '.svg', '.jpg', '.jpeg', '.gif'],
+        extensions: ['.scss', '.js', '.vue', '.json', '.png', '.svg', '.jpg', '.jpeg', '.gif'],
       }
     }
   }

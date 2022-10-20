@@ -30,8 +30,8 @@ export default {
     this.$router.push("/");
   },
   methods: {
-    openLandingPage() {
-      this.$router.push("/");
+    openHomePage() {
+      this.$router.push("/VakaryHome");
     },
     openLoginPage() {
       this.$router.push("/loginPage");
@@ -54,7 +54,7 @@ export default {
     openWebPage() {
       this.$router.push("/VakaryWeb");
     },
-    openHomePage() {
+    openLandingPage() {
       this.$router.push("/");
     },
   },
@@ -63,24 +63,5 @@ export default {
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  background-color: var(--background-color-primary);
-  min-height: 100vh;
-}
 
-.app button {
-  background: white;
-  margin: 10px auto;
-  border: 0;
-  color: black;
-  background-color: var(--background-color-secondary);
-  color: var(--text-primary-color);
-  border: 2px solid rgb(192, 150, 40);
-  border-radius: 20px;
-}
 </style>
