@@ -24,10 +24,10 @@
 export default {
     methods: {
         openInscriptionPageStandard() {
-            this.$router.push("/inscriptionPageStandard");
+            this.$router.push({ name: "InscriptionPage", params: { type: 0 } });
         },
         openInscriptionPagePro() {
-            this.$router.push("/inscriptionPagePro");
+            this.$router.push({ name: "InscriptionPage", params: { type: 1 } });
         },
     }
 }

@@ -4,8 +4,7 @@ import VakaryWeb from "@/components/Page/VakaryWeb.vue";
 import Group from "@/components/Page/Group.vue";
 import LoginPage from "@/components/Page/LoginPage.vue";
 import MapPage from "@/components/Page/MapPage.vue";
-import InscriptionPageStandard from "@/components/Page/InscriptionPageStandard.vue"
-import InscriptionPagePro from "@/components/Page/InscriptionPagePro.vue"
+import InscriptionPage from "@/components/Page/InscriptionPage.vue"
 import ForgetPassword from "@/components/Page/ForgetPassword.vue"
 import ProfilePage from "@/components/Page/ProfilePage.vue";
 import MobilePage from "@/components/Page/MobilePage.vue";
@@ -41,14 +40,9 @@ const routes = [
         component: RegistrationType,
     },
     {
-        path: '/inscriptionPagePro',
-        name: 'InscriptionPagePro',
-        component: InscriptionPagePro,
-    },
-    {
-        path: '/inscriptionPageStandard',
-        name: 'InscriptionPageStandard',
-        component: InscriptionPageStandard,
+        path: '/inscriptionPage/:type',
+        name: 'InscriptionPage',
+        component: InscriptionPage,
     },
     {
         path: '/forgetPassword',

@@ -91,6 +91,7 @@ export default {
 
 .login label {
   color: var(--text-primary-color);
+  font-size: 18px;
 }
 
 .loginPageInscriptionContainer {
@@ -100,8 +101,8 @@ export default {
   border-radius: 15px;
   padding: 5px;
   width: 300px;
-  margin-top: 10px;
-  margin-bottom: 10px;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 .loginPageInformationContainer {
