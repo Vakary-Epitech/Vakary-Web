@@ -11,7 +11,7 @@
         <div class="row bg-white">
             <iframe class="bg-video" src="https://www.youtube.com/embed/tgbNymZ7vqY?autoplay=1&mute=1">
             </iframe>
-            <div class="col-12 is-large presentationTitle">
+            <div class="col-12 is-large mediumTitle">
                 <h1>{{ $t("mobilePage.title") }}</h1>
             </div>
         </div>

@@ -6,13 +6,13 @@ import LoginPage from "@/components/Page/LoginPage.vue";
 import MapPage from "@/components/Page/MapPage.vue";
 import InscriptionPageStandard from "@/components/Page/InscriptionPageStandard.vue"
 import InscriptionPagePro from "@/components/Page/InscriptionPagePro.vue"
-import SelectAccount from "@/components/Page/SelectAccount.vue"
 import ForgetPassword from "@/components/Page/ForgetPassword.vue"
 import ProfilePage from "@/components/Page/ProfilePage.vue";
 import MobilePage from "@/components/Page/MobilePage.vue";
 import SettingsPage from "@/components/Page/SettingsPage.vue"
 import ItineraryPage from "@/components/Page/ItineraryPage.vue"
 import LandingPage from "@/components/Page/LandingPage.vue"
+import SubscriptionType from "@/components/Page/SubscriptionType.vue"
 
 const routes = [
     {
@@ -36,9 +36,9 @@ const routes = [
         component: Group,
     },
     {
-        path: '/inscriptionPageStandard',
-        name: 'InscriptionPageStandard',
-        component: InscriptionPageStandard,
+        path: '/SubscriptionType',
+        name: 'SubscriptionType',
+        component: SubscriptionType,
     },
     {
         path: '/inscriptionPagePro',
@@ -46,9 +46,9 @@ const routes = [
         component: InscriptionPagePro,
     },
     {
-        path: '/selectAccount',
-        name: 'SelectAccount',
-        component: SelectAccount,
+        path: '/inscriptionPageStandard',
+        name: 'InscriptionPageStandard',
+        component: InscriptionPageStandard,
     },
     {
         path: '/forgetPassword',

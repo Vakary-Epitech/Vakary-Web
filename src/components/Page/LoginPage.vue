@@ -1,6 +1,6 @@
 <template>
   <div class="login elementHorizontalyCentered">
-    <img src="@/assets/Logo_vect.svg" class="logoSize elementBasicMargin elementHorizontalyCentered" />
+    <img src="@/assets/Logo_vect.svg" class="logoSize elementHorizontalyCentered" />
     <label class="elementBasicMargin">Sign in to Vakary</label>
     <div class="elementHorizontalyCentered">
       <form v-show="pro" class="loginPageInformationContainer">
@@ -25,7 +25,7 @@
     </div>
     <div class="elementHorizontalyCentered loginPageInscriptionContainer">
       <label class="newToText">New to Vakary ? </label>
-      <button class="InscriptionButton blueVakaryButton" @click="(openSelectAccount)">Inscription</button>
+      <button class="InscriptionButton blueVakaryButton" @click="(openSubscriptionSelection)">Inscription</button>
     </div>
     <button class="basicVakaryButton" v-if="!pro" v-on:click="pro = true"> Connexion Professionelle</button>
     <button class="basicVakaryButton" v-if="pro" v-on:click="pro = false"> Connexion Standard</button>
@@ -40,8 +40,8 @@ export default {
     }
   },
   methods: {
-    openSelectAccount() {
-      this.$router.push("/selectAccount");
+    openSubscriptionSelection() {
+      this.$router.push("/subscriptionType");
     },
     openForgetPassword() {
       this.$router.push("/forgetPassword")
@@ -52,11 +52,7 @@ export default {
 
 <style scoped>
 @import "@/components/Style/Button.scss";
-
-.elementBasicMargin {
-  margin-top: 10px;
-  margin-bottom: 10px;
-}
+@import "@/components/Style/Position.scss";
 
 .newToText {
   margin-top: 3px;
@@ -68,13 +64,13 @@ export default {
 }
 
 .login {
+  height: 100vh;
   display: flex;
   background-color: var(--background-color-primary);
   text-align: center;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  transform: translate(0%, 18%);
 }
 
 .login input {
@@ -108,6 +104,4 @@ export default {
   padding: 5px;
   width: 300px;
 }
-
-;
 </style>
