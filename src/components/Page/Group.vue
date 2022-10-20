@@ -68,7 +68,7 @@ export default {
     },
     methods: {
         openVakaryHome() {
-            this.$router.push("/VakaryHome");
+            this.$router.push("/vakaryHome");
         },
 
         showGroupe() {

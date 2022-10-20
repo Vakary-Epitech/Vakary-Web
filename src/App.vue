@@ -31,7 +31,7 @@ export default {
   },
   methods: {
     openHomePage() {
-      this.$router.push("/VakaryHome");
+      this.$router.push("/vakaryHome");
     },
     openLoginPage() {
       this.$router.push("/loginPage");

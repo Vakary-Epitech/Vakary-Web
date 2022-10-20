@@ -21,7 +21,7 @@ const routes = [
         component: LandingPage,
     },
     {
-        path: '/VakaryHome',
+        path: '/vakaryHome',
         name: 'VakaryHome',
         component: VakaryHome,
     },

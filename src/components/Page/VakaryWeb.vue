@@ -80,7 +80,7 @@ export default {
   // créations de la méthode pour avec une fonction pour changer de page
   methods: {
     openVakaryHome() {
-      this.$router.push("/VakaryHome");
+      this.$router.push("/vakaryHome");
     },
   },
 };

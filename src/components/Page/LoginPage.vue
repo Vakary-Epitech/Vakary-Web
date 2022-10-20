@@ -2,31 +2,35 @@
   <div class="login elementHorizontalyCentered">
     <img src="@/assets/Logo_vect.svg" class="logoSize elementHorizontalyCentered" />
     <label class="elementBasicMargin">Sign in to Vakary</label>
+
     <div class="elementHorizontalyCentered">
-      <form v-show="pro" class="loginPageInformationContainer">
-        <label>Code d'authentification:</label>
+      <div v-show="pro" class="loginPageInformationContainer">
+        <label class="smallTextSize">Code d'authentification:</label>
         <input type="code" required v-model="code">
         <label>Code authentification oublie ?</label>
         <label>Email ou Nom d'utilisateur:</label>
-        <input type="email" required v-model="email">
+        <input required v-model="email">
         <label>Mot de passe:</label>
         <input type="password" required v-model="password">
         <label>Mot de passe oublie ?</label>
-      </form>
+        <button class="basicVakaryButton" @click="(checkIfUserIsAuthorized)">Connexion</button>
+      </div>
 
-      <form v-show="!pro" class="loginPageInformationContainer">
+      <div v-show="!pro" class="loginPageInformationContainer">
         <label>Email ou Nom d'utilisateur:</label>
-        <input type="email" required v-model="email">
+        <input v-model="email">
         <label>Mot de passe:</label>
-        <input type="password" required v-model="password">
-        <button class="basicVakaryButton"> Connexion</button>
+        <input type="password" v-model="password">
+        <button class="basicVakaryButton" @click="(checkIfUserIsAuthorized)">Connexion</button>
         <button class="basicVakaryButton" @click="(openForgetPassword)">Mot de passe oublie ?</button>
-      </form>
+      </div>
     </div>
+    
     <div class="elementHorizontalyCentered loginPageInscriptionContainer">
       <label class="newToText">New to Vakary ? </label>
       <button class="InscriptionButton blueVakaryButton" @click="(openRegistrationSelection)">Inscription</button>
     </div>
+
     <button class="basicVakaryButton" v-if="!pro" v-on:click="pro = true"> Connexion Professionelle</button>
     <button class="basicVakaryButton" v-if="pro" v-on:click="pro = false"> Connexion Standard</button>
   </div>
@@ -36,7 +40,10 @@
 export default {
   data() {
     return {
-      pro: false
+      pro: false,
+      email: "",
+      password: "",
+      code: "",
     }
   },
   methods: {
@@ -45,6 +52,9 @@ export default {
     },
     openForgetPassword() {
       this.$router.push("/forgetPassword")
+    },
+    checkIfUserIsAuthorized() {
+      this.$router.push("/vakaryHome");
     }
   },
 }

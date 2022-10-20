@@ -29,7 +29,6 @@ app.use(VueGoogleMaps, {
 });
 require('./components/Style/Main.scss');
 
-app.component("font-awesome-icon", FontAwesomeIcon);
 app.use(i18n);
 app.use(ElementPlus)
 app.use(router);
