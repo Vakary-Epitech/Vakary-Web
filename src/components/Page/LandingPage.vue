@@ -72,7 +72,7 @@ export default {
 }
 
 .positionBackgroundCard {
-  transform: translate(20%, -60%)
+  transform: translate(20%, -70%)
 }
 
 
@@ -100,7 +100,8 @@ export default {
 
 .inputStyle {
   display: flex;
-  margin-bottom: 20px;
+  margin-top: 5px;
+  margin-bottom: 10px;
 }
 
 .biggerButton {
