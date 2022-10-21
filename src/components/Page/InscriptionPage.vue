@@ -14,16 +14,16 @@
         <input required type="code" v-model="passwordConfirm" placeholder="********">
       </div>
       <div v-else class="selectionDisplayForm">
-        <label>Nom Ville</label>
-        <input required v-model="name">
-        <label>Code Postal</label>
-        <input required v-model="postalCode">
-        <label>Mail</label>
-        <input required v-model="email">
-        <label>Mdp</label>
-        <input required v-model="password">
-        <label>MdpConfirm</label>
-        <input required v-model="passwordConfirm">
+        <label>Nom de la ville:</label>
+        <input required v-model="name" placeholder="ex: Nancy">
+        <label>Code Postal:</label>
+        <input required v-model="postalCode" placeholder="ex: 54000">
+        <label>Email:</label>
+        <input required v-model="email" placeholder="contact@destination-nancy.com">
+        <label>Mot de passe:</label>
+        <input required v-model="password" placeholder="********">
+        <label>Confirmer le mot de passe:</label>
+        <input required v-model="passwordConfirm" placeholder="********">
       </div>
       <button @click="(confirmInscription)" class="basicVakaryButton elementBasicMargin">Confirm</button>
     </div>
