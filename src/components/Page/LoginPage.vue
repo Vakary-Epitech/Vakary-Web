@@ -7,13 +7,12 @@
       <div v-show="pro" class="loginPageInformationContainer">
         <label class="smallTextSize">Code d'authentification:</label>
         <input type="code" required v-model="code">
-        <label>Code authentification oublie ?</label>
         <label>Email ou Nom d'utilisateur:</label>
         <input required v-model="email">
         <label>Mot de passe:</label>
         <input type="password" required v-model="password">
-        <label>Mot de passe oublie ?</label>
         <button class="basicVakaryButton" @click="(checkIfUserIsAuthorized)">Connexion</button>
+        <button class="basicVakaryButton" @click="(openForgetPassword)">Mot de passe oublie ?</button>
       </div>
 
       <div v-show="!pro" class="loginPageInformationContainer">
