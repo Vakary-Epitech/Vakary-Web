@@ -1,6 +1,11 @@
 <template>
   <div class="app">
     <div>
+      <router-view v-slot="{ Component }">
+        <transition>
+          <component :is="Component" :key="this.$route.path"></component>
+        </transition>
+      </router-view>
       <button @click="(openLandingPage)">Landing</button>
       <button @click="(openLoginPage)">Login</button>
       <button @click="(openMapPage)">Map</button>
@@ -10,11 +15,6 @@
       <button @click="(openGroupPage)">Groupe</button>
       <button @click="(openWebPage)">Web</button>
       <button @click="(openitineraryPage)">Itinerary</button>
-      <router-view v-slot="{ Component }">
-        <transition>
-          <component :is="Component" :key="this.$route.path"></component>
-        </transition>
-      </router-view>
     </div>
   </div>
 </template>

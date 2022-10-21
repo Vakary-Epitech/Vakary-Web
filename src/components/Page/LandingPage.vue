@@ -1,5 +1,6 @@
 <template>
   <div>
+    <topBar />
     <div>
       <img class="background" src="@/assets/LandingPage/landingPageBackground.jpg">
       <div class="positionBackgroundCard">
@@ -12,7 +13,7 @@
             <label class="firstBoxText">De plus grâçe à Vakary mobile vous pourrez suivre votre itinéraire en temps réel, et bien plus !</label>
           </div>
           <div class="inputStyle">
-            <button class="blueVakaryButton biggerButton">Sign up</button>
+            <button class="blueVakaryButton biggerButton" @click="openSignUpPage">Sign up</button>
           </div>
         </div>
       </div>
@@ -21,9 +22,19 @@
 </template>
 
 <script>
+import topBar from '../UI/TopBar.vue';
 
+export default {
+  components: {
+    topBar,
+  },
+  methods: {
+    openSignUpPage() {
+      this.$router.push("/loginPage");
+    }
+  }
+}
 </script>
-
 <style scoped>
 @import "@/components/Style/Main.scss";
 @import "@/components/Style/Position.scss";
