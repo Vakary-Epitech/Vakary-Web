@@ -5,6 +5,7 @@ const userStore = {
             latitude: 0,
             longitude: 0,
         },
+        mail: "",
     },
     mutations: {
         UPDATE_USER_LOCATION(state, coords) {

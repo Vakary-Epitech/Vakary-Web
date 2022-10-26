@@ -56,6 +56,29 @@ const apiStore = {
                     reject(error);
                 }
             })
+        },
+        checkIsUserIsAuthorizedToConnect(context, password) {
+            return new Promise((resolve, reject) => {
+                try {
+                    axios.post(wording.serverAdress + "login", { username: this.state.userStore.mail, password: password }).then((check) => {
+                        console.log(check);
+                        resolve(check);
+                    }).catch((error) => {
+                        reject(error);
+                    })
+                } catch (error) {
+                    reject(error);
+                }
+            })
+        },
+        checkIsCityIsAuthorizedToConnect() {
+            return new Promise((resolve, reject) => {
+                try {
+                    resolve();
+                } catch (error) {
+                    reject (error)
+                }
+            })
         }
     },
 }
