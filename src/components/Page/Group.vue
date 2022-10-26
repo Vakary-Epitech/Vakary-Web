@@ -2,7 +2,7 @@
     <div id="app">
         <!-- boutton pour changer de page -->
         <!-- <button @click="(openVakaryHome)">Vakary Home</button> -->
-        <img class="logoVakary" @click="showModal = true" :src="require('./../assets/Logo_vect.png')" />
+        <img class="logoVakary" @click="showModal = true" :src="require('@/assets/Logo_vect.png')" />
         <!-- transition pour afficher la modale avec la liste des groupes -->
         <transition name="fade" appear>
             <div class="modal-overlay-group" v-if="showModal" @click="showModal = false"></div>
@@ -21,7 +21,7 @@
                 <!-- card de groupe avec la photo de groupe & le nom du groupe -->
                 <div @click="showGroupe" class="groupCard" >
                     <div class="parentGroup">
-                        <div class="pictureGroup"><img class="groupPicture" :src="require('./../assets/groupe.jpg')" />
+                        <div class="pictureGroup"><img class="groupPicture" :src="require('@/assets/groupe.jpg')" />
                         </div>
                         <div class="nameGroup">
                             <h2 class="groupName">VAKARY</h2>
@@ -37,8 +37,8 @@
 </template>
   
 <script>
-import CreateGroup from './CreateGroup.vue';
-import showMembers from './showMembers.vue';
+import CreateGroup from '@/components/UI/CreateGroup.vue';
+import showMembers from '@/components/UI/showMembers.vue';
 
 export default {
     name: "app",
@@ -68,7 +68,7 @@ export default {
     },
     methods: {
         openVakaryHome() {
-            this.$router.push("/VakaryHome");
+            this.$router.push("/vakaryHome");
         },
 
         showGroupe() {

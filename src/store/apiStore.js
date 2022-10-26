@@ -26,7 +26,6 @@ const apiStore = {
                 try {
                     axios.post(wording.serverAdress + "getData").then((markerData) => {
                         context.commit('UPDATE_MARKER_ARRAY', markerData.data);
-                        console.log(markerData.data);
                         resolve(markerData);
                     }).catch((error) => {
                         reject(error);
@@ -46,14 +45,35 @@ const apiStore = {
                         currentLocation: this.state.userStore.currentUserLocation,
                     };
                     
-                    axios.post(wording.serverAdress + "getWaypoints", { selectedMarker: this.state.mapStore.selectedMarker, userProfile: userProfile }).then((path) => {
-                        console.log(path);
+                    axios.post(wording.serverAdress + "getWaypoints", { userProfile: userProfile }).then((path) => {
                         resolve(path);
                     }).catch((error) => {
                         reject(error);
                     })
                 } catch (error) {
                     reject(error);
+                }
+            })
+        },
+        checkIsUserIsAuthorizedToConnect(context, password) {
+            return new Promise((resolve, reject) => {
+                try {
+                    axios.post(wording.serverAdress + "login", { username: this.state.userStore.mail, password: password }).then((canAuthentify) => {
+                        resolve(canAuthentify);
+                    }).catch((error) => {
+                        reject(error);
+                    })
+                } catch (error) {
+                    reject(error);
+                }
+            })
+        },
+        checkIsCityIsAuthorizedToConnect() {
+            return new Promise((resolve, reject) => {
+                try {
+                    resolve();
+                } catch (error) {
+                    reject (error)
                 }
             })
         }

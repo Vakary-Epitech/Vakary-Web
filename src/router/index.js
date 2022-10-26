@@ -1,21 +1,26 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import VakaryHome from "../components/VakaryHome.vue";
-import VakaryWeb from "../components/VakaryWeb.vue";
-import Group from "../components/Group.vue";
-import LoginPage from "../components/Page/LoginPage.vue";
-import MapPage from "../components/Page/MapPage.vue";
-import InscriptionPageStandard from "../components/Page/InscriptionPageStandard.vue"
-import InscriptionPagePro from "../components/Page/InscriptionPagePro.vue"
-import SelectAccount from "../components/Page/SelectAccount.vue"
-import ForgetPassword from "../components/Page/ForgetPassword.vue"
-import ProfilePage from "../components/Page/ProfilePage.vue";
-import MobilePage from "../components/Page/MobilePage.vue";
-import SettingsPage from "../components/Page/SettingsPage.vue"
-import ItineraryPage from "../components/Page/ItineraryPage.vue"
+import VakaryHome from "@/components/Page/VakaryHome.vue";
+import VakaryWeb from "@/components/Page/VakaryWeb.vue";
+import Group from "@/components/Page/Group.vue";
+import LoginPage from "@/components/Page/LoginPage.vue";
+import MapPage from "@/components/Page/MapPage.vue";
+import InscriptionPage from "@/components/Page/InscriptionPage.vue"
+import ForgetPassword from "@/components/Page/ForgetPassword.vue"
+import ProfilePage from "@/components/Page/ProfilePage.vue";
+import MobilePage from "@/components/Page/MobilePage.vue";
+import SettingsPage from "@/components/Page/SettingsPage.vue"
+import ItineraryPage from "@/components/Page/ItineraryPage.vue"
+import LandingPage from "@/components/Page/LandingPage.vue"
+import RegistrationType from "@/components/Page/RegistrationType.vue"
 
 const routes = [
     {
         path: '/',
+        name: 'LandingPage',
+        component: LandingPage,
+    },
+    {
+        path: '/vakaryHome',
         name: 'VakaryHome',
         component: VakaryHome,
     },
@@ -30,19 +35,14 @@ const routes = [
         component: Group,
     },
     {
-        path: '/inscriptionPageStandard',
-        name: 'InscriptionPageStandard',
-        component: InscriptionPageStandard,
+        path: '/RegistrationType',
+        name: 'RegistrationType',
+        component: RegistrationType,
     },
     {
-        path: '/inscriptionPagePro',
-        name: 'InscriptionPagePro',
-        component: InscriptionPagePro,
-    },
-    {
-        path: '/selectAccount',
-        name: 'SelectAccount',
-        component: SelectAccount,
+        path: '/inscriptionPage/:type',
+        name: 'InscriptionPage',
+        component: InscriptionPage,
     },
     {
         path: '/forgetPassword',

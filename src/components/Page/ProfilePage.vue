@@ -5,7 +5,7 @@
         - div col 
      It is using as well the i18n system for a translation system -->
 <template>
-    <div>
+    <div class="basicContainer">
         <top-bar class="col-12" />
         <div class="container">
             <button @click="(openSettingsPage)">Paramètres</button>
@@ -181,9 +181,14 @@ export default {
 }
 </script>
 <style scoped>
+
 .profile-picture {
     border-radius: 50%;
     border: 1px solid black;
+    width: 128px;
+    height: 128px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .background-picture {

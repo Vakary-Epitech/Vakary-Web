@@ -5,7 +5,6 @@ import store from './store/store.js'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faPlus, faXmark } from '@fortawesome/free-solid-svg-icons'
-// import mitt from 'mitt';
 import VueGoogleMaps from '@fawmi/vue-google-maps'
 import "bootstrap/dist/css/bootstrap.min.css"
 import "bootstrap"
@@ -22,20 +21,18 @@ library.add(fas);
 library.add(far);
 dom.watch();
 
-// const emitter = mitt();
 const app = createApp(App);
 app.use(VueGoogleMaps, {
     load: {
         key: process.env.VUE_APP_GOOGLE_MAPS_API_KEY,
     },
 });
+require('./components/Style/Main.scss');
 
-app.component("font-awesome-icon", FontAwesomeIcon);
 app.use(i18n);
 app.use(ElementPlus)
 app.use(router);
 app.use(store);
-// app.config.globalProperties.emitter = emitter;
 library.add(faPlus, faXmark)
 app.component('font-awesome-icon', FontAwesomeIcon);
 app.mount('#app');

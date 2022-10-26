@@ -1,78 +1,99 @@
 <template>
-  <div class="login">
-    <label>Connexion</label>
-    <button v-if="!pro" v-on:click="pro = false" class="buttonSelectLogin"> Connexion Standard</button>
-    <button v-if="!pro" v-on:click="pro = true"> Connexion Professionelle</button>
-    <button v-if="pro" v-on:click="pro = false" > Connexion Standard</button>
-    <button v-if="pro" v-on:click="pro = true"  class="buttonSelectLogin"> Connexion Professionelle</button>
-    <form v-show="pro">
-      <label>Code d'authentification:</label>
-      <input type="code" required v-model="code">
-      <label>Code authentification oublie ?</label>
-      <label>Email ou Nom d'utilisateur:</label>
-      <input type="email" required v-model="email">
-      <label>Mot de passe:</label>
-      <input type="password" required v-model="password">
-      <label>Mot de passe oublie ?</label>
-    </form>
-  
-    <form v-show="!pro">
-      <label>Email ou Nom d'utilisateur:</label>
-      <input type="email" required v-model="email">
-      <label>Mot de passe:</label>
-      <input type="password" required v-model="password">
-      <button @click="(openForgetPassword)">Mot de passe oublie ?</button>
-    </form>
-  
-    <button> Connexion</button>
-    <button>
-      <img src="../../assets/google.png" width="100" height="100">
-    </button>
-    <label>ou</label>
-    <button @click="(openSelectAccount)">Inscription</button>
+  <div class="login elementHorizontalyCentered">
+    <img src="@/assets/Logo_vect.svg" class="logoSize elementHorizontalyCentered" />
+    <label class="elementBasicMargin">Sign in to Vakary</label>
+
+    <div class="elementHorizontalyCentered">
+      <div v-show="pro" class="loginPageInformationContainer">
+        <label class="smallTextSize">Code d'authentification:</label>
+        <input type="code" required v-model="code">
+        <label>Email ou Nom d'utilisateur:</label>
+        <input required v-model="$store.state.userStore.mail">
+        <label>Mot de passe:</label>
+        <input type="password" required v-model="password">
+        <div v-if="userDontExist" class="wrongInputText"> Ce compte n'existe pas</div>
+        <button class="basicVakaryButton" @click="(checkIfUserIsAuthorizeToConnect)">Connexion</button>
+        <button class="basicVakaryButton" @click="(openForgetPassword)">Mot de passe oublie ?</button>
+      </div>
+
+      <div v-show="!pro" class="loginPageInformationContainer">
+        <label>Email ou Nom d'utilisateur:</label>
+        <input v-model="$store.state.userStore.mail">
+        <label>Mot de passe:</label>
+        <input type="password" v-model="password">
+        <div v-if="userDontExist" class="wrongInputText"> L'utilisateur n'existe pas</div>
+        <button class="basicVakaryButton" @click="(checkIfCityIsAuthorizeToConnect)">Connexion</button>
+        <button class="basicVakaryButton" @click="(openForgetPassword)">Mot de passe oublie ?</button>
+      </div>
+    </div>
+
+    <div class="elementHorizontalyCentered loginPageInscriptionContainer">
+      <label class="newToText">New to Vakary ? </label>
+      <button class="InscriptionButton blueVakaryButton" @click="(openRegistrationSelection)">Inscription</button>
+    </div>
+
+    <button class="basicVakaryButton" v-if="!pro" v-on:click="pro = true"> Connexion Professionelle</button>
+    <button class="basicVakaryButton" v-if="pro" v-on:click="pro = false"> Connexion Standard</button>
   </div>
 </template>
 
 <script>
 export default {
-  data () {
+  data() {
     return {
-      pro: false
+      pro: false,
+      password: "",
+      code: "",
+      userDontExist: false,
     }
   },
   methods: {
-    openSelectAccount() {
-      this.$router.push("/selectAccount");
+    openRegistrationSelection() {
+      this.$router.push("/registrationType");
     },
     openForgetPassword() {
       this.$router.push("/forgetPassword")
+    },
+    checkIfUserIsAuthorizeToConnect() {
+      this.$store.dispatch("checkIsUserIsAuthorizedToConnect", this.password).then(() => {
+        this.$router.push("/vakaryHome");
+      }).catch(() => {
+        this.userDontExist = true;
+      })
+    },
+    checkIfCityIsAuthorizeToConnect() {
+      this.$store.dispatch("checkIsCityIsAuthorizedToConnect").then(() => {
+        this.$router.push("/vakaryHome");
+      }).catch(() => {
+        this.userDontExist = true;
+      })
     }
   },
 }
 </script>
 
 <style scoped>
+@import "@/components/Style/Button.scss";
+@import "@/components/Style/Position.scss";
+@import "@/components/Style/Text.scss";
 
-.buttonSelectLogin {
-  background: #959595;
+.newToText {
+  margin-top: 3px;
+  margin-left: 5px;
 }
+
+.InscriptionButton {
+  margin: auto 5px;
+}
+
 .login {
+  height: 100vh;
+  display: flex;
   background-color: var(--background-color-primary);
-}
-
-.login button {
-  display: flex; 
-  flex-direction: column;
-  text-align: center; 
+  text-align: center;
+  justify-content: center;
   align-items: center;
-  background: white;
-  margin: 10px auto;
-  border: 0;
-  color: black;
-  background-color: var(--background-color-secondary);
-  color: var(--text-primary-color);
-  border: 2px solid rgb(192, 150, 40);
-  border-radius: 20px;
+  flex-direction: column;
 }
 
 .login input {
@@ -83,6 +104,28 @@ export default {
 
 .login label {
   color: var(--text-primary-color);
+  font-size: 18px;
 }
 
+.loginPageInscriptionContainer {
+  display: flex;
+  justify-content: center;
+  border: 1px solid #000642;
+  border-radius: 15px;
+  padding: 5px;
+  width: 300px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.loginPageInformationContainer {
+  display: flex;
+  background-color: var(--background-color-primary);
+  text-align: center;
+  flex-direction: column;
+  border: 4px solid rgb(192, 150, 40);
+  border-radius: 15px;
+  padding: 5px;
+  width: 300px;
+}
 </style>

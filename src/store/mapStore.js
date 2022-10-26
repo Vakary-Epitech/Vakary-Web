@@ -1,7 +1,7 @@
 const mapStore = {
     state: {
         marker: [],
-        selectedMarker: [],
+        selectedMarker: [{ lat: 49.3589350848185, lng: 6.16736534543838 }, { lat: 49.3512446, lng: 6.158908 }],
         selectedMethodOfLocomotion: "walking",
         selectedTypeOfInterest: [],
         tripTime: "",
