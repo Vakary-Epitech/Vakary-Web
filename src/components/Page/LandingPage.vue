@@ -1,60 +1,60 @@
 <template>
   <div>
     <topBar />
-    <div>
-      <img class="background" src="@/assets/LandingPage/landingPageBackground.jpg">
-      <div class="positionBackgroundCard">
-        <b class="textOnTopOfCard">Vakary vos vacances selon vos envies !</b>
-        <div class="backgroundCardPosition">
-          <img src="@/assets/Logo_vect.svg" class="logoSize logoPosition">
-          <div class="textPosition">
-            <label class="firstBoxText">On organise vos vacances de rêves pour vous et gratuitement</label>
-            <label class="firstBoxText">Dites nous vos préférences, la ville que vous souhaitez visiter et un itinéraire
-              personnalisé vous sera proposé</label>
-            <label class="firstBoxText">De plus grâçe à Vakary mobile vous pourrez suivre votre itinéraire en temps
-              réel, et bien plus !</label>
-          </div>
-          <div class="inputStyle">
-            <button class="blueVakaryButton biggerButton" @click="openSignUpPage">Sign up</button>
-          </div>
+    <img class="background" src="@/assets/LandingPage/landingPageBackground.jpg">
+    <div class="positionBackgroundCard">
+      <b class="textOnTopOfCard">Vakary vos vacances selon vos envies !</b>
+      <div class="backgroundCardPosition">
+        <img src="@/assets/Logo_vect.svg" class="logoSize logoPosition">
+        <div class="textPosition">
+          <label class="firstBoxText">On organise vos vacances de rêves pour vous et gratuitement</label>
+          <label class="firstBoxText">Dites nous vos préférences, la ville que vous souhaitez visiter et un itinéraire
+            personnalisé vous sera proposé</label>
+          <label class="firstBoxText">De plus grâçe à Vakary mobile vous pourrez suivre votre itinéraire en temps
+            réel, et bien plus !</label>
         </div>
-      </div>
-      <div class="wrapperImageTypeAndText">
-        <div class="wrapperTypeBox">
-          <div>
-            <span class="textOnTopOfImage"><b>Sites Religieux</b></span>
-            <img class="background backgroundImageTranslate" src="@/assets/LandingPage/cathedrale.jpg">
-          </div>
-          <div>
-            <span class="textOnTopOfImage"><b>Sport</b></span>
-            <img class="background backgroundImageTranslate" src="@/assets/LandingPage/stade.jpg">
-          </div>
-          <div>
-            <span class="textOnTopOfImage"><b>Musée</b></span>
-            <img class="background backgroundImageTranslate" src="@/assets/LandingPage/musee.jpg">
-          </div>
-          <div>
-            <span class="textOnTopOfImage"><b>Monument</b></span>
-            <img class="background backgroundImageTranslate" src="@/assets/LandingPage/stanislas.jpg">
-          </div>
-          <div>
-            <span class="textOnTopOfImage"><b>Parc</b></span>
-            <img class="background backgroundImageTranslate" src="@/assets/LandingPage/parc.jpg">
-          </div>
-          <div>
-            <span class="textOnTopOfImage"><b>Restaurant</b></span>
-            <img class="background backgroundImageTranslate" src="@/assets/LandingPage/raclette.jpg">
-          </div>
-        </div>
-        <img class="dotsImage" src="@/assets/LandingPage/dots.jpg">
-        <div class="textTypeImageWrapper">
-          <span class="titleForImageType textTypeMargin"><b>Profiter au maximum de vos vacances !</b></span>
-          <span class="textForImageType textTypeMargin">Que vous préferiez une balade, les monuments, les restaurant ou encore autre chose, nous
-            avons ce qu'il vous faut</span>
-          <button class="basicVakaryButton biggerButton" @click="openSignUpPage">Inscription</button>
+        <div class="inputStyle">
+          <button class="blueVakaryButton biggerButton" @click="openSignUpPage">Sign up</button>
         </div>
       </div>
     </div>
+    <div class="wrapperImageTypeAndText">
+      <div class="wrapperTypeBox">
+        <div>
+          <span class="textOnTopOfImage"><b>Sites Religieux</b></span>
+          <img class="background backgroundImageTranslate" src="@/assets/LandingPage/cathedrale.jpg">
+        </div>
+        <div>
+          <span class="textOnTopOfImage"><b>Sport</b></span>
+          <img class="background backgroundImageTranslate" src="@/assets/LandingPage/stade.jpg">
+        </div>
+        <div>
+          <span class="textOnTopOfImage"><b>Musée</b></span>
+          <img class="background backgroundImageTranslate" src="@/assets/LandingPage/musee.jpg">
+        </div>
+        <div>
+          <span class="textOnTopOfImage"><b>Monument</b></span>
+          <img class="background backgroundImageTranslate" src="@/assets/LandingPage/stanislas.jpg">
+        </div>
+        <div>
+          <span class="textOnTopOfImage"><b>Parc</b></span>
+          <img class="background backgroundImageTranslate" src="@/assets/LandingPage/parc.jpg">
+        </div>
+        <div>
+          <span class="textOnTopOfImage"><b>Restaurant</b></span>
+          <img class="background backgroundImageTranslate" src="@/assets/LandingPage/raclette.jpg">
+        </div>
+      </div>
+      <img class="dotsImage" src="@/assets/LandingPage/dots.jpg">
+      <div class="textTypeImageWrapper">
+        <span class="titleForImageType textTypeMargin"><b>Profiter au maximum de vos vacances !</b></span>
+        <span class="textForImageType textTypeMargin">Que vous préferiez une balade, les monuments, les restaurant ou
+          encore autre chose, nous
+          avons ce qu'il vous faut</span>
+        <button class="basicVakaryButton biggerButton" @click="openSignUpPage">Inscription</button>
+      </div>
+    </div>
+    <div></div>
   </div>
 </template>
 
@@ -200,7 +200,7 @@ export default {
 .textTypeImageWrapper {
   display: flex;
   justify-content: center;
-  align-items: center;  
+  align-items: center;
   flex-direction: column;
   width: 30vw;
 }
@@ -209,5 +209,4 @@ export default {
   margin-left: 30px;
   margin-bottom: 30px;
 }
-
 </style>

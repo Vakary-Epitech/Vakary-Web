@@ -12,6 +12,7 @@ import SettingsPage from "@/components/Page/SettingsPage.vue"
 import ItineraryPage from "@/components/Page/ItineraryPage.vue"
 import LandingPage from "@/components/Page/LandingPage.vue"
 import RegistrationType from "@/components/Page/RegistrationType.vue"
+import store from '@/store/store';
 
 const routes = [
     {
@@ -85,5 +86,12 @@ const router = createRouter({
     history: createWebHistory(process.env.BASE_URL),
     routes,
 });
+
+router.beforeEach((to, from, next) => {
+    if (store.state.userStore.userIsLoggedIn)
+        next();
+    else if (to.name == "LoginPage" || to.name == "ForgetPassword" || to.name == "InscriptionPage" || to.name == "RegistrationType" || to.name == "LandingPage")
+        next();
+})
 
 export default router;

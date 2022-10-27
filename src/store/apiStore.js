@@ -59,6 +59,7 @@ const apiStore = {
             return new Promise((resolve, reject) => {
                 try {
                     axios.post(wording.serverAdress + "login", { username: this.state.userStore.mail, password: password }).then((canAuthentify) => {
+                        context.commit('USER_CAN_LOG_IN');
                         resolve(canAuthentify);
                     }).catch((error) => {
                         reject(error);

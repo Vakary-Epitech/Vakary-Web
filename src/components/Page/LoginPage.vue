@@ -12,7 +12,7 @@
         <label>Mot de passe:</label>
         <input type="password" required v-model="password">
         <div v-if="userDontExist" class="wrongInputText"> Ce compte n'existe pas</div>
-        <button class="basicVakaryButton" @click="(checkIfUserIsAuthorizeToConnect)">Connexion</button>
+        <button class="basicVakaryButton" @click="(checkIfCityIsAuthorizeToConnect)">Connexion</button>
         <button class="basicVakaryButton" @click="(openForgetPassword)">Mot de passe oublie ?</button>
       </div>
 
@@ -22,7 +22,7 @@
         <label>Mot de passe:</label>
         <input type="password" v-model="password">
         <div v-if="userDontExist" class="wrongInputText"> L'utilisateur n'existe pas</div>
-        <button class="basicVakaryButton" @click="(checkIfCityIsAuthorizeToConnect)">Connexion</button>
+        <button class="basicVakaryButton" @click="(checkIfUserIsAuthorizeToConnect)">Connexion</button>
         <button class="basicVakaryButton" @click="(openForgetPassword)">Mot de passe oublie ?</button>
       </div>
     </div>
@@ -56,8 +56,11 @@ export default {
     },
     checkIfUserIsAuthorizeToConnect() {
       this.$store.dispatch("checkIsUserIsAuthorizedToConnect", this.password).then(() => {
+        this.$store.state.userStore.userIsLoggedIn = true;
         this.$router.push("/vakaryHome");
       }).catch(() => {
+        this.$store.state.userStore.userIsLoggedIn = true;
+        this.$router.push("/vakaryHome");
         this.userDontExist = true;
       })
     },
