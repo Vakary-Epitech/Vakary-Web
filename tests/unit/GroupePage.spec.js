@@ -1,6 +1,6 @@
 import { mount, shallowMount } from '@vue/test-utils'
 import CreateGroup from '@/components/UI/CreateGroup.vue'
-import Group from '@/components/Page/Group.vue'
+import GroupPage from '@/components/Page/GroupPage.vue'
 
 describe('CreateGroup.vue', () => {
   it('renders props.msg when passed', () => {
@@ -12,9 +12,9 @@ describe('CreateGroup.vue', () => {
   })
 })
 
-describe('Group.vue', () => {
+describe('GroupPage.vue', () => {
   it('renders props.msg when passed', () => {
-    const wrapper = mount(Group)
+    const wrapper = mount(GroupPage)
 
     expect(wrapper.vm.showModal).toEqual(false)
     expect(wrapper.vm.createGroup).toEqual(false)
