@@ -49,7 +49,7 @@ export default {
       this.$router.push("/itineraryPage");
     },
     openGroupPage() {
-      this.$router.push("/Group");
+      this.$router.push("/groupPage");
     },
     openWebPage() {
       this.$router.push("/VakaryWeb");

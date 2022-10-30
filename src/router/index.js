@@ -12,6 +12,7 @@ import SettingsPage from "@/components/Page/SettingsPage.vue"
 import ItineraryPage from "@/components/Page/ItineraryPage.vue"
 import LandingPage from "@/components/Page/LandingPage.vue"
 import RegistrationType from "@/components/Page/RegistrationType.vue"
+import GroupPage from "@/components/Page/GroupPage.vue"
 
 const routes = [
     {
@@ -33,6 +34,11 @@ const routes = [
         path: '/Group',
         name: 'Group',
         component: Group,
+    },
+    {
+        path: '/groupPage',
+        name: 'GroupPage',
+        component: GroupPage,
     },
     {
         path: '/RegistrationType',

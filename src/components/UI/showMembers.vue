@@ -2,42 +2,42 @@
     <div id="app" v-if="showMembers">
         <!-- transition pour afficher la modal de la liste des membres -->
         <transition name="fade" appear>
-            <div class="modal-overlay"  @click="showMembers = false"></div>
+            <div class="modal-overlay" v-if="showMembers"></div>
         </transition>
         <transition name="pop" appear>
             <!-- modal de la liste des membres
             -ajouter le back
             -retravailler le design si possible
              -->
-            <div class="modalshowMembers">
-                <div>
-                    <h4>Membres du groupe</h4>
-                    <div class="parentMembers">
-                            <span class="mailMembers">{{listMembers[0]}}</span>
-                            <font-awesome-icon class="crossDeleteMembers" icon="fa-solid fa-xmark" />
+             <div class="modalshowMembers">
+                <div class="row">
+                    <div class="col-12 text-end">
+                        <font-awesome-icon class="plusCreateGroup" @click="showMembers = false;" icon="fa-solid fa-xmark" />
                     </div>
-                    <div class="parentMembers">
-                            <span class="mailMembers">{{listMembers[1]}}</span>
-                            <font-awesome-icon class="crossDeleteMembers" icon="fa-solid fa-xmark" />
+                </div>
+                <h4 v-show="groupInformations?.members?.length > 0">Membres du groupe</h4>
+                <div class="row mt-3" v-for="(member, index) in groupInformations.members" :key="index">
+                    <div class="col-8 text-start">
+                        <p>{{member.mail}}</p>
                     </div>
-                    <div class="parentMembers">
-                            <span class="mailMembers">{{listMembers[2]}}</span>
-                            <font-awesome-icon class="crossDeleteMembers" icon="fa-solid fa-xmark" />
+                    <div class="col-2">
+                        <p class="status" :class="getStatus(index)">{{member.status}}</p>
                     </div>
-                    <div class="parentMembers">
-                            <span class="mailMembers">{{listMembers[3]}}</span>
-                            <font-awesome-icon class="crossDeleteMembers" icon="fa-solid fa-xmark" />
+                    <div class="col-2">
+                        <font-awesome-icon class="trashIcon" @click="deleteMember(index)" icon="fa-solid fa-trash" />
                     </div>
-                    <div>
-                        <div>
-                            <button @click="addMember = true" class="buttonAddMembers" >Ajouter un membre</button>
-                        </div>
-                    </div>
-                    <!-- bouton pour ajouter un membre à un groupe qui existe deja -->
-                    <div v-if="addMember">
+                </div>
+                <!-- bouton pour ajouter un membre à un groupe qui existe deja -->
+                <div class="row">
+                    <div class="col-12">
                         <h4>Ajouter un membre</h4>
-                        <input class="inputFormShowMembers" placeholder="exemple@exemple.com" type="text" v-model="mailMember" />
-                        <button @click="addMember = false" accesskey="s">sauvegarder</button>
+                    </div>
+                    <div class="col-12">
+                        <input @blur="v$.mailMember.$touch" class="inputFormShowMembers" placeholder="exemple@exemple.com" type="text" v-model="mailMember" />
+                        <div v-if="v$.mailMember.$error" class="text-danger">Incorrect email</div>
+                    </div>
+                    <div class="col-12">
+                        <button class="buttonAddMembers" @click="addMember" >Ajouter un membre</button>
                     </div>
                 </div>
             </div>
@@ -46,53 +46,110 @@
 </template>
   
 <script>
-
+import useVuelidate from '@vuelidate/core';
+import { required, email } from '@vuelidate/validators';
 export default {
 
     name: "createGroup",
+    setup() {
+        return { v$: useVuelidate() }
+    },
+    computed: {
+        
+    },
     methods: {
+        getStatus(index) {
+            return this.groupInformations.members[index].status;
+        },
+        update() {
+            this.groupInformations = this.groups;
+        },
+        addMember() {
+            if (this.v$.$invalid) {
+                return;
+            }
+            this.v$.mailMember.$reset();
+            this.groupInformations.members.push({ mail: this.mailMember, status: "pending" })
+            this.mailMember = "";
+        },
         sendMessage() {
             this.emitter?.emit("showMembers");
             this.showMembers = false;
-        }
+        },
+        deleteMember(index) {
+            this.groupInformations.members.splice(index, 1);
+        },
     },
     watch :{
         showMembers(){
-            console.log(this.showMembers)
         }
+    },
+    props: {
+        groups: {
+            type: Object,
+            default: () => ({})
+        },
+    },
+    created() {
+        this.update();
     },
     data() {
         return {
+            groupInformations: {
+                name: "",
+                members: [],
+                photo: ""
+            },
+            mailMember: '',
             showMembers: true,
-            addMember: false,
-            listMembers: ['exemple.exemple@epitech.eu', 'test.test@epitech.eu', 'membre.membre@epitech.eu', 'temporaire.temporaire@epitech.eu']
         }
     },
+    validations() {
+        return {
+            mailMember: {
+                required, email
+            },
+        }
+    }
 };
 </script>
 
 <style scoped>
-.html {
-    height: 100%;
-    background: #FFF;
-    color: #000;
-    /* font-size: 62.5%; */
-}
-
-.parent {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    grid-template-rows: 1fr;
-    grid-column-gap: 0px;
-    grid-row-gap: 0px;
-}
-
 .listMemberCard {
     height: 30px;
     background-color: #FFF;
     border-radius: 10px;
 }
+.plusCreateGroup {
+    font-size: 2rem;
+    color: #000;
+    cursor: pointer;
+}
 
+.pending {
+    border: 1px grey solid;
+    background-color: #C4C4C4;
+}
+
+.denied {
+    background-color: #FFBABA;
+    border: 1px red solid;
+}
+
+.accepted {
+    background-color: #B6FBB2;
+    border: 1px green solid;
+}
+
+.status {
+    border-radius: 1em;
+}
+
+.trashIcon {
+    font-size: 1rem;
+    color: red;
+    cursor: pointer;
+}
 .buttonAddMembers {
     border: none;
     color: #FFF;
@@ -104,36 +161,6 @@ export default {
     padding: .5em 1em;
     border-radius: .3em;
     cursor: pointer;
-}
-
-.parentMembers {
-    display: grid;
-    justify-content: center;
-    align-items: center;
-    grid-template-columns: repeat(9, 1fr);
-    margin-top: 5px;
-    grid-template-rows: 1fr;
-    grid-column-gap: 0px;
-    grid-row-gap: 0px;
-    height: 30px;
-    background-color: #FFF;
-    border-radius: 10px;
-}
-
-.mailMembers {
-    grid-area: 1 / 2 / 2 / 5;
-}
-
-.crossDeleteMembers {
-    grid-area: 1 / 9 / 2 / 10;
-}
-
-body {
-    min-height: 100%;
-    margin: 0;
-    display: grid;
-    place-items: center;
-    /* font-size: 1.4rem; */
 }
 
 .buttonSave {
@@ -159,22 +186,30 @@ body {
 .modalshowMembers {
     position: absolute;
     position: fixed;
-    background: #e4e4e4;
+    background-color: #FFF;
     top: 0;
     right: 0;
     bottom: 0;
     left: 0;
+    overflow-y: auto;
     margin: auto;
     text-align: center;
     width: 40%;
-    height: 65%;
+    height: 80%;
     padding: 2rem;
     border-radius: 1rem;
     box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
-    z-index: 999;
+    z-index: 1000;
     transform: none;
 }
 
+/* create the same modal but with width and height at 100% if the media query is small */
+@media screen and (max-width: 900px) {
+    .modalshowMembers {
+        width: 100%;
+        height: 100%;
+    }
+}
 /* .modal h1 {
     margin: 0 0 1rem;
 } */
@@ -187,10 +222,9 @@ body {
     right: 0;
     bottom: 0;
     left: 0;
-    z-index: 998;
+    z-index: 999;
     background: #2c3e50;
     opacity: 0.6;
-    cursor: pointer;
 }
 
 /* ---------------------------------- */
