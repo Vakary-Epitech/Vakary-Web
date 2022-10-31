@@ -8,23 +8,25 @@
         <label class="smallTextSize">Code d'authentification:</label>
         <input type="code" required v-model="code">
         <label>Email ou Nom d'utilisateur:</label>
-        <input required v-model="email">
+        <input required v-model="$store.state.userStore.mail">
         <label>Mot de passe:</label>
         <input type="password" required v-model="password">
-        <button class="basicVakaryButton" @click="(checkIfUserIsAuthorized)">Connexion</button>
+        <div v-if="userDontExist" class="wrongInputText"> Ce compte n'existe pas</div>
+        <button class="basicVakaryButton" @click="(checkIfUserIsAuthorizeToConnect)">Connexion</button>
         <button class="basicVakaryButton" @click="(openForgetPassword)">Mot de passe oublie ?</button>
       </div>
 
       <div v-show="!pro" class="loginPageInformationContainer">
         <label>Email ou Nom d'utilisateur:</label>
-        <input v-model="email">
+        <input v-model="$store.state.userStore.mail">
         <label>Mot de passe:</label>
         <input type="password" v-model="password">
-        <button class="basicVakaryButton" @click="(checkIfUserIsAuthorized)">Connexion</button>
+        <div v-if="userDontExist" class="wrongInputText"> L'utilisateur n'existe pas</div>
+        <button class="basicVakaryButton" @click="(checkIfCityIsAuthorizeToConnect)">Connexion</button>
         <button class="basicVakaryButton" @click="(openForgetPassword)">Mot de passe oublie ?</button>
       </div>
     </div>
-    
+
     <div class="elementHorizontalyCentered loginPageInscriptionContainer">
       <label class="newToText">New to Vakary ? </label>
       <button class="InscriptionButton blueVakaryButton" @click="(openRegistrationSelection)">Inscription</button>
@@ -40,9 +42,9 @@ export default {
   data() {
     return {
       pro: false,
-      email: "",
       password: "",
       code: "",
+      userDontExist: false,
     }
   },
   methods: {
@@ -52,8 +54,19 @@ export default {
     openForgetPassword() {
       this.$router.push("/forgetPassword")
     },
-    checkIfUserIsAuthorized() {
-      this.$router.push("/vakaryHome");
+    checkIfUserIsAuthorizeToConnect() {
+      this.$store.dispatch("checkIsUserIsAuthorizedToConnect", this.password).then(() => {
+        this.$router.push("/vakaryHome");
+      }).catch(() => {
+        this.userDontExist = true;
+      })
+    },
+    checkIfCityIsAuthorizeToConnect() {
+      this.$store.dispatch("checkIsCityIsAuthorizedToConnect").then(() => {
+        this.$router.push("/vakaryHome");
+      }).catch(() => {
+        this.userDontExist = true;
+      })
     }
   },
 }
@@ -62,6 +75,7 @@ export default {
 <style scoped>
 @import "@/components/Style/Button.scss";
 @import "@/components/Style/Position.scss";
+@import "@/components/Style/Text.scss";
 
 .newToText {
   margin-top: 3px;

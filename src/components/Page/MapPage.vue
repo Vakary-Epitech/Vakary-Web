@@ -53,13 +53,11 @@
 </template>
 
 <script>
-import mapInfo from './MapInfo.vue';
 import topBar from '../UI/TopBar.vue';
 export default {
   name: 'App',
   components: {
     topBar,
-    mapInfo,
   },
   data() {
     return {
