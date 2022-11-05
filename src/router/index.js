@@ -90,7 +90,7 @@ const router = createRouter({
 router.beforeEach((to, from, next) => {
     if (store.state.userStore.userIsLoggedIn)
         next();
-    else if (to.name == "LoginPage" || to.name == "ForgetPassword" || to.name == "InscriptionPage" || to.name == "RegistrationType" || to.name == "LandingPage")
+    else if (to.name == "LoginPage" || to.name == "ForgetPassword" || to.name == "InscriptionPage" || to.name == "RegistrationType" || to.name == "LandingPage" || to.name == "VakaryWeb" || to.name == "MobilePage")
         next();
 })
 

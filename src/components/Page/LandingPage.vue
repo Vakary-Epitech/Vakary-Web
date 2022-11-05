@@ -51,7 +51,6 @@
         <span class="textForImageType textTypeMargin">Que vous préferiez une balade, les monuments, les restaurant ou
           encore autre chose, nous
           avons ce qu'il vous faut</span>
-        <button class="basicVakaryButton biggerButton" @click="openSignUpPage">Inscription</button>
       </div>
     </div>
     <hr class="separationBar">
@@ -64,7 +63,7 @@
             suivre votre itinéraire en temps réel et géolocaliser. Retrouver également vos amis avec lesquelles votre
             itinéraire est partagé</span>
           <div class="alignLeft">
-            <button class="invertedBlueVakaryButton biggerButton" @click="openSignUpPage">Trouver nos apps<span
+            <button class="invertedBlueVakaryButton biggerButton" @click="openMobilePage">Trouver nos apps<span
                 class="arrow"></span></button>
           </div>
           <div class="marginBottomText">
@@ -88,7 +87,7 @@
       <img src="@/assets/LandingPage/beautifulDogo.jpg" class="beautifulDogoImage">
       <div class="textOnDogo">
         <label class="textOnTopOfCard">Prêt à rejoindre l'aventure ?</label>
-        <button class="invertedBlueVakaryButton biggerButton" @click="openSignUpPage">Sign up<span
+        <button class="invertedBlueVakaryButton biggerButton" @click="openSignUpPage">Inscription<span
             class="arrow"></span></button>
       </div>
     </div>
@@ -105,6 +104,9 @@ export default {
   methods: {
     openSignUpPage() {
       this.$router.push("/loginPage");
+    },
+    openMobilePage() {
+      this.$router.push("/mobilePage");
     }
   }
 }
@@ -121,18 +123,19 @@ export default {
 }
 
 .beautifulDogoImage {
-  width: 100vw;
+  width: 100%;
   height: 50vw;
   filter: brightness(70%);
 }
 
 .textOnDogo {
   transform: translate(30%, -30vw);
+  width: 70%
 }
 
 .groupText {
   display: flex;
-  font-size: 25px;
+  font-size: calc(15px + 0.8vw);
   width: 36vw;
   text-align: left;
   justify-content: left;
@@ -141,7 +144,7 @@ export default {
 
 .subtitleGroupText {
   display: flex;
-  font-size: 20px;
+  font-size: calc(12px + 0.7vw);
   width: 30vw;
   text-align: left;
   justify-content: left;
@@ -161,7 +164,7 @@ export default {
 .alignPhoneImage {
   display: flex;
   justify-content: center;
-  width: 30vw;
+  margin-top: 20px;
 }
 
 .telImage {
@@ -235,16 +238,16 @@ export default {
 }
 
 .textOnTopOfCard {
-  font-size:calc(12px + 1.5vw);
+  font-size: calc(12px + 1.5vw);
   color: white;
 }
 
 .titleForImageType {
-  font-size: 25px;
+  font-size: calc(12px + 1.1vw);
 }
 
 .textForImageType {
-  font-size: 18px;
+  font-size: calc(12px + 0.9vw);
 }
 
 .logoPosition {
@@ -259,7 +262,7 @@ export default {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  font-size: 1.²;
+  font-size: calc(12px + 0.7vw);
   margin-top: 10px;
   width: 60vw;
 }
@@ -271,31 +274,29 @@ export default {
 }
 
 .biggerButton {
-  font-size: 18px;
+  font-size: calc(8px + 0.8vw);
 }
 
 .wrapperTypeBox {
-  width: 45vw;
+  width: 50%;
   height: 60vh;
   display: flex;
-  flex-wrap: wrap;
   text-align: center;
   justify-content: center;
   align-items: center;
+  flex-wrap: wrap;
 }
 
 .wrapperTypeBox>div {
-  flex: 1 1 10vw;
-  height: 25vh;
+  flex: 1 1 30%;
+  height: 20vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-left: 10px;
-  margin-right: 10px;
 }
 
 .textOnTopOfImage {
-  font-size: 26px;
+  font-size: calc(10px + 1.5vw);
   color: white;
 }
 
@@ -319,13 +320,12 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  transform: translate(0%, -25%);
+  transform: translate(0%, -15%);
 }
 
 .textTypeImageWrapper {
   display: flex;
-  justify-content: center;
-  align-items: center;
+  align-items: left;
   flex-direction: column;
   width: 30vw;
 }
@@ -333,6 +333,12 @@ export default {
 .textTypeMargin {
   margin-left: 30px;
   margin-bottom: 30px;
+}
+
+.signUpPageButton {
+  width: 20%;
+  align-items: center;
+
 }
 
 .separationBar {
