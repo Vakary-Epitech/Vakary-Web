@@ -12,8 +12,8 @@
         <label>Mot de passe:</label>
         <input type="password" required v-model="password">
         <div v-if="userDontExist" class="wrongInputText"> Ce compte n'existe pas</div>
-        <button class="basicVakaryButton" @click="(checkIfCityIsAuthorizeToConnect)">Connexion</button>
-        <button class="basicVakaryButton" @click="(openForgetPassword)">Mot de passe oublie ?</button>
+        <button class="basicVakaryButton marginButton" @click="(checkIfCityIsAuthorizeToConnect)">Connexion</button>
+        <button class="basicVakaryButton marginButton" @click="(openForgetPassword)">Mot de passe oublie ?</button>
       </div>
 
       <div v-show="!pro" class="loginPageInformationContainer">
@@ -22,14 +22,14 @@
         <label>Mot de passe:</label>
         <input type="password" v-model="password">
         <div v-if="userDontExist" class="wrongInputText"> L'utilisateur n'existe pas</div>
-        <button class="basicVakaryButton" @click="(checkIfUserIsAuthorizeToConnect)">Connexion</button>
-        <button class="basicVakaryButton" @click="(openForgetPassword)">Mot de passe oublie ?</button>
+        <button class="basicVakaryButton marginButton" @click="(checkIfUserIsAuthorizeToConnect)">Connexion</button>
+        <button class="basicVakaryButton marginButton" @click="(openForgetPassword)">Mot de passe oublie ?</button>
       </div>
     </div>
 
     <div class="elementHorizontalyCentered loginPageInscriptionContainer">
       <label class="newToText">New to Vakary ? </label>
-      <button class="InscriptionButton blueVakaryButton" @click="(openRegistrationSelection)">Inscription</button>
+      <button class="buttonInscription blueVakaryButton" @click="(openRegistrationSelection)">Inscription</button>
     </div>
 
     <button class="basicVakaryButton" v-if="!pro" v-on:click="pro = true"> Connexion Professionelle</button>
@@ -85,7 +85,11 @@ export default {
   margin-left: 5px;
 }
 
-.InscriptionButton {
+.marginButton {
+  margin: 5px auto;
+}
+
+.buttonInscription {
   margin: auto 5px;
 }
 
