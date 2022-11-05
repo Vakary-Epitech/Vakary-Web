@@ -1,7 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import VakaryHome from "@/components/Page/VakaryHome.vue";
 import VakaryWeb from "@/components/Page/VakaryWeb.vue";
-import Group from "@/components/Page/Group.vue";
 import LoginPage from "@/components/Page/LoginPage.vue";
 import MapPage from "@/components/Page/MapPage.vue";
 import InscriptionPage from "@/components/Page/InscriptionPage.vue"
@@ -29,11 +28,6 @@ const routes = [
         path: '/VakaryWeb',
         name: 'VakaryWeb',
         component: VakaryWeb,
-    },
-    {
-        path: '/Group',
-        name: 'Group',
-        component: Group,
     },
     {
         path: '/groupPage',
