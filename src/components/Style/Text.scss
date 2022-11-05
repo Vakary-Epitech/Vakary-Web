@@ -20,7 +20,7 @@
 }
 
 .mediumTitle {
-    font-size: 35px;
+    font-size: calc(12px + 1.1vw);
     text-align: center;
 }
 
@@ -31,7 +31,7 @@
 }
 
 .smallTextSize {
-    font-size: 18px;
+    font-size: calc(12px + 0.6vw);
 }
     
 .wrongInputText {

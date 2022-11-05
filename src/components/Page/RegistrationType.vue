@@ -5,6 +5,7 @@
             <b class="mediumTitle">Inscription Aventurier </b>
             <label class="smallTextSize">Envie de partir en vacances dans quelques minutes ou plusieurs mois ? Vous êtes
                 au bon endroit !</label>
+            <label class="smallTextSize elementBasicMargin">Grâce à votre compte vous pourrez avoir accès à votre profil, la création de groupe et bien plus encore !</label>
             <img src="@/assets/vacances.jpg" class="vacancesImageSize elementBasicMargin elementHorizontalyCentered" />
             <button class="basicVakaryButton" @click="(openInscriptionPageStandard)">Commencer l'aventure</button>
         </div>
@@ -55,17 +56,18 @@ export default {
     border: 4px solid rgb(192, 150, 40);
     border-radius: 15px;
     padding: 5px;
-    width: 300px;
+    width: 30%;
+    height: 70%;
     margin: auto 50px;
 }
 
 .officeImageSize {
-    width: 300;
-    height: 128px;
+    width: 45%;
+    height: 40%;
 }
 
 .vacancesImageSize {
-    width: 200px;
-    height: 128px;
+    width: 55%;
+    height: 30%;
 }
 </style>
