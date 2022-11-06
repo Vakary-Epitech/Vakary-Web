@@ -35,6 +35,6 @@
 }
     
 .wrongInputText {
-    font-size: 16px;
+    font-size: calc(12px + 0.6vw);
     color: red;
 }

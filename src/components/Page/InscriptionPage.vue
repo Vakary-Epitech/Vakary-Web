@@ -5,25 +5,27 @@
       <b class="mediumTitle">Inscription</b>
       <div v-if="this.$route.params.type == 0" class="selectionDisplayForm">
         <label>Votre Nom:</label>
-        <input required v-model="name" placeholder="ex: Martin">
+        <input required v-model="store.state.userStore.name" placeholder="ex: Martin">
         <label>Email:</label>
-        <input required type="mail" v-model="email" placeholder="ex: martin@gmail.com">
+        <input required type="mail" v-model="$store.state.userStore.mail" placeholder="ex: martin@gmail.com">
         <label>Mot de passe:</label>
-        <input required type="code" v-model="password" placeholder="********">
+        <input required type="password" v-model="password" placeholder="********">
         <label>Confirmer le mot de passe:</label>
-        <input required type="code" v-model="passwordConfirm" placeholder="********">
+        <input required type="password" v-model="passwordConfirm" placeholder="********">
+        <label v-if="this.passwordAreNotTheSame" class="wrongInputText">Password are not the same</label>
       </div>
       <div v-else class="selectionDisplayForm">
         <label>Nom de la ville:</label>
-        <input required v-model="name" placeholder="ex: Nancy">
+        <input required v-model="$store.state.userStore.name" placeholder="ex: Nancy">
         <label>Code Postal:</label>
         <input required v-model="postalCode" placeholder="ex: 54000">
         <label>Email:</label>
-        <input required v-model="email" placeholder="contact@destination-nancy.com">
+        <input required v-model="$store.state.userStore.mail" placeholder="contact@destination-nancy.com">
         <label>Mot de passe:</label>
-        <input required v-model="password" placeholder="********">
+        <input required type="password" v-model="password" placeholder="********">
         <label>Confirmer le mot de passe:</label>
-        <input required v-model="passwordConfirm" placeholder="********">
+        <input required type="password" v-model="passwordConfirm" placeholder="********">
+        <label v-if="this.passwordAreNotTheSame" class="wrongInputText">Password are not the same</label>
       </div>
       <button @click="(confirmInscription)" class="basicVakaryButton elementBasicMargin">Confirm</button>
     </div>
@@ -34,11 +36,10 @@
 export default {
   data() {
     return {
-      name: "",
-      email: "",
       password: "",
       passwordConfirm: "",
       postalCode: "",
+      passwordAreNotTheSame: false,
     }
   },
   created() {
@@ -46,7 +47,18 @@ export default {
   },
   methods: {
     confirmInscription() {
-      this.$router.push("/vakaryHome");
+      if (this.password == this.passwordConfirm) {
+        this.$store.dispatch("checkIfAccountCanBeCreated", this.password).then(() => {
+          this.$store.state.userStore.userIsLoggedIn = true;
+          this.$router.push("/vakaryHome");
+        }).catch(() => {
+          this.$store.state.userStore.userIsLoggedIn = true;
+          this.$router.push("/vakaryHome");
+          this.userDontExist = true;
+        })
+      } else {
+        this.passwordAreNotTheSame = true;
+      }
     }
   }
 }

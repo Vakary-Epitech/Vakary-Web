@@ -7,6 +7,7 @@ const userStore = {
         },
         mail: "",
         userIsLoggedIn: false,
+        username: "",
     },
     mutations: {
         UPDATE_USER_LOCATION(state, coords) {
