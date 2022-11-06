@@ -122,15 +122,15 @@ export default {
   margin-bottom: 10vh;
 }
 
+.textOnDogo {
+  transform: translate(30%, -30vw);
+  width: 70%
+}
+
 .beautifulDogoImage {
   width: 100%;
   height: 50vw;
   filter: brightness(70%);
-}
-
-.textOnDogo {
-  transform: translate(30%, -30vw);
-  width: 70%
 }
 
 .groupText {
