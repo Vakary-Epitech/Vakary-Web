@@ -59,6 +59,7 @@ const apiStore = {
             return new Promise((resolve, reject) => {
                 try {
                     axios.post(wording.serverAdress + "login", { username: this.state.userStore.mail, password: password }).then((canAuthentify) => {
+                        context.commit('USER_CAN_LOG_IN');
                         resolve(canAuthentify);
                     }).catch((error) => {
                         reject(error);
@@ -95,12 +96,17 @@ const apiStore = {
                 }
             })
         },
-        checkIsCityIsAuthorizedToConnect() {
+        checkIsCityIsAuthorizedToConnect(context, password) {
             return new Promise((resolve, reject) => {
                 try {
-                    resolve();
+                    axios.post(wording.serverAdress + "register", { email: this.state.userStore.mail, password: password, username: this.state.userStore.username}).then((canAuthentify) => {
+                        context.commit('USER_CAN_LOG_IN');
+                        resolve(canAuthentify);
+                    }).catch((error) => {
+                        reject(error);
+                    })
                 } catch (error) {
-                    reject (error)
+                    reject(error);
                 }
             })
         }
