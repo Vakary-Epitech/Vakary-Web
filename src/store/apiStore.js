@@ -68,6 +68,33 @@ const apiStore = {
                 }
             })
         },
+        getGroup() {
+            return new Promise((resolve, reject) => {
+                try {
+                    axios.get(wording.serverAdress + "group/").then((group) => {
+                        console.log("group")
+                        resolve(group);
+                    }).catch((error) => {
+                        reject(error);
+                    })
+                } catch (error) {
+                    reject(error);
+                }
+            })
+        },
+        addGroup(groupInformations) {
+            return new Promise((resolve, reject) => {
+                try {
+                    axios.put(wording.serverAdress + "group", {groupname: groupInformations.name, emails: groupInformations.emails}).then((group) => {
+                        resolve(group);
+                    }).catch((error) => {
+                        reject(error);
+                    })
+                } catch (error) {
+                    reject(error);
+                }
+            })
+        },
         checkIsCityIsAuthorizedToConnect() {
             return new Promise((resolve, reject) => {
                 try {

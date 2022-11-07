@@ -1,7 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import VakaryHome from "@/components/Page/VakaryHome.vue";
 import VakaryWeb from "@/components/Page/VakaryWeb.vue";
-import Group from "@/components/Page/Group.vue";
 import LoginPage from "@/components/Page/LoginPage.vue";
 import MapPage from "@/components/Page/MapPage.vue";
 import InscriptionPage from "@/components/Page/InscriptionPage.vue"
@@ -12,6 +11,7 @@ import SettingsPage from "@/components/Page/SettingsPage.vue"
 import ItineraryPage from "@/components/Page/ItineraryPage.vue"
 import LandingPage from "@/components/Page/LandingPage.vue"
 import RegistrationType from "@/components/Page/RegistrationType.vue"
+import GroupPage from "@/components/Page/GroupPage.vue"
 
 const routes = [
     {
@@ -30,9 +30,9 @@ const routes = [
         component: VakaryWeb,
     },
     {
-        path: '/Group',
-        name: 'Group',
-        component: Group,
+        path: '/groupPage',
+        name: 'GroupPage',
+        component: GroupPage,
     },
     {
         path: '/RegistrationType',

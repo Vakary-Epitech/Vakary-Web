@@ -1,118 +1,164 @@
 <template>
     <div id="app">
-        <!-- transition pour afficher la modal de la création d'un nouveau groupe -->
         <transition name="fade" appear>
-            <div class="modal-overlay" v-if="CreateGroup" @click="CreateGroup = false"></div>
+            <div class="modal-overlay" v-if="CreateGroup"></div>
         </transition>
-        <!-- modal de la création de groupe
-        -ajouter le back
-        -modifier le design si besoin
-         -->
         <transition name="pop" appear>
-            <div class="modalCreateGroup" role="dialog" v-if="CreateGroup">
-                <h1>Créer votre nouveau groupe</h1>
-                <div>
-                    <h4>Nom du groupe</h4>
-                    <input placeholder="Vacances Famille" class="inputFormCreateGroupe" type="text" v-model="firstName" />
+            <div class="modalCreateGroup" v-if="CreateGroup">
+                <div class="row">
+                    <div class="col-12 text-end">
+                        <font-awesome-icon class="xMark" @click="CreateGroup = false" icon="fa-solid fa-xmark" />
+                    </div>
                 </div>
-                <div>
-                    <h4>Adresse mail des membres</h4>
-                    <input class="inputFormCreateGroupe" placeholder="exemple@exemple.com" type="text" @keydown.enter="addMembers" v-model="mailMember" />                    
-                    <h6 v-for="member in listMembers" :key="member.mail">
-                        {{member.mail}}
-                    </h6>
+                <h2>Créer un nouveau groupe</h2>
+                <div class="col-12 mt-3">
+                    <input @blur="v$.groupInformations.name.$touch" placeholder="Nom du groupe" v-model="groupInformations.name" />
+                    <div v-if="v$.groupInformations.name.$error" class="text-danger">Group name must contains between 3 and 15 characters</div>
                 </div>
-                <div>
-                    <h4>Photo du groupe</h4>
-                    <input type="file" accept="image/*" class="form-control-file"
-                        @change="updatePhoto($event.target.name, $event.target.files)">
+                <div class="row mt-3">
+                    <div class="col-12">
+                        <input @blur="v$.mailMember.$touch" placeholder="Adresse mail des membres" @keydown.enter="addMembers" v-model="mailMember" />                    
+                        <div v-if="v$.mailMember.$error" class="text-danger">Incorrect email</div>
+                        <div class="row mt-3" v-for="(member, index) in groupInformations.members" :key="index">
+                            <div class="col-10">
+                                <p>{{member.mail}}</p>
+                            </div>
+                            <div class="col-2 text-end">
+                                <font-awesome-icon class="xMark" @click="deleteMember(index)" icon="fa-solid fa-xmark" />
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <br />
-                <button @click="sendMessage" class="buttonSave">Sauvegarder</button>
-
+                <div class="col-12 mt-3">
+                    <label class="addGroupPicture">
+                        Photo du groupe
+                        <input @change="onFileChange" type="file" hidden>
+                    </label>
+                </div>
+                <div v-if="groupInformations.photo">
+                    {{groupInformations.photo.name}}
+                </div>
+                <div class="col-12 mt-3 text-center">
+                    <button @click="sendMessage" class="basicVakaryButton">Sauvegarder</button>
+                </div>
+                <div v-if="v$.groupInformations.name.$error" class="text-danger">Name required</div>
             </div>
         </transition>
     </div>
 </template>
   
 <script>
-
+import useVuelidate from '@vuelidate/core';
+import { v4 as uuidv4 } from 'uuid';
+import { required, email, minLength, maxLength } from '@vuelidate/validators';
 export default {
 
     name: "createGroup",
-    methods: {
-        sendMessage() {
-            this.emitter?.emit("modalshow");
-            this.showModal = false;
-        },
-        addMembers() {
-            this.listMembers.push({ mail: this.mailMember })
-            this.mailMember = "";
-        }
+    setup() {
+        return { v$: useVuelidate() }
     },
     data() {
         return {
             CreateGroup: true,
             mailMember: "",
             firstName: "",
-            listMembers: []
+            listMembers: [],
+            groupInformations : {
+                name: "",
+                members: [],
+                photo: "",
+                id: ""
+            },
         }
     },
-    updated() {
-        console.log(this.mailMember)
-
+    methods: {
+        addMembers() {
+            if (this.v$.mailMember.$error) {
+                return;
+            }
+            this.groupInformations.members.push({ mail: this.mailMember, status: "pending" })
+            this.mailMember = "";
+        },
+        sendMessage() {
+            if (this.v$.$invalid) {
+                this.v$.groupInformations.name.$touch();
+                return;
+            }
+            if (this.mailMember.length != 0) {
+                this.addMembers();
+            }
+            this.groupInformations.id = uuidv4();
+            this.$store.dispatch("addGroup", this.groupInformations).then(() => {
+                console.log("group added");
+            }).catch(() => {
+                console.log("group not added ==> Error");
+            })
+            this.$store.dispatch("getGroup", this.groupInformations).then(() => {
+                console.log("group ");
+            }).catch(() => {
+                console.log("not group ==> Error");
+            })
+            this.$emit('sendData', this.groupInformations);
+            this.CreateGroup = false;
+        },
+        deleteMember(index) {
+            this.groupInformations.members.splice(index, 1);
+        },
+        onFileChange(e) {
+            const file = e.target.files[0];
+            this.groupInformations.photo = file;
+        },
     },
-
-    watch: {
-        mailMember(mail) {
-            console.log(mail)
+    validations() {
+        return {
+            mailMember: {
+                email
+            },
+            groupInformations: {
+                name: {
+                    minLength: minLength(3),
+                    required,
+                    maxLength: maxLength(15)
+                }
+            }
         }
     }
 };
 </script>
 
 <style scoped>
-.html {
-    height: 100%;
-    background: #FFF;
-    color: #000;
-}
 
-body {
-    min-height: 100%;
-    margin: 0;
-    display: grid;
-    place-items: center;
-}
-
-.buttonSave {
+.addGroupPicture {
+    background: #FFE9D3;
     border: none;
-    color: #FFF;
-    background: #000642;
-    appearance: none;
-    font: inherit;
-    font-size: 1.8rem;
-    padding: .5em 1em;
-    border-radius: .3em;
+    border-radius: 5px;
+    padding: 10px 20px;
+    color: #FF8C00;
     cursor: pointer;
 }
 
-.inputFormCreateGroupe {
-    border-color: #000642;
+.xMark {
+    font-size: 2rem;
+    color: #000;
+    cursor: pointer;
+}
+
+.buttonSave {
+    background: #FFE9D3;
+    border: none;
     border-radius: 5px;
-    height: 20px;
-    width: 70%;
-    font-size: 10px;
+    padding: 10px 20px;
 }
 
 .modalCreateGroup {
     position: absolute;
     position: fixed;
-    background: #e4e4e4;
+    background-color: #FFF;
     top: 0;
     right: 0;
     bottom: 0;
     left: 0;
+    overflow-y: auto;
     margin: auto;
     text-align: center;
     width: 40%;
@@ -120,7 +166,7 @@ body {
     padding: 2rem;
     border-radius: 1rem;
     box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
-    z-index: 999;
+    z-index: 1000;
     transform: none;
 }
 .modal-overlay {
@@ -131,31 +177,17 @@ body {
     right: 0;
     bottom: 0;
     left: 0;
-    z-index: 998;
+    z-index: 999;
     background: #2c3e50;
     opacity: 0.6;
-    cursor: pointer;
+}
+/* create the same modal but with width and height at 100% if the media query is small */
+@media screen and (max-width: 600px) {
+    .modalCreateGroup {
+        width: 100%;
+        height: 100%;
+        border-radius: 0;
+    }
 }
 
-/* ---------------------------------- */
-.fade-enter-active,
-.fade-leave-active {
-    transition: opacity .4s linear;
-}
-
-.fade-enter,
-.fade-leave-to {
-    opacity: 0;
-}
-
-.pop-enter-active,
-.pop-leave-active {
-    transition: transform 0.4s cubic-bezier(0.5, 0, 0.5, 1), opacity 0.4s linear;
-}
-
-.pop-enter,
-.pop-leave-to {
-    opacity: 0;
-    transform: scale(0.3) translateY(-50%);
-}
 </style>
