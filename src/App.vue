@@ -1,24 +1,37 @@
 <template>
   <div class="app">
-    <router-view v-slot="{ Component }">
-      <transition>
-        <component :is="Component" :key="this.$route.path"></component>
-      </transition>
-    </router-view>
-    <button @click="(openLandingPage)">Landing</button>
-    <button @click="(openLoginPage)">Login</button>
-    <button @click="(openMapPage)">Map</button>
+    <div>
+      <router-view v-slot="{ Component }">
+        <transition>
+          <component :is="Component" :key="this.$route.path"></component>
+        </transition>
+      </router-view>
+      <button @click="(openLandingPage)">Landing</button>
+      <button @click="(openLoginPage)">Login</button>
+      <button @click="(openMapPage)">Map</button>
+      <button @click="(openProfilePage)">Profile</button>
+      <button @click="(openHomePage)">Home</button>
+      <button @click="(openMobilePage)">Mobile</button>
+      <button @click="(openGroupPage)">Groupe</button>
+      <button @click="(openWebPage)">Web</button>
+      <button @click="(openitineraryPage)">Itinerary</button>
+    </div>
   </div>
 </template>
 
 <script>
+import themeButton from "../src/components/Theme/ThemeButton.vue";
 export default {
+  mounted() {
+    this.$store.dispatch("retrievedCurrentUserPosition");
+    this.$store.dispatch("retrievedMarkerData");
+  },
   beforeCreate() {
-      this.$router.push("/");
+    this.$router.push("/");
   },
   methods: {
-    openLandingPage() {
-      this.$router.push("/");
+    openHomePage() {
+      this.$router.push("/vakaryHome");
     },
     openLoginPage() {
       this.$router.push("/loginPage");
@@ -26,17 +39,29 @@ export default {
     openMapPage() {
       this.$router.push("/mapPage");
     },
+    openProfilePage() {
+      this.$router.push("/profilePage");
+    },
+    openMobilePage() {
+      this.$router.push("/mobilePage");
+    },
+    openitineraryPage() {
+      this.$router.push("/itineraryPage");
+    },
+    openGroupPage() {
+      this.$router.push("/groupPage");
+    },
+    openWebPage() {
+      this.$router.push("/VakaryWeb");
+    },
+    openLandingPage() {
+      this.$router.push("/");
+    },
   },
+  components: { themeButton },
 };
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+
 </style>
