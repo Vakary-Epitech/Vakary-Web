@@ -23,15 +23,24 @@
         <div class="col-12 text-center" v-if="groups.length > 0">
             <h1>Mes groupes</h1>
         </div>
-        <div class="row mt-3 lh-lg" v-for="(group, index) in groups" :key="index">
-            <div class="col-12">
-                <div @click="showGroupe(index)" class="groupCard">
-                    <div class="row text-start">
-                        <div class="col-4 col-lg-2">
-                            <img class="groupPicture" :src="group?.photo"/>
-                        </div>
-                        <div class="col-8 col-lg-10">
-                            <h3>{{group.name}}</h3>
+        <div class="row mt-3">
+            <div class="col-6 mt-3" v-for="(group, index) in groups" :key="index">
+                <div class="">
+                    <div @click="showGroupe(index)" class="groupCard">
+                        <div class="row text-start">
+                            <div class="col-6 col-lg-4">
+                                <img class="groupPicture" :src="group.photo ? group.photo : require('@/assets/Logo_vect.svg')" />
+                            </div>
+                            <div class="row col-6 col-lg-4">
+                                <div class="col-12">
+                                    <h3>{{group.name}}</h3>
+                                </div>
+                                <div class="col-12" v-for="(member, index) in group.members" :key="index">
+                                    <div v-if="index < 3">
+                                        {{member.mail}}
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

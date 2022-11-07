@@ -71,7 +71,7 @@ const apiStore = {
         getGroup() {
             return new Promise((resolve, reject) => {
                 try {
-                    axios.post(wording.serverAdress + "group/").then((group) => {
+                    axios.get(wording.serverAdress + "group/").then((group) => {
                         console.log("group")
                         resolve(group);
                     }).catch((error) => {
@@ -85,7 +85,7 @@ const apiStore = {
         addGroup(groupInformations) {
             return new Promise((resolve, reject) => {
                 try {
-                    axios.post(wording.serverAdress + "group", {group: groupInformations}).then((group) => {
+                    axios.put(wording.serverAdress + "group", {groupname: groupInformations.name, emails: groupInformations.emails}).then((group) => {
                         resolve(group);
                     }).catch((error) => {
                         reject(error);

@@ -39,7 +39,7 @@
                     {{groupInformations.photo.name}}
                 </div>
                 <div class="col-12 mt-3 text-center">
-                    <button @click="sendMessage" class="buttonSave">Sauvegarder</button>
+                    <button @click="sendMessage" class="basicVakaryButton">Sauvegarder</button>
                 </div>
                 <div v-if="v$.groupInformations.name.$error" class="text-danger">Name required</div>
             </div>
@@ -88,16 +88,16 @@ export default {
                 this.addMembers();
             }
             this.groupInformations.id = uuidv4();
-            // this.$store.dispatch("addGroup", this.groupInformations).then(() => {
-            //     console.log("group added");
-            // }).catch(() => {
-            //     console.log("group not added ==> Error");
-            // })
-            // this.$store.dispatch("getGroup", this.groupInformations).then(() => {
-            //     console.log("group ");
-            // }).catch(() => {
-            //     console.log("not group ==> Error");
-            // })
+            this.$store.dispatch("addGroup", this.groupInformations).then(() => {
+                console.log("group added");
+            }).catch(() => {
+                console.log("group not added ==> Error");
+            })
+            this.$store.dispatch("getGroup", this.groupInformations).then(() => {
+                console.log("group ");
+            }).catch(() => {
+                console.log("not group ==> Error");
+            })
             this.$emit('sendData', this.groupInformations);
             this.CreateGroup = false;
         },
