@@ -2,7 +2,7 @@
   <div id="app">
     <div class="containerTitle">
       <h1 class="title">Prêt à découvrir votre monde ?</h1>
-      <img class="planete" :src="require('@/assets/terree.gif')" />
+      <img class="planete" :src="require('@/assets/terre.gif')" />
     </div>
     <div class="parentVakaryHome">
       <h1 class="leftTitleVakaryHome">Explorer sans limite selon vos envies</h1>

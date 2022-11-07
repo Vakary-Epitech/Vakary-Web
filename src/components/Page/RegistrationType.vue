@@ -57,13 +57,13 @@ export default {
     border-radius: 15px;
     padding: 5px;
     width: 30%;
-    height: 70%;
+    height: 80%;
     margin: auto 50px;
 }
 
 .officeImageSize {
-    width: 45%;
-    height: 40%;
+    width: 55%;
+    height: 45%;
 }
 
 .vacancesImageSize {

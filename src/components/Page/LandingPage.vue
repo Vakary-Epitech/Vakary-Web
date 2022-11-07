@@ -14,7 +14,7 @@
             réel, et bien plus !</label>
         </div>
         <div class="inputStyle">
-          <button class="blueVakaryButton biggerButton" @click="openSignUpPage">Sign up</button>
+          <button class="blueVakaryButton biggerButton" @click="openSignUpPage">Inscription</button>
         </div>
       </div>
     </div>
@@ -48,7 +48,7 @@
       <img class="dotsImage" src="@/assets/LandingPage/dots.jpg">
       <div class="textTypeImageWrapper">
         <span class="titleForImageType textTypeMargin"><b>Profiter au maximum de vos vacances !</b></span>
-        <span class="textForImageType textTypeMargin">Que vous préferiez une balade, les monuments, les restaurant ou
+        <span class="textForImageType textTypeMargin">Que vous préferiez une balade, les monuments, les restaurants ou
           encore autre chose, nous
           avons ce qu'il vous faut</span>
       </div>
@@ -70,9 +70,9 @@
             <b><span class="groupText">Partager vos vacances !</span></b>
             <span class="groupText subtitleGroupText">Grâce à notre fonctionnalité de groupe, vous pouvez partager vos
               itinéraires, suivre
-              la localisation de votre groupe et discuter avec eux !</span>
+              la localisation des membres de votre groupe et discutée avec eux</span>
             <div class="alignLeft">
-              <button class="invertedBlueVakaryButton biggerButton" @click="openSignUpPage">Sign up<span
+              <button class="invertedBlueVakaryButton biggerButton" @click="openSignUpPage">Inscription<span
                   class="arrow"></span></button>
             </div>
           </div>
