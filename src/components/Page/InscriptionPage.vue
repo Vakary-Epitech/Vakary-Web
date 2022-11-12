@@ -5,7 +5,7 @@
       <b class="mediumTitle">Inscription</b>
       <div v-if="this.$route.params.type == 0" class="selectionDisplayForm">
         <label>Votre Nom:</label>
-        <input required v-model="store.state.userStore.name" placeholder="ex: Martin">
+        <input required v-model="$store.state.userStore.name" placeholder="ex: Martin">
         <label>Email:</label>
         <input required type="mail" v-model="$store.state.userStore.mail" placeholder="ex: martin@gmail.com">
         <label>Mot de passe:</label>
