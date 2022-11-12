@@ -31,7 +31,7 @@
                 </div>
                 <div class="col-12 mt-3">
                     <label class="addGroupPicture">
-                        Photo du groupe
+                        Ajouter une photo de groupe
                         <input @change="onFileChange" type="file" hidden>
                     </label>
                 </div>
@@ -39,7 +39,7 @@
                     {{groupInformations.photo.name}}
                 </div>
                 <div class="col-12 mt-3 text-center">
-                    <button @click="sendMessage" class="basicVakaryButton">Sauvegarder</button>
+                    <button @click="sendMessage" class="saveButton">Sauvegarder</button>
                 </div>
                 <div v-if="v$.groupInformations.name.$error" class="text-danger">Name required</div>
             </div>
@@ -130,11 +130,26 @@ export default {
 
 .addGroupPicture {
     background: #FFE9D3;
-    border: none;
+    border: 1px solid rgb(192, 150, 40);
     border-radius: 5px;
     padding: 10px 20px;
-    color: #FF8C00;
     cursor: pointer;
+}
+
+.addGroupPicture:hover {
+    background: #FFD9B3;
+}
+
+.saveButton {
+    background: #FFE9D3;
+    border: 1px solid #000642;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.saveButton:hover {
+    background: #FFD9B3;
 }
 
 .xMark {

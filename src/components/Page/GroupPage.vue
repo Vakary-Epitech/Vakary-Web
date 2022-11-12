@@ -47,7 +47,7 @@
             </div>
         </div>
         <div class="col-12 text-center mt-3">
-            <button @click="createGroupe">Créer un groupe</button>
+            <button @click="createGroupe" class="createGroupeButton">Créer un groupe</button>
         </div>
             <!-- </div>
         </transition> -->
@@ -120,6 +120,18 @@ export default {
 </script>
   
 <style>
+
+.createGroupeButton {
+    background: #FFE9D3;
+    border: 1px solid rgb(192, 150, 40);
+    border-radius: 5px;
+    padding: 10px 20px;
+}
+
+.createGroupeButton:hover {
+    background: #FFD9B3;
+}
+
 .groupCard {
     background: #FFE9D3;
     height: auto;
