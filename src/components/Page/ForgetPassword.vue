@@ -1,97 +1,107 @@
 <template>
   <div class="forgetPassword">
-    <span>Vous avez oublié votre mot de passe ? <br> Pas de panique ! Répondez à la question secrete de votre choix <br> et confirmez-nous votre adresse mail et nous vous permettrons <br> d´en créer un nouveau !</span>
-    <span>
-      Repondez a la question de votre choix
-        <select class="inputForgetPassword" v-model="selected">
-          <option disabled value="">Questions</option>
-          <option>Quel est le nom de votre animal de compagnie ?</option>
-          <option>Quel est le nom de votre mère ?</option>
-          <option>Quel est la marque de votre première voiture ?</option>
-        </select>
-        Quel est votre reponse?
-        <input class="inputForgetPassword" v-model="mysteryQuestionAnswer" placeholder="ex: Nancy"/>
-        Quel est votre mail?
-        <input v-model="email" placeholder="Email"/>
-        <button class="inputForgetPassword" @click="(openLoginPage)">Revenir sur la page de connexion</button>
-    </span>
+    <img src="@/assets/Logo_vect.svg" class="logoAsBackground elementHorizontalyCentered" />
+    <div class="login elementHorizontalyCentered">
+      <span class="mediumTitle">Réinitialiser votre mot de passe</span>
+      <div class="ForgetPasswordContainer">
+        <span class="smallTextSize">Entrer votre Email et nous vous enverrons un lien pour réinitialiser votre mot de
+          passe :</span>
+        <input v-model="email" placeholder="Email" />
+        <span v-if="!serverHasSendMail" class="smallTextSize">Entrer votre code reçu par mail :</span>
+        <input v-if="!serverHasSendMail" v-model="token" placeholder="Token" />
+        <span v-if="!serverHasSendMail" class="smallTextSize">Nouveau mot de passe :</span>
+        <input v-if="!serverHasSendMail" v-model="newPassword" placeholder="Nouveau mot de passe" />
+        <span v-if="!serverHasSendMail" class="smallTextSize">Confirmer votre nouveau mot de passe :</span>
+        <input v-if="!serverHasSendMail" v-model="confirmNewPassword"
+          placeholder="Confirmer votre nouveau mot de passe" />
+      </div>
+      <button v-if="!serverHasSendMail" @click="requestPasswordReset">Accepter</button>
+      <button v-if="serverHasSendMail" @click="sendNewPassword">Accepter</button>
+    </div>
   </div>
 </template>
 
   
-  <script>
-  export default {
-    data () {
-      return {
-        mysteryQuestionAnswer: '',
-        email: '',
-      }
+<script>
+export default {
+  data() {
+    return {
+      email: '',
+      serverHasSendMail: false,
+      token: '',
+    }
+  },
+  methods: {
+    openLoginPage() {
+      this.$router.push("/loginPage");
     },
-    methods: {
-      openLoginPage() {
-        this.$router.push("/loginPage");
-      },
+    requestPasswordReset() {
+      this.$store.dispatch("requestPasswordReset", this.email).then((result) => {
+        console.log(result);
+        this.serverHasSendMail = true;
+      }).catch((error) => {
+        console.log(error);
+        this.serverHasSendMail = true;
+      });
     },
-  }
-  </script>
+    sendNewPassword() {
+      this.$store.dispatch("sendNewPassword", { password: "test", authorization: this.token }).then((result) => {
+        console.log(result);
+        this.serverHasSendMail = true;
+      }).catch((error) => {
+        console.log(error);
+      });
+    },
+  },
+}
+</script>
   
 <style scoped>
+@import "@/components/Style/Main.scss";
+@import "@/components/Style/Position.scss";
+@import "@/components/Style/Text.scss";
+@import "@/components/Style/Image.scss";
 
-.button {
-    background: white;
-    background-color: white;
-    border: 0;
-    padding: 10px 20px;
-    margin-top: 20px;
-    color: black;
-    border-radius: 200px;
-    border: 2px solid rgb(192, 150, 40);
-}
-
-.submit {
-    text-align: center;
-}
-
-.inputForgetPassword {
-  width: 20%; 
-  text-align: center; 
-  align-items: center; 
-  margin-left: 40%;
+.login {
+  height: 100vh;
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
 .forgetPassword {
   display: flex;
-  flex-direction: column;
-  background-color: var(--background-color-primary);
-  align-items: center;
   text-align: center;
+  justify-content: center;
+  align-items: center;
 }
 
-.forgetPassword button {
-    display: flex; 
-    flex-direction: column;
-    text-align: center; 
-    align-items: center;
-    background: white;
-    margin: 10px auto;
-    border: 0;
-    color: black;
-    background-color: var(--background-color-secondary);
-    color: var(--text-primary-color);
-    border: 2px solid rgb(192, 150, 40);
-    border-radius: 20px;
+.logoAsBackground {
+  width: 90vw;
+  height: 90vh;
+  opacity: 0.2;
+  position: absolute;
+  z-index: -1;
 }
 
-
-.forgetPassword input {
-  background-color: var(--background-color-secondary);
-  border-color: var(--text-primary-color);
-  margin: 10px auto;
+.ForgetPasswordContainer {
+  display: flex;
+  background-color: var(--background-color-primary);
+  text-align: center;
+  flex-direction: column;
+  border: 1px solid rgb(192, 150, 40);
+  border-radius: 15px;
+  padding: 5px;
+  max-width: 500px;
+  align-content: center;
+  align-items: center;
 }
 
-.forgetPassword span {
-  color: var(--text-primary-color);
+.ForgetPasswordContainer > input {
+  margin-top: 5px;
+  margin-bottom: 15px;
+  max-width: 20vw;
 }
-
-
 </style>

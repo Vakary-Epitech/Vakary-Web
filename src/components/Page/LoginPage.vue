@@ -3,7 +3,6 @@
     <img src="@/assets/Logo_vect.svg" class="logoAsBackground elementHorizontalyCentered" />
     <div class="login elementHorizontalyCentered">
       <label class="elementBasicMargin">Sign in to Vakary</label>
-
       <div class="elementHorizontalyCentered">
         <div v-show="pro" class="loginPageInformationContainer">
           <label class="smallTextSize">Code d'authentification:</label>
@@ -57,7 +56,7 @@ export default {
       this.$router.push("/forgetPassword")
     },
     checkIfUserIsAuthorizeToConnect() {
-      this.$store.dispatch("checkIsUserIsAuthorizedToConnect", this.password).then(() => {
+      this.$store.dispatch("checkIfUserIsAuthorizedToConnect", this.password).then(() => {
         this.$store.state.userStore.userIsLoggedIn = true;
         this.$router.push("/vakaryHome");
       }).catch(() => {

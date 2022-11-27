@@ -4,7 +4,7 @@ const path = require("path");
 
 module.exports = defineConfig({
   transpileDependencies: true,
-
+  transpileDependencies: ['vuex-persist'],
   pluginOptions: {
     vuetify: {
       // https://github.com/vuetifyjs/vuetify-loader/tree/next/packages/vuetify-loader
@@ -24,7 +24,7 @@ module.exports = defineConfig({
           '@': path.resolve(__dirname, "./src"),
         },
         extensions: ['.scss', '.js', '.vue', '.json', '.png', '.svg', '.jpg', '.jpeg', '.gif'],
-      }
-    }
-  }
+      },
+    },
+  },
 })
