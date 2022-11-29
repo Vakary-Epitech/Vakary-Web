@@ -3,6 +3,7 @@
     <img src="@/assets/Logo_vect.svg" class="logoAsBackground elementHorizontalyCentered" />
     <div class="login elementHorizontalyCentered">
       <label class="elementBasicMargin">Sign in to Vakary</label>
+      
       <div class="elementHorizontalyCentered">
         <div v-show="pro" class="loginPageInformationContainer">
           <label class="smallTextSize">Code d'authentification:</label>
@@ -99,10 +100,9 @@ export default {
 
 .logoAsBackground {
   width: 90vw;
-  height: 90vh;
+  height: 90%;
   opacity: 0.2;
   position: absolute;
-  z-index: -1;
 }
 
 .buttonInscription {
@@ -116,6 +116,7 @@ export default {
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  z-index: 2;
 }
 
 .login input {

@@ -2,21 +2,23 @@
   <div class="forgetPassword">
     <img src="@/assets/Logo_vect.svg" class="logoAsBackground elementHorizontalyCentered" />
     <div class="login elementHorizontalyCentered">
-      <span class="mediumTitle">Réinitialiser votre mot de passe</span>
+      <span class="mediumTitle elementBasicMargin thirdZIndex">Réinitialiser votre mot de passe</span>
       <div class="ForgetPasswordContainer">
         <span class="smallTextSize">Entrer votre Email et nous vous enverrons un lien pour réinitialiser votre mot de
           passe :</span>
         <input v-model="email" placeholder="Email" />
-        <span v-if="!serverHasSendMail" class="smallTextSize">Entrer votre code reçu par mail :</span>
-        <input v-if="!serverHasSendMail" v-model="token" placeholder="Token" />
-        <span v-if="!serverHasSendMail" class="smallTextSize">Nouveau mot de passe :</span>
-        <input v-if="!serverHasSendMail" v-model="newPassword" placeholder="Nouveau mot de passe" />
-        <span v-if="!serverHasSendMail" class="smallTextSize">Confirmer votre nouveau mot de passe :</span>
-        <input v-if="!serverHasSendMail" v-model="confirmNewPassword"
+        <span class="smallTextSize">Entrer votre code reçu par mail :</span>
+        <input v-model="token" placeholder="Token" :disabled="!serverHasSendMail"/>
+        <span class="smallTextSize">Nouveau mot de passe :</span>
+        <input v-model="newPassword" placeholder="Nouveau mot de passe" :disabled="!serverHasSendMail"/>
+        <span class="smallTextSize">Confirmer votre nouveau mot de passe :</span>
+        <input v-model="confirmNewPassword" :disabled="!serverHasSendMail"
           placeholder="Confirmer votre nouveau mot de passe" />
       </div>
-      <button v-if="!serverHasSendMail" @click="requestPasswordReset">Accepter</button>
-      <button v-if="serverHasSendMail" @click="sendNewPassword">Accepter</button>
+      <button v-if="!serverHasSendMail" class="elementBasicMargin basicVakaryButton"
+        @click="requestPasswordReset">Accepter</button>
+      <button v-if="serverHasSendMail" class="elementBasicMargin basicVakaryButton"
+        @click="sendNewPassword">Accepter</button>
     </div>
   </div>
 </template>
@@ -69,6 +71,7 @@ export default {
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  z-index: 2;
 }
 
 .forgetPassword {
@@ -83,7 +86,6 @@ export default {
   height: 90vh;
   opacity: 0.2;
   position: absolute;
-  z-index: -1;
 }
 
 .ForgetPasswordContainer {
@@ -94,12 +96,12 @@ export default {
   border: 1px solid rgb(192, 150, 40);
   border-radius: 15px;
   padding: 5px;
-  max-width: 500px;
+  max-width: 400px;
   align-content: center;
   align-items: center;
 }
 
-.ForgetPasswordContainer > input {
+.ForgetPasswordContainer>input {
   margin-top: 5px;
   margin-bottom: 15px;
   max-width: 20vw;
