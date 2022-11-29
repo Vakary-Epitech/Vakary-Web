@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <topBar class="col-12" :connected="true"/>
     <div class="containerTitle">
       <h1 class="title">Prêt à découvrir votre monde ?</h1>
       <img class="planete" :src="require('@/assets/terre.gif')" />
@@ -60,9 +61,12 @@
 </template>
 
 <script>
+import TopBar from '@/components/UI/TopBar';
 export default {
   name: "vakaryHome",
-
+  components: {
+    TopBar,
+  },
   // créations de la méthode pour avec une fonction pour changer de page
   methods: {
     openVakaryWeb() {

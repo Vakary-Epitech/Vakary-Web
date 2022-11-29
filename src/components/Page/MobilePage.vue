@@ -6,7 +6,7 @@
         - div col 
      It is using as well the i18n system for a translation system -->
 <template>
-    <topBar class="col-12" />
+    <topBar class="col-12" :connected="false" />
     <div class="container-fluid">
         <div class="row bg-white">
             <iframe class="bg-video" src="https://www.youtube.com/embed/tgbNymZ7vqY?autoplay=1&mute=1">

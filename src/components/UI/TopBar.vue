@@ -5,49 +5,102 @@
      It is using as well the i18n system for a translation system -->
 <template>
     <div class="row addBorder mt-3">
-        <div class="col-2 mb-3">
-            <img @click="(openMobilePage)" class="logo" src="@/assets/Logo_vect.svg">
+        <div class="col text-center mb-3 ms-3">
+            <img @click="(openHomePage)" class="logo" src="@/assets/logo_long_vect.svg">
         </div>
-        <div class="col-2 my-auto">
-            <button class="default-color to-page" @click="(openMobilePage)">{{ $t("topBar.web") }}</button>
+        <!-- in case we want to do an opening menu button on low resolution -->
+        <!-- <div class="col-4 col-md mb-3">
+            <img @click="(openLandingPage)" class="logo" src="@/assets/logo_long_vect.svg">
         </div>
-        <div class="col-2 my-auto">
+        <div class="d-md-none col text-end">
+            <button class="menu-button" @click="(openMenu)"> <i class="fa-solid fa-bars menu"></i></button>
+        </div>
+        <div class="d-md-inline d-none col-md text-center">
+            <button class="default-color to-page" @click="(openWebPage)">{{ $t("topBar.web") }}</button>
+        </div>
+        <div class="d-md-inline d-none col-md text-center">
             <button class="default-color to-page" @click="(openMobilePage)">{{ $t("topBar.mobile") }}</button>
         </div>
-        <div class="col-2 my-auto">
-            <button class="default-color to-page" @click="(openMobilePage)">{{ $t("topBar.vip") }}</button>
+        <div class="d-md-inline d-none col-md text-center">
+            <button class="default-color to-page register-button" @click="(openLoginPage)">{{ $t("topBar.signup") }}</button>
+        </div> -->
+        <!-- text-end ==> text-center -->
+        <div v-if="!connected" class="col text-center">
+            <button class="default-color to-page" @click="(openWebPage)">{{ $t("topBar.web") }}</button>
         </div>
-        <div class="col-2 my-auto">
-            <button class="default-color connexion-button" @click="(openLoginPage)">{{ $t("topBar.signup") }}</button>
-            
+        <div v-if="!connected" class="col text-center">
+            <button class="default-color to-page" @click="(openMobilePage)">{{ $t("topBar.mobile") }}</button>
         </div>
-        <div class="col-2 my-auto">
-            <button class="register-button" @click="(openMobilePage)">{{ $t("topBar.signin") }}</button>
+        <div v-if="!connected" class="col text-center">
+            <button class="default-color to-page register-button" @click="(openLoginPage)">{{ $t("topBar.signup") }}</button>
+        </div>
+        <div v-if="connected" class="col text-end">
+            <button class="default-color to-page" @click="(openGroupePage)">{{ $t("topBar.groupe") }}</button>
+        </div>
+        <div v-if="connected" class="col text-end">
+            <button class="default-color to-page" @click="(openMapPage)">{{ $t("topBar.map") }}</button>
+        </div>
+        <div v-if="connected" class="col text-end">
+            <button class="default-color to-page" @click="(openProfilePage)">{{ $t("topBar.profile") }}</button>
+        </div>
+        <div v-if="connected" class="col text-end">
+            <button class="default-color to-page" @click="(openItineraryPage)">{{ $t("topBar.itinerary") }}</button>
         </div>
     </div>
 </template>
 
 <script>
-    export default {
-        name: 'topBar',
-        methods: {
-            openLandingPage() {
-                this.$router.push("/");
-            },
-            openLoginPage() {
-                this.$router.push("/loginPage");
-            },
-            openMapPage() {
-                this.$router.push("/mapPage");
-            },
-            openProfilePage() {
-                this.$router.push("/profilePage");
-            },
-            openMobilePage() {
-                this.$router.push("/mobilePage");
-            },
+export default {
+    name: 'topBar',
+    data() {
+        return {
+        }
+    },
+    props: ["connected"],
+    methods: {
+        openHomePage() {
+            if (!this.connected) {
+                this.openLandingPage();
+            }
+            else {
+                this.openHomeConnectedPage();
+            }
         },
-    };
+        openItineraryPage() {
+            this.$router.push("ItineraryPage");
+        },
+        openHomeConnectedPage() {
+            this.$router.push("vakaryHome");
+        },
+        openLandingPage() {
+            this.$router.push("/");
+        },
+        openLoginPage() {
+            this.$router.push("/loginPage");
+        },
+        openRegisterPage() {
+            this.$router.push("/RegistrationType");
+        },
+        openMapPage() {
+            this.$router.push("/mapPage");
+        },
+        openProfilePage() {
+            this.$router.push("/profilePage");
+        },
+        openMobilePage() {
+            this.$router.push("/mobilePage");
+        },
+        openWebPage() {
+            this.$router.push("/VakaryWeb");
+        },
+        openGroupePage() {
+            this.$router.push("/groupPage");
+        },
+        // openMenu() {
+        //     console.log("hello world")
+        // }
+    },
+};
 </script>
 
 <style scoped>
@@ -60,9 +113,9 @@
 }
 
 .logo {
-    width: auto;
-    height: 50px;
     cursor: pointer;
+    height: 30px;
+    /* remove height */
 }
 
 .default-color {
@@ -70,36 +123,36 @@
 }
 
 .default-color:hover {
+    /* color: #fff; */
+    /* gold color */
     color: #C09628;
 }
 
 .to-page {
     border: none;
     background-color: #fff;
-}
-
-.register-button {
-    background-color: #000642;
-    color: #C09628;
-    border: 3px #000642 solid;
     border-radius: 20px;
+    padding: 5px;
+    /* padding:10px */
 }
 
-.register-button:hover {
-    background-color: #C09628;
+/* .to-page:hover {
+    background-color: #000000;
+} */
+
+.register-button{
+    border: 1px #C09628 solid;
+}
+
+/* .menu {
+    font-size: 30px;
     color: #000642;
-    border: 3px #C09628 solid;
-    font-size: 20px;
+    cursor: pointer;
 }
 
-.connexion-button {
+.menu-button {
     background-color: #fff;
-    border: 3px #000642 solid;
-    border-radius: 20px;
-}
+    border: none;
+} */
 
-.connexion-button:hover {
-    font-size: 20px;
-    border: 3px #C09628 solid;
-}
 </style>

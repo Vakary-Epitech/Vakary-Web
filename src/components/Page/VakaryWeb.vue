@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <topBar class="col-12" :connected="false" />
 
     <!-- boutton pour changer de page -->
     <!-- <button @click="(openVakaryHome)">Vakary Home</button> -->
@@ -14,7 +15,7 @@
     <section class="products">
       <Product v-for="product in products" :key="product.title" :product="product" />
     </section>
-    <h1 class="Title">Organisé votre journée à l'avance sur notre application web</h1>
+    <h1 class="Title">Organisez votre journée à l'avance sur notre application web</h1>
     <img class="action" :src="require('@/assets/mapPresentation.png')" />
     <div>
       <div class="parentVakaryWeb">
@@ -44,10 +45,12 @@
   
 <script>
 import Product from '@/components/UI/Product';
+import TopBar from '@/components/UI/TopBar';
 export default {
   name: 'vakaryWebPresentation',
   components: {
-    Product
+    Product,
+    TopBar,
   },
   data() {
     return {

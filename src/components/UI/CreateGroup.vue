@@ -88,17 +88,31 @@ export default {
                 this.addMembers();
             }
             this.groupInformations.id = uuidv4();
-            this.$store.dispatch("addGroup", this.groupInformations).then(() => {
-                console.log("group added");
-            }).catch(() => {
-                console.log("group not added ==> Error");
-            })
-            this.$store.dispatch("getGroup", this.groupInformations).then(() => {
-                console.log("group ");
-            }).catch(() => {
-                console.log("not group ==> Error");
-            })
-            this.$emit('sendData', this.groupInformations);
+            // this.$store.dispatch("addGroup", this.groupInformations).then(() => {
+            //     console.log("group added");
+            // }).catch(() => {
+            //     console.log("group not added ==> Error");
+            // })
+            // this.$store.dispatch("getGroup", this.groupInformations).then(() => {
+            //     console.log("group ");
+            // }).catch(() => {
+            //     console.log("not group ==> Error");
+            // })
+            // this.$emit('sendData', this.groupInformations);
+            // add group to local storage
+
+            // save image to base64 format then save it to local storage
+            // if photo
+            if (this.groupInformations.photo) {
+                const reader = new FileReader();
+                reader.readAsDataURL(this.groupInformations.photo);
+                reader.onload = () => {
+                    this.groupInformations.photo = reader.result;
+                    this.$store.state.userStore.groups.push(this.groupInformations);
+                }
+            } else {
+                this.$store.state.userStore.groups.push(this.groupInformations);
+            }
             this.CreateGroup = false;
         },
         deleteMember(index) {

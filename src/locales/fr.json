@@ -24,7 +24,11 @@
       "web": "Application Web",
       "mobile": "Application Mobile",
       "vip": "VIP",
-      "signup": "Se connecter",
-      "signin": "S'inscrire"
+      "signup": "Connexion",
+      "signin": "S'inscrire",
+      "groupe": "Groupe",
+      "map": "Carte",
+      "profile": "Profil",
+      "itinerary": "Itinéraire"
     }
 }
