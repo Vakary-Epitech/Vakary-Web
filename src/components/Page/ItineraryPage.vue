@@ -4,8 +4,15 @@
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
             Créer un itinéraire
         </button>
-        <div class="col-12 text-center">
-            HERE
+        <div class="row">
+            <!-- <div class="col-6">
+                <input type="range" v-model="budget" class="form-range" min="0" max="1000" id="customRange3">
+            </div>
+            <div class="col-6">
+                <input type="range" class="form-range" min="0" max="1000" id="customRange3">
+            </div> -->
+            <!-- double inputs price ranger slide between 0 and 1000€ -->
+
         </div>
 
         <!-- Modal -->
@@ -54,8 +61,18 @@
                         </div> -->
                         <hr class="separationBar">
                         <div class="col-12">
-                            <span>Quel est votre budget pour cet itinéraire ? </span><br>
-                            <input class="form-control ms-1" type="number" min="0" v-model="budget">
+                            <span>Quel est votre budget maximum pour cet itinéraire ? </span><br>
+                            <div class="row">
+                                <div class="col-8 mt-2">
+                                    <input type="range" v-model="budget" class="form-range" min="0" max="300">
+                                </div>
+                                <div class="col-3">
+                                    <input class="form-control medium-input ms-1" disabled v-model="budget">
+                                </div>
+                                <div class="col-1 mt-2">
+                                    <span>€</span>
+                                </div>
+                            </div>
                         </div>
                         <hr class="separationBar">
                         <div class="col-12">
@@ -152,7 +169,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-12 text-center">
+        <!-- <div class="col-12 text-center">
             Itinerary Page
         </div>
         <div class="col-12 text-center">
@@ -189,16 +206,17 @@
         </div>
         <div class="col-12 text-center">
             <span>Quel est votre budget pour cet itinéraire ? </span><br>
-            <input type="number" min="0" v-model="budget">
+            <input type="number" disabled min="0" v-model="budget">
+            <input type="range" v-model="budget" class="form-range" min="0" max="300">
         </div>
         <div class="col-12 text-center">
             <span>Combien de personnes vont vous accompagner ?</span><br>
             <input type="number" min="1" v-model="people">Adulte(s) et 
             <input type="number" min="0" v-model="children"> enfant(s)    
-        </div>
+        </div> -->
         <!-- get groups from cache -->
 
-        <div class="col-6 offset-3 mb-3 text-center">
+        <!-- <div class="col-6 offset-3 mb-3 text-center">
             <span>Vos groupes</span><br>
             <div id="carouselExampleControls" class="carousel slide" data-bs-touch="false" data-bs-interval="false">
                 <div class="carousel-inner">
@@ -220,7 +238,7 @@
                     <span class="visually-hidden">Next</span>
                 </button>
             </div>
-        </div>
+        </div> -->
         <!-- <div class="col-12 mb-3 text-center">
             <span>Vos City Pass</span><br>
             <div id="carouselExampleControls2" class="carousel slide" data-bs-touch="false" data-bs-interval="false">
@@ -244,7 +262,7 @@
                 </button>
             </div>
         </div> -->
-        <div class="col-12 text-center" v-for="POI in possibleType" :key="POI.id">
+        <!-- <div class="col-12 text-center" v-for="POI in possibleType" :key="POI.id">
             <label class="form-check-label" :for="POI.id">
                 <span>{{ POI.POIType }}</span>
             </label>
@@ -252,7 +270,7 @@
         </div>
         <div class="col-12 text-center">
             <button class="btn btn-primary" @click="generateItinerary">Générer l'itinéraire</button>
-        </div>
+        </div> -->
     </div>
 </template>
   
@@ -353,6 +371,10 @@ export default {
     width: 50px !important;
 }
 
+.medium-input {
+    width: 100px !important;
+}
+
 .custom-maths {
     color: #000642;
     border: 1px solid #000642;
@@ -368,6 +390,10 @@ export default {
 
 .separation-bar {
     border-top: 3px solid rgb(192, 150, 40);
+}
+
+.form-range {
+    color:red;
 }
 
 </style>

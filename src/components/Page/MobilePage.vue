@@ -7,15 +7,26 @@
      It is using as well the i18n system for a translation system -->
 <template>
     <topBar class="col-12" :connected="false" />
-    <div class="container-fluid">
-        <div class="row bg-white">
-            <iframe class="bg-video" src="https://www.youtube.com/embed/tgbNymZ7vqY?autoplay=1&mute=1">
-            </iframe>
-            <div class="col-12 is-large mobilePageTitle">
-                <h1>{{ $t("mobilePage.title") }}</h1>
+    <div class="container">
+        <div class="row test">
+            <div class="col-2 my-auto text-center">
+                <img class="qrcode" src="@/assets/Logo_vect.svg">
+            </div>
+            <div class="col-6 my-auto">
+                <p>Vakary est disponible sur mobile.</p>
+                <p>Scannez le code QR avec votre appareil mobile pour télécharger Vakary.</p>
+            </div>
+            <div class="col-4 my-auto text-center">
+                <img class="qrcode" src="@/assets/qrcode.jpeg">
+            </div>
+            <div class="col-6 text-center my-auto">
+                <img class="badges" src="@/assets/badges/google-play-badge.png">
+            </div>
+            <div class="col-6 my-auto">
+                <img class="badges" src="@/assets/badges/app-store-badge.svg">
             </div>
         </div>
-        <div class="row bg-blue">
+        <div class="row">
             <div class="col-6 my-auto mediumTextSize">
                 <h1>{{ $t("mobilePage.text1") }}</h1>
             </div>
@@ -78,25 +89,41 @@ export default {
     color: #000642;
 }
 
+.test {
+    border: 1px solid #C09628;
+    border-radius: 25px;
+    margin-top: 30px;
+}
+
 .bg-blue {
-    background-color: #000642;
-    color: #c09628;
+    margin-top: 20px;
+    /* background-color with a light blue */
+    background-color: #e6f0ff;
+    border-radius: 50px;
+    color: #000642;
+    /* border: 1px solid #C09628; */
 }
-
-.bg-video {
-    width: 100%;
-    height: 80vh;
-    margin-bottom: 20px;
-}
-
 .image {
     width: 30vw;
     height: 100vh;
 }
 
+.qrcode {
+    width: 100px;
+    height: auto;
+}   
+
+.badges {
+    width: 200px;
+    height: auto;
+}
 .bottomText {
     margin-top: 20px;
     margin-bottom: 20px;
 };
-    
+
+
+.logo  {
+    height: 10px !important;
+}
 </style>
