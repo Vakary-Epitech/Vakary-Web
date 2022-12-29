@@ -6,73 +6,82 @@
         - div col 
      It is using as well the i18n system for a translation system -->
 <template>
-    <topBar class="col-12" :connected="false" />
-    <div class="container">
-        <div class="row test">
+    <topBar :connected="false" />
+    <main>
+
+      <section class="section orange-bg text-center">
+            <div class="section__content row">
+                <div class="section__title col-6 my-auto ">
+                    <h1>{{ $t("mobilePage.text1") }}</h1>
+                </div>
+                <div class="col-6">
+            <img class="screenshots" src="@/assets/mobilePage/default.png" alt="Screenshot of the default page of the VAKARY app">
+          </div>
+        </div>
+      </section>
+      <section class="section blue-bg text-center">
+            <div class="section__content row">
+              <div class="col-6">
+                <img class="screenshots" src="@/assets/mobilePage/itinerary.png" alt="Screenshot of the itinerary generation form in the VAKARY app">
+              </div>
+              <div class="section__title col-6 my-auto orange-text">
+                <h1>{{ $t("mobilePage.text2") }}</h1>
+              </div>
+            </div>
+      </section>
+      <section class="section light-blue-bg text-center">
+        <div class="section__content row">
+              <div class="section__title col-6 my-auto orange-text">
+                <h1>{{ $t("mobilePage.text3") }}</h1>
+              </div>
+                <div class="col-6">
+                    <img class="screenshots" src="@/assets/mobilePage/description.png" alt="Screenshot of the point of interest description page in the VAKARY app">
+                </div>
+        </div>
+      </section>
+      <section class="section grey-bg text-center">
+          <div class="section__content row">
+                  <div class="col-6">
+                      <img class="screenshots" src="@/assets/mobilePage/group.png" alt="Screenshot of the group itinerary sharing feature in the VAKARY app">
+                  </div>
+                  <div class="col-6 my-auto blue-text">
+                      <h1>{{ $t("mobilePage.text4") }}</h1>
+                  </div>
+          </div>
+      </section>
+      <section class="section orange-bg text-center">
+          <div class="section__content row">
+                  <div class="col-8 mx-auto blue-text">
+                      <h1>{{ $t("mobilePage.text5") }}</h1>
+                  </div>
+                  <div class="col-12 mx-auto">
+                      <img class="screenshots" src="@/assets/mobilePage/pointmap.png" alt="Screenshot of the point Map feature in the VAKARY app">
+                  </div>
+          </div>
+      </section>
+      <section class="container grey-bg">
+          <div class="section__content row">
             <div class="col-2 my-auto text-center">
-                <img class="qrcode" src="@/assets/Logo_vect.svg">
+              <img class="logo" src="@/assets/Logo_vect.svg" alt="Logo">
             </div>
             <div class="col-6 my-auto">
-                <p>Vakary est disponible sur mobile.</p>
-                <p>Scannez le code QR avec votre appareil mobile pour télécharger Vakary.</p>
+              <p>Vakary est disponible sur mobile.</p>
+              <p>Scannez le code QR avec votre appareil mobile pour télécharger Vakary.</p>
             </div>
             <div class="col-4 my-auto text-center">
-                <img class="qrcode" src="@/assets/qrcode.jpeg">
+              <img class="qrcode" src="@/assets/qrcode.jpeg" alt="QR code">
             </div>
             <div class="col-6 text-center my-auto">
-                <img class="badges" src="@/assets/badges/google-play-badge.png">
+              <img class="badges" src="@/assets/badges/google-play-badge.png" alt="Google Play badge">
             </div>
             <div class="col-6 my-auto">
-                <img class="badges" src="@/assets/badges/app-store-badge.svg">
+              <img class="badges" src="@/assets/badges/app-store-badge.svg" alt="App Store badge">
             </div>
-        </div>
-        <div class="row">
-            <div class="col-6 my-auto mediumTextSize">
-                <h1>{{ $t("mobilePage.text1") }}</h1>
-            </div>
-            <div class="col-6">
-                <img class="image elementHorizontalyCentered"
-                    src="https://codelabs.developers.google.com/static/codelabs/google-maps-in-flutter/img/71c460c73b1e061e.png">
-            </div>
-        </div>
-        <div class="row bg-white">
-            <div class="col-6">
-                <img class="image elementHorizontalyCentered"
-                    src="https://codelabs.developers.google.com/static/codelabs/google-maps-in-flutter/img/71c460c73b1e061e.png">
-            </div>
-            <div class="col-6 my-auto mediumTextSize">
-                <h1>{{ $t("mobilePage.text2") }}</h1>
-            </div>
-        </div>
-        <div class="row bg-blue">
-            <div class="col-6 my-auto mediumTextSize">
-                <h1>{{ $t("mobilePage.text3") }}</h1>
-            </div>
-            <div class="col-6">
-                <img class="image elementHorizontalyCentered"
-                    src="https://codelabs.developers.google.com/static/codelabs/google-maps-in-flutter/img/71c460c73b1e061e.png">
-            </div>
-        </div>
-        <div class="row bg-white">
-            <div class="col-6">
-                <img class="image elementHorizontalyCentered"
-                    src="https://codelabs.developers.google.com/static/codelabs/google-maps-in-flutter/img/71c460c73b1e061e.png">
-            </div>
-            <div class="col-6 my-auto mediumTextSize">
-                <h1>{{ $t("mobilePage.text4") }}</h1>
-            </div>
-        </div>
-        <div class="row bg-blue">
-            <div class="col-8 mx-auto mediumTextSize bottomText">
-                <h1>{{ $t("mobilePage.text5") }}</h1>
-            </div>
-            <div class="col-12 mx-auto">
-                <img class="image elementHorizontalyCentered" src="https://img.freepik.com/free-vector/golden-point_23-2147514653.jpg?w=2000">
-            </div>
-        </div>
-    </div>
+          </div>
+      </section>
+    </main>
 </template>
-
+    
 <script>
 import topBar from '../UI/TopBar.vue';
 export default {
@@ -81,49 +90,64 @@ export default {
     }
 }
 </script>
-
+    
 <style scoped>
 
-.bg-white {
-    background-color: #fff;
-    color: #000642;
+.orange-bg {
+    background-color: #ecb61c;
+}
+.orange-text {
+    color: #ecb61c;
 }
 
-.test {
-    border: 1px solid #C09628;
-    border-radius: 25px;
-    margin-top: 30px;
+.blue-bg {
+  background-color: #1d1a38;
 }
 
-.bg-blue {
-    margin-top: 20px;
-    /* background-color with a light blue */
-    background-color: #e6f0ff;
-    border-radius: 50px;
-    color: #000642;
-    /* border: 1px solid #C09628; */
+.blue-text {
+  color: #1d1a38;
 }
+.light-blue-bg {
+  background-color: #6d6c9a;
+}
+
+.light-blue-text {
+  color: #6d6c9a;
+}
+
+.grey-bg {
+  background-color: #e8e8e8;
+}
+
 .image {
     width: 30vw;
     height: 100vh;
 }
-
 .qrcode {
-    width: 100px;
+    width: 20vw;
     height: auto;
-}   
+}
 
 .badges {
     width: 200px;
     height: auto;
 }
-.bottomText {
-    margin-top: 20px;
-    margin-bottom: 20px;
-};
-
-
 .logo  {
-    height: 10px !important;
+    width: 150px;
+    height: auto;
 }
+.screenshots {
+    width: 20vw !important;
+    height: auto !important;
+}
+
+.row {
+    margin-right: 0 !important;
+}
+
+.section {
+    padding: 20px;
+    margin: 20px;
+}
+
 </style>

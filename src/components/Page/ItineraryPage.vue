@@ -2,19 +2,8 @@
     <TopBar class="col" :connected="true"/>
     <div class="row">
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-            Créer un itinéraire
+            Planifier mon itinéraire
         </button>
-        <div class="row">
-            <!-- <div class="col-6">
-                <input type="range" v-model="budget" class="form-range" min="0" max="1000" id="customRange3">
-            </div>
-            <div class="col-6">
-                <input type="range" class="form-range" min="0" max="1000" id="customRange3">
-            </div> -->
-            <!-- double inputs price ranger slide between 0 and 1000€ -->
-
-        </div>
-
         <!-- Modal -->
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
@@ -25,7 +14,7 @@
                     </div>
                     <div class="modal-body">
                         <div class="col-12">
-                            <span>Dans quelle ville ? </span><br>
+                            <span>Ville de départ </span><br>
                             <input class="w-100 form-control" type="text" v-model="city" placeholder="Ville">
                         </div>
                         <hr class="separationBar">
@@ -51,17 +40,9 @@
                             <span>Quelle est la date de départ de votre itinéraire ? </span><br>
                             <input class="form-control ms-1" type="date" v-model="date">
                         </div>
-                        <!-- <div class="col-12">
-                            <span>Quelle est l'heure de départ de votre itinéraire ? </span><br>
-                            <input type="time" v-model="timeOfStart">
-                        </div>
-                        <div class="col-12">
-                            <span>Quelle est l'heure de fin de votre itinéraire ? </span><br>
-                            <input type="time" v-model="timeOfEnd">
-                        </div> -->
                         <hr class="separationBar">
                         <div class="col-12">
-                            <span>Quel est votre budget maximum pour cet itinéraire ? </span><br>
+                            <span>Budget total </span><br>
                             <div class="row">
                                 <div class="col-8 mt-2">
                                     <input type="range" v-model="budget" class="form-range" min="0" max="300">
@@ -169,108 +150,6 @@
                 </div>
             </div>
         </div>
-        <!-- <div class="col-12 text-center">
-            Itinerary Page
-        </div>
-        <div class="col-12 text-center">
-            <span>Dans quelle ville ? </span><br>
-            <input type="text" v-model="city" placeholder="Ville">
-        </div>
-        <div class="form-check col-6 offset-5 text-start">
-            <input class="form-check-input text-center" type="checkbox" value="" id="flexCheckDefault">
-            <label class="form-check-label" for="flexCheckDefault">
-                <span>Pendant 1 heure</span>
-            </label>
-            <br>
-            <input class="form-check-input text-center" type="checkbox" value="" id="flexCheckDefault">
-            <label class="form-check-label" for="flexCheckDefault">
-                <span>1 à 4 heures</span>
-            </label>
-            <br>
-            <input class="form-check-input text-center" type="checkbox" value="" id="flexCheckDefault">
-            <label class="form-check-label" for="flexCheckDefault">
-                <span>Plus de 4 heures</span>
-            </label>
-        </div>
-        <div class="col-12 text-center">
-            <span>Quelle est la date de départ de votre itinéraire ? </span><br>
-            <input type="date" v-model="date">
-        </div>
-        <div class="col-12 text-center">
-            <span>Quelle est l'heure de départ de votre itinéraire ? </span><br>
-            <input type="time" v-model="timeOfStart">
-        </div>
-        <div class="col-12 text-center">
-            <span>Quelle est l'heure de fin de votre itinéraire ? </span><br>
-            <input type="time" v-model="timeOfEnd">
-        </div>
-        <div class="col-12 text-center">
-            <span>Quel est votre budget pour cet itinéraire ? </span><br>
-            <input type="number" disabled min="0" v-model="budget">
-            <input type="range" v-model="budget" class="form-range" min="0" max="300">
-        </div>
-        <div class="col-12 text-center">
-            <span>Combien de personnes vont vous accompagner ?</span><br>
-            <input type="number" min="1" v-model="people">Adulte(s) et 
-            <input type="number" min="0" v-model="children"> enfant(s)    
-        </div> -->
-        <!-- get groups from cache -->
-
-        <!-- <div class="col-6 offset-3 mb-3 text-center">
-            <span>Vos groupes</span><br>
-            <div id="carouselExampleControls" class="carousel slide" data-bs-touch="false" data-bs-interval="false">
-                <div class="carousel-inner">
-                    <div class="carousel-item" v-for="(group, index) in $store.state.userStore.groups" :key="index">
-                        <cardsGroup :group="group" :index="index" :exists="true"></cardsGroup>
-                    </div>
-                    <div class="carousel-item active">
-                        <cardsGroup :exists="false"></cardsGroup>
-                    </div>
-                </div>                
-                <button @click="prev" class="carousel-control-prev black" type="button"
-                    data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                </button>
-                <button @click.prevent="next" class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"
-                    data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                </button>
-            </div>
-        </div> -->
-        <!-- <div class="col-12 mb-3 text-center">
-            <span>Vos City Pass</span><br>
-            <div id="carouselExampleControls2" class="carousel slide" data-bs-touch="false" data-bs-interval="false">
-                <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Cat03.jpg/1200px-Cat03.jpg" class="cityPass" alt="...">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="https://icatcare.org/app/uploads/2018/07/Thinking-of-getting-a-cat.png" class="cityPass" alt="...">
-                    </div>
-                </div>
-                <button class="carousel-control-prev black" type="button"
-                    data-bs-target="#carouselExampleControls2" data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls2"
-                    data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                </button>
-            </div>
-        </div> -->
-        <!-- <div class="col-12 text-center" v-for="POI in possibleType" :key="POI.id">
-            <label class="form-check-label" :for="POI.id">
-                <span>{{ POI.POIType }}</span>
-            </label>
-            <input :id="POI.id" type="checkbox" :value=POI.POIType v-model="$store.state.mapStore.selectedTypeOfInterest" />
-        </div>
-        <div class="col-12 text-center">
-            <button class="btn btn-primary" @click="generateItinerary">Générer l'itinéraire</button>
-        </div> -->
     </div>
 </template>
   
