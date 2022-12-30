@@ -8,7 +8,18 @@
 <template>
     <topBar :connected="false" />
     <main>
-
+      <section class="section grey-bg text-center">
+            <div class="section__content row">
+                <div class="section__title col-12 my-auto ">
+                    <h1>VAKARY</h1>
+                    <h2>Vos vacances selon vos envies</h2>
+                    <h3>VAKARY est aussi disponible sur votre smartphone !</h3>
+                </div>
+                <div class="col-12">
+            <img class="screenshots" src="@/assets/mobilePage/home.png" alt="Screenshot of the home page of the VAKARY app">
+          </div>
+        </div>
+      </section>
       <section class="section orange-bg text-center">
             <div class="section__content row">
                 <div class="section__title col-6 my-auto ">
