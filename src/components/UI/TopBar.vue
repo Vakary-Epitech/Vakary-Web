@@ -8,23 +8,6 @@
         <div class="col text-center mb-3 ms-3">
             <img @click="(openHomePage)" class="logo" src="@/assets/logo_long_vect.svg">
         </div>
-        <!-- in case we want to do an opening menu button on low resolution -->
-        <!-- <div class="col-4 col-md mb-3">
-            <img @click="(openLandingPage)" class="logo" src="@/assets/logo_long_vect.svg">
-        </div>
-        <div class="d-md-none col text-end">
-            <button class="menu-button" @click="(openMenu)"> <i class="fa-solid fa-bars menu"></i></button>
-        </div>
-        <div class="d-md-inline d-none col-md text-center">
-            <button class="default-color to-page" @click="(openWebPage)">{{ $t("topBar.web") }}</button>
-        </div>
-        <div class="d-md-inline d-none col-md text-center">
-            <button class="default-color to-page" @click="(openMobilePage)">{{ $t("topBar.mobile") }}</button>
-        </div>
-        <div class="d-md-inline d-none col-md text-center">
-            <button class="default-color to-page register-button" @click="(openLoginPage)">{{ $t("topBar.signup") }}</button>
-        </div> -->
-        <!-- text-end ==> text-center -->
         <div v-if="!connected" class="col text-center">
             <button class="default-color to-page" @click="(openWebPage)">{{ $t("topBar.web") }}</button>
         </div>
@@ -63,7 +46,7 @@ export default {
                 this.openLandingPage();
             }
             else {
-                this.openHomeConnectedPage();
+                this.openLandingPage();
             }
         },
         openItineraryPage() {
@@ -96,9 +79,6 @@ export default {
         openGroupePage() {
             this.$router.push("/groupPage");
         },
-        // openMenu() {
-        //     console.log("hello world")
-        // }
     },
 };
 </script>
@@ -115,7 +95,6 @@ export default {
 .logo {
     cursor: pointer;
     height: 30px;
-    /* remove height */
 }
 
 .default-color {
@@ -123,8 +102,6 @@ export default {
 }
 
 .default-color:hover {
-    /* color: #fff; */
-    /* gold color */
     color: #C09628;
 }
 
@@ -133,26 +110,12 @@ export default {
     background-color: #fff;
     border-radius: 20px;
     padding: 5px;
-    /* padding:10px */
 }
 
-/* .to-page:hover {
-    background-color: #000000;
-} */
 
 .register-button{
     border: 1px #C09628 solid;
 }
 
-/* .menu {
-    font-size: 30px;
-    color: #000642;
-    cursor: pointer;
-}
-
-.menu-button {
-    background-color: #fff;
-    border: none;
-} */
 
 </style>

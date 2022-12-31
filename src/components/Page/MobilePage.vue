@@ -80,7 +80,7 @@
               <p>Scannez le code QR avec votre appareil mobile pour télécharger Vakary.</p>
             </div>
             <div class="col-4 my-auto text-center">
-              <img class="qrcode" src="@/assets/qrcode.jpeg" alt="QR code">
+              <img class="qrcode" src="@/assets/webPage/qrcode.jpeg" alt="QR code">
             </div>
             <div class="col-6 text-center my-auto">
               <img class="badges" src="@/assets/badges/google-play-badge.png" alt="Google Play badge">

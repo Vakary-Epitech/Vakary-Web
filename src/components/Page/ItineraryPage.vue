@@ -227,6 +227,17 @@ export default {
             console.log("type d'intérêt : ", this.$store.state.mapStore.selectedTypeOfInterest);
 
             console.log("index of groupe: ", this.indexOfGroup);
+            // this.$store.dispatch("mapStore/generateItinerary", {
+            //     date: this.date,
+            //     timeOfStart: this.timeOfStart,
+            //     timeOfEnd: this.timeOfEnd,
+            //     duration: duration,
+            //     budget: this.budget,
+            //     people: this.people,
+            //     children: this.children,
+            //     typeOfInterest: this.$store.state.mapStore.selectedTypeOfInterest,
+            //     group: this.$store.state.userStore.groups[this.indexOfGroup],
+            // });
         },
 
     }

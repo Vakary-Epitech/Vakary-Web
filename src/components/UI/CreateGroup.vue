@@ -13,12 +13,12 @@
                 <h2>Créer un nouveau groupe</h2>
                 <div class="col-12 mt-3">
                     <input @blur="v$.groupInformations.name.$touch" placeholder="Nom du groupe" v-model="groupInformations.name" />
-                    <div v-if="v$.groupInformations.name.$error" class="text-danger">Group name must contains between 3 and 15 characters</div>
+                    <div v-if="v$.groupInformations.name.$error" class="text-danger">Group name must be between 3 and 15 characters</div>
                 </div>
                 <div class="row mt-3">
                     <div class="col-12">
                         <input @blur="v$.mailMember.$touch" placeholder="Adresse mail des membres" @keydown.enter="addMembers" v-model="mailMember" />                    
-                        <div v-if="v$.mailMember.$error" class="text-danger">Incorrect email</div>
+                        <div v-if="v$.mailMember.$error" class="text-danger">Incorrect email format</div>
                         <div class="row mt-3" v-for="(member, index) in groupInformations.members" :key="index">
                             <div class="col-10">
                                 <p>{{member.mail}}</p>
