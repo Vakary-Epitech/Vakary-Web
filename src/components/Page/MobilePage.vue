@@ -8,8 +8,8 @@
 <template>
     <topBar :connected="false" />
     <main>
-      <button @click="seti18n('en')">EN</button>
-      <button @click="seti18n('fr')">FR</button>
+      <!-- <button @click="seti18n('en')">EN</button>
+      <button @click="seti18n('fr')">FR</button> -->
       <section class="section grey-bg text-center">
             <div class="section__content row">
                 <div class="section__title col-12 my-auto ">
