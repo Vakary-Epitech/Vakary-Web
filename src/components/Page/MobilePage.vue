@@ -8,12 +8,14 @@
 <template>
     <topBar :connected="false" />
     <main>
+      <button @click="seti18n('en')">EN</button>
+      <button @click="seti18n('fr')">FR</button>
       <section class="section grey-bg text-center">
             <div class="section__content row">
                 <div class="section__title col-12 my-auto ">
-                    <h1>VAKARY</h1>
-                    <h2>Vos vacances selon vos envies</h2>
-                    <h3>VAKARY est aussi disponible sur votre smartphone !</h3>
+                    <h1>{{ $t("vakary") }}</h1>
+                    <h2>{{ $t("slogan") }}</h2>
+                    <h3>{{ $t("webPage.smartphone") }}</h3>
                 </div>
                 <div class="col-12">
             <img class="screenshots" src="@/assets/mobilePage/home.png" alt="Screenshot of the home page of the VAKARY app">
@@ -76,17 +78,17 @@
               <img class="logo" src="@/assets/Logo_vect.svg" alt="Logo">
             </div>
             <div class="col-6 my-auto">
-              <p>Vakary est disponible sur mobile.</p>
-              <p>Scannez le code QR avec votre appareil mobile pour télécharger Vakary.</p>
+              <p>{{ $t('mobilePage.available')}}</p>
+              <p>{{ $t('mobilePage.scan')}}</p>
             </div>
             <div class="col-4 my-auto text-center">
               <img class="qrcode" src="@/assets/webPage/qrcode.jpeg" alt="QR code">
             </div>
             <div class="col-6 text-center my-auto">
-              <img class="badges" src="@/assets/badges/google-play-badge.png" alt="Google Play badge">
+              <img class="badges" :src="require(`@/assets/badges/${geti18n()}/google-play-badge.svg`)" alt="Google Play badge">
             </div>
             <div class="col-6 my-auto">
-              <img class="badges" src="@/assets/badges/app-store-badge.svg" alt="App Store badge">
+              <img class="badges" :src="require(`@/assets/badges/${geti18n()}/app-store-badge.svg`)" alt="App Store badge">
             </div>
           </div>
       </section>
@@ -98,6 +100,14 @@ import topBar from '../UI/TopBar.vue';
 export default {
     components: {
         topBar
+    },
+    methods: {
+        geti18n() {
+            return this.$i18n.locale;
+        },
+        seti18n(lang) {
+            this.$i18n.locale = lang;
+        }
     }
 }
 </script>

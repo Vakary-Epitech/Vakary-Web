@@ -6,8 +6,8 @@
         <img :src="product.src" class="image" />
       </div>
       <div class="product-detail">
-        <h2>{{ product.title }}</h2>
-        <h4 class="bg-text">{{ product.desc }}</h4>
+        <h2>{{ title }}</h2>
+        <h4 class="bg-text">{{ desc }}</h4>
       </div>
     </div>
   </div>
@@ -17,7 +17,20 @@
 
 export default {
   name: 'myProduct',
-  props: ['product'],
+  props: {
+    title: {
+      type: String,
+      required: true
+    },
+    desc: {
+      type: String,
+      required: true
+    },
+    product: {
+      type: Object,
+      required: true
+    }
+  },
 }
 </script>
 
