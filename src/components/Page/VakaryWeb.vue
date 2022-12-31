@@ -33,7 +33,18 @@
           <h1>{{ $t("webPage.organize") }}</h1>
         </div>
         <div class="section__screenshots">
-          <img src="@/assets/webPage/mapPresentation.png" alt="Screenshot of">
+          <img src="@/assets/webPage/mapPresentation.png" alt="Screenshot of the map">
+        </div>
+      </div>
+    </section>
+    <section class="section grey-bg text-center">
+      <div class="section__content container">
+        <div class="section__title">
+          <h1>{{ $t("webPage.waste") }}</h1>
+          <h3>{{ $t("webPage.enjoy") }}</h3>
+        </div>
+        <div class="section__screenshots">
+          <img src="@/assets/mobilePage/pointmap.png" alt="Screenshot of the map">
         </div>
       </div>
     </section>
