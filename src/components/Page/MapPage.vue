@@ -3,7 +3,7 @@
 
 <template>
   <div>
-    <top-bar class="col-12" />
+    <top-bar class="col-12" :connected="true" />
     <GMapMap :center="userPosition" :options="options" :zoom="12" style="width: 100vw; height: 70vh" ref="myMapRef">
       <GMapMarker :position="userPosition" />
       <GMapMarker :key="marker.label" v-for="marker in markersData" :position="marker.geolocalisation"

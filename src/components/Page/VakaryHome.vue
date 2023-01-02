@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <topBar class="col-12" :connected="true"/>
     <div class="containerTitle">
       <h1 class="title">Prêt à découvrir votre monde ?</h1>
       <img class="planete" :src="require('@/assets/terre.gif')" />
@@ -14,7 +15,7 @@
     </div>
     <div class="parentVakaryHome">
       <h1 class="rightTitleVakaryHome">Préparer votre sejour</h1>
-      <img class="sizeMax" :src="require('@/assets/mapPresentation.png')" />
+      <img class="sizeMax" :src="require('@/assets/webPage/mapPresentation.png')" />
       <h3 class="rightSubtitleVakaryHome">
         Vakary vous donne un aperçu complet de ce que vous pouvez explorer avant
         même d'y être !
@@ -22,7 +23,7 @@
     </div>
     <div class="parentVakaryHome">
       <h1 class="leftTitleVakaryHome">Foncez tête baissée !!</h1>
-      <img class="sizeMaxTel" :src="require('@/assets/telMap.png')" />
+      <img class="sizeMaxTel" :src="require('@/assets/webPage/telMap.png')" />
       <h3 class="leftSubtitleVakaryHome">
         Peut importe où vous êtes, créez un itinéraire qui vous ressemble en
         quelque click !
@@ -60,9 +61,12 @@
 </template>
 
 <script>
+import TopBar from '@/components/UI/TopBar';
 export default {
   name: "vakaryHome",
-
+  components: {
+    TopBar,
+  },
   // créations de la méthode pour avec une fonction pour changer de page
   methods: {
     openVakaryWeb() {
