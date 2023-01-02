@@ -1,5 +1,7 @@
 {
     "message": "bonjour i18n !!",
+    "vakary": "VAKARY",
+    "slogan": "Vos vacances selon vos envies",
     "profilePage": {
         "edit": "Editer le profil",
         "info": "Description",
@@ -18,17 +20,45 @@
         "text2": "L'application propose un formulaire simple et rapide pour générer un itinéraire précis qui vons conviendra au mieux",
         "text3": "Vous pourrez retrouver une description précise des points d'intérêt, avec des informations sur des évènements, et la possibilité d'écouter un audio guide",
         "text4": "Une fonctionnalité de groupe a été mise en place pour permettre un partage d'itinéraire simple quand vous voyagez en famille ou entre amis",
-        "text5": "L'application embarque une fonction payante qui vous permet d'avoir un itinéraire travaillé par des professionnels du voyage, qui vous conseillerons les meilleurs endroits à visiter à l'endroit où vous vous trouvez !"
+        "text5": "L'application embarque une fonction payante qui vous permet d'avoir un itinéraire travaillé par des professionnels du voyage, qui vous conseillerons les meilleurs endroits à visiter à l'endroit où vous vous trouvez !",
+        "available": "Vakary est disponible sur mobile.",
+        "scan": "Scannez le code QR avec votre appareil mobile pour télécharger Vakary."
+    },
+    "webPage": {
+        "products": {
+            "park": {
+                "title": "Parc & Jardin",
+                "desc": "Découvrez les plus beaux parcs et jardins de la région"
+            },
+            "event": {
+                "title": "Evenements",
+                "desc": "Pour les événements et fêtes"
+            },
+            "museum": {
+                "title": "Musées",
+                "desc": "Pour la culture et l'histoire"
+            }
+        },
+        "title": "Êtes-vous prêt à voyager et à decouvrir ?",
+        "smartphone": "VAKARY est aussi disponible sur votre smartphone !",
+        "hobbies": "Dites-nous vos hobbies et passions",
+        "organize": "Organisez votre journée à l'avance",
+        "waste": "Ne perdez plus de temps",
+        "enjoy": "Profitez de votre journée avec notre itinéraire personnalisé",
+        "popular": "Découvrez les monuments les plus visités",
+        "lessPopular": "Et les moins connus",
+        "QRCode": "QR Code",
+        "QRCodeDownload": "Téléchargez directement notre application pour l'essayer"
     },
     "topBar": {
-      "web": "Application Web",
-      "mobile": "Application Mobile",
-      "vip": "VIP",
-      "signup": "Connexion",
-      "signin": "S'inscrire",
-      "groupe": "Groupe",
-      "map": "Carte",
-      "profile": "Profil",
-      "itinerary": "Itinéraire"
+        "web": "Application Web",
+        "mobile": "Application Mobile",
+        "vip": "VIP",
+        "signup": "Connexion",
+        "signin": "S'inscrire",
+        "groupe": "Groupe",
+        "map": "Carte",
+        "profile": "Profil",
+        "itinerary": "Itinéraire"
     }
 }

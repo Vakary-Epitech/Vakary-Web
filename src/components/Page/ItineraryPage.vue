@@ -197,7 +197,6 @@ export default {
                     this.indexOfGroup--;
                 }
             }, "1 second");
-
         },
         next() {
             // not working function yet: need to find a way to get the index of the active carousel item
@@ -225,7 +224,6 @@ export default {
             console.log("nombre de personnes : ", this.people);
             console.log("nombre d'enfants : ", this.children);
             console.log("type d'intérêt : ", this.$store.state.mapStore.selectedTypeOfInterest);
-
             console.log("index of groupe: ", this.indexOfGroup);
             // this.$store.dispatch("mapStore/generateItinerary", {
             //     date: this.date,
@@ -239,7 +237,6 @@ export default {
             //     group: this.$store.state.userStore.groups[this.indexOfGroup],
             // });
         },
-
     }
 }
 </script>
@@ -248,23 +245,18 @@ export default {
 .form-check .form-check-input {
     float: none !important;
 }
-
 .form-control {
     width: auto !important;
 }
-
 .form-check {
     padding-left: 0 !important;
 }
-
 .small-input {
     width: 50px !important;
 }
-
 .medium-input {
     width: 100px !important;
 }
-
 .custom-maths {
     color: #000642;
     border: 1px solid #000642;
@@ -272,18 +264,14 @@ export default {
     padding: 5px;
     cursor: pointer;
 }
-
 .remove-decoration {
     background-color: #fff;
     border: none;
 }
-
 .separation-bar {
     border-top: 3px solid rgb(192, 150, 40);
 }
-
 .form-range {
     color:red;
 }
-
 </style>
