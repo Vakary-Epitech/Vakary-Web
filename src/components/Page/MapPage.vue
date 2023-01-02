@@ -20,7 +20,6 @@
       <GMapPolyline :options="{ strokeColor: '#000642' }" :path="selectedPath" ref="polyline" />
     </GMapMap>
   </div>
-  {{ getCenterOfMap }}
   <div class="boxPosition">
     <div class="widgetPanel">
       <div v-if="!displayItineraryInformation" :class="(itineraryDropdownStatus)">
