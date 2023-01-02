@@ -72,25 +72,20 @@
                   </div>
           </div>
       </section>
-      <section class="container grey-bg">
-          <div class="section__content row">
-            <div class="col-2 my-auto text-center">
-              <img class="logo" src="@/assets/Logo_vect.svg" alt="Logo">
-            </div>
-            <div class="col-6 my-auto">
-              <p>{{ $t('mobilePage.available')}}</p>
-              <p>{{ $t('mobilePage.scan')}}</p>
-            </div>
-            <div class="col-4 my-auto text-center">
-              <img class="qrcode" src="@/assets/webPage/qrcode.jpeg" alt="QR code">
-            </div>
-            <div class="col-6 text-center my-auto">
-              <img class="badges" :src="require(`@/assets/badges/${geti18n()}/google-play-badge.svg`)" alt="Google Play badge">
-            </div>
-            <div class="col-6 my-auto">
-              <img class="badges" :src="require(`@/assets/badges/${geti18n()}/app-store-badge.svg`)" alt="App Store badge">
-            </div>
+      <section class="section grey-bg text-center">
+        <div class="section__content container">
+          <div class="section__title">
+            <h1>{{ $t("webPage.QRCode") }}</h1>
+            <h3>{{ $t("webPage.QRCodeDownload") }}</h3>
           </div>
+          <div class="section__screenshots">
+            <img src="@/assets/webPage/qrcode.jpeg" alt="Screenshot of the QR code for the VAKARY app">
+          </div>
+          <div class="section__screenshots mt-3">
+            <img class="badges" :src="require(`@/assets/badges/${geti18n()}/google-play-badge.svg`)" alt="Google Play badge">
+            <img class="badges" :src="require(`@/assets/badges/${geti18n()}/app-store-badge.svg`)" alt="App Store badge">
+          </div>
+        </div>
       </section>
     </main>
 </template>
@@ -157,6 +152,9 @@ export default {
     width: 150px;
     height: auto;
 }
+.section {
+    padding: 5rem 0;
+  }
 .screenshots {
     width: 20vw !important;
     height: auto !important;
@@ -165,10 +163,4 @@ export default {
 .row {
     margin-right: 0 !important;
 }
-
-.section {
-    padding: 20px;
-    margin: 20px;
-}
-
 </style>

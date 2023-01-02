@@ -88,7 +88,7 @@
         <div class="section__screenshots">
           <img src="@/assets/webPage/qrcode.jpeg" alt="Screenshot of the QR code for the VAKARY app">
         </div>
-        <div class="section__screenshots">
+        <div class="section__screenshots mt-3">
           <img class="badges" :src="require(`@/assets/badges/${geti18n()}/google-play-badge.svg`)" alt="Google Play badge">
           <img class="badges" :src="require(`@/assets/badges/${geti18n()}/app-store-badge.svg`)" alt="App Store badge">
         </div>
