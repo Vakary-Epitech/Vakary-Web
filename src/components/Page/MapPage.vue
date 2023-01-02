@@ -13,6 +13,7 @@
             <div class="col-12">
               <h4>{{ marker.label }}</h4>
             </div>
+          </div>
           </GMapInfoWindow>
         </GMapMarker>
         <map-info></map-info>
@@ -80,7 +81,6 @@
         </div>
       </div>
     </div>
-  </div>
 </template>
 
 <script>
