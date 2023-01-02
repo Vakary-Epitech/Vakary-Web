@@ -111,12 +111,17 @@ export default {
             showMembers: true,
         }
     },
+    computed: {
+        getGroups() {
+            return this.$store.state.userStore.groups;
+        },
+    },
+    created() {
+        this.groupInformations = this.groups;
+    },
     methods: {
         getStatus(index) {
             return this.groupInformations.members[index].status;
-        },
-        update() {
-            this.groupInformations = this.groups;
         },
         addMember() {
             if (this.v$.mailMember.$error) {
@@ -142,7 +147,9 @@ export default {
             this.newGroupName = "";
         },
         deleteGroup() {
-            this.$emit("deleteGroup");
+            // delete the group in the local storage
+            let index = this.$store.state.userStore.groups.findIndex(group => group.id === this.groupInformations.id);
+            this.$store.state.userStore.groups.splice(index, 1);
             this.showMembers = false;
         },  
         onFileChange(e) {
@@ -156,9 +163,6 @@ export default {
             type: Object,
             default: () => ({})
         },
-    },
-    created() {
-        this.update();
     },
     validations() {
         return {

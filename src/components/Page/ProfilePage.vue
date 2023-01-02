@@ -6,7 +6,7 @@
      It is using as well the i18n system for a translation system -->
 <template>
     <div class="basicContainer">
-        <top-bar class="col-12" />
+        <top-bar class="col-12" :connected="true" />
         <div class="container">
             <button @click="(openSettingsPage)">Paramètres</button>
             <div class="row" v-if="!editMode">
@@ -113,7 +113,7 @@
 
 <script>
 import cardReviews from '../UI/CardsReviews.vue';
-// import topBar from '../UI/TopBar.vue';
+import topBar from '../UI/TopBar.vue';
 export default {
     data() {
         return {
@@ -176,7 +176,7 @@ export default {
     },
     components: {
         cardReviews,
-        // topBar,
+        topBar,
     },
 }
 </script>

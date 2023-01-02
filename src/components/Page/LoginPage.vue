@@ -3,7 +3,7 @@
     <img src="@/assets/Logo_vect.svg" class="logoAsBackground elementHorizontalyCentered" />
     <div class="login elementHorizontalyCentered">
       <label class="elementBasicMargin">Sign in to Vakary</label>
-
+      
       <div class="elementHorizontalyCentered">
         <div v-show="pro" class="loginPageInformationContainer">
           <label class="smallTextSize">Code d'authentification:</label>
@@ -57,12 +57,12 @@ export default {
       this.$router.push("/forgetPassword")
     },
     checkIfUserIsAuthorizeToConnect() {
-      this.$store.dispatch("checkIsUserIsAuthorizedToConnect", this.password).then(() => {
+      this.$store.dispatch("checkIfUserIsAuthorizedToConnect", this.password).then(() => {
         this.$store.state.userStore.userIsLoggedIn = true;
-        this.$router.push("/vakaryHome");
+        this.$router.push("/mapPage");
       }).catch(() => {
         this.$store.state.userStore.userIsLoggedIn = true;
-        this.$router.push("/vakaryHome");
+        this.$router.push("/mapPage");
         this.userDontExist = true;
       })
     },
@@ -100,10 +100,9 @@ export default {
 
 .logoAsBackground {
   width: 90vw;
-  height: 90vh;
+  height: 90%;
   opacity: 0.2;
   position: absolute;
-  z-index: -1;
 }
 
 .buttonInscription {
@@ -117,6 +116,7 @@ export default {
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  z-index: 2;
 }
 
 .login input {
@@ -134,17 +134,17 @@ export default {
   display: flex;
   justify-content: center;
   border: 1px solid #000642;
+  background-color: white;
   border-radius: 15px;
   padding: 5px;
   width: 300px;
   margin-top: 20px;
   margin-bottom: 20px;
-  background-color: var(--background-color-primary);
 }
 
 .loginPageInformationContainer {
   display: flex;
-  background-color: var(--background-color-primary);
+  background-color: white;
   text-align: center;
   flex-direction: column;
   border: 4px solid rgb(192, 150, 40);

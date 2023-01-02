@@ -1,6 +1,6 @@
 <template>
   <div>
-    <topBar class="reajustWidth" />
+    <topBar class="reajustWidth" :connected="false" />
     <img class="background" src="@/assets/LandingPage/landingPageBackground.jpg">
     <div class="positionBackgroundCard">
       <b class="textOnTopOfCard">Vakary vos vacances selon vos envies !</b>
