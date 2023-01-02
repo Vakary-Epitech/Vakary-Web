@@ -3,21 +3,15 @@
 
 <template>
   <div>
-    <top-bar class="col-12"/>
-    <div>
-      <GMapMap :center="getCenterOfMap" :options="options" :zoom="12" style="width: 100%; height: 92vh"
-        ref="myMapRef">
-        <GMapMarker :key="marker.label" v-for="marker in markersData" :position="marker.geolocalisation"
-          :title="marker.label" :clickable="true" @click="openInfoWindow(marker.label, marker.geolocalisation)">
-          <GMapInfoWindow :closeclick="true" @closeclick="openInfoWindow(null)"
-            :opened="openedMarkerID === marker.label">
-            <div>
-              <div class="col-12">
-                <h4>{{ marker.label }}</h4>
-              </div>
-              <div class="col-12">
-                <span>{{ marker.description }}</span>
-              </div>
+    <top-bar class="col-12" :connected="true" />
+    <GMapMap :center="userPosition" :options="options" :zoom="12" style="width: 100vw; height: 70vh" ref="myMapRef">
+      <GMapMarker :position="userPosition" />
+      <GMapMarker :key="marker.label" v-for="marker in markersData" :position="marker.geolocalisation"
+        :title="marker.label" :clickable="true" @click="openInfoWindow(marker.label, marker.geolocalisation)">
+        <GMapInfoWindow :closeclick="true" @closeclick="openInfoWindow(null)" :opened="openedMarkerID === marker.label">
+          <div>
+            <div class="col-12">
+              <h4>{{ marker.label }}</h4>
             </div>
           </GMapInfoWindow>
         </GMapMarker>

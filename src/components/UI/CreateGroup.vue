@@ -13,12 +13,12 @@
                 <h2>Créer un nouveau groupe</h2>
                 <div class="col-12 mt-3">
                     <input @blur="v$.groupInformations.name.$touch" placeholder="Nom du groupe" v-model="groupInformations.name" />
-                    <div v-if="v$.groupInformations.name.$error" class="text-danger">Group name must contains between 3 and 15 characters</div>
+                    <div v-if="v$.groupInformations.name.$error" class="text-danger">Group name must be between 3 and 15 characters</div>
                 </div>
                 <div class="row mt-3">
                     <div class="col-12">
                         <input @blur="v$.mailMember.$touch" placeholder="Adresse mail des membres" @keydown.enter="addMembers" v-model="mailMember" />                    
-                        <div v-if="v$.mailMember.$error" class="text-danger">Incorrect email</div>
+                        <div v-if="v$.mailMember.$error" class="text-danger">Incorrect email format</div>
                         <div class="row mt-3" v-for="(member, index) in groupInformations.members" :key="index">
                             <div class="col-10">
                                 <p>{{member.mail}}</p>
@@ -31,7 +31,7 @@
                 </div>
                 <div class="col-12 mt-3">
                     <label class="addGroupPicture">
-                        Photo du groupe
+                        Ajouter une photo de groupe
                         <input @change="onFileChange" type="file" hidden>
                     </label>
                 </div>
@@ -39,7 +39,7 @@
                     {{groupInformations.photo.name}}
                 </div>
                 <div class="col-12 mt-3 text-center">
-                    <button @click="sendMessage" class="basicVakaryButton">Sauvegarder</button>
+                    <button @click="sendMessage" class="saveButton">Sauvegarder</button>
                 </div>
                 <div v-if="v$.groupInformations.name.$error" class="text-danger">Name required</div>
             </div>
@@ -88,17 +88,31 @@ export default {
                 this.addMembers();
             }
             this.groupInformations.id = uuidv4();
-            this.$store.dispatch("addGroup", this.groupInformations).then(() => {
-                console.log("group added");
-            }).catch(() => {
-                console.log("group not added ==> Error");
-            })
-            this.$store.dispatch("getGroup", this.groupInformations).then(() => {
-                console.log("group ");
-            }).catch(() => {
-                console.log("not group ==> Error");
-            })
-            this.$emit('sendData', this.groupInformations);
+            // this.$store.dispatch("addGroup", this.groupInformations).then(() => {
+            //     console.log("group added");
+            // }).catch(() => {
+            //     console.log("group not added ==> Error");
+            // })
+            // this.$store.dispatch("getGroup", this.groupInformations).then(() => {
+            //     console.log("group ");
+            // }).catch(() => {
+            //     console.log("not group ==> Error");
+            // })
+            // this.$emit('sendData', this.groupInformations);
+            // add group to local storage
+
+            // save image to base64 format then save it to local storage
+            // if photo
+            if (this.groupInformations.photo) {
+                const reader = new FileReader();
+                reader.readAsDataURL(this.groupInformations.photo);
+                reader.onload = () => {
+                    this.groupInformations.photo = reader.result;
+                    this.$store.state.userStore.groups.push(this.groupInformations);
+                }
+            } else {
+                this.$store.state.userStore.groups.push(this.groupInformations);
+            }
             this.CreateGroup = false;
         },
         deleteMember(index) {
@@ -130,11 +144,26 @@ export default {
 
 .addGroupPicture {
     background: #FFE9D3;
-    border: none;
+    border: 1px solid rgb(192, 150, 40);
     border-radius: 5px;
     padding: 10px 20px;
-    color: #FF8C00;
     cursor: pointer;
+}
+
+.addGroupPicture:hover {
+    background: #FFD9B3;
+}
+
+.saveButton {
+    background: #FFE9D3;
+    border: 1px solid #000642;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.saveButton:hover {
+    background: #FFD9B3;
 }
 
 .xMark {

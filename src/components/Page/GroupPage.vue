@@ -1,4 +1,5 @@
 <template>
+    <TopBar class="col" :connected="true"/>
     <div class="container">
         <!-- <div class="col-12 text-center">
             <button @click="showModal = true">Créer un groupe</button>
@@ -20,106 +21,88 @@
                 <!-- </div> -->
                 <!-- card de groupe avec la photo de groupe & le nom du groupe -->
                 <!-- v-for div with groups -->
-        <div class="col-12 text-center" v-if="groups.length > 0">
+        <div class="col-12 text-center" v-if="$store.state.userStore.groups > 0">
             <h1>Mes groupes</h1>
         </div>
         <div class="row mt-3">
-            <div class="col-6 mt-3" v-for="(group, index) in groups" :key="index">
+            <div class="col-12 col-lg-6 mt-3" v-for="(group, index) in $store.state.userStore.groups" :key="index">
                 <div class="">
-                    <div @click="showGroupe(index)" class="groupCard">
-                        <div class="row text-start">
-                            <div class="col-6 col-lg-4">
-                                <img class="groupPicture" :src="group.photo ? group.photo : require('@/assets/Logo_vect.svg')" />
-                            </div>
-                            <div class="row col-6 col-lg-4">
-                                <div class="col-12">
-                                    <h3>{{group.name}}</h3>
-                                </div>
-                                <div class="col-12" v-for="(member, index) in group.members" :key="index">
-                                    <div v-if="index < 3">
-                                        {{member.mail}}
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <cardsGroup :exists="true" :group=group :index=index></cardsGroup>
                 </div>
             </div>
         </div>
         <div class="col-12 text-center mt-3">
-            <button @click="createGroupe">Créer un groupe</button>
+            <button @click="createGroupe" class="createGroupeButton">Créer un groupe</button>
         </div>
             <!-- </div>
         </transition> -->
         <!-- component pour créer un groupe et afficher la liste des membres -->
-        <CreateGroup @send-data="update" v-show="createGroup" :key="keyCreateGroup"/>
-        <showMembers @change-group-photo="changeGroupPhoto" @delete-group="deleteGroup(indexGroup)" :groups=groups[indexGroup] v-show="showMembers" :key="keyShowGroup"/>
+        <CreateGroup @send-data=update v-show="createGroup" :key="keyCreateGroup"/>
+        
     </div>
 </template>
   
 <script>
+import CardsGroup from '@/components/UI/CardsGroup';
 import CreateGroup from '@/components/UI/CreateGroup.vue';
-import showMembers from '@/components/UI/ShowMembers.vue';
-
+import TopBar from '@/components/UI/TopBar.vue';
 export default {
     name: "app",
 
     components: {
         CreateGroup,
-        showMembers
+        TopBar,
+        CardsGroup,
     },
     data() {
         return {
             createGroup: false,
-            showMembers: false,
             indexGroup: 0,
-            groups: [],
             keyShowGroup: 0,
             keyCreateGroup : 0
         }
     },
+    computed: {
+        getGroups() {
+            return this.$store.state.userStore.groups;
+        }
+    },
+    created() {
+    },
     methods: {
         update(object) {
-            this.groups.push(object);
+            // this.groups.push(object);
             const fileReader = new FileReader();
             fileReader.onload = () => {
-                    const result = fileReader.result;
-                    this.groups[this.groups.length - 1].photo = result;
+                    // const result = fileReader.result;
+                    // this.groups[this.groups.length - 1].photo = result;
                 }
             if (object.photo) {
                 fileReader.readAsDataURL(object.photo);
             }
         },
-        changeGroupPhoto(photo) {
-            const fileReader = new FileReader();
-            fileReader.onload = () => {
-                    const result = fileReader.result;
-                    this.groups[this.indexGroup].photo = result;
-                }
-            if (photo) {
-                fileReader.readAsDataURL(photo);
-            }
-        },
-        showGroupe(index) {
-            this.keyShowGroup++;
-            this.indexGroup = index;
-            this.showMembers = true;
-        },
         createGroupe() {
             this.keyCreateGroup++
             this.createGroup = true;
         },
-        deleteGroup(index) {
-            this.groups.splice(index, 1);
-            this.showMembers = false;
-        }
-
     },
 
 };
 </script>
   
 <style>
+
+.createGroupeButton {
+    background: #FFE9D3;
+    border: 1px solid rgb(192, 150, 40);
+    border-radius: 5px;
+    padding: 10px 20px;
+}
+
+.createGroupeButton:hover {
+    background: #FFD9B3;
+}
+
 .groupCard {
     background: #FFE9D3;
     height: auto;
