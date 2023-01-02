@@ -5,13 +5,17 @@
             <span class="textBasicMargin evenSmallerText">{{ this.city }}</span>
             <span class="textBasicMargin alignRight evenSmallerText">Groupe: {{ this.groupe }}</span>
         </div>
-        <span class="evenSmallerText">{{ this.time }}</span>
+        <div>
+            <span class="evenSmallerText">{{ this.time }}</span>
+            <span class="evenSmallerText textBasicMargin alignRight">{{ this.date }}</span>
+        </div>
     </div>
 </template>
 
 <script>
 export default {
-    props: ["city", "time", "groupe", "id"],
+    props: ["city", "time", "groupe", "id", "date"],
+
 }
 </script>
 
@@ -30,5 +34,4 @@ export default {
 .alignRight {
     float: right;
 }
-
 </style>

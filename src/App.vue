@@ -6,7 +6,7 @@
           <component :is="Component" :key="this.$route.path"></component>
         </transition>
       </router-view>
-      <button @click="(openLandingPage)">Landing</button>
+      <!--<button @click="(openLandingPage)">Landing</button>
       <button @click="(openLoginPage)">Login</button>
       <button @click="(openMapPage)">Map</button>
       <button @click="(openProfilePage)">Profile</button>
@@ -14,7 +14,7 @@
       <button @click="(openMobilePage)">Mobile</button>
       <button @click="(openGroupPage)">Groupe</button>
       <button @click="(openWebPage)">Web</button>
-      <button @click="(openitineraryPage)">Itinerary</button>
+      <button @click="(openitineraryPage)">Itinerary</button>-->
     </div>
   </div>
 </template>

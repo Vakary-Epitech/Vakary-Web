@@ -61,7 +61,7 @@
 
 .logo {
     width: auto;
-    height: 50px;
+    height: 5vh;
     cursor: pointer;
 }
 
