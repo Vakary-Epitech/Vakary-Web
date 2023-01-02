@@ -1,4 +1,3 @@
-
 const userStore = {
     state: {
         currentUserLocation: {
@@ -6,18 +5,19 @@ const userStore = {
             longitude: 0,
         },
         mail: "",
-        userIsLoggedIn: false,
+        userIsLoggedIn: true,
         username: "",
         groups: [],
     },
     mutations: {
         UPDATE_USER_LOCATION(state, coords) {
             console.log("User Coords:", coords.latitude, coords.longitude);
-            state.currentUserLocation.latitude = 49.356444;
-            state.currentUserLocation.longitude = 6.169481;
+            state.currentUserLocation.latitude = 48.8610061;
+            state.currentUserLocation.longitude = 2.3359302999999727;
         },
-        USER_CAN_LOG_IN(state) {
+        USER_CAN_LOG_IN(state, mail) {
             state.userIsLoggedIn = true;
+            state.mail = mail;
         },
     },
 };

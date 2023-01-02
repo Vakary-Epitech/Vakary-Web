@@ -90,7 +90,7 @@ export default {
 };
 </script>
   
-<style>
+<style scoped>
 
 .createGroupeButton {
     background: #FFE9D3;

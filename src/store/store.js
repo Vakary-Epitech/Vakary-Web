@@ -4,6 +4,7 @@ import userStore from './userStore'
 import mapStore from './mapStore';
 import VuexPersistence from 'vuex-persist'
 
+//Make the userStore persistent
 const vuexLocal = new VuexPersistence({
     storage: window.localStorage,
     modules: ['userStore'],

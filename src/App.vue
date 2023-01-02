@@ -4,7 +4,7 @@
       <router-view v-slot="{ Component }">
         <component :is="Component" :key="this.$route.path"></component>
       </router-view>
-      <button @click="(openLandingPage)">Landing</button>
+      <!--<button @click="(openLandingPage)">Landing</button>
       <button @click="(openLoginPage)">Login</button>
       <button @click="(openMapPage)">Map</button>
       <button @click="(openProfilePage)">Profile</button>
@@ -12,7 +12,7 @@
       <button @click="(openMobilePage)">Mobile</button>
       <button @click="(openGroupPage)">Groupe</button>
       <button @click="(openWebPage)">Web</button>
-      <button @click="(openitineraryPage)">Itinerary</button>
+      <button @click="(openitineraryPage)">Itinerary</button>-->
     </div>
   </div>
 </template>
@@ -61,5 +61,9 @@ export default {
 </script>
 
 <style>
-
+:root {
+    --background-color-primary: white;
+    --accent-color: #cacaca;
+    --text-primary-color: #222;
+}
 </style>

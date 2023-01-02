@@ -55,13 +55,15 @@ const apiStore = {
                 }
             })
         },
-        checkIsUserIsAuthorizedToConnect(context, password) {
+        checkIfUserIsAuthorizedToConnect(context, password) {
             return new Promise((resolve, reject) => {
                 try {
                     axios.post(wording.serverAdress + "login", { username: this.state.userStore.mail, password: password }).then((canAuthentify) => {
-                        context.commit('USER_CAN_LOG_IN');
+                        context.commit('USER_CAN_LOG_IN', this.state.userStore.mail);
+                        console.log(canAuthentify);
                         resolve(canAuthentify);
                     }).catch((error) => {
+                        context.commit('USER_CAN_LOG_IN', this.state.userStore.mail);
                         reject(error);
                     })
                 } catch (error) {
@@ -102,6 +104,52 @@ const apiStore = {
                     axios.post(wording.serverAdress + "register", { email: this.state.userStore.mail, password: password, username: this.state.userStore.username}).then((canAuthentify) => {
                         context.commit('USER_CAN_LOG_IN');
                         resolve(canAuthentify);
+                    }).catch((error) => {
+                        reject(error);
+                    })
+                } catch (error) {
+                    reject(error);
+                }
+            })
+        },
+        requestPasswordReset(context, email) {
+            return new Promise((resolve, reject) => {
+                try {
+                    axios.post(wording.serverAdress + "forgotPassword", { email: email }).then((canAuthentify) => {
+                        console.log(canAuthentify);
+                        resolve(canAuthentify)
+                    }).catch((error) => {
+                        reject(error);
+                    })
+                } catch (error) {
+                    reject(error);
+                }
+            })
+        },
+        checkIfAccountCanBeCreated(context, password) {
+            return new Promise((resolve, reject) => {
+                try {
+                    axios.put(wording.serverAdress + "users", {  email: this.state.userStore.mail, password: password, username: this.state.userStore.username, verified: "oui" }).then((canAuthentify) => {
+                        console.log(canAuthentify);
+                        resolve(canAuthentify)
+                    }).catch((error) => {
+                        reject(error);
+                    })
+                } catch (error) {
+                    reject(error);
+                }
+            })
+        },
+        sendNewPassword(context, requestParameters) {
+            return new Promise((resolve, reject) => {
+                try {
+                    axios.post(wording.serverAdress + "changePassword", { password: requestParameters.password }, {
+                        headers: {
+                            'authorization': requestParameters.authorization
+                        }
+                    }).then((canAuthentify) => {
+                        console.log(canAuthentify);
+                        resolve(canAuthentify)
                     }).catch((error) => {
                         reject(error);
                     })
