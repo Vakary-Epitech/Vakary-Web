@@ -55,12 +55,16 @@ export default {
             this.$emit("goBackToItineraryDropdown");
         },
         checkNextPOI() {
-            if (this.currentWaypointIndex < this.selectedItineraryInfo.POIInfo.length - 1)
+            if (this.currentWaypointIndex < this.selectedItineraryInfo.POIInfo.length - 1) {
                 this.currentWaypointIndex += 1;
+                this.$emit("checkNextPOI");
+            }
         },
         checkPreviousPOI() {
-            if (this.currentWaypointIndex > 0)
+            if (this.currentWaypointIndex > 0) {
                 this.currentWaypointIndex -= 1;
+                this.$emit("checkPreviousPOI");
+            }
         },
     }
 }

@@ -4,7 +4,7 @@
 <template>
   <div>
     <top-bar class="col-12" :connected="true" />
-    <GMapMap :center="userPosition" :options="options" :zoom="12" style="width: 100vw; height: 94vh" ref="myMapRef">
+    <GMapMap :center="getCenterOfMap" :options="options" :zoom="mapZoom" style="width: 100vw; height: 94vh" ref="myMapRef">
       <GMapMarker :position="userPosition" />
       <GMapMarker :key="marker.label" v-for="marker in markersData" :position="marker.geolocalisation"
         :title="marker.label" :clickable="true" @click="openInfoWindow(marker.label, marker.geolocalisation)">
@@ -20,6 +20,7 @@
       <GMapPolyline :options="{ strokeColor: '#000642' }" :path="selectedPath" ref="polyline" />
     </GMapMap>
   </div>
+  {{ getCenterOfMap }}
   <div class="boxPosition">
     <div class="widgetPanel">
       <div v-if="!displayItineraryInformation" :class="(itineraryDropdownStatus)">
@@ -35,7 +36,8 @@
         <div class="dropdown-menu" id="dropdown-menu2" role="menu">
           <div class="dropdown-content">
             <div class="dropdown-item" style="display: flex; flex-direction: row;">
-              <div class="newItineraryButton evenSmallerText" style="margin-left: 5px; display: flex; align-items: center;"><span
+              <div class="newItineraryButton evenSmallerText"
+                style="margin-left: 5px; display: flex; align-items: center;"><span
                   class="textBasicMargin evenSmallerText">Créer un nouvel itinéraire</span></div>
               <div style="width: 10vw;">
                 <img style="max-width: 3vw; max-height: 6vh; margin-left: 2px; margin-right: 2px; float: right"
@@ -55,8 +57,8 @@
         </div>
       </div>
       <div v-else>
-        <itineratyExplanation @goBackToItineraryDropdown="goBackToItineraryDropdown"
-          :selectedItineraryInfo="selectedItineraryInfo" />
+        <itineratyExplanation @goBackToItineraryDropdown="goBackToItineraryDropdown" @checkNextPOI="checkNextPOI"
+          @checkPreviousPOI="checkPreviousPOI" :selectedItineraryInfo="selectedItineraryInfo" />
       </div>
     </div>
   </div>
@@ -77,6 +79,7 @@ export default {
   data() {
     return {
       selectedItinerary: 0,
+      mapZoom: 12,
       displayItineraryInformation: false,
       itineraryDropdown: false,
       groupDropdown: false,
@@ -146,11 +149,12 @@ export default {
           groupe: "Null",
           path: [{ "lat": 48.8608146, "lng": 2.3360691 }, { "lat": 48.8609032, "lng": 2.3363513 }, { "lat": 48.8604084, "lng": 2.3383879 }, { "lat": 48.8604851, "lng": 2.3386109 }, { "lat": 48.8620424, "lng": 2.3395262 }, { "lat": 48.8610324, "lng": 2.3450374 }, { "lat": 48.8610324, "lng": 2.3450374 }, { "lat": 48.8614061, "lng": 2.345086 }, { "lat": 48.86156750000001, "lng": 2.3453646 }, { "lat": 48.8610148, "lng": 2.3477693 }, { "lat": 48.84271709999999, "lng": 2.3245058 }, { "lat": 48.8431079, "lng": 2.3243924 }, { "lat": 48.8438416, "lng": 2.3244332 }, { "lat": 48.844196, "lng": 2.3243114 }, { "lat": 48.8476983, "lng": 2.3277073 }, { "lat": 48.8512282, "lng": 2.3267548 }, { "lat": 48.8511849, "lng": 2.3266704 }, { "lat": 48.85142889999999, "lng": 2.3266852 }, { "lat": 48.8559649, "lng": 2.3255138 }, { "lat": 48.8563382, "lng": 2.3253426 }, { "lat": 48.859023, "lng": 2.322509 }, { "lat": 48.8611179, "lng": 2.3240788 }, { "lat": 48.8611356, "lng": 2.3239571 }, { "lat": 48.8624041, "lng": 2.3251411 }, { "lat": 48.8623637, "lng": 2.3252278 }, { "lat": 48.8627311, "lng": 2.3252496 }, { "lat": 48.8626958, "lng": 2.3253584 }, { "lat": 48.86556969999999, "lng": 2.327343 }, { "lat": 48.8667041, "lng": 2.3285306 }, { "lat": 48.8684234, "lng": 2.3302379 }, { "lat": 48.8686905, "lng": 2.3305026 }, { "lat": 48.8684484, "lng": 2.3302964 }, { "lat": 48.8676117, "lng": 2.3334384 }, { "lat": 48.8630962, "lng": 2.3353672 }, { "lat": 48.8627773, "lng": 2.3354454 }, { "lat": 48.86236780000001, "lng": 2.3366417 }, { "lat": 48.8609032, "lng": 2.3363513 }, { "lat": 48.8608146, "lng": 2.3360691 }],
           waypoints: [{ "duration": { "text": "1 min", "value": 16 }, "instruction": "Head <b>northeast</b> toward <b>Pass. de Richelieu</b>", "distance": { "text": "23 m", "value": 23 }, "location": { "lat": 48.8608146, "lng": 2.3360691 } }, { "duration": { "text": "2 mins", "value": 121 }, "instruction": "Turn <b>right</b> at <b>Pass. de Richelieu</b><div style=\"font-size:0.9em\">Take the stairs</div>", "distance": { "text": "0.2 km", "value": 159 }, "location": { "lat": 48.8609032, "lng": 2.3363513 } }, { "duration": { "text": "1 min", "value": 14 }, "instruction": "Turn <b>left</b> toward <b>Rue de Marengo</b>", "distance": { "text": "20 m", "value": 20 }, "location": { "lat": 48.8604084, "lng": 2.3383879 } }, { "duration": { "text": "3 mins", "value": 150 }, "instruction": "Turn <b>left</b> onto <b>Rue de Marengo</b>", "distance": { "text": "0.2 km", "value": 195 }, "location": { "lat": 48.8604851, "lng": 2.3386109 } }, { "duration": { "text": "5 mins", "value": 319 }, "instruction": "Turn <b>right</b> onto <b>Rue Saint-Honoré</b>", "distance": { "text": "0.4 km", "value": 417 }, "location": { "lat": 48.8610324, "lng": 2.3450374 } }, { "duration": { "text": "5 mins", "value": 319 }, "instruction": "Turn <b>right</b> onto <b>Rue Saint-Honoré</b>", "distance": { "text": "0.4 km", "value": 417 }, "location": { "lat": 48.8610324, "lng": 2.3450374 } }, { "duration": { "text": "1 min", "value": 34 }, "instruction": "Turn <b>left</b> onto <b>Rue du Pont Neuf</b>", "distance": { "text": "32 m", "value": 32 }, "location": { "lat": 48.8610324, "lng": 2.3450374 } }, { "duration": { "text": "1 min", "value": 28 }, "instruction": "Continue onto <b>Pl. Maurice Quentin</b>", "distance": { "text": "36 m", "value": 36 }, "location": { "lat": 48.8614061, "lng": 2.345086 } }, { "duration": { "text": "2 mins", "value": 140 }, "instruction": "Turn <b>right</b> onto <b>Rue Berger</b>", "distance": { "text": "0.2 km", "value": 186 }, "location": { "lat": 48.86156750000001, "lng": 2.3453646 } }, { "duration": { "text": "1 min", "value": 37 }, "instruction": "Turn <b>left</b> onto <b>Rue Pierre Lescot</b><div style=\"font-size:0.9em\">Destination will be on the left</div>", "distance": { "text": "53 m", "value": 53 }, "location": { "lat": 48.8610148, "lng": 2.3477693 } }, { "duration": { "text": "1 min", "value": 41 }, "instruction": "Head <b>north</b> on <b>Rue d'Odessa</b> toward <b>Rue du Départ</b>", "distance": { "text": "62 m", "value": 62 }, "location": { "lat": 48.84271709999999, "lng": 2.3245058 } }, { "duration": { "text": "1 min", "value": 67 }, "instruction": "Continue onto <b>Rue du Départ</b>", "distance": { "text": "63 m", "value": 63 }, "location": { "lat": 48.8431079, "lng": 2.3243924 } }, { "duration": { "text": "1 min", "value": 39 }, "instruction": "Continue onto <b>Pl. du 18 Juin 1940</b>", "distance": { "text": "44 m", "value": 44 }, "location": { "lat": 48.8438416, "lng": 2.3244332 } }, { "duration": { "text": "6 mins", "value": 341 }, "instruction": "<b>Pl. du 18 Juin 1940</b> turns slightly <b>right</b> and becomes <b>Rue de Rennes</b>", "distance": { "text": "0.5 km", "value": 492 }, "location": { "lat": 48.844196, "lng": 2.3243114 } }, { "duration": { "text": "5 mins", "value": 285 }, "instruction": "Slight <b>left</b> onto <b>Bd Raspail</b>", "distance": { "text": "0.4 km", "value": 389 }, "location": { "lat": 48.8476983, "lng": 2.3277073 } }, { "duration": { "text": "1 min", "value": 11 }, "instruction": "Turn <b>left</b> onto <b>Rue de Sèvres</b>", "distance": { "text": "15 m", "value": 15 }, "location": { "lat": 48.8512282, "lng": 2.3267548 } }, { "duration": { "text": "1 min", "value": 21 }, "instruction": "Cross the road", "distance": { "text": "15 m", "value": 15 }, "location": { "lat": 48.8511849, "lng": 2.3266704 } }, { "duration": { "text": "7 mins", "value": 396 }, "instruction": "Turn <b>left</b> onto <b>Pl. le Corbusier</b>/<wbr/><b>Bd Raspail</b><div style=\"font-size:0.9em\">Continue to follow Bd Raspail</div>", "distance": { "text": "0.5 km", "value": 519 }, "location": { "lat": 48.85142889999999, "lng": 2.3266852 } }, { "duration": { "text": "1 min", "value": 33 }, "instruction": "Slight <b>left</b> to stay on <b>Bd Raspail</b>", "distance": { "text": "46 m", "value": 46 }, "location": { "lat": 48.8559649, "lng": 2.3255138 } }, { "duration": { "text": "5 mins", "value": 270 }, "instruction": "Slight <b>left</b> onto <b>Bd Saint-Germain</b>", "distance": { "text": "0.4 km", "value": 362 }, "location": { "lat": 48.8563382, "lng": 2.3253426 } }, { "duration": { "text": "3 mins", "value": 208 }, "instruction": "Turn <b>right</b> onto <b>Rue de Solferino</b>", "distance": { "text": "0.3 km", "value": 258 }, "location": { "lat": 48.859023, "lng": 2.322509 } }, { "duration": { "text": "1 min", "value": 3 }, "instruction": "Turn <b>left</b> onto <b>Quai Anatole France</b>", "distance": { "text": "4 m", "value": 4 }, "location": { "lat": 48.8611179, "lng": 2.3240788 } }, { "duration": { "text": "2 mins", "value": 131 }, "instruction": "Turn <b>right</b> onto <b>Léopold Sedar Senghor</b><div style=\"font-size:0.9em\">Take the stairs</div>", "distance": { "text": "0.2 km", "value": 161 }, "location": { "lat": 48.8611356, "lng": 2.3239571 } }, { "duration": { "text": "1 min", "value": 7 }, "instruction": "Turn <b>left</b> toward <b>Terr. du Bord de l'Eau</b>", "distance": { "text": "10 m", "value": 10 }, "location": { "lat": 48.8624041, "lng": 2.3251411 } }, { "duration": { "text": "1 min", "value": 24 }, "instruction": "Turn <b>right</b> at <b>Quai Aimé Cesaire</b>/<wbr/><b>Quai des Tuileries</b>", "distance": { "text": "30 m", "value": 30 }, "location": { "lat": 48.8623637, "lng": 2.3252278 } }, { "duration": { "text": "1 min", "value": 6 }, "instruction": "Turn <b>right</b> onto <b>Terr. du Bord de l'Eau</b>", "distance": { "text": "9 m", "value": 9 }, "location": { "lat": 48.8627311, "lng": 2.3252496 } }, { "duration": { "text": "5 mins", "value": 277 }, "instruction": "Turn <b>left</b> onto <b>All. de Castiglione</b><div style=\"font-size:0.9em\">Take the stairs</div>", "distance": { "text": "0.3 km", "value": 349 }, "location": { "lat": 48.8626958, "lng": 2.3253584 } }, { "duration": { "text": "2 mins", "value": 107 }, "instruction": "Head <b>northeast</b> on <b>Rue de Castiglione</b> toward <b>Rue du Mont Thabor</b>", "distance": { "text": "0.1 km", "value": 148 }, "location": { "lat": 48.86556969999999, "lng": 2.327343 } }, { "duration": { "text": "3 mins", "value": 191 }, "instruction": "Continue onto <b>Pl. Vendôme</b>", "distance": { "text": "0.2 km", "value": 235 }, "location": { "lat": 48.8667041, "lng": 2.3285306 } }, { "duration": { "text": "1 min", "value": 40 }, "instruction": "Continue onto <b>Rue de la Paix</b>", "distance": { "text": "41 m", "value": 41 }, "location": { "lat": 48.8684234, "lng": 2.3302379 } }, { "duration": { "text": "1 min", "value": 29 }, "instruction": "Head <b>southwest</b> on <b>Rue de la Paix</b> toward <b>Rue Danielle Casanova</b>", "distance": { "text": "41 m", "value": 41 }, "location": { "lat": 48.8686905, "lng": 2.3305026 } }, { "duration": { "text": "3 mins", "value": 199 }, "instruction": "Turn <b>left</b> onto <b>Rue Danielle Casanova</b>", "distance": { "text": "0.3 km", "value": 256 }, "location": { "lat": 48.8684484, "lng": 2.3302964 } }, { "duration": { "text": "7 mins", "value": 399 }, "instruction": "Turn <b>right</b> onto <b>Av. de l'Opéra</b>", "distance": { "text": "0.5 km", "value": 509 }, "location": { "lat": 48.8676117, "lng": 2.3334384 } }, { "duration": { "text": "1 min", "value": 48 }, "instruction": "Continue onto <b>Rue de Rohan</b>", "distance": { "text": "52 m", "value": 52 }, "location": { "lat": 48.8630962, "lng": 2.3353672 } }, { "duration": { "text": "1 min", "value": 79 }, "instruction": "Turn <b>left</b> onto <b>Rue de Rivoli</b>", "distance": { "text": "0.1 km", "value": 106 }, "location": { "lat": 48.8627773, "lng": 2.3354454 } }, { "duration": { "text": "2 mins", "value": 131 }, "instruction": "Turn <b>right</b> onto <b>Pass. de Richelieu</b>", "distance": { "text": "0.2 km", "value": 168 }, "location": { "lat": 48.86236780000001, "lng": 2.3366417 } }, { "duration": { "text": "1 min", "value": 16 }, "instruction": "Turn <b>right</b><div style=\"font-size:0.9em\">Destination will be on the right</div>", "distance": { "text": "23 m", "value": 23 }, "location": { "lat": 48.8609032, "lng": 2.3363513 } }, { "duration": { "text": "1 min", "value": 0 }, "instruction": "Head", "distance": { "text": "1 m", "value": 0 }, "location": { "lat": 48.8608146, "lng": 2.3360691 } }],
-          POIInfo: [{ "name": "Auditorium du Louvre", "geolocalisation": { "lat": 48.8608146, "lng": 2.3360691 }, "description": "" },
-          { "name": "Forum des images", "geolocalisation": { "lat": 48.8615056, "lng": 2.3478222999999616 }, "description": "Installé au cœur du Forum des Halles, le Forum des images est créé en 1988 dans le but de constituer la mémoire audiovisuelle de Paris. Riche de plusieurs milliers d’heures d’images, il archive le patrimoine audiovisuel dans toute sa diversité : fictions, documentaires, publicités, animation, courts et longs métrages, séries télévisées ou encore films amateurs… L'institution organise également des événements, des rencontres, des festivals ou encore des débats thématiques." },
-          { "name": "Timhotel Odessa Montparnasse", "geolocalisation": { "lat": 48.8427079, "lng": 2.3244333000000097 }, "description": "Timhotel Odessa Montparnasse" },
-          { "name": "Jovoy Paris", "geolocalisation": { "lat": 48.865514, "lng": 2.327490600000033 }, "description": "Jovoy Paris" },
-          { "name": "Park Hyatt Paris-Vendôme", "geolocalisation": { "lat": 48.8686535, "lng": 2.330588900000066 }, "description": "Park Hyatt Paris-Vendôme" }]
+          POIInfo: [
+          { "name": "Auditorium du Louvre", "image": "https://www.cnap.fr/sites/default/files/styles/mobile/public/import_destination/image/50910_3850_imginstitutionmodif_image14112v2m56577569830537520.jpg?itok=nfs4k-qb", "openHours": "Lundi: 8:00 - 16:00   Mardi: 8:00 - 16:00\nMercredi: 8:00 - 16:00   Jeudi: 8:00 - 16:00\nVendredi: 8:00 - 16:00   Samedi: 8:00 - 18:00\nDimanche: 8:00 - 18:00\n", "geolocalisation": { "lat": 48.8608146, "lng": 2.3360691 }, "description": "800 Protestants allemands demandent en 1876 la construction d'un lieu de culte qui leur soit dédié. Caractéristique de l'architecture protestante de la fin du XIXème siècle, le temple étonne par ses similitudes avec les églises catholiques. De style néo-gothique, très prisé par les Allemands, il présente un plan allongé, une tour, un chevet polygonal et surtout l'utilisation de la célèbre pierre de Jaumont. C'est surtout la grande rose de la façade qui rappellent les styles architecturaux des églises catholiques. La décoration intérieure et les vitraux colorés, là encore, s'intègrent dans le style néo-gothique. La sobriété des lieux rappellent les préceptes religieux valorisés par les Protestants." },
+          { "name": "Forum des images", "image": "https://www.1001salles.com/images/provider/311/1655991408_62b46c70c0fa2.jpg", "openHours": "Lundi: 8:00 - 16:00   Mardi: 8:00 - 16:00\nMercredi: 8:00 - 16:00   Jeudi: 8:00 - 16:00\nVendredi: 8:00 - 16:00   Samedi: 8:00 - 18:00\nDimanche: 8:00 - 18:00\n", "geolocalisation": { "lat": 48.8615056, "lng": 2.3478222999999616 }, "description": "Installé au cœur du Forum des Halles, le Forum des images est créé en 1988 dans le but de constituer la mémoire audiovisuelle de Paris. Riche de plusieurs milliers d’heures d’images, il archive le patrimoine audiovisuel dans toute sa diversité : fictions, documentaires, publicités, animation, courts et longs métrages, séries télévisées ou encore films amateurs… L'institution organise également des événements, des rencontres, des festivals ou encore des débats thématiques." },
+          { "name": "Timhotel Odessa Montparnasse", "image": "https://media-cdn.tripadvisor.com/media/photo-s/0a/a8/57/01/facade.jpg", "openHours": "Lundi: 8:00 - 16:00   Mardi: 8:00 - 16:00\nMercredi: 8:00 - 16:00   Jeudi: 8:00 - 16:00\nVendredi: 8:00 - 16:00   Samedi: 8:00 - 18:00\nDimanche: 8:00 - 18:00\n", "geolocalisation": { "lat": 48.8427079, "lng": 2.3244333000000097 }, "description": "800 Protestants allemands demandent en 1876 la construction d'un lieu de culte qui leur soit dédié. Caractéristique de l'architecture protestante de la fin du XIXème siècle, le temple étonne par ses similitudes avec les églises catholiques. De style néo-gothique, très prisé par les Allemands, il présente un plan allongé, une tour, un chevet polygonal et surtout l'utilisation de la célèbre pierre de Jaumont. C'est surtout la grande rose de la façade qui rappellent les styles architecturaux des églises catholiques. La décoration intérieure et les vitraux colorés, là encore, s'intègrent dans le style néo-gothique. La sobriété des lieux rappellent les préceptes religieux valorisés par les Protestants." },
+          { "name": "Jovoy Paris", "image": "https://www.jovoyparis.com/img/st/4.jpg", "openHours": "Lundi: 8:00 - 16:00   Mardi: 8:00 - 16:00\nMercredi: 8:00 - 16:00   Jeudi: 8:00 - 16:00\nVendredi: 8:00 - 16:00   Samedi: 8:00 - 18:00\nDimanche: 8:00 - 18:00\n", "geolocalisation": { "lat": 48.865514, "lng": 2.327490600000033 }, "description": "800 Protestants allemands demandent en 1876 la construction d'un lieu de culte qui leur soit dédié. Caractéristique de l'architecture protestante de la fin du XIXème siècle, le temple étonne par ses similitudes avec les églises catholiques. De style néo-gothique, très prisé par les Allemands, il présente un plan allongé, une tour, un chevet polygonal et surtout l'utilisation de la célèbre pierre de Jaumont. C'est surtout la grande rose de la façade qui rappellent les styles architecturaux des églises catholiques. La décoration intérieure et les vitraux colorés, là encore, s'intègrent dans le style néo-gothique. La sobriété des lieux rappellent les préceptes religieux valorisés par les Protestants." },
+          { "name": "Park Hyatt Paris-Vendôme", "image": "https://media-cdn.tripadvisor.com/media/photo-s/23/6f/ef/ac/exterior.jpg", "openHours": "Lundi: 8:00 - 16:00   Mardi: 8:00 - 16:00\nMercredi: 8:00 - 16:00   Jeudi: 8:00 - 16:00\nVendredi: 8:00 - 16:00   Samedi: 8:00 - 18:00\nDimanche: 8:00 - 18:00\n", "geolocalisation": { "lat": 48.8686535, "lng": 2.330588900000066 }, "description": "800 Protestants allemands demandent en 1876 la construction d'un lieu de culte qui leur soit dédié. Caractéristique de l'architecture protestante de la fin du XIXème siècle, le temple étonne par ses similitudes avec les églises catholiques. De style néo-gothique, très prisé par les Allemands, il présente un plan allongé, une tour, un chevet polygonal et surtout l'utilisation de la célèbre pierre de Jaumont. C'est surtout la grande rose de la façade qui rappellent les styles architecturaux des églises catholiques. La décoration intérieure et les vitraux colorés, là encore, s'intègrent dans le style néo-gothique. La sobriété des lieux rappellent les préceptes religieux valorisés par les Protestants." }]
         },
       ],
     }
@@ -184,7 +188,7 @@ export default {
           lng: this.$store.state.userStore.currentUserLocation.longitude
         });
       else {
-        return (this.itinerary[this.selectedItinerary - 1].path[0]);
+        return (this.itinerary[this.selectedItinerary - 1].POIInfo[this.currentWaypointIndex].geolocalisation);
       }
     },
     itineraryDropdownStatus() {
@@ -202,9 +206,18 @@ export default {
     itineraryCardsHasBeenClicked(itineraryId) {
       this.selectedItinerary = itineraryId;
       this.displayItineraryInformation = true;
+      this.mapZoom = 15;
     },
     goBackToItineraryDropdown() {
+      this.currentWaypointIndex = 0;
       this.displayItineraryInformation = false;
+      this.mapZoom = 12;
+    },
+    checkNextPOI() {
+      this.currentWaypointIndex += 1;
+    },
+    checkPreviousPOI() {
+      this.currentWaypointIndex -= 1;
     },
     setItineraryDropdownState() {
       this.itineraryDropdown = !this.itineraryDropdown;
@@ -308,13 +321,6 @@ export default {
             index += 1;
           })
         });
-        /*this.$refs.myMapRef.$mapPromise.then((map) => {
-          const centerControlDiv = document.createElement('div');
-          this.addCenterControl(centerControlDiv, map);
-          map.controls[google.maps.ControlPosition.TOP_LEFT].push( // eslint-disable-line no-undef
-            centerControlDiv
-          );
-        });*/
       });
     },
   },
@@ -323,6 +329,7 @@ export default {
 
 <style scoped lang="scss">
 @import '~bulma';
+
 @import "@/components/Style/Main.scss";
 
 .boxPosition {

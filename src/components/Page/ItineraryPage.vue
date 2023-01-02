@@ -241,7 +241,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .form-check .form-check-input {
     float: none !important;
 }
