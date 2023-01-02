@@ -1,5 +1,4 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import VakaryHome from "@/components/Page/VakaryHome.vue";
 import VakaryWeb from "@/components/Page/VakaryWeb.vue";
 import LoginPage from "@/components/Page/LoginPage.vue";
 import MapPage from "@/components/Page/MapPage.vue";
@@ -7,7 +6,6 @@ import InscriptionPage from "@/components/Page/InscriptionPage.vue"
 import ForgetPassword from "@/components/Page/ForgetPassword.vue"
 import ProfilePage from "@/components/Page/ProfilePage.vue";
 import MobilePage from "@/components/Page/MobilePage.vue";
-import SettingsPage from "@/components/Page/SettingsPage.vue"
 import ItineraryPage from "@/components/Page/ItineraryPage.vue"
 import LandingPage from "@/components/Page/LandingPage.vue"
 import RegistrationType from "@/components/Page/RegistrationType.vue"
@@ -19,11 +17,6 @@ const routes = [
         path: '/',
         name: 'LandingPage',
         component: LandingPage,
-    },
-    {
-        path: '/vakaryHome',
-        name: 'VakaryHome',
-        component: VakaryHome,
     },
     {
         path: '/VakaryWeb',
@@ -59,11 +52,6 @@ const routes = [
         path: '/mobilePage',
         name: 'MobilePage',
         component: MobilePage,
-    },
-    {
-        path: '/settingsPage',
-        name: 'SettingsPage',
-        component: SettingsPage,
     },
     {
         path: '/itineraryPage',

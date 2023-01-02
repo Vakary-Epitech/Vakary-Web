@@ -25,7 +25,7 @@ export default {
     this.$store.dispatch("retrievedMarkerData");
   },
   beforeCreate() {
-    this.$router.push("/mapPage");
+    this.$router.push("/");
   },
   methods: {
     openHomePage() {
@@ -61,5 +61,9 @@ export default {
 </script>
 
 <style>
-
+:root {
+    --background-color-primary: white;
+    --accent-color: #cacaca;
+    --text-primary-color: #222;
+}
 </style>

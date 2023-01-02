@@ -59,10 +59,10 @@ export default {
     checkIfUserIsAuthorizeToConnect() {
       this.$store.dispatch("checkIfUserIsAuthorizedToConnect", this.password).then(() => {
         this.$store.state.userStore.userIsLoggedIn = true;
-        this.$router.push("/vakaryHome");
+        this.$router.push("/mapPage");
       }).catch(() => {
         this.$store.state.userStore.userIsLoggedIn = true;
-        this.$router.push("/vakaryHome");
+        this.$router.push("/mapPage");
         this.userDontExist = true;
       })
     },
@@ -134,17 +134,17 @@ export default {
   display: flex;
   justify-content: center;
   border: 1px solid #000642;
+  background-color: white;
   border-radius: 15px;
   padding: 5px;
   width: 300px;
   margin-top: 20px;
   margin-bottom: 20px;
-  background-color: var(--background-color-primary);
 }
 
 .loginPageInformationContainer {
   display: flex;
-  background-color: var(--background-color-primary);
+  background-color: white;
   text-align: center;
   flex-direction: column;
   border: 4px solid rgb(192, 150, 40);
