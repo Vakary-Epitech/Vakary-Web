@@ -2,11 +2,13 @@
   <topBar :connected="false" />
   <main>
     <section class="section grey-bg text-center">
+      <!-- <button @click="seti18n('en')">EN</button>
+      <button @click="seti18n('fr')">FR</button> -->
       <div class="section__content container">
         <div class="section__title">
-          <h1>VAKARY</h1>
-          <h2>Vos vacances selon vos envies</h2>
-          <h3>VAKARY est aussi disponible sur votre smartphone !</h3>
+          <h1>{{ $t("vakary") }}</h1>
+          <h2>{{ $t("slogan") }}</h2>
+          <h3>{{ $t("webPage.smartphone") }}</h3>
         </div>
         <div class="section__screenshots">
           <img src="@/assets/mobilePage/default.png" alt="Screenshot of the home page of the VAKARY app">
@@ -16,11 +18,11 @@
     <section class="section orange-bg text-center">
       <div class="section__content container">
         <div class="section__title">
-          <h1>Dites-nous quelles sont vos hobbies et passions</h1>
+          <h1>{{ $t("webPage.hobbies") }}</h1>
         </div>
         <div class="row">
           <div class="col-12 col-md-6 col-lg-4" v-for="product in products" :key="product.title">
-            <Product  :product="product" />
+            <Product :product="product" :desc="$t(`webPage.products.${product.title.toLowerCase()}.desc`)" :title="$t(`webPage.products.${product.title.toLowerCase()}.title`)"/>
           </div>
         </div>
       </div>
@@ -28,10 +30,21 @@
     <section class="section blue-bg text-center">
       <div class="section__content container orange-text">
         <div class="section__title">
-          <h1>Organisez votre journée à l'avance</h1>
+          <h1>{{ $t("webPage.organize") }}</h1>
         </div>
         <div class="section__screenshots">
-          <img src="@/assets/webPage/mapPresentation.png" alt="Screenshot of">
+          <img src="@/assets/webPage/mapPresentation.png" alt="Screenshot of the map">
+        </div>
+      </div>
+    </section>
+    <section class="section grey-bg text-center">
+      <div class="section__content container">
+        <div class="section__title">
+          <h1>{{ $t("webPage.waste") }}</h1>
+          <h3>{{ $t("webPage.enjoy") }}</h3>
+        </div>
+        <div class="section__screenshots">
+          <img src="@/assets/mobilePage/pointmap.png" alt="Screenshot of the map">
         </div>
       </div>
     </section>
@@ -49,7 +62,7 @@
     <section class="section purple-bg text-center">
       <div class="section__content container">
         <div class="section__title">
-          <h1>Découvrez les monuments les plus visités</h1>
+          <h1>{{ $t("webPage.popular") }}</h1>
         </div>
         <div class="section__screenshots">
           <img src="@/assets/webPage/parisPresentation.png" alt="Screenshot of the popular places page of the VAKARY app">
@@ -59,7 +72,7 @@
     <section class="section yellow-bg text-center">
       <div class="section__content container">
         <div class="section__title">
-          <h1>Et les moins connus</h1>
+          <h1>{{ $t("webPage.lessPopular") }}</h1>
         </div>
         <div class="section__screenshots">
           <img src="@/assets/webPage/chateauPasConnu.png" alt="Screenshot of the lesser-known places page of the VAKARY app">
@@ -69,15 +82,15 @@
     <section class="section grey-bg text-center">
       <div class="section__content container">
         <div class="section__title">
-          <h1>QR Code</h1>
-          <h3>Téléchargez directement notre application pour l'essayer</h3>
+          <h1>{{ $t("webPage.QRCode") }}</h1>
+          <h3>{{ $t("webPage.QRCodeDownload") }}</h3>
         </div>
         <div class="section__screenshots">
           <img src="@/assets/webPage/qrcode.jpeg" alt="Screenshot of the QR code for the VAKARY app">
         </div>
-        <div class="section__screenshots">
-          <img class="badges" src="@/assets/badges/google-play-badge.png" alt="Google Play badge">
-          <img class="badges" src="@/assets/badges/app-store-badge.svg" alt="App Store badge">
+        <div class="section__screenshots mt-3">
+          <img class="badges" :src="require(`@/assets/badges/${geti18n()}/google-play-badge.svg`)" alt="Google Play badge">
+          <img class="badges" :src="require(`@/assets/badges/${geti18n()}/app-store-badge.svg`)" alt="App Store badge">
         </div>
       </div>
     </section>
@@ -118,25 +131,50 @@ export default {
       // creations du products ou on ajoute les cards avec leurs titres, images, ...
       products: [
         {
-          title: 'Parc & Jardin',
+          title: 'Park',
           color: 'green',
           bgtext: 'PARC',
           src: require('@/assets/parc.jpg'),
           desc: 'Pour le côté Nature et découverte'
         },
         {
-          title: 'Evenement',
+          title: 'Event',
           color: 'blue',
           bgtext: 'EVENEMENT',
           src: require('@/assets/marcheNoel.jpg'),
-          desc: 'Profiter des événements temporaires'
+          desc: 'Pour les événements et fêtes',
+          
         },
         {
-          title: 'Musée',
+          title: 'Museum',
           color: 'pink',
           bgtext: 'MUSEE',
           src: require('@/assets/musee.jpg'),
           desc: 'Pour la culture et histoire'
+        }
+      ],
+      productsEn: [
+        {
+          title: 'Park & Garden',
+          color: 'green',
+          bgtext: 'PARC',
+          src: require('@/assets/parc.jpg'),
+          desc: 'For the Nature and discovery side'
+        },
+        {
+          title: 'Evenement',
+          color: 'blue',
+          bgtext: 'EVENEMENT',
+          src: require('@/assets/marcheNoel.jpg'),
+          desc: 'For events and parties',
+          
+        },
+        {
+          title: 'Museum',
+          color: 'pink',
+          bgtext: 'MUSEE',
+          src: require('@/assets/musee.jpg'),
+          desc: 'For culture and history'
         }
       ]
     }
@@ -145,6 +183,12 @@ export default {
   methods: {
     openVakaryHome() {
       this.$router.push("/vakaryHome");
+    },
+    geti18n() {
+      return this.$i18n.locale;
+    },
+    seti18n(lang) {
+      this.$i18n.locale = lang;
     },
   },
 };

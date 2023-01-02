@@ -2,9 +2,7 @@
   <div class="app">
     <div>
       <router-view v-slot="{ Component }">
-        <transition>
-          <component :is="Component" :key="this.$route.path"></component>
-        </transition>
+        <component :is="Component" :key="this.$route.path"></component>
       </router-view>
       <button @click="(openLandingPage)">Landing</button>
       <button @click="(openLoginPage)">Login</button>
