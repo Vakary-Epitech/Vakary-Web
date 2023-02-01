@@ -1,96 +1,137 @@
 <template>
   <div>
-    <topBar class="reajustWidth" :connected="false" />
-    <img class="background" src="@/assets/LandingPage/landingPageBackground.jpg">
-    <div class="positionBackgroundCard">
-      <b class="textOnTopOfCard">Vakary vos vacances selon vos envies !</b>
-      <div class="backgroundCardPosition">
-        <img src="@/assets/Logo_vect.svg" class="logoSize logoPosition">
-        <div class="textPosition">
-          <label>On organise vos vacances de rêves pour vous et gratuitement</label>
-          <label>Dites nous vos préférences, la ville que vous souhaitez visiter et un itinéraire
-            personnalisé vous sera proposé</label>
-          <label>De plus grâçe à Vakary mobile vous pourrez suivre votre itinéraire en temps
-            réel, et bien plus !</label>
-        </div>
-        <div class="inputStyle">
-          <button class="blueVakaryButton biggerButton" @click="openSignUpPage">Inscription</button>
-        </div>
-      </div>
-    </div>
-    <div class="wrapperImageTypeAndText">
-      <div class="wrapperTypeBox">
-        <div>
-          <span class="textOnTopOfImage"><b>Sites Religieux</b></span>
-          <img class="background backgroundImageTranslate" src="@/assets/LandingPage/cathedrale.jpg">
-        </div>
-        <div>
-          <span class="textOnTopOfImage"><b>Sport</b></span>
-          <img class="background backgroundImageTranslate" src="@/assets/LandingPage/stade.jpg">
-        </div>
-        <div>
-          <span class="textOnTopOfImage"><b>Musée</b></span>
-          <img class="background backgroundImageTranslate" src="@/assets/LandingPage/musee.jpg">
-        </div>
-        <div>
-          <span class="textOnTopOfImage"><b>Monument</b></span>
-          <img class="background backgroundImageTranslate" src="@/assets/LandingPage/stanislas.jpg">
-        </div>
-        <div>
-          <span class="textOnTopOfImage"><b>Parc</b></span>
-          <img class="background backgroundImageTranslate" src="@/assets/LandingPage/parc.jpg">
-        </div>
-        <div>
-          <span class="textOnTopOfImage"><b>Restaurant</b></span>
-          <img class="background backgroundImageTranslate" src="@/assets/LandingPage/raclette.jpg">
-        </div>
-      </div>
-      <img class="dotsImage" src="@/assets/LandingPage/dots.jpg">
-      <div class="textTypeImageWrapper">
-        <span class="titleForImageType textTypeMargin"><b>Profiter au maximum de vos vacances !</b></span>
-        <span class="textForImageType textTypeMargin">Que vous préferiez une balade, les monuments, les restaurants ou
-          encore autre chose, nous
-          avons ce qu'il vous faut</span>
-      </div>
-    </div>
-    <hr class="separationBar">
-    <div class="blueBoxWrapper">
-      <div class="blueBackground">
-        <div class="centerGroupText">
-          <b><span class="groupText">Vakary part à l'aventure avec vous !</span></b>
-          <span class="groupText subtitleGroupText">Vakary se déplace partout avec vous, grâce à notre application
-            mobile, vous pourrez
-            suivre votre itinéraire en temps réel et géolocaliser. Retrouver également vos amis avec lesquelles votre
-            itinéraire est partagé</span>
-          <div class="alignLeft">
-            <button class="invertedBlueVakaryButton biggerButton" @click="openMobilePage">Trouver nos apps<span
-                class="arrow"></span></button>
-          </div>
-          <div class="marginBottomText">
-            <b><span class="groupText">Partager vos vacances !</span></b>
-            <span class="groupText subtitleGroupText">Grâce à notre fonctionnalité de groupe, vous pouvez partager vos
-              itinéraires, suivre
-              la localisation des membres de votre groupe et discutée avec eux</span>
-            <div class="alignLeft">
-              <button class="invertedBlueVakaryButton biggerButton" @click="openSignUpPage">Inscription<span
-                  class="arrow"></span></button>
+    <topBar :connected="false" />
+    <main>
+      <!-- <button @click="changeLanguage">EN</button> -->
+      <section class="d-none d-md-block">
+        <img class="background" src="@/assets/LandingPage/landingPageBackground.jpg">
+        <div class="row">
+          <div class="positionBackgroundCard">
+            <b class="textOnTopOfCard">{{ $t("vakarySlogan") }}</b>
+            <div class="backgroundCardPosition">
+              <img src="@/assets/Logo_vect.svg" class="logoSize logoPosition">
+              <div class="textPosition">
+                <label>{{ $t("landingPage.free") }}</label>
+                <label>{{ $t("landingPage.pref") }}</label>
+                <label>{{ $t("landingPage.mobile") }}</label>
+              </div>
+              <div class="inputStyle">
+                <button class="blueVakaryButton biggerButton" @click="openSignUpPage">{{ $t("landingPage.registration") }}</button>
+              </div>
             </div>
           </div>
         </div>
-        <div class="alignPhoneImage">
-          <img class="telImage" src="@/assets/LandingPage/mapTelephone.png">
+      </section>
+      <section class="d-md-none d-block mb-5">
+        <img class="background" src="@/assets/LandingPage/landingPageBackground.jpg">
+        <div class="row text-center positionBackgroundCardSmall">
+          <b class="textOnTopOfCard">{{ $t("vakarySlogan") }}</b>
+          <div class="backgroundCardPositionSmall">
+            <div>
+              <label>{{ $t("landingPage.free") }}</label>
+              <label>{{ $t("landingPage.pref") }}</label>
+              <label>{{ $t("landingPage.mobile") }}</label>
+            </div>
+            <button class="col-4 offset-4 blueVakaryButton biggerButton mb-1" @click="openSignUpPage">{{ $t("landingPage.registration") }}</button>
+          </div>
+          
         </div>
-      </div>
-    </div>
-    <hr class="separationBar marginSeparationDogo">
-    <div>
-      <img src="@/assets/LandingPage/beautifulDogo.jpg" class="beautifulDogoImage">
-      <div class="textOnDogo">
-        <label class="textOnTopOfCard">Prêt à rejoindre l'aventure ?</label>
-        <button class="invertedBlueVakaryButton biggerButton" @click="openSignUpPage">Inscription<span
-            class="arrow"></span></button>
-      </div>
-    </div>
+      </section>
+      <section>
+        <div class="row">
+          <div class="col-6 col-md-7">
+            <div class="row">
+              <div class="d-none d-md-block col-md-6 col-xl-4 mb-3">
+                <span class="textOnTopOfImage "><b>{{ $t("landingPage.religious") }}</b></span>
+                <img class="background backgroundImageTranslate" src="@/assets/LandingPage/cathedrale.jpg">
+              </div>
+              <div class="d-none d-md-block col-md-6 col-xl-4 mb-3">
+                <span class="textOnTopOfImage"><b>{{ $t("landingPage.sport") }}</b></span>
+                <img class="background backgroundImageTranslate" src="@/assets/LandingPage/stade.jpg">
+              </div>
+              <div class="col-12 col-md-6 col-xl-4 ms-3 ms-md-0 mb-3">
+                <span class="textOnTopOfImage"><b>{{ $t("landingPage.museum") }}</b></span>
+                <img class="background backgroundImageTranslate" src="@/assets/LandingPage/musee.jpg">
+              </div>
+              <div class="col-12 col-md-6 col-xl-4 ms-3 ms-md-0 mb-3">
+                <span class="textOnTopOfImage"><b>{{ $t("landingPage.monuments") }}</b></span>
+                <img class="background backgroundImageTranslate" src="@/assets/LandingPage/stanislas.jpg">
+              </div>
+              <div class="col-12 col-md-6 col-xl-4 ms-3 ms-md-0 mb-3">
+                <span class="textOnTopOfImage"><b>{{ $t("landingPage.park") }}</b></span>
+                <img class="background backgroundImageTranslate" src="@/assets/LandingPage/parc.jpg">
+              </div>
+              <div class="d-none d-md-block col-md-6 col-xl-4 mb-3">
+                <span class="textOnTopOfImage"><b>{{ $t("landingPage.resto") }}</b></span>
+                <img class="background backgroundImageTranslate" src="@/assets/LandingPage/raclette.jpg">
+              </div>
+            </div>
+          </div>
+          <div class="col-2 col-md-2 my-auto text-center">
+            <img class="dotsImage" src="@/assets/LandingPage/dots.jpg">
+          </div>
+            
+          <div class="col-4 col-md-3 my-auto">
+            <h1>{{ $t("landingPage.enjoy") }}</h1>
+            <h5>{{ $t("landingPage.enjoy2") }}</h5>
+          </div>
+        </div>
+      </section>
+      <section>
+        <hr class="separationBar">
+        <div class="blueBoxWrapper">
+          <div class="blueBackground d-md-flex d-none">
+            <div class="centerGroupText">
+              <b><span class="groupText">{{ $t("landingPage.block3Text1") }}</span></b>
+              <span class="groupText subtitleGroupText">{{ $t("landingPage.block3Text2") }}</span>
+              <div class="alignLeft">
+                <button class="invertedBlueVakaryButton biggerButton" @click="openMobilePage">{{ $t("landingPage.find") }}<span
+                    class="arrow"></span></button>
+              </div>
+              <div class="marginBottomText">
+                <b><span class="groupText">{{ $t("landingPage.block3Text3") }}</span></b>
+                <span class="groupText subtitleGroupText">{{ $t("landingPage.block3Text4") }}</span>
+                <div class="alignLeft">
+                  <button class="invertedBlueVakaryButton biggerButton" @click="openSignUpPage">{{ $t("landingPage.registration") }}<span
+                      class="arrow"></span></button>
+                </div>
+              </div>
+            </div>
+            <div class="alignPhoneImage">
+              <img class="telImage" src="@/assets/LandingPage/mapTelephone.png">
+            </div>
+          </div>
+          <div class="blueBackgroundSmall d-md-none d-flex">
+            <div class="row">
+              <div class="col-12 mt-3">
+                <p class="text-center"><b>{{ $t("landingPage.block3Text1") }}</b></p>
+                <p class="ms-2">{{ $t("landingPage.block3Text2") }}</p>
+                <div class="text-center">
+                  <button class="invertedBlueVakaryButtonSmall" @click="openMobilePage">{{ $t("landingPage.find") }}<span
+                      class="arrow"></span></button>
+                </div>
+              </div>
+              <div class="col-12 mt-5">
+                <p class="text-center"><b>{{ $t("landingPage.block3Text3") }}</b></p>
+                <p class="ms-2">{{ $t("landingPage.block3Text4") }}</p>
+                <div class="text-center mb-2">
+                  <button class="invertedBlueVakaryButtonSmall" @click="openSignUpPage">{{ $t("landingPage.registration") }}<span
+                      class="arrow"></span></button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section>
+        <hr class="separationBar marginSeparationDogo">
+        <div class="textOnDogo">
+          <label class="textOnTopOfCard">{{ $t("landingPage.ready") }}</label>
+          <button class="invertedBlueVakaryButton biggerButton" @click="openSignUpPage">{{ $t("landingPage.registration") }}<span class="arrow"></span></button>
+        </div>
+        <img src="@/assets/LandingPage/beautifulDogo.jpg" class="beautifulDogoImage">
+      </section> 
+    </main>
   </div>
 </template>
 
@@ -102,6 +143,9 @@ export default {
     topBar,
   },
   methods: {
+    changeLanguage() {
+      this.$i18n.locale = this.$i18n.locale === 'fr' ? 'en' : 'fr';
+    },
     openSignUpPage() {
       this.$router.push("/loginPage");
     },
@@ -123,8 +167,10 @@ export default {
 }
 
 .textOnDogo {
-  transform: translate(30%, -30vw);
-  width: 70%
+  transform: translate(30%, 20vw);
+  width: 70%;
+  z-index: 1;
+  position: absolute;
 }
 
 .beautifulDogoImage {
@@ -208,6 +254,19 @@ export default {
   flex-wrap: wrap;
 }
 
+.backgroundCardPositionSmall {
+  display: flex;
+  justify-content: left;
+  align-items: left;
+  width: 100%;
+  background-color: white;
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+  border-radius: 50px;
+  border: 2px solid rgb(192, 150, 40);
+  flex-wrap: wrap;
+}
+
 .backgroundCardPosition:hover {
   box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.2);
 }
@@ -215,6 +274,11 @@ export default {
 .positionBackgroundCard {
   width: 60vw;
   transform: translate(30%, -80%);
+}
+
+.positionBackgroundCardSmall {
+  width: 90vw;
+  transform: translate(6%, -40%);
 }
 
 .blueBoxWrapper {
@@ -231,6 +295,24 @@ export default {
   flex-wrap: wrap;
   padding: 90px 0 70px 90px;
   background: #FFE9D3;
+}
+
+.blueBackgroundSmall {
+  margin-top: 20px;
+  width: 80vw;
+  border-radius: 16px;
+  flex-wrap: wrap;
+  background: #FFE9D3;
+}
+
+.invertedBlueVakaryButtonSmall {
+    padding: 10px 16px;
+    background-color: #000642;
+    color: white;
+    border: 2px solid #000642 solid;
+    border-radius: 20px;
+    transition: all .3s ease;
+    align-items: center;
 }
 
 .blueBackground>div {
@@ -280,11 +362,6 @@ export default {
 .wrapperTypeBox {
   width: 50%;
   height: 60vh;
-  display: flex;
-  text-align: center;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
 }
 
 .wrapperTypeBox>div {
@@ -297,48 +374,27 @@ export default {
 
 .textOnTopOfImage {
   font-size: calc(10px + 1.5vw);
-  color: white;
+  color: black;
+  margin-left: 10px;
 }
 
+
 .backgroundImageTranslate {
-  position: absolute;
-  width: 14vw;
+  z-index: -1;
   height: 25vh;
   filter: brightness(80%);
   border-radius: 30px;
 }
 
 .dotsImage {
-  width: 126px;
-  height: 126px;
+
+  height: 10vh;
   border: 2px solid rgb(192, 150, 40);
   border-radius: 200px;
-  margin-left: 20px;
 }
 
-.wrapperImageTypeAndText {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  transform: translate(0%, -15%);
-}
-
-.textTypeImageWrapper {
-  display: flex;
-  align-items: left;
-  flex-direction: column;
-  width: 30vw;
-}
-
-.textTypeMargin {
-  margin-left: 30px;
-  margin-bottom: 30px;
-}
-
-.signUpPageButton {
-  width: 20%;
-  align-items: center;
-
+.row {
+    margin-right: 0 !important;
 }
 
 .separationBar {
@@ -349,8 +405,4 @@ export default {
   width: 40vw;
 }
 
-.marginBetweenImage {
-  margin-top: 60px;
-  margin-bottom: 60px;
-}
 </style>
