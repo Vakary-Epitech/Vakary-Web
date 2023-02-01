@@ -26,13 +26,13 @@
         <img class="background" src="@/assets/LandingPage/landingPageBackground.jpg">
         <div class="row text-center positionBackgroundCardSmall">
           <b class="textOnTopOfCard">{{ $t("vakarySlogan") }}</b>
-          <div class="backgroundCardPosition">
+          <div class="backgroundCardPositionSmall">
             <div>
               <label>{{ $t("landingPage.free") }}</label>
               <label>{{ $t("landingPage.pref") }}</label>
               <label>{{ $t("landingPage.mobile") }}</label>
             </div>
-            <button class="blueVakaryButton biggerButton mb-1" @click="openSignUpPage">{{ $t("landingPage.registration") }}</button>
+            <button class="col-4 offset-4 blueVakaryButton biggerButton mb-1" @click="openSignUpPage">{{ $t("landingPage.registration") }}</button>
           </div>
           
         </div>
@@ -49,15 +49,15 @@
                 <span class="textOnTopOfImage"><b>{{ $t("landingPage.sport") }}</b></span>
                 <img class="background backgroundImageTranslate" src="@/assets/LandingPage/stade.jpg">
               </div>
-              <div class="col-12 col-md-6 col-xl-4 mb-3">
+              <div class="col-12 col-md-6 col-xl-4 ms-3 ms-md-0 mb-3">
                 <span class="textOnTopOfImage"><b>{{ $t("landingPage.museum") }}</b></span>
                 <img class="background backgroundImageTranslate" src="@/assets/LandingPage/musee.jpg">
               </div>
-              <div class="col-12 col-md-6 col-xl-4 mb-3">
+              <div class="col-12 col-md-6 col-xl-4 ms-3 ms-md-0 mb-3">
                 <span class="textOnTopOfImage"><b>{{ $t("landingPage.monuments") }}</b></span>
                 <img class="background backgroundImageTranslate" src="@/assets/LandingPage/stanislas.jpg">
               </div>
-              <div class="col-12 col-md-6 col-xl-4 mb-3">
+              <div class="col-12 col-md-6 col-xl-4 ms-3 ms-md-0 mb-3">
                 <span class="textOnTopOfImage"><b>{{ $t("landingPage.park") }}</b></span>
                 <img class="background backgroundImageTranslate" src="@/assets/LandingPage/parc.jpg">
               </div>
@@ -254,6 +254,19 @@ export default {
   flex-wrap: wrap;
 }
 
+.backgroundCardPositionSmall {
+  display: flex;
+  justify-content: left;
+  align-items: left;
+  width: 100%;
+  background-color: white;
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+  border-radius: 50px;
+  border: 2px solid rgb(192, 150, 40);
+  flex-wrap: wrap;
+}
+
 .backgroundCardPosition:hover {
   box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.2);
 }
@@ -264,8 +277,8 @@ export default {
 }
 
 .positionBackgroundCardSmall {
-  width: 60vw;
-  transform: translate(30%, -40%);
+  width: 90vw;
+  transform: translate(6%, -40%);
 }
 
 .blueBoxWrapper {
