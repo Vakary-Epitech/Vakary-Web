@@ -34,7 +34,7 @@
         </div>
         <div>
           <span class="textOnTopOfImage"><b>Monument</b></span>
-          <img class="background backgroundImageTranslate" src="@/assets/LandingPage/stanislas.jpg">
+          <img class="background backgroundImageTranslate" src="https://image.over-blog.com/lKb03Sb_N_6gRKPfq8JvLFs0wps=/filters:no_upscale()/image%2F1330483%2F20201212%2Fob_bab249_fontaine-de-neptune-sur-la-place-stani.jpg">
         </div>
         <div>
           <span class="textOnTopOfImage"><b>Parc</b></span>

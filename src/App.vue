@@ -1,6 +1,7 @@
 <template>
   <div class="app">
     <div>
+      <Transition>
       <router-view v-slot="{ Component }">
         <component :is="Component" :key="this.$route.path"></component>
       </router-view>
@@ -13,6 +14,7 @@
       <button @click="(openGroupPage)">Groupe</button>
       <button @click="(openWebPage)">Web</button>
       <button @click="(openitineraryPage)">Itinerary</button>-->
+    </Transition>
     </div>
   </div>
 </template>
@@ -25,7 +27,7 @@ export default {
     this.$store.dispatch("retrievedMarkerData");
   },
   beforeCreate() {
-    this.$router.push("/");
+    this.$router.push("/mapPage");
   },
   methods: {
     openHomePage() {
@@ -65,5 +67,15 @@ export default {
     --background-color-primary: white;
     --accent-color: #cacaca;
     --text-primary-color: #222;
+}
+
+.v-enter-active,
+.v-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.v-enter-from,
+.v-leave-to {
+  opacity: 0;
 }
 </style>
