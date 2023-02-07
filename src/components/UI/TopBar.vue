@@ -8,13 +8,13 @@
         <div class="col text-center mb-3 ms-3">
             <img @click="(openHomePage)" class="logo" src="@/assets/logo_long_vect.svg">
         </div>
-        <div v-if="!connected" class="col text-center">
+        <div v-if="!connected" class="col text-end">
             <button class="default-color to-page" @click="(openWebPage)">{{ $t("topBar.web") }}</button>
         </div>
-        <div v-if="!connected" class="col text-center">
+        <div v-if="!connected" class="col text-end">
             <button class="default-color to-page" @click="(openMobilePage)">{{ $t("topBar.mobile") }}</button>
         </div>
-        <div v-if="!connected" class="col text-center">
+        <div v-if="!connected" class="col text-end">
             <button class="default-color to-page register-button" @click="(openLoginPage)">{{ $t("topBar.signup") }}</button>
         </div>
         <div v-if="connected" class="col text-end">
@@ -28,6 +28,10 @@
         </div>
         <div v-if="connected" class="col text-end">
             <button class="default-color to-page" @click="(openItineraryPage)">{{ $t("topBar.itinerary") }}</button>
+        </div>
+        <div class="col text-end mb-3 ms-6">
+            <img src="https://cdn-icons-png.flaticon.com/512/197/197374.png" class="flag-button" @click="(engLanguage)"/>
+            <img src="https://cdn-icons-png.flaticon.com/512/197/197560.png" class="flag-button" @click="(frenchLanguage)"/>
         </div>
     </div>
 </template>
@@ -48,6 +52,12 @@ export default {
             else {
                 this.openLandingPage();
             }
+        },
+        frenchLanguage() {
+            this.$i18n.locale = "fr";
+        },
+        engLanguage() {
+            this.$i18n.locale = "en";
         },
         openItineraryPage() {
             this.$router.push("ItineraryPage");
@@ -117,5 +127,10 @@ export default {
     border: 1px #C09628 solid;
 }
 
+.flag-button {
+    max-width: 32px;
+    margin-right: 32px;
+    cursor: pointer;
+}
 
 </style>

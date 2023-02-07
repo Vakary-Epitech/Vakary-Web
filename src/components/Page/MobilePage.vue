@@ -14,7 +14,7 @@
             <div class="section__content row">
                 <div class="section__title col-12 my-auto ">
                     <h1>{{ $t("vakary") }}</h1>
-                    <h2>{{ $t("slogan") }}</h2>
+                    <h2>{{ $t("vakarySlogan") }}</h2>
                     <h3>{{ $t("webPage.smartphone") }}</h3>
                 </div>
                 <div class="col-12">

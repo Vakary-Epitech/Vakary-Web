@@ -2,39 +2,39 @@
   <div class="centerEverything">
     <img src="@/assets/Logo_vect.svg" class="logoAsBackground elementHorizontalyCentered" />
     <div class="login elementHorizontalyCentered">
-      <label class="elementBasicMargin">Sign in to Vakary</label>
+      <label class="elementBasicMargin">{{ $t("loginPage.signIn") }}</label>
       
       <div class="elementHorizontalyCentered">
         <div v-show="pro" class="loginPageInformationContainer">
-          <label class="smallTextSize">Code d'authentification:</label>
+          <label class="smallTextSize">{{ $t("loginPage.authentificationCode") }}</label>
           <input type="code" required v-model="code">
-          <label>Email ou Nom d'utilisateur:</label>
+          <label>{{ $t("loginPage.mailOrUsername") }}</label>
           <input required v-model="$store.state.userStore.mail">
-          <label>Mot de passe:</label>
+          <label>{{ $t("loginPage.password") }}</label>
           <input type="password" required v-model="password">
-          <div v-if="userDontExist" class="wrongInputText"> Ce compte n'existe pas</div>
-          <button class="basicVakaryButton marginButton" @click="(checkIfCityIsAuthorizeToConnect)">Connexion</button>
-          <button class="basicVakaryButton marginButton" @click="(openForgetPassword)">Mot de passe oublie ?</button>
+          <div v-if="userDontExist" class="wrongInputText">{{ $t("loginPage.accountDontExist") }}</div>
+          <button class="basicVakaryButton marginButton" @click="(checkIfCityIsAuthorizeToConnect)">{{ $t("loginPage.connection") }}</button>
+          <button class="basicVakaryButton marginButton" @click="(openForgetPassword)">{{ $t("loginPage.forgotPassword") }}</button>
         </div>
 
         <div v-show="!pro" class="loginPageInformationContainer">
-          <label>Email ou Nom d'utilisateur:</label>
+          <label>{{ $t("loginPage.mailOrUsername") }}</label>
           <input v-model="$store.state.userStore.mail">
-          <label>Mot de passe:</label>
+          <label>{{ $t("loginPage.password") }}</label>
           <input type="password" v-model="password">
-          <div v-if="userDontExist" class="wrongInputText"> L'utilisateur n'existe pas</div>
-          <button class="basicVakaryButton marginButton" @click="(checkIfUserIsAuthorizeToConnect)">Connexion</button>
-          <button class="basicVakaryButton marginButton" @click="(openForgetPassword)">Mot de passe oublie ?</button>
+          <div v-if="userDontExist" class="wrongInputText">{{ $t("loginPage.accountDontExist") }}</div>
+          <button class="basicVakaryButton marginButton" @click="(checkIfUserIsAuthorizeToConnect)">{{ $t("loginPage.connection") }}</button>
+          <button class="basicVakaryButton marginButton" @click="(openForgetPassword)">{{ $t("loginPage.forgotPassword") }}</button>
         </div>
       </div>
 
       <div class="elementHorizontalyCentered loginPageInscriptionContainer">
-        <label class="newToText">New to Vakary ? </label>
-        <button class="buttonInscription blueVakaryButton" @click="(openRegistrationSelection)">Inscription</button>
+        <label class="newToText">{{ $t("loginPage.newToVakary") }}</label>
+        <button class="buttonInscription blueVakaryButton" @click="(openRegistrationSelection)">{{ $t("loginPage.inscription") }}</button>
       </div>
 
-      <button class="basicVakaryButton" v-if="!pro" v-on:click="pro = true"> Connexion Professionelle</button>
-      <button class="basicVakaryButton" v-if="pro" v-on:click="pro = false"> Connexion Standard</button>
+      <button class="basicVakaryButton" v-if="!pro" v-on:click="pro = true">{{ $t("loginPage.connectionPro") }}</button>
+      <button class="basicVakaryButton" v-if="pro" v-on:click="pro = false">{{ $t("loginPage.connectionUser") }}</button>
     </div>
   </div>
 </template>
@@ -61,8 +61,6 @@ export default {
         this.$store.state.userStore.userIsLoggedIn = true;
         this.$router.push("/mapPage");
       }).catch(() => {
-        this.$store.state.userStore.userIsLoggedIn = true;
-        this.$router.push("/mapPage");
         this.userDontExist = true;
       })
     },

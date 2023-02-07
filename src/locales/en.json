@@ -81,5 +81,26 @@
     "map": "Map",
     "profile": "Profile",
     "itinerary": "Itinerary"
+  },
+  "loginPage": {
+    "signIn": "Sign in to Vakary",
+    "authentificationCode": "Authentification code:",
+    "mailOrUsername": "Email address or username:",
+    "password": "Password:",
+    "accountDontExist": "This accound doesn't exist",
+    "connection": "Sign in",
+    "forgotPassword": "Forgot password ?",
+    "newToVakary": "New to Vakary ?",
+    "inscription": "Sign up",
+    "connectionUser": "Connections for user",
+    "connectionPro": "Sign in for professionals"
+  },
+  "resetPassword": {
+      "resetPassword": "Reset password",
+      "linkPassword": "Enter your email address and we will send you a link :",
+      "codeReceived": "Enter the code you got by email :",
+      "newPassword": "New password :",
+      "confirmNewPassword": "Confirm new password :",
+      "confirm": "Confirm"
   }
 }

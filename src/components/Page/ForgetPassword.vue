@@ -2,23 +2,22 @@
   <div class="forgetPassword">
     <img src="@/assets/Logo_vect.svg" class="logoAsBackground elementHorizontalyCentered" />
     <div class="login elementHorizontalyCentered">
-      <span class="mediumTitle elementBasicMargin thirdZIndex">Réinitialiser votre mot de passe</span>
+      <span class="mediumTitle elementBasicMargin thirdZIndex">{{ $t("resetPassword.resetPassword") }}</span>
       <div class="ForgetPasswordContainer">
-        <span class="smallTextSize">Entrer votre Email et nous vous enverrons un lien pour réinitialiser votre mot de
-          passe :</span>
+        <span class="smallTextSize">{{ $t("resetPassword.linkPassword") }}</span>
         <input v-model="email" placeholder="Email" />
-        <span class="smallTextSize">Entrer votre code reçu par mail :</span>
+        <span class="smallTextSize">{{ $t("resetPassword.codeReceived") }}</span>
         <input v-model="token" placeholder="Token" :disabled="!serverHasSendMail"/>
-        <span class="smallTextSize">Nouveau mot de passe :</span>
+        <span class="smallTextSize">{{ $t("resetPassword.newPassword") }}</span>
         <input v-model="newPassword" placeholder="Nouveau mot de passe" :disabled="!serverHasSendMail"/>
-        <span class="smallTextSize">Confirmer votre nouveau mot de passe :</span>
+        <span class="smallTextSize">{{ $t("resetPassword.confirmNewPassword") }}</span>
         <input v-model="confirmNewPassword" :disabled="!serverHasSendMail"
           placeholder="Confirmer votre nouveau mot de passe" />
       </div>
       <button v-if="!serverHasSendMail" class="elementBasicMargin basicVakaryButton"
-        @click="requestPasswordReset">Accepter</button>
+        @click="requestPasswordReset">{{ $t("resetPassword.confirm") }}</button>
       <button v-if="serverHasSendMail" class="elementBasicMargin basicVakaryButton"
-        @click="sendNewPassword">Accepter</button>
+        @click="sendNewPassword">{{ $t("resetPassword.confirm") }}</button>
     </div>
   </div>
 </template>

@@ -81,5 +81,26 @@
         "map": "Carte",
         "profile": "Profil",
         "itinerary": "Itinéraire"
+    },
+    "loginPage": {
+        "signIn": "Inscrivez-vous à Vakary",
+        "authentificationCode": "Code d'authentification:",
+        "mailOrUsername": "Email ou nom d'utilisateur:",
+        "password": "Mot de passe:",
+        "accountDontExist": "Ce compte n'existe pas",
+        "connection": "Connexion",
+        "forgotPassword": "Mot de passe oublié ?",
+        "newToVakary": "Nouveau à Vakary ?",
+        "inscription": "Inscription",
+        "connectionUser": "Connexions pour les utilisateurs",
+        "connectionPro": "Connexions pour les professionnels"
+    },
+    "resetPassword": {
+        "resetPassword": "Réinitialiser votre mot de passe",
+        "linkPassword": "Entrer votre Email et nous vous enverrons un lien pour réinitialiser votre mot de passe :",
+        "codeReceived": "Entrer votre code reçu par mail :",
+        "newPassword": "Nouveau mot de passe :",
+        "confirmNewPassword": "Confirmer votre nouveau mot de passe :",
+        "confirm": "Accepter"
     }
 }

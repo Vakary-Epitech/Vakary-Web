@@ -52,8 +52,6 @@ export default {
           this.$store.state.userStore.userIsLoggedIn = true;
           this.$router.push("/mapPage");
         }).catch(() => {
-          this.$store.state.userStore.userIsLoggedIn = true;
-          this.$router.push("/mapPage");
           this.userDontExist = true;
         })
       } else {
