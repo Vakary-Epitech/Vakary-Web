@@ -50,10 +50,10 @@ export default {
       if (this.password == this.passwordConfirm) {
         this.$store.dispatch("checkIfAccountCanBeCreated", this.password).then(() => {
           this.$store.state.userStore.userIsLoggedIn = true;
-          this.$router.push("/vakaryHome");
+          this.$router.push("/mapPage");
         }).catch(() => {
           this.$store.state.userStore.userIsLoggedIn = true;
-          this.$router.push("/vakaryHome");
+          this.$router.push("/mapPage");
           this.userDontExist = true;
         })
       } else {
