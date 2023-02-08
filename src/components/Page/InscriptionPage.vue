@@ -2,7 +2,7 @@
   <div class="selectionContainer">
     <div class="selectionFrame">
       <img src="@/assets/Logo_vect.svg" class="logoSize elementBasicMargin elementHorizontalyCentered" />
-      <button @click="changeLanguage">EN</button>
+      <!-- <button @click="changeLanguage">EN</button> -->
       <b class="mediumTitle">{{ $t("inscriptionPage.register") }}</b>
       <div v-if="this.$route.params.type == 0" class="selectionDisplayForm">
         <label>{{ $t("inscriptionPage.name") }}</label>
