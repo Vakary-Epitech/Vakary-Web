@@ -2,7 +2,15 @@ name: Tests
 
 on:
   push:
-  
+    branches: 
+        - main
+      - name: build SVN
+        run: |
+          npm run build 
+          svn rm *
+          svn update
+          svn update
+          echo "Finish"
   workflow_dispatch:
 
 jobs:
@@ -18,12 +26,4 @@ jobs:
       - name: Test
         run: |
           npm run test:unit
-    if: github.event.pull_request.base.ref == 'main'
-    - name: build SVN
-      run: |
-        npm run build 
-        svn rm *
-        svn update
-        svn update
-        echo "Finish"
           
