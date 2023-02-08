@@ -1,22 +1,21 @@
 <template>
     <div class="registrationTypeContainer">
+        <button @click="changeLanguage">EN</button>
         <div class="optionFrame">
             <img src="@/assets/Logo_vect.svg" class="logoSize elementBasicMargin elementHorizontalyCentered" />
-            <b class="mediumTitle">Inscription Aventurier </b>
-            <label class="smallTextSize">Envie de partir en vacances dans quelques minutes ou plusieurs mois ? Vous êtes
-                au bon endroit !</label>
-            <label class="smallTextSize elementBasicMargin">Grâce à votre compte vous pourrez avoir accès à votre profil, la création de groupe et bien plus encore !</label>
+            <b class="mediumTitle">{{ $t("registrationTypePage.titleStandard") }}</b>
+            <label class="smallTextSize">{{ $t("registrationTypePage.standardUser") }}</label>
+            <label class="smallTextSize elementBasicMargin">{{ $t("registrationTypePage.user") }}</label>
             <img src="@/assets/vacances.jpg" class="vacancesImageSize elementBasicMargin elementHorizontalyCentered" />
-            <button class="basicVakaryButton" @click="(openInscriptionPageStandard)">Commencer l'aventure</button>
+            <button class="basicVakaryButton" @click="(openInscriptionPageStandard)">{{ $t("registrationTypePage.confirmStandard") }}</button>
         </div>
         <div class="optionFrame">
             <img src="@/assets/Logo_vect.svg" class="logoSize elementBasicMargin elementHorizontalyCentered" />
-            <b class="mediumTitle">Inscription Professionelle</b>
-            <label class="smallTextSize">Que vous soyez une ville ou un professionel du tourisme, rejoignez l'aventure
-                Vakary !</label>
+            <b class="mediumTitle">{{ $t("registrationTypePage.titlePro") }}</b>
+            <label class="smallTextSize">{{ $t("registrationTypePage.proUser") }}</label>
             <img src="@/assets/officeDuTourisme.jpg"
                 class="officeImageSize elementBasicMargin elementHorizontalyCentered" />
-            <button class="basicVakaryButton" @click="(openInscriptionPagePro)">Rejoindre l'aventure</button>
+            <button class="basicVakaryButton" @click="(openInscriptionPagePro)">{{ $t("registrationTypePage.confirmPro") }}</button>
         </div>
     </div>
 </template>
@@ -29,6 +28,9 @@ export default {
         },
         openInscriptionPagePro() {
             this.$router.push({ name: "InscriptionPage", params: { type: 1 } });
+        },
+        changeLanguage() {
+            this.$i18n.locale = this.$i18n.locale === "fr" ? "en" : "fr";
         },
     }
 }
