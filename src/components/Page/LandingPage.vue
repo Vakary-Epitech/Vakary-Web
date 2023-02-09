@@ -67,11 +67,11 @@
               </div>
             </div>
           </div>
-          <div class="col-2 col-md-2 my-auto text-center">
+          <div class="d-none d-md-block col-md-2 my-auto text-center">
             <img class="dotsImage" src="@/assets/LandingPage/dots.jpg">
           </div>
             
-          <div class="col-4 col-md-3 my-auto">
+          <div class="col-6 col-md-3 my-auto">
             <h1>{{ $t("landingPage.enjoy") }}</h1>
             <h5>{{ $t("landingPage.enjoy2") }}</h5>
           </div>
