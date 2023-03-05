@@ -20,14 +20,13 @@
 </template>
 
 <script>
-import themeButton from "../src/components/Theme/ThemeButton.vue";
 export default {
   mounted() {
     this.$store.dispatch("retrievedCurrentUserPosition");
     this.$store.dispatch("retrievedMarkerData");
   },
   beforeCreate() {
-    this.$router.push("/mapPage");
+    this.$router.push("/");
   },
   methods: {
     openHomePage() {
@@ -58,7 +57,6 @@ export default {
       this.$router.push("/");
     },
   },
-  components: { themeButton },
 };
 </script>
 

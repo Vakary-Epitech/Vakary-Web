@@ -94,6 +94,8 @@ export default {
 </script>
 
 <style scoped>
+@import "@/components/Style/Button.scss";
+
 .addBorder {
     border-bottom: 1px solid #000000;
 }
@@ -127,10 +129,6 @@ export default {
     border: 1px #C09628 solid;
 }
 
-.flag-button {
-    max-width: 32px;
-    margin-right: 32px;
-    cursor: pointer;
-}
+
 
 </style>

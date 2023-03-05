@@ -48,17 +48,6 @@
         </div>
       </div>
     </section>
-    <!-- <section class="section green-bg text-center">
-      <div class="section__content container">
-        <div class="section__title">
-          <h1>Visite guidée</h1>
-          <h3>Notre partenariat avec nos guides touristiques nous permettent d'avoir les meilleurs résumés</h3>
-        </div>
-        <div class="section__screenshots">
-          <img src="@/assets/webPage/qrcode.jpeg" alt="Screenshot of the tour page of the VAKARY app">
-        </div>
-      </div>
-    </section> -->
     <section class="section purple-bg text-center">
       <div class="section__content container">
         <div class="section__title">

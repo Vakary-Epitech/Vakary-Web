@@ -83,7 +83,7 @@ export default {
 .logoAsBackground {
   width: 90vw;
   height: 90vh;
-  opacity: 0.2;
+  opacity: 20%;
   position: absolute;
 }
 

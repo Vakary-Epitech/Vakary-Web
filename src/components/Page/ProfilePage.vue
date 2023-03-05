@@ -157,6 +157,7 @@ export default {
                     }
                     else if (imageOrBackground === 'picture') {
                         this.user.image = result;
+                        this.$store.state.userStore.userProfileImage = result;
                     }
                 }
                 fileReader.readAsDataURL(file);

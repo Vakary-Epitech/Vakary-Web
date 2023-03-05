@@ -77,3 +77,13 @@
     opacity: 1;
     width: 18px;
 }
+
+.flag-button {
+    max-width: 32px;
+    margin-right: 32px;
+    cursor: pointer;
+}
+
+.flag-button:hover {
+    opacity: 0.5
+}

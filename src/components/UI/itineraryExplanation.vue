@@ -17,10 +17,10 @@
             <div class="arrowOnTheLine">
                 <div style="display: flex; width: 10vw;">
                     <div v-if="this.currentWaypointIndex > 0" class="backArrow" @click="checkPreviousPOI"></div>
-                    <span style="font-size: calc(6px + 1.2vh); margin-top: 1vh; margin-left: 1vw;" v-if="this.currentWaypointIndex > 0">point précédent</span>
+                    <span style="font-size: calc(6px + 1.2vh); margin-top: 1vh; margin-left: 1vw;" v-if="this.currentWaypointIndex > 0">{{ $t("mapPage.previousPoint") }}</span>
                 </div>
                 <div style="display: flex; width: 10vw; align-items: right; justify-content: right;">
-                    <span style="font-size: calc(6px + 1.2vh); margin-top: 1vh; margin-right: 1vw;" v-if="this.currentWaypointIndex < this.selectedItineraryInfo.POIInfo.length">prochain point</span>
+                    <span style="font-size: calc(6px + 1.2vh); margin-top: 1vh; margin-right: 1vw;" v-if="this.currentWaypointIndex < this.selectedItineraryInfo.POIInfo.length">{{ $t("mapPage.nextPoint") }}</span>
                     <div v-if="this.currentWaypointIndex < this.selectedItineraryInfo.POIInfo.length" class="frontArrow" @click="checkNextPOI"></div>
                 </div>
             </div>

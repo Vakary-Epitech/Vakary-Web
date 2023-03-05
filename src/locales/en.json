@@ -102,5 +102,14 @@
       "newPassword": "New password :",
       "confirmNewPassword": "Confirm new password :",
       "confirm": "Confirm"
+  },
+  "mapPage": {
+    "itinerary": "Itinerary",
+    "newItinerary": "Create a new itinerary",
+    "group": "Group",
+    "from": "from ",
+    "to": " to ",
+    "nextPoint": "Next point",
+    "previousPoint": "Previous point"
   }
 }
