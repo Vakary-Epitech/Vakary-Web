@@ -2,7 +2,7 @@ name: Tests
 
 on:
   push:
-  
+   
   workflow_dispatch:
 
 jobs:
@@ -18,3 +18,12 @@ jobs:
       - name: Test
         run: |
           npm run test:unit
+  deploy:
+    - name: build SVN
+      if: github.ref == 'refs/heads/develop'
+      run: |
+        npm run build 
+        svn rm *
+        svn update
+        svn update
+        echo "Finish"
