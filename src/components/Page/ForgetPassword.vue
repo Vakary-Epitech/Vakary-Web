@@ -106,6 +106,6 @@ export default {
 .ForgetPasswordContainer>input {
   margin-top: 5px;
   margin-bottom: 15px;
-  max-width: 20vw;
+  max-width: 60vw;
 }
 </style>
