@@ -1,26 +1,6 @@
 <template>
     <TopBar class="col" :connected="true"/>
     <div class="container">
-        <!-- <div class="col-12 text-center">
-            <button @click="showModal = true">Créer un groupe</button>
-        </div> -->
-        <!-- transition pour afficher la modale avec la liste des groupes -->
-        <!-- <transition name="fade" appear>
-            <div class="modal-overlay-group" v-if="showModal"></div>
-        </transition> -->
-        <!-- modal avec liste des groupes plus la possibilité de créer un nouveau groupe -->
-        <!-- <transition name="pop" appear> -->
-            <!-- <div class="modalGroup" role="dialog" v-if="showModal"> -->
-                <!-- <div class="row"> -->
-                    <!-- <div class="col-6 text-start">
-                        <font-awesome-icon class="plusCreateGroup" @click="createGroupe" icon="fa-solid fa-plus" />
-                    </div> -->
-                    <!-- <div class="col-12 text-end">
-                        <font-awesome-icon class="plusCreateGroup" @click="showModal = false" icon="fa-solid fa-xmark" />
-                    </div> -->
-                <!-- </div> -->
-                <!-- card de groupe avec la photo de groupe & le nom du groupe -->
-                <!-- v-for div with groups -->
         <div class="col-12 text-center" v-if="$store.state.userStore.groups > 0">
             <h1>Mes groupes</h1>
         </div>
@@ -34,11 +14,7 @@
         <div class="col-12 text-center mt-3">
             <button @click="createGroupe" class="createGroupeButton">Créer un groupe</button>
         </div>
-            <!-- </div>
-        </transition> -->
-        <!-- component pour créer un groupe et afficher la liste des membres -->
         <CreateGroup @send-data=update v-show="createGroup" :key="keyCreateGroup"/>
-        
     </div>
 </template>
   
@@ -48,7 +24,6 @@ import CreateGroup from '@/components/UI/CreateGroup.vue';
 import TopBar from '@/components/UI/TopBar.vue';
 export default {
     name: "app",
-
     components: {
         CreateGroup,
         TopBar,
@@ -71,12 +46,8 @@ export default {
     },
     methods: {
         update(object) {
-            // this.groups.push(object);
             const fileReader = new FileReader();
-            fileReader.onload = () => {
-                    // const result = fileReader.result;
-                    // this.groups[this.groups.length - 1].photo = result;
-                }
+            fileReader.onload = () => {}
             if (object.photo) {
                 fileReader.readAsDataURL(object.photo);
             }
@@ -101,20 +72,6 @@ export default {
 
 .createGroupeButton:hover {
     background: #FFD9B3;
-}
-
-.groupCard {
-    background: #FFE9D3;
-    height: auto;
-    cursor: pointer;
-    border-radius: 20px;
-    color: black;
-}
-
-.groupPicture {
-    border-radius: 20px;
-    width: 150px;
-    height: 150px;
 }
 
 </style>

@@ -1,7 +1,7 @@
 import { shallowMount, mount } from '@vue/test-utils'
 import itineraryExplanation from '@/components/UI/itineraryExplanation.vue'
 
-test('data', () => {
+test('data', async () => {
   const wrapper = shallowMount(itineraryExplanation, {
     global: {
       mocks: {
@@ -30,4 +30,13 @@ test('data', () => {
   })
 
   expect(wrapper.html()).toContain('Thionville')
+
+  await wrapper.vm.goBackToItineraryDropdown()
+  await wrapper.vm.checkNextPOI()
+  await wrapper.vm.checkPreviousPOI()
+
+  expect(wrapper.vm.getCurrentPOIName).toBe("TEMPLE PROTESTANT")
+  expect(wrapper.vm.getCurrentPOIDescription).toBe("800 Protestants allemands demandent en 1876 la construction d'un lieu de culte qui leur soit dédié. Caractéristique de l'architecture protestante de la fin du XIXème siècle, le temple étonne par ses similitudes avec les églises catholiques. De style néo-gothique, très prisé par les Allemands, il présente un plan allongé, une tour, un chevet polygonal et surtout l'utilisation de la célèbre pierre de Jaumont. C'est surtout la grande rose de la façade qui rappellent les styles architecturaux des églises catholiques. La décoration intérieure et les vitraux colorés, là encore, s'intègrent dans le style néo-gothique. La sobriété des lieux rappellent les préceptes religieux valorisés par les Protestants.")
+  expect(wrapper.vm.getCurrentPOIImage).toBe("https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Temple_Thionville.jpg/800px-Temple_Thionville.jpg")
+  expect(wrapper.vm.getCurrentPOIOpenHours).toBe("Lundi: 8:00 - 16:00   Mardi: 8:00 - 16:00\nMercredi: 8:00 - 16:00   Jeudi: 8:00 - 16:00\nVendredi: 8:00 - 16:00   Samedi: 8:00 - 18:00\nDimanche: 8:00 - 18:00\n")
 })

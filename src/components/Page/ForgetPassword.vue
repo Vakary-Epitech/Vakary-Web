@@ -30,6 +30,7 @@ export default {
       email: '',
       serverHasSendMail: false,
       token: '',
+      error: '',
     }
   },
   methods: {
@@ -38,19 +39,17 @@ export default {
     },
     requestPasswordReset() {
       this.$store.dispatch("requestPasswordReset", this.email).then((result) => {
-        console.log(result);
         this.serverHasSendMail = true;
       }).catch((error) => {
-        console.log(error);
         this.serverHasSendMail = true;
+        this.error = error;
       });
     },
     sendNewPassword() {
       this.$store.dispatch("sendNewPassword", { password: "test", authorization: this.token }).then((result) => {
-        console.log(result);
         this.serverHasSendMail = true;
       }).catch((error) => {
-        console.log(error);
+        this.error = error;
       });
     },
   },

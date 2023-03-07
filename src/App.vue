@@ -26,7 +26,7 @@ export default {
     this.$store.dispatch("retrievedMarkerData");
   },
   beforeCreate() {
-    this.$router.push("/");
+    this.$router.push("/mapPage");
   },
   methods: {
     openHomePage() {
