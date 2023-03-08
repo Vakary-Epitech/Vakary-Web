@@ -1,5 +1,8 @@
 import { shallowMount, mount } from '@vue/test-utils'
 import VakaryWeb from '@/components/Page/VakaryWeb.vue'
+import MobilePage from '@/components/Page/MobilePage.vue'
+import LandingPage from '@/components/Page/LandingPage.vue'
+
 import Vuex from 'vuex'
 import store from '../../src/store/store.js'
 import i18 from '../../src/i18n.js'
@@ -68,7 +71,35 @@ test('Vakary web test', async () => {
             }
         },
     })
-
     await wrapper.vm.seti18n("fr");
     await wrapper.vm.openVakaryHome();
+})
+
+test('Landing Page', async() => {
+    const wrapper = shallowMount(LandingPage, {
+        global: {
+            mocks: {
+                $t: (msg) => msg,
+                $router: router,
+                $i18n: i18,
+            }
+        },
+    })
+    await wrapper.vm.changeLanguage();
+    await wrapper.vm.openSignUpPage();
+    await wrapper.vm.openMobilePage();
+})
+
+test('Mobile Page', async() => {
+    const wrapper = shallowMount(MobilePage, {
+        global: {
+            mocks: {
+                $t: (msg) => msg,
+                $router: router,
+                $i18n: i18,
+            }
+        },
+    })
+    expect(wrapper.vm.geti18n).toBe("en");
+    await wrapper.vm.seti18n("fr");
 })
