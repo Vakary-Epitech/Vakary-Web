@@ -40,6 +40,7 @@ export default {
     requestPasswordReset() {
       this.$store.dispatch("requestPasswordReset", this.email).then((result) => {
         this.serverHasSendMail = true;
+        console.log(result);
       }).catch((error) => {
         this.serverHasSendMail = true;
         this.error = error;
@@ -48,6 +49,7 @@ export default {
     sendNewPassword() {
       this.$store.dispatch("sendNewPassword", { password: "test", authorization: this.token }).then((result) => {
         this.serverHasSendMail = true;
+        console.log(result);
       }).catch((error) => {
         this.error = error;
       });

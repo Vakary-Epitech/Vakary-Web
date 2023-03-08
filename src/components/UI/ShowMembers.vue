@@ -9,14 +9,14 @@
             -ajouter le back
             -retravailler le design si possible
              -->
-             <div class="modalshowMembers">
+            <div class="modalshowMembers">
                 <div class="row">
                     <div class="col-12 text-end">
                         <font-awesome-icon class="xMark" @click="showMembers = false;" icon="fa-solid fa-xmark" />
                     </div>
                 </div>
                 <div class="col-12 text-center">
-                    <h1>{{groupInformations.name}}</h1>
+                    <h1>{{ groupInformations.name }}</h1>
                 </div>
                 <!-- edit group's name -->
                 <div class="col-12 text-center">
@@ -27,12 +27,12 @@
                     <button class="addGroupPicture" @click="deleteGroup">Supprimer le groupe</button>
                 </div>
                 <div class="col-12 text-center">
-                    <img class="w-100" :src="groupInformations.photo"/>
+                    <img class="w-100" :src="groupInformations.photo" />
                 </div>
                 <!-- edit group photo -->
                 <label class="addGroupPicture">
-                        Modifier la photo du groupe
-                        <input @change="onFileChange" type="file" hidden>
+                    Modifier la photo du groupe
+                    <input @change="onFileChange" type="file" hidden>
                 </label>
                 <!-- make a popup where we can edit group's name -->
                 <transition name="fade" appear>
@@ -51,7 +51,8 @@
                         <div class="col-12 text-center">
                             <input @blur="v$.newGroupName.$touch" v-model="newGroupName" />
                         </div>
-                        <div v-if="v$.newGroupName.$error" class="text-danger">Group name must contains between 3 and 15 characters</div>
+                        <div v-if="v$.newGroupName.$error" class="text-danger">Group name must contains between 3 and 15
+                            characters</div>
                         <div class="col-12 text-center">
                             <button @click="updateGroupName()">Valider</button>
                         </div>
@@ -65,7 +66,7 @@
                         <input v-model="member.mail">
                     </div>
                     <div class="col-4 status" :class="getStatus(index)">
-                        {{member.status}}
+                        {{ member.status }}
                     </div>
                     <div class="col-2">
                         <font-awesome-icon class="trashIcon" @click="deleteMember(index)" icon="fa-solid fa-trash" />
@@ -77,11 +78,11 @@
                         <div v-if="v$.mailMember.$error" class="text-danger">Incorrect email</div>
                     </div>
                     <div class="col-12">
-                        <button class="addGroupPicture" @click="addMember" >Ajouter un membre</button>
+                        <button class="addGroupPicture" @click="addMember">Ajouter un membre</button>
                     </div>
                 </div>
                 <div class="col-12">
-                    <b>id: {{groupInformations.id}}</b>
+                    <b>id: {{ groupInformations.id }}</b>
                 </div>
             </div>
         </transition>
@@ -92,7 +93,6 @@
 import useVuelidate from '@vuelidate/core';
 import { required, email, minLength, maxLength } from '@vuelidate/validators';
 export default {
-
     name: "createGroup",
     setup() {
         return { v$: useVuelidate() }
@@ -141,7 +141,7 @@ export default {
             if (this.v$.newGroupName.$invalid) {
                 return;
             }
-            this.editGroupName = false; 
+            this.editGroupName = false;
             this.v$.newGroupName.$reset();
             this.groupInformations.name = this.newGroupName;
             this.newGroupName = "";
@@ -151,7 +151,7 @@ export default {
             let index = this.$store.state.userStore.groups.findIndex(group => group.id === this.groupInformations.id);
             this.$store.state.userStore.groups.splice(index, 1);
             this.showMembers = false;
-        },  
+        },
         onFileChange(e) {
             const file = e.target.files[0];
             this.groupInformations.photo = file;
@@ -170,9 +170,9 @@ export default {
                 required, email
             },
             newGroupName: {
-                    minLength: minLength(3),
-                    required,
-                    maxLength: maxLength(15)
+                minLength: minLength(3),
+                required,
+                maxLength: maxLength(15)
             }
         }
     }
@@ -210,6 +210,7 @@ export default {
     color: red;
     cursor: pointer;
 }
+
 .buttonAddMembers {
     border: none;
     color: #FFF;
@@ -231,6 +232,7 @@ export default {
     color: #FF8C00;
     cursor: pointer;
 }
+
 .modalshowMembers {
     position: absolute;
     position: fixed;
@@ -257,6 +259,7 @@ export default {
         height: 100%;
     }
 }
+
 .modalEditGroupName {
     position: absolute;
     position: fixed;
@@ -276,6 +279,7 @@ export default {
     z-index: 1000;
     transform: none;
 }
+
 .modal-overlay {
     content: '';
     position: absolute;
@@ -287,5 +291,4 @@ export default {
     z-index: 999;
     background: #2c3e50;
     opacity: 0.6;
-}
-</style>
+}</style>

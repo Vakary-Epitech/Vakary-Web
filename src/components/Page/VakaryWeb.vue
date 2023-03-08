@@ -22,7 +22,8 @@
         </div>
         <div class="row">
           <div class="col-12 col-md-6 col-lg-4" v-for="product in products" :key="product.title">
-            <Product :product="product" :desc="$t(`webPage.products.${product.title.toLowerCase()}.desc`)" :title="$t(`webPage.products.${product.title.toLowerCase()}.title`)"/>
+            <Product :product="product" :desc="$t(`webPage.products.${product.title.toLowerCase()}.desc`)"
+              :title="$t(`webPage.products.${product.title.toLowerCase()}.title`)" />
           </div>
         </div>
       </div>
@@ -64,7 +65,8 @@
           <h1>{{ $t("webPage.lessPopular") }}</h1>
         </div>
         <div class="section__screenshots">
-          <img src="@/assets/webPage/chateauPasConnu.png" alt="Screenshot of the lesser-known places page of the VAKARY app">
+          <img src="@/assets/webPage/chateauPasConnu.png"
+            alt="Screenshot of the lesser-known places page of the VAKARY app">
         </div>
       </div>
     </section>
@@ -78,8 +80,9 @@
           <img src="@/assets/webPage/qrcode.jpeg" alt="Screenshot of the QR code for the VAKARY app">
         </div>
         <div class="section__screenshots mt-3">
-          <img class="badges" :src="require(`@/assets/badges/${geti18n()}/google-play-badge.svg`)" alt="Google Play badge">
-          <img class="badges" :src="require(`@/assets/badges/${geti18n()}/app-store-badge.svg`)" alt="App Store badge">
+          <img class="badges" :src="require(`@/assets/badges/${geti18n}/google-play-badge.svg`)"
+            alt="Google Play badge">
+          <img class="badges" :src="require(`@/assets/badges/${geti18n}/app-store-badge.svg`)" alt="App Store badge">
         </div>
       </div>
     </section>
@@ -87,23 +90,23 @@
 </template>
 
 <style scoped>
-  .section {
-    padding: 5rem 0;
-  }
+.section {
+  padding: 5rem 0;
+}
 
-  .section__title {
-    margin-bottom: 3rem;
-  }
+.section__title {
+  margin-bottom: 3rem;
+}
 
-  .section__screenshots {
-    display: flex;
-    justify-content: center;
-  }
+.section__screenshots {
+  display: flex;
+  justify-content: center;
+}
 
-  .section__screenshots img {
-    max-width: 100%;
-    height: auto;
-  }
+.section__screenshots img {
+  max-width: 100%;
+  height: auto;
+}
 </style>
 
 <script>
@@ -132,7 +135,7 @@ export default {
           bgtext: 'EVENEMENT',
           src: require('@/assets/marcheNoel.jpg'),
           desc: 'Pour les événements et fêtes',
-          
+
         },
         {
           title: 'Museum',
@@ -156,7 +159,7 @@ export default {
           bgtext: 'EVENEMENT',
           src: require('@/assets/marcheNoel.jpg'),
           desc: 'For events and parties',
-          
+
         },
         {
           title: 'Museum',
@@ -168,14 +171,19 @@ export default {
       ]
     }
   },
+  computed: {
+    geti18n() {
+      if (this.$i18n.locale == undefined)
+        return ("en");
+      return this.$i18n.locale;
+    },
+  },
   // créations de la méthode pour avec une fonction pour changer de page
   methods: {
     openVakaryHome() {
       this.$router.push("/vakaryHome");
     },
-    geti18n() {
-      return this.$i18n.locale;
-    },
+
     seti18n(lang) {
       this.$i18n.locale = lang;
     },
@@ -184,7 +192,6 @@ export default {
 </script>
   
 <style scoped>
-
 .products {
   display: flex;
   max-width: 1280px;
@@ -194,10 +201,11 @@ export default {
 
 
 .orange-bg {
-    background-color: #ecb61c;
+  background-color: #ecb61c;
 }
+
 .orange-text {
-    color: #ecb61c;
+  color: #ecb61c;
 }
 
 .blue-bg {
@@ -207,6 +215,7 @@ export default {
 .blue-text {
   color: #1d1a38;
 }
+
 .light-blue-bg {
   background-color: #6d6c9a;
 }
@@ -245,45 +254,49 @@ export default {
 
 
 .image {
-    width: 30vw;
-    height: 100vh;
+  width: 30vw;
+  height: 100vh;
 }
+
 .qrcode {
-    width: 20vw;
-    height: auto;
+  width: 20vw;
+  height: auto;
 }
 
 .badges {
-    width: 200px;
-    height: auto;
+  width: 200px;
+  height: auto;
 }
-.logo  {
-    width: 150px;
-    height: auto;
+
+.logo {
+  width: 150px;
+  height: auto;
 }
+
 .screenshots {
-    width: 20vw !important;
-    height: auto !important;
+  width: 20vw !important;
+  height: auto !important;
 }
 
 .row {
-    margin-right: 0 !important;
+  margin-right: 0 !important;
 }
 
 .section {
   padding: 5rem 0;
 }
+
 .section__title {
   margin-bottom: 3rem;
 }
+
 .section__screenshots {
   display: flex;
   justify-content: center;
 }
+
 .section__screenshots img {
   max-width: 100%;
   height: auto;
 }
-
-
 </style>
