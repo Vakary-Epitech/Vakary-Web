@@ -40,5 +40,4 @@ test('Basic Information verifier', async () => {
     })
     await wrapper.vm.edit();
     await wrapper.vm.save();
-    await wrapper.vm.openSettingsPage();
 })

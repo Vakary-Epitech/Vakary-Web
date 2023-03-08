@@ -104,8 +104,6 @@ export default {
   },
   computed: {
     geti18n() {
-      if (this.$i18n.locale)
-        this.$i18n.locale = 'en';
       return this.$i18n.locale;
     },
   },

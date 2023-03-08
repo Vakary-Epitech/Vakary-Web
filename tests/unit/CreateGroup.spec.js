@@ -4,6 +4,7 @@ import Vuex from 'vuex'
 import store from '../../src/store/store.js'
 import i18 from '../../src/i18n.js'
 import router from '../../src/router/index.js'
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
 test('Basic Information verifier', async () => {
     const wrapper = shallowMount(CreateGroup, {
@@ -12,7 +13,12 @@ test('Basic Information verifier', async () => {
                 $store: store,
                 $t: (msg) => msg,
                 $router: router,
-            }
+            },
+            stubs: {
+                'font-awesome-icon': {
+                    template: '<i />',
+                },
+            },
         },
         data() {
             return {
@@ -20,7 +26,7 @@ test('Basic Information verifier', async () => {
                 mailMember: "",
                 firstName: "",
                 listMembers: [],
-                groupInformations : {
+                groupInformations: {
                     name: "",
                     members: [],
                     photo: "",

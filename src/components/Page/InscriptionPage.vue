@@ -3,7 +3,7 @@
     <div class="selectionFrame">
       <img src="@/assets/Logo_vect.svg" class="logoSize elementBasicMargin elementHorizontalyCentered" />
       <b class="mediumTitle">Inscription</b>
-      <div v-if="this.$route.params.type == 0" class="selectionDisplayForm">
+      <div v-if="this.$router.params.type == 0" class="selectionDisplayForm">
         <label>Votre Nom:</label>
         <input required v-model="$store.state.userStore.username" placeholder="ex: Martin">
         <label>Email:</label>
@@ -43,7 +43,7 @@ export default {
     }
   },
   created() {
-    this.typeOfInscription = this.$route.params.type;
+    this.typeOfInscription = this.$router.params.type;
   },
   methods: {
     confirmInscription() {
@@ -51,7 +51,8 @@ export default {
         this.$store.dispatch("checkIfAccountCanBeCreated", this.password).then(() => {
           this.$store.state.userStore.userIsLoggedIn = true;
           this.$router.push("/mapPage");
-        }).catch(() => {
+        }).catch((error) => {
+          console.log(error);
           this.userDontExist = true;
         })
       } else {

@@ -31,7 +31,7 @@ test('Basic Information verifier LoginPage', async () => {
     } catch (error) {
         console.log(error);
     }
-    //expect(wrapper.isVisible()).toBe(true)
+    await new Promise((r) => setTimeout(r, 1000));
 })
 
 test('wrong password InscriptionPage', async () => {
@@ -40,7 +40,7 @@ test('wrong password InscriptionPage', async () => {
             mocks: {
                 $store: store,
                 $t: (msg) => msg,
-                $route: {
+                $router: {
                     params: {
                         type: "user",
                     }
@@ -62,6 +62,7 @@ test('wrong password InscriptionPage', async () => {
     } catch (error) {
         console.log(error);
     }
+    await new Promise((r) => setTimeout(r, 1000));
 })
 
 test('correct password InscriptionPage', async () => {
@@ -70,7 +71,7 @@ test('correct password InscriptionPage', async () => {
             mocks: {
                 $store: store,
                 $t: (msg) => msg,
-                $route: {
+                $router: {
                     params: {
                         type: "user",
                     }
@@ -92,5 +93,5 @@ test('correct password InscriptionPage', async () => {
     } catch (error) {
         console.log (error);
     }
-    //expect(wrapper.isVisible()).toBe(true)
+    await new Promise((r) => setTimeout(r, 1000));
 })

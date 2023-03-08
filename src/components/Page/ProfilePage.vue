@@ -171,9 +171,6 @@ export default {
             //envoyer a l'api
 
         },
-        openSettingsPage() {
-            this.$router.push("/settingsPage");
-        },
     },
     components: {
         cardReviews,

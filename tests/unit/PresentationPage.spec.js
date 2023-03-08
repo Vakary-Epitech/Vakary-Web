@@ -72,7 +72,6 @@ test('Vakary web test', async () => {
         },
     })
     await wrapper.vm.seti18n("fr");
-    await wrapper.vm.openVakaryHome();
 })
 
 test('Landing Page', async() => {

@@ -26,12 +26,9 @@ export default {
     this.$store.dispatch("retrievedMarkerData");
   },
   beforeCreate() {
-    this.$router.push("/vakaryWeb");
+    this.$router.push("/groupPage");
   },
   methods: {
-    openHomePage() {
-      this.$router.push("/vakaryHome");
-    },
     openLoginPage() {
       this.$router.push("/loginPage");
     },

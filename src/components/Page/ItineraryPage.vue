@@ -219,16 +219,6 @@ export default {
             if (duration < 0) {
                 duration += 24;
             }
-            console.log("date de départ : ", this.date);
-            console.log("heure de départ : ", this.timeOfStart);
-            console.log("heure de fin : ", this.timeOfEnd);
-            console.log("durée : ", duration);
-            console.log("budget : ", this.budget);
-            console.log("nombre de personnes : ", this.people);
-            console.log("nombre d'enfants : ", this.children);
-            console.log("type d'intérêt : ", this.$store.state.mapStore.selectedTypeOfInterest);
-            console.log("index of groupe: ", this.indexOfGroup);
-            console.log("group: ", this.$store.state.userStore.groups[this.indexOfGroup])
             // this.$store.dispatch("mapStore/generateItinerary", {
             //     date: this.date,
             //     timeOfStart: this.timeOfStart,

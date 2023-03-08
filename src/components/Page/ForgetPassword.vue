@@ -31,6 +31,8 @@ export default {
       serverHasSendMail: false,
       token: '',
       error: '',
+      newPassword: '',
+      confirmNewPassword: '',
     }
   },
   methods: {

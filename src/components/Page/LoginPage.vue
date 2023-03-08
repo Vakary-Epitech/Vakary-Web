@@ -66,7 +66,7 @@ export default {
     },
     checkIfCityIsAuthorizeToConnect() {
       this.$store.dispatch("checkIsCityIsAuthorizedToConnect", this.password).then(() => {
-        this.$router.push("/vakaryHome");
+        this.$router.push("/mapPage");
       }).catch(() => {
         this.userDontExist = true;
       })

@@ -12,7 +12,12 @@ test('Basic Information verifier', async () => {
                 $store: store,
                 $t: (msg) => msg,
                 $router: router,
-            }
+            },
+            stubs: {
+                'font-awesome-icon': {
+                    template: '<i />',
+                },
+            },
         },
         data() {
             return {
@@ -51,7 +56,12 @@ test('Error check', async () => {
                 $store: store,
                 $t: (msg) => msg,
                 $router: router,
-            }
+            },
+            stubs: {
+                'font-awesome-icon': {
+                    template: '<i />',
+                },
+            },
         },
         data() {
             return {

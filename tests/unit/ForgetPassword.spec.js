@@ -11,7 +11,12 @@ describe("ForgetPassword", () => {
       global: {
         mocks: {
           $t: (msg) => msg
-        }
+        },
+        stubs: {
+            'font-awesome-icon': {
+                template: '<i />',
+            },
+        },
       }
     })
   }),
@@ -20,7 +25,12 @@ describe("ForgetPassword", () => {
         global: {
           mocks: {
             $t: (msg) => msg
-          }
+          },
+          stubs: {
+              'font-awesome-icon': {
+                  template: '<i />',
+              },
+          },
         }
       })
       wrapper.getComponent(ForgetPassword)
@@ -33,7 +43,12 @@ test('isVisible', () => {
     global: {
       mocks: {
         $t: (msg) => msg
-      }
+      },
+      stubs: {
+          'font-awesome-icon': {
+              template: '<i />',
+          },
+      },
     }
   })
 
@@ -47,7 +62,12 @@ test('mailReceived', async () => {
         $store: store,
         $t: (msg) => msg,
         $router: router,
-      }
+      },
+      stubs: {
+          'font-awesome-icon': {
+              template: '<i />',
+          },
+      },
     },
     data() {
       return {
@@ -69,7 +89,12 @@ test('waitingForMail', async () => {
         $store: store,
         $t: (msg) => msg,
         $router: router,
-      }
+      },
+      stubs: {
+          'font-awesome-icon': {
+              template: '<i />',
+          },
+      },
     },
     data() {
       return {

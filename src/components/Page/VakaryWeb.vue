@@ -180,10 +180,6 @@ export default {
   },
   // créations de la méthode pour avec une fonction pour changer de page
   methods: {
-    openVakaryHome() {
-      this.$router.push("/vakaryHome");
-    },
-
     seti18n(lang) {
       this.$i18n.locale = lang;
     },

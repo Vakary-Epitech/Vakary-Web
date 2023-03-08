@@ -62,9 +62,6 @@ export default {
         openItineraryPage() {
             this.$router.push("ItineraryPage");
         },
-        openHomeConnectedPage() {
-            this.$router.push("vakaryHome");
-        },
         openLandingPage() {
             this.$router.push("/");
         },
