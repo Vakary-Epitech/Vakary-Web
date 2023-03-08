@@ -31,10 +31,6 @@ test('Basic Information verifier', async () => {
                         mail: "mail.test@test.com",
                     }]
                 }],
-                group: {
-                    photo: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Temple_Thionville.jpg/800px-Temple_Thionville.jpg",
-                },
-                exists: true,
                 keyShowGroup: 0,
                 showMembers: false,
             }
