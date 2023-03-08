@@ -144,8 +144,6 @@ export default {
   },
   methods: {
     changeLanguage() {
-      if (this.$i18n.locale == undefined)
-        this.$i18n.locale = 'fr'
       this.$i18n.locale = this.$i18n.locale === 'fr' ? 'en' : 'fr';
     },
     openSignUpPage() {
