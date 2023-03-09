@@ -5,19 +5,7 @@
       <label class="elementBasicMargin">{{ $t("loginPage.signin") }}</label>
       <!-- <button @click="changeLanguage">EN</button> -->
       <div class="elementHorizontalyCentered">
-        <div v-show="pro" class="loginPageInformationContainer">
-          <label class="smallTextSize">{{ $t("loginPage.code") }}</label>
-          <input type="code" required v-model="code">
-          <label>{{ $t("loginPage.email") }}</label>
-          <input required v-model="$store.state.userStore.mail">
-          <label>{{ $t("loginPage.password") }}</label>
-          <input type="password" required v-model="password">
-          <div v-if="userDontExist" class="wrongInputText">{{ $t("loginPage.wrong") }}</div>
-          <button class="basicVakaryButton marginButton" @click="(checkIfCityIsAuthorizeToConnect)">{{ $t("loginPage.connect") }}</button>
-          <button class="basicVakaryButton marginButton" @click="(openForgetPassword)">{{ $t("loginPage.forgot") }}</button>
-        </div>
-
-        <div v-show="!pro" class="loginPageInformationContainer">
+        <div class="loginPageInformationContainer">
           <label>{{ $t("loginPage.email") }}</label>
           <input v-model="$store.state.userStore.mail">
           <label>{{ $t("loginPage.password") }}</label>
@@ -32,9 +20,7 @@
         <label class="newToText">{{ $t("loginPage.new") }}</label>
         <button class="buttonInscription blueVakaryButton" @click="(openRegistrationSelection)">{{ $t("loginPage.register") }}</button>
       </div>
-
-      <button class="basicVakaryButton" v-if="!pro" v-on:click="pro = true">{{ $t("loginPage.pro") }}</button>
-      <button class="basicVakaryButton" v-if="pro" v-on:click="pro = false">{{ $t("loginPage.standard") }}</button>
+      <a class="basicVakaryButton p-1" href="https://youtube.com/@thebausffs">{{ $t("loginPage.pro") }}</a>
     </div>
   </div>
 </template>
@@ -43,18 +29,19 @@
 export default {
   data() {
     return {
-      pro: false,
       password: "",
-      code: "",
       userDontExist: false,
     }
   },
   methods: {
     openRegistrationSelection() {
-      this.$router.push("/registrationType");
+      this.$router.push("/InscriptionPage");
     },
     openForgetPassword() {
       this.$router.push("/forgetPassword")
+    },
+    goToPro() {
+      this.$router.push("/redirectPro");
     },
     checkIfUserIsAuthorizeToConnect() {
       this.$store.dispatch("checkIfUserIsAuthorizedToConnect", this.password).then(() => {
@@ -122,6 +109,9 @@ export default {
   z-index: 2;
 }
 
+a {
+  text-decoration: none;
+}
 .login input {
   background-color: var(--background-color-secondary);
   border-color: var(--text-primary-color);

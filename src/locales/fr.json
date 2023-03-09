@@ -73,7 +73,7 @@
     },
     "loginPage": {
         "signin": "Se connecter à Vakary",
-        "email": "Adresse email ou nom d'utilisateur:",
+        "email": "Adresse email:",
         "password": "Mot de passe",
         "forgot": "Mot de passe oublié ?",
         "wrong": "Ce compte n'existe pas",

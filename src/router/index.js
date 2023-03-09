@@ -34,7 +34,7 @@ const routes = [
         component: RegistrationType,
     },
     {
-        path: '/inscriptionPage/:type',
+        path: '/inscriptionPage',
         name: 'InscriptionPage',
         component: InscriptionPage,
     },
@@ -68,6 +68,9 @@ const routes = [
         name: 'MapPage',
         component: MapPage,
     },
+    { path: '/redirect', redirect: 'https://www.google.com' }
+
+
 ];
 
 const router = createRouter({

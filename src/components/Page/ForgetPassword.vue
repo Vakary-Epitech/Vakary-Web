@@ -1,23 +1,25 @@
 <template>
-  <div class="forgetPassword">
-    <img src="@/assets/Logo_vect.svg" class="logoAsBackground elementHorizontalyCentered" />
-    <!-- <button @click="changeLanguage">EN</button> -->
-    <div class="login elementHorizontalyCentered">
-      <span class="mediumTitle elementBasicMargin thirdZIndex">{{ $t("forgetPage.title") }}</span>
-      <div class="ForgetPasswordContainer">
-        <span class="smallTextSize">{{ $t("forgetPage.link") }}</span>
-        <input v-model="email" />
-        <span class="smallTextSize">{{ $t("forgetPage.code") }}</span>
-        <input v-model="token" :disabled="!serverHasSendMail"/>
-        <span class="smallTextSize">{{ $t("forgetPage.new") }}</span>
-        <input v-model="newPassword" :disabled="!serverHasSendMail"/>
-        <span class="smallTextSize">{{ $t("forgetPage.confirm") }}</span>
-        <input v-model="confirmNewPassword" :disabled="!serverHasSendMail"/>
+  <div class="container">
+    <div class="forgetPassword">
+      <img src="@/assets/Logo_vect.svg" class="logoAsBackground elementHorizontalyCentered" />
+      <!-- <button @click="changeLanguage">EN</button> -->
+      <div class="login elementHorizontalyCentered">
+        <span class="mediumTitle elementBasicMargin thirdZIndex">{{ $t("forgetPage.title") }}</span>
+        <div class="ForgetPasswordContainer">
+          <span class="smallTextSize">{{ $t("forgetPage.link") }}</span>
+          <input v-model="email" />
+          <span class="smallTextSize">{{ $t("forgetPage.code") }}</span>
+          <input v-model="token" :disabled="!serverHasSendMail"/>
+          <span class="smallTextSize">{{ $t("forgetPage.new") }}</span>
+          <input v-model="newPassword" :disabled="!serverHasSendMail"/>
+          <span class="smallTextSize">{{ $t("forgetPage.confirm") }}</span>
+          <input v-model="confirmNewPassword" :disabled="!serverHasSendMail"/>
+          <button v-if="!serverHasSendMail" class="elementBasicMargin basicVakaryButton"
+            @click="requestPasswordReset">{{ $t("forgetPage.accept") }}</button>
+          <button v-if="serverHasSendMail" class="elementBasicMargin basicVakaryButton"
+            @click="sendNewPassword">{{ $t("forgetPage.accept") }}</button>
+        </div>
       </div>
-      <button v-if="!serverHasSendMail" class="elementBasicMargin basicVakaryButton"
-        @click="requestPasswordReset">{{ $t("forgetPage.accept") }}</button>
-      <button v-if="serverHasSendMail" class="elementBasicMargin basicVakaryButton"
-        @click="sendNewPassword">{{ $t("forgetPage.accept") }}</button>
     </div>
   </div>
 </template>
