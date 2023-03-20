@@ -85,7 +85,7 @@
               <b><span class="groupText">{{ $t("landingPage.block3Text1") }}</span></b>
               <span class="groupText subtitleGroupText">{{ $t("landingPage.block3Text2") }}</span>
               <div class="alignLeft">
-                <button class="invertedBlueVakaryButton biggerButton" @click="openMobilePage">{{ $t("landingPage.find") }}<span
+                <button class="invertedBlueVakaryButton biggerButton" data-bs-toggle="modal" data-bs-target="#modalMobile">{{ $t("landingPage.find") }}<span
                     class="arrow"></span></button>
               </div>
               <div class="marginBottomText">
@@ -107,7 +107,7 @@
                 <p class="text-center"><b>{{ $t("landingPage.block3Text1") }}</b></p>
                 <p class="ms-2">{{ $t("landingPage.block3Text2") }}</p>
                 <div class="text-center">
-                  <button class="invertedBlueVakaryButtonSmall" @click="openMobilePage">{{ $t("landingPage.find") }}<span
+                  <button class="invertedBlueVakaryButtonSmall" data-bs-toggle="modal" data-bs-target="#modalMobile">{{ $t("landingPage.find") }}<span
                       class="arrow"></span></button>
                 </div>
               </div>
@@ -130,7 +130,41 @@
           <button class="invertedBlueVakaryButton biggerButton" @click="openSignUpPage">{{ $t("landingPage.registration") }}<span class="arrow"></span></button>
         </div>
         <img src="@/assets/LandingPage/beautifulDogo.jpg" class="beautifulDogoImage">
-      </section> 
+      </section>
+      <section name="modalMobile">
+        <!-- modale that displays hello world as title and download mobile app as texte-->
+
+        <div class="modal fade" id="modalMobile" tabindex="-1" aria-labelledby="modalMobileLabel" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="modalMobileLabel">{{ $t("landingPage.modal.obtain") }}</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <p>{{ $t("landingPage.modal.download") }}</p>
+                <div class="row" >
+                  <div class="col-6 my-3">
+                    <img src="@/assets/webPage/qrcode.jpeg" class="qrCodeImage">
+                  </div>
+                  <div class="col-6 my-auto">
+                    <p class="textOnTopOfQrCode">{{ $t("landingPage.modal.scan") }}</p>
+                  </div>
+                  <div class="col-6">
+                    <img :src="require(`@/assets/badges/${geti18n()}/app-store-badge.svg`)" class="iosImage">
+                  </div>
+                  <div class="col-6">
+                    <img :src="require(`@/assets/badges/${geti18n()}/google-play-badge.svg`)" class="androidImage">
+                  </div>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{ $t("landingPage.modal.close") }}</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
     </main>
   </div>
 </template>
@@ -151,7 +185,10 @@ export default {
     },
     openMobilePage() {
       this.$router.push("/mobilePage");
-    }
+    },
+    geti18n() {
+      return this.$i18n.locale;
+    },
   }
 }
 </script>
@@ -160,6 +197,30 @@ export default {
 @import "@/components/Style/Position.scss";
 @import "@/components/Style/Text.scss";
 @import "@/components/Style/Image.scss";
+
+.qrCodeImage {
+  width: 100%;
+  height: 100%;
+}
+.androidImage {
+  height: 10vh;
+}
+
+.iosImage {
+  height: 10vh;
+}
+
+/* mediaquery for mobile devices*/
+@media (max-width: 768px) {
+  .androidImage {
+    height: 5vh;
+  }
+
+  .iosImage {
+    height: 5vh;
+  }
+}
+
 
 .marginSeparationDogo {
   margin-top: 10vh;
@@ -295,6 +356,8 @@ export default {
   flex-wrap: wrap;
   padding: 90px 0 70px 90px;
   background: #FFE9D3;
+  /* #FCCFCF */
+  /* #C6D8AF */
 }
 
 .blueBackgroundSmall {
