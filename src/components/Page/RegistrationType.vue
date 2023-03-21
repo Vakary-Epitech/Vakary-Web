@@ -1,15 +1,15 @@
 <template>
-    <div class="registrationTypeContainer">
-        <button @click="changeLanguage">EN</button>
-        <div class="optionFrame">
+    <div class="row registrationTypeContainer ">
+        <!-- <button @click="changeLanguage">EN</button> -->
+        <div class="optionFrame col-md-6 col-12">
             <img src="@/assets/Logo_vect.svg" class="logoSize elementBasicMargin elementHorizontalyCentered" />
             <b class="mediumTitle">{{ $t("registrationTypePage.titleStandard") }}</b>
             <label class="smallTextSize">{{ $t("registrationTypePage.standardUser") }}</label>
             <label class="smallTextSize elementBasicMargin">{{ $t("registrationTypePage.user") }}</label>
-            <img src="@/assets/vacances.jpg" class="vacancesImageSize elementBasicMargin elementHorizontalyCentered" />
+            <img src="@/assets/vacances.jpg" class=" vacancesImageSize elementBasicMargin elementHorizontalyCentered" />
             <button class="basicVakaryButton" @click="(openInscriptionPageStandard)">{{ $t("registrationTypePage.confirmStandard") }}</button>
         </div>
-        <div class="optionFrame">
+        <div class="optionFrame col-md-6 col-12">
             <img src="@/assets/Logo_vect.svg" class="logoSize elementBasicMargin elementHorizontalyCentered" />
             <b class="mediumTitle">{{ $t("registrationTypePage.titlePro") }}</b>
             <label class="smallTextSize">{{ $t("registrationTypePage.proUser") }}</label>
@@ -41,14 +41,16 @@ export default {
 @import "@/components/Style/Position.scss";
 @import "@/components/Style/Text.scss";
 
+
 .registrationTypeContainer {
-    display: flex;
-    flex-direction: row;
     justify-content: center;
     align-items: center;
     height: 100vh;
 }
 
+.row {
+    margin: 0 !important;
+}
 .optionFrame {
     display: flex;
     justify-content: center;
@@ -63,13 +65,20 @@ export default {
     margin: auto 50px;
 }
 
+/* media query */
+@media only screen and (max-width: 600px) {
+    .optionFrame {
+        width: 90%;
+        margin: auto 0;
+    }
+}
 .officeImageSize {
     width: 55%;
-    height: 45%;
+    height: auto;
 }
 
 .vacancesImageSize {
     width: 55%;
-    height: 30%;
+    height: auto;
 }
 </style>

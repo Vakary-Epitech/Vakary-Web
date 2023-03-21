@@ -1,27 +1,14 @@
 <template>
   <div class="selectionContainer">
     <div class="selectionFrame">
-      <img src="@/assets/Logo_vect.svg" class="logoSize elementBasicMargin elementHorizontalyCentered" />
-      <!-- <button @click="changeLanguage">EN</button> -->
       <b class="mediumTitle">{{ $t("inscriptionPage.register") }}</b>
-      <div v-if="this.$route.params.type == 0" class="selectionDisplayForm">
+      <img src="@/assets/Logo_vect.svg" class="logoAsBackground elementBasicMargin elementHorizontalyCentered" />
+      <!-- <button @click="changeLanguage">EN</button> -->
+      <div class="selectionDisplayForm">
         <label>{{ $t("inscriptionPage.name") }}</label>
         <input required v-model="$store.state.userStore.username">
         <label>{{ $t("inscriptionPage.email") }}</label>
         <input required type="mail" v-model="$store.state.userStore.mail">
-        <label>{{ $t("inscriptionPage.password") }}</label>
-        <input required type="password" v-model="password">
-        <label>{{ $t("inscriptionPage.confirmPassword") }}</label>
-        <input required type="password" v-model="passwordConfirm">
-        <label v-if="this.passwordAreNotTheSame" class="wrongInputText">{{ $t("inscriptionPage.different") }}</label>
-      </div>
-      <div v-else class="selectionDisplayForm">
-        <label>{{ $t("inscriptionPage.city") }}</label>
-        <input required v-model="$store.state.userStore.username">
-        <label>{{ $t("inscriptionPage.zip") }}</label>
-        <input required v-model="postalCode">
-        <label>{{ $t("inscriptionPage.email") }}</label>
-        <input required v-model="$store.state.userStore.mail">
         <label>{{ $t("inscriptionPage.password") }}</label>
         <input required type="password" v-model="password">
         <label>{{ $t("inscriptionPage.confirmPassword") }}</label>
@@ -83,12 +70,19 @@ export default {
   flex-direction: column;
   text-align: center;
   border: 4px solid rgb(192, 150, 40);
+  background-color: var(--background-color-primary);
   border-radius: 15px;
   padding: 5px;
   width: 450px;
   margin: auto 50px;
 }
-
+.logoAsBackground {
+  width: 90vw;
+  height: 90%;
+  opacity: 0.2;
+  position: absolute;
+  z-index: -1;
+}
 .selectionContainer {
   display: flex;
   flex-direction: row;
