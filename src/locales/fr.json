@@ -71,6 +71,47 @@
         "QRCode": "QR Code",
         "QRCodeDownload": "Téléchargez directement notre application pour l'essayer"
     },
+    "loginPage": {
+        "signin": "Se connecter à Vakary",
+        "email": "Adresse email:",
+        "password": "Mot de passe",
+        "forgot": "Mot de passe oublié ?",
+        "wrong": "Ce compte n'existe pas",
+        "connect": "Connexion",
+        "new": "Nouveau sur Vakary ?",
+        "register": "Inscription",
+        "pro": "Connexion Professionelle",
+        "standard": "Connexion Standard",
+        "code": "Code d'authentification"
+    },
+    "inscriptionPage": {
+        "register": "Inscription",
+        "email": "Adresse email:",
+        "name": "Votre nom:",
+        "password": "Mot de passe:",
+        "confirmPassword": "Confirmer le mot de passe:",
+        "city": "Nom de la ville:",
+        "zip": "Code postal:",
+        "confirm": "Confirmer",
+        "different": "Les mots de passe ne sont pas identiques"
+    },
+    "registrationTypePage": {
+        "titleStandard": "Inscription Aventurier",
+        "titlePro": "Inscription Professionnel",
+        "standardUser": "Envie de partir en vacances dans quelques minutes ou plusieurs mois ? Vous êtes au bon endroit !",
+        "user": "Grâce à votre compte vous pourrez avoir accès à votre profil, la création de groupe et bien plus encore !",
+        "proUser": "Que vous soyez une ville ou un professionel du tourisme, rejoignez l'aventure Vakary !",
+        "confirmStandard": "Commencer l'aventure",
+        "confirmPro": "Rejoindre l'aventure"
+    },
+    "forgetPage": {
+        "title": "Réinitialiser votre mot de passe",
+        "link": "Entrez votre Email et nous vous enverrons un lien pour réinitialiser votre mot de passe:",
+        "code": "Entrez le code reçu par email:",
+        "new": "Nouveau mot de passe:",
+        "confirm": "Confirmer le mot de passe:",
+        "accept": "Accepter"
+    },
     "topBar": {
         "web": "Application Web",
         "mobile": "Application Mobile",
@@ -81,19 +122,6 @@
         "map": "Carte",
         "profile": "Profil",
         "itinerary": "Itinéraire"
-    },
-    "loginPage": {
-        "signIn": "Inscrivez-vous à Vakary",
-        "authentificationCode": "Code d'authentification:",
-        "mailOrUsername": "Email ou nom d'utilisateur:",
-        "password": "Mot de passe:",
-        "accountDontExist": "Ce compte n'existe pas",
-        "connection": "Connexion",
-        "forgotPassword": "Mot de passe oublié ?",
-        "newToVakary": "Nouveau à Vakary ?",
-        "inscription": "Inscription",
-        "connectionUser": "Connexions pour les utilisateurs",
-        "connectionPro": "Connexions pour les professionnels"
     },
     "resetPassword": {
         "resetPassword": "Réinitialiser votre mot de passe",

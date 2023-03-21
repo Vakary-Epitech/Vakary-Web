@@ -2,39 +2,25 @@
   <div class="centerEverything">
     <img src="@/assets/Logo_vect.svg" class="logoAsBackground elementHorizontalyCentered" />
     <div class="login elementHorizontalyCentered">
-      <label class="elementBasicMargin">{{ $t("loginPage.signIn") }}</label>
-      
+      <label class="elementBasicMargin">{{ $t("loginPage.signin") }}</label>
+      <!-- <button @click="changeLanguage">EN</button> -->
       <div class="elementHorizontalyCentered">
-        <div v-show="pro" class="loginPageInformationContainer">
-          <label class="smallTextSize">{{ $t("loginPage.authentificationCode") }}</label>
-          <input type="code" required v-model="code">
-          <label>{{ $t("loginPage.mailOrUsername") }}</label>
-          <input required v-model="$store.state.userStore.mail">
-          <label>{{ $t("loginPage.password") }}</label>
-          <input type="password" required v-model="password">
-          <div v-if="userDontExist" class="wrongInputText">{{ $t("loginPage.accountDontExist") }}</div>
-          <button class="basicVakaryButton marginButton" @click="(checkIfCityIsAuthorizeToConnect)">{{ $t("loginPage.connection") }}</button>
-          <button class="basicVakaryButton marginButton" @click="(openForgetPassword)">{{ $t("loginPage.forgotPassword") }}</button>
-        </div>
-
-        <div v-show="!pro" class="loginPageInformationContainer">
-          <label>{{ $t("loginPage.mailOrUsername") }}</label>
+        <div class="loginPageInformationContainer">
+          <label>{{ $t("loginPage.email") }}</label>
           <input v-model="$store.state.userStore.mail">
           <label>{{ $t("loginPage.password") }}</label>
           <input type="password" v-model="password">
-          <div v-if="userDontExist" class="wrongInputText">{{ $t("loginPage.accountDontExist") }}</div>
-          <button class="basicVakaryButton marginButton" @click="(checkIfUserIsAuthorizeToConnect)">{{ $t("loginPage.connection") }}</button>
-          <button class="basicVakaryButton marginButton" @click="(openForgetPassword)">{{ $t("loginPage.forgotPassword") }}</button>
+          <div v-if="userDontExist" class="wrongInputText">{{ $t("loginPage.wrong") }}</div>
+          <button class="basicVakaryButton marginButton" @click="(checkIfUserIsAuthorizeToConnect)">{{ $t("loginPage.connect") }}</button>
+          <button class="basicVakaryButton marginButton" @click="(openForgetPassword)">{{ $t("loginPage.forgot") }}</button>
         </div>
       </div>
 
       <div class="elementHorizontalyCentered loginPageInscriptionContainer">
-        <label class="newToText">{{ $t("loginPage.newToVakary") }}</label>
-        <button class="buttonInscription blueVakaryButton" @click="(openRegistrationSelection)">{{ $t("loginPage.inscription") }}</button>
+        <label class="newToText">{{ $t("loginPage.new") }}</label>
+        <button class="buttonInscription blueVakaryButton" @click="(openRegistrationSelection)">{{ $t("loginPage.register") }}</button>
       </div>
-
-      <button class="basicVakaryButton" v-if="!pro" v-on:click="pro = true">{{ $t("loginPage.connectionPro") }}</button>
-      <button class="basicVakaryButton" v-if="pro" v-on:click="pro = false">{{ $t("loginPage.connectionUser") }}</button>
+      <a class="basicVakaryButton p-1" href="https://youtube.com/@thebausffs">{{ $t("loginPage.pro") }}</a>
     </div>
   </div>
 </template>
@@ -43,18 +29,19 @@
 export default {
   data() {
     return {
-      pro: false,
       password: "",
-      code: "",
       userDontExist: false,
     }
   },
   methods: {
     openRegistrationSelection() {
-      this.$router.push("/registrationType");
+      this.$router.push("/InscriptionPage");
     },
     openForgetPassword() {
       this.$router.push("/forgetPassword")
+    },
+    goToPro() {
+      this.$router.push("/redirectPro");
     },
     checkIfUserIsAuthorizeToConnect() {
       this.$store.dispatch("checkIfUserIsAuthorizedToConnect", this.password).then(() => {
@@ -63,6 +50,9 @@ export default {
       }).catch(() => {
         this.userDontExist = true;
       })
+    },
+    changeLanguage() {
+      this.$i18n.locale = this.$i18n.locale === 'fr' ? 'en' : 'fr';
     },
     checkIfCityIsAuthorizeToConnect() {
       this.$store.dispatch("checkIsCityIsAuthorizedToConnect", this.password).then(() => {
@@ -117,6 +107,9 @@ export default {
   z-index: 2;
 }
 
+a {
+  text-decoration: none;
+}
 .login input {
   background-color: var(--background-color-secondary);
   border-color: var(--text-primary-color);

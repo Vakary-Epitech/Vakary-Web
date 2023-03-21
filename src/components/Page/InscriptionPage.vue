@@ -1,33 +1,21 @@
 <template>
   <div class="selectionContainer">
     <div class="selectionFrame">
-      <img src="@/assets/Logo_vect.svg" class="logoSize elementBasicMargin elementHorizontalyCentered" />
-      <b class="mediumTitle">Inscription</b>
-      <div v-if="this.$router.params.type == 0" class="selectionDisplayForm">
-        <label>Votre Nom:</label>
-        <input required v-model="$store.state.userStore.username" placeholder="ex: Martin">
-        <label>Email:</label>
-        <input required type="mail" v-model="$store.state.userStore.mail" placeholder="ex: martin@gmail.com">
-        <label>Mot de passe:</label>
-        <input required type="password" v-model="password" placeholder="********">
-        <label>Confirmer le mot de passe:</label>
-        <input required type="password" v-model="passwordConfirm" placeholder="********">
-        <label v-if="this.passwordAreNotTheSame" class="wrongInputText">Password are not the same</label>
+      <b class="mediumTitle">{{ $t("inscriptionPage.register") }}</b>
+      <img src="@/assets/Logo_vect.svg" class="logoAsBackground elementBasicMargin elementHorizontalyCentered" />
+      <!-- <button @click="changeLanguage">EN</button> -->
+      <div class="selectionDisplayForm">
+        <label>{{ $t("inscriptionPage.name") }}</label>
+        <input required v-model="$store.state.userStore.username">
+        <label>{{ $t("inscriptionPage.email") }}</label>
+        <input required type="mail" v-model="$store.state.userStore.mail">
+        <label>{{ $t("inscriptionPage.password") }}</label>
+        <input required type="password" v-model="password">
+        <label>{{ $t("inscriptionPage.confirmPassword") }}</label>
+        <input required type="password" v-model="passwordConfirm">
+        <label v-if="this.passwordAreNotTheSame" class="wrongInputText">{{ $t("inscriptionPage.different") }}</label>
       </div>
-      <div v-else class="selectionDisplayForm">
-        <label>Nom de la ville:</label>
-        <input required v-model="$store.state.userStore.username" placeholder="ex: Nancy">
-        <label>Code Postal:</label>
-        <input required v-model="postalCode" placeholder="ex: 54000">
-        <label>Email:</label>
-        <input required v-model="$store.state.userStore.mail" placeholder="contact@destination-nancy.com">
-        <label>Mot de passe:</label>
-        <input required type="password" v-model="password" placeholder="********">
-        <label>Confirmer le mot de passe:</label>
-        <input required type="password" v-model="passwordConfirm" placeholder="********">
-        <label v-if="this.passwordAreNotTheSame" class="wrongInputText">Password are not the same</label>
-      </div>
-      <button @click="(confirmInscription)" class="basicVakaryButton elementBasicMargin">Confirm</button>
+      <button @click="(confirmInscription)" class="basicVakaryButton elementBasicMargin">{{ $t("inscriptionPage.confirm") }}</button>
     </div>
   </div>
 </template>
@@ -46,6 +34,13 @@ export default {
     this.typeOfInscription = this.$router.params.type;
   },
   methods: {
+    changeLanguage() {
+      if (this.$i18n.locale == "fr") {
+        this.$i18n.locale = "en";
+      } else {
+        this.$i18n.locale = "fr";
+      }
+    },
     confirmInscription() {
       if (this.password == this.passwordConfirm) {
         this.$store.dispatch("checkIfAccountCanBeCreated", this.password).then(() => {
@@ -74,12 +69,19 @@ export default {
   flex-direction: column;
   text-align: center;
   border: 4px solid rgb(192, 150, 40);
+  background-color: var(--background-color-primary);
   border-radius: 15px;
   padding: 5px;
   width: 450px;
   margin: auto 50px;
 }
-
+.logoAsBackground {
+  width: 90vw;
+  height: 90%;
+  opacity: 0.2;
+  position: absolute;
+  z-index: -1;
+}
 .selectionContainer {
   display: flex;
   flex-direction: row;

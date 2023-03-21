@@ -23,6 +23,47 @@
     "ready": "Ready to join the adventure?",
     "find": "Find our apps"
   },
+  "loginPage": {
+    "signin": "Sign in to Vakary",
+    "email": "Email address or username:",
+    "password": "Password",
+    "forgot": "Forgot password?",
+    "wrong": "This account does not exist",
+    "connect": "Sign in",
+    "new": "New to Vakary?",
+    "register": "Sign up",
+    "pro": "Professional Login",
+    "standard": "Standard Login",
+    "code": "Authentication code"
+  },
+  "inscriptionPage": {
+    "register": "Sign Up",
+    "email": "Email address:",
+    "name": "Your name:",
+    "password": "Password:",
+    "confirmPassword": "Confirm password:",
+    "city": "City name:",
+    "zip": "Zip code:",
+    "confirm": "Confirm",
+    "different": "The passwords are different"
+  },
+  "registrationTypePage": {
+    "titleStandard": "Adventurer Registration",
+    "titlePro": "Professional Registration",
+    "standardUser": "Want to go on vacation in a few minutes or several months? You're in the right place!",
+    "user": "With your account you will have access to your profile, creating groups and much more!",
+    "proUser": "Whether you are a city or a tourism professional, join the Vakary adventure!",
+    "confirmStandard": "Start the adventure",
+    "confirmPro": "Join the adventure"
+  },
+  "forgetPage": {
+    "title": "Reset your password",
+    "link": "Enter your Email and we will send you a link to reset your password:",
+    "code": "Enter the code received by email:",
+    "new": "New password:",
+    "confirm": "Confirm password:",
+    "accept": "Accept"
+  },
   "profilePage": {
     "edit": "Edit",
     "info": "Description",
