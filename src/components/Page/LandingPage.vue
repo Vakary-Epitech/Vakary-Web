@@ -34,36 +34,35 @@
             </div>
             <button class="col-4 offset-4 blueVakaryButton biggerButton mb-1" @click="openSignUpPage">{{ $t("landingPage.registration") }}</button>
           </div>
-          
         </div>
       </section>
-      <section>
+      <section name="images">
         <div class="row">
           <div class="col-6 col-md-7">
             <div class="row">
-              <div class="d-none d-md-block col-md-6 col-xl-4 mb-3">
-                <span class="textOnTopOfImage "><b>{{ $t("landingPage.religious") }}</b></span>
-                <img class="background backgroundImageTranslate" src="@/assets/LandingPage/cathedrale.jpg">
+              <div class="d-none d-md-block col-md-6 col-xl-4 mb-3 backgroundLeisures">
+                <span class="overlay"><b>{{ $t("landingPage.religious") }}</b></span>
+                <img src="@/assets/LandingPage/cathedrale.jpg">
               </div>
-              <div class="d-none d-md-block col-md-6 col-xl-4 mb-3">
-                <span class="textOnTopOfImage"><b>{{ $t("landingPage.sport") }}</b></span>
-                <img class="background backgroundImageTranslate" src="@/assets/LandingPage/stade.jpg">
+              <div class="d-none d-md-block col-md-6 col-xl-4 mb-3 backgroundLeisures">
+                <span class="overlay"><b>{{ $t("landingPage.sport") }}</b></span>
+                <img src="@/assets/LandingPage/stade.jpg">
               </div>
-              <div class="col-12 col-md-6 col-xl-4 ms-3 ms-md-0 mb-3">
-                <span class="textOnTopOfImage"><b>{{ $t("landingPage.museum") }}</b></span>
-                <img class="background backgroundImageTranslate" src="@/assets/LandingPage/musee.jpg">
+              <div class="col-12 col-md-6 col-xl-4 ms-3 ms-md-0 mb-3 backgroundLeisures">
+                <span class="overlay"><b>{{ $t("landingPage.museum") }}</b></span>
+                <img src="@/assets/LandingPage/musee.jpg">
               </div>
-              <div class="col-12 col-md-6 col-xl-4 ms-3 ms-md-0 mb-3">
-                <span class="textOnTopOfImage"><b>{{ $t("landingPage.monuments") }}</b></span>
-                <img class="background backgroundImageTranslate" src="@/assets/LandingPage/stanislas.jpg">
+              <div class="col-12 col-md-6 col-xl-4 ms-3 ms-md-0 mb-3 backgroundLeisures">
+                <span class="overlay"><b>{{ $t("landingPage.monuments") }}</b></span>
+                <img src="@/assets/LandingPage/stanislas.jpg">
               </div>
-              <div class="col-12 col-md-6 col-xl-4 ms-3 ms-md-0 mb-3">
-                <span class="textOnTopOfImage"><b>{{ $t("landingPage.park") }}</b></span>
-                <img class="background backgroundImageTranslate" src="@/assets/LandingPage/parc.jpg">
+              <div class="col-12 col-md-6 col-xl-4 ms-3 ms-md-0 mb-3 backgroundLeisures">
+                <span class="overlay"><b>{{ $t("landingPage.park") }}</b></span>
+                <img src="@/assets/LandingPage/parc.jpg">
               </div>
-              <div class="d-none d-md-block col-md-6 col-xl-4 mb-3">
-                <span class="textOnTopOfImage"><b>{{ $t("landingPage.resto") }}</b></span>
-                <img class="background backgroundImageTranslate" src="@/assets/LandingPage/raclette.jpg">
+              <div class="d-none d-md-block col-md-6 col-xl-4 mb-3 backgroundLeisures">
+                <span class="overlay"><b>{{ $t("landingPage.resto") }}</b></span>
+                <img src="@/assets/LandingPage/raclette.jpg">
               </div>
             </div>
           </div>
@@ -436,8 +435,10 @@ export default {
 }
 
 .textOnTopOfImage {
+  position: absolute;
+  z-index: 1;
   font-size: calc(10px + 1.5vw);
-  color: black;
+  color: white;
   margin-left: 10px;
 }
 
@@ -466,6 +467,32 @@ export default {
   margin-right: auto;
   border-top: 3px solid rgb(192, 150, 40);
   width: 40vw;
+}
+
+.backgroundLeisures {
+  position: relative;
+}
+
+.overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #fff;
+    font-size: 30px;
+    font-weight: bold;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.6);
+    padding: 10px 20px;
+    border-radius: 10px;
+}
+
+.backgroundLeisures img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  height: 25vh;
+  object-fit: cover;
+  border-radius: 10px;
 }
 
 </style>
