@@ -82,6 +82,7 @@ export default {
 .newToText {
   margin-top: 3px;
   margin-left: 5px;
+  white-space: nowrap;
 }
 
 .marginButton {
