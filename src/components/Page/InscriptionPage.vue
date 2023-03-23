@@ -31,7 +31,7 @@ export default {
     }
   },
   created() {
-    this.typeOfInscription = this.$router.params.type;
+    this.typeOfInscription = 0;
   },
   methods: {
     changeLanguage() {

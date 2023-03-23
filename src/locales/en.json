@@ -4,6 +4,12 @@
   "slogan": "Vos vacances selon vos envies",
   "vakarySlogan": "Vakary, plan your vacations as you please!",
   "landingPage": {
+    "modal": {
+      "obtain": "Get Vakary",
+      "close": "Close",
+      "download": "Download our application directly to try it out.",
+      "scan": "Scan the QR code with your mobile device to download the application."
+    },
     "free": "We organize your dream vacations for you, for free",
     "pref": "Tell us your preferences, the city you wish to visit, and we will propose a customized itinerary for you",
     "mobile": "With Vakary mobile, you can also follow your itinerary in real-time and much more!",
@@ -137,12 +143,12 @@
     "connectionPro": "Sign in for professionals"
   },
   "resetPassword": {
-      "resetPassword": "Reset password",
-      "linkPassword": "Enter your email address and we will send you a link :",
-      "codeReceived": "Enter the code you got by email :",
-      "newPassword": "New password :",
-      "confirmNewPassword": "Confirm new password :",
-      "confirm": "Confirm"
+    "resetPassword": "Reset password",
+    "linkPassword": "Enter your email address and we will send you a link :",
+    "codeReceived": "Enter the code you got by email :",
+    "newPassword": "New password :",
+    "confirmNewPassword": "Confirm new password :",
+    "confirm": "Confirm"
   },
   "mapPage": {
     "itinerary": "Itinerary",
@@ -151,6 +157,11 @@
     "from": "from ",
     "to": " to ",
     "nextPoint": "Next point",
-    "previousPoint": "Previous point"
+    "previousPoint": "Previous point",
+    "newGroup": "Create a new group"
+  },
+  "groupCards": {
+    "group": "Group: ",
+    "numberOfMembers": "Members: "
   }
 }

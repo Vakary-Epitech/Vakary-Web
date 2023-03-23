@@ -1,33 +1,6 @@
 <template>
   <topBar :connected="false" />
   <main>
-    <section class="section grey-bg text-center">
-      <!-- <button @click="seti18n('en')">EN</button>
-      <button @click="seti18n('fr')">FR</button> -->
-      <div class="section__content container">
-        <div class="section__title">
-          <h1>{{ $t("vakary") }}</h1>
-          <h2>{{ $t("vakarySlogan") }}</h2>
-          <h3>{{ $t("webPage.smartphone") }}</h3>
-        </div>
-        <div class="section__screenshots">
-          <img src="@/assets/mobilePage/default.png" alt="Screenshot of the home page of the VAKARY app">
-        </div>
-      </div>
-    </section>
-    <section class="section orange-bg text-center">
-      <div class="section__content container">
-        <div class="section__title">
-          <h1>{{ $t("webPage.hobbies") }}</h1>
-        </div>
-        <div class="row">
-          <div class="col-12 col-md-6 col-lg-4" v-for="product in products" :key="product.title">
-            <Product :product="product" :desc="$t(`webPage.products.${product.title.toLowerCase()}.desc`)"
-              :title="$t(`webPage.products.${product.title.toLowerCase()}.title`)" />
-          </div>
-        </div>
-      </div>
-    </section>
     <section class="section blue-bg text-center">
       <div class="section__content container orange-text">
         <div class="section__title">
@@ -46,27 +19,6 @@
         </div>
         <div class="section__screenshots">
           <img src="@/assets/mobilePage/pointmap.png" alt="Screenshot of the map">
-        </div>
-      </div>
-    </section>
-    <section class="section purple-bg text-center">
-      <div class="section__content container">
-        <div class="section__title">
-          <h1>{{ $t("webPage.popular") }}</h1>
-        </div>
-        <div class="section__screenshots">
-          <img src="@/assets/webPage/parisPresentation.png" alt="Screenshot of the popular places page of the VAKARY app">
-        </div>
-      </div>
-    </section>
-    <section class="section yellow-bg text-center">
-      <div class="section__content container">
-        <div class="section__title">
-          <h1>{{ $t("webPage.lessPopular") }}</h1>
-        </div>
-        <div class="section__screenshots">
-          <img src="@/assets/webPage/chateauPasConnu.png"
-            alt="Screenshot of the lesser-known places page of the VAKARY app">
         </div>
       </div>
     </section>
@@ -111,11 +63,9 @@
 
 <script>
 import TopBar from '@/components/UI/TopBar';
-import Product from '@/components/UI/Product';
 export default {
   name: 'vakaryWebPresentation',
   components: {
-    Product,
     TopBar,
   },
   data() {

@@ -9,16 +9,15 @@
   <topBar :connected="false" />
   <main>
     <!-- <button @click="seti18n('en')">EN</button>
-        <button @click="seti18n('fr')">FR</button> -->
-    <section class="section grey-bg text-center">
+          <button @click="seti18n('fr')">FR</button> -->
+    <section class="section orange-bg text-center">
       <div class="section__content row">
-        <div class="section__title col-12 my-auto ">
-          <h1>{{ $t("vakary") }}</h1>
-          <h2>{{ $t("vakarySlogan") }}</h2>
-          <h3>{{ $t("webPage.smartphone") }}</h3>
+        <div class="section__title col-6 my-auto ">
+          <h1>{{ $t("mobilePage.text1") }}</h1>
         </div>
-        <div class="col-12">
-          <img class="screenshots" src="@/assets/mobilePage/home.png" alt="Screenshot of the home page of the VAKARY app">
+        <div class="col-6">
+          <img class="screenshots" src="@/assets/mobilePage/default.png"
+            alt="Screenshot of the default page of the VAKARY app">
         </div>
       </div>
     </section>
@@ -87,8 +86,7 @@
           <img class="qrcode" src="@/assets/webPage/qrcode.jpeg" alt="Screenshot of the QR code for the VAKARY app">
         </div>
         <div class="section__screenshots mt-3">
-          <img class="badges" :src="require(`@/assets/badges/${geti18n}/google-play-badge.svg`)"
-            alt="Google Play badge">
+          <img class="badges" :src="require(`@/assets/badges/${geti18n}/google-play-badge.svg`)" alt="Google Play badge">
           <img class="badges" :src="require(`@/assets/badges/${geti18n}/app-store-badge.svg`)" alt="App Store badge">
         </div>
       </div>
@@ -175,4 +173,5 @@ export default {
 
 .row {
   margin-right: 0 !important;
-}</style>
+}
+</style>

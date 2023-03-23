@@ -4,6 +4,12 @@
     "slogan": "Vos vacances selon vos envies",
     "vakarySlogan": "Vakary vos vacances selon vos envies !",
     "landingPage": {
+        "modal": {
+            "obtain": "Obtenir Vakary",
+            "close": "Fermer",
+            "download": "Téléchargez directement notre application pour l'essayer.",
+            "scan": "Scannez le QR code avec votre appareil mobile pour télécharger l'application."
+        },
         "free": "On organise vos vacances de rêves pour vous et gratuitement",
         "pref": "Dites nous vos préférences, la ville que vous souhaitez visiter et un itinéraire personnalisé vous sera proposé",
         "mobile": "De plus grâçe à Vakary mobile vous pourrez suivre votre itinéraire en temps réel, et bien plus !",
@@ -138,6 +144,11 @@
         "from": "De ",
         "to": " a ",
         "nextPoint": "Prochain point",
-        "previousPoint": "Point précédent"
+        "previousPoint": "Point précédent",
+        "newGroup": "Créer un nouveau groupe"
+    },
+    "groupCards": {
+        "group": "Groupe: ",
+        "numberOfMembers": "Membres: "
     }
 }

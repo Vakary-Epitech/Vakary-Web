@@ -35,7 +35,7 @@ export default {
   },
   methods: {
     openRegistrationSelection() {
-      this.$router.push("/InscriptionPage");
+      this.$router.push("/inscriptionPage");
     },
     openForgetPassword() {
       this.$router.push("/forgetPassword")
@@ -80,6 +80,7 @@ export default {
 .newToText {
   margin-top: 3px;
   margin-left: 5px;
+  white-space: nowrap;
 }
 
 .marginButton {

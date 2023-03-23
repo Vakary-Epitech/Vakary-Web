@@ -15,7 +15,6 @@
 <script>
 export default {
     props: ["city", "time", "groupe", "id", "date"],
-
 }
 </script>
 
