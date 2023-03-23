@@ -10,18 +10,6 @@
     <main>
       <!-- <button @click="seti18n('en')">EN</button>
       <button @click="seti18n('fr')">FR</button> -->
-      <section class="section grey-bg text-center">
-            <div class="section__content row">
-                <div class="section__title col-12 my-auto ">
-                    <h1>{{ $t("vakary") }}</h1>
-                    <h2>{{ $t("slogan") }}</h2>
-                    <h3>{{ $t("webPage.smartphone") }}</h3>
-                </div>
-                <div class="col-12">
-            <img class="screenshots" src="@/assets/mobilePage/home.png" alt="Screenshot of the home page of the VAKARY app">
-          </div>
-        </div>
-      </section>
       <section class="section orange-bg text-center">
             <div class="section__content row">
                 <div class="section__title col-6 my-auto ">
