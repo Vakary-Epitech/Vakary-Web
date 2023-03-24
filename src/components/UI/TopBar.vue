@@ -126,6 +126,4 @@ export default {
     border: 1px #C09628 solid;
 }
 
-
-
 </style>
