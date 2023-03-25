@@ -16,7 +16,7 @@
                     <h1>{{ $t("mobilePage.text1") }}</h1>
                 </div>
                 <div class="col-6">
-            <img class="screenshots" src="@/assets/mobilePage/default.png" alt="Screenshot of the default page of the VAKARY app">
+            <img class="screenshots" src="@/assets/mobilePage/pointmap.png" alt="Screenshot of the default page of the VAKARY app">
           </div>
         </div>
       </section>
@@ -38,41 +38,6 @@
                 <div class="col-6">
                     <img class="screenshots" src="@/assets/mobilePage/description.png" alt="Screenshot of the point of interest description page in the VAKARY app">
                 </div>
-        </div>
-      </section>
-      <section class="section grey-bg text-center">
-          <div class="section__content row">
-                  <div class="col-6">
-                      <img class="screenshots" src="@/assets/mobilePage/group.png" alt="Screenshot of the group itinerary sharing feature in the VAKARY app">
-                  </div>
-                  <div class="col-6 my-auto blue-text">
-                      <h1>{{ $t("mobilePage.text4") }}</h1>
-                  </div>
-          </div>
-      </section>
-      <section class="section orange-bg text-center">
-          <div class="section__content row">
-                  <div class="col-8 mx-auto blue-text">
-                      <h1>{{ $t("mobilePage.text5") }}</h1>
-                  </div>
-                  <div class="col-12 mx-auto">
-                      <img class="screenshots" src="@/assets/mobilePage/pointmap.png" alt="Screenshot of the point Map feature in the VAKARY app">
-                  </div>
-          </div>
-      </section>
-      <section class="section grey-bg text-center">
-        <div class="section__content container">
-          <div class="section__title">
-            <h1>{{ $t("webPage.QRCode") }}</h1>
-            <h3>{{ $t("webPage.QRCodeDownload") }}</h3>
-          </div>
-          <div class="section__screenshots">
-            <img class="qrcode" src="@/assets/webPage/qrcode.jpeg" alt="Screenshot of the QR code for the VAKARY app">
-          </div>
-          <div class="section__screenshots mt-3">
-            <img class="badges" :src="require(`@/assets/badges/${geti18n()}/google-play-badge.svg`)" alt="Google Play badge">
-            <img class="badges" :src="require(`@/assets/badges/${geti18n()}/app-store-badge.svg`)" alt="App Store badge">
-          </div>
         </div>
       </section>
     </main>

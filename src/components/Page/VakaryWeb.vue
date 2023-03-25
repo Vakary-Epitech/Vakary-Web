@@ -22,21 +22,6 @@
         </div>
       </div>
     </section>
-    <section class="section grey-bg text-center">
-      <div class="section__content container">
-        <div class="section__title">
-          <h1>{{ $t("webPage.QRCode") }}</h1>
-          <h3>{{ $t("webPage.QRCodeDownload") }}</h3>
-        </div>
-        <div class="section__screenshots">
-          <img src="@/assets/webPage/qrcode.jpeg" alt="Screenshot of the QR code for the VAKARY app">
-        </div>
-        <div class="section__screenshots mt-3">
-          <img class="badges" :src="require(`@/assets/badges/${geti18n()}/google-play-badge.svg`)" alt="Google Play badge">
-          <img class="badges" :src="require(`@/assets/badges/${geti18n()}/app-store-badge.svg`)" alt="App Store badge">
-        </div>
-      </div>
-    </section>
   </main>
 </template>
 

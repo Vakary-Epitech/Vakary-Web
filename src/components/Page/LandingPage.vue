@@ -11,9 +11,13 @@
             <div class="backgroundCardPosition">
               <img src="@/assets/Logo_vect.svg" class="logoSize logoPosition">
               <div class="textPosition">
-                <label>{{ $t("landingPage.free") }}</label>
+                <label>Êtes-vous prêt à voyager et à découvrir les merveilles du monde ?</label>
+                <label>Avec Vakary, vous pouvez organiser vos vacances de rêve gratuitement et facilement.</label>
+                <label>Nous proposons des itinéraires personnalisés en fonction de vos préférences et de la région que vous souhaitez visiter.</label>
+                <!-- <label>Obtenez Vakary dès maintenant et commencez à planifier votre prochain voyage.</label> -->
+                <!-- <label>{{ $t("landingPage.free") }}</label>
                 <label>{{ $t("landingPage.pref") }}</label>
-                <label>{{ $t("landingPage.mobile") }}</label>
+                <label>{{ $t("landingPage.mobile") }}</label> -->
               </div>
               <div class="inputStyle">
                 <button class="blueVakaryButton biggerButton" @click="openSignUpPage">{{ $t("landingPage.registration") }}</button>
@@ -72,7 +76,7 @@
             
           <div class="col-6 col-md-3 my-auto">
             <h1>{{ $t("landingPage.enjoy") }}</h1>
-            <h5>{{ $t("landingPage.enjoy2") }}</h5>
+            <h5>{{ $t("landingPage.enjoy3") }}</h5>
           </div>
         </div>
       </section>
@@ -82,22 +86,22 @@
           <div class="blueBackground d-md-flex d-none">
             <div class="centerGroupText">
               <b><span class="groupText">{{ $t("landingPage.block3Text1") }}</span></b>
-              <span class="groupText subtitleGroupText">{{ $t("landingPage.block3Text2") }}</span>
+              <span class="groupText subtitleGroupText mt-4">{{ $t("landingPage.block3Text2b") }}</span>
               <div class="alignLeft">
                 <button class="invertedBlueVakaryButton biggerButton" data-bs-toggle="modal" data-bs-target="#modalMobile">{{ $t("landingPage.find") }}<span
                     class="arrow"></span></button>
               </div>
-              <div class="marginBottomText">
+              <!-- <div class="marginBottomText">
                 <b><span class="groupText">{{ $t("landingPage.block3Text3") }}</span></b>
                 <span class="groupText subtitleGroupText">{{ $t("landingPage.block3Text4") }}</span>
                 <div class="alignLeft">
                   <button class="invertedBlueVakaryButton biggerButton" @click="openSignUpPage">{{ $t("landingPage.registration") }}<span
                       class="arrow"></span></button>
                 </div>
-              </div>
+              </div> -->
             </div>
             <div class="alignPhoneImage">
-              <img class="telImage" src="@/assets/LandingPage/mapTelephone.png">
+              <img class="telImage" src="@/assets/mobilePage/pointmap.png">
             </div>
           </div>
           <div class="blueBackgroundSmall d-md-none d-flex">
@@ -119,6 +123,24 @@
                 </div>
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+      <section name="greenSection">
+        <hr class="separationBar">
+        <div class="greenBoxWrapper">
+          <div class="greenBackground groupText">
+            <h3>{{ $t("mobilePage.title") }}</h3>
+            <p>{{ $t("mobilePage.text1") }}</p>
+            <img class="w-100" src="@/assets/webPage/mapPresentation.png">
+          </div>
+        </div>
+      </section>
+      <section name="redSection">
+        <hr class="separationBar">
+        <div class="redBoxWrapper">
+          <div class="redBackground groupText">
+            Section présentation mobile
           </div>
         </div>
       </section>
@@ -277,10 +299,6 @@ export default {
   width: 20px;
 }
 
-.reajustWidth {
-  width: 100%;
-}
-
 .background {
   width: 100%;
   height: 100%;
@@ -346,6 +364,33 @@ export default {
   /* #FCCFCF */
   /* #C6D8AF */
 }
+
+.greenBoxWrapper {
+  display: flex;
+  justify-content: center;
+}
+.greenBackground {
+  margin-top: 40px;
+  width: 80vw;
+  border-radius: 16px;
+  flex-wrap: wrap;
+  padding: 90px 0 70px 90px;
+  background-color: #C6D8AF;
+}
+
+.redBoxWrapper {
+  display: flex;
+  justify-content: center;
+}
+.redBackground {
+  margin-top: 40px;
+  width: 80vw;
+  border-radius: 16px;
+  flex-wrap: wrap;
+  padding: 90px 0 70px 90px;
+  background-color: #FCCFCF;
+}
+
 
 .blueBackgroundSmall {
   margin-top: 20px;
