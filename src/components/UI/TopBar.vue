@@ -26,9 +26,6 @@
         <div v-if="connected" class="col text-end">
             <button class="default-color to-page" @click="(openProfilePage)">{{ $t("topBar.profile") }}</button>
         </div>
-        <div v-if="connected" class="col text-end">
-            <button class="default-color to-page" @click="(openItineraryPage)">{{ $t("topBar.itinerary") }}</button>
-        </div>
         <div class="col text-end mb-3 ms-6">
             <img src="https://cdn-icons-png.flaticon.com/512/197/197374.png" class="flag-button" @click="(engLanguage)"/>
             <img src="https://cdn-icons-png.flaticon.com/512/197/197560.png" class="flag-button" @click="(frenchLanguage)"/>
@@ -59,9 +56,7 @@ export default {
         engLanguage() {
             this.$i18n.locale = "en";
         },
-        openItineraryPage() {
-            this.$router.push("ItineraryPage");
-        },
+
         openLandingPage() {
             this.$router.push("/");
         },

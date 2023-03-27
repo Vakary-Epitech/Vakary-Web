@@ -46,18 +46,6 @@ test('openLandingPage', async () => {
   await wrapper.vm.openLandingPage();
 })
 
-test('openItineraryPage', async () => {
-  const wrapper = shallowMount(TopBar, {
-    global: {
-      mocks: {
-        $t: (msg) => msg,
-        $router: router,
-      }
-    },
-  })
-  await wrapper.vm.openItineraryPage();
-})
-
 test('openLoginPage', async () => {
   const wrapper = shallowMount(TopBar, {
     global: {

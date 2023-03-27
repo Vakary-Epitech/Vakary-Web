@@ -26,7 +26,7 @@
     <div class="widgetPanel">
       <Transition name="slide-fade">
 
-        <div v-if="!displayItineraryInformation" :class="(itineraryDropdownStatus)">
+        <div v-if="!displayItineraryInformation && !showItineraryCreationModal" :class="(itineraryDropdownStatus)">
           <div class="dropdown-trigger" @click="(setItineraryDropdownState())">
             <button class="dropdownDesignMapPage" :style="itineraryCssDropdown" aria-haspopup="true"
               aria-controls="dropdown-menu2">
@@ -39,8 +39,8 @@
             <div v-if="this.itineraryDropdown" style="background-color: white;" class="dropdown-content">
               <div style="display: flex; flex-direction: row;">
                 <div class="newItineraryButton evenSmallerText"
-                  style="margin-left: 5px; display: flex; align-items: center;"><span
-                    class="textBasicMargin evenSmallerText">{{ $t("mapPage.newItinerary") }}</span></div>
+                  style="margin-left: 5px; display: flex; align-items: center;" @click="callItineraryCreationModal()">
+                  <span class="textBasicMargin evenSmallerText">{{ $t("mapPage.newItinerary") }}</span></div>
                 <div style="width: 10vw;">
                   <img style="max-width: 3vw; max-height: 6vh; margin-left: 4px; margin-right: 4px; float: right"
                     src="data:image/png;base64,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" />
@@ -58,6 +58,10 @@
               </div>
             </div>
           </div>
+        </div>
+
+        <div v-else-if="showItineraryCreationModal">
+          <itineraryModal @goBackToItineraryDropdown="showItineraryCreationModal = false" />
         </div>
 
         <div v-else>
@@ -93,7 +97,7 @@
               <div style="display: flex; flex-direction: row;">
                 <div class="newItineraryButton evenSmallerText cursorOnButton"
                   style="margin-left: 5px; display: flex; align-items: center;" @click="callGroupCreation()"><span
-                    class="textBasicMargin evenSmallerText" >{{ $t("mapPage.newGroup") }}</span></div>
+                    class="textBasicMargin evenSmallerText">{{ $t("mapPage.newGroup") }}</span></div>
                 <div style="width: 10vw;">
                   <img style="max-width: 3vw; max-height: 6vh; margin-left: 4px; margin-right: 4px; float: right"
                     src="data:image/png;base64,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" />
@@ -112,7 +116,7 @@
         </div>
 
         <div v-else-if="showGroupCreationModal">
-          <CreateGroup @send-data=update :key="keyCreateGroup" @goBackToGroupDropdown="showGroupCreationModal = false"/>
+          <CreateGroup @send-data=update :key="keyCreateGroup" @goBackToGroupDropdown="showGroupCreationModal = false" />
         </div>
 
         <div v-else>
@@ -129,6 +133,7 @@ import mapCards from '../UI/mapCards.vue';
 import itineratyExplanation from '../UI/itineraryExplanation.vue';
 import mapGroupCardsVue from '../UI/mapGroupCards.vue';
 import CreateGroup from '../UI/CreateGroup.vue';
+import itineraryModal from '../UI/itineraryModal.vue';
 
 export default {
   name: 'App',
@@ -137,17 +142,20 @@ export default {
     CreateGroup,
     itineratyExplanation,
     mapGroupCardsVue,
+    itineraryModal,
   },
   data() {
     return {
+      displayItineraryInformation: false,
+      showItineraryCreationModal: false,
+      itineraryDropdown: false,
+      groupDropdown: false,
+      showGroupCreationModal: false,
+
       keyCreateGroup: 0,
       selectedItinerary: 0,
       selectedGroup: "",
       mapZoom: 12,
-      displayItineraryInformation: false,
-      itineraryDropdown: false,
-      groupDropdown: false,
-      showGroupCreationModal: false,
       openedMarkerID: null,
       waypoints: [],
       currentWaypointIndex: 0,
@@ -398,6 +406,10 @@ export default {
     },
     callGroupCreation() {
       this.showGroupCreationModal = true;
+    },
+
+    callItineraryCreationModal() {
+      this.showItineraryCreationModal = !this.showItineraryCreationModal;
     },
 
     update(object) {

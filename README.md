@@ -93,7 +93,6 @@ GroupPage -> Page to access group information
 
 Inscription page -> Page to create an account
 
-ItineraryPage -> Page to create a new itinerary
 
 LandingPage -> first page a first time user see, it contains the presentation of the project
 

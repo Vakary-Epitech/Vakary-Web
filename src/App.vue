@@ -13,7 +13,7 @@
       <button @click="(openMobilePage)">Mobile</button>
       <button @click="(openGroupPage)">Groupe</button>
       <button @click="(openWebPage)">Web</button>
-      <button @click="(openitineraryPage)">Itinerary</button>-->
+      -->
     </Transition>
     </div>
   </div>
@@ -40,9 +40,6 @@ export default {
     },
     openMobilePage() {
       this.$router.push("/mobilePage");
-    },
-    openitineraryPage() {
-      this.$router.push("/itineraryPage");
     },
     openGroupPage() {
       this.$router.push("/groupPage");

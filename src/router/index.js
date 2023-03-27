@@ -6,7 +6,6 @@ import InscriptionPage from "@/components/Page/InscriptionPage.vue"
 import ForgetPassword from "@/components/Page/ForgetPassword.vue"
 import ProfilePage from "@/components/Page/ProfilePage.vue";
 import MobilePage from "@/components/Page/MobilePage.vue";
-import ItineraryPage from "@/components/Page/ItineraryPage.vue"
 import LandingPage from "@/components/Page/LandingPage.vue"
 import RegistrationType from "@/components/Page/RegistrationType.vue"
 import store from '@/store/store';
@@ -53,11 +52,7 @@ const routes = [
         name: 'MobilePage',
         component: MobilePage,
     },
-    {
-        path: '/itineraryPage',
-        name: 'ItineraryPage',
-        component: ItineraryPage,
-    },
+
     {
         path: '/loginPage',
         name: 'LoginPage',

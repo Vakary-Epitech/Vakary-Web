@@ -1,5 +1,5 @@
 import { shallowMount, mount } from '@vue/test-utils'
-import ItineraryPage from '@/components/Page/ItineraryPage.vue'
+import ItineraryModal from '@/components/UI/ItineraryModal.vue'
 import Vuex from 'vuex'
 import store from '../../src/store/store.js'
 import i18 from '../../src/i18n.js'
@@ -7,8 +7,8 @@ import router from '../../src/router/index.js'
 import { waitFor } from '@testing-library/vue'
 
 
-test('wrong password ItineraryPage', async () => {
-    const wrapper = shallowMount(ItineraryPage, {
+test('wrong password ItineraryModal', async () => {
+    const wrapper = shallowMount(ItineraryModal, {
         global: {
             mocks: {
                 $store: store,
