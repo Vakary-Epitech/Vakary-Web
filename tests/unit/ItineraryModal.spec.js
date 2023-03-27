@@ -1,5 +1,5 @@
 import { shallowMount, mount } from '@vue/test-utils'
-import ItineraryModal from '@/components/UI/ItineraryModal.vue'
+import ItineraryModal from '@/components/UI/itineraryModal.vue'
 import Vuex from 'vuex'
 import store from '../../src/store/store.js'
 import i18 from '../../src/i18n.js'
