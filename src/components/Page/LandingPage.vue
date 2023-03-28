@@ -1,6 +1,5 @@
 <template>
   <div>
-    <topBar :connected="false" />
     <main>
       <!-- <button @click="changeLanguage">EN</button> -->
       <section class="d-none d-md-block">
@@ -191,11 +190,8 @@
 </template>
 
 <script>
-import topBar from '../UI/TopBar.vue';
-
 export default {
   components: {
-    topBar,
   },
   methods: {
     changeLanguage() {
