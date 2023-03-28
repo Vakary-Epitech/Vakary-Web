@@ -100,7 +100,7 @@
               </div> -->
             </div>
             <div class="alignPhoneImage">
-              <img class="telImage" src="@/assets/mobilePage/pointmap.png">
+              <img class="telImage" src="@/assets/LandingPage/pointmap.png">
             </div>
           </div>
           <div class="blueBackgroundSmall d-md-none d-flex">
@@ -131,7 +131,7 @@
           <div class="greenBackground groupText">
             <h3>{{ $t("mobilePage.title") }}</h3>
             <p>{{ $t("mobilePage.text1") }}</p>
-            <img class="w-100" src="@/assets/webPage/mapPresentation.png">
+            <img class="w-100" src="@/assets/LandingPage/mapPresentation.png">
           </div>
         </div>
       </section>
@@ -165,7 +165,7 @@
                 <p>{{ $t("landingPage.modal.download") }}</p>
                 <div class="row" >
                   <div class="col-6 my-3">
-                    <img src="@/assets/webPage/qrcode.jpeg" class="qrCodeImage">
+                    <img src="@/assets/LandingPage/qrcode.jpeg" class="qrCodeImage">
                   </div>
                   <div class="col-6 my-auto">
                     <p class="textOnTopOfQrCode">{{ $t("landingPage.modal.scan") }}</p>
