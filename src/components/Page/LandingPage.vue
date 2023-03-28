@@ -47,7 +47,7 @@
                 <span class="overlay"><b>{{ $t("landingPage.religious") }}</b></span>
                 <img src="@/assets/LandingPage/cathedrale.jpg">
               </div>
-              <div class="d-none d-md-block col-md-6 col-xl-4 mb-3 backgroundLeisures">
+              <div class="col-12 col-md-6 col-xl-4 ms-3 ms-md-0 mb-3 backgroundLeisures">
                 <span class="overlay"><b>{{ $t("landingPage.sport") }}</b></span>
                 <img src="@/assets/LandingPage/stade.jpg">
               </div>
@@ -55,7 +55,7 @@
                 <span class="overlay"><b>{{ $t("landingPage.museum") }}</b></span>
                 <img src="@/assets/LandingPage/musee.jpg">
               </div>
-              <div class="col-12 col-md-6 col-xl-4 ms-3 ms-md-0 mb-3 backgroundLeisures">
+              <div class="d-none d-md-block col-md-6 col-xl-4 ms-3 ms-md-0 mb-3 backgroundLeisures">
                 <span class="overlay"><b>{{ $t("landingPage.monuments") }}</b></span>
                 <img src="@/assets/LandingPage/stanislas.jpg">
               </div>
@@ -152,8 +152,6 @@
         <img src="@/assets/LandingPage/beautifulDogo.jpg" class="beautifulDogoImage">
       </section>
       <section name="modalMobile">
-        <!-- modale that displays hello world as title and download mobile app as texte-->
-
         <div class="modal fade" id="modalMobile" tabindex="-1" aria-labelledby="modalMobileLabel" aria-hidden="true">
           <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
