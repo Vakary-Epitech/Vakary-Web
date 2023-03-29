@@ -16,7 +16,8 @@
                 <label>{{ $t("landingPage.mobile") }}</label>
               </div>
               <div class="inputStyle">
-                <button class="blueVakaryButton biggerButton" @click="openSignUpPage">{{ $t("landingPage.registration") }}</button>
+                <button class="blueVakaryButton biggerButton" @click="openSignUpPage">{{ $t("landingPage.registration")
+                }}</button>
               </div>
             </div>
           </div>
@@ -32,7 +33,8 @@
               <label>{{ $t("landingPage.pref") }}</label>
               <label>{{ $t("landingPage.mobile") }}</label>
             </div>
-            <button class="col-4 offset-4 blueVakaryButton biggerButton mb-1" @click="openSignUpPage">{{ $t("landingPage.registration") }}</button>
+            <button class="col-4 offset-4 blueVakaryButton biggerButton mb-1" @click="openSignUpPage">{{
+              $t("landingPage.registration") }}</button>
           </div>
         </div>
       </section>
@@ -69,7 +71,7 @@
           <div class="d-none d-md-block col-md-2 my-auto text-center">
             <img class="dotsImage" src="@/assets/LandingPage/dots.jpg">
           </div>
-            
+
           <div class="col-6 col-md-3 my-auto">
             <h1>{{ $t("landingPage.enjoy") }}</h1>
             <h5>{{ $t("landingPage.enjoy2") }}</h5>
@@ -84,15 +86,15 @@
               <b><span class="groupText">{{ $t("landingPage.block3Text1") }}</span></b>
               <span class="groupText subtitleGroupText">{{ $t("landingPage.block3Text2") }}</span>
               <div class="alignLeft">
-                <button class="invertedBlueVakaryButton biggerButton" data-bs-toggle="modal" data-bs-target="#modalMobile">{{ $t("landingPage.find") }}<span
-                    class="arrow"></span></button>
+                <button class="invertedBlueVakaryButton biggerButton" data-bs-toggle="modal"
+                  data-bs-target="#modalMobile">{{ $t("landingPage.find") }}<span class="arrow"></span></button>
               </div>
               <div class="marginBottomText">
                 <b><span class="groupText">{{ $t("landingPage.block3Text3") }}</span></b>
                 <span class="groupText subtitleGroupText">{{ $t("landingPage.block3Text4") }}</span>
                 <div class="alignLeft">
-                  <button class="invertedBlueVakaryButton biggerButton" @click="openSignUpPage">{{ $t("landingPage.registration") }}<span
-                      class="arrow"></span></button>
+                  <button class="invertedBlueVakaryButton biggerButton" @click="openSignUpPage">{{
+                    $t("landingPage.registration") }}<span class="arrow"></span></button>
                 </div>
               </div>
             </div>
@@ -106,27 +108,31 @@
                 <p class="text-center"><b>{{ $t("landingPage.block3Text1") }}</b></p>
                 <p class="ms-2">{{ $t("landingPage.block3Text2") }}</p>
                 <div class="text-center">
-                  <button class="invertedBlueVakaryButtonSmall" data-bs-toggle="modal" data-bs-target="#modalMobile">{{ $t("landingPage.find") }}<span
-                      class="arrow"></span></button>
+                  <button class="invertedBlueVakaryButtonSmall" data-bs-toggle="modal" data-bs-target="#modalMobile">{{
+                    $t("landingPage.find") }}<span class="arrow"></span></button>
                 </div>
               </div>
               <div class="col-12 mt-5">
                 <p class="text-center"><b>{{ $t("landingPage.block3Text3") }}</b></p>
                 <p class="ms-2">{{ $t("landingPage.block3Text4") }}</p>
                 <div class="text-center mb-2">
-                  <button class="invertedBlueVakaryButtonSmall" @click="openSignUpPage">{{ $t("landingPage.registration") }}<span
-                      class="arrow"></span></button>
+                  <button class="invertedBlueVakaryButtonSmall" @click="openSignUpPage">{{ $t("landingPage.registration")
+                  }}<span class="arrow"></span></button>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </section>
+      <div>
+        <presentationCards />
+      </div>
       <section>
         <hr class="separationBar marginSeparationDogo">
         <div class="textOnDogo">
           <label class="textOnTopOfCard">{{ $t("landingPage.ready") }}</label>
-          <button class="invertedBlueVakaryButton biggerButton" @click="openSignUpPage">{{ $t("landingPage.registration") }}<span class="arrow"></span></button>
+          <button class="invertedBlueVakaryButton biggerButton" @click="openSignUpPage">{{ $t("landingPage.registration")
+          }}<span class="arrow"></span></button>
         </div>
         <img src="@/assets/LandingPage/beautifulDogo.jpg" class="beautifulDogoImage">
       </section>
@@ -142,7 +148,7 @@
               </div>
               <div class="modal-body">
                 <p>{{ $t("landingPage.modal.download") }}</p>
-                <div class="row" >
+                <div class="row">
                   <div class="col-6 my-3">
                     <img src="@/assets/webPage/qrcode.jpeg" class="qrCodeImage">
                   </div>
@@ -158,7 +164,8 @@
                 </div>
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{ $t("landingPage.modal.close") }}</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{ $t("landingPage.modal.close")
+                }}</button>
               </div>
             </div>
           </div>
@@ -170,10 +177,11 @@
 
 <script>
 import topBar from '../UI/TopBar.vue';
-
+import presentationCards from '../UI/presentationCards.vue';
 export default {
   components: {
     topBar,
+    presentationCards,
   },
   methods: {
     changeLanguage() {
@@ -201,6 +209,7 @@ export default {
   width: 100%;
   height: 100%;
 }
+
 .androidImage {
   height: 10vh;
 }
@@ -368,13 +377,13 @@ export default {
 }
 
 .invertedBlueVakaryButtonSmall {
-    padding: 10px 16px;
-    background-color: #000642;
-    color: white;
-    border: 2px solid #000642 solid;
-    border-radius: 20px;
-    transition: all .3s ease;
-    align-items: center;
+  padding: 10px 16px;
+  background-color: #000642;
+  color: white;
+  border: 2px solid #000642 solid;
+  border-radius: 20px;
+  transition: all .3s ease;
+  align-items: center;
 }
 
 .blueBackground>div {
@@ -458,7 +467,7 @@ export default {
 }
 
 .row {
-    margin-right: 0 !important;
+  margin-right: 0 !important;
 }
 
 .separationBar {
@@ -474,16 +483,16 @@ export default {
 }
 
 .overlay {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: #fff;
-    font-size: 30px;
-    font-weight: bold;
-    text-shadow: 1px 1px 3px rgba(0,0,0,0.6);
-    padding: 10px 20px;
-    border-radius: 10px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #fff;
+  font-size: 30px;
+  font-weight: bold;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
+  padding: 10px 20px;
+  border-radius: 10px;
 }
 
 .backgroundLeisures img {
@@ -493,6 +502,4 @@ export default {
   height: 25vh;
   object-fit: cover;
   border-radius: 10px;
-}
-
-</style>
+}</style>

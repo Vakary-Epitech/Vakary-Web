@@ -131,7 +131,6 @@
           <showMembers @change-group-photo="changeGroupPhoto" :groups=this.$store.state.userStore.groups[selectedGroup] :key="keyShowGroup" @goBackToGroupDropdown="groupHasBeenClicked = false"/>
         </div>
 
-
       </Transition>
     </div>
   </div>
