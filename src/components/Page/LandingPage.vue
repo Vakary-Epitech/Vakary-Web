@@ -1,8 +1,7 @@
 <template>
   <div>
     <main>
-      <!-- <button @click="changeLanguage">EN</button> -->
-      <section class="d-none d-md-block">
+      <section name="cardTop" class="d-none d-md-block">
         <img class="background" src="@/assets/LandingPage/landingPageBackground.jpg">
         <div class="row">
           <div class="positionBackgroundCard">
@@ -10,22 +9,18 @@
             <div class="backgroundCardPosition">
               <img src="@/assets/Logo_vect.svg" class="logoSize logoPosition">
               <div class="textPosition">
-                <label>Êtes-vous prêt à voyager et à découvrir les merveilles du monde ?</label>
-                <label>Avec Vakary, vous pouvez organiser vos vacances de rêve gratuitement et facilement.</label>
-                <label>Nous proposons des itinéraires personnalisés en fonction de vos préférences et de la région que vous souhaitez visiter.</label>
-                <!-- <label>Obtenez Vakary dès maintenant et commencez à planifier votre prochain voyage.</label> -->
-                <!-- <label>{{ $t("landingPage.free") }}</label>
+                <label>{{ $t("landingPage.free") }}</label>
                 <label>{{ $t("landingPage.pref") }}</label>
-                <label>{{ $t("landingPage.mobile") }}</label> -->
+                <label>{{ $t("landingPage.mobile") }}</label>
               </div>
-              <div class="inputStyle">
+              <div class="mt-2 mb-3">
                 <button class="blueVakaryButton biggerButton" @click="openSignUpPage">{{ $t("landingPage.registration") }}</button>
               </div>
             </div>
           </div>
         </div>
       </section>
-      <section class="d-md-none d-block mb-5">
+      <section name="cardTop" class="d-md-none d-block mb-5">
         <img class="background" src="@/assets/LandingPage/landingPageBackground.jpg">
         <div class="row text-center positionBackgroundCardSmall">
           <b class="textOnTopOfCard">{{ $t("vakarySlogan") }}</b>
@@ -79,7 +74,7 @@
           </div>
         </div>
       </section>
-      <section>
+      <section name="blueSection">
         <hr class="separationBar">
         <div class="blueBoxWrapper">
           <div class="blueBackground d-md-flex d-none">
@@ -90,14 +85,6 @@
                 <button class="invertedBlueVakaryButton biggerButton" data-bs-toggle="modal" data-bs-target="#modalMobile">{{ $t("landingPage.find") }}<span
                     class="arrow"></span></button>
               </div>
-              <!-- <div class="marginBottomText">
-                <b><span class="groupText">{{ $t("landingPage.block3Text3") }}</span></b>
-                <span class="groupText subtitleGroupText">{{ $t("landingPage.block3Text4") }}</span>
-                <div class="alignLeft">
-                  <button class="invertedBlueVakaryButton biggerButton" @click="openSignUpPage">{{ $t("landingPage.registration") }}<span
-                      class="arrow"></span></button>
-                </div>
-              </div> -->
             </div>
             <div class="alignPhoneImage">
               <img class="telImage" src="@/assets/LandingPage/pointmap.png">
@@ -143,7 +130,7 @@
           </div>
         </div>
       </section>
-      <section>
+      <section name="dog">
         <hr class="separationBar marginSeparationDogo">
         <div class="textOnDogo">
           <label class="textOnTopOfCard">{{ $t("landingPage.ready") }}</label>
@@ -267,9 +254,6 @@ export default {
   margin-top: 25px;
 }
 
-.marginBottomText {
-  margin-top: 10vh;
-}
 
 .alignPhoneImage {
   display: flex;
@@ -309,7 +293,7 @@ export default {
   background-color: white;
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
   transition: 0.3s;
-  border-radius: 50px;
+  border-radius: 16px;
   border: 2px solid rgb(192, 150, 40);
   flex-wrap: wrap;
 }
@@ -322,7 +306,7 @@ export default {
   background-color: white;
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
   transition: 0.3s;
-  border-radius: 50px;
+  border-radius: 16px;
   border: 2px solid rgb(192, 150, 40);
   flex-wrap: wrap;
 }
@@ -355,8 +339,6 @@ export default {
   flex-wrap: wrap;
   padding: 90px 0 70px 90px;
   background: #FFE9D3;
-  /* #FCCFCF */
-  /* #C6D8AF */
 }
 
 .greenBoxWrapper {
@@ -385,7 +367,13 @@ export default {
   background-color: #FCCFCF;
 }
 
+.blueVakaryButton {
+  border-radius: 16px;
+}
 
+.invertedBlueVakaryButton {
+  border-radius: 16px;
+}
 .blueBackgroundSmall {
   margin-top: 20px;
   width: 80vw;
@@ -399,7 +387,7 @@ export default {
     background-color: #000642;
     color: white;
     border: 2px solid #000642 solid;
-    border-radius: 20px;
+    border-radius: 16px;
     transition: all .3s ease;
     align-items: center;
 }
@@ -413,14 +401,6 @@ export default {
   color: white;
 }
 
-.titleForImageType {
-  font-size: calc(12px + 1.1vw);
-}
-
-.textForImageType {
-  font-size: calc(12px + 0.9vw);
-}
-
 .logoPosition {
   display: flex;
   margin-top: 10px;
@@ -428,57 +408,17 @@ export default {
 }
 
 .textPosition {
-  display: flex;
-  text-align: center;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
   font-size: calc(12px + 0.7vw);
   margin-top: 10px;
   width: 60vw;
-}
-
-.inputStyle {
-  display: flex;
-  margin-top: 5px;
-  margin-bottom: 10px;
 }
 
 .biggerButton {
   font-size: calc(8px + 0.8vw);
 }
 
-.wrapperTypeBox {
-  width: 50%;
-  height: 60vh;
-}
-
-.wrapperTypeBox>div {
-  flex: 1 1 30%;
-  height: 20vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.textOnTopOfImage {
-  position: absolute;
-  z-index: 1;
-  font-size: calc(10px + 1.5vw);
-  color: white;
-  margin-left: 10px;
-}
-
-
-.backgroundImageTranslate {
-  z-index: -1;
-  height: 25vh;
-  filter: brightness(80%);
-  border-radius: 30px;
-}
 
 .dotsImage {
-
   height: 10vh;
   border: 2px solid rgb(192, 150, 40);
   border-radius: 200px;

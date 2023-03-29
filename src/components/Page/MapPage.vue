@@ -324,7 +324,6 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import '~bulma';
 
 @import "@/components/Style/Main.scss";
 
