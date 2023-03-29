@@ -78,9 +78,6 @@ export default {
         openWebPage() {
             this.$router.push("/VakaryWeb");
         },
-        openGroupePage() {
-            this.$router.push("/groupPage");
-        },
     },
 };
 </script>

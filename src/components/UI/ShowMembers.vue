@@ -12,7 +12,7 @@
             <div class="modalshowMembers">
                 <div class="row">
                     <div class="col-12 text-end">
-                        <font-awesome-icon class="xMark" @click="showMembers = false;" icon="fa-solid fa-xmark" />
+                        <font-awesome-icon class="xMark" @click="goBackToGroupDropdown()" icon="fa-solid fa-xmark" />
                     </div>
                 </div>
                 <div class="col-12 text-center">
@@ -120,6 +120,10 @@ export default {
         this.groupInformations = this.groups;
     },
     methods: {
+        goBackToGroupDropdown() {
+            this.CreateGroup = false;
+            this.$emit("goBackToGroupDropdown");
+        },
         getStatus(index) {
             return this.groupInformations.members[index].status;
         },

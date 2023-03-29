@@ -6,7 +6,6 @@ import i18 from '../../src/i18n.js'
 import router from '../../src/router/index.js'
 import { waitFor } from '@testing-library/vue'
 
-
 test('wrong password ItineraryModal', async () => {
     const wrapper = shallowMount(ItineraryModal, {
         global: {
@@ -53,7 +52,6 @@ test('wrong password ItineraryModal', async () => {
     await wrapper.vm.setIndex(0);
     await wrapper.vm.prev();
     await wrapper.vm.next();
-
 
     await wrapper.vm.setIndex(-8);
     await wrapper.vm.next();    

@@ -11,7 +11,6 @@
       <button @click="(openProfilePage)">Profile</button>
       <button @click="(openHomePage)">Home</button>
       <button @click="(openMobilePage)">Mobile</button>
-      <button @click="(openGroupPage)">Groupe</button>
       <button @click="(openWebPage)">Web</button>
       -->
     </Transition>
@@ -40,9 +39,6 @@ export default {
     },
     openMobilePage() {
       this.$router.push("/mobilePage");
-    },
-    openGroupPage() {
-      this.$router.push("/groupPage");
     },
     openWebPage() {
       this.$router.push("/VakaryWeb");

@@ -80,7 +80,8 @@
     "lastPlaceVisited": "Last Place Visited",
     "lastEventAttended": "Last Event Attended",
     "totalKm": "Total Km Traveled",
-    "cityPass": "City Pass"
+    "cityPass": "City Pass",
+    "disconnect": "Disconnect"
   },
   "mobilePage": {
     "title": "Are you ready to travel and discover?",
@@ -163,5 +164,21 @@
   "groupCards": {
     "group": "Group: ",
     "numberOfMembers": "Members: "
-  }
+  },
+  "itineraryModal": {
+    "creation": "Creation of your itinerary",
+    "startingCity": "Starting city",
+    "city": "City",
+    "howLong": "For how long ?",
+    "lessThanOneHour": "Less than one hour",
+    "fromOneToFour": "1 to 4 hours",
+    "moreThanFourHours": "More than 4 hours",
+    "startingDate": "What's the starting date of your itinerary ?",
+    "budget": "Total budget",
+    "howManyPeople": "How many people will come with you ?",
+    "adult": "Adult",
+    "child": "Child",
+    "interest": "Center of interest",
+    "generate": "Generate the Itinerary"
+}
 }

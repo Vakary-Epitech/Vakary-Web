@@ -39,7 +39,8 @@
         "lastPlaceVisited": "Dernier lieu visité",
         "lastEventAttended": "Dernier événement visité",
         "totalKm": "Km total",
-        "cityPass": "Pass de ville"
+        "cityPass": "Pass de ville",
+        "disconnect": "Déconnexion"
     },
     "mobilePage": {
         "title": "Êtes-vous prêt à voyager et à decouvrir ?",
@@ -150,5 +151,21 @@
     "groupCards": {
         "group": "Groupe: ",
         "numberOfMembers": "Membres: "
+    },
+    "itineraryModal": {
+        "creation": "Création de votre itinéraire",
+        "startingCity": "Ville de départ",
+        "city": "Ville",
+        "howLong": "Pendant combien de temps ?",
+        "lessThanOneHour": "Moins d'une heure",
+        "fromOneToFour": "1 à 4 heures",
+        "moreThanFourHours": "Plus de 4 heures",
+        "startingDate": "Quelle est la date de départ de votre itinéraire ?",
+        "budget": "Budget total",
+        "howManyPeople": "Combien de personnes vont vous accompagner ?",
+        "adult": "Adulte",
+        "child": "Enfant",
+        "interest": "Centres D'intérêts",
+        "generate": "Générer l'itinéraire"
     }
 }

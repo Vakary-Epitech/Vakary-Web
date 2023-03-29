@@ -9,7 +9,6 @@ import MobilePage from "@/components/Page/MobilePage.vue";
 import LandingPage from "@/components/Page/LandingPage.vue"
 import RegistrationType from "@/components/Page/RegistrationType.vue"
 import store from '@/store/store';
-import GroupPage from "@/components/Page/GroupPage.vue"
 
 const routes = [
     {
@@ -21,11 +20,6 @@ const routes = [
         path: '/VakaryWeb',
         name: 'VakaryWeb',
         component: VakaryWeb,
-    },
-    {
-        path: '/groupPage',
-        name: 'GroupPage',
-        component: GroupPage,
     },
     {
         path: '/RegistrationType',

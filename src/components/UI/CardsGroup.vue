@@ -26,7 +26,6 @@
 <script>
 import showMembers from '@/components/UI/ShowMembers.vue';
 export default {
-    name: "CardsGroup",
     components: {
         showMembers,
     },

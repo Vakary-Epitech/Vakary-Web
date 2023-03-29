@@ -89,10 +89,7 @@ This folder contains all of our pages.
 
 ForgetPassword -> Page for password reset
 
-GroupPage -> Page to access group information
-
 Inscription page -> Page to create an account
-
 
 LandingPage -> first page a first time user see, it contains the presentation of the project
 
@@ -109,8 +106,6 @@ VakaryWeb -> Presentation of the web part
 ### components/UI/
 
 Contain all the UI element of the project. For example an element that is multiple time on the same page or an element present on differents pages
-
-CardsGroup -> Design and display basic group information
 
 CardsReview -> User review
 
