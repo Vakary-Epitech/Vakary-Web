@@ -11,10 +11,10 @@
               <div class="textPosition">
                 <label>{{ $t("landingPage.free") }}</label>
                 <label>{{ $t("landingPage.pref") }}</label>
-                <label>{{ $t("landingPage.mobile") }}</label>
+                <label class="p-1">{{ $t("landingPage.mobile") }}</label>
               </div>
               <div class="mt-2 mb-3">
-                <button class="blueVakaryButton biggerButton" @click="openSignUpPage">{{ $t("landingPage.registration") }}</button>
+                <button class="invertedBlueVakaryButton biggerButton py-1" @click="openSignUpPage">{{ $t("landingPage.registration") }}</button>
               </div>
             </div>
           </div>
@@ -24,13 +24,13 @@
         <img class="background" src="@/assets/LandingPage/landingPageBackground.jpg">
         <div class="row text-center positionBackgroundCardSmall">
           <b class="textOnTopOfCard">{{ $t("vakarySlogan") }}</b>
-          <div class="backgroundCardPositionSmall">
+          <div class="py-2 backgroundCardPositionSmall">
             <div>
               <label>{{ $t("landingPage.free") }}</label>
               <label>{{ $t("landingPage.pref") }}</label>
               <label>{{ $t("landingPage.mobile") }}</label>
             </div>
-            <button class="col-4 offset-4 blueVakaryButton biggerButton mb-1" @click="openSignUpPage">{{ $t("landingPage.registration") }}</button>
+            <button class="col-4 offset-4 invertedBlueVakaryButton py-1 mt-1 mb-1" @click="openSignUpPage">{{ $t("landingPage.registration") }}</button>
           </div>
         </div>
       </section>
@@ -38,27 +38,27 @@
         <div class="row">
           <div class="col-6 col-md-7">
             <div class="row">
-              <div class="d-none d-md-block col-md-6 col-xl-4 mb-3 backgroundLeisures">
+              <div class="d-none d-md-block ms-md-3 p-md-1 col-md-6 col-xl-4 mb-3 backgroundLeisures">
                 <span class="overlay"><b>{{ $t("landingPage.religious") }}</b></span>
                 <img src="@/assets/LandingPage/cathedrale.jpg">
               </div>
-              <div class="col-12 col-md-6 col-xl-4 ms-3 ms-md-0 mb-3 backgroundLeisures">
+              <div class="col-12 col-md-6 col-xl-4 p-md-1 ms-md-3 ms-3 mb-3 backgroundLeisures">
                 <span class="overlay"><b>{{ $t("landingPage.sport") }}</b></span>
                 <img src="@/assets/LandingPage/stade.jpg">
               </div>
-              <div class="col-12 col-md-6 col-xl-4 ms-3 ms-md-0 mb-3 backgroundLeisures">
+              <div class="col-12 col-md-6 col-xl-4 p-md-1 ms-md-3 ms-3 mb-3 backgroundLeisures">
                 <span class="overlay"><b>{{ $t("landingPage.museum") }}</b></span>
                 <img src="@/assets/LandingPage/musee.jpg">
               </div>
-              <div class="d-none d-md-block col-md-6 col-xl-4 ms-3 ms-md-0 mb-3 backgroundLeisures">
+              <div class="d-none d-md-block col-md-6 col-xl-4 ms-3 p-md-1 ms-md-3 mb-3 backgroundLeisures">
                 <span class="overlay"><b>{{ $t("landingPage.monuments") }}</b></span>
                 <img src="@/assets/LandingPage/stanislas.jpg">
               </div>
-              <div class="col-12 col-md-6 col-xl-4 ms-3 ms-md-0 mb-3 backgroundLeisures">
+              <div class="col-12 col-md-6 col-xl-4 ms-3 p-md-1 ms-md-3 mb-3 backgroundLeisures">
                 <span class="overlay"><b>{{ $t("landingPage.park") }}</b></span>
                 <img src="@/assets/LandingPage/parc.jpg">
               </div>
-              <div class="d-none d-md-block col-md-6 col-xl-4 mb-3 backgroundLeisures">
+              <div class="d-none d-md-block col-md-6 p-md-1 ms-md-3 col-xl-4 mb-3 backgroundLeisures">
                 <span class="overlay"><b>{{ $t("landingPage.resto") }}</b></span>
                 <img src="@/assets/LandingPage/raclette.jpg">
               </div>
@@ -134,7 +134,7 @@
         <hr class="separationBar marginSeparationDogo">
         <div class="textOnDogo">
           <label class="textOnTopOfCard">{{ $t("landingPage.ready") }}</label>
-          <button class="invertedBlueVakaryButton biggerButton" @click="openSignUpPage">{{ $t("landingPage.registration") }}<span class="arrow"></span></button>
+          <button class="invertedBlueVakaryButton dogoButton biggerButton" @click="openSignUpPage">{{ $t("landingPage.registration") }}<span class="arrow"></span></button>
         </div>
         <img src="@/assets/LandingPage/beautifulDogo.jpg" class="beautifulDogoImage">
       </section>
@@ -199,6 +199,10 @@ export default {
 @import "@/components/Style/Position.scss";
 @import "@/components/Style/Text.scss";
 @import "@/components/Style/Image.scss";
+
+.col-md-6 {
+  width: 45%;
+}
 
 .qrCodeImage {
   width: 100%;
@@ -369,6 +373,10 @@ export default {
 
 .blueVakaryButton {
   border-radius: 16px;
+}
+
+.dogoButton:hover {
+  background-color: #F5F5F5;
 }
 
 .invertedBlueVakaryButton {
