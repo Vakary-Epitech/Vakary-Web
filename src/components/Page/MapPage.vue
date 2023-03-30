@@ -531,6 +531,7 @@ export default {
 .cardOnDropdown {
   cursor: pointer;
   margin: 1vh;
+  height: 10%;
 }
 
 .cardOnDropdown:hover {
