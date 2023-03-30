@@ -3,7 +3,6 @@
 
 <template>
   <div>
-    <top-bar class="col-12" :connected="true" />
     <GMapMap :center="getCenterOfMap" :options="options" :zoom="mapZoom" style="width: 100vw; height: 94vh" ref="myMapRef">
       <GMapMarker :position="userPosition" />
       <GMapMarker :key="marker.label" v-for="marker in markersData" :position="marker.geolocalisation"
@@ -64,14 +63,12 @@
 </template>
 
 <script>
-import topBar from '../UI/TopBar.vue';
 import mapCards from '../UI/mapCards.vue';
 import itineratyExplanation from '../UI/itineraryExplanation.vue';
 
 export default {
   name: 'App',
   components: {
-    topBar,
     mapCards,
     itineratyExplanation,
   },
@@ -327,7 +324,6 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import '~bulma';
 
 @import "@/components/Style/Main.scss";
 

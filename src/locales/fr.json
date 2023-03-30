@@ -10,9 +10,9 @@
             "download": "Téléchargez directement notre application pour l'essayer.",
             "scan": "Scannez le QR code avec votre appareil mobile pour télécharger l'application."
         },
-        "free": "On organise vos vacances de rêves pour vous et gratuitement",
-        "pref": "Dites nous vos préférences, la ville que vous souhaitez visiter et un itinéraire personnalisé vous sera proposé",
-        "mobile": "De plus grâçe à Vakary mobile vous pourrez suivre votre itinéraire en temps réel, et bien plus !",
+        "free": "Êtes-vous prêt à voyager et à découvrir les merveilles du monde ?",
+        "pref": "Avec Vakary, vous pouvez organiser vos vacances de rêve gratuitement et facilement.",
+        "mobile": "Nous proposons des itinéraires personnalisés en fonction de vos préférences et de la région que vous souhaitez visiter.",
         "registration": "Inscription",
         "religious": "Sites Religieux",
         "sport": "Sports",
@@ -22,8 +22,10 @@
         "monuments": "Monuments",
         "enjoy": "Profitez au maximum de vos vacances !",
         "enjoy2": "Que vous préferiez une balade, les monuments, les restaurants ou encore autre chose, nous avons ce qu'il vous faut",
+        "enjoy3": "Que vous soyez plutôt adepte de balades, de visites de monuments, de dégustation de plats locaux ou d'autres activités, nous avons l'itinéraire personnalisé qui vous conviendra le mieux.",
         "block3Text1": "Vakary part à l'aventure avec vous !",
         "block3Text2": "Vakary se déplace partout avec vous, grâce à notre application mobile, vous pourrez suivre votre itinéraire en temps réel et géolocaliser. Retrouver également vos amis avec lesquelles votre itinéraire est partagé",
+        "block3Text2b": "Vakary est un outil de voyage puissant qui vous permet de créer des itinéraires personnalisés en fonction de vos intérêts et de votre emploi du temps. Avec notre application mobile, vous pouvez suivre votre itinéraire en temps réel, découvrir des sites touristiques passionnants et partager vos voyages avec vos amis et votre famille.",
         "block3Text3": "Partager vos vacances !",
         "block3Text4": "Grâce à notre fonctionnalitée de groupe, vous pouvez partager vos itinéraires, suivre la localisation des membres de votre groupe et discuter avec eux",
         "ready": "Prêt à rejoindre l'aventure ?",
@@ -40,42 +42,6 @@
         "lastEventAttended": "Dernier événement visité",
         "totalKm": "Km total",
         "cityPass": "Pass de ville"
-    },
-    "mobilePage": {
-        "title": "Êtes-vous prêt à voyager et à decouvrir ?",
-        "text1": "VAKARY est un outil pour créer des itinéraire touristiques personnalisé grâce aux régions partenaire qui alimentent notre application",
-        "text2": "L'application propose un formulaire simple et rapide pour générer un itinéraire précis qui vons conviendra au mieux",
-        "text3": "Vous pourrez retrouver une description précise des points d'intérêt, avec des informations sur des évènements, et la possibilité d'écouter un audio guide",
-        "text4": "Une fonctionnalité de groupe a été mise en place pour permettre un partage d'itinéraire simple quand vous voyagez en famille ou entre amis",
-        "text5": "L'application embarque une fonction payante qui vous permet d'avoir un itinéraire travaillé par des professionnels du voyage, qui vous conseillerons les meilleurs endroits à visiter à l'endroit où vous vous trouvez !",
-        "available": "Vakary est disponible sur mobile.",
-        "scan": "Scannez le code QR avec votre appareil mobile pour télécharger Vakary."
-    },
-    "webPage": {
-        "products": {
-            "park": {
-                "title": "Parc & Jardin",
-                "desc": "Découvrez les plus beaux parcs et jardins de la région"
-            },
-            "event": {
-                "title": "Evenements",
-                "desc": "Pour les événements et fêtes"
-            },
-            "museum": {
-                "title": "Musées",
-                "desc": "Pour la culture et l'histoire"
-            }
-        },
-        "title": "Êtes-vous prêt à voyager et à decouvrir ?",
-        "smartphone": "VAKARY est aussi disponible sur votre smartphone !",
-        "hobbies": "Dites-nous vos hobbies et passions",
-        "organize": "Organisez votre journée à l'avance",
-        "waste": "Ne perdez plus de temps",
-        "enjoy": "Profitez de votre journée avec notre itinéraire personnalisé",
-        "popular": "Découvrez les monuments les plus visités",
-        "lessPopular": "Et les moins connus",
-        "QRCode": "QR Code",
-        "QRCodeDownload": "Téléchargez directement notre application pour l'essayer"
     },
     "loginPage": {
         "signin": "Se connecter à Vakary",
@@ -101,15 +67,6 @@
         "confirm": "Confirmer",
         "different": "Les mots de passe ne sont pas identiques"
     },
-    "registrationTypePage": {
-        "titleStandard": "Inscription Aventurier",
-        "titlePro": "Inscription Professionnel",
-        "standardUser": "Envie de partir en vacances dans quelques minutes ou plusieurs mois ? Vous êtes au bon endroit !",
-        "user": "Grâce à votre compte vous pourrez avoir accès à votre profil, la création de groupe et bien plus encore !",
-        "proUser": "Que vous soyez une ville ou un professionel du tourisme, rejoignez l'aventure Vakary !",
-        "confirmStandard": "Commencer l'aventure",
-        "confirmPro": "Rejoindre l'aventure"
-    },
     "forgetPage": {
         "title": "Réinitialiser votre mot de passe",
         "link": "Entrez votre Email et nous vous enverrons un lien pour réinitialiser votre mot de passe:",
@@ -117,16 +74,5 @@
         "new": "Nouveau mot de passe:",
         "confirm": "Confirmer le mot de passe:",
         "accept": "Accepter"
-    },
-    "topBar": {
-        "web": "Application Web",
-        "mobile": "Application Mobile",
-        "vip": "VIP",
-        "signup": "Connexion",
-        "signin": "S'inscrire",
-        "groupe": "Groupe",
-        "map": "Carte",
-        "profile": "Profil",
-        "itinerary": "Itinéraire"
     }
 }

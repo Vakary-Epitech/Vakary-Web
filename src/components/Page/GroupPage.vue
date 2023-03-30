@@ -1,5 +1,4 @@
 <template>
-    <TopBar class="col" :connected="true"/>
     <div class="container">
         <!-- <div class="col-12 text-center">
             <button @click="showModal = true">Créer un groupe</button>
@@ -45,13 +44,11 @@
 <script>
 import CardsGroup from '@/components/UI/CardsGroup';
 import CreateGroup from '@/components/UI/CreateGroup.vue';
-import TopBar from '@/components/UI/TopBar.vue';
 export default {
     name: "app",
 
     components: {
         CreateGroup,
-        TopBar,
         CardsGroup,
     },
     data() {

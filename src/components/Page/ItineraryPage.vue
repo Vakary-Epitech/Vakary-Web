@@ -1,5 +1,4 @@
 <template>
-    <TopBar class="col" :connected="true"/>
     <div class="row">
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
             Planifier mon itinéraire
@@ -154,11 +153,9 @@
 </template>
   
 <script>
-import TopBar from "../UI/TopBar.vue";
 import CardsGroup from "../UI/CardsGroup.vue";
 export default {
     components: {
-        TopBar,
         CardsGroup,
     },
     data() {
