@@ -4,8 +4,7 @@
         <div>
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">{{ $t("itineraryModal.creation") }}</h5>
-                <button @click="leaveGroupCreation" type="button" class="btn-close" data-bs-dismiss="modal"
-                    aria-label="Close"></button>
+                <button @click="leaveGroupCreation" type="button" class="btn-close" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <div class="col-12">
@@ -283,5 +282,4 @@ export default {
 
 .explanatoryCardDesign::-webkit-scrollbar {
     width: 1px;
-}
-</style>
+}</style>

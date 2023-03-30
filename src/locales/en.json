@@ -53,14 +53,19 @@
     "confirm": "Confirm",
     "different": "The passwords are different"
   },
-  "registrationTypePage": {
-    "titleStandard": "Adventurer Registration",
-    "titlePro": "Professional Registration",
-    "standardUser": "Want to go on vacation in a few minutes or several months? You're in the right place!",
-    "user": "With your account you will have access to your profile, creating groups and much more!",
-    "proUser": "Whether you are a city or a tourism professional, join the Vakary adventure!",
-    "confirmStandard": "Start the adventure",
-    "confirmPro": "Join the adventure"
+  "groupCards": {
+    "group": "Group: ",
+    "numberOfMembers": "Members: "
+  },
+  "mapPage": {
+    "itinerary": "Itinerary",
+    "newItinerary": "Create a new itinerary",
+    "group": "Group",
+    "from": "from ",
+    "to": " to ",
+    "nextPoint": "Next point",
+    "previousPoint": "Previous point",
+    "newGroup": "Create a new group"
   },
   "forgetPage": {
     "title": "Reset your password",
@@ -80,90 +85,7 @@
     "lastPlaceVisited": "Last Place Visited",
     "lastEventAttended": "Last Event Attended",
     "totalKm": "Total Km Traveled",
-    "cityPass": "City Pass",
-    "disconnect": "Disconnect"
-  },
-  "mobilePage": {
-    "title": "Are you ready to travel and discover?",
-    "text1": "VAKARY is a tool for creating personalized tourist itineraries thanks to the partner regions that feed our application",
-    "text2": "The app offers a simple and quick form to generate a precise itinerary that will suit you best",
-    "text3": "You will find a detailed description of the points of interest, with information on events, and the possibility to listen to an audio guide",
-    "text4": "A group feature has been put in place to allow easy itinerary sharing when you travel with family or friends",
-    "text5": "The app has a paid feature that allows you to have an itinerary worked by travel professionals, who will advise you on the best places to visit at the location where you are!",
-    "available": "Vakary is available on mobile.",
-    "scan": "Scan the QR code with your mobile device to download Vakary."
-  },
-  "webPage": {
-    "products": {
-      "park": {
-        "title": "Parks & Gardens",
-        "desc": "Discover the most beautiful parks and gardens in the region"
-      },
-      "event": {
-        "title": "Events",
-        "desc": "For events and parties"
-      },
-      "museum": {
-        "title": "Museums",
-        "desc": "For culture and history"
-      }
-    },
-    "title": "Are you ready to travel and discover?",
-    "smartphone": "VAKARY is also available on your smartphone!",
-    "hobbies": "Tell us your hobbies and passions",
-    "organize": "Organize your day in advance",
-    "waste": "Don't waste any more time",
-    "enjoy": "Enjoy your day with our personalized itinerary",
-    "popular": "Discover the most visited monuments",
-    "lessPopular": "And the least known",
-    "QRCode": "QR Code",
-    "QRCodeDownload": "Download our app directly to try it out"
-  },
-  "topBar": {
-    "web": "Web Application",
-    "mobile": "Mobile Application",
-    "vip": "VIP",
-    "signup": "Sign Up",
-    "signin": "Sign In",
-    "groupe": "Group",
-    "map": "Map",
-    "profile": "Profile",
-    "itinerary": "Itinerary"
-  },
-  "loginPage": {
-    "signIn": "Sign in to Vakary",
-    "authentificationCode": "Authentification code:",
-    "mailOrUsername": "Email address or username:",
-    "password": "Password:",
-    "accountDontExist": "This accound doesn't exist",
-    "connection": "Sign in",
-    "forgotPassword": "Forgot password ?",
-    "newToVakary": "New to Vakary ?",
-    "inscription": "Sign up",
-    "connectionUser": "Connections for user",
-    "connectionPro": "Sign in for professionals"
-  },
-  "resetPassword": {
-    "resetPassword": "Reset password",
-    "linkPassword": "Enter your email address and we will send you a link :",
-    "codeReceived": "Enter the code you got by email :",
-    "newPassword": "New password :",
-    "confirmNewPassword": "Confirm new password :",
-    "confirm": "Confirm"
-  },
-  "mapPage": {
-    "itinerary": "Itinerary",
-    "newItinerary": "Create a new itinerary",
-    "group": "Group",
-    "from": "from ",
-    "to": " to ",
-    "nextPoint": "Next point",
-    "previousPoint": "Previous point",
-    "newGroup": "Create a new group"
-  },
-  "groupCards": {
-    "group": "Group: ",
-    "numberOfMembers": "Members: "
+    "cityPass": "City Pass"
   },
   "itineraryModal": {
     "creation": "Creation of your itinerary",
@@ -180,5 +102,5 @@
     "child": "Child",
     "interest": "Center of interest",
     "generate": "Generate the Itinerary"
-}
+  }
 }

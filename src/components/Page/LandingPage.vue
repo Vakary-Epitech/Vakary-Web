@@ -1,9 +1,7 @@
 <template>
   <div>
-    <topBar :connected="false" />
     <main>
-      <!-- <button @click="changeLanguage">EN</button> -->
-      <section class="d-none d-md-block">
+      <section name="cardTop" class="d-none d-md-block">
         <img class="background" src="@/assets/LandingPage/landingPageBackground.jpg">
         <div class="row">
           <div class="positionBackgroundCard">
@@ -13,56 +11,56 @@
               <div class="textPosition">
                 <label>{{ $t("landingPage.free") }}</label>
                 <label>{{ $t("landingPage.pref") }}</label>
-                <label>{{ $t("landingPage.mobile") }}</label>
+                <label class="p-1">{{ $t("landingPage.mobile") }}</label>
               </div>
-              <div class="inputStyle">
-                <button class="blueVakaryButton biggerButton" @click="openSignUpPage">{{ $t("landingPage.registration")
-                }}</button>
+              <div class="mt-2 mb-3">
+                <button class="invertedBlueVakaryButton biggerButton py-1" @click="openSignUpPage">{{
+                  $t("landingPage.registration") }}</button>
               </div>
             </div>
           </div>
         </div>
       </section>
-      <section class="d-md-none d-block mb-5">
+      <section name="cardTop" class="d-md-none d-block mb-5">
         <img class="background" src="@/assets/LandingPage/landingPageBackground.jpg">
         <div class="row text-center positionBackgroundCardSmall">
           <b class="textOnTopOfCard">{{ $t("vakarySlogan") }}</b>
-          <div class="backgroundCardPositionSmall">
+          <div class="py-2 backgroundCardPositionSmall">
             <div>
               <label>{{ $t("landingPage.free") }}</label>
               <label>{{ $t("landingPage.pref") }}</label>
               <label>{{ $t("landingPage.mobile") }}</label>
             </div>
-            <button class="col-4 offset-4 blueVakaryButton biggerButton mb-1" @click="openSignUpPage">{{
+            <button class="col-4 offset-4 invertedBlueVakaryButton py-1 mt-1 mb-1" @click="openSignUpPage">{{
               $t("landingPage.registration") }}</button>
           </div>
         </div>
       </section>
       <section name="images">
-        <div class="row">
+        <div class="row ajustedMargin">
           <div class="col-6 col-md-7">
             <div class="row">
-              <div class="d-none d-md-block col-md-6 col-xl-4 mb-3 backgroundLeisures">
+              <div class="d-none d-md-block ms-md-3 p-md-1 col-md-6 col-lg-4 mb-3 backgroundLeisures">
                 <span class="overlay"><b>{{ $t("landingPage.religious") }}</b></span>
                 <img src="@/assets/LandingPage/cathedrale.jpg">
               </div>
-              <div class="d-none d-md-block col-md-6 col-xl-4 mb-3 backgroundLeisures">
+              <div class="col-12 col-md-6 col-lg-4 p-md-1 ms-md-3 ms-3 mb-3 backgroundLeisures">
                 <span class="overlay"><b>{{ $t("landingPage.sport") }}</b></span>
                 <img src="@/assets/LandingPage/stade.jpg">
               </div>
-              <div class="col-12 col-md-6 col-xl-4 ms-3 ms-md-0 mb-3 backgroundLeisures">
+              <div class="col-12 col-md-6 col-lg-4 p-md-1 ms-md-3 ms-3 mb-3 backgroundLeisures">
                 <span class="overlay"><b>{{ $t("landingPage.museum") }}</b></span>
                 <img src="@/assets/LandingPage/musee.jpg">
               </div>
-              <div class="col-12 col-md-6 col-xl-4 ms-3 ms-md-0 mb-3 backgroundLeisures">
+              <div class="d-none d-md-block col-md-6 col-lg-4 ms-3 p-md-1 ms-md-3 mb-3 backgroundLeisures">
                 <span class="overlay"><b>{{ $t("landingPage.monuments") }}</b></span>
                 <img src="@/assets/LandingPage/stanislas.jpg">
               </div>
-              <div class="col-12 col-md-6 col-xl-4 ms-3 ms-md-0 mb-3 backgroundLeisures">
+              <div class="col-12 col-md-6 col-lg-4 ms-3 p-md-1 ms-md-3 mb-3 backgroundLeisures">
                 <span class="overlay"><b>{{ $t("landingPage.park") }}</b></span>
                 <img src="@/assets/LandingPage/parc.jpg">
               </div>
-              <div class="d-none d-md-block col-md-6 col-xl-4 mb-3 backgroundLeisures">
+              <div class="d-none d-md-block col-md-6 p-md-1 ms-md-3 col-lg-4 mb-3 backgroundLeisures">
                 <span class="overlay"><b>{{ $t("landingPage.resto") }}</b></span>
                 <img src="@/assets/LandingPage/raclette.jpg">
               </div>
@@ -74,32 +72,24 @@
 
           <div class="col-6 col-md-3 my-auto">
             <h1>{{ $t("landingPage.enjoy") }}</h1>
-            <h5>{{ $t("landingPage.enjoy2") }}</h5>
+            <h5>{{ $t("landingPage.enjoy3") }}</h5>
           </div>
         </div>
       </section>
-      <section>
+      <section name="blueSection">
         <hr class="separationBar">
         <div class="blueBoxWrapper">
           <div class="blueBackground d-md-flex d-none">
             <div class="centerGroupText">
               <b><span class="groupText">{{ $t("landingPage.block3Text1") }}</span></b>
-              <span class="groupText subtitleGroupText">{{ $t("landingPage.block3Text2") }}</span>
+              <span class="groupText subtitleGroupText mt-4">{{ $t("landingPage.block3Text2b") }}</span>
               <div class="alignLeft">
                 <button class="invertedBlueVakaryButton biggerButton" data-bs-toggle="modal"
                   data-bs-target="#modalMobile">{{ $t("landingPage.find") }}<span class="arrow"></span></button>
               </div>
-              <div class="marginBottomText">
-                <b><span class="groupText">{{ $t("landingPage.block3Text3") }}</span></b>
-                <span class="groupText subtitleGroupText">{{ $t("landingPage.block3Text4") }}</span>
-                <div class="alignLeft">
-                  <button class="invertedBlueVakaryButton biggerButton" @click="openSignUpPage">{{
-                    $t("landingPage.registration") }}<span class="arrow"></span></button>
-                </div>
-              </div>
             </div>
             <div class="alignPhoneImage">
-              <img class="telImage" src="@/assets/LandingPage/mapTelephone.png">
+              <img class="telImage" src="@/assets/LandingPage/pointmap.png">
             </div>
           </div>
           <div class="blueBackgroundSmall d-md-none d-flex">
@@ -124,21 +114,34 @@
           </div>
         </div>
       </section>
-      <div>
-        <presentationCards />
-      </div>
-      <section>
+      <section name="greenSection">
+        <hr class="separationBar">
+        <div class="greenBoxWrapper">
+          <div class="greenBackground groupText">
+            <h3>{{ $t("mobilePage.title") }}</h3>
+            <p>{{ $t("mobilePage.text1") }}</p>
+            <img class="w-100" src="@/assets/LandingPage/mapPresentation.png">
+          </div>
+        </div>
+      </section>
+      <section name="redSection">
+        <hr class="separationBar">
+        <div class="redBoxWrapper">
+          <div class="redBackground groupText">
+            Section présentation mobile
+          </div>
+        </div>
+      </section>
+      <section name="dog">
         <hr class="separationBar marginSeparationDogo">
         <div class="textOnDogo">
           <label class="textOnTopOfCard">{{ $t("landingPage.ready") }}</label>
-          <button class="invertedBlueVakaryButton biggerButton" @click="openSignUpPage">{{ $t("landingPage.registration")
-          }}<span class="arrow"></span></button>
+          <button class="invertedBlueVakaryButton dogoButton biggerButton" @click="openSignUpPage">{{
+            $t("landingPage.registration") }}<span class="arrow"></span></button>
         </div>
         <img src="@/assets/LandingPage/beautifulDogo.jpg" class="beautifulDogoImage">
       </section>
       <section name="modalMobile">
-        <!-- modale that displays hello world as title and download mobile app as texte-->
-
         <div class="modal fade" id="modalMobile" tabindex="-1" aria-labelledby="modalMobileLabel" aria-hidden="true">
           <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
@@ -150,7 +153,7 @@
                 <p>{{ $t("landingPage.modal.download") }}</p>
                 <div class="row">
                   <div class="col-6 my-3">
-                    <img src="@/assets/webPage/qrcode.jpeg" class="qrCodeImage">
+                    <img src="@/assets/LandingPage/qrcode.jpeg" class="qrCodeImage">
                   </div>
                   <div class="col-6 my-auto">
                     <p class="textOnTopOfQrCode">{{ $t("landingPage.modal.scan") }}</p>
@@ -172,15 +175,16 @@
         </div>
       </section>
     </main>
+    <div>
+      <presentationCards />
+    </div>
   </div>
 </template>
 
 <script>
-import topBar from '../UI/TopBar.vue';
 import presentationCards from '../UI/presentationCards.vue';
 export default {
   components: {
-    topBar,
     presentationCards,
   },
   methods: {
@@ -204,6 +208,29 @@ export default {
 @import "@/components/Style/Position.scss";
 @import "@/components/Style/Text.scss";
 @import "@/components/Style/Image.scss";
+
+@media (min-width: 768px) and (max-width: 991.98px) {
+  .col-md-6 {
+    width: 45%;
+  }
+}
+
+@media (max-width: 991.98px) {
+  .ajustedMargin {
+    margin-top: 250px;
+  }
+}
+
+@media (min-width: 992px) {
+  .col-lg-4 {
+    flex-basis: 30%;
+    max-width: 33.33%;
+  }
+
+  .ajustedMargin {
+    margin-top: 150px;
+  }
+}
 
 .qrCodeImage {
   width: 100%;
@@ -260,9 +287,6 @@ export default {
   margin-top: 25px;
 }
 
-.marginBottomText {
-  margin-top: 10vh;
-}
 
 .alignPhoneImage {
   display: flex;
@@ -286,10 +310,6 @@ export default {
   width: 20px;
 }
 
-.reajustWidth {
-  width: 100%;
-}
-
 .background {
   width: 100%;
   height: 100%;
@@ -306,7 +326,7 @@ export default {
   background-color: white;
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
   transition: 0.3s;
-  border-radius: 50px;
+  border-radius: 16px;
   border: 2px solid rgb(192, 150, 40);
   flex-wrap: wrap;
 }
@@ -319,7 +339,7 @@ export default {
   background-color: white;
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
   transition: 0.3s;
-  border-radius: 50px;
+  border-radius: 16px;
   border: 2px solid rgb(192, 150, 40);
   flex-wrap: wrap;
 }
@@ -330,12 +350,14 @@ export default {
 
 .positionBackgroundCard {
   width: 60vw;
+  position: absolute;
   transform: translate(30%, -80%);
 }
 
 .positionBackgroundCardSmall {
   width: 90vw;
   transform: translate(6%, -40%);
+  position: absolute;
 }
 
 .blueBoxWrapper {
@@ -343,6 +365,8 @@ export default {
   text-align: left;
   justify-content: center;
 }
+
+
 
 .blueBackground {
   display: flex;
@@ -352,8 +376,46 @@ export default {
   flex-wrap: wrap;
   padding: 90px 0 70px 90px;
   background: #FFE9D3;
-  /* #FCCFCF */
-  /* #C6D8AF */
+}
+
+.greenBoxWrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.greenBackground {
+  margin-top: 40px;
+  width: 80vw;
+  border-radius: 16px;
+  flex-wrap: wrap;
+  padding: 90px 0 70px 90px;
+  background-color: #C6D8AF;
+}
+
+.redBoxWrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.redBackground {
+  margin-top: 40px;
+  width: 80vw;
+  border-radius: 16px;
+  flex-wrap: wrap;
+  padding: 90px 0 70px 90px;
+  background-color: #FCCFCF;
+}
+
+.blueVakaryButton {
+  border-radius: 16px;
+}
+
+.dogoButton:hover {
+  background-color: #F5F5F5;
+}
+
+.invertedBlueVakaryButton {
+  border-radius: 16px;
 }
 
 .blueBackgroundSmall {
@@ -369,7 +431,7 @@ export default {
   background-color: #000642;
   color: white;
   border: 2px solid #000642 solid;
-  border-radius: 20px;
+  border-radius: 16px;
   transition: all .3s ease;
   align-items: center;
 }
@@ -383,14 +445,6 @@ export default {
   color: white;
 }
 
-.titleForImageType {
-  font-size: calc(12px + 1.1vw);
-}
-
-.textForImageType {
-  font-size: calc(12px + 0.9vw);
-}
-
 .logoPosition {
   display: flex;
   margin-top: 10px;
@@ -398,57 +452,17 @@ export default {
 }
 
 .textPosition {
-  display: flex;
-  text-align: center;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
   font-size: calc(12px + 0.7vw);
   margin-top: 10px;
   width: 60vw;
-}
-
-.inputStyle {
-  display: flex;
-  margin-top: 5px;
-  margin-bottom: 10px;
 }
 
 .biggerButton {
   font-size: calc(8px + 0.8vw);
 }
 
-.wrapperTypeBox {
-  width: 50%;
-  height: 60vh;
-}
-
-.wrapperTypeBox>div {
-  flex: 1 1 30%;
-  height: 20vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.textOnTopOfImage {
-  position: absolute;
-  z-index: 1;
-  font-size: calc(10px + 1.5vw);
-  color: white;
-  margin-left: 10px;
-}
-
-
-.backgroundImageTranslate {
-  z-index: -1;
-  height: 25vh;
-  filter: brightness(80%);
-  border-radius: 30px;
-}
 
 .dotsImage {
-
   height: 10vh;
   border: 2px solid rgb(192, 150, 40);
   border-radius: 200px;
