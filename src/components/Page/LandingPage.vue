@@ -211,24 +211,12 @@ export default {
 }
 
 .androidImage {
-  height: 10vh;
+  width: 100%;
 }
 
 .iosImage {
-  height: 10vh;
+  width: 100%;
 }
-
-/* mediaquery for mobile devices*/
-@media (max-width: 768px) {
-  .androidImage {
-    height: 5vh;
-  }
-
-  .iosImage {
-    height: 5vh;
-  }
-}
-
 
 .marginSeparationDogo {
   margin-top: 10vh;
