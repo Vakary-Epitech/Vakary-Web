@@ -35,30 +35,30 @@
         </div>
       </section>
       <section name="images">
-        <div class="row">
+        <div class="row ajustedMargin">
           <div class="col-6 col-md-7">
             <div class="row">
-              <div class="d-none d-md-block ms-md-3 p-md-1 col-md-6 col-xl-4 mb-3 backgroundLeisures">
+              <div class="d-none d-md-block ms-md-3 p-md-1 col-md-6 col-lg-4 mb-3 backgroundLeisures">
                 <span class="overlay"><b>{{ $t("landingPage.religious") }}</b></span>
                 <img src="@/assets/LandingPage/cathedrale.jpg">
               </div>
-              <div class="col-12 col-md-6 col-xl-4 p-md-1 ms-md-3 ms-3 mb-3 backgroundLeisures">
+              <div class="col-12 col-md-6 col-lg-4 p-md-1 ms-md-3 ms-3 mb-3 backgroundLeisures">
                 <span class="overlay"><b>{{ $t("landingPage.sport") }}</b></span>
                 <img src="@/assets/LandingPage/stade.jpg">
               </div>
-              <div class="col-12 col-md-6 col-xl-4 p-md-1 ms-md-3 ms-3 mb-3 backgroundLeisures">
+              <div class="col-12 col-md-6 col-lg-4 p-md-1 ms-md-3 ms-3 mb-3 backgroundLeisures">
                 <span class="overlay"><b>{{ $t("landingPage.museum") }}</b></span>
                 <img src="@/assets/LandingPage/musee.jpg">
               </div>
-              <div class="d-none d-md-block col-md-6 col-xl-4 ms-3 p-md-1 ms-md-3 mb-3 backgroundLeisures">
+              <div class="d-none d-md-block col-md-6 col-lg-4 ms-3 p-md-1 ms-md-3 mb-3 backgroundLeisures">
                 <span class="overlay"><b>{{ $t("landingPage.monuments") }}</b></span>
                 <img src="@/assets/LandingPage/stanislas.jpg">
               </div>
-              <div class="col-12 col-md-6 col-xl-4 ms-3 p-md-1 ms-md-3 mb-3 backgroundLeisures">
+              <div class="col-12 col-md-6 col-lg-4 ms-3 p-md-1 ms-md-3 mb-3 backgroundLeisures">
                 <span class="overlay"><b>{{ $t("landingPage.park") }}</b></span>
                 <img src="@/assets/LandingPage/parc.jpg">
               </div>
-              <div class="d-none d-md-block col-md-6 p-md-1 ms-md-3 col-xl-4 mb-3 backgroundLeisures">
+              <div class="d-none d-md-block col-md-6 p-md-1 ms-md-3 col-lg-4 mb-3 backgroundLeisures">
                 <span class="overlay"><b>{{ $t("landingPage.resto") }}</b></span>
                 <img src="@/assets/LandingPage/raclette.jpg">
               </div>
@@ -200,8 +200,26 @@ export default {
 @import "@/components/Style/Text.scss";
 @import "@/components/Style/Image.scss";
 
-.col-md-6 {
-  width: 45%;
+@media (min-width: 768px) and (max-width: 991.98px) {
+  .col-md-6 {
+    width: 45%;
+  }
+}
+
+@media (max-width: 991.98px) {
+  .ajustedMargin {
+    margin-top: 250px;
+  }
+}
+
+@media (min-width: 992px) {
+  .col-lg-4 {
+    flex-basis: 30%;
+    max-width: 33.33%;
+  }
+  .ajustedMargin {
+    margin-top: 150px;
+  }
 }
 
 .qrCodeImage {
@@ -321,12 +339,14 @@ export default {
 
 .positionBackgroundCard {
   width: 60vw;
+  position: absolute;
   transform: translate(30%, -80%);
 }
 
 .positionBackgroundCardSmall {
   width: 90vw;
   transform: translate(6%, -40%);
+  position: absolute;
 }
 
 .blueBoxWrapper {
@@ -334,6 +354,8 @@ export default {
   text-align: left;
   justify-content: center;
 }
+
+
 
 .blueBackground {
   display: flex;
