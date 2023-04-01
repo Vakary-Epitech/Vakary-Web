@@ -1,55 +1,56 @@
 <template>
-    <div class="wrapper" data-ride="carousel">
-        <div class="cards" style="background-color: rgb(39, 114, 147);" caption="First Slide">
-            <img src="https://static.wixstatic.com/media/881e1e_130b021664634d1fab8c738d683e72e9~mv2.jpg/v1/crop/x_0,y_57,w_600,h_420/fill/w_314,h_220,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/Group-Tours-Home.jpg"
-                class="imageSizeClass">
-            <div class="imageBackground">
-                <img src="https://cdn-icons-png.flaticon.com/512/268/268598.png"
-                    class="imageWrapper elementHorizontalyCentered" />
-            </div>
-            <div class="seperationBetweenTextAndImage">
-                <span class="titleText"><b>PARTEZ EN GROUPE</b></span>
-                <div>
-                    <span class="descriptionText">Vakary propose une fonctionnalité de groupe, vous pouvez partager
-                        vos
-                        vacances avec vos proches.</span>
+    <div class="row" data-ride="carousel">
+        <section name="groupCard" class="col-12 col-lg-4 centered">
+            <div class="cards" style="background-color: rgb(39, 114, 147);" caption="First Slide">
+                <img src="https://static.wixstatic.com/media/881e1e_130b021664634d1fab8c738d683e72e9~mv2.jpg/v1/crop/x_0,y_57,w_600,h_420/fill/w_314,h_220,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/Group-Tours-Home.jpg"
+                    class="imageSizeClass">
+                <div class="imageBackground">
+                    <img src="https://cdn-icons-png.flaticon.com/512/268/268598.png"
+                        class="imageWrapper elementHorizontalyCentered" />
                 </div>
-                <button class="buttonCards">Inscription</button>
-            </div>
-        </div>
-        <div class="cards" style="background-color: rgb(22, 97, 131); margin-left: 50px; margin-right: 50px"
-            caption="Second Slide">
-            <img src="https://static.wixstatic.com/media/881e1e_2b7da08cec6d484c8efc8b0cda681f84~mv2.jpg/v1/crop/x_0,y_57,w_600,h_420/fill/w_314,h_220,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/Custom-Tours-Photo-Homepage.jpg"
-                class="imageSizeClass">
-            <div class="imageBackground">
-                <img src="https://cdn-icons-png.flaticon.com/512/1250/1250689.png"
-                    class="imageWrapper elementHorizontalyCentered" />
-            </div>
-            <div class="seperationBetweenTextAndImage">
-                <span class="titleText"><b>CRÉER UN PROFIL</b></span>
-                <div>
-                    <span class="descriptionText">Partagez vos envies, ce que vous aimez visiter et décrivez vous
-                        pour
-                        partager votre amour du voyage</span>
+                <div class="seperationBetweenTextAndImage">
+                    <span class="titleText"><b>{{ $t("presentationCards.card1.title") }}</b></span>
+                    <div>
+                        <span class="descriptionText">{{ $t("presentationCards.card1.description") }}</span>
+                    </div>
+                    <button class="buttonCards">{{ $t("presentationCards.card1.registration")}}</button>
                 </div>
-                <button class="buttonCards">Inscription</button>
             </div>
-        </div>
-        <div class="cards" style="background-color: rgb(57, 134, 168);" caption="Third Slide">
-            <img src="https://static.wixstatic.com/media/881e1e_19ff2f3f99594672ac8c5a4a26bbfdce~mv2.jpg/v1/crop/x_0,y_18,w_600,h_420/fill/w_314,h_220,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/Vermont-Landscape.jpg"
-                class="imageSizeClass">
-            <div class="imageBackground">
-                <img src="https://static.thenounproject.com/png/885975-200.png" class="imageWrapper" />
-            </div>
-            <div class="seperationBetweenTextAndImage">
-                <span class="titleText"><b>VISITER LA FRANCE</b></span>
-                <div>
-                    <span class="descriptionText">Peut importe vos envies, nous
-                        pouvons-vous proposer un itinéraire n'importe où en France !</span>
+        </section>
+        <section name="profilCard" class="col-12 mt-5 mt-lg-0 col-lg-4 centered">
+            <div class="cards" style="background-color: rgb(22, 97, 131);"
+                caption="Second Slide">
+                <img src="https://static.wixstatic.com/media/881e1e_2b7da08cec6d484c8efc8b0cda681f84~mv2.jpg/v1/crop/x_0,y_57,w_600,h_420/fill/w_314,h_220,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/Custom-Tours-Photo-Homepage.jpg"
+                    class="imageSizeClass">
+                <div class="imageBackground">
+                    <img src="https://cdn-icons-png.flaticon.com/512/1250/1250689.png"
+                        class="imageWrapper elementHorizontalyCentered" />
                 </div>
-                <button class="buttonCards">Inscription</button>
+                <div class="seperationBetweenTextAndImage">
+                    <span class="titleText"><b>{{ $t("presentationCards.card2.title") }}</b></span>
+                    <div>
+                        <span class="descriptionText">{{ $t("presentationCards.card2.description") }}</span>
+                    </div>
+                    <button class="buttonCards">{{ $t("presentationCards.card2.registration") }}</button>
+                </div>
             </div>
-        </div>
+        </section>
+        <section name="discoverCard" class="col-12 col-lg-4 mt-5 mt-lg-0 centered">
+            <div class="cards" style="background-color: rgb(57, 134, 168);" caption="Third Slide">
+                <img src="https://static.wixstatic.com/media/881e1e_19ff2f3f99594672ac8c5a4a26bbfdce~mv2.jpg/v1/crop/x_0,y_18,w_600,h_420/fill/w_314,h_220,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/Vermont-Landscape.jpg"
+                    class="imageSizeClass">
+                <div class="imageBackground">
+                    <img src="https://static.thenounproject.com/png/885975-200.png" class="imageWrapper" />
+                </div>
+                <div class="seperationBetweenTextAndImage">
+                    <span class="titleText"><b>{{ $t("presentationCards.card3.title") }}</b></span>
+                    <div>
+                        <span class="descriptionText">{{ $t("presentationCards.card3.description") }}</span>
+                    </div>
+                    <button class="buttonCards">{{ $t("presentationCards.card3.registration") }}</button>
+                </div>
+            </div>
+        </section>
     </div>
 </template>
 
@@ -75,13 +76,6 @@ export default {
 <style scoped>
 @import "@/components/Style/Button.scss";
 
-.wrapper {
-    display: flex;
-    flex-direction: row;
-    margin-left: auto;
-    margin-right: auto;
-    width: 60%;
-}
 
 .buttonCards {
     margin-top: 5%;
@@ -106,13 +100,15 @@ export default {
 }
 
 .cards {
-    margin-left: auto;
-    margin-right: auto;
-    display: flex;
-    flex-direction: column;
     position: relative;
     max-width: 15vw;
     min-width: 288px;
+}
+
+.centered {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .imageWrapper {

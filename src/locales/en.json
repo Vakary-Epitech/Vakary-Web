@@ -29,6 +29,23 @@
     "ready": "Ready to join the adventure?",
     "find": "Find our apps"
   },
+  "presentationCards": {
+      "card1": {
+          "title": "TRAVEL WITH YOUR GROUP",
+          "description": "With Vakary's group feature, share your travel experience with loved ones for unforgettable memories.",          "registration": "Sign up now"
+      },
+      "card2": {
+          "title": "CREATE A PROFILE",
+          "description": "Share your desires, interests and introduce yourself to share your love of travel with the Vakary community.",
+          "registration": "Sign up now"
+      },
+      "card3": {
+          "title": "DISCOVER FRANCE",
+          "description": "No matter your preferences, Vakary offers a tailored itinerary to discover the most beautiful places in France!",
+          "registration": "Sign up now"
+      }
+  
+  },
   "loginPage": {
     "signin": "Sign in to Vakary",
     "email": "Email address or username:",
