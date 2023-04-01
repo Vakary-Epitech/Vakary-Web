@@ -77,10 +77,10 @@
           </div>
         </div>
       </section>
-      <section name="blueSection">
+      <section name="pinkSection">
         <hr class="separationBar mt-5">
-        <div class="blueBoxWrapper">
-          <div class="blueBackground d-md-flex d-none">
+        <div class="pinkBoxWrapper">
+          <div class="pinkBackground d-md-flex d-none">
             <div class="centerGroupText">
               <b><span class="groupText">{{ $t("landingPage.block3Text1") }}</span></b>
               <span class="groupText subtitleGroupText mt-4">{{ $t("landingPage.block3Text2b") }}</span>
@@ -93,7 +93,7 @@
               <img class="telImage" src="@/assets/LandingPage/pointmap.png">
             </div>
           </div>
-          <div class="blueBackgroundSmall d-md-none d-flex">
+          <div class="pinkBackgroundSmall d-md-none d-flex">
             <div class="row">
               <div class="col-12 mt-3">
                 <p class="text-center"><b>{{ $t("landingPage.block3Text1") }}</b></p>
@@ -356,7 +356,7 @@ export default {
   position: absolute;
 }
 
-.blueBoxWrapper {
+.pinkBoxWrapper {
   display: flex;
   text-align: left;
   justify-content: center;
@@ -364,7 +364,7 @@ export default {
 
 
 
-.blueBackground {
+.pinkBackground {
   display: flex;
   margin-top: 40px;
   width: 80vw;
@@ -383,7 +383,7 @@ export default {
   border-radius: 16px;
 }
 
-.blueBackgroundSmall {
+.pinkBackgroundSmall {
   margin-top: 20px;
   width: 80vw;
   border-radius: 16px;
@@ -401,7 +401,7 @@ export default {
   align-items: center;
 }
 
-.blueBackground>div {
+.pinkBackground>div {
   flex: 50%;
 }
 

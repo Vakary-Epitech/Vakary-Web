@@ -13,7 +13,7 @@
                     <div>
                         <span class="descriptionText">{{ $t("presentationCards.card1.description") }}</span>
                     </div>
-                    <button class="buttonCards">{{ $t("presentationCards.card1.registration")}}</button>
+                    <button @click="openSignUpPage()" class="buttonCards">{{ $t("presentationCards.card1.registration")}}</button>
                 </div>
             </div>
         </section>
@@ -31,7 +31,7 @@
                     <div>
                         <span class="descriptionText">{{ $t("presentationCards.card2.description") }}</span>
                     </div>
-                    <button class="buttonCards">{{ $t("presentationCards.card2.registration") }}</button>
+                    <button @click="openSignUpPage()" class="buttonCards">{{ $t("presentationCards.card2.registration") }}</button>
                 </div>
             </div>
         </section>
@@ -47,7 +47,7 @@
                     <div>
                         <span class="descriptionText">{{ $t("presentationCards.card3.description") }}</span>
                     </div>
-                    <button class="buttonCards">{{ $t("presentationCards.card3.registration") }}</button>
+                    <button @click="openSignUpPage()" class="buttonCards">{{ $t("presentationCards.card3.registration") }}</button>
                 </div>
             </div>
         </section>
@@ -68,7 +68,10 @@ export default {
         },
         onSlideEnd() {
             this.$refs.myCarousel.next()
-        }
+        },
+        openSignUpPage() {
+            this.$router.push("/loginPage");
+        },
     }
 }
 </script>
