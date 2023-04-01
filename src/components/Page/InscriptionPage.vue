@@ -31,7 +31,7 @@ export default {
     }
   },
   created() {
-    this.typeOfInscription = this.$route.params.type;
+    this.typeOfInscription = 0;
   },
   methods: {
     changeLanguage() {
@@ -46,9 +46,8 @@ export default {
         this.$store.dispatch("checkIfAccountCanBeCreated", this.password).then(() => {
           this.$store.state.userStore.userIsLoggedIn = true;
           this.$router.push("/mapPage");
-        }).catch(() => {
-          this.$store.state.userStore.userIsLoggedIn = true;
-          this.$router.push("/mapPage");
+        }).catch((error) => {
+          console.log(error);
           this.userDontExist = true;
         })
       } else {

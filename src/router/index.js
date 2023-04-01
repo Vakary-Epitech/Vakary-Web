@@ -4,21 +4,14 @@ import MapPage from "@/components/Page/MapPage.vue";
 import InscriptionPage from "@/components/Page/InscriptionPage.vue"
 import ForgetPassword from "@/components/Page/ForgetPassword.vue"
 import ProfilePage from "@/components/Page/ProfilePage.vue";
-import ItineraryPage from "@/components/Page/ItineraryPage.vue"
 import LandingPage from "@/components/Page/LandingPage.vue"
 import store from '@/store/store';
-import GroupPage from "@/components/Page/GroupPage.vue"
 
 const routes = [
     {
         path: '/',
         name: 'LandingPage',
         component: LandingPage,
-    },
-    {
-        path: '/groupPage',
-        name: 'GroupPage',
-        component: GroupPage,
     },
     {
         path: '/inscriptionPage',
@@ -34,11 +27,6 @@ const routes = [
         path: '/profilePage',
         name: 'ProfilePage',
         component: ProfilePage,
-    },
-    {
-        path: '/itineraryPage',
-        name: 'ItineraryPage',
-        component: ItineraryPage,
     },
     {
         path: '/loginPage',

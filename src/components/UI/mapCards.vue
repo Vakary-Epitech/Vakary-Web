@@ -3,7 +3,7 @@
         <div>
             <span class="evenSmallerText">{{ this.id }}. </span>
             <span class="textBasicMargin evenSmallerText">{{ this.city }}</span>
-            <span class="textBasicMargin alignRight evenSmallerText">Groupe: {{ this.groupe }}</span>
+            <span class="textBasicMargin alignRight evenSmallerText">{{ $t("mapPage.group") }}: {{ this.groupe }}</span>
         </div>
         <div>
             <span class="evenSmallerText">{{ this.time }}</span>
@@ -15,7 +15,6 @@
 <script>
 export default {
     props: ["city", "time", "groupe", "id", "date"],
-
 }
 </script>
 

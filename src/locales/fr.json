@@ -41,7 +41,8 @@
         "lastPlaceVisited": "Dernier lieu visité",
         "lastEventAttended": "Dernier événement visité",
         "totalKm": "Km total",
-        "cityPass": "Pass de ville"
+        "cityPass": "Pass de ville",
+        "disconnect": "Déconnexion"
     },
     "loginPage": {
         "signin": "Se connecter à Vakary",
@@ -74,5 +75,35 @@
         "new": "Nouveau mot de passe:",
         "confirm": "Confirmer le mot de passe:",
         "accept": "Accepter"
+    },
+    "groupCards": {
+        "group": "Groupe: ",
+        "numberOfMembers": "Membres: "
+    },
+    "mapPage": {
+        "itinerary": "Itinéraires",
+        "newItinerary": "Créer un nouvel itinéraire",
+        "group": "Groupe",
+        "from": "De ",
+        "to": " a ",
+        "nextPoint": "Prochain point",
+        "previousPoint": "Point précédent",
+        "newGroup": "Créer un nouveau groupe"
+    },
+    "itineraryModal": {
+        "creation": "Création de votre itinéraire",
+        "startingCity": "Ville de départ",
+        "city": "Ville",
+        "howLong": "Pendant combien de temps ?",
+        "lessThanOneHour": "Moins d'une heure",
+        "fromOneToFour": "1 à 4 heures",
+        "moreThanFourHours": "Plus de 4 heures",
+        "startingDate": "Quelle est la date de départ de votre itinéraire ?",
+        "budget": "Budget total",
+        "howManyPeople": "Combien de personnes vont vous accompagner ?",
+        "adult": "Adulte",
+        "child": "Enfant",
+        "interest": "Centres D'intérêts",
+        "generate": "Générer l'itinéraire"
     }
 }

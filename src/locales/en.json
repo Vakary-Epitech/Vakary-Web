@@ -8,7 +8,7 @@
       "obtain": "Get Vakary",
       "close": "Close",
       "download": "Download our application directly to try it out.",
-      "scan": "Scan the QR code with your mobile device to download the application."  
+      "scan": "Scan the QR code with your mobile device to download the application."
     },
     "free": "We organize your dream vacations for you, for free",
     "pref": "Tell us your preferences, the city you wish to visit, and we will propose a customized itinerary for you",
@@ -53,6 +53,20 @@
     "confirm": "Confirm",
     "different": "The passwords are different"
   },
+  "groupCards": {
+    "group": "Group: ",
+    "numberOfMembers": "Members: "
+  },
+  "mapPage": {
+    "itinerary": "Itinerary",
+    "newItinerary": "Create a new itinerary",
+    "group": "Group",
+    "from": "from ",
+    "to": " to ",
+    "nextPoint": "Next point",
+    "previousPoint": "Previous point",
+    "newGroup": "Create a new group"
+  },
   "forgetPage": {
     "title": "Reset your password",
     "link": "Enter your Email and we will send you a link to reset your password:",
@@ -72,5 +86,21 @@
     "lastEventAttended": "Last Event Attended",
     "totalKm": "Total Km Traveled",
     "cityPass": "City Pass"
+  },
+  "itineraryModal": {
+    "creation": "Creation of your itinerary",
+    "startingCity": "Starting city",
+    "city": "City",
+    "howLong": "For how long ?",
+    "lessThanOneHour": "Less than one hour",
+    "fromOneToFour": "1 to 4 hours",
+    "moreThanFourHours": "More than 4 hours",
+    "startingDate": "What's the starting date of your itinerary ?",
+    "budget": "Total budget",
+    "howManyPeople": "How many people will come with you ?",
+    "adult": "Adult",
+    "child": "Child",
+    "interest": "Center of interest",
+    "generate": "Generate the Itinerary"
   }
 }

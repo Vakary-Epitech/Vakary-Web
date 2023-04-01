@@ -32,6 +32,9 @@ export default {
       email: '',
       serverHasSendMail: false,
       token: '',
+      error: '',
+      newPassword: '',
+      confirmNewPassword: '',
     }
   },
   methods: {
@@ -43,19 +46,19 @@ export default {
     },
     requestPasswordReset() {
       this.$store.dispatch("requestPasswordReset", this.email).then((result) => {
+        this.serverHasSendMail = true;
         console.log(result);
-        this.serverHasSendMail = true;
       }).catch((error) => {
-        console.log(error);
         this.serverHasSendMail = true;
+        this.error = error;
       });
     },
     sendNewPassword() {
       this.$store.dispatch("sendNewPassword", { password: "test", authorization: this.token }).then((result) => {
-        console.log(result);
         this.serverHasSendMail = true;
+        console.log(result);
       }).catch((error) => {
-        console.log(error);
+        this.error = error;
       });
     },
   },
@@ -88,7 +91,7 @@ export default {
 .logoAsBackground {
   width: 90vw;
   height: 90vh;
-  opacity: 0.2;
+  opacity: 20%;
   position: absolute;
 }
 

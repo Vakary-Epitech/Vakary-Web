@@ -17,7 +17,7 @@
     background-color: var(--background-color-secondary);
     color: var(--text-primary-color);
     transition: all .3s ease;
-    border: 2px solid #000642 solid;
+    border: 2px solid #000642;
     border-radius: 20px;
     font-size: calc(12px + 0.4vw);
 }
@@ -76,4 +76,14 @@
 .invertedBlueVakaryButton:hover > .arrow::before {
     opacity: 1;
     width: 18px;
+}
+
+.flag-button {
+    max-width: 32px;
+    margin-right: 32px;
+    cursor: pointer;
+}
+
+.flag-button:hover {
+    opacity: 0.5
 }

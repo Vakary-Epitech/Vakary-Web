@@ -1,5 +1,9 @@
 import { shallowMount, mount } from '@vue/test-utils'
 import ForgetPassword from '@/components/Page/ForgetPassword.vue'
+import Vuex from 'vuex'
+import store from '../../src/store/store.js'
+import i18 from '../../src/i18n.js'
+import router from '../../src/router/index.js'
 
 describe("ForgetPassword", () => {
   it("renders successfully", () => {
@@ -7,20 +11,30 @@ describe("ForgetPassword", () => {
       global: {
         mocks: {
           $t: (msg) => msg
-        }
+        },
+        stubs: {
+            'font-awesome-icon': {
+                template: '<i />',
+            },
+        },
       }
     })
   }),
-  test('getComponent ForgetPassword', () => {
-    const wrapper = shallowMount(ForgetPassword, {
-      global: {
-        mocks: {
-          $t: (msg) => msg
+    test('getComponent ForgetPassword', () => {
+      const wrapper = shallowMount(ForgetPassword, {
+        global: {
+          mocks: {
+            $t: (msg) => msg
+          },
+          stubs: {
+              'font-awesome-icon': {
+                  template: '<i />',
+              },
+          },
         }
-      }
+      })
+      wrapper.getComponent(ForgetPassword)
     })
-    wrapper.getComponent(ForgetPassword)
-  })
 })
 
 
@@ -29,9 +43,67 @@ test('isVisible', () => {
     global: {
       mocks: {
         $t: (msg) => msg
-      }
+      },
+      stubs: {
+          'font-awesome-icon': {
+              template: '<i />',
+          },
+      },
     }
   })
 
   expect(wrapper.isVisible()).toBe(true)
+})
+
+test('mailReceived', async () => {
+  const wrapper = shallowMount(ForgetPassword, {
+    global: {
+      mocks: {
+        $store: store,
+        $t: (msg) => msg,
+        $router: router,
+      },
+      stubs: {
+          'font-awesome-icon': {
+              template: '<i />',
+          },
+      },
+    },
+    data() {
+      return {
+        email: "test@test.com",
+        serverHasSendMail: true,
+        token: "testToken",
+      }
+    }
+  })
+  await wrapper.vm.requestPasswordReset()
+  await wrapper.vm.sendNewPassword()
+  await wrapper.vm.openLoginPage()
+})
+
+test('waitingForMail', async () => {
+  const wrapper = shallowMount(ForgetPassword, {
+    global: {
+      mocks: {
+        $store: store,
+        $t: (msg) => msg,
+        $router: router,
+      },
+      stubs: {
+          'font-awesome-icon': {
+              template: '<i />',
+          },
+      },
+    },
+    data() {
+      return {
+        email: "test@test.com",
+        serverHasSendMail: false,
+        token: "testToken",
+      }
+    }
+  })
+  await wrapper.vm.requestPasswordReset();
+  await wrapper.vm.sendNewPassword()
 })

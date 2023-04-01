@@ -35,7 +35,7 @@ export default {
   },
   methods: {
     openRegistrationSelection() {
-      this.$router.push("/InscriptionPage");
+      this.$router.push("/inscriptionPage");
     },
     openForgetPassword() {
       this.$router.push("/forgetPassword")
@@ -48,8 +48,6 @@ export default {
         this.$store.state.userStore.userIsLoggedIn = true;
         this.$router.push("/mapPage");
       }).catch(() => {
-        this.$store.state.userStore.userIsLoggedIn = true;
-        this.$router.push("/mapPage");
         this.userDontExist = true;
       })
     },
@@ -58,7 +56,7 @@ export default {
     },
     checkIfCityIsAuthorizeToConnect() {
       this.$store.dispatch("checkIsCityIsAuthorizedToConnect", this.password).then(() => {
-        this.$router.push("/vakaryHome");
+        this.$router.push("/mapPage");
       }).catch(() => {
         this.userDontExist = true;
       })
