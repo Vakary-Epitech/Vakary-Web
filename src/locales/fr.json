@@ -31,6 +31,23 @@
         "ready": "Prêt à rejoindre l'aventure ?",
         "find": "Trouver nos apps"
     },
+    "presentationCards" : {
+            "card1": {
+                "title": "PARTEZ EN GROUPE",
+                "description": "Vakary vous offre la possibilité de partir en vacances avec vos proches grâce à sa fonctionnalité de groupe.",
+                "registration": "Inscription"
+            },
+            "card2": {
+                "title": "CRÉEZ UN PROFIL",
+                "description": "Partagez vos envies, ce que vous aimez visiter et décrivez-vous pour partager votre amour du voyage.",
+                "registration": "Inscription"
+            },
+            "card3": {
+                "title": "DÉCOUVREZ LA FRANCE",
+                "description": "Peu importe vos envies, Vakary vous propose un itinéraire sur mesure pour découvrir les plus beaux endroits de France !",
+                "registration": "Inscription"
+            }        
+    },
     "profilePage": {
         "edit": "Editer le profil",
         "info": "Description",

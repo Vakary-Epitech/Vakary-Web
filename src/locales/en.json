@@ -22,12 +22,31 @@
     "monuments": "Monuments",
     "enjoy": "Make the most out of your vacations!",
     "enjoy2": "Whether you prefer a walk, monuments, restaurants, or anything else, we have what you need",
+    "enjoy3": "Whether you are more of a fan of strolls, visiting monuments, tasting local dishes or other activities, we have the personalized itinerary that will suit you best.",
     "block3Text1": "Vakary goes on an adventure with you!",
     "block3Text2": "Vakary travels everywhere with you, thanks to our mobile app, you can follow your itinerary in real-time and geolocate. You can also find your friends with whom your itinerary is shared",
+    "block3Text2b": "Vakary is a powerful travel tool that allows you to create personalized itineraries based on your interests and schedule. With our mobile app, you can follow your itinerary in real-time, discover exciting tourist sites, and share your travels with your friends and family.",
     "block3Text3": "Share your vacations!",
     "block3Text4": "With our group feature, you can share your itineraries, track the location of your group members, and chat with them",
     "ready": "Ready to join the adventure?",
     "find": "Find our apps"
+  },
+  "presentationCards": {
+      "card1": {
+          "title": "TRAVEL WITH YOUR GROUP",
+          "description": "With Vakary's group feature, share your travel experience with loved ones for unforgettable memories.",          "registration": "Sign up now"
+      },
+      "card2": {
+          "title": "CREATE A PROFILE",
+          "description": "Share your desires, interests and introduce yourself to share your love of travel with the Vakary community.",
+          "registration": "Sign up now"
+      },
+      "card3": {
+          "title": "DISCOVER FRANCE",
+          "description": "No matter your preferences, Vakary offers a tailored itinerary to discover the most beautiful places in France!",
+          "registration": "Sign up now"
+      }
+  
   },
   "loginPage": {
     "signin": "Sign in to Vakary",

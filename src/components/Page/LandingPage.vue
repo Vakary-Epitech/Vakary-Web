@@ -1,6 +1,7 @@
 <template>
   <div>
     <main>
+      <img @click="changeLanguage()" class="buttonLanguage" :src="geti18n() == 'en' ? require('@/assets/badges/flags/french-flag.svg') : require('@/assets/badges/flags/gb-flag.svg')">
       <section name="cardTop" class="d-none d-md-block">
         <img class="background" src="@/assets/LandingPage/landingPageBackground.jpg">
         <div class="row">
@@ -76,10 +77,10 @@
           </div>
         </div>
       </section>
-      <section name="blueSection">
-        <hr class="separationBar">
-        <div class="blueBoxWrapper">
-          <div class="blueBackground d-md-flex d-none">
+      <section name="pinkSection">
+        <hr class="separationBar mt-5">
+        <div class="pinkBoxWrapper">
+          <div class="pinkBackground d-md-flex d-none">
             <div class="centerGroupText">
               <b><span class="groupText">{{ $t("landingPage.block3Text1") }}</span></b>
               <span class="groupText subtitleGroupText mt-4">{{ $t("landingPage.block3Text2b") }}</span>
@@ -92,7 +93,7 @@
               <img class="telImage" src="@/assets/LandingPage/pointmap.png">
             </div>
           </div>
-          <div class="blueBackgroundSmall d-md-none d-flex">
+          <div class="pinkBackgroundSmall d-md-none d-flex">
             <div class="row">
               <div class="col-12 mt-3">
                 <p class="text-center"><b>{{ $t("landingPage.block3Text1") }}</b></p>
@@ -114,22 +115,10 @@
           </div>
         </div>
       </section>
-      <section name="greenSection">
-        <hr class="separationBar">
-        <div class="greenBoxWrapper">
-          <div class="greenBackground groupText">
-            <h3>{{ $t("mobilePage.title") }}</h3>
-            <p>{{ $t("mobilePage.text1") }}</p>
-            <img class="w-100" src="@/assets/LandingPage/mapPresentation.png">
-          </div>
-        </div>
-      </section>
-      <section name="redSection">
-        <hr class="separationBar">
-        <div class="redBoxWrapper">
-          <div class="redBackground groupText">
-            Section présentation mobile
-          </div>
+      <section name="presentationCards">
+        <hr class="separationBar mt-5">
+        <div class="mt-5">
+          <presentationCards />
         </div>
       </section>
       <section name="dog">
@@ -175,9 +164,6 @@
         </div>
       </section>
     </main>
-    <div>
-      <presentationCards />
-    </div>
   </div>
 </template>
 
@@ -213,6 +199,16 @@ export default {
   .col-md-6 {
     width: 45%;
   }
+}
+
+.buttonLanguage {
+  cursor: pointer;
+  border-radius: 6px;
+  width: 30px;
+  right: 20px;
+  position: fixed; 
+  top: 20px; 
+  z-index: 2;  
 }
 
 @media (max-width: 991.98px) {
@@ -360,7 +356,7 @@ export default {
   position: absolute;
 }
 
-.blueBoxWrapper {
+.pinkBoxWrapper {
   display: flex;
   text-align: left;
   justify-content: center;
@@ -368,7 +364,7 @@ export default {
 
 
 
-.blueBackground {
+.pinkBackground {
   display: flex;
   margin-top: 40px;
   width: 80vw;
@@ -378,37 +374,6 @@ export default {
   background: #FFE9D3;
 }
 
-.greenBoxWrapper {
-  display: flex;
-  justify-content: center;
-}
-
-.greenBackground {
-  margin-top: 40px;
-  width: 80vw;
-  border-radius: 16px;
-  flex-wrap: wrap;
-  padding: 90px 0 70px 90px;
-  background-color: #C6D8AF;
-}
-
-.redBoxWrapper {
-  display: flex;
-  justify-content: center;
-}
-
-.redBackground {
-  margin-top: 40px;
-  width: 80vw;
-  border-radius: 16px;
-  flex-wrap: wrap;
-  padding: 90px 0 70px 90px;
-  background-color: #FCCFCF;
-}
-
-.blueVakaryButton {
-  border-radius: 16px;
-}
 
 .dogoButton:hover {
   background-color: #F5F5F5;
@@ -418,7 +383,7 @@ export default {
   border-radius: 16px;
 }
 
-.blueBackgroundSmall {
+.pinkBackgroundSmall {
   margin-top: 20px;
   width: 80vw;
   border-radius: 16px;
@@ -436,7 +401,7 @@ export default {
   align-items: center;
 }
 
-.blueBackground>div {
+.pinkBackground>div {
   flex: 50%;
 }
 
