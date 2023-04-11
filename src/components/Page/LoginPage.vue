@@ -44,12 +44,12 @@ export default {
       this.$router.push("/redirectPro");
     },
     checkIfUserIsAuthorizeToConnect() {
-      this.$store.dispatch("checkIfUserIsAuthorizedToConnect", this.password).then(() => {
-        this.$store.state.userStore.userIsLoggedIn = true;
-        this.$router.push("/mapPage");
-      }).catch(() => {
-        this.userDontExist = true;
-      })
+      this.$store.state.userStore.userIsLoggedIn = true;
+      this.$router.push("/mapPage");
+      // this.$store.dispatch("checkIfUserIsAuthorizedToConnect", this.password).then(() => {
+      // }).catch(() => {
+      //   this.userDontExist = true;
+      // })
     },
     changeLanguage() {
       this.$i18n.locale = this.$i18n.locale === 'fr' ? 'en' : 'fr';
@@ -66,9 +66,6 @@ export default {
 </script>
 
 <style scoped>
-@import "@/components/Style/Button.scss";
-@import "@/components/Style/Position.scss";
-@import "@/components/Style/Text.scss";
 
 .centerEverything {
   display: flex;

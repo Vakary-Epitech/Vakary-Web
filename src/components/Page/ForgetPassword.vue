@@ -66,10 +66,6 @@ export default {
 </script>
   
 <style scoped>
-@import "@/components/Style/Main.scss";
-@import "@/components/Style/Position.scss";
-@import "@/components/Style/Text.scss";
-@import "@/components/Style/Image.scss";
 
 .login {
   height: 100vh;

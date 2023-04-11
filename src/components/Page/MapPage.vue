@@ -102,9 +102,9 @@
 
             <div v-if="this.groupDropdown && !this.groupHasBeenClicked" style="background-color: white;"
               class="dropdown-content">
-              <div style="display: flex; flex-direction: row;">
+              <div style="display: flex; flex-direction: row;" class="cursorOnButton" @click="callGroupCreation()">
                 <div class="newItineraryButton evenSmallerText cursorOnButton"
-                  style="margin-left: 5px; display: flex; align-items: center;" @click="callGroupCreation()"><span
+                  style="margin-left: 5px; display: flex; align-items: center;" ><span
                     class="textBasicMargin evenSmallerText">{{ $t("mapPage.newGroup") }}</span></div>
                 <div style="width: 10vw;">
                   <img style="max-width: 3vw; max-height: 6vh; margin-left: 4px; margin-right: 4px; float: right"
@@ -114,7 +114,7 @@
               <div class="topBorder">&nbsp;</div>
               <div v-for="(group, index) in this.$store.state.userStore.groups" :key="group.id">
                 <Transition name="slide-fade">
-                  <mapGroupCardsVue :groupName="group.name" :numberOfMember="group.members.length" :index="index"
+                  <mapGroupCardsVue style="cursor:pointer" :groupName="group.name" :numberOfMember="group.members.length" :index="index"
                     @click="groupCardsHasBeenClicked(index)" />
                 </Transition>
                 <div class="topBorder">&nbsp;</div>
@@ -124,7 +124,7 @@
         </div>
 
         <div v-else-if="showGroupCreationModal">
-          <CreateGroup @send-data=update :key="keyCreateGroup" @goBackToGroupDropdown="showGroupCreationModal = false" />
+          <CreateGroup @goBackToGroupDropdown="showGroupCreationModal = false" />
         </div>
 
         <div v-else-if="groupHasBeenClicked">
@@ -473,9 +473,7 @@ export default {
 }
 </script>
 
-<style scoped lang="scss">
-@import "@/components/Style/Main.scss";
-@import "@/components/Style/Button.scss";
+<style scoped>
 
 .boxPosition {
   position: absolute;

@@ -10,6 +10,15 @@
             "download": "Téléchargez directement notre application pour l'essayer.",
             "scan": "Scannez le QR code avec votre appareil mobile pour télécharger l'application."
         },
+        "learnMore": "Découvrez l'histoire passionnante de notre projet et rencontrez l'équipe de talents qui le rend possible. Cliquez ici pour en savoir plus sur notre parcours et nos ambitions.",
+        "learnMoreButton": "En savoir plus",
+        "footer": {
+            "follow-us": "Suivez-nous pour rester au courant de nos dernières nouveautés.",
+            "twitter": "Suivez-nous sur Twitter",
+            "instagram": "Suivez-nous sur Instagram",
+            "contact-us": "Contactez-nous par email",
+            "email-description": "Pour toute question, n'hésitez pas à nous contacter par email."
+        },
         "free": "Êtes-vous prêt à voyager et à découvrir les merveilles du monde ?",
         "pref": "Avec Vakary, vous pouvez organiser vos vacances de rêve gratuitement et facilement.",
         "mobile": "Nous proposons des itinéraires personnalisés en fonction de vos préférences et de la région que vous souhaitez visiter.",

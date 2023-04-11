@@ -16,6 +16,10 @@
         <label v-if="this.passwordAreNotTheSame" class="wrongInputText">{{ $t("inscriptionPage.different") }}</label>
       </div>
       <button @click="(confirmInscription)" class="basicVakaryButton elementBasicMargin">{{ $t("inscriptionPage.confirm") }}</button>
+      <!-- div already got an account ? Login -->
+      <div class="col-12">
+        <p>Déjà un compte ? <button class="blueVakaryButton" @click="openLoginPage">Se connecter</button></p>
+      </div>
     </div>
   </div>
 </template>
@@ -41,6 +45,9 @@ export default {
         this.$i18n.locale = "fr";
       }
     },
+    openLoginPage () {
+      this.$router.push("/loginPage");
+    },
     confirmInscription() {
       if (this.password == this.passwordConfirm) {
         this.$store.dispatch("checkIfAccountCanBeCreated", this.password).then(() => {
@@ -59,9 +66,6 @@ export default {
 </script>
 
 <style scoped>
-@import "@/components/Style/Button.scss";
-@import "@/components/Style/Position.scss";
-
 .selectionFrame {
   display: flex;
   justify-content: center;

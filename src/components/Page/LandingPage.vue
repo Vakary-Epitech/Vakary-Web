@@ -70,7 +70,6 @@
           <div class="d-none d-md-block col-md-2 my-auto text-center">
             <img class="dotsImage" src="@/assets/LandingPage/dots.jpg">
           </div>
-
           <div class="col-6 col-md-3 my-auto">
             <h1>{{ $t("landingPage.enjoy") }}</h1>
             <h5>{{ $t("landingPage.enjoy3") }}</h5>
@@ -85,9 +84,9 @@
               <b><span class="groupText">{{ $t("landingPage.block3Text1") }}</span></b>
               <span class="groupText subtitleGroupText mt-4">{{ $t("landingPage.block3Text2b") }}</span>
               <div class="alignLeft">
-                <button class="invertedBlueVakaryButton biggerButton" data-bs-toggle="modal"
-                  data-bs-target="#modalMobile">{{ $t("landingPage.find") }}<span class="arrow"></span></button>
-              </div>
+                <button class="invertedBlueVakaryButton biggerButton availableSoon"  :class="`availableSoon${geti18n()}`" data-bs-toggle="modal"
+                  data-bs-target="#modalMobile"><!-- {{ $t("landingPage.find") }}--><span class="arrow"></span></button>
+                </div>
             </div>
             <div class="alignPhoneImage">
               <img class="telImage" src="@/assets/LandingPage/pointmap.png">
@@ -96,19 +95,11 @@
           <div class="pinkBackgroundSmall d-md-none d-flex">
             <div class="row">
               <div class="col-12 mt-3">
-                <p class="text-center"><b>{{ $t("landingPage.block3Text1") }}</b></p>
-                <p class="ms-2">{{ $t("landingPage.block3Text2") }}</p>
+                <b><span class="text-center ms-3">{{ $t("landingPage.block3Text1") }}</span></b>
+                <p class="text-center mt-3">{{ $t("landingPage.block3Text2b") }}</p>
                 <div class="text-center">
-                  <button class="invertedBlueVakaryButtonSmall" data-bs-toggle="modal" data-bs-target="#modalMobile">{{
-                    $t("landingPage.find") }}<span class="arrow"></span></button>
-                </div>
-              </div>
-              <div class="col-12 mt-5">
-                <p class="text-center"><b>{{ $t("landingPage.block3Text3") }}</b></p>
-                <p class="ms-2">{{ $t("landingPage.block3Text4") }}</p>
-                <div class="text-center mb-2">
-                  <button class="invertedBlueVakaryButtonSmall" @click="openSignUpPage">{{ $t("landingPage.registration")
-                  }}<span class="arrow"></span></button>
+                  <button class="invertedBlueVakaryButtonSmall mb-3 availableSoon"  :class="`availableSoon${geti18n()}`" data-bs-toggle="modal" data-bs-target="#modalMobile">
+                    <!-- {{ $t("landingPage.find") }} --><span class="arrow"></span></button>
                 </div>
               </div>
             </div>
@@ -121,7 +112,7 @@
           <presentationCards />
         </div>
       </section>
-      <section name="dog">
+      <!-- <section name="dog">
         <hr class="separationBar marginSeparationDogo">
         <div class="textOnDogo">
           <label class="textOnTopOfCard">{{ $t("landingPage.ready") }}</label>
@@ -129,6 +120,39 @@
             $t("landingPage.registration") }}<span class="arrow"></span></button>
         </div>
         <img src="@/assets/LandingPage/beautifulDogo.jpg" class="beautifulDogoImage">
+      </section> -->
+      <section name="team">
+        <hr class="separationBar marginSeparationDogo">
+        <div class="col-12 text-center">
+          <h4 class="mx-5">{{ $t("landingPage.learnMore") }}</h4>
+          <button @click="openLearnMorePage()" class="basicVakaryButton availableSoon mt-3" :class="`availableSoon${geti18n()}`"> <!--{{ $t("landingPage.learnMoreButton") }}--></button>
+        </div>
+      </section>
+      <section name="footer">
+        <hr class="separationBar marginSeparationDogo">
+        <div class="row">
+          <div class="col-12 text-center">
+            <h2>{{ $t("landingPage.footer.follow-us") }}</h2>
+          </div>
+          <div class="col text-center my-5">
+            <h4>{{ $t("landingPage.footer.instagram") }}</h4>
+            <a href="https://www.instagram.com/vakaryapp/" target="_blank"><img class="mt-2 instagramLogo" src="@/assets/badges/instagram-logo.svg" alt="Instagram"></a>
+          </div>
+          <div class="col text-center my-5">
+            <h4>{{ $t("landingPage.footer.twitter") }}</h4>
+            <a href="https://twitter.com/VakaryApp" target="_blank"><img class="mt-3 twitterLogo" src="@/assets/badges/twitter-logo.svg" alt="Twitter"></a>
+          </div>
+        </div>
+        <hr class="separationBar marginSeparationDogo">
+        <div class="row my-5">
+          <div class="col-12 text-center">
+            <h2>{{ $t("landingPage.footer.contact-us") }}</h2>
+          </div>
+          <div class="col text-center">
+            <a href="mailto:service.vakary@gmail.com"><img class="emailLogo" src="@/assets/badges/mail-logo.svg"></a>
+            <p class="mt-2">{{ $t("landingPage.footer.email-description") }}</p>
+          </div>
+        </div>
       </section>
       <section name="modalMobile">
         <div class="modal fade" id="modalMobile" tabindex="-1" aria-labelledby="modalMobileLabel" aria-hidden="true">
@@ -178,10 +202,13 @@ export default {
       this.$i18n.locale = this.$i18n.locale === 'fr' ? 'en' : 'fr';
     },
     openSignUpPage() {
-      this.$router.push("/loginPage");
+      this.$router.push("/InscriptionPage");
     },
     openMobilePage() {
       this.$router.push("/mobilePage");
+    },
+    openLearnMorePage() {
+      this.$router.push("/learnMorePage");
     },
     geti18n() {
       return this.$i18n.locale;
@@ -190,10 +217,6 @@ export default {
 }
 </script>
 <style scoped>
-@import "@/components/Style/Main.scss";
-@import "@/components/Style/Position.scss";
-@import "@/components/Style/Text.scss";
-@import "@/components/Style/Image.scss";
 
 @media (min-width: 768px) and (max-width: 991.98px) {
   .col-md-6 {
@@ -257,6 +280,12 @@ export default {
   width: 100%;
   height: 50vw;
   filter: brightness(70%);
+}
+
+.basicVakaryButton {
+  display: inline;
+  padding: 10px 20px;
+  border-radius: 16px;
 }
 
 .groupText {
@@ -327,6 +356,18 @@ export default {
   flex-wrap: wrap;
 }
 
+.instagramLogo {
+  width: 20%;
+}
+
+.twitterLogo {
+  width: 20%;
+}
+
+.emailLogo {
+  width: 10%;
+}
+
 .backgroundCardPositionSmall {
   display: flex;
   justify-content: left;
@@ -392,13 +433,7 @@ export default {
 }
 
 .invertedBlueVakaryButtonSmall {
-  padding: 10px 16px;
-  background-color: #000642;
-  color: white;
-  border: 2px solid #000642 solid;
   border-radius: 16px;
-  transition: all .3s ease;
-  align-items: center;
 }
 
 .pinkBackground>div {

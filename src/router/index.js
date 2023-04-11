@@ -6,6 +6,7 @@ import ForgetPassword from "@/components/Page/ForgetPassword.vue"
 import ProfilePage from "@/components/Page/ProfilePage.vue";
 import LandingPage from "@/components/Page/LandingPage.vue"
 import store from '@/store/store';
+import LearnMorePage from "@/components/Page/LearnMorePage.vue";
 
 const routes = [
     {
@@ -17,6 +18,11 @@ const routes = [
         path: '/inscriptionPage',
         name: 'InscriptionPage',
         component: InscriptionPage,
+    },
+    {
+        path: '/learnMorePage',
+        name: 'LearnMorePage',
+        component: LearnMorePage,
     },
     {
         path: '/forgetPassword',

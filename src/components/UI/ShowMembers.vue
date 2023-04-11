@@ -1,14 +1,9 @@
 <template>
     <div id="app" v-if="showMembers">
-        <!-- transition pour afficher la modal de la liste des membres -->
         <transition name="fade" appear>
             <div class="modal-overlay" v-if="showMembers"></div>
         </transition>
         <transition name="pop" appear>
-            <!-- modal de la liste des membres
-            -ajouter le back
-            -retravailler le design si possible
-             -->
             <div class="modalshowMembers">
                 <div class="row">
                     <div class="col-12 text-end">
@@ -18,23 +13,17 @@
                 <div class="col-12 text-center">
                     <h1>{{ groupInformations.name }}</h1>
                 </div>
-                <!-- edit group's name -->
                 <div class="col-12 text-center">
-                    <button class="addGroupPicture" @click="editGroupName = true">Modifier le nom du groupe</button>
-                </div>
-                <!-- delete group -->
-                <div class="col-12 text-center">
-                    <button class="addGroupPicture" @click="deleteGroup">Supprimer le groupe</button>
+                    <button class="btn-change-group-name" @click="editGroupName = true">Modifier le nom du groupe</button>
+                    <button class="btn-delete-group ms-2" @click="deleteGroup">Supprimer le groupe</button>
                 </div>
                 <div class="col-12 text-center">
-                    <img class="w-100" :src="groupInformations.photo" />
+                    <img class="w-100" :src="groupInformations.photo.preview" :alt="groupInformations.photo.name" />
                 </div>
-                <!-- edit group photo -->
-                <label class="addGroupPicture">
-                    Modifier la photo du groupe
+                <label class="btn-change-group-picture">
+                    {{ groupInformations.photo ? 'Change group picture' : 'Add group picture' }}
                     <input @change="onFileChange" type="file" hidden>
                 </label>
-                <!-- make a popup where we can edit group's name -->
                 <transition name="fade" appear>
                     <div class="modal-overlay" v-if="editGroupName"></div>
                 </transition>
@@ -46,7 +35,7 @@
                             </div>
                         </div>
                         <div class="col-12 text-center">
-                            <h1>Modifier le nom du groupe</h1>
+                            <h1>{{groupInformations.name}}</h1>
                         </div>
                         <div class="col-12 text-center">
                             <input @blur="v$.newGroupName.$touch" v-model="newGroupName" />
@@ -54,16 +43,14 @@
                         <div v-if="v$.newGroupName.$error" class="text-danger">Group name must contains between 3 and 15
                             characters</div>
                         <div class="col-12 text-center">
-                            <button @click="updateGroupName()">Valider</button>
+                            <button class="btn btn-primary mt-2" @click="updateGroupName()">Valider</button>
                         </div>
-                        <!-- if error in name validators -->
-
                     </div>
                 </transition>
                 <h4 v-show="groupInformations?.members?.length > 0">Membres du groupe</h4>
                 <div class="row mt-3" v-for="(member, index) in groupInformations.members" :key="index">
                     <div class="col-6 text-start">
-                        <input v-model="member.mail">
+                        {{ member.mail }}
                     </div>
                     <div class="col-4 status" :class="getStatus(index)">
                         {{ member.status }}
@@ -74,12 +61,17 @@
                 </div>
                 <div class="row mt-3">
                     <div class="col-12">
-                        <input @blur="v$.mailMember.$touch" placeholder="Ajouter un membre" v-model="mailMember" />
-                        <div v-if="v$.mailMember.$error" class="text-danger">Incorrect email</div>
+                        <input placeholder="Adresse mail des membres"
+                                v-model="mailMember"
+                                @keydown.enter.prevent="addMember"/>
+                                <button class="btn-add-group-member" @click="addMember">Ajouter un membre</button>
+                                <div v-if="mailMember && !isValidEmail(mailMember)" class="text-danger">
+                                    Format d'email incorrect
+                                </div>
                     </div>
-                    <div class="col-12">
-                        <button class="addGroupPicture" @click="addMember">Ajouter un membre</button>
-                    </div>
+                </div>
+                <div class="col-12 mt-3 text-center">
+                    <button @click="goBackToGroupDropdown" class="btn-save-group">Sauvegarder</button>
                 </div>
                 <div class="col-12">
                     <b>id: {{ groupInformations.id }}</b>
@@ -128,12 +120,14 @@ export default {
             return this.groupInformations.members[index].status;
         },
         addMember() {
-            if (this.v$.mailMember.$error) {
-                return;
+            if (this.mailMember && this.isValidEmail(this.mailMember)) {
+                this.groupInformations.members.push({ mail: this.mailMember, status: "pending" })
+                this.mailMember = '';
             }
-            this.groupInformations.members.push({ mail: this.mailMember, status: "pending" })
-            this.mailMember = "";
-            this.v$.mailMember.$reset();
+        },
+        isValidEmail(email) {
+            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return re.test(String(email).toLowerCase());
         },
         deleteMember(index) {
             this.groupInformations.members.splice(index, 1);
@@ -151,15 +145,26 @@ export default {
             this.newGroupName = "";
         },
         deleteGroup() {
-            // delete the group in the local storage
             let index = this.$store.state.userStore.groups.findIndex(group => group.id === this.groupInformations.id);
             this.$store.state.userStore.groups.splice(index, 1);
             this.showMembers = false;
         },
-        onFileChange(e) {
-            const file = e.target.files[0];
-            this.groupInformations.photo = file;
-            this.$emit("changeGroupPhoto", this.groupInformations.photo);
+        onFileChange(event) {
+            const file = event.target.files[0];
+            const reader = new FileReader();
+
+            reader.onload = () => {
+            this.groupInformations.photo = {
+                name: file.name,
+                size: file.size,
+                type: file.type,
+                preview: reader.result
+            };
+            };
+
+            if (file) {
+            reader.readAsDataURL(file);
+            }
         },
     },
     props: {
@@ -188,6 +193,82 @@ export default {
     font-size: 2rem;
     color: #000;
     cursor: pointer;
+}
+
+.btn-add-group-member {
+    background-color: #0077B5;
+    border: 1px solid #0077B5;
+    border-radius: 5px;
+    color: #FFFFFF;
+    margin-left: 5px;
+    padding: 5px 5px;
+    cursor: pointer;
+}
+
+.btn-add-group-member:hover {
+    background-color: #4B4B4B;
+    border: 1px solid #4B4B4B;
+    color: #FFFFFF;
+}
+
+.btn-change-group-picture {
+    background-color: #0077B5;
+    border: 1px solid #0077B5;
+    border-radius: 5px;
+    color: #FFFFFF;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.btn-change-group-picture:hover {
+    background-color: #4B4B4B;
+    border: 1px solid #4B4B4B;
+    color: #FFFFFF;
+}
+
+.btn-save-group {
+    background-color: #FFFFFF;
+    border: 1px solid #0077B5;
+    border-radius: 5px;
+    color: #0077B5;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.btn-save-group:hover {
+    background-color: #0077B5;
+    border: 1px solid #0077B5;
+    color: #FFFFFF;
+}
+
+.btn-change-group-name {
+    background-color: #FFFFFF;
+    border: 1px solid #0077B5;
+    border-radius: 5px;
+    color: #0077B5;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.btn-change-group-name:hover {
+    background-color: #0077B5;
+    border: 1px solid #0077B5;
+    color: #FFFFFF;
+}
+
+.btn-delete-group {
+    background-color: #FFFFFF;
+    border: 1px solid #FF0000;
+    border-radius: 5px;
+    color: #FF0000;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.btn-delete-group:hover {
+    background-color: #FF0000;
+    border: 1px solid #FF0000;
+    color: #FFFFFF;
 }
 
 .pending {
