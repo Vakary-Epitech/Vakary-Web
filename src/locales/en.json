@@ -2,6 +2,98 @@
   "message": "hello i18n !!",
   "vakary": "VAKARY",
   "slogan": "Vos vacances selon vos envies",
+  "vakarySlogan": "Vakary, plan your vacations as you please!",
+  "landingPage": {
+    "modal": {
+      "obtain": "Get Vakary",
+      "close": "Close",
+      "download": "Download our application directly to try it out.",
+      "scan": "Scan the QR code with your mobile device to download the application."
+    },
+    "free": "We organize your dream vacations for you, for free",
+    "pref": "Tell us your preferences, the city you wish to visit, and we will propose a customized itinerary for you",
+    "mobile": "With Vakary mobile, you can also follow your itinerary in real-time and much more!",
+    "registration": "Sign up",
+    "religious": "Religious Sites",
+    "sport": "Sports",
+    "museum": "Museums",
+    "park": "Parks",
+    "resto": "Restaurants",
+    "monuments": "Monuments",
+    "enjoy": "Make the most out of your vacations!",
+    "enjoy2": "Whether you prefer a walk, monuments, restaurants, or anything else, we have what you need",
+    "enjoy3": "Whether you are more of a fan of strolls, visiting monuments, tasting local dishes or other activities, we have the personalized itinerary that will suit you best.",
+    "block3Text1": "Vakary goes on an adventure with you!",
+    "block3Text2": "Vakary travels everywhere with you, thanks to our mobile app, you can follow your itinerary in real-time and geolocate. You can also find your friends with whom your itinerary is shared",
+    "block3Text2b": "Vakary is a powerful travel tool that allows you to create personalized itineraries based on your interests and schedule. With our mobile app, you can follow your itinerary in real-time, discover exciting tourist sites, and share your travels with your friends and family.",
+    "block3Text3": "Share your vacations!",
+    "block3Text4": "With our group feature, you can share your itineraries, track the location of your group members, and chat with them",
+    "ready": "Ready to join the adventure?",
+    "find": "Find our apps"
+  },
+  "presentationCards": {
+      "card1": {
+          "title": "TRAVEL WITH YOUR GROUP",
+          "description": "With Vakary's group feature, share your travel experience with loved ones for unforgettable memories.",          "registration": "Sign up now"
+      },
+      "card2": {
+          "title": "CREATE A PROFILE",
+          "description": "Share your desires, interests and introduce yourself to share your love of travel with the Vakary community.",
+          "registration": "Sign up now"
+      },
+      "card3": {
+          "title": "DISCOVER FRANCE",
+          "description": "No matter your preferences, Vakary offers a tailored itinerary to discover the most beautiful places in France!",
+          "registration": "Sign up now"
+      }
+  
+  },
+  "loginPage": {
+    "signin": "Sign in to Vakary",
+    "email": "Email address or username:",
+    "password": "Password",
+    "forgot": "Forgot password?",
+    "wrong": "This account does not exist",
+    "connect": "Sign in",
+    "new": "New to Vakary?",
+    "register": "Sign up",
+    "pro": "Professional Login",
+    "standard": "Standard Login",
+    "code": "Authentication code"
+  },
+  "inscriptionPage": {
+    "register": "Sign Up",
+    "email": "Email address:",
+    "name": "Your name:",
+    "password": "Password:",
+    "confirmPassword": "Confirm password:",
+    "city": "City name:",
+    "zip": "Zip code:",
+    "confirm": "Confirm",
+    "different": "The passwords are different"
+  },
+  "groupCards": {
+    "group": "Group: ",
+    "numberOfMembers": "Members: "
+  },
+  "mapPage": {
+    "itinerary": "Itinerary",
+    "newItinerary": "Create a new itinerary",
+    "group": "Group",
+    "from": "from ",
+    "to": " to ",
+    "nextPoint": "Next point",
+    "previousPoint": "Previous point",
+    "newGroup": "Create a new group"
+  },
+  "forgetPage": {
+    "title": "Reset your password",
+    "link": "Enter your Email and we will send you a link to reset your password:",
+    "code": "Enter the code received by email:",
+    "new": "New password:",
+    "confirm": "Confirm password:",
+    "accept": "Accept"
+  },
   "profilePage": {
     "edit": "Edit",
     "info": "Description",
@@ -14,51 +106,20 @@
     "totalKm": "Total Km Traveled",
     "cityPass": "City Pass"
   },
-  "mobilePage": {
-    "title": "Are you ready to travel and discover?",
-    "text1": "VAKARY is a tool for creating personalized tourist itineraries thanks to the partner regions that feed our application",
-    "text2": "The app offers a simple and quick form to generate a precise itinerary that will suit you best",
-    "text3": "You will find a detailed description of the points of interest, with information on events, and the possibility to listen to an audio guide",
-    "text4": "A group feature has been put in place to allow easy itinerary sharing when you travel with family or friends",
-    "text5": "The app has a paid feature that allows you to have an itinerary worked by travel professionals, who will advise you on the best places to visit at the location where you are!",
-    "available": "Vakary is available on mobile.",
-    "scan": "Scan the QR code with your mobile device to download Vakary."
-  },
-  "webPage": {
-    "products": {
-      "park": {
-        "title": "Parks & Gardens",
-        "desc": "Discover the most beautiful parks and gardens in the region"
-      },
-      "event": {
-        "title": "Events",
-        "desc": "For events and parties"
-      },
-      "museum": {
-        "title": "Museums",
-        "desc": "For culture and history"
-      }
-    },
-    "title": "Are you ready to travel and discover?",
-    "smartphone": "VAKARY is also available on your smartphone!",
-    "hobbies": "Tell us your hobbies and passions",
-    "organize": "Organize your day in advance",
-    "waste": "Don't waste any more time",
-    "enjoy": "Enjoy your day with our personalized itinerary",
-    "popular": "Discover the most visited monuments",
-    "lessPopular": "And the least known",
-    "QRCode": "QR Code",
-    "QRCodeDownload": "Download our app directly to try it out"
-  },
-  "topBar": {
-    "web": "Web Application",
-    "mobile": "Mobile Application",
-    "vip": "VIP",
-    "signup": "Sign Up",
-    "signin": "Sign In",
-    "groupe": "Group",
-    "map": "Map",
-    "profile": "Profile",
-    "itinerary": "Itinerary"
+  "itineraryModal": {
+    "creation": "Creation of your itinerary",
+    "startingCity": "Starting city",
+    "city": "City",
+    "howLong": "For how long ?",
+    "lessThanOneHour": "Less than one hour",
+    "fromOneToFour": "1 to 4 hours",
+    "moreThanFourHours": "More than 4 hours",
+    "startingDate": "What's the starting date of your itinerary ?",
+    "budget": "Total budget",
+    "howManyPeople": "How many people will come with you ?",
+    "adult": "Adult",
+    "child": "Child",
+    "interest": "Center of interest",
+    "generate": "Generate the Itinerary"
   }
 }

@@ -34,7 +34,9 @@ app.use(i18n);
 app.use(ElementPlus)
 app.use(router);
 app.use(store);
+
 library.add(faPlus, faXmark)
+
 app.component('font-awesome-icon', FontAwesomeIcon);
 app.mount('#app');
 

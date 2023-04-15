@@ -2,6 +2,52 @@
     "message": "bonjour i18n !!",
     "vakary": "VAKARY",
     "slogan": "Vos vacances selon vos envies",
+    "vakarySlogan": "Vakary vos vacances selon vos envies !",
+    "landingPage": {
+        "modal": {
+            "obtain": "Obtenir Vakary",
+            "close": "Fermer",
+            "download": "Téléchargez directement notre application pour l'essayer.",
+            "scan": "Scannez le QR code avec votre appareil mobile pour télécharger l'application."
+        },
+        "free": "Êtes-vous prêt à voyager et à découvrir les merveilles du monde ?",
+        "pref": "Avec Vakary, vous pouvez organiser vos vacances de rêve gratuitement et facilement.",
+        "mobile": "Nous proposons des itinéraires personnalisés en fonction de vos préférences et de la région que vous souhaitez visiter.",
+        "registration": "Inscription",
+        "religious": "Sites Religieux",
+        "sport": "Sports",
+        "museum": "Musées",
+        "park": "Parcs",
+        "resto": "Restaurants",
+        "monuments": "Monuments",
+        "enjoy": "Profitez au maximum de vos vacances !",
+        "enjoy2": "Que vous préferiez une balade, les monuments, les restaurants ou encore autre chose, nous avons ce qu'il vous faut",
+        "enjoy3": "Que vous soyez plutôt adepte de balades, de visites de monuments, de dégustation de plats locaux ou d'autres activités, nous avons l'itinéraire personnalisé qui vous conviendra le mieux.",
+        "block3Text1": "Vakary part à l'aventure avec vous !",
+        "block3Text2": "Vakary se déplace partout avec vous, grâce à notre application mobile, vous pourrez suivre votre itinéraire en temps réel et géolocaliser. Retrouver également vos amis avec lesquelles votre itinéraire est partagé",
+        "block3Text2b": "Vakary est un outil de voyage puissant qui vous permet de créer des itinéraires personnalisés en fonction de vos intérêts et de votre emploi du temps. Avec notre application mobile, vous pouvez suivre votre itinéraire en temps réel, découvrir des sites touristiques passionnants et partager vos voyages avec vos amis et votre famille.",
+        "block3Text3": "Partager vos vacances !",
+        "block3Text4": "Grâce à notre fonctionnalitée de groupe, vous pouvez partager vos itinéraires, suivre la localisation des membres de votre groupe et discuter avec eux",
+        "ready": "Prêt à rejoindre l'aventure ?",
+        "find": "Trouver nos apps"
+    },
+    "presentationCards" : {
+            "card1": {
+                "title": "PARTEZ EN GROUPE",
+                "description": "Vakary vous offre la possibilité de partir en vacances avec vos proches grâce à sa fonctionnalité de groupe.",
+                "registration": "Inscription"
+            },
+            "card2": {
+                "title": "CRÉEZ UN PROFIL",
+                "description": "Partagez vos envies, ce que vous aimez visiter et décrivez-vous pour partager votre amour du voyage.",
+                "registration": "Inscription"
+            },
+            "card3": {
+                "title": "DÉCOUVREZ LA FRANCE",
+                "description": "Peu importe vos envies, Vakary vous propose un itinéraire sur mesure pour découvrir les plus beaux endroits de France !",
+                "registration": "Inscription"
+            }        
+    },
     "profilePage": {
         "edit": "Editer le profil",
         "info": "Description",
@@ -12,53 +58,69 @@
         "lastPlaceVisited": "Dernier lieu visité",
         "lastEventAttended": "Dernier événement visité",
         "totalKm": "Km total",
-        "cityPass": "Pass de ville"
+        "cityPass": "Pass de ville",
+        "disconnect": "Déconnexion"
     },
-    "mobilePage": {
-        "title": "Êtes-vous prêt à voyager et à decouvrir ?",
-        "text1": "VAKARY est un outil pour créer des itinéraire touristiques personnalisé grâce aux régions partenaire qui alimentent notre application",
-        "text2": "L'application propose un formulaire simple et rapide pour générer un itinéraire précis qui vons conviendra au mieux",
-        "text3": "Vous pourrez retrouver une description précise des points d'intérêt, avec des informations sur des évènements, et la possibilité d'écouter un audio guide",
-        "text4": "Une fonctionnalité de groupe a été mise en place pour permettre un partage d'itinéraire simple quand vous voyagez en famille ou entre amis",
-        "text5": "L'application embarque une fonction payante qui vous permet d'avoir un itinéraire travaillé par des professionnels du voyage, qui vous conseillerons les meilleurs endroits à visiter à l'endroit où vous vous trouvez !",
-        "available": "Vakary est disponible sur mobile.",
-        "scan": "Scannez le code QR avec votre appareil mobile pour télécharger Vakary."
+    "loginPage": {
+        "signin": "Se connecter à Vakary",
+        "email": "Adresse email:",
+        "password": "Mot de passe",
+        "forgot": "Mot de passe oublié ?",
+        "wrong": "Ce compte n'existe pas",
+        "connect": "Connexion",
+        "new": "Nouveau sur Vakary ?",
+        "register": "Inscription",
+        "pro": "Connexion Professionelle",
+        "standard": "Connexion Standard",
+        "code": "Code d'authentification"
     },
-    "webPage": {
-        "products": {
-            "park": {
-                "title": "Parc & Jardin",
-                "desc": "Découvrez les plus beaux parcs et jardins de la région"
-            },
-            "event": {
-                "title": "Evenements",
-                "desc": "Pour les événements et fêtes"
-            },
-            "museum": {
-                "title": "Musées",
-                "desc": "Pour la culture et l'histoire"
-            }
-        },
-        "title": "Êtes-vous prêt à voyager et à decouvrir ?",
-        "smartphone": "VAKARY est aussi disponible sur votre smartphone !",
-        "hobbies": "Dites-nous vos hobbies et passions",
-        "organize": "Organisez votre journée à l'avance",
-        "waste": "Ne perdez plus de temps",
-        "enjoy": "Profitez de votre journée avec notre itinéraire personnalisé",
-        "popular": "Découvrez les monuments les plus visités",
-        "lessPopular": "Et les moins connus",
-        "QRCode": "QR Code",
-        "QRCodeDownload": "Téléchargez directement notre application pour l'essayer"
+    "inscriptionPage": {
+        "register": "Inscription",
+        "email": "Adresse email:",
+        "name": "Votre nom:",
+        "password": "Mot de passe:",
+        "confirmPassword": "Confirmer le mot de passe:",
+        "city": "Nom de la ville:",
+        "zip": "Code postal:",
+        "confirm": "Confirmer",
+        "different": "Les mots de passe ne sont pas identiques"
     },
-    "topBar": {
-        "web": "Application Web",
-        "mobile": "Application Mobile",
-        "vip": "VIP",
-        "signup": "Connexion",
-        "signin": "S'inscrire",
-        "groupe": "Groupe",
-        "map": "Carte",
-        "profile": "Profil",
-        "itinerary": "Itinéraire"
+    "forgetPage": {
+        "title": "Réinitialiser votre mot de passe",
+        "link": "Entrez votre Email et nous vous enverrons un lien pour réinitialiser votre mot de passe:",
+        "code": "Entrez le code reçu par email:",
+        "new": "Nouveau mot de passe:",
+        "confirm": "Confirmer le mot de passe:",
+        "accept": "Accepter"
+    },
+    "groupCards": {
+        "group": "Groupe: ",
+        "numberOfMembers": "Membres: "
+    },
+    "mapPage": {
+        "itinerary": "Itinéraires",
+        "newItinerary": "Créer un nouvel itinéraire",
+        "group": "Groupe",
+        "from": "De ",
+        "to": " a ",
+        "nextPoint": "Prochain point",
+        "previousPoint": "Point précédent",
+        "newGroup": "Créer un nouveau groupe"
+    },
+    "itineraryModal": {
+        "creation": "Création de votre itinéraire",
+        "startingCity": "Ville de départ",
+        "city": "Ville",
+        "howLong": "Pendant combien de temps ?",
+        "lessThanOneHour": "Moins d'une heure",
+        "fromOneToFour": "1 à 4 heures",
+        "moreThanFourHours": "Plus de 4 heures",
+        "startingDate": "Quelle est la date de départ de votre itinéraire ?",
+        "budget": "Budget total",
+        "howManyPeople": "Combien de personnes vont vous accompagner ?",
+        "adult": "Adulte",
+        "child": "Enfant",
+        "interest": "Centres D'intérêts",
+        "generate": "Générer l'itinéraire"
     }
 }

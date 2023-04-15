@@ -12,4 +12,4 @@ export default createI18n({
     en: en,
     fr: fr,
   }
-})
+});

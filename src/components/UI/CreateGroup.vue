@@ -7,21 +7,24 @@
             <div class="modalCreateGroup" v-if="CreateGroup">
                 <div class="row">
                     <div class="col-12 text-end">
-                        <font-awesome-icon class="xMark" @click="CreateGroup = false" icon="fa-solid fa-xmark" />
+                        <font-awesome-icon class="xMark" @click="goBackToGroupDropdown()" icon="fa-solid fa-xmark" />
                     </div>
                 </div>
                 <h2>Créer un nouveau groupe</h2>
                 <div class="col-12 mt-3">
-                    <input @blur="v$.groupInformations.name.$touch" placeholder="Nom du groupe" v-model="groupInformations.name" />
-                    <div v-if="v$.groupInformations.name.$error" class="text-danger">Group name must be between 3 and 15 characters</div>
+                    <input @blur="v$.groupInformations.name.$touch" placeholder="Nom du groupe"
+                        v-model="groupInformations.name" />
+                    <div v-if="v$.groupInformations.name.$error" class="text-danger">Group name must be between 3 and 15
+                        characters</div>
                 </div>
                 <div class="row mt-3">
                     <div class="col-12">
-                        <input @blur="v$.mailMember.$touch" placeholder="Adresse mail des membres" @keydown.enter="addMembers" v-model="mailMember" />                    
+                        <input @blur="v$.mailMember.$touch" placeholder="Adresse mail des membres"
+                            @keydown.enter="addMembers" v-model="mailMember" />
                         <div v-if="v$.mailMember.$error" class="text-danger">Incorrect email format</div>
                         <div class="row mt-3" v-for="(member, index) in groupInformations.members" :key="index">
                             <div class="col-10">
-                                <p>{{member.mail}}</p>
+                                <p>{{ member.mail }}</p>
                             </div>
                             <div class="col-2 text-end">
                                 <font-awesome-icon class="xMark" @click="deleteMember(index)" icon="fa-solid fa-xmark" />
@@ -36,7 +39,7 @@
                     </label>
                 </div>
                 <div v-if="groupInformations.photo">
-                    {{groupInformations.photo.name}}
+                    {{ groupInformations.photo.name }}
                 </div>
                 <div class="col-12 mt-3 text-center">
                     <button @click="sendMessage" class="saveButton">Sauvegarder</button>
@@ -63,7 +66,7 @@ export default {
             mailMember: "",
             firstName: "",
             listMembers: [],
-            groupInformations : {
+            groupInformations: {
                 name: "",
                 members: [],
                 photo: "",
@@ -88,18 +91,6 @@ export default {
                 this.addMembers();
             }
             this.groupInformations.id = uuidv4();
-            // this.$store.dispatch("addGroup", this.groupInformations).then(() => {
-            //     console.log("group added");
-            // }).catch(() => {
-            //     console.log("group not added ==> Error");
-            // })
-            // this.$store.dispatch("getGroup", this.groupInformations).then(() => {
-            //     console.log("group ");
-            // }).catch(() => {
-            //     console.log("not group ==> Error");
-            // })
-            // this.$emit('sendData', this.groupInformations);
-            // add group to local storage
 
             // save image to base64 format then save it to local storage
             // if photo
@@ -114,6 +105,7 @@ export default {
                 this.$store.state.userStore.groups.push(this.groupInformations);
             }
             this.CreateGroup = false;
+            this.$emit("goBackToGroupDropdown");
         },
         deleteMember(index) {
             this.groupInformations.members.splice(index, 1);
@@ -121,6 +113,10 @@ export default {
         onFileChange(e) {
             const file = e.target.files[0];
             this.groupInformations.photo = file;
+        },
+        goBackToGroupDropdown() {
+            this.CreateGroup = false;
+            this.$emit("goBackToGroupDropdown");
         },
     },
     validations() {
@@ -141,7 +137,6 @@ export default {
 </script>
 
 <style scoped>
-
 .addGroupPicture {
     background: #FFE9D3;
     border: 1px solid rgb(192, 150, 40);
@@ -198,6 +193,7 @@ export default {
     z-index: 1000;
     transform: none;
 }
+
 .modal-overlay {
     content: '';
     position: absolute;
@@ -210,6 +206,7 @@ export default {
     background: #2c3e50;
     opacity: 0.6;
 }
+
 /* create the same modal but with width and height at 100% if the media query is small */
 @media screen and (max-width: 600px) {
     .modalCreateGroup {
@@ -217,6 +214,4 @@ export default {
         height: 100%;
         border-radius: 0;
     }
-}
-
-</style>
+}</style>

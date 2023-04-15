@@ -85,7 +85,4 @@ test('edit function', () => {
       }
     }
   })
-  // IN progress
-  // wrapper.find('button').trigger('click')
-  // expect(wrapper.vm.editMode).toBe(true)
 })
