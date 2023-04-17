@@ -24,7 +24,12 @@ test('Basic Information verifier', async () => {
                 groupInformations: {
                     name: "Vakary",
                     members: [],
-                    photo: "picture.png",
+                    photo: {
+                        name: "photo.png",
+                        size: 20,
+                        type: "type",
+                        preview: "preview",
+                    },
                     id: "1",
                 },
                 editGroupName: false,
@@ -37,9 +42,15 @@ test('Basic Information verifier', async () => {
     wrapper.vm.$data.groupInformations = {
         name: "Vakary",
         members: [],
-        photo: "picture.png",
+        photo: {
+            name: "photo.png",
+            size: 20,
+            type: "type",
+            preview: "preview",
+        },
         id: "1",
-    }
+        preview: "test",
+    },
     await wrapper.vm.addMember()
     await wrapper.vm.deleteMember(0)
     await wrapper.vm.editName()
@@ -67,9 +78,15 @@ test('Error check', async () => {
             return {
                 groupInformations: {
                     name: "Vakary",
-                    members: [{mail: "mail@test.fr", status: "pending"}, {mail: "mail2@test.fr", status: "pending"}],
-                    photo: "picture.png",
+                    members: [],
+                    photo: {
+                        name: "photo.png",
+                        size: 20,
+                        type: "type",
+                        preview: "preview",
+                    },
                     id: "1",
+                    preview: "test",
                 },
                 editGroupName: false,
                 newGroupName: "Vak",
@@ -81,9 +98,15 @@ test('Error check', async () => {
     wrapper.vm.$data.groupInformations = {
         name: "Vakary",
         members: [],
-        photo: "picture.png",
+        photo: {
+            name: "photo.png",
+            size: 20,
+            type: "type",
+            preview: "preview",
+        },
         id: "1",
-    }
+        preview: "test",
+    },
     await wrapper.vm.addMember();
     await wrapper.vm.updateGroupName();
 })

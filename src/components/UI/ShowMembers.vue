@@ -17,8 +17,10 @@
                     <button class="btn-change-group-name" @click="editGroupName = true">Modifier le nom du groupe</button>
                     <button class="btn-delete-group ms-2" @click="deleteGroup">Supprimer le groupe</button>
                 </div>
-                <div class="col-12 text-center">
-                    <img class="w-100" :src="groupInformations.photo.preview" :alt="groupInformations.photo.name" />
+                <div v-if="groupInformations.photo">
+                    <div class="col-12 text-center">
+                        <img class="w-100" :src="groupInformations.photo.preview" :alt="groupInformations.photo.name" />
+                    </div>
                 </div>
                 <label class="btn-change-group-picture">
                     {{ groupInformations.photo ? 'Change group picture' : 'Add group picture' }}
@@ -35,7 +37,7 @@
                             </div>
                         </div>
                         <div class="col-12 text-center">
-                            <h1>{{groupInformations.name}}</h1>
+                            <h1>{{ groupInformations.name }}</h1>
                         </div>
                         <div class="col-12 text-center">
                             <input @blur="v$.newGroupName.$touch" v-model="newGroupName" />
@@ -61,13 +63,12 @@
                 </div>
                 <div class="row mt-3">
                     <div class="col-12">
-                        <input placeholder="Adresse mail des membres"
-                                v-model="mailMember"
-                                @keydown.enter.prevent="addMember"/>
-                                <button class="btn-add-group-member" @click="addMember">Ajouter un membre</button>
-                                <div v-if="mailMember && !isValidEmail(mailMember)" class="text-danger">
-                                    Format d'email incorrect
-                                </div>
+                        <input placeholder="Adresse mail des membres" v-model="mailMember"
+                            @keydown.enter.prevent="addMember()" />
+                        <button class="btn-add-group-member" @click="addMember()">Ajouter un membre</button>
+                        <div v-if="mailMember && !isValidEmail(mailMember)" class="text-danger">
+                            Format d'email incorrect
+                        </div>
                     </div>
                 </div>
                 <div class="col-12 mt-3 text-center">
@@ -94,7 +95,12 @@ export default {
             groupInformations: {
                 name: "",
                 members: [],
-                photo: "",
+                photo: {
+                    name: "",
+                    size: 0,
+                    type: "",
+                    preview: "",
+                },
                 id: "",
             },
             editGroupName: false,
@@ -154,16 +160,16 @@ export default {
             const reader = new FileReader();
 
             reader.onload = () => {
-            this.groupInformations.photo = {
-                name: file.name,
-                size: file.size,
-                type: file.type,
-                preview: reader.result
-            };
+                this.groupInformations.photo = {
+                    name: file.name,
+                    size: file.size,
+                    type: file.type,
+                    preview: reader.result
+                };
             };
 
             if (file) {
-            reader.readAsDataURL(file);
+                reader.readAsDataURL(file);
             }
         },
     },
@@ -376,4 +382,5 @@ export default {
     z-index: 999;
     background: #2c3e50;
     opacity: 0.6;
-}</style>
+}
+</style>

@@ -24,8 +24,8 @@
                         <div class="col-12">
                             <input placeholder="Adresse mail des membres"
                                 v-model="mailMember"
-                                @keydown.enter.prevent="addMember"/>
-                                <button class="btn-add-group-member" @click="addMember">Ajouter</button>
+                                @keydown.enter.prevent="addMembers"/>
+                                <button class="btn-add-group-member" @click="addMembers">Ajouter</button>
                                 <div v-if="showEmailError" class="text-danger">
                                     Format d'email incorrect
                                 </div>
@@ -91,7 +91,7 @@ export default {
         }
     },
     methods: {
-        addMember() {
+        addMembers() {
             if (!this.isValidEmail(this.mailMember)) {
                 this.showEmailError = true;
                 return;
@@ -111,7 +111,7 @@ export default {
             const { groupInformations, mailMember } = this;
 
             if (mailMember.length !== 0) {
-                this.addMember();
+                this.addMembers();
             }
 
             groupInformations.id = uuidv4();
