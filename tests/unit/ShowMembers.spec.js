@@ -1,8 +1,6 @@
 import { shallowMount, mount } from '@vue/test-utils'
 import ShowMembers from '@/components/UI/ShowMembers.vue'
-import Vuex from 'vuex'
 import store from '../../src/store/store.js'
-import i18 from '../../src/i18n.js'
 import router from '../../src/router/index.js'
 
 test('Basic Information verifier', async () => {
@@ -50,7 +48,7 @@ test('Basic Information verifier', async () => {
         },
         id: "1",
         preview: "test",
-    },
+    }
     await wrapper.vm.addMember()
     await wrapper.vm.deleteMember(0)
     await wrapper.vm.editName()
@@ -78,7 +76,7 @@ test('Error check', async () => {
             return {
                 groupInformations: {
                     name: "Vakary",
-                    members: [],
+                    members: [{mail: "mail@test.fr", status: "pending"}, {mail: "mail2@test.fr", status: "pending"}],
                     photo: {
                         name: "photo.png",
                         size: 20,
@@ -106,7 +104,7 @@ test('Error check', async () => {
         },
         id: "1",
         preview: "test",
-    },
+    }
     await wrapper.vm.addMember();
     await wrapper.vm.updateGroupName();
 })

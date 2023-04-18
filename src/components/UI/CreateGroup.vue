@@ -1,67 +1,62 @@
 <template>
     <div id="app">
-        <transition name="fade" appear>
-            <div class="modal-overlay" v-if="CreateGroup"></div>
-        </transition>
-        <transition name="pop" appear>
-            <div class="modalCreateGroup" v-if="CreateGroup">
-                <div class="row">
-                    <div class="col-12 text-end">
-                        <font-awesome-icon class="xMark" @click="goBackToGroupDropdown()" icon="fa-solid fa-xmark" />
-                    </div>
+        <div class="background">
+            <div class="row">
+                <div class="col-12 text-end">
+                    <font-awesome-icon class="xMark" @click="goBackToGroupDropdown()" icon="fa-solid fa-xmark" />
                 </div>
-                <h2>Créer un nouveau groupe</h2>
-                <section name="groupName">
-                    <div class="col-12 mt-3">
-                        <input @blur="v$.groupInformations.name.$touch" placeholder="Nom du groupe"
-                            v-model="groupInformations.name" />
-                        <div v-if="v$.groupInformations.name.$error" class="text-danger">Group name must be between 3 and 15
-                            characters</div>
-                    </div>
-                </section>
-                <section name="groupMembers">
-                    <div class="row mt-3">
-                        <div class="col-12">
-                            <input placeholder="Adresse mail des membres"
-                                v-model="mailMember"
-                                @keydown.enter.prevent="addMembers"/>
-                                <button class="btn-add-group-member" @click="addMembers">Ajouter</button>
-                                <div v-if="showEmailError" class="text-danger">
-                                    Format d'email incorrect
-                                </div>
-                            <div class="col-12 mt-3">
-                            </div>
-                            <div class="row mt-3" v-for="(member, index) in groupInformations.members" :key="index">
-                                <div class="col-10">
-                                    <p>{{ member.mail }}</p>
-                                </div>
-                                <div class="col-2 text-end">
-                                    <font-awesome-icon class="xMark" @click="deleteMember(index)" icon="fa-solid fa-xmark" />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-                <section name="photoGroup">
-                    <div class="col-12 mt-3">
-                        <label class="btn-add-group-picture">
-                            Ajouter une photo de groupe
-                            <input @change="onFileChange" type="file" hidden>
-                        </label>
-                    </div>
-                    <div v-if="groupInformations.photo">
-                        <div>
-                            <img :src="groupInformations.photo.preview" class="img-thumbnail" />
-                        </div>
-                        <div>{{ groupInformations.photo.name }}</div>
-                    </div>
-                </section>
-                <div class="col-12 mt-3 text-center">
-                    <button @click="sendMessage" class="btn-save-group">Sauvegarder</button>
-                </div>
-                <div v-if="v$.groupInformations.name.$error" class="text-danger">Name required</div>
             </div>
-        </transition>
+            <h2>Créer un nouveau groupe</h2>
+            <section name="groupName">
+                <div class="col-12 mt-3">
+                    <input @blur="v$.groupInformations.name.$touch" placeholder="Nom du groupe"
+                        v-model="groupInformations.name" />
+                    <div v-if="v$.groupInformations.name.$error" class="text-danger">Group name must be between 3 and 15
+                        characters</div>
+                </div>
+            </section>
+            <section name="groupMembers">
+                <div class="row mt-3">
+                    <div class="col-12">
+                        <input placeholder="Adresse mail des membres"
+                            v-model="mailMember"
+                            @keydown.enter.prevent="addMember"/>
+                            <button class="btn-add-group-member" @click="addMember">Ajouter</button>
+                            <div v-if="showEmailError" class="text-danger">
+                                Format d'email incorrect
+                            </div>
+                        <div class="col-12 mt-3">
+                        </div>
+                        <div class="row mt-3" v-for="(member, index) in groupInformations.members" :key="index">
+                            <div class="col-10">
+                                <p>{{ member.mail }}</p>
+                            </div>
+                            <div class="col-2 text-end">
+                                <font-awesome-icon class="xMark" @click="deleteMember(index)" icon="fa-solid fa-xmark" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section name="photoGroup">
+                <div class="col-12 mt-3">
+                    <label class="btn-add-group-picture">
+                        Ajouter une photo de groupe
+                        <input @change="onFileChange" type="file" hidden>
+                    </label>
+                </div>
+                <div v-if="groupInformations.photo">
+                    <div>
+                        <img :src="groupInformations.photo.preview" class="img-thumbnail" />
+                    </div>
+                    <div>{{ groupInformations.photo.name }}</div>
+                </div>
+            </section>
+            <div class="col-12 mt-3 text-center">
+                <button @click="sendMessage" class="btn-save-group">Sauvegarder</button>
+            </div>
+            <div v-if="v$.groupInformations.name.$error" class="text-danger">Name required</div>
+        </div>
     </div>
 </template>
   
@@ -163,6 +158,13 @@ export default {
 
 <style scoped>
 
+.background {
+    background-color: white;
+    padding: 15px;
+    border-radius: 15px;
+    border: 2px solid rgb(192, 150, 40);
+}
+
 .btn-add-group-member {
     background-color: #0077B5;
     border: 1px solid #0077B5;
@@ -213,45 +215,4 @@ export default {
     color: #000;
     cursor: pointer;
 }
-
-.modalCreateGroup {
-    position: absolute;
-    position: fixed;
-    background-color: #FFF;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    overflow-y: auto;
-    margin: auto;
-    text-align: center;
-    width: 40%;
-    height: 80%;
-    padding: 2rem;
-    border-radius: 1rem;
-    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
-    z-index: 1000;
-    transform: none;
-}
-
-.modal-overlay {
-    content: '';
-    position: absolute;
-    position: fixed;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    z-index: 999;
-    background: #2c3e50;
-    opacity: 0.6;
-}
-
-/* create the same modal but with width and height at 100% if the media query is small */
-@media screen and (max-width: 600px) {
-    .modalCreateGroup {
-        width: 100%;
-        height: 100%;
-        border-radius: 0;
-    }
-}</style>
+</style>

@@ -36,6 +36,6 @@ test('Basic Information verifier', async () => {
         }
     })
     await wrapper.vm.sendMessage();
-    await wrapper.vm.addMembers();
+    await wrapper.vm.addMember();
     await wrapper.vm.deleteMember(0);
 })
