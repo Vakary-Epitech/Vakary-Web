@@ -37,6 +37,10 @@ app.use(store);
 
 library.add(faPlus, faXmark)
 
+app.config.compilerOptions.isCustomElement = (tag) => {
+    return tag.startsWith('map-') // (return true)
+}
+
 app.component('font-awesome-icon', FontAwesomeIcon);
 app.mount('#app');
 

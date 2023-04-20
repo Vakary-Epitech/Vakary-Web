@@ -122,5 +122,9 @@
         "child": "Enfant",
         "interest": "Centres D'intérêts",
         "generate": "Générer l'itinéraire"
-    }
+    },
+    "screenSizePage": {
+        "ScreenSizeTooSmall": "Désolé la taille d'écran de votre appareil est trop petite, veuillez télécharger une de nos applications mobiles: ",
+        "goBack": "Retour"
+      }
 }

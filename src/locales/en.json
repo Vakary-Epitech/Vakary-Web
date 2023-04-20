@@ -121,5 +121,9 @@
     "child": "Child",
     "interest": "Center of interest",
     "generate": "Generate the Itinerary"
+  },
+  "screenSizePage": {
+    "ScreenSizeTooSmall": "Sorry the Screen size of your device is too small, please use one of our mobile application :",
+    "goBack": "Go Back"
   }
 }

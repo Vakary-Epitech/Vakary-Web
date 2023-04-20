@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory } from 'vue-router';
+import { createRouter, createWebHashHistory  } from 'vue-router';
 import LoginPage from "@/components/Page/LoginPage.vue";
 import MapPage from "@/components/Page/MapPage.vue";
 import InscriptionPage from "@/components/Page/InscriptionPage.vue"
@@ -38,13 +38,11 @@ const routes = [
         name: 'MapPage',
         component: MapPage,
     },
-    { path: '/redirect', redirect: 'https://www.google.com' }
-
-
+    { path: '/:pathMatch(.*)*', redirect: '/' }
 ];
 
 const router = createRouter({
-    history: createWebHistory(process.env.BASE_URL),
+    history: createWebHashHistory(),
     routes,
 });
 

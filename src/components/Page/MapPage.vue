@@ -2,7 +2,7 @@
      It is not using the i18n system yet for a translation system => only available in english atm -->
 
 <template>
-  <div>
+  <div class="fadeshow1">
     <GMapMap :center="getCenterOfMap" :options="options" :zoom="mapZoom" style="width: 100vw; height: 100vh"
       ref="myMapRef">
       <GMapMarker :position="userPosition" />
@@ -21,7 +21,7 @@
     </GMapMap>
   </div>
 
-  <div class="boxPosition">
+  <div class="boxPosition fadeshow1">
     <div class="widgetPanel">
       <Transition name="slide-fade">
 
@@ -72,20 +72,20 @@
     </div>
   </div>
 
-  <div class="langButtonPos">
+  <div class="langButtonPos fadeshow1">
     <img src="https://cdn-icons-png.flaticon.com/512/197/197374.png" class="flag-button" @click="(engLanguage)" />
     <img src="https://cdn-icons-png.flaticon.com/512/197/197560.png" class="flag-button" @click="(frenchLanguage)" />
     <img :src="this.$store.state.userStore.userProfileImage" class="flag-button profileIcon"
       @click="showProfile = !showProfile; showGroupCreationModal = false; showItineraryCreationModal = false" />
   </div>
 
-  <Transition name="slide-fade">
+  <Transition name="slide-fade fadeshow1">
     <div class="profileModalPosition" v-if="showProfile">
       <profileModal />
     </div>
   </Transition>
 
-  <div class="groupDropdownPosition">
+  <div class="groupDropdownPosition fadeshow1">
     <div class="widgetPanel">
       <Transition name="slide-fade">
         <div v-if="!displayItineraryInformation && !showGroupCreationModal && !groupHasBeenClicked" :class="(groupDropdownStatus)">
@@ -134,9 +134,13 @@
       </Transition>
     </div>
   </div>
+  <div class="fadeshow2">
+    <ScreenSizeTooSmall />
+  </div>
 </template>
 
 <script>
+import ScreenSizeTooSmall from '../UI/ScreenSizeTooSmall.vue'
 import mapCards from '../UI/mapCards.vue';
 import itineratyExplanation from '../UI/itineraryExplanation.vue';
 import mapGroupCardsVue from '../UI/mapGroupCards.vue';
@@ -155,6 +159,7 @@ export default {
     itineraryModal,
     profileModal,
     showMembers,
+    ScreenSizeTooSmall,
   },
   data() {
     return {
@@ -506,8 +511,9 @@ export default {
 }
 
 .dropdownArrowPosition {
-  margin: auto;
-  transform: translate(9vw, 0);
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-right: 5px;
 }
 
 .dropdownTextPosition {
@@ -551,13 +557,12 @@ export default {
   color: var(--text-primary-color);
   border: none;
   height: 6vh;
-  font-size: calc(16px + 0.4vw);
   padding-top: 1vh;
   padding-bottom: 1vh;
-  padding-right: 10vw;
+  padding-right: 1vw;
   margin-top: 5px;
   margin-bottom: 5px;
-  min-width: 300px;
+  min-width: 400px;
   min-height: 60px;
 }
 
@@ -579,10 +584,12 @@ export default {
 .langButtonPos {
   display: flex;
   position: absolute;
+  align-content: right;
+  align-items: right;
   margin: 5px;
+  left: calc(100vw - 200px);
   flex-direction: row;
   top: 5vh;
-  left: 85vw;
 }
 
 .profileIcon {
@@ -593,5 +600,17 @@ export default {
   position: absolute;
   top: 10vh;
   left: calc(98.5vw - 400px);
+}
+
+@media only screen and (max-width: 767px) {
+    .fadeshow1 {
+        display: none;
+    }
+}
+
+@media only screen and (min-width: 767px) {
+    .fadeshow2 {
+        display: none;
+    }
 }
 </style>
