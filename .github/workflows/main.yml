@@ -18,3 +18,48 @@ jobs:
       - name: Test
         run: |
           npm run test:unit
+
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    if: github.ref == 'refs/heads/main'
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build project
+        run: |
+          npm run build
+          node ./script.js
+
+      - name: Install SVN
+        run: |
+          sudo apt-get install subversion
+          
+      - name: Checkout SVN repository
+        run: |
+          mkdir svn
+          echo ${{ secrets.SVN_USERNAME }}
+          echo ${{ secrets.SVN_PASSWORD }}
+          svn checkout --username ${{ secrets.SVN_USERNAME }} --password ${{ secrets.SVN_PASSWORD }} https://labeip.epitech.eu/svn/2024/vakary/ svn
+
+      - name: Copy build files and delete old SVN repository
+        run: |
+          ls
+          svn delete --force svn/www/index.html svn/www/css svn/www/js svn/www/img svn/www/logoVakary.png
+          cd svn
+          svn commit  --username ${{ secrets.SVN_USERNAME }} --password ${{ secrets.SVN_PASSWORD }} -m "Delete old "
+          cd ..
+          cp -R dist/* svn/www/
+
+      - name: Commit changes to SVN repository
+        run: |
+          ls
+          svn add svn/www/css svn/www/js svn/www/index.html svn/www/logoVakary.png svn/www/img   
+          cd svn
+          svn commit --username ${{ secrets.SVN_USERNAME }} --password ${{ secrets.SVN_PASSWORD }} -m "Deploy Vue project" 
+
+
