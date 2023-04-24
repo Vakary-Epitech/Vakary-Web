@@ -87,3 +87,17 @@
 .flag-button:hover {
     opacity: 0.5
 }
+
+.availableSoon {
+    background-color: grey;
+    pointer-events: none;
+    color: white;
+}
+
+.availableSoonfr::before {
+    content: "Bientôt disponible" !important;
+}
+
+.availableSoonen::before {
+    content: "Coming Soon" !important;
+}

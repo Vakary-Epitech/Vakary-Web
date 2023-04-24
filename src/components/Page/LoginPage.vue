@@ -20,7 +20,7 @@
         <label class="newToText">{{ $t("loginPage.new") }}</label>
         <button class="buttonInscription blueVakaryButton" @click="(openRegistrationSelection)">{{ $t("loginPage.register") }}</button>
       </div>
-      <a class="basicVakaryButton p-1" href="https://youtube.com/@thebausffs">{{ $t("loginPage.pro") }}</a>
+      <a class="basicVakaryButton p-1" href="https://vakary.pro.smartbazaar.app/">{{ $t("loginPage.pro") }}</a>
     </div>
   </div>
 </template>
@@ -66,9 +66,6 @@ export default {
 </script>
 
 <style scoped>
-@import "@/components/Style/Button.scss";
-@import "@/components/Style/Position.scss";
-@import "@/components/Style/Text.scss";
 
 .centerEverything {
   display: flex;

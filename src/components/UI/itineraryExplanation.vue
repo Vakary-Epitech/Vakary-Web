@@ -70,8 +70,7 @@ export default {
 }
 </script>
 
-<style scoped lang="scss">
-@import "@/components/Style/Button.scss";
+<style scoped>
 
 .explanatoryCardDesign {
     display: flex;

@@ -1,8 +1,6 @@
 import { shallowMount, mount } from '@vue/test-utils'
 import ShowMembers from '@/components/UI/ShowMembers.vue'
-import Vuex from 'vuex'
 import store from '../../src/store/store.js'
-import i18 from '../../src/i18n.js'
 import router from '../../src/router/index.js'
 
 test('Basic Information verifier', async () => {
@@ -24,7 +22,12 @@ test('Basic Information verifier', async () => {
                 groupInformations: {
                     name: "Vakary",
                     members: [],
-                    photo: "picture.png",
+                    photo: {
+                        name: "photo.png",
+                        size: 20,
+                        type: "type",
+                        preview: "preview",
+                    },
                     id: "1",
                 },
                 editGroupName: false,
@@ -37,8 +40,14 @@ test('Basic Information verifier', async () => {
     wrapper.vm.$data.groupInformations = {
         name: "Vakary",
         members: [],
-        photo: "picture.png",
+        photo: {
+            name: "photo.png",
+            size: 20,
+            type: "type",
+            preview: "preview",
+        },
         id: "1",
+        preview: "test",
     }
     await wrapper.vm.addMember()
     await wrapper.vm.deleteMember(0)
@@ -68,8 +77,14 @@ test('Error check', async () => {
                 groupInformations: {
                     name: "Vakary",
                     members: [{mail: "mail@test.fr", status: "pending"}, {mail: "mail2@test.fr", status: "pending"}],
-                    photo: "picture.png",
+                    photo: {
+                        name: "photo.png",
+                        size: 20,
+                        type: "type",
+                        preview: "preview",
+                    },
                     id: "1",
+                    preview: "test",
                 },
                 editGroupName: false,
                 newGroupName: "Vak",
@@ -81,8 +96,14 @@ test('Error check', async () => {
     wrapper.vm.$data.groupInformations = {
         name: "Vakary",
         members: [],
-        photo: "picture.png",
+        photo: {
+            name: "photo.png",
+            size: 20,
+            type: "type",
+            preview: "preview",
+        },
         id: "1",
+        preview: "test",
     }
     await wrapper.vm.addMember();
     await wrapper.vm.updateGroupName();

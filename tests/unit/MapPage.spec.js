@@ -34,7 +34,6 @@ test('Router MapPage', async () => {
       },
     },
   })
-  await wrapper.vm.goToProfilePage();
 })
 
 test('Lang MapPage', async () => {
