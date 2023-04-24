@@ -602,7 +602,7 @@ export default {
 .profileModalPosition {
   position: absolute;
   top: 10vh;
-  left: calc(98.5vw - 400px);
+  left: calc(98.5vw - 300px);
 }
 
 .dropdownPlusPlacement {

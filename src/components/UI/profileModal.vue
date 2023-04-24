@@ -224,7 +224,7 @@ textarea {
     border: 2px solid rgb(192, 150, 40);
     padding: 15px;
     overflow: auto;
-    min-width: 400px;
+    min-width: 300px;
 }
 
 .ProfilCardDesign::-webkit-scrollbar {

@@ -3,7 +3,7 @@
         <div>
             <div class="topBarExplanation">
                 <div class="backArrow" @click="goBackToItineraryDropdown"></div>
-                <span class="titlePosition" style="font-size: calc(6px + 0.6vw);">{{ this.selectedItineraryInfo.city }}</span>
+                <span class="titlePosition" style="font-size: calc(8px + 0.6vw);">{{ this.selectedItineraryInfo.city }}</span>
             </div>
             <span style="font-size: calc(6px + 0.6vw);">{{ getCurrentPOIName }}</span>
             <br />
@@ -15,12 +15,12 @@
                 <span style="white-space: pre-line; font-size: calc(6px + 1.2vh);">{{ getCurrentPOIOpenHours }}</span>
             </div>
             <div class="arrowOnTheLine">
-                <div style="display: flex; width: 10vw;">
-                    <div v-if="this.currentWaypointIndex > 0" class="backArrow" @click="checkPreviousPOI"></div>
-                    <span style="font-size: calc(6px + 1.2vh); margin-top: 1vh; margin-left: 1vw;" v-if="this.currentWaypointIndex > 0">{{ $t("mapPage.previousPoint") }}</span>
+                <div style="display: flex; width: 50%;">
+                    <div v-if="this.currentWaypointIndex > 0" class="backArrowBottom" @click="checkPreviousPOI"></div>
+                    <span style="font-size: calc(4px + 1.2vh); margin: auto" v-if="this.currentWaypointIndex > 0">{{ $t("mapPage.previousPoint") }}</span>
                 </div>
-                <div style="display: flex; width: 10vw; align-items: right; justify-content: right;">
-                    <span v-if="this.currentWaypointIndex < this.selectedItineraryInfo.POIInfo.length - 1" style="font-size: calc(6px + 1.2vh); margin-top: 1vh; margin-right: 1vw;" >{{ $t("mapPage.nextPoint") }}</span>
+                <div style="display: flex; width: 50%; justify-content: right;">
+                    <span v-if="this.currentWaypointIndex < this.selectedItineraryInfo.POIInfo.length - 1" style="font-size: calc(4px + 1.2vh); margin: auto" >{{ $t("mapPage.nextPoint") }}</span>
                     <div v-if="this.currentWaypointIndex < this.selectedItineraryInfo.POIInfo.length - 1" class="frontArrow" @click="checkNextPOI"></div>
                 </div>
             </div>
@@ -80,6 +80,7 @@ export default {
     border-radius: 15px;
     border: none;
     font-size: calc(6px + 0.6vw);
+    min-width: 300px;
     width: 20vw;
     height: 85vh;
     margin-top: 5px;
@@ -93,8 +94,10 @@ export default {
     margin: auto;
     margin-top: calc(4px + 0.6vh);
     margin-bottom: calc(4px + 0.6vh);
+    margin-left: 5px;
+    margin-right: 10px;
     box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.2);
-    max-width: 19.5vw;
+    min-width: 285px;
     align-self: center;
 }
 
@@ -126,14 +129,16 @@ export default {
 
 .titlePosition {
     display: flex;
-    margin-left: calc(6px + 5.6vw);
-    margin-top: calc(6px + 0.6vh);
+    width: 100%;
+    margin-top: calc(12px + 0.6vh);
+    justify-content: center;
 }
 
 .arrowOnTheLine {
     display: flex;
     flex-direction: row;
     margin-top: calc(6px + 0.6vh);
+    height: 5vmin;
 }
 
 .descriptionLimiterSize {
@@ -146,8 +151,9 @@ div.backArrow {
     height: 3vmin;
     box-sizing: border-box;
     transform: rotate(-135deg);
-    margin-top: calc(4px + 0.6vh);
-    margin-left: calc(6px + 0.6vw);
+    margin-top: calc(12px + 0.6vh);
+    margin-left: calc(16px + 0.6vw);
+    position: absolute;
 
     &::before {
         content: '';
@@ -237,6 +243,56 @@ div.backArrow {
 
     }
 }
+
+div.backArrowBottom {
+    width: 3vmin;
+    height: 3vmin;
+    box-sizing: border-box;
+    transform: rotate(-135deg);
+    margin-top: calc(4px + 0.6vh);
+    margin-left: calc(6px + 0.6vw);
+
+    &::before {
+        content: '';
+        width: 100%;
+        height: 100%;
+        border-width: .3vmin .3vmin 0 0;
+        border-style: solid;
+        border-color: #C09628;
+        transition: .2s ease;
+        display: block;
+        transform-origin: 100% 0;
+    }
+
+
+    &:after {
+        content: '';
+        float: left;
+        position: relative;
+        top: -100%;
+        width: 100%;
+        height: 100%;
+        border-width: 0 .3vmin 0 0;
+        border-style: solid;
+        border-color: #C09628;
+        transform-origin: 90% 0;
+        transition: .2s ease;
+    }
+
+    &:hover::after {
+        transform: rotate(45deg);
+        border-color: #C09628;
+        height: 120%;
+    }
+
+    &:hover::before {
+        border-color: #C09628;
+        transform: scale(.8);
+
+    }
+
+}
+
 
 .slide-fade-enter-active {
   position: absolute;
