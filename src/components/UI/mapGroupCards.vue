@@ -1,8 +1,8 @@
 <template>
     <div class="cardBasicContainer">
         <div>
-            <span class="evenSmallerText textBasicMargin">{{ $t("groupCards.group") }} {{ this.groupName }} </span>
-            <span class="evenSmallerText textBasicMargin alignRight">{{ $t("groupCards.numberOfMembers") }} {{ this.numberOfMember }}</span>
+            <span class="dropboxText textBasicMargin">{{ $t("groupCards.group") }} {{ this.groupName }} </span>
+            <span class="dropboxText textBasicMargin alignRight">{{ $t("groupCards.numberOfMembers") }} {{ this.numberOfMember }}</span>
         </div>
     </div>
 </template>

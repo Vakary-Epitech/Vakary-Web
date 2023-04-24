@@ -1,13 +1,13 @@
 <template>
     <div class="cardBasicContainer">
         <div>
-            <span class="evenSmallerText">{{ this.id }}. </span>
-            <span class="textBasicMargin evenSmallerText">{{ this.city }}</span>
-            <span class="textBasicMargin alignRight evenSmallerText">{{ $t("mapPage.group") }}: {{ this.groupe }}</span>
+            <span class="dropboxText">{{ this.id }}. </span>
+            <span class="textBasicMargin dropboxText">{{ this.city }}</span>
+            <span class="textBasicMargin alignRight dropboxText">{{ $t("mapPage.group") }}: {{ this.groupe }}</span>
         </div>
         <div>
-            <span class="evenSmallerText">{{ this.time }}</span>
-            <span class="evenSmallerText textBasicMargin alignRight">{{ this.date }}</span>
+            <span class="dropboxText">{{ this.time }}</span>
+            <span class="dropboxText textBasicMargin alignRight">{{ this.date }}</span>
         </div>
     </div>
 </template>
@@ -19,11 +19,6 @@ export default {
 </script>
 
 <style scoped>
-.cardBasicContainer {
-    height: 5vh;
-    margin-top: 6px;
-    margin-bottom: 6px;
-}
 
 .textBasicMargin {
     margin-left: 2px;
