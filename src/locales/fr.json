@@ -84,6 +84,8 @@
         "code": "Code d'authentification"
     },
     "inscriptionPage": {
+        "alreadyHaveAnAccount": "Déjà un compte ? ",
+        "signin": "Se connecter",
         "register": "Inscription",
         "email": "Adresse email:",
         "name": "Votre nom:",
@@ -104,7 +106,8 @@
     },
     "groupCards": {
         "group": "Groupe: ",
-        "numberOfMembers": "Membres: "
+        "numberOfMembers": "Membres: ",
+        "numberOfMember": "Membre: "
     },
     "mapPage": {
         "itinerary": "Itinéraires",
@@ -131,5 +134,35 @@
         "child": "Enfant",
         "interest": "Centres D'intérêts",
         "generate": "Générer l'itinéraire"
+    },
+    "createGroup": {
+        "title": "Créer un nouveau groupe",
+        "admin": "Administrateur:",
+        "picture": "Ajouter une photo de groupe",
+        "changePicture": "Changer la photo de groupe",
+        "save": "Sauvegarder",
+        "placeholders": {
+            "name": "Nom du groupe",
+            "mail": "Adresse mail des membres"
+        },
+        "errors": {
+            "name": "Le nom du groupe doit contenir entre 3 et 9 caractères",
+            "mail": "Format d'email incorrect",
+            "name-required": "Nom de groupe requis"
+        }
+    },
+    "showMembers": {
+        "deleteMessage": "Voulez-vous vraiment supprimer le groupe ?",
+        "picture": "Ajouter une photo de groupe",
+        "changePicture": "Changer la photo de groupe",
+        "deletePicture": "Supprimer la photo de groupe",
+        "save": "Sauvegarder",
+        "placeholders": {
+            "mail": "Adresse mail des membres"
+        },
+        "errors": {
+            "name": "Le nom du groupe doit contenir entre 3 et 9 caractères",
+            "mail": "Format d'email incorrect"
+        }
     }
 }

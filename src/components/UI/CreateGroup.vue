@@ -3,59 +3,68 @@
         <div class="background">
             <div class="row">
                 <div class="col-12 text-end">
-                    <font-awesome-icon class="xMark" @click="goBackToGroupDropdown()" icon="fa-solid fa-xmark" />
+                    <button class="xMark" @click="goBackToGroupDropdown()"><i class="fa-solid fa-xmark fa-lg"></i></button>
                 </div>
             </div>
-            <h2>Créer un nouveau groupe</h2>
+            <h2>{{ $t("createGroup.title") }}</h2>
             <section name="groupName">
                 <div class="col-12 mt-3">
-                    <input @blur="v$.groupInformations.name.$touch" placeholder="Nom du groupe"
-                        v-model="groupInformations.name" />
-                    <div v-if="v$.groupInformations.name.$error" class="text-danger">Group name must be between 3 and 15
-                        characters</div>
+                    <input @blur="v$.groupInformations.name.$touch" 
+                    :placeholder="$t('createGroup.placeholders.name')"
+                    v-model="groupInformations.name" 
+                    class="inputClass"/>
+                    <div v-if="v$.groupInformations.name.$error" class="text-danger">
+                        {{ $t("createGroup.errors.name") }}                
+                    </div>
                 </div>
             </section>
             <section name="groupMembers">
                 <div class="row mt-3">
                     <div class="col-12">
-                        <input placeholder="Adresse mail des membres"
+                        <input 
+                            :placeholder="$t('createGroup.placeholders.mail')"
                             v-model="mailMember"
-                            @keydown.enter.prevent="addMember()"/>
-                            <button class="btn-add-group-member" @click="addMember()">Ajouter</button>
-                            <div v-if="showEmailError" class="text-danger">
-                                Format d'email incorrect
-                            </div>
-                        <div class="col-12 mt-3">
+                            @keydown.enter.prevent="addMember()"
+                            class="inputClass"
+                        />
+                        <div v-if="showEmailError" class="text-danger">
+                            {{ $t("createGroup.errors.mail") }}                 
                         </div>
-                        <div class="row mt-3" v-for="(member, index) in groupInformations.members" :key="index">
-                            <div class="col-10">
-                                <p>{{ member.mail }}</p>
-                            </div>
-                            <div class="col-2 text-end">
-                                <font-awesome-icon class="xMark" @click="deleteMember(index)" icon="fa-solid fa-xmark" />
-                            </div>
+                    </div>
+                </div>
+                <div class="row mt-3" v-for="(member, index) in groupInformations.members" :key="index">
+                    <div v-if="member.admin" class="col-12">
+                        <span>{{ $t("createGroup.admin") }} {{ member.mail }}</span>
+                    </div>
+                    <div v-else class="row">
+                        <div class="col-10">
+                            <p>{{ member.mail }}</p>
+                        </div>
+                        <div class="col-2 text-end">
+                            <button class="trashIcon" @click="deleteMember(index)"><i class="fa-solid fa-trash"></i></button>
                         </div>
                     </div>
                 </div>
             </section>
             <section name="photoGroup">
-                <div class="col-12 mt-3">
-                    <label class="btn-add-group-picture">
-                        Ajouter une photo de groupe
+                <div>
+                    <img :src="groupInformations.photo?.preview" :alt="groupInformations.photo?.name" class="img-thumbnail my-1"/>
+                </div>
+                <label class="btn-add-group-picture" v-if="!groupInformations.photo?.preview">
+                    {{ $t("createGroup.picture") }}
+                    <input @change="onFileChange" type="file" hidden>
+                </label>
+                <div v-if="groupInformations.photo?.preview">
+                    <label class="btn-change-group-picture">
+                        {{  $t("createGroup.changePicture") }}
                         <input @change="onFileChange" type="file" hidden>
                     </label>
                 </div>
-                <div v-if="groupInformations.photo">
-                    <div>
-                        <img :src="groupInformations.photo.preview" class="img-thumbnail" />
-                    </div>
-                    <div>{{ groupInformations.photo.name }}</div>
-                </div>
             </section>
             <div class="col-12 mt-3 text-center">
-                <button @click="sendMessage" class="btn-save-group">Sauvegarder</button>
+                <button @click="sendMessage" class="btn-save-group">{{ $t("createGroup.save") }}</button>
             </div>
-            <div v-if="v$.groupInformations.name.$error" class="text-danger">Name required</div>
+            <div v-if="v$.groupInformations.name.$error || errorName" class="text-danger">{{ $t("createGroup.errors.name-required") }}</div>
         </div>
     </div>
 </template>
@@ -73,6 +82,7 @@ export default {
     data() {
         return {
             CreateGroup: true,
+            errorName: false,
             mailMember: "",
             firstName: "",
             listMembers: [],
@@ -85,6 +95,10 @@ export default {
             showEmailError: false
         }
     },
+    created() {
+        this.groupInformations.members.admin = this.$store.state.userStore.mail;
+        this.groupInformations.members.push({ mail: this.groupInformations.members.admin, status: "accepted", admin: true })
+    },
     methods: {
         addMember() {
             if (!this.isValidEmail(this.mailMember)) {
@@ -92,7 +106,7 @@ export default {
                 return;
             }
             this.showEmailError = false;
-            this.groupInformations.members.push({ mail: this.mailMember, status: "pending" })
+            this.groupInformations.members.push({ mail: this.mailMember, status: "pending", admin: false })
             this.mailMember = ''; 
         },
         deleteMember(index) {
@@ -103,17 +117,16 @@ export default {
             return re.test(String(email).toLowerCase());
         },
         sendMessage() {
-            const { groupInformations, mailMember } = this;
-
-            if (mailMember.length !== 0) {
+            if (this.mailMember.length !== 0) {
                 this.addMember();
             }
-
-            groupInformations.id = uuidv4();
-
-
-            this.$store.state.userStore.groups.push(groupInformations);
-
+            if (!this.groupInformations.name) {
+                this.errorName = true;
+                return;
+            }
+            this.errorName = false;
+            this.groupInformations.id = uuidv4();
+            this.$store.state.userStore.groups.push(this.groupInformations);
             this.CreateGroup = false;
             this.$emit("goBackToGroupDropdown");
         },
@@ -127,11 +140,11 @@ export default {
                 size: file.size,
                 type: file.type,
                 preview: reader.result
-            };
+                };
             };
 
             if (file) {
-            reader.readAsDataURL(file);
+                reader.readAsDataURL(file);
             }
         },
         goBackToGroupDropdown() {
@@ -148,7 +161,7 @@ export default {
                 name: {
                     minLength: minLength(3),
                     required,
-                    maxLength: maxLength(15)
+                    maxLength: maxLength(9)
                 }
             }
         }
@@ -158,27 +171,24 @@ export default {
 
 <style scoped>
 
+.inputClass {
+    border: 1px solid rgb(192, 150, 40);
+    border-radius: 5px;
+    padding: 5px 5px;
+    width: 100%;
+}
+
 .background {
     background-color: white;
     padding: 15px;
     border-radius: 15px;
     border: 2px solid rgb(192, 150, 40);
+    min-width: 300px;
+    max-height: 500px;
+    overflow: auto;
 }
-
-.btn-add-group-member {
-    background-color: #0077B5;
-    border: 1px solid #0077B5;
-    border-radius: 5px;
-    color: #FFFFFF;
-    margin-left: 5px;
-    padding: 5px 5px;
-    cursor: pointer;
-}
-
-.btn-add-group-member:hover {
-    background-color: #4B4B4B;
-    border: 1px solid #4B4B4B;
-    color: #FFFFFF;
+::-webkit-scrollbar {
+  width: 0 !important;
 }
 
 .btn-add-group-picture {
@@ -187,32 +197,64 @@ export default {
     border-radius: 5px;
     color: #FFFFFF;
     padding: 10px 20px;
+    width: 100%;
     cursor: pointer;
+    text-align: center;
 }
 
 .btn-add-group-picture:hover {
-    background-color: #4B4B4B;
-    border: 1px solid #4B4B4B;
+    box-shadow: 0px 0px 5px 0px #0077B5;
+}
+
+.btn-change-group-picture {
+    background-color: #0077B5;
+    border: 1px solid #0077B5;
+    border-radius: 5px;
     color: #FFFFFF;
+    padding: 10px 20px;
+    width: 100%;
+    cursor: pointer;
+    text-align: center;
+}
+
+.btn-change-group-picture:hover {
+    box-shadow: 0px 0px 5px 0px #0077B5;
 }
 
 .btn-save-group {
     background-color: #FFFFFF;
-    border: 1px solid #0077B5;
+    border: 1px solid rgb(192, 150, 40);
     border-radius: 5px;
-    color: #0077B5;
+    color: black;
     padding: 10px 20px;
-    cursor: pointer;
+    width: 50%;
+    text-align: center;
 }
 
 .btn-save-group:hover {
-    background-color: #0077B5;
-    border: 1px solid #0077B5;
-    color: #FFFFFF;
+    box-shadow: 0px 0px 5px 0px rgb(192, 150, 40);
 }
+
 .xMark {
-    font-size: 2rem;
-    color: #000;
-    cursor: pointer;
+    background-color: #FFFFFF;
+    border: none;
+    border-radius: 5px;
+    padding: 2px 5px;
+    color: black;
+}
+
+.xMark:hover {
+    box-shadow: 0 0 0 2px black;
+}
+
+.trashIcon {
+    color: #dc3545;
+    border: none;
+    background-color: white;
+    border-radius: 5px;
+}
+
+.trashIcon:hover {
+    box-shadow: 0 0 0 2px #dc3545;
 }
 </style>

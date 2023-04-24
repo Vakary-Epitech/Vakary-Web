@@ -18,7 +18,7 @@
       <button @click="(confirmInscription)" class="basicVakaryButton elementBasicMargin">{{ $t("inscriptionPage.confirm") }}</button>
       <!-- div already got an account ? Login -->
       <div class="col-12">
-        <p>Déjà un compte ? <button class="blueVakaryButton" @click="openLoginPage">Se connecter</button></p>
+        <p>{{ $t ("inscriptionPage.alreadyHaveAnAccount") }} <button class="blueVakaryButton" @click="openLoginPage">{{ $t ("inscriptionPage.signin") }}</button></p>
       </div>
     </div>
   </div>

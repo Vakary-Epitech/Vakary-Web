@@ -20,7 +20,7 @@
         <label class="newToText">{{ $t("loginPage.new") }}</label>
         <button class="buttonInscription blueVakaryButton" @click="(openRegistrationSelection)">{{ $t("loginPage.register") }}</button>
       </div>
-      <a class="basicVakaryButton p-1" href="https://youtube.com/@thebausffs">{{ $t("loginPage.pro") }}</a>
+      <a class="basicVakaryButton p-1" href="https://vakary.pro.smartbazaar.app/">{{ $t("loginPage.pro") }}</a>
     </div>
   </div>
 </template>
@@ -44,12 +44,12 @@ export default {
       this.$router.push("/redirectPro");
     },
     checkIfUserIsAuthorizeToConnect() {
-      this.$store.state.userStore.userIsLoggedIn = true;
-      this.$router.push("/mapPage");
-      // this.$store.dispatch("checkIfUserIsAuthorizedToConnect", this.password).then(() => {
-      // }).catch(() => {
-      //   this.userDontExist = true;
-      // })
+      this.$store.dispatch("checkIfUserIsAuthorizedToConnect", this.password).then(() => {
+        this.$store.state.userStore.userIsLoggedIn = true;
+        this.$router.push("/mapPage");
+      }).catch(() => {
+        this.userDontExist = true;
+      })
     },
     changeLanguage() {
       this.$i18n.locale = this.$i18n.locale === 'fr' ? 'en' : 'fr';

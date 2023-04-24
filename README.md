@@ -107,8 +107,6 @@ VakaryWeb -> Presentation of the web part
 
 Contain all the UI element of the project. For example an element that is multiple time on the same page or an element present on differents pages
 
-CardsReview -> User review
-
 CreateGroup -> Form to create a new group
 
 itineraryExplanation -> card that display information about your itinerary

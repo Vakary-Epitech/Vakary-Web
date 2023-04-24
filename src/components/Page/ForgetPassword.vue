@@ -11,9 +11,9 @@
           <span class="smallTextSize">{{ $t("forgetPage.code") }}</span>
           <input v-model="token" :disabled="!serverHasSendMail"/>
           <span class="smallTextSize">{{ $t("forgetPage.new") }}</span>
-          <input v-model="newPassword" :disabled="!serverHasSendMail"/>
+          <input type="password" v-model="newPassword" :disabled="!serverHasSendMail"/>
           <span class="smallTextSize">{{ $t("forgetPage.confirm") }}</span>
-          <input v-model="confirmNewPassword" :disabled="!serverHasSendMail"/>
+          <input type="password" v-model="confirmNewPassword" :disabled="!serverHasSendMail"/>
           <button v-if="!serverHasSendMail" class="elementBasicMargin basicVakaryButton"
             @click="requestPasswordReset">{{ $t("forgetPage.accept") }}</button>
           <button v-if="serverHasSendMail" class="elementBasicMargin basicVakaryButton"
@@ -54,9 +54,10 @@ export default {
       });
     },
     sendNewPassword() {
-      this.$store.dispatch("sendNewPassword", { password: "test", authorization: this.token }).then((result) => {
+      this.$store.dispatch("sendNewPassword", { password: this.confirmNewPassword, authorization: this.token }).then((result) => {
         this.serverHasSendMail = true;
         console.log(result);
+        this.openLoginPage();
       }).catch((error) => {
         this.error = error;
       });

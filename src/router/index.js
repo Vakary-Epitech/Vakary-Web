@@ -3,7 +3,6 @@ import LoginPage from "@/components/Page/LoginPage.vue";
 import MapPage from "@/components/Page/MapPage.vue";
 import InscriptionPage from "@/components/Page/InscriptionPage.vue"
 import ForgetPassword from "@/components/Page/ForgetPassword.vue"
-import ProfilePage from "@/components/Page/ProfilePage.vue";
 import LandingPage from "@/components/Page/LandingPage.vue"
 import store from '@/store/store';
 import LearnMorePage from "@/components/Page/LearnMorePage.vue";
@@ -28,11 +27,6 @@ const routes = [
         path: '/forgetPassword',
         name: 'ForgetPassword',
         component: ForgetPassword,
-    },
-    {
-        path: '/profilePage',
-        name: 'ProfilePage',
-        component: ProfilePage,
     },
     {
         path: '/loginPage',

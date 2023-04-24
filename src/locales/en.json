@@ -69,6 +69,8 @@
     "code": "Authentication code"
   },
   "inscriptionPage": {
+    "alreadyHaveAnAccount": "Already have an account ? ",
+    "signin": "Sign in",
     "register": "Sign Up",
     "email": "Email address:",
     "name": "Your name:",
@@ -81,7 +83,9 @@
   },
   "groupCards": {
     "group": "Group: ",
-    "numberOfMembers": "Members: "
+    "numberOfMembers": "Members: ",
+    "numberOfMember": "Member: "
+
   },
   "mapPage": {
     "itinerary": "Itinerary",
@@ -128,5 +132,35 @@
     "child": "Child",
     "interest": "Center of interest",
     "generate": "Generate the Itinerary"
+  },
+  "createGroup": {
+    "title": "Create a new group",
+    "admin": "Administrator:",
+    "picture": "Add a group photo",
+    "changePicture": "Change the group photo",
+    "save": "Save",
+    "placeholders": {
+      "name": "Group name",
+      "mail": "Members' email address"
+    },
+    "errors": {
+      "name": "Group name must be between 3 and 9 characters",
+      "mail": "Incorrect email format",
+      "name-required": "Group name is required"
+    }
+  },
+  "showMembers": {
+    "deleteMessage": "Do you really want to delete the group?",
+    "picture": "Add a group photo",
+    "changePicture": "Change the group photo",
+    "deletePicture": "Delete the group photo",
+    "save": "Save",
+    "placeholders": {
+        "mail": "Members' email address"
+    },
+    "errors": {
+        "name": "The group name must be between 3 and 9 characters",
+        "mail": "Invalid email format"
+    }
   }
 }

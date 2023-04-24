@@ -102,20 +102,19 @@
               <div v-if="this.groupDropdown && !this.groupHasBeenClicked" style="background-color: white;"
                 class="dropdown-content">
                 <div style="display: flex; flex-direction: row;" class="cursorOnButton" @click="callGroupCreation()">
-                  <div class="newItineraryButton evenSmallerText cursorOnButton"
-                    style="margin-left: 5px; display: flex; align-items: center;" ><span
+                  <div class="newItineraryButton cursorOnButton ms-2"
+                    style="display: flex; align-items: center;" ><span
                       class="textBasicMargin evenSmallerText">{{ $t("mapPage.newGroup") }}</span></div>
                   <div style="width: 10vw;" class="my-auto">
                        <i class="fas fa-plus" style="max-width: 3vw; max-height: 6vh; margin-left: 4px; margin-right: 4px; float: right"></i>
                   </div>
                 </div>
-                <div class="topBorder py-2">&nbsp;</div>
                 <div v-for="(group, index) in this.$store.state.userStore.groups" :key="group.id">
+                  <div class="topBorder mt-2">&nbsp;</div>
                   <Transition name="slide-fade">
-                    <mapGroupCardsVue style="cursor:pointer" :groupName="group.name" :numberOfMember="group.members.length" :index="index"
+                    <mapGroupCardsVue class="cursorOnButton" :groupName="group.name" :numberOfMember="group.members.length" :index="index"
                       @click="groupCardsHasBeenClicked(index)" />
                   </Transition>
-                  <div class="topBorder">&nbsp;</div>
                 </div>
               </div>
             </div>
@@ -129,7 +128,7 @@
   
           <div v-else-if="groupHasBeenClicked">
             <Transition name="slide-fade">
-              <showMembers @change-group-photo="changeGroupPhoto" :groups=this.$store.state.userStore.groups[selectedGroup] :key="keyShowGroup" @goBackToGroupDropdown="groupHasBeenClicked = false" class="componentsGroupDropdown"/>
+              <showMembers @change-group-photo="changeGroupPhoto" :groups=this.$store.state.userStore.groups[selectedGroup] :key="keyShowGroup" @goBackToGroupDropdown="groupHasBeenClicked = false; showGroupCreationModal = false; displayItineraryInformation = false" class="componentsGroupDropdown"/>
             </Transition>
           </div>
   
@@ -414,9 +413,6 @@ export default {
       this.openedMarkerID = label;
     },
 
-    goToProfilePage() {
-      this.$router.push("/profilePage");
-    },
 
     frenchLanguage() {
       this.$i18n.locale = "fr";
