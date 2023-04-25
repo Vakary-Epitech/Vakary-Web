@@ -1,8 +1,8 @@
 <template>
     <div class="cardBasicContainer">
         <div class="my-2">
-            <span class="ms-2">{{ $t("groupCards.group") }} {{ this.groupName }} </span>
-            <span class="alignRight me-2"> {{ this.numberOfMember > 1 ? $t("groupCards.numberOfMembers") + this.numberOfMember : $t("groupCards.numberOfMember") + this.numberOfMember }}</span>
+            <span class="ms-2"> {{ this.groupName }} </span>
+            <span class="alignRight me-2"> {{ this.numberOfMember }}</span>
         </div>
     </div>
 </template>

@@ -11,7 +11,7 @@
                     <div class="row">
                         <div class="col-8 text-center">
                             <div v-if="editGroupName">
-                                <h4>
+                                <h4 class="overflow mt-3">
                                     <input 
                                     @blur="v$.newGroupName.$touch" 
                                     v-model="newGroupName"
@@ -23,7 +23,7 @@
                                 </div>
                             </div>
                             <p v-else-if="askingDelete">{{ $t("showMembers.deleteMessage") }}</p>
-                            <h4 v-else>{{ groupInformations.name }}</h4>
+                            <h4 v-else class="overflow mt-3">{{ groupInformations.name }}</h4>
                         </div>
                         <div class="col-2 mx-auto my-auto">
                             <button v-if="editGroupName" class="btn-check-change-group-name" @click="updateGroupName()"><i class="fa-solid fa-check fa-lg"></i></button>
@@ -67,10 +67,10 @@
                     </div>
                 </section>
                 <section name="picture">
-                    <div>
+                    <div v-if="groupInformations.photo">
                         <img :src="groupInformations.photo?.preview" :alt="groupInformations.photo?.name" class="img-thumbnail my-1"/>
                     </div>
-                    <label class="btn-add-group-picture" v-if="!groupInformations.photo?.preview">
+                    <label class="btn-add-group-picture mt-1" v-if="!groupInformations.photo?.preview">
                         {{ $t("showMembers.picture") }}
                         <input @change="onFileChange" type="file" hidden>
                     </label>
@@ -218,7 +218,7 @@ export default {
             newGroupName: {
                 minLength: minLength(3),
                 required,
-                maxLength: maxLength(9)
+                maxLength: maxLength(18),
             }
         }
     }
@@ -255,6 +255,10 @@ export default {
 .changeGroupName:focus {
     outline: none;
     border: none;
+}
+
+.overflow {
+    overflow: auto;
 }
 
 .btn-save-group {

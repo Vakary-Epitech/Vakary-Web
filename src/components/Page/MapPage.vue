@@ -109,11 +109,13 @@
                        <i class="fas fa-plus" style="max-width: 3vw; max-height: 6vh; margin-left: 4px; margin-right: 4px; float: right"></i>
                   </div>
                 </div>
-                <div v-for="(group, index) in this.$store.state.userStore.groups" :key="group.id">
+                <div class="cursorOnButton" @click="groupCardsHasBeenClicked(index)" v-for="(group, index) in this.$store.state.userStore.groups" :key="group.id">
                   <div class="topBorder mt-2">&nbsp;</div>
+                  <i class="fas fa-users ms-2 mt-2"></i>
+                  <i class="fas fa-person fa-lg me-2 mt-2" style="float: right"></i>
                   <Transition name="slide-fade">
-                    <mapGroupCardsVue class="cursorOnButton" :groupName="group.name" :numberOfMember="group.members.length" :index="index"
-                      @click="groupCardsHasBeenClicked(index)" />
+                    <mapGroupCardsVue :groupName="group.name" :numberOfMember="group.members.length" :index="index"
+                      />
                   </Transition>
                 </div>
               </div>
@@ -512,6 +514,7 @@ export default {
   transform: translate(0, -2vh);
   border-radius: 0px 0px 20px 20px;
   padding-bottom: 20px;
+  max-width: 300px;
 }
 
 .dropdownArrowPosition {

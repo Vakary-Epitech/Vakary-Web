@@ -146,8 +146,8 @@
       "mail": "Members' email address"
     },
     "errors": {
-      "name": "Group name must be between 3 and 9 characters",
-      "mail": "Incorrect email format",
+      "name": "Group name must be between 3 and 18 characters",
+      "mail": "Incorrect email",
       "name-required": "Group name is required"
     }
   },
@@ -158,11 +158,11 @@
     "deletePicture": "Delete the group photo",
     "save": "Save",
     "placeholders": {
-        "mail": "Members' email address"
+        "mail": "Members' email address to add to the group"
     },
     "errors": {
-        "name": "The group name must be between 3 and 9 characters",
-        "mail": "Invalid email format"
+        "name": "The group name must be between 3 and 18 characters",
+        "mail": "Invalid email"
     }
   }
 }

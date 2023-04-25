@@ -85,6 +85,13 @@ describe('showMembers', () => {
     expect(wrapper.vm.groupInformations.members[0].status).toBe('pending');
     expect(wrapper.vm.groupInformations.members[0].admin).toBe(false);
   });
+  
+  it('should not add a new member to groupInformations.members when addMember is called with an invalid email', () => {
+    wrapper.setData({ mailMember: 'invalidemail', groupInformations: { members: [] } });
+    wrapper.vm.addMember();
+    expect(wrapper.vm.groupInformations.members.length).toBe(0);
+    expect(wrapper.vm.showEmailError).toBe(true);
+  });
 
   it('should update the group name when updateGroupName is called with a valid name', async () => {
     wrapper.vm.v$ = {
