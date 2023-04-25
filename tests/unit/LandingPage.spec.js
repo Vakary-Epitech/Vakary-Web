@@ -1,52 +1,51 @@
-  import { mount } from '@vue/test-utils'
-  import LandingPage from '@/components/Page/LandingPage.vue'
-  import i18n from '../../src/i18n.js'
-  import { createRouter, createWebHistory } from 'vue-router'
+import { mount } from '@vue/test-utils'
+import LandingPage from '@/components/Page/LandingPage.vue'
+import i18n from '../../src/i18n.js'
+import { createRouter, createWebHistory } from 'vue-router'
 
-  const mockRouter = {
-      push: jest.fn()
-  }
+const mockRouter = {
+    push: jest.fn()
+}
 
-  describe('LandingPage', () => {
-    let wrapper
-
-    const router = createRouter({
-      history: createWebHistory(),
-      routes: [
-          {
-              path: '/',
-              name: 'LandingPage',
-              component: LandingPage,
+describe('LandingPage', () => {
+  let wrapper
+  const router = createRouter({
+    history: createWebHistory(),
+    routes: [
+        {
+            path: '/',
+            name: 'LandingPage',
+            component: LandingPage,
+    },
+      {
+        path: '/InscriptionPage',
+        name: 'InscriptionPage'
       },
-        {
-          path: '/InscriptionPage',
-          name: 'InscriptionPage'
-        },
-        {
-          path: '/mobilePage',
-          name: 'MobilePage'
-        },
-        {
-          path: '/learnMorePage',
-          name: 'LearnMorePage'
+      {
+        path: '/mobilePage',
+        name: 'MobilePage'
+      },
+      {
+        path: '/learnMorePage',
+        name: 'LearnMorePage'
+      }
+    ]
+  })
+  
+  beforeEach(() => {
+    wrapper = mount(LandingPage, {
+      global: {
+        plugins: [i18n, router],
+        mocks: {
+            $router: mockRouter
         }
-      ]
+      }
     })
-
-    beforeEach(() => {
-      wrapper = mount(LandingPage, {
-        global: {
-          plugins: [i18n, router],
-          mocks: {
-              $router: mockRouter
-          }
-        }
-      })
-    })
-
-    afterEach(() => {
-      wrapper.unmount()
-    })
+  })
+  
+  afterEach(() => {
+    wrapper.unmount()
+  })
 
   it('changes the language when the changeLanguage method is called', () => {
     const initialLocale = wrapper.vm.geti18n()

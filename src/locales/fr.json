@@ -72,16 +72,14 @@
     },
     "loginPage": {
         "signin": "Se connecter à Vakary",
-        "email": "Adresse email:",
+        "email": "Adresse email ou nom d'utilisateur",
         "password": "Mot de passe",
-        "forgot": "Mot de passe oublié ?",
-        "wrong": "Ce compte n'existe pas",
-        "connect": "Connexion",
-        "new": "Nouveau sur Vakary ?",
-        "register": "Inscription",
-        "pro": "Connexion Professionelle",
-        "standard": "Connexion Standard",
-        "code": "Code d'authentification"
+        "forgot": "Informations de compte oubliées ?",
+        "wrong": "Identifiants incorrect",
+        "wrong2": "Nom d'utilisateur ou mot de passe incorrect",
+        "connect": "Se connecter",
+        "register": "S'inscrire",
+        "pro": "Se connecter à Vakary Pro"
     },
     "inscriptionPage": {
         "alreadyHaveAnAccount": "Déjà un compte ? ",
