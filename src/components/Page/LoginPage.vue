@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="background">
     <div class="centered-svg">
         <img src="@/assets/logo_long_vect.svg">
     </div>
@@ -64,6 +64,13 @@ export default {
 </script>
 
 <style scoped>
+
+.background {
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  background-color: #f0f2f5;
+}
 
 .smallCircle {
   font-size: 1px;
