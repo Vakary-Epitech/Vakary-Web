@@ -19,11 +19,11 @@
 <script>
 export default {
   mounted() {
-    this.$store.dispatch("retrievedCurrentUserPosition");
-    this.$store.dispatch("retrievedMarkerData");
+    //this.$store.dispatch("retrievedCurrentUserPosition");
+    //this.$store.dispatch("retrievedMarkerData");
   },
   beforeCreate() {
-    this.$router.push("/mapPage");
+    this.$router.push("/loginPage");
   },
   methods: {
     openLoginPage() {

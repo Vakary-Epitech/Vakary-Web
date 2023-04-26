@@ -7,18 +7,21 @@
       <div class="elementHorizontalyCentered">
         <div class="loginPageInformationContainer">
           <label>{{ $t("loginPage.email") }}</label>
-          <input v-model="$store.state.userStore.mail">
+          <input v-model="$store.state.userStore.username">
           <label>{{ $t("loginPage.password") }}</label>
           <input type="password" v-model="password">
           <div v-if="userDontExist" class="wrongInputText">{{ $t("loginPage.wrong") }}</div>
-          <button class="basicVakaryButton marginButton" @click="(checkIfUserIsAuthorizeToConnect)">{{ $t("loginPage.connect") }}</button>
-          <button class="basicVakaryButton marginButton" @click="(openForgetPassword)">{{ $t("loginPage.forgot") }}</button>
+          <button class="basicVakaryButton marginButton" @click="(checkIfUserIsAuthorizeToConnect)">{{
+            $t("loginPage.connect") }}</button>
+          <button class="basicVakaryButton marginButton" @click="(openForgetPassword)">{{ $t("loginPage.forgot")
+          }}</button>
         </div>
       </div>
 
       <div class="elementHorizontalyCentered loginPageInscriptionContainer">
         <label class="newToText">{{ $t("loginPage.new") }}</label>
-        <button class="buttonInscription blueVakaryButton" @click="(openRegistrationSelection)">{{ $t("loginPage.register") }}</button>
+        <button class="buttonInscription blueVakaryButton" @click="(openRegistrationSelection)">{{
+          $t("loginPage.register") }}</button>
       </div>
       <a class="basicVakaryButton p-1" href="https://youtube.com/@thebausffs">{{ $t("loginPage.pro") }}</a>
     </div>
@@ -45,22 +48,21 @@ export default {
     },
     checkIfUserIsAuthorizeToConnect() {
       this.$store.dispatch("checkIfUserIsAuthorizedToConnect", this.password).then(() => {
-        this.$store.state.userStore.userIsLoggedIn = true;
-        this.$router.push("/mapPage");
+        this.$store.dispatch("retrieveUserInformation", this.password).then(() => {
+          this.$store.state.userStore.userIsLoggedIn = true;
+          this.$router.push("/mapPage");
+        }).catch(() => {
+          this.userDontExist = true;
+        })
       }).catch(() => {
         this.userDontExist = true;
+        console.log(this.$store.state.userStore.username);
+
       })
     },
     changeLanguage() {
       this.$i18n.locale = this.$i18n.locale === 'fr' ? 'en' : 'fr';
     },
-    checkIfCityIsAuthorizeToConnect() {
-      this.$store.dispatch("checkIsCityIsAuthorizedToConnect", this.password).then(() => {
-        this.$router.push("/mapPage");
-      }).catch(() => {
-        this.userDontExist = true;
-      })
-    }
   },
 }
 </script>
@@ -111,6 +113,7 @@ export default {
 a {
   text-decoration: none;
 }
+
 .login input {
   background-color: var(--background-color-secondary);
   border-color: var(--text-primary-color);
