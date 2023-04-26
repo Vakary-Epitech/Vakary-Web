@@ -26,6 +26,9 @@ export default {
     this.$router.push("/loginPage");
   },
   methods: {
+    geti18n() {
+      return this.$i18n.locale;
+    },
     openLoginPage() {
       this.$router.push("/loginPage");
     },
@@ -48,11 +51,17 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss">
+@import '@/components/Style/Button.scss';
+@import '@/components/Style/Main.scss';
+@import '@/components/Style/Position.scss';
+@import '@/components/Style/Text.scss';
+@import '@/components/Style/Image.scss';
+
 :root {
-    --background-color-primary: white;
-    --accent-color: #cacaca;
-    --text-primary-color: #222;
+  --background-color-primary: white;
+  --accent-color: #cacaca;
+  --text-primary-color: #222;
 }
 
 .v-enter-active,

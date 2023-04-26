@@ -1,8 +1,8 @@
 <template>
     <div class="cardBasicContainer">
-        <div>
-            <span class="dropboxText textBasicMargin">{{ $t("groupCards.group") }} {{ this.groupName }} </span>
-            <span class="dropboxText textBasicMargin alignRight">{{ $t("groupCards.numberOfMembers") }} {{ this.numberOfMember }}</span>
+        <div class="my-2">
+            <span class="ms-2"> {{ this.groupName }} </span>
+            <span class="alignRight me-2"> {{ this.numberOfMember }}</span>
         </div>
     </div>
 </template>
@@ -16,14 +16,6 @@ export default {
 <style scoped>
 .cardBasicContainer {
     height: 5vh;
-    margin-top: 6px;
-    margin-bottom: 6px;
-    padding: 10px;
-}
-
-.textBasicMargin {
-    margin-left: 2px;
-    margin-right: 2px;
 }
 
 .alignRight {

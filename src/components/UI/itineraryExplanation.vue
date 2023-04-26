@@ -3,25 +3,30 @@
         <div>
             <div class="topBarExplanation">
                 <div class="backArrow" @click="goBackToItineraryDropdown"></div>
-                <span class="titlePosition" style="font-size: calc(8px + 0.6vw);">{{ this.selectedItineraryInfo.city }}</span>
+                <span class="titlePosition" style="font-size: calc(8px + 0.6vw);">{{ this.selectedItineraryInfo.city
+                }}</span>
             </div>
             <span style="font-size: calc(6px + 0.6vw);">{{ getCurrentPOIName }}</span>
             <br />
             <div class="imgWrapper">
                 <img class="imageProportion" :src="getCurrentPOIImage" />
             </div>
-            <span class="textMargin descriptionLimiterSize" style="font-size: calc(6px + 1.2vh)">{{ getCurrentPOIDescription }}</span>
-            <div class="openHoursDesign">
-                <span style="white-space: pre-line; font-size: calc(6px + 1.2vh);">{{ getCurrentPOIOpenHours }}</span>
+            <span class="textMargin descriptionLimiterSize" style="font-size: calc(6px + 1.2vh)">{{ getCurrentPOIDescription
+            }}</span>
+            <div class="openHoursDesign timeSizeLimiter">
+                <span style="white-space: pre-line; font-size: calc(6px + 1.2vh);">{{ $t("mapPage.openHours") }} <br />{{ getCurrentPOIOpenHours }}</span>
             </div>
             <div class="arrowOnTheLine">
                 <div style="display: flex; width: 50%;">
                     <div v-if="this.currentWaypointIndex > 0" class="backArrowBottom" @click="checkPreviousPOI"></div>
-                    <span style="font-size: calc(4px + 1.2vh); margin: auto" v-if="this.currentWaypointIndex > 0">{{ $t("mapPage.previousPoint") }}</span>
+                    <span style="font-size: calc(4px + 1.2vh); margin: auto" v-if="this.currentWaypointIndex > 0">{{
+                        $t("mapPage.previousPoint") }}</span>
                 </div>
                 <div style="display: flex; width: 50%; justify-content: right;">
-                    <span v-if="this.currentWaypointIndex < this.selectedItineraryInfo.POIInfo.length - 1" style="font-size: calc(4px + 1.2vh); margin: auto" >{{ $t("mapPage.nextPoint") }}</span>
-                    <div v-if="this.currentWaypointIndex < this.selectedItineraryInfo.POIInfo.length - 1" class="frontArrow" @click="checkNextPOI"></div>
+                    <span v-if="this.currentWaypointIndex < this.selectedItineraryInfo.POIInfo.length - 1"
+                        style="font-size: calc(4px + 1.2vh); margin: auto">{{ $t("mapPage.nextPoint") }}</span>
+                    <div v-if="this.currentWaypointIndex < this.selectedItineraryInfo.POIInfo.length - 1" class="frontArrow"
+                        @click="checkNextPOI"></div>
                 </div>
             </div>
         </div>
@@ -71,8 +76,6 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import "@/components/Style/Button.scss";
-
 .explanatoryCardDesign {
     display: flex;
     background-color: var(--background-color-primary);
@@ -144,6 +147,12 @@ export default {
 .descriptionLimiterSize {
     max-height: 30vh;
     overflow: auto;
+}
+
+.timeSizeLimiter {
+    margin-top: 15px;
+    max-height: 14vh;
+    overflow: auto;   
 }
 
 div.backArrow {
@@ -295,17 +304,16 @@ div.backArrowBottom {
 
 
 .slide-fade-enter-active {
-  position: absolute;
-  transition: all 0.5s ease-out;
+    position: absolute;
+    transition: all 0.5s ease-out;
 }
 
 .slide-fade-leave-active {
-  transition: all 0.4s cubic-bezier(1, 0.5, 0.8, 1);
+    transition: all 0.4s cubic-bezier(1, 0.5, 0.8, 1);
 }
 
 .slide-fade-enter-from,
 .slide-fade-leave-to {
-  transform: translateX(20px);
-  opacity: 0;
-}
-</style>
+    transform: translateX(20px);
+    opacity: 0;
+}</style>

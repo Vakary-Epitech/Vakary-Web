@@ -70,14 +70,13 @@ export default {
             this.$refs.myCarousel.next()
         },
         openSignUpPage() {
-            this.$router.push("/loginPage");
+            this.$router.push("/InscriptionPage");
         },
     }
 }
 </script>
 
 <style scoped>
-@import "@/components/Style/Button.scss";
 
 
 .buttonCards {

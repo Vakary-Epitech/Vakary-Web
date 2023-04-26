@@ -81,6 +81,7 @@
                     <button @click="edit">{{ $t("profilePage.edit") }}</button>
                 </div>
                 <button style="margin-bottom: 15px" @click="(disconnectUser)">{{ $t("profilePage.disconnect") }}</button>
+                <!-- <button style="margin-bottom: 15px" @click="(deleteUser)">delete</button> -->
             </div>
         </div>
     </div>
@@ -138,6 +139,11 @@ export default {
             this.editMode = false
         },
         disconnectUser() {
+            this.$router.push("/");
+            this.$store.state.userStore.userIsLoggedIn = false;
+        },
+        deleteUser() {
+            this.$store.dispatch('deleteUser', this.user.id);
             this.$router.push("/");
             this.$store.state.userStore.userIsLoggedIn = false;
         },

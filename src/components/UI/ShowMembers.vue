@@ -1,91 +1,92 @@
 <template>
     <div id="app" v-if="showMembers">
-        <!-- transition pour afficher la modal de la liste des membres -->
-        <transition name="fade" appear>
-            <div class="modal-overlay" v-if="showMembers"></div>
-        </transition>
-        <transition name="pop" appear>
-            <!-- modal de la liste des membres
-            -ajouter le back
-            -retravailler le design si possible
-             -->
-            <div class="modalshowMembers">
+        <section name="groupManagement">
+            <div class="background">
                 <div class="row">
                     <div class="col-12 text-end">
-                        <font-awesome-icon class="xMark" @click="goBackToGroupDropdown()" icon="fa-solid fa-xmark" />
+                        <button class="xMark" @click="goBackToGroupDropdown()"><i class="fa-solid fa-xmark fa-lg"></i></button>
                     </div>
                 </div>
-                <div class="col-12 text-center">
-                    <h1>{{ groupInformations.name }}</h1>
-                </div>
-                <!-- edit group's name -->
-                <div class="col-12 text-center">
-                    <button class="addGroupPicture" @click="editGroupName = true">Modifier le nom du groupe</button>
-                </div>
-                <!-- delete group -->
-                <div class="col-12 text-center">
-                    <button class="addGroupPicture" @click="deleteGroup">Supprimer le groupe</button>
-                </div>
-                <div class="col-12 text-center">
-                    <img class="w-100" :src="groupInformations.photo" />
-                </div>
-                <!-- edit group photo -->
-                <label class="addGroupPicture">
-                    Modifier la photo du groupe
-                    <input @change="onFileChange" type="file" hidden>
-                </label>
-                <!-- make a popup where we can edit group's name -->
-                <transition name="fade" appear>
-                    <div class="modal-overlay" v-if="editGroupName"></div>
-                </transition>
-                <transition name="pop" appear>
-                    <div class="modalEditGroupName" v-if="editGroupName">
-                        <div class="row">
-                            <div class="col-12 text-end">
-                                <font-awesome-icon class="xMark" @click="editGroupName = false;" icon="fa-solid fa-xmark" />
+                <section name="group">
+                    <div class="row">
+                        <div class="col-8 text-center">
+                            <div v-if="editGroupName">
+                                <h4 class="overflow mt-3">
+                                    <input 
+                                    @blur="v$.newGroupName.$touch" 
+                                    v-model="newGroupName"
+                                    class="changeGroupName"
+                                    >
+                                </h4>
+                                <div v-if="v$.newGroupName.$error" class="text-danger">
+                                    {{ $t("showMembers.errors.name") }}
+                                </div>
+                            </div>
+                            <p v-else-if="askingDelete">{{ $t("showMembers.deleteMessage") }}</p>
+                            <h4 v-else class="overflow mt-3">{{ groupInformations.name }}</h4>
+                        </div>
+                        <div class="col-2 mx-auto my-auto">
+                            <button v-if="editGroupName" class="btn-check-change-group-name" @click="updateGroupName()"><i class="fa-solid fa-check fa-lg"></i></button>
+                            <button v-else-if="askingDelete" class="btn-check-change-group-name" @click="deleteGroup()"><i class="fa-solid fa-check fa-lg"></i></button>
+                            <button v-else class="btn-change-group-name" @click="editGroupName = true"><i class="fa-solid fa-pen"></i></button>
+                        </div>
+                        <div class="col-2 mx-auto my-auto">
+                            <button v-if="editGroupName" class="btn-mark-change-group-name" @click="leaveEditName()"><i class="fa-solid fa-xmark fa-lg"></i></button>
+                            <button v-else-if="askingDelete" class="btn-mark-change-group-name" @click="leaveAskingDelete()"><i class="fa-solid fa-xmark fa-lg"></i></button>
+                            <button v-else class="btn-delete-group ms-2" @click="messageDeleteGroup"><i class="fa-solid fa-trash"></i></button>
+                        </div>
+                    </div>
+                </section>
+                <section name="members">
+                    <div class="row mt-3">
+                        <div class="col-12">
+                            <input 
+                                :placeholder="$t('showMembers.placeholders.mail')"
+                                v-model="mailMember"
+                                @keydown.enter.prevent="addMember()"
+                                class="inputClass"
+                            />
+                            <div v-if="showEmailError" class="text-danger">
+                                {{ $t("showMembers.errors.mail") }}
                             </div>
                         </div>
-                        <div class="col-12 text-center">
-                            <h1>Modifier le nom du groupe</h1>
+                    </div>
+                    <div class="row mt-3" v-for="(member, index) in groupInformations.members" :key="index">
+                        <div class="col-6 text-start">
+                            {{ member.mail }}
                         </div>
-                        <div class="col-12 text-center">
-                            <input @blur="v$.newGroupName.$touch" v-model="newGroupName" />
+                        <div class="col-4 status" :class="getStatus(index)">
+                            {{ member.status }}
                         </div>
-                        <div v-if="v$.newGroupName.$error" class="text-danger">Group name must contains between 3 and 15
-                            characters</div>
-                        <div class="col-12 text-center">
-                            <button @click="updateGroupName()">Valider</button>
+                        <div class="col-2" v-if="!member.admin">
+                            <button class="trashIcon" @click="deleteMember(index)"><i class="fa-solid fa-trash"></i></button>
                         </div>
-                        <!-- if error in name validators -->
-
+                        <div class="col-2 text-center" v-else>
+                            <i class="fas fa-crown goldCrown" aria-hidden="true"></i>
+                        </div>
                     </div>
-                </transition>
-                <h4 v-show="groupInformations?.members?.length > 0">Membres du groupe</h4>
-                <div class="row mt-3" v-for="(member, index) in groupInformations.members" :key="index">
-                    <div class="col-6 text-start">
-                        <input v-model="member.mail">
+                </section>
+                <section name="picture">
+                    <div v-if="groupInformations.photo">
+                        <img :src="groupInformations.photo?.preview" :alt="groupInformations.photo?.name" class="img-thumbnail my-1"/>
                     </div>
-                    <div class="col-4 status" :class="getStatus(index)">
-                        {{ member.status }}
+                    <label class="btn-add-group-picture mt-1" v-if="!groupInformations.photo?.preview">
+                        {{ $t("showMembers.picture") }}
+                        <input @change="onFileChange" type="file" hidden>
+                    </label>
+                    <div v-if="groupInformations.photo?.preview">
+                        <label class="btn-change-group-picture">
+                            {{  $t("showMembers.changePicture") }}
+                            <input @change="onFileChange" type="file" hidden>
+                        </label>
+                        <button @click="deleteGroupPicture" class="btn-delete-group-picture my-2"> {{ $t("showMembers.deletePicture") }} </button>
                     </div>
-                    <div class="col-2">
-                        <font-awesome-icon class="trashIcon" @click="deleteMember(index)" icon="fa-solid fa-trash" />
-                    </div>
-                </div>
-                <div class="row mt-3">
-                    <div class="col-12">
-                        <input @blur="v$.mailMember.$touch" placeholder="Ajouter un membre" v-model="mailMember" />
-                        <div v-if="v$.mailMember.$error" class="text-danger">Incorrect email</div>
-                    </div>
-                    <div class="col-12">
-                        <button class="addGroupPicture" @click="addMember">Ajouter un membre</button>
-                    </div>
-                </div>
-                <div class="col-12">
-                    <b>id: {{ groupInformations.id }}</b>
+                </section>
+                <div class="col-12 mt-3 text-center">
+                    <button @click="goBackToGroupDropdown" class="btn-save-group">{{ $t("showMembers.save") }}</button>
                 </div>
             </div>
-        </transition>
+        </section>
     </div>
 </template>
   
@@ -102,13 +103,20 @@ export default {
             groupInformations: {
                 name: "",
                 members: [],
-                photo: "",
+                photo: {
+                    name: "",
+                    size: 0,
+                    type: "",
+                    preview: "",
+                },
                 id: "",
             },
-            editGroupName: false,
             newGroupName: "",
+            askingDelete: false,
+            editGroupName: false,
             mailMember: '',
             showMembers: true,
+            showEmailError: false
         }
     },
     computed: {
@@ -118,8 +126,12 @@ export default {
     },
     created() {
         this.groupInformations = this.groups;
+        this.newGroupName = this.groupInformations.name;
     },
     methods: {
+        messageDeleteGroup () {
+            this.askingDelete = true;
+        },
         goBackToGroupDropdown() {
             this.CreateGroup = false;
             this.$emit("goBackToGroupDropdown");
@@ -128,12 +140,17 @@ export default {
             return this.groupInformations.members[index].status;
         },
         addMember() {
-            if (this.v$.mailMember.$error) {
+            if (!this.isValidEmail(this.mailMember)) {
+                this.showEmailError = true;
                 return;
             }
-            this.groupInformations.members.push({ mail: this.mailMember, status: "pending" })
-            this.mailMember = "";
-            this.v$.mailMember.$reset();
+            this.showEmailError = false;
+            this.groupInformations.members.push({ mail: this.mailMember, status: "pending", admin: false })
+            this.mailMember = ''; 
+        },
+        isValidEmail(email) {
+            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return re.test(String(email).toLowerCase());
         },
         deleteMember(index) {
             this.groupInformations.members.splice(index, 1);
@@ -142,24 +159,49 @@ export default {
             this.editNameGroup = true;
         },
         updateGroupName() {
-            if (this.v$.newGroupName.$invalid) {
+            if (this.v$.newGroupName.$error) {
                 return;
             }
-            this.editGroupName = false;
-            this.v$.newGroupName.$reset();
             this.groupInformations.name = this.newGroupName;
-            this.newGroupName = "";
+            this.editGroupName = false;
+        },
+        leaveEditName() {
+            this.editGroupName = false;
+            this.newGroupName = this.groupInformations.name;
+        },
+        leaveAskingDelete() {
+            this.askingDelete = false;
         },
         deleteGroup() {
-            // delete the group in the local storage
             let index = this.$store.state.userStore.groups.findIndex(group => group.id === this.groupInformations.id);
             this.$store.state.userStore.groups.splice(index, 1);
             this.showMembers = false;
+            this.$emit("goBackToGroupDropdown");
         },
-        onFileChange(e) {
-            const file = e.target.files[0];
-            this.groupInformations.photo = file;
-            this.$emit("changeGroupPhoto", this.groupInformations.photo);
+        deleteGroupPicture() {
+            this.groupInformations.photo = {
+                name: "",
+                preview: "",
+                size: "",
+                type: "",
+            }
+        },
+        onFileChange(event) {
+            const file = event.target.files[0];
+            const reader = new FileReader();
+
+            reader.onload = () => {
+                this.groupInformations.photo = {
+                    name: file.name,
+                    size: file.size,
+                    type: file.type,
+                    preview: reader.result
+                };
+            };
+
+            if (file) {
+                reader.readAsDataURL(file);
+            }
         },
     },
     props: {
@@ -176,7 +218,7 @@ export default {
             newGroupName: {
                 minLength: minLength(3),
                 required,
-                maxLength: maxLength(15)
+                maxLength: maxLength(18),
             }
         }
     }
@@ -184,10 +226,156 @@ export default {
 </script>
 
 <style scoped>
-.xMark {
-    font-size: 2rem;
-    color: #000;
+
+.inputClass {
+    border: 1px solid rgb(192, 150, 40);
+    border-radius: 5px;
+    padding: 5px 5px;
+    width: 100%;
+}
+
+.background {
+    background-color: white;
+    padding: 15px;
+    border-radius: 15px;
+    border: 2px solid rgb(192, 150, 40);
+    max-height: 500px;
+    min-width: 300px;
+    overflow: auto;
+}
+::-webkit-scrollbar {
+  width: 0 !important;
+}
+
+.changeGroupName {
+    text-decoration: none;
+    border: none;
+}
+
+.changeGroupName:focus {
+    outline: none;
+    border: none;
+}
+
+.overflow {
+    overflow: auto;
+}
+
+.btn-save-group {
+    background-color: #FFFFFF;
+    border: 1px solid rgb(192, 150, 40);
+    border-radius: 5px;
+    color: black;
+    padding: 10px 20px;
+    width: 50%;
+    text-align: center;
+}
+
+.btn-save-group:hover {
+    box-shadow: 0px 0px 5px 0px rgb(192, 150, 40);
+}
+
+.btn-add-group-picture {
+    background-color: #0077B5;
+    border: 1px solid #0077B5;
+    border-radius: 5px;
+    color: #FFFFFF;
+    padding: 10px 20px;
+    width: 100%;
     cursor: pointer;
+    text-align: center;
+}
+
+.btn-add-group-picture:hover {
+    box-shadow: 0px 0px 5px 0px #0077B5;
+}
+
+.btn-delete-group-picture {
+    background-color: #FFFFFF;
+    border: 1px solid #dc3545;
+    border-radius: 5px;
+    color: #dc3545;
+    padding: 10px 20px;
+    width: 100%;
+    text-align: center;
+}
+
+.btn-delete-group-picture:hover {
+    box-shadow: 0px 0px 5px 0px #dc3545;
+}
+
+.btn-change-group-picture {
+    background-color: #0077B5;
+    border: 1px solid #0077B5;
+    border-radius: 5px;
+    color: #FFFFFF;
+    padding: 10px 20px;
+    width: 100%;
+    cursor: pointer;
+    text-align: center;
+}
+
+.btn-change-group-picture:hover {
+    box-shadow: 0px 0px 5px 0px #0077B5;
+}
+
+.xMark {
+    background-color: #FFFFFF;
+    border: none;
+    border-radius: 5px;
+    padding: 2px 5px;
+    color: black;
+}
+
+.xMark:hover {
+    box-shadow: 0 0 0 2px black;
+}
+
+.btn-check-change-group-name {
+    background-color: #FFFFFF;
+    border: none;
+    border-radius: 5px;
+    padding: 2px 5px;
+    color: green;
+}
+
+.btn-check-change-group-name:hover {
+    box-shadow: 0 0 0 2px green;
+}
+
+.btn-mark-change-group-name {
+    background-color: #FFFFFF;
+    border: none;
+    border-radius: 5px;
+    color: #dc3545;
+    padding: 2px 5px;
+}
+
+.btn-mark-change-group-name:hover {
+    box-shadow: 0 0 0 2px #dc3545;
+}
+
+.btn-change-group-name {
+    background-color: #FFFFFF;
+    border: none;
+    border-radius: 5px;
+    padding: 2px 5px;
+}
+
+.btn-change-group-name:hover {
+    box-shadow: 0 0 0 2px rgb(192, 150, 40);
+}
+
+.btn-delete-group {
+    background-color: #FFFFFF;
+    border: none;
+    border-radius: 5px;
+    color: #dc3545;
+    padding: 2px 5px;
+}
+
+.btn-delete-group:hover {
+    box-shadow: 0 0 0 2px #dc3545;
 }
 
 .pending {
@@ -207,92 +395,21 @@ export default {
 
 .status {
     border-radius: 1em;
+    text-align: center;
 }
 
+.goldCrown {
+    color: #FFD700;
+}
 .trashIcon {
-    font-size: 1rem;
-    color: red;
-    cursor: pointer;
-}
-
-.buttonAddMembers {
+    color: #dc3545;
     border: none;
-    color: #FFF;
-    background: #000642;
-    margin-top: 20px;
-    appearance: none;
-    font: inherit;
-    font-size: 0.7rem;
-    padding: .5em 1em;
-    border-radius: .3em;
-    cursor: pointer;
-}
-
-.addGroupPicture {
-    background: #FFE9D3;
-    border: none;
+    background-color: white;
     border-radius: 5px;
-    padding: 10px 20px;
-    color: #FF8C00;
-    cursor: pointer;
 }
 
-.modalshowMembers {
-    position: absolute;
-    position: fixed;
-    background-color: #FFF;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    overflow-y: auto;
-    margin: auto;
-    text-align: center;
-    width: 40%;
-    height: 80%;
-    padding: 2rem;
-    border-radius: 1rem;
-    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
-    z-index: 1000;
-    transform: none;
+.trashIcon:hover {
+    box-shadow: 0 0 0 2px #dc3545;
 }
 
-@media screen and (max-width: 900px) {
-    .modalshowMembers {
-        width: 100%;
-        height: 100%;
-    }
-}
-
-.modalEditGroupName {
-    position: absolute;
-    position: fixed;
-    background-color: #FFF;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    overflow-y: auto;
-    margin: auto;
-    text-align: center;
-    width: 40%;
-    height: 80%;
-    padding: 2rem;
-    border-radius: 1rem;
-    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
-    z-index: 1000;
-    transform: none;
-}
-
-.modal-overlay {
-    content: '';
-    position: absolute;
-    position: fixed;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    z-index: 999;
-    background: #2c3e50;
-    opacity: 0.6;
-}</style>
+</style>

@@ -28,7 +28,7 @@ app.use(VueGoogleMaps, {
         key: process.env.VUE_APP_GOOGLE_MAPS_API_KEY,
     },
 });
-require('./components/Style/Main.scss');
+app.config.globalProperties.lang = 'fr'
 
 app.use(i18n);
 app.use(ElementPlus)

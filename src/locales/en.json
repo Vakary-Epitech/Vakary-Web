@@ -10,6 +10,15 @@
       "download": "Download our application directly to try it out.",
       "scan": "Scan the QR code with your mobile device to download the application."
     },
+    "learnMore": "Discover the exciting story of our project and meet the talented team that makes it possible. Click here to learn more about our journey and ambitions.",
+    "learnMoreButton": "Learn More",
+    "footer": {
+      "follow-us": "Follow us to stay up-to-date with our latest news.",
+      "twitter": "Follow us on Twitter",
+      "instagram": "Follow us on Instagram",
+      "contact-us": "Contact us by email",
+      "email-description": "For any questions, suggestions or comments, please contact us."
+    },
     "free": "We organize your dream vacations for you, for free",
     "pref": "Tell us your preferences, the city you wish to visit, and we will propose a customized itinerary for you",
     "mobile": "With Vakary mobile, you can also follow your itinerary in real-time and much more!",
@@ -32,49 +41,45 @@
     "find": "Find our apps"
   },
   "presentationCards": {
-      "card1": {
-          "title": "TRAVEL WITH YOUR GROUP",
-          "description": "With Vakary's group feature, share your travel experience with loved ones for unforgettable memories.",          "registration": "Sign up now"
-      },
-      "card2": {
-          "title": "CREATE A PROFILE",
-          "description": "Share your desires, interests and introduce yourself to share your love of travel with the Vakary community.",
-          "registration": "Sign up now"
-      },
-      "card3": {
-          "title": "DISCOVER FRANCE",
-          "description": "No matter your preferences, Vakary offers a tailored itinerary to discover the most beautiful places in France!",
-          "registration": "Sign up now"
-      }
-  
+    "card1": {
+      "title": "TRAVEL WITH YOUR GROUP",
+      "description": "With Vakary's group feature, share your travel experience with loved ones for unforgettable memories.",
+      "registration": "Sign up now"
+    },
+    "card2": {
+      "title": "CREATE A PROFILE",
+      "description": "Share your desires, interests and introduce yourself to share your love of travel with the Vakary community.",
+      "registration": "Sign up now"
+    },
+    "card3": {
+      "title": "DISCOVER FRANCE",
+      "description": "No matter your preferences, Vakary offers a tailored itinerary to discover the most beautiful places in France!",
+      "registration": "Sign up now"
+    }
   },
   "loginPage": {
-    "signin": "Sign in to Vakary",
-    "email": "Email address or username:",
+    "signin": "Log into Vakary",
+    "email": "Email or username",
     "password": "Password",
-    "forgot": "Forgot password?",
-    "wrong": "This account does not exist",
-    "connect": "Sign in",
-    "new": "New to Vakary?",
-    "register": "Sign up",
-    "pro": "Professional Login",
-    "standard": "Standard Login",
-    "code": "Authentication code"
+    "forgot": "Forgot account?",
+    "wrong": "Wrong Credentials",
+    "wrong2": "Invalid username or password",
+    "connect": "Log In",
+    "register": "Create new account",
+    "pro": "Log In to Vakary Pro"
   },
   "inscriptionPage": {
-    "register": "Sign Up",
-    "email": "Email address:",
-    "name": "Your name:",
-    "password": "Password:",
-    "confirmPassword": "Confirm password:",
-    "city": "City name:",
-    "zip": "Zip code:",
-    "confirm": "Confirm",
-    "different": "The passwords are different"
+    "create": "Create an account",
+    "alreadyHaveAnAccount": "Already have an account?",
+    "register": "Register",
+    "email": "Email address",
+    "username": "Username",
+    "password": "New password"
   },
   "groupCards": {
     "group": "Group: ",
-    "numberOfMembers": "Members: "
+    "numberOfMembers": "Members: ",
+    "numberOfMember": "Member: "
   },
   "mapPage": {
     "itinerary": "Itinerary",
@@ -84,15 +89,31 @@
     "to": " to ",
     "nextPoint": "Next point",
     "previousPoint": "Previous point",
-    "newGroup": "Create a new group"
+    "newGroup": "Create a new group",
+    "openHours": "Open Hours:"
   },
-  "forgetPage": {
-    "title": "Reset your password",
-    "link": "Enter your Email and we will send you a link to reset your password:",
-    "code": "Enter the code received by email:",
-    "new": "New password:",
-    "confirm": "Confirm password:",
-    "accept": "Accept"
+  "forgetPassword": {
+    "title": "Find Your Account",
+    "placeholders": {
+      "id": "Email Address or Username",
+      "code": "Authentication Code",
+      "password": "New Password"
+    },
+    "error": {
+      "idWrong": "No Search Results",
+      "messageID": "Your search did not return any results. Please try again with different information.",
+      "codeWrong": "Invalid Code",
+      "messageCode": "The code entered is incorrect. Please check your email."
+    },
+    "success": {
+      "idCorrect": "Account Found",
+      "messageID": "Please enter the code received by email."
+    },
+    "buttons": {
+      "cancel": "Cancel",
+      "search": "Search",
+      "change": "Change Password"
+    }
   },
   "profilePage": {
     "edit": "Edit",
@@ -125,5 +146,35 @@
   "screenSizePage": {
     "ScreenSizeTooSmall": "Sorry the Screen size of your device is too small, please use one of our mobile application :",
     "goBack": "Go Back"
+  },
+  "createGroup": {
+    "title": "Create a new group",
+    "admin": "Administrator:",
+    "picture": "Add a group photo",
+    "changePicture": "Change the group photo",
+    "save": "Save",
+    "placeholders": {
+      "name": "Group name",
+      "mail": "Members' email address"
+    },
+    "errors": {
+      "name": "Group name must be between 3 and 18 characters",
+      "mail": "Incorrect email",
+      "name-required": "Group name is required"
+    }
+  },
+  "showMembers": {
+    "deleteMessage": "Do you really want to delete the group?",
+    "picture": "Add a group photo",
+    "changePicture": "Change the group photo",
+    "deletePicture": "Delete the group photo",
+    "save": "Save",
+    "placeholders": {
+      "mail": "Members' email address to add to the group"
+    },
+    "errors": {
+      "name": "The group name must be between 3 and 18 characters",
+      "mail": "Invalid email"
+    }
   }
 }

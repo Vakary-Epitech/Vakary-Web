@@ -1,5 +1,5 @@
 import { shallowMount, mount } from '@vue/test-utils'
-import ProfilePage from '@/components/Page/ProfilePage.vue'
+import ProfilePage from '@/components/UI/profileModal.vue'
 
 describe("ProfilePage", () => {
   it("renders successfully", () => {
