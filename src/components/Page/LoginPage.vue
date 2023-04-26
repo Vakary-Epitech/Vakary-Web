@@ -23,9 +23,9 @@
           <button @click="(openMap)" class="btn buttonCards text-center">{{ $t("loginPage.connect") }}</button>
         </div>
         <div class="mt-2">
-          <span><a @click="openForgetPassword()" href="">{{ $t("loginPage.forgot") }}</a> <i class="fa fa-circle smallCircle mb-1"></i> <a @click="openInscription()" href="">{{ $t("loginPage.register") }}</a></span>
+          <button @click="openForgetPassword()" class="redirectButton">{{ $t("loginPage.forgot") }}</button> <i class="fa fa-circle smallCircle mb-1"></i> <button @click="openInscription()" class="redirectButton" >{{ $t("loginPage.register") }}</button>
         </div>
-        <div class="mt-2">
+        <div class="mt-2 text-center">
           <span><a href="https://vakary.pro.smartbazaar.app/" target="_blank">{{ $t("loginPage.pro") }}</a></span>
         </div>
       </div>
@@ -43,7 +43,7 @@ export default {
   },
   methods: {
     openInscription() {
-      this.$router.push("/inscriptionPage");
+      this.$router.push("/InscriptionPage");
     },
     openForgetPassword() {
       this.$router.push("/forgetPassword")
@@ -87,7 +87,6 @@ export default {
 }
 .card {
   --bs-card-border-width: none;
-  --bs-card-background-color: red;
   background-color: #fff;
   min-width: 300px;
   max-width: 400px;
@@ -129,4 +128,15 @@ a {
 a:hover {
   text-decoration: underline;
 }
+
+.redirectButton {
+  background-color: #fff;
+  border: none;
+  color: #0d6efd;
+}
+
+.redirectButton:hover {
+  text-decoration: underline;
+}
+
 </style>
