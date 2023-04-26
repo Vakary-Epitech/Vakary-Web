@@ -142,5 +142,33 @@ test('wrong password loginPage', async () => {
     await new Promise((r) => setTimeout(r, 1000));
 })
 
+test('user dont exist loginPage', async () => {
+  const wrapper = shallowMount(LoginPage, {
+      global: {
+          mocks: {
+              $store: store,
+              $t: (msg) => msg,
+              $router: {
+                  params: {
+                      type: "user",
+                  }
+              },
+          }
+      },
+      data() {
+          return {
+            storeMail: "tet",
+            userDontExist: false,
+          }
+      }
+  })
+  try {
+      await wrapper.vm.checkIfUserIsAuthorizeToConnect();
+      expect(wrapper.vm.userDontExist).toBe(true)
+  } catch (error) {
+      console.log(error);
+  }
+  await new Promise((r) => setTimeout(r, 1000));
+})
 
 });

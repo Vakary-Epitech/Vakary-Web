@@ -5,7 +5,7 @@
     </div>
     <div class="card mx-auto my-auto mt-3">
       <div class="card-header">
-        <h4 class="text-center mt-3">Créer un compte</h4>
+        <h4 class="text-center mt-3">{{ $t("inscriptionPage.create")}}</h4>
       </div>
       <div class="card-body row">
         <div v-if="userDontExist" >
@@ -16,21 +16,21 @@
         </div>
         <div class="my-2">
           <input type="text" class="form-control"  v-model="$store.state.userStore.username" 
-          placeholder="Nom d'utilisateur">
+          :placeholder="$t('inscriptionPage.username')">
         </div>
         <div class="my-2">
           <input type="text" class="form-control"  v-model="$store.state.userStore.mail" 
-          placeholder="Adresse email">
+          :placeholder="$t('inscriptionPage.email')">
         </div>
         <div class="my-2">
           <input type="password" class="form-control"  v-model="password" 
-          placeholder="Nouveau mot de passe">
+          :placeholder="$t('inscriptionPage.password')">
         </div>
         <div>
-          <button @click="(confirmInscription)" class="btn buttonCards text-center">S'inscrire</button>
+          <button @click="(confirmInscription)" class="btn buttonCards text-center">{{ $t("inscriptionPage.register") }}</button>
         </div>
         <div class="mt-2 text-center">
-          <button class="redirectButton" @click="openLoginPage()">Vous avez déjà un compte ?</button>
+          <button class="redirectButton" @click="openLoginPage()">{{ $t("inscriptionPage.alreadyHaveAnAccount") }}</button>
         </div>
       </div>
     </div>
