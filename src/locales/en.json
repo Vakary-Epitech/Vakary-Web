@@ -69,17 +69,12 @@
     "pro": "Log In to Vakary Pro"
   },
   "inscriptionPage": {
-    "alreadyHaveAnAccount": "Already have an account ? ",
-    "signin": "Sign in",
-    "register": "Sign Up",
-    "email": "Email address:",
-    "name": "Your name:",
-    "password": "Password:",
-    "confirmPassword": "Confirm password:",
-    "city": "City name:",
-    "zip": "Zip code:",
-    "confirm": "Confirm",
-    "different": "The passwords are different"
+    "create": "Create an account",
+    "alreadyHaveAnAccount": "Already have an account?",
+    "register": "Register",
+    "email": "Email address",
+    "username": "Username",
+    "password": "New password"
   },
   "groupCards": {
     "group": "Group: ",
@@ -97,13 +92,28 @@
     "previousPoint": "Previous point",
     "newGroup": "Create a new group"
   },
-  "forgetPage": {
-    "title": "Reset your password",
-    "link": "Enter your Email and we will send you a link to reset your password:",
-    "code": "Enter the code received by email:",
-    "new": "New password:",
-    "confirm": "Confirm password:",
-    "accept": "Accept"
+  "forgetPassword": {
+    "title": "Find Your Account",
+    "placeholders": {
+      "id": "Email Address or Username",
+      "code": "Authentication Code",
+      "password": "New Password"
+    },
+    "error": {
+      "idWrong": "No Search Results",
+      "messageID": "Your search did not return any results. Please try again with different information.",
+      "codeWrong": "Invalid Code",
+      "messageCode": "The code entered is incorrect. Please check your email."
+    },
+    "success": {
+      "idCorrect": "Account Found",
+      "messageID": "Please enter the code received by email."
+    },
+    "buttons": {
+      "cancel": "Cancel",
+      "search": "Search",
+      "change": "Change Password"
+    }
   },
   "profilePage": {
     "edit": "Edit",

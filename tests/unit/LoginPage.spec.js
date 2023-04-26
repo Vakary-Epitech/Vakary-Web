@@ -1,6 +1,7 @@
-import { mount } from '@vue/test-utils';
+import { mount, shallowMount } from '@vue/test-utils';
 import { createRouter, createWebHistory } from 'vue-router'
 import i18n from '../../src/i18n.js'
+import store from '../../src/store/store.js'
 import LoginPage from '@/components/Page/LoginPage.vue';
 
 const mockRouter = {
@@ -61,7 +62,7 @@ describe('LoginPage', () => {
    
   it('navigates to the sign up page when the openSignUpPage method is called', async () => {
     wrapper.vm.openInscription()
-    expect(mockRouter.push).toHaveBeenCalledWith('/inscriptionPage')
+    expect(mockRouter.push).toHaveBeenCalledWith('/InscriptionPage')
   })
 
   it('navigates to the forget password page when the openForgetPassword method is called', async () => {
@@ -79,4 +80,95 @@ describe('LoginPage', () => {
     expect(wrapper.vm.$store.state.userStore.userIsLoggedIn).toBe(true);
     expect(mockRouter.push).toHaveBeenCalledWith('/mapPage');
   });
+
+
+  test('Basic Information verifier LoginPage', async () => {
+    const wrapper = shallowMount(LoginPage, {
+        global: {
+            mocks: {
+                $store: store,
+                $t: (msg) => msg,
+                $router: router,
+            }
+        },
+        data() {
+            return {
+                pro: false,
+                password: "",
+                code: "",
+                userDontExist: false,
+            }
+        }
+    })
+    try {
+        await wrapper.vm.openForgetPassword();
+        await wrapper.vm.openRegistrationSelection();
+        await wrapper.vm.checkIfUserIsAuthorizeToConnect();
+    } catch (error) {
+        console.log(error);
+    }
+    await new Promise((r) => setTimeout(r, 1000));
+})
+
+test('wrong password loginPage', async () => {
+    const wrapper = shallowMount(LoginPage, {
+        global: {
+            mocks: {
+                $store: store,
+                $t: (msg) => msg,
+                $router: {
+                    params: {
+                        type: "user",
+                    }
+                },
+            }
+        },
+        data() {
+            return {
+                password: "az",
+                passwordConfirm: "re",
+                passwordAreNotTheSame: false,
+                userDontExist: false,
+            }
+        }
+    })
+    try {
+        await wrapper.vm.checkIfUserIsAuthorizeToConnect();
+        expect(wrapper.vm.passwordAreNotTheSame).toBe(true)
+        expect(wrapper.vm.userDontExist).toBe(true)
+    } catch (error) {
+        console.log(error);
+    }
+    await new Promise((r) => setTimeout(r, 1000));
+})
+
+test('user dont exist loginPage', async () => {
+  const wrapper = shallowMount(LoginPage, {
+      global: {
+          mocks: {
+              $store: store,
+              $t: (msg) => msg,
+              $router: {
+                  params: {
+                      type: "user",
+                  }
+              },
+          }
+      },
+      data() {
+          return {
+            storeMail: "tet",
+            userDontExist: false,
+          }
+      }
+  })
+  try {
+      await wrapper.vm.checkIfUserIsAuthorizeToConnect();
+      expect(wrapper.vm.userDontExist).toBe(true)
+  } catch (error) {
+      console.log(error);
+  }
+  await new Promise((r) => setTimeout(r, 1000));
+})
+
 });

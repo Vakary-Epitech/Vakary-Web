@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory } from 'vue-router';
+import { createRouter, createWebHashHistory } from 'vue-router';
 import LoginPage from "@/components/Page/LoginPage.vue";
 import MapPage from "@/components/Page/MapPage.vue";
 import InscriptionPage from "@/components/Page/InscriptionPage.vue"
@@ -14,7 +14,7 @@ const routes = [
         component: LandingPage,
     },
     {
-        path: '/inscriptionPage',
+        path: '/InscriptionPage',
         name: 'InscriptionPage',
         component: InscriptionPage,
     },
@@ -38,13 +38,12 @@ const routes = [
         name: 'MapPage',
         component: MapPage,
     },
-    { path: '/redirect', redirect: 'https://www.google.com' }
-
+    { path: '/:pathMatch(.*)*', redirect: '/' }
 
 ];
 
 const router = createRouter({
-    history: createWebHistory(process.env.BASE_URL),
+    history: createWebHashHistory(),
     routes,
 });
 
@@ -53,6 +52,9 @@ router.beforeEach((to, from, next) => {
         next();
     else if (to.name == "LoginPage" || to.name == "ForgetPassword" || to.name == "InscriptionPage" || to.name == "RegistrationType" || to.name == "LandingPage" || to.name == "VakaryWeb" || to.name == "MobilePage")
         next();
+    else {
+        next({ name: 'LoginPage' });
+    }
 })
 
 export default router;
