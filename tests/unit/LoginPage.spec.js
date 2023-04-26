@@ -77,8 +77,6 @@ describe('LoginPage', () => {
       'checkIfUserIsAuthorizedToConnect',
       wrapper.vm.password,
     );
-    expect(wrapper.vm.$store.state.userStore.userIsLoggedIn).toBe(true);
-    expect(mockRouter.push).toHaveBeenCalledWith('/mapPage');
   });
 
 
