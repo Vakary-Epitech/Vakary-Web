@@ -5,54 +5,51 @@
     </div>
     <div class="card mx-auto my-auto mt-3">
       <div class="card-header">
-        <h4 class="text-center mt-3">Trouvez votre compte</h4>
+        <h4 class="text-center mt-3">{{ $t("forgetPassword.title")}}</h4>
       </div>
       <div class="card-body row">
         <div v-if="userDontExist" >
           <p class="wrongID text-center">
-            <span class="bold">Aucun résultat de recherche<br></span>
-            <span>Votre recherche ne donne aucun résultat. Veuillez réessayer avec d'autres informations.</span>
+            <span class="bold">{{ $t("forgetPassword.error.idWrong")}}<br></span>
+            <span>{{ $t("forgetPassword.error.messageID")}}</span>
           </p>
         </div>
         <div v-else-if="invalidToken" >
           <p class="wrongID text-center">
-            <span class="bold">Code incorrect<br></span>
-            <span>Le code entré est incorrect. Veuillez vérifier vos emails.</span>
+            <span class="bold">{{ $t("forgetPassword.error.codeWrong")}}<br></span>
+            <span>{{ $t("forgetPassword.error.messageCode")}}</span>
           </p>
         </div>
-        <div v-else-if="userExist">
+        <div v-else-if="userExist && !invalidToken">
           <p class="correctID text-center">
-            <span class="bold">Compte trouvé<br></span>
-            <span>Veuillez entrer le code reçu par mail.</span>
+            <span class="bold">{{ $t("forgetPassword.success.idCorrect")}}<br></span>
+            <span>{{ $t("forgetPassword.success.messageID")}}</span>
           </p>
+        </div>
+        <div v-if="userExist">
           <div class="my-2">
               <input type="text" class="form-control"  v-model="token"
-              placeholder="Code d'authentification">
+              :placeholder="$t('forgetPassword.placeholders.code')">
           </div>
           <div class="my-2">
               <input type="password" class="form-control"  v-model="newPassword"
-              placeholder="Nouveau mot de passe">
+              :placeholder="$t('forgetPassword.placeholders.password')">
           </div>
           <div>
-            <button @click="(requestPasswordReset)" class="btn buttonCards text-center">Changer mon mot de passe</button>
+            <button @click="(requestPasswordReset)" class="btn buttonCards text-center">{{ $t("forgetPassword.buttons.change")}}</button>
           </div>
         </div>
-        <!-- <div class="my-2">
-          <input type="text" class="form-control"  v-model="$store.state.userStore.username" 
-          :placeholder="$t('inscriptionPage.username')">
-        </div> -->
-        
         <div v-if="!userExist" class="my-2">
           <input type="text" class="form-control"  v-model="id" 
-          placeholder="Adresse email ou nom d'utilisateur">
+          :placeholder="$t('forgetPassword.placeholders.id')">
         </div>
       </div>
       <div class="card-body row" v-if="!userExist">
         <div class="col-6">
-          <button @click="(openLoginPage)" class="btn buttonCancelCards text-center">Annuler</button>
+          <button @click="(openLoginPage)" class="btn buttonCancelCards text-center">{{ $t("forgetPassword.buttons.cancel")}}</button>
         </div>
         <div class="col-6">
-          <button @click="(requestPasswordReset)" class="btn buttonCards text-center">Rechercher</button>
+          <button @click="(requestPasswordReset)" class="btn buttonCards text-center">{{ $t("forgetPassword.buttons.search")}}</button>
         </div>
       </div>
     </div>

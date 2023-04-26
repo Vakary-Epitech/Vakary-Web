@@ -92,13 +92,28 @@
     "previousPoint": "Previous point",
     "newGroup": "Create a new group"
   },
-  "forgetPage": {
-    "title": "Reset your password",
-    "link": "Enter your Email and we will send you a link to reset your password:",
-    "code": "Enter the code received by email:",
-    "new": "New password:",
-    "confirm": "Confirm password:",
-    "accept": "Accept"
+  "forgetPassword": {
+    "title": "Find Your Account",
+    "placeholders": {
+      "id": "Email Address or Username",
+      "code": "Authentication Code",
+      "password": "New Password"
+    },
+    "error": {
+      "idWrong": "No Search Results",
+      "messageID": "Your search did not return any results. Please try again with different information.",
+      "codeWrong": "Invalid Code",
+      "messageCode": "The code entered is incorrect. Please check your email."
+    },
+    "success": {
+      "idCorrect": "Account Found",
+      "messageID": "Please enter the code received by email."
+    },
+    "buttons": {
+      "cancel": "Cancel",
+      "search": "Search",
+      "change": "Change Password"
+    }
   },
   "profilePage": {
     "edit": "Edit",
