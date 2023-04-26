@@ -1,65 +1,99 @@
 <template>
-  <div class="container">
-    <div class="forgetPassword">
-      <img src="@/assets/Logo_vect.svg" class="logoAsBackground elementHorizontalyCentered" />
-      <!-- <button @click="changeLanguage">EN</button> -->
-      <div class="login elementHorizontalyCentered">
-        <span class="mediumTitle elementBasicMargin thirdZIndex">{{ $t("forgetPage.title") }}</span>
-        <div class="ForgetPasswordContainer">
-          <span class="smallTextSize">{{ $t("forgetPage.link") }}</span>
-          <input v-model="email" />
-          <span class="smallTextSize">{{ $t("forgetPage.code") }}</span>
-          <input v-model="token" :disabled="!serverHasSendMail"/>
-          <span class="smallTextSize">{{ $t("forgetPage.new") }}</span>
-          <input type="password" v-model="newPassword" :disabled="!serverHasSendMail"/>
-          <span class="smallTextSize">{{ $t("forgetPage.confirm") }}</span>
-          <input type="password" v-model="confirmNewPassword" :disabled="!serverHasSendMail"/>
-          <button v-if="!serverHasSendMail" class="elementBasicMargin basicVakaryButton"
-            @click="requestPasswordReset">{{ $t("forgetPage.accept") }}</button>
-          <button v-if="serverHasSendMail" class="elementBasicMargin basicVakaryButton"
-            @click="sendNewPassword">{{ $t("forgetPage.accept") }}</button>
+  <div class="background">
+    <div class="centered-svg">
+        <img src="@/assets/logo_long_vect.svg">
+    </div>
+    <div class="card mx-auto my-auto mt-3">
+      <div class="card-header">
+        <h4 class="text-center mt-3">Trouvez votre compte</h4>
+      </div>
+      <div class="card-body row">
+        <div v-if="userDontExist" >
+          <p class="wrongID text-center">
+            <span class="bold">Aucun résultat de recherche<br></span>
+            <span>Votre recherche ne donne aucun résultat. Veuillez réessayer avec d'autres informations.</span>
+          </p>
+        </div>
+        <div v-else-if="invalidToken" >
+          <p class="wrongID text-center">
+            <span class="bold">Code incorrect<br></span>
+            <span>Le code entré est incorrect. Veuillez vérifier vos emails.</span>
+          </p>
+        </div>
+        <div v-else-if="userExist">
+          <p class="correctID text-center">
+            <span class="bold">Compte trouvé<br></span>
+            <span>Veuillez entrer le code reçu par mail.</span>
+          </p>
+          <div class="my-2">
+              <input type="text" class="form-control"  v-model="token"
+              placeholder="Code d'authentification">
+          </div>
+          <div class="my-2">
+              <input type="password" class="form-control"  v-model="newPassword"
+              placeholder="Nouveau mot de passe">
+          </div>
+          <div>
+            <button @click="(requestPasswordReset)" class="btn buttonCards text-center">Changer mon mot de passe</button>
+          </div>
+        </div>
+        <!-- <div class="my-2">
+          <input type="text" class="form-control"  v-model="$store.state.userStore.username" 
+          :placeholder="$t('inscriptionPage.username')">
+        </div> -->
+        
+        <div v-if="!userExist" class="my-2">
+          <input type="text" class="form-control"  v-model="id" 
+          placeholder="Adresse email ou nom d'utilisateur">
+        </div>
+      </div>
+      <div class="card-body row" v-if="!userExist">
+        <div class="col-6">
+          <button @click="(openLoginPage)" class="btn buttonCancelCards text-center">Annuler</button>
+        </div>
+        <div class="col-6">
+          <button @click="(requestPasswordReset)" class="btn buttonCards text-center">Rechercher</button>
         </div>
       </div>
     </div>
   </div>
 </template>
 
+
   
 <script>
 export default {
   data() {
     return {
-      email: '',
+      id: '',
       serverHasSendMail: false,
       token: '',
-      error: '',
+      userExist: false,
+      userDontExist: false,
       newPassword: '',
-      confirmNewPassword: '',
+      invalidToken: false,
     }
   },
   methods: {
     openLoginPage() {
       this.$router.push("/loginPage");
     },
-    changeLanguage() {
-      this.$i18n.locale = this.$i18n.locale === 'fr' ? 'en' : 'fr';
-    },
     requestPasswordReset() {
-      this.$store.dispatch("requestPasswordReset", this.email).then((result) => {
+      this.$store.dispatch("requestPasswordReset", this.id).then(() => {
         this.serverHasSendMail = true;
-        console.log(result);
-      }).catch((error) => {
+        this.userExist = true;
+      }).catch(() => {
         this.serverHasSendMail = true;
-        this.error = error;
+        this.userDontExist = true;
       });
     },
     sendNewPassword() {
-      this.$store.dispatch("sendNewPassword", { password: this.confirmNewPassword, authorization: this.token }).then((result) => {
+      this.$store.dispatch("sendNewPassword", { password: this.newPassword, authorization: this.token }).then(() => {
         this.serverHasSendMail = true;
-        console.log(result);
+        this.invalidToken = true;
         this.openLoginPage();
-      }).catch((error) => {
-        this.error = error;
+      }).catch(() => {
+        this.invalidToken = true;
       });
     },
   },
@@ -68,46 +102,76 @@ export default {
   
 <style scoped>
 
-.login {
+.background {
+  width: 100vw;
   height: 100vh;
-  display: flex;
-  text-align: center;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  z-index: 2;
-}
-
-.forgetPassword {
-  display: flex;
-  text-align: center;
-  justify-content: center;
-  align-items: center;
-}
-
-.logoAsBackground {
-  width: 90vw;
-  height: 90vh;
-  opacity: 20%;
   position: absolute;
+  background-color: #f0f2f5;
 }
 
-.ForgetPasswordContainer {
-  display: flex;
-  background-color: var(--background-color-primary);
-  text-align: center;
-  flex-direction: column;
-  border: 1px solid rgb(192, 150, 40);
-  border-radius: 15px;
-  padding: 5px;
+.centered-svg {
+  display: block;
+  margin: 5% auto 10px;
+  width: 300px;
+}
+.bold {
+  font-weight: 600;
+}
+
+.card {
+  background-color: #fff;
+  min-width: 300px;
   max-width: 400px;
-  align-content: center;
-  align-items: center;
+  position: relative;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
 }
 
-.ForgetPasswordContainer>input {
-  margin-top: 5px;
-  margin-bottom: 15px;
-  max-width: 60vw;
+input {
+  border: 1px solid rgb(192, 150, 40);
+  height: 40px;
+}
+
+.wrongID {
+  background-color: #FFE4E1;
+  padding: 5px;
+  border: 1px solid #dd3c10;
+}
+
+.correctID {
+  background-color: #E6FFE1;
+  padding: 5px;
+  border: 1px solid #3cdd10;
+}
+
+.buttonCancelCards {
+    margin-top: 5%;
+    width: 100%;
+    height: 25%;
+    min-height: 40px;
+    background-color: #fff;
+    font-size: calc(16px + 0.1vw);
+    border: 2px solid #0d6efd;
+}
+
+.buttonCancelCards:hover {
+    border: 2px solid #0d6efd;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+}
+
+.buttonCards {
+    margin-top: 5%;
+    width: 100%;
+    height: 25%;
+    min-height: 40px;
+    background-color: #C09628;
+    color: white;
+    font-size: calc(16px + 0.1vw);
+    border: 2px solid rgb(192, 150, 40);
+}
+
+.buttonCards:hover {
+    background-color: #000642;
+    border: 2px solid #000642;
+    color: white;
 }
 </style>
