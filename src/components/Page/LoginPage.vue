@@ -1,30 +1,38 @@
 <template>
-  <div class="centerEverything">
-    <img src="@/assets/Logo_vect.svg" class="logoAsBackground elementHorizontalyCentered" />
-    <div class="login elementHorizontalyCentered">
-      <label class="elementBasicMargin">{{ $t("loginPage.signin") }}</label>
-      <!-- <button @click="changeLanguage">EN</button> -->
-      <div class="elementHorizontalyCentered">
-        <div class="loginPageInformationContainer">
-          <label>{{ $t("loginPage.email") }}</label>
-          <input v-model="$store.state.userStore.mail">
-          <label>{{ $t("loginPage.password") }}</label>
-          <input type="password" v-model="password">
-          <div v-if="userDontExist" class="wrongInputText">{{ $t("loginPage.wrong") }}</div>
-          <button class="basicVakaryButton marginButton" @click="(checkIfUserIsAuthorizeToConnect)">{{ $t("loginPage.connect") }}</button>
-          <button class="basicVakaryButton marginButton" @click="(openForgetPassword)">{{ $t("loginPage.forgot") }}</button>
+  <div class="background">
+    <div class="centered-svg">
+        <img src="@/assets/logo_long_vect.svg">
+    </div>
+    <div class="card mx-auto my-auto mt-3">
+      <h4 class="text-center mt-3">{{ $t("loginPage.signin")}} </h4>
+      <div class="card-body row">
+        <div v-if="userDontExist" >
+          <p class="wrongID text-center">
+            <span class="bold">{{ $t("loginPage.wrong") }}<br></span>
+            <span>{{ $t("loginPage.wrong2") }}</span>
+          </p>
+        </div>
+        <div class="my-2">
+          <input type="text" class="form-control"  v-model="$store.state.userStore.mail" 
+          :placeholder="$t('loginPage.email')">
+        </div>
+        <div class="mt-3">
+          <input v-model="password" type="password" class="form-control" :placeholder="$t('loginPage.password')">
+        </div>
+        <div>
+          <button @click="(openMap)" class="btn buttonCards text-center">{{ $t("loginPage.connect") }}</button>
+        </div>
+        <div class="mt-2">
+          <span><a @click="openForgetPassword()" href="">{{ $t("loginPage.forgot") }}</a> <i class="fa fa-circle smallCircle mb-1"></i> <a @click="openInscription()" href="">{{ $t("loginPage.register") }}</a></span>
+        </div>
+        <div class="mt-2">
+          <span><a href="https://vakary.pro.smartbazaar.app/" target="_blank">{{ $t("loginPage.pro") }}</a></span>
         </div>
       </div>
-
-      <div class="elementHorizontalyCentered loginPageInscriptionContainer">
-        <label class="newToText">{{ $t("loginPage.new") }}</label>
-        <button class="buttonInscription blueVakaryButton" @click="(openRegistrationSelection)">{{ $t("loginPage.register") }}</button>
-      </div>
-      <a class="basicVakaryButton p-1" href="https://vakary.pro.smartbazaar.app/">{{ $t("loginPage.pro") }}</a>
     </div>
   </div>
 </template>
-
+  
 <script>
 export default {
   data() {
@@ -34,14 +42,14 @@ export default {
     }
   },
   methods: {
-    openRegistrationSelection() {
+    openInscription() {
       this.$router.push("/inscriptionPage");
     },
     openForgetPassword() {
       this.$router.push("/forgetPassword")
     },
-    goToPro() {
-      this.$router.push("/redirectPro");
+    openMap() {
+      this.checkIfUserIsAuthorizeToConnect();
     },
     checkIfUserIsAuthorizeToConnect() {
       this.$store.dispatch("checkIfUserIsAuthorizedToConnect", this.password).then(() => {
@@ -51,94 +59,74 @@ export default {
         this.userDontExist = true;
       })
     },
-    changeLanguage() {
-      this.$i18n.locale = this.$i18n.locale === 'fr' ? 'en' : 'fr';
-    },
-    checkIfCityIsAuthorizeToConnect() {
-      this.$store.dispatch("checkIsCityIsAuthorizedToConnect", this.password).then(() => {
-        this.$router.push("/mapPage");
-      }).catch(() => {
-        this.userDontExist = true;
-      })
-    }
   },
 }
 </script>
 
 <style scoped>
 
-.centerEverything {
-  display: flex;
-  text-align: center;
-  justify-content: center;
-  align-items: center;
-}
-
-.newToText {
-  margin-top: 3px;
-  margin-left: 5px;
-  white-space: nowrap;
-}
-
-.marginButton {
-  margin: 5px auto;
-}
-
-.logoAsBackground {
-  width: 90vw;
-  height: 90%;
-  opacity: 0.2;
-  position: absolute;
-}
-
-.buttonInscription {
-  margin: auto 5px;
-}
-
-.login {
+.background {
+  width: 100vw;
   height: 100vh;
-  display: flex;
-  text-align: center;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  z-index: 2;
+  position: absolute;
+  background-color: #f0f2f5;
+}
+
+.smallCircle {
+  font-size: 1px;
+  color: #000642;
+}
+
+.centered-svg {
+  display: block;
+  margin: 5% auto 10px;
+  width: 300px;
+}
+.bold {
+  font-weight: 600;
+}
+.card {
+  --bs-card-border-width: none;
+  --bs-card-background-color: red;
+  background-color: #fff;
+  min-width: 300px;
+  max-width: 400px;
+  position: relative;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+}
+
+input {
+  border: 1px solid rgb(192, 150, 40);
+  height: 40px;
+}
+
+.wrongID {
+  background-color: #FFE4E1;
+  padding: 5px;
+  border: 1px solid #dd3c10;
+}
+.buttonCards {
+    margin-top: 5%;
+    width: 100%;
+    height: 25%;
+    min-height: 40px;
+    background-color: #C09628;
+    color: white;
+    font-size: calc(16px + 0.1vw);
+    border: 2px solid rgb(192, 150, 40);
+}
+
+.buttonCards:hover {
+    background-color: #000642;
+    border: 2px solid #000642;
+    color: white;
 }
 
 a {
   text-decoration: none;
 }
-.login input {
-  background-color: var(--background-color-secondary);
-  border-color: var(--text-primary-color);
-  margin: 10px auto;
-}
 
-.login label {
-  color: var(--text-primary-color);
-  font-size: 18px;
-}
-
-.loginPageInscriptionContainer {
-  display: flex;
-  justify-content: center;
-  border: 1px solid #000642;
-  background-color: white;
-  border-radius: 15px;
-  padding: 5px;
-  width: 300px;
-  margin-top: 20px;
-  margin-bottom: 20px;
-}
-
-.loginPageInformationContainer {
-  display: flex;
-  background-color: white;
-  text-align: center;
-  flex-direction: column;
-  border: 4px solid rgb(192, 150, 40);
-  border-radius: 15px;
-  padding: 5px;
-  width: 300px;
+a:hover {
+  text-decoration: underline;
 }
 </style>

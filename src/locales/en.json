@@ -58,17 +58,15 @@
   
   },
   "loginPage": {
-    "signin": "Sign in to Vakary",
-    "email": "Email address or username:",
+    "signin": "Log into Vakary",
+    "email": "Email or username",
     "password": "Password",
-    "forgot": "Forgot password?",
-    "wrong": "This account does not exist",
-    "connect": "Sign in",
-    "new": "New to Vakary?",
-    "register": "Sign up",
-    "pro": "Professional Login",
-    "standard": "Standard Login",
-    "code": "Authentication code"
+    "forgot": "Forgot account?",
+    "wrong": "Wrong Credentials",
+    "wrong2": "Invalid username or password",
+    "connect": "Log In",
+    "register": "Create new account",
+    "pro": "Log In to Vakary Pro"
   },
   "inscriptionPage": {
     "alreadyHaveAnAccount": "Already have an account ? ",
