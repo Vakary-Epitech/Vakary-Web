@@ -105,7 +105,7 @@
         "accept": "Accepter"
     },
     "groupCards": {
-        "group": "Groupe: ",
+        "group": "Groupe",
         "numberOfMembers": "Membres: ",
         "numberOfMember": "Membre: "
     },
@@ -146,8 +146,8 @@
             "mail": "Adresse mail des membres"
         },
         "errors": {
-            "name": "Le nom du groupe doit contenir entre 3 et 9 caractères",
-            "mail": "Format d'email incorrect",
+            "name": "Le nom du groupe doit contenir entre 3 et 18 caractères",
+            "mail": "Email incorrect",
             "name-required": "Nom de groupe requis"
         }
     },
@@ -158,11 +158,11 @@
         "deletePicture": "Supprimer la photo de groupe",
         "save": "Sauvegarder",
         "placeholders": {
-            "mail": "Adresse mail des membres"
+            "mail": "Adresse mail pour ajouter un membre"
         },
         "errors": {
-            "name": "Le nom du groupe doit contenir entre 3 et 9 caractères",
-            "mail": "Format d'email incorrect"
+            "name": "Le nom du groupe doit contenir entre 3 et 18 caractères",
+            "mail": "Email incorrect"
         }
     }
 }

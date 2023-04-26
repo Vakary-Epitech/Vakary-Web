@@ -38,7 +38,7 @@
                     </div>
                     <div v-else class="row">
                         <div class="col-10">
-                            <p>{{ member.mail }}</p>
+                            <p class="overflow">{{ member.mail }}</p>
                         </div>
                         <div class="col-2 text-end">
                             <button class="trashIcon" @click="deleteMember(index)"><i class="fa-solid fa-trash"></i></button>
@@ -47,7 +47,7 @@
                 </div>
             </section>
             <section name="photoGroup">
-                <div>
+                <div v-if="groupInformations.photo">
                     <img :src="groupInformations.photo?.preview" :alt="groupInformations.photo?.name" class="img-thumbnail my-1"/>
                 </div>
                 <label class="btn-add-group-picture" v-if="!groupInformations.photo?.preview">
@@ -102,6 +102,10 @@ export default {
     methods: {
         addMember() {
             if (!this.isValidEmail(this.mailMember)) {
+                this.showEmailError = true;
+                return;
+            }
+            if (this.groupInformations.members.some(member => member.mail === this.mailMember)) {
                 this.showEmailError = true;
                 return;
             }
@@ -161,7 +165,7 @@ export default {
                 name: {
                     minLength: minLength(3),
                     required,
-                    maxLength: maxLength(9)
+                    maxLength: maxLength(18)
                 }
             }
         }
@@ -233,6 +237,11 @@ export default {
 
 .btn-save-group:hover {
     box-shadow: 0px 0px 5px 0px rgb(192, 150, 40);
+}
+
+.overflow {
+    overflow: auto;
+    max-height: 200px;
 }
 
 .xMark {

@@ -10,6 +10,8 @@
       "download": "Download our application directly to try it out.",
       "scan": "Scan the QR code with your mobile device to download the application."
     },
+    "learnMore": "Discover the exciting story of our project and meet the talented team that makes it possible. Click here to learn more about our journey and ambitions.",
+    "learnMoreButton": "Learn More",
     "footer": {
       "follow-us": "Follow us to stay up-to-date with our latest news.",
       "twitter": "Follow us on Twitter",
@@ -144,8 +146,8 @@
       "mail": "Members' email address"
     },
     "errors": {
-      "name": "Group name must be between 3 and 9 characters",
-      "mail": "Incorrect email format",
+      "name": "Group name must be between 3 and 18 characters",
+      "mail": "Incorrect email",
       "name-required": "Group name is required"
     }
   },
@@ -156,11 +158,11 @@
     "deletePicture": "Delete the group photo",
     "save": "Save",
     "placeholders": {
-        "mail": "Members' email address"
+        "mail": "Members' email address to add to the group"
     },
     "errors": {
-        "name": "The group name must be between 3 and 9 characters",
-        "mail": "Invalid email format"
+        "name": "The group name must be between 3 and 18 characters",
+        "mail": "Invalid email"
     }
   }
 }
