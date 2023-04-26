@@ -161,7 +161,8 @@
         "errors": {
             "name": "Le nom du groupe doit contenir entre 3 et 18 caractères",
             "mail": "Email incorrect",
-            "name-required": "Nom de groupe requis"
+            "name-required": "Nom de groupe requis",
+            "oneMembers": "Vous ne pouvez pas créer un groupe avec un seul membre"
         }
     },
     "showMembers": {

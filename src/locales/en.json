@@ -160,7 +160,8 @@
     "errors": {
       "name": "Group name must be between 3 and 18 characters",
       "mail": "Incorrect email",
-      "name-required": "Group name is required"
+      "name-required": "Group name is required",
+      "oneMembers": "You can't create a group with only one members"
     }
   },
   "showMembers": {

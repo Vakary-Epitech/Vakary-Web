@@ -1,5 +1,6 @@
 const userStore = {
     state: {
+        userId: "",
         userInfo: {},
         currentUserLocation: {
             latitude: 0,
@@ -23,6 +24,7 @@ const userStore = {
         },
         UPDATE_USER_INFO(state, userInfo) {
             state.userInfo = userInfo;
+            state.userId = userInfo.data.user.id;
         },
     },
 };

@@ -83,8 +83,7 @@ export default {
     border-radius: 15px;
     border: none;
     font-size: calc(6px + 0.6vw);
-    min-width: 300px;
-    width: 20vw;
+    width: 350px;
     height: 85vh;
     margin-top: 5px;
     margin-bottom: 5px;

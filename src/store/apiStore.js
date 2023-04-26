@@ -56,7 +56,6 @@ const apiStore = {
             })
         },
 
-
         checkIfUserIsAuthorizedToConnect(context, password) {
             return new Promise((resolve, reject) => {
                 try {
@@ -75,7 +74,6 @@ const apiStore = {
         retrieveUserInformation(context) {
             return new Promise((resolve, reject) => {
                 try {
-                    console.log(wording.serverAdress + "user/email/" + this.state.userStore.username)
                     axios.get(wording.serverAdress + "user/email/" + this.state.userStore.username, {}).then((userInfo) => {
                         context.commit('UPDATE_USER_INFO', userInfo);
                         resolve(userInfo);
@@ -102,10 +100,17 @@ const apiStore = {
                 }
             })
         },
-        addGroup(groupInformations) {
+
+        addGroup(context, groupInformation) {
             return new Promise((resolve, reject) => {
                 try {
-                    axios.put(wording.serverAdress + "group", { groupname: groupInformations.name, emails: groupInformations.emails }).then((group) => {
+                    let mailsList = [];
+                    for (let mailIndex in groupInformation.members) {
+                        if (mailIndex > 0) {
+                            mailsList.push(groupInformation.members[mailIndex].mail)
+                        }
+                    }
+                    axios.put(wording.serverAdress + "group", { groupname: groupInformation.name, adminId: this.state.userStore.userId, emails: mailsList }).then((group) => {
                         resolve(group);
                     }).catch((error) => {
                         reject(error);
@@ -115,7 +120,6 @@ const apiStore = {
                 }
             })
         },
-
 
         requestPasswordReset(context, email) {
             return new Promise((resolve, reject) => {
@@ -131,10 +135,12 @@ const apiStore = {
                 }
             })
         },
+
         checkIfAccountCanBeCreated(context, password) {
             return new Promise((resolve, reject) => {
                 try {
-                    axios.put(wording.serverAdress + "register", { email: this.state.userStore.mail, password: password, username: this.state.userStore.username, verified: "oui" }).then((canAuthentify) => {
+                    axios.put(wording.serverAdress + "register", { email: this.state.userStore.mail, password: password, username: this.state.userStore.username }).then((canAuthentify) => {
+                        context.commit('UPDATE_USER_INFO', canAuthentify.user);
                         resolve(canAuthentify)
                     }).catch((error) => {
                         reject(error);
@@ -144,6 +150,7 @@ const apiStore = {
                 }
             })
         },
+
         sendNewPassword(context, requestParameters) {
             return new Promise((resolve, reject) => {
                 try {
