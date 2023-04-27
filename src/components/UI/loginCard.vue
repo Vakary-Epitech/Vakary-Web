@@ -28,7 +28,7 @@
   
 <script>
 export default {
-  emits: ['openRegistration', 'openForgetPassword'],
+  emits: ['openRegistration', 'openForgetPassword', 'loginDone'],
   data() {
     return {
       password: "",
