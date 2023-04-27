@@ -17,7 +17,7 @@
     <div>
       <button @click="(openMap)" class="btn newButton text-center">{{ $t("loginPage.connect") }}</button>
     </div>
-    <div class="mt-2">
+    <div class="mt-2 text-center">
       <button @click="openForgetPassword()" class="redirectButton">{{ $t("loginPage.forgot") }}</button> <i class="fa fa-circle smallCircle mb-1"></i> <button @click="openRegistration()" class="redirectButton" >{{ $t("loginPage.register") }}</button>
     </div>
     <div class="mt-2 text-center">
