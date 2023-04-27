@@ -15,9 +15,6 @@ jobs:
       - name: Setup
         run: |
           npm install
-      - name: ClearCache
-        run: |
-          jest --clearCache
       - name: Test
         run: |
           npm run test:unit
