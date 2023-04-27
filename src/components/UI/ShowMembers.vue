@@ -240,7 +240,7 @@ export default {
     border-radius: 15px;
     border: 2px solid rgb(192, 150, 40);
     max-height: 500px;
-    min-width: 300px;
+    min-width: 350px;
     overflow: auto;
 }
 ::-webkit-scrollbar {

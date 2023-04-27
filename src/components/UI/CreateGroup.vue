@@ -30,6 +30,9 @@
                         <div v-if="showEmailError" class="text-danger">
                             {{ $t("createGroup.errors.mail") }}                 
                         </div>
+                        <div v-if="onlyOneMembers" class="text-danger">
+                            {{ $t("createGroup.errors.oneMembers") }}                 
+                        </div>
                     </div>
                 </div>
                 <div class="row mt-3" v-for="(member, index) in groupInformations.members" :key="index">
@@ -92,7 +95,8 @@ export default {
                 photo: "",
                 id: ""
             },
-            showEmailError: false
+            showEmailError: false,
+            onlyOneMembers: false,
         }
     },
     created() {
@@ -128,10 +132,18 @@ export default {
                 this.errorName = true;
                 return;
             }
+            if (this.groupInformations.members.length < 2) {
+                this.onlyOneMembers = true;
+                return;
+            }
             this.errorName = false;
             this.groupInformations.id = uuidv4();
+            console.log(this.groupInformations.members[1].mail)
+
+            this.$store.dispatch("addGroup", this.groupInformations);
             this.$store.state.userStore.groups.push(this.groupInformations);
             this.CreateGroup = false;
+
             this.$emit("goBackToGroupDropdown");
         },
         onFileChange(event) {

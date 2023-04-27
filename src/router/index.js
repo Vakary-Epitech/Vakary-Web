@@ -27,7 +27,6 @@ const routes = [
         component: MapPage,
     },
     { path: '/:pathMatch(.*)*', redirect: '/' }
-
 ];
 
 const router = createRouter({

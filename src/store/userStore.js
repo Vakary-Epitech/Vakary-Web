@@ -1,5 +1,7 @@
 const userStore = {
     state: {
+        userId: "",
+        userInfo: {},
         currentUserLocation: {
             latitude: 0,
             longitude: 0,
@@ -19,6 +21,10 @@ const userStore = {
         USER_CAN_LOG_IN(state, mail) {
             state.userIsLoggedIn = true;
             state.mail = mail;
+        },
+        UPDATE_USER_INFO(state, userInfo) {
+            state.userInfo = userInfo;
+            state.userId = userInfo.data.user.id;
         },
     },
 };

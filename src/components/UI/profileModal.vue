@@ -213,9 +213,7 @@ textarea {
 
 .container div {
     color: var(--text-primary-color);
-
 }
-
 .ProfilCardDesign {
     display: flex;
     background-color: var(--background-color-primary);
@@ -230,9 +228,8 @@ textarea {
     border: 2px solid rgb(192, 150, 40);
     padding: 15px;
     overflow: auto;
-    min-width: 400px;
+    width: 300px;
 }
-
 .ProfilCardDesign::-webkit-scrollbar {
     width: 1px;
 }

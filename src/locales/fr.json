@@ -40,22 +40,22 @@
         "ready": "Prêt à rejoindre l'aventure ?",
         "find": "Trouver nos apps"
     },
-    "presentationCards" : {
-            "card1": {
-                "title": "PARTEZ EN GROUPE",
-                "description": "Vakary vous offre la possibilité de partir en vacances avec vos proches grâce à sa fonctionnalité de groupe.",
-                "registration": "Inscription"
-            },
-            "card2": {
-                "title": "CRÉEZ UN PROFIL",
-                "description": "Partagez vos envies, ce que vous aimez visiter et décrivez-vous pour partager votre amour du voyage.",
-                "registration": "Inscription"
-            },
-            "card3": {
-                "title": "DÉCOUVREZ LA FRANCE",
-                "description": "Peu importe vos envies, Vakary vous propose un itinéraire sur mesure pour découvrir les plus beaux endroits de France !",
-                "registration": "Inscription"
-            }        
+    "presentationCards": {
+        "card1": {
+            "title": "PARTEZ EN GROUPE",
+            "description": "Vakary vous offre la possibilité de partir en vacances avec vos proches grâce à sa fonctionnalité de groupe.",
+            "registration": "Inscription"
+        },
+        "card2": {
+            "title": "CRÉEZ UN PROFIL",
+            "description": "Partagez vos envies, ce que vous aimez visiter et décrivez-vous pour partager votre amour du voyage.",
+            "registration": "Inscription"
+        },
+        "card3": {
+            "title": "DÉCOUVREZ LA FRANCE",
+            "description": "Peu importe vos envies, Vakary vous propose un itinéraire sur mesure pour découvrir les plus beaux endroits de France !",
+            "registration": "Inscription"
+        }
     },
     "profilePage": {
         "edit": "Editer le profil",
@@ -134,7 +134,8 @@
         "to": " a ",
         "nextPoint": "Prochain point",
         "previousPoint": "Point précédent",
-        "newGroup": "Créer un nouveau groupe"
+        "newGroup": "Créer un nouveau groupe",
+        "openHours": "Heure d'ouverture:"
     },
     "itineraryModal": {
         "creation": "Création de votre itinéraire",
@@ -152,6 +153,10 @@
         "interest": "Centres D'intérêts",
         "generate": "Générer l'itinéraire"
     },
+    "screenSizePage": {
+        "ScreenSizeTooSmall": "Désolé la taille d'écran de votre appareil est trop petite, veuillez télécharger une de nos applications mobiles: ",
+        "goBack": "Retour"
+    },
     "createGroup": {
         "title": "Créer un nouveau groupe",
         "admin": "Administrateur:",
@@ -165,7 +170,8 @@
         "errors": {
             "name": "Le nom du groupe doit contenir entre 3 et 18 caractères",
             "mail": "Email incorrect",
-            "name-required": "Nom de groupe requis"
+            "name-required": "Nom de groupe requis",
+            "oneMembers": "Vous ne pouvez pas créer un groupe avec un seul membre"
         }
     },
     "showMembers": {
