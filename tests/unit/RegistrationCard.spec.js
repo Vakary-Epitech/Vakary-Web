@@ -1,33 +1,10 @@
 import { mount } from '@vue/test-utils';
-import { createRouter, createWebHistory } from 'vue-router'
 import i18n from '../../src/i18n.js'
-import InscriptionPage from '@/components/Page/InscriptionPage.vue';
+import RegistrationCard from '@/components/UI/RegistrationCard.vue';
 
-const mockRouter = {
-    push: jest.fn()
-}
-
-describe('InscriptionPage', () => {
+describe('RegistrationCard', () => {
     let wrapper
   
-    const router = createRouter({
-      history: createWebHistory(),
-      routes: [
-        {
-          path: '/',
-          name: 'InscriptionPage',
-          component: InscriptionPage,
-        },
-        {
-          path: '/loginPage',
-          name: 'LoginPage'
-        },
-        {
-          path: '/mapPage',
-          name: 'MapPage'
-        }
-      ]
-    })
     const mockStore = {
         dispatch: jest.fn().mockResolvedValue(),
         state: {
@@ -38,13 +15,12 @@ describe('InscriptionPage', () => {
       };
   
     beforeEach(() => {
-      wrapper = mount(InscriptionPage, {
+      wrapper = mount(RegistrationCard, {
         global: {
-          plugins: [i18n, router],
+          plugins: [i18n],
           mocks: {
             $store: mockStore,
             $t: (msg) => msg,
-            $router: mockRouter
           }
         }
       })
@@ -56,9 +32,17 @@ describe('InscriptionPage', () => {
   
    
 
-    it('navigates to the login page when the openLoginPage method is called', async () => {
-        wrapper.vm.openLoginPage()
-        expect(mockRouter.push).toHaveBeenCalledWith('/loginPage')
+    it('should emit openLogin event when openLoginPage is called', () => {
+      wrapper.vm.openLoginPage();
+      expect(wrapper.emitted().openLogin).toBeTruthy();
+    });
+
+    it('should not valid username', () => {
+      expect(wrapper.vm.isValidUsername("a")).toBe(false);
+    })
+
+    it('should valid username', () => {
+      expect(wrapper.vm.isValidUsername("test")).toBe(true);
     })
 
     it('should not valid email', () => {
@@ -77,20 +61,37 @@ describe('InscriptionPage', () => {
       expect(wrapper.vm.isValidPassword("Test1234")).toBe(true);
     })
 
+    it('should not valid username in the CheckInformations', () => {
+      wrapper.vm.checkInformations("ab", "test", "Test1234");
+      expect(wrapper.vm.userNameError).toBe(true);
+      expect(wrapper.vm.emailError).toBe(false);
+      expect(wrapper.vm.passwordError).toBe(false);
+    })
+
+    it('should valid username in the CheckInformations', () => {
+      wrapper.vm.checkInformations("test", "test", "Test1234");
+      expect(wrapper.vm.userNameError).toBe(false);
+      expect(wrapper.vm.emailError).toBe(true);
+      expect(wrapper.vm.passwordError).toBe(false);
+    })
+
     it('should not valid email in the CheckInformations', () => {
-      wrapper.vm.checkInformations("test", "Test1234");
+      wrapper.vm.checkInformations("test", "test", "Test1234");
+      expect(wrapper.vm.userNameError).toBe(false);
       expect(wrapper.vm.emailError).toBe(true);
       expect(wrapper.vm.passwordError).toBe(false);
     })
 
     it('should valid email but not password in the CheckInformations', () => {
-      wrapper.vm.checkInformations("test@test.co", "test1234");
+      wrapper.vm.checkInformations("test", "test@test.co", "test1234");
+      expect(wrapper.vm.userNameError).toBe(false);
       expect(wrapper.vm.emailError).toBe(false);
       expect(wrapper.vm.passwordError).toBe(true);
     })
 
     it('should valid email and password in the CheckInformations', () => {
-      wrapper.vm.checkInformations("test@test.co", "Test1234");
+      wrapper.vm.checkInformations("test", "test@test.co", "Test1234");
+      expect(wrapper.vm.userNameError).toBe(false);
       expect(wrapper.vm.emailError).toBe(false);
       expect(wrapper.vm.passwordError).toBe(false);
     })

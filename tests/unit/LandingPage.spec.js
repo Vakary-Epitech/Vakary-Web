@@ -12,18 +12,14 @@ describe('LandingPage', () => {
   const router = createRouter({
     history: createWebHistory(),
     routes: [
-        {
-            path: '/',
-            name: 'LandingPage',
-            component: LandingPage,
-    },
       {
-        path: '/InscriptionPage',
-        name: 'InscriptionPage'
+        path: '/',
+        name: 'LandingPage',
+        component: LandingPage,
       },
       {
-        path: '/mobilePage',
-        name: 'MobilePage'
+        path: '/connexionPage',
+        name: 'ConnexionPage'
       },
       {
         path: '/learnMorePage',
@@ -61,14 +57,9 @@ describe('LandingPage', () => {
   });
   
 
-  it('navigates to the sign up page when the openSignUpPage method is called', async () => {
-    wrapper.vm.openSignUpPage()
-    expect(mockRouter.push).toHaveBeenCalledWith('/InscriptionPage')
-  })
-
-  it('navigates to the mobile page when the openMobilePage method is called', async () => {
-    wrapper.vm.openMobilePage()
-    expect(mockRouter.push).toHaveBeenCalledWith('/mobilePage')
+  it('navigates to the sign up page when the openConnexionPage method is called', async () => {
+    wrapper.vm.openConnexionPage()
+    expect(mockRouter.push).toHaveBeenCalledWith('/connexionPage')
   })
 
   it('navigates to the learn more page when the openLearnMorePage method is called', async () => {

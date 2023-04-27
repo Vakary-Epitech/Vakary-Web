@@ -201,11 +201,8 @@ export default {
     changeLanguage() {
       this.$i18n.locale = this.$i18n.locale === 'fr' ? 'en' : 'fr';
     },
-    openSignUpPage() {
-      this.$router.push("/InscriptionPage");
-    },
-    openMobilePage() {
-      this.$router.push("/mobilePage");
+    openConnexionPage() {
+      this.$router.push("/connexionPage");
     },
     openLearnMorePage() {
       this.$router.push("/learnMorePage");
