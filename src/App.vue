@@ -1,7 +1,6 @@
 <template>
   <div class="app">
     <div>
-      <Transition>
       <router-view v-slot="{ Component }">
         <component :is="Component" :key="this.$route.path"></component>
       </router-view>
@@ -13,7 +12,6 @@
       <button @click="(openMobilePage)">Mobile</button>
       <button @click="(openWebPage)">Web</button>
       -->
-    </Transition>
     </div>
   </div>
 </template>
@@ -21,11 +19,11 @@
 <script>
 export default {
   mounted() {
-    this.$store.dispatch("retrievedCurrentUserPosition");
-    this.$store.dispatch("retrievedMarkerData");
+    //this.$store.dispatch("retrievedCurrentUserPosition");
+    //this.$store.dispatch("retrievedMarkerData");
   },
   beforeCreate() {
-    this.$router.push("/");
+    this.$router.push("/loginPage");
   },
   methods: {
     geti18n() {

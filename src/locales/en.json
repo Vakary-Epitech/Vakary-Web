@@ -18,7 +18,7 @@
       "instagram": "Follow us on Instagram",
       "contact-us": "Contact us by email",
       "email-description": "For any questions, suggestions or comments, please contact us."
-    },  
+    },
     "free": "We organize your dream vacations for you, for free",
     "pref": "Tell us your preferences, the city you wish to visit, and we will propose a customized itinerary for you",
     "mobile": "With Vakary mobile, you can also follow your itinerary in real-time and much more!",
@@ -41,21 +41,21 @@
     "find": "Find our apps"
   },
   "presentationCards": {
-      "card1": {
-          "title": "TRAVEL WITH YOUR GROUP",
-          "description": "With Vakary's group feature, share your travel experience with loved ones for unforgettable memories.",          "registration": "Sign up now"
-      },
-      "card2": {
-          "title": "CREATE A PROFILE",
-          "description": "Share your desires, interests and introduce yourself to share your love of travel with the Vakary community.",
-          "registration": "Sign up now"
-      },
-      "card3": {
-          "title": "DISCOVER FRANCE",
-          "description": "No matter your preferences, Vakary offers a tailored itinerary to discover the most beautiful places in France!",
-          "registration": "Sign up now"
-      }
-  
+    "card1": {
+      "title": "TRAVEL WITH YOUR GROUP",
+      "description": "With Vakary's group feature, share your travel experience with loved ones for unforgettable memories.",
+      "registration": "Sign up now"
+    },
+    "card2": {
+      "title": "CREATE A PROFILE",
+      "description": "Share your desires, interests and introduce yourself to share your love of travel with the Vakary community.",
+      "registration": "Sign up now"
+    },
+    "card3": {
+      "title": "DISCOVER FRANCE",
+      "description": "No matter your preferences, Vakary offers a tailored itinerary to discover the most beautiful places in France!",
+      "registration": "Sign up now"
+    }
   },
   "loginPage": {
     "signin": "Log into Vakary",
@@ -80,7 +80,6 @@
     "group": "Group: ",
     "numberOfMembers": "Members: ",
     "numberOfMember": "Member: "
-
   },
   "mapPage": {
     "itinerary": "Itinerary",
@@ -90,7 +89,8 @@
     "to": " to ",
     "nextPoint": "Next point",
     "previousPoint": "Previous point",
-    "newGroup": "Create a new group"
+    "newGroup": "Create a new group",
+    "openHours": "Open Hours:"
   },
   "forgetPassword": {
     "title": "Find Your Account",
@@ -143,6 +143,10 @@
     "interest": "Center of interest",
     "generate": "Generate the Itinerary"
   },
+  "screenSizePage": {
+    "ScreenSizeTooSmall": "Sorry the Screen size of your device is too small, please use one of our mobile application :",
+    "goBack": "Go Back"
+  },
   "createGroup": {
     "title": "Create a new group",
     "admin": "Administrator:",
@@ -156,7 +160,8 @@
     "errors": {
       "name": "Group name must be between 3 and 18 characters",
       "mail": "Incorrect email",
-      "name-required": "Group name is required"
+      "name-required": "Group name is required",
+      "oneMembers": "You can't create a group with only one members"
     }
   },
   "showMembers": {
@@ -166,11 +171,11 @@
     "deletePicture": "Delete the group photo",
     "save": "Save",
     "placeholders": {
-        "mail": "Members' email address to add to the group"
+      "mail": "Members' email address to add to the group"
     },
     "errors": {
-        "name": "The group name must be between 3 and 18 characters",
-        "mail": "Invalid email"
+      "name": "The group name must be between 3 and 18 characters",
+      "mail": "Invalid email"
     }
   }
 }

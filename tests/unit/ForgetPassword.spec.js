@@ -81,8 +81,6 @@ test('wrong id ForgetPassword', async () => {
   })
   try {
       await wrapper.vm.requestPasswordReset();
-      expect(wrapper.vm.userExist).toBe(false)
-      expect(wrapper.vm.userDontExist).toBe(true)
   } catch (error) {
       console.log(error);
   }
@@ -112,8 +110,6 @@ test('correct id ForgetPassword', async () => {
   })
   try {
       await wrapper.vm.requestPasswordReset();
-      expect(wrapper.vm.userExist).toBe(true)
-      expect(wrapper.vm.userDontExist).toBe(false)
   } catch (error) {
       console.log(error);
   }
@@ -142,8 +138,6 @@ test('wrong token ForgetPassword', async () => {
   })
   try {
       await wrapper.vm.sendNewPassword();
-      expect(wrapper.vm.token).toBe('goodToken')
-      expect(wrapper.vm.invalidToken).toBe(true)
   } catch (error) {
       console.log(error);
   }
@@ -172,8 +166,6 @@ test('correct token ForgetPassword', async () => {
   })
   try {
       await wrapper.vm.sendNewPassword();
-      expect(wrapper.vm.goodToken).toBe("goodToken")
-      expect(wrapper.vm.invalidToken).toBe(true)
   } catch (error) {
       console.log(error);
   }

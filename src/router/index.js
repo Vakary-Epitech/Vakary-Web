@@ -1,4 +1,4 @@
-import { createRouter, createWebHashHistory } from 'vue-router';
+import { createRouter, createWebHashHistory  } from 'vue-router';
 import LoginPage from "@/components/Page/LoginPage.vue";
 import MapPage from "@/components/Page/MapPage.vue";
 import InscriptionPage from "@/components/Page/InscriptionPage.vue"
@@ -39,7 +39,6 @@ const routes = [
         component: MapPage,
     },
     { path: '/:pathMatch(.*)*', redirect: '/' }
-
 ];
 
 const router = createRouter({

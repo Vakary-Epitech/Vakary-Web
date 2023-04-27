@@ -53,10 +53,16 @@ export default {
     },
     checkIfUserIsAuthorizeToConnect() {
       this.$store.dispatch("checkIfUserIsAuthorizedToConnect", this.password).then(() => {
-        this.$store.state.userStore.userIsLoggedIn = true;
-        this.$router.push("/mapPage");
+        this.$store.dispatch("retrieveUserInformation", this.password).then(() => {
+          this.$store.state.userStore.userIsLoggedIn = true;
+          this.$router.push("/mapPage");
+        }).catch(() => {
+          this.userDontExist = true;
+        })
       }).catch(() => {
         this.userDontExist = true;
+        console.log(this.$store.state.userStore.username);
+
       })
     },
   },
