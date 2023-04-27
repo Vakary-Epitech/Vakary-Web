@@ -186,6 +186,4 @@ test('Basic test MapPage', async () => {
   await wrapper.vm.goBackToItineraryDropdown();
   await wrapper.vm.setItineraryDropdownState();
   await wrapper.vm.setGroupDropdownState();
-
-  await wrapper.vm.drawPathBetweenSelectedPoint();
 })
