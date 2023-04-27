@@ -35,6 +35,7 @@
 
 <script>
 export default {
+  emits: ['openLogin'],
   data() {
     return {
       password: "",
