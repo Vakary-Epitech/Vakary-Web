@@ -47,9 +47,9 @@ export default {
     },
     checkIfUserIsAuthorizeToConnect() {
       this.userDontExist = false;
-      this.$emit("loginDone");
       this.$store.dispatch("checkIfUserIsAuthorizedToConnect", this.password).then(() => {
         this.$store.state.userStore.userIsLoggedIn = true;
+        this.$emit("loginDone");
       }).catch(() => {
         this.userDontExist = true;
       })
