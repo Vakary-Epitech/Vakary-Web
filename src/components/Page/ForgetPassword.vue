@@ -74,7 +74,6 @@ export default {
   data() {
     return {
       id: '',
-      serverHasSendMail: false,
       token: '',
       userExist: false,
       userDontExist: false,
@@ -88,15 +87,14 @@ export default {
       this.$router.push("/loginPage");
     },
     isValidPassword(password) {
-      const re = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
+      const re = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_])?[a-zA-Z\d\W_]{8,}$/;
       return re.test(String(password));
     },
     requestPasswordReset() {
+      this.userDontExist = false,
       this.$store.dispatch("requestPasswordReset", this.id).then(() => {
-        this.serverHasSendMail = true;
         this.userExist = true;
       }).catch(() => {
-        this.serverHasSendMail = true;
         this.userDontExist = true;
       });
     },
@@ -107,7 +105,6 @@ export default {
       }
       this.errorPassword = false;
       this.$store.dispatch("sendNewPassword", { password: this.newPassword, authorization: this.token }).then(() => {
-        this.serverHasSendMail = true;
         this.invalidToken = true;
         this.openLoginPage();
       }).catch(() => {

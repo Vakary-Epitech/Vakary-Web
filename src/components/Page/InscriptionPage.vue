@@ -58,7 +58,7 @@ export default {
       return re.test(String(email).toLowerCase());
     },
     isValidPassword(password) {
-      const re = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
+      const re = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_])?[a-zA-Z\d\W_]{8,}$/;
       return re.test(String(password));
     },
     checkInformations(email, password) {
@@ -76,6 +76,7 @@ export default {
       this.passwordError = false;
     },
     confirmInscription() {
+      this.error = false;
       this.checkInformations(this.$store.state.userStore.mail, this.password);
       this.$store.dispatch("checkIfAccountCanBeCreated", this.password).then(() => {
         this.$store.state.userStore.userIsLoggedIn = true;

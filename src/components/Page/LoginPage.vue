@@ -52,6 +52,7 @@ export default {
       this.checkIfUserIsAuthorizeToConnect();
     },
     checkIfUserIsAuthorizeToConnect() {
+      this.userDontExist = false;
       this.$store.dispatch("checkIfUserIsAuthorizedToConnect", this.password).then(() => {
         this.$store.state.userStore.userIsLoggedIn = true;
         this.$router.push("/mapPage");
