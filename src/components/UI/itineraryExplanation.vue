@@ -84,9 +84,9 @@ export default {
     border: none;
     font-size: calc(6px + 0.6vw);
     width: 350px;
-    height: 85vh;
-    margin-top: 5px;
-    margin-bottom: 5px;
+    height: 90vh;
+    margin-top: 0.1vh;
+    margin-bottom: 0.1vh;
     text-align: center;
     border: 2px solid rgb(192, 150, 40);
 }
@@ -96,8 +96,8 @@ export default {
     margin: auto;
     margin-top: calc(4px + 0.6vh);
     margin-bottom: calc(4px + 0.6vh);
-    margin-left: 5px;
-    margin-right: 10px;
+    margin-left: 0.1vw;
+    margin-right: 0.2vw;
     box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.2);
     min-width: 285px;
     align-self: center;

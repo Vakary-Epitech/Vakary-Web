@@ -3,7 +3,9 @@ import wording from "@/utils/wording";
 
 const apiStore = {
     actions: {
-        retrievedCurrentUserPosition(context) {
+        //DONT DELETE FOR NOW COULD BE USEFULL LATER
+
+        /*retrievedCurrentUserPosition(context) {
             return new Promise((resolve, reject) => {
                 try {
                     const isSupported = 'navigator' in window && 'geolocation' in navigator
@@ -54,7 +56,7 @@ const apiStore = {
                     reject(error);
                 }
             })
-        },
+        },*/
 
         checkIfUserIsAuthorizedToConnect(context, password) {
             return new Promise((resolve, reject) => {
@@ -139,8 +141,10 @@ const apiStore = {
         checkIfAccountCanBeCreated(context, password) {
             return new Promise((resolve, reject) => {
                 try {
+                    console.log("email: ", this.state.userStore.mail, "password: ", password, "username: ", this.state.userStore.username)
                     axios.put(wording.serverAdress + "register", { email: this.state.userStore.mail, password: password, username: this.state.userStore.username }).then((canAuthentify) => {
-                        context.commit('UPDATE_USER_INFO', canAuthentify.user);
+                        console.log(canAuthentify.data);
+                        context.commit('UPDATE_USER_INFO', canAuthentify);
                         resolve(canAuthentify)
                     }).catch((error) => {
                         reject(error);
@@ -154,7 +158,7 @@ const apiStore = {
         sendNewPassword(context, requestParameters) {
             return new Promise((resolve, reject) => {
                 try {
-                    axios.post(wording.serverAdress + "changePassword", { password: requestParameters.password }, {
+                    axios.patch(wording.serverAdress + "/changePassword", { id: this.state.userStore.userId }, {
                         headers: {
                             'authorization': requestParameters.authorization
                         }

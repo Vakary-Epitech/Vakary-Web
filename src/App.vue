@@ -4,26 +4,14 @@
       <router-view v-slot="{ Component }">
         <component :is="Component" :key="this.$route.path"></component>
       </router-view>
-      <!--<button @click="(openLandingPage)">Landing</button>
-      <button @click="(openLoginPage)">Login</button>
-      <button @click="(openMapPage)">Map</button>
-      <button @click="(openProfilePage)">Profile</button>
-      <button @click="(openHomePage)">Home</button>
-      <button @click="(openMobilePage)">Mobile</button>
-      <button @click="(openWebPage)">Web</button>
-      -->
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  mounted() {
-    //this.$store.dispatch("retrievedCurrentUserPosition");
-    //this.$store.dispatch("retrievedMarkerData");
-  },
   beforeCreate() {
-    this.$router.push("/loginPage");
+    this.$router.push("/");
   },
   methods: {
     geti18n() {

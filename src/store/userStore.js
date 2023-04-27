@@ -23,7 +23,7 @@ const userStore = {
             state.mail = mail;
         },
         UPDATE_USER_INFO(state, userInfo) {
-            state.userInfo = userInfo;
+            state.userInfo = userInfo.data;
             state.userId = userInfo.data.user.id;
         },
     },
