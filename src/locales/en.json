@@ -74,7 +74,14 @@
     "register": "Register",
     "email": "Email address",
     "username": "Username",
-    "password": "New password"
+    "password": "New password",
+    "errors": {
+      "failed": "Registration failed",
+      "email": "Invalid email address",
+      "username": "Your username must contain at least 3 characters",
+      "password": "Your password must contain at least 8 characters, including at least one lowercase letter, one uppercase letter, and one number",
+      "error": "An error occurred"
+      }
   },
   "groupCards": {
     "group": "Group: ",
@@ -99,11 +106,13 @@
       "code": "Authentication Code",
       "password": "New Password"
     },
-    "error": {
+    "errors": {
       "idWrong": "No Search Results",
       "messageID": "Your search did not return any results. Please try again with different information.",
       "codeWrong": "Invalid Code",
-      "messageCode": "The code entered is incorrect. Please check your email."
+      "messageCode": "The code entered is incorrect. Please check your email.",
+      "password": "New password is invalid",
+      "messagePassword": "Your password must contain at least 8 characters, including at least one lowercase letter, one uppercase letter, and one number"
     },
     "success": {
       "idCorrect": "Account Found",

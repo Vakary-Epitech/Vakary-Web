@@ -94,17 +94,26 @@ describe('showMembers', () => {
   });
 
   it('should update the group name when updateGroupName is called with a valid name', async () => {
-    wrapper.vm.v$ = {
-      newGroupName: {
-        $error: false,
+    const wrapper = shallowMount(ShowMembers, {
+      global: {
+        mocks: {
+          $store: store,
+          $t: (msg) => msg,
+        },
       },
-    };
-    const newName = 'New Group Name';
-    wrapper.vm.newGroupName = newName;
+    });
+  
+    wrapper.setData({
+      groupInformations: {
+        name: 'Group Name',
+      },
+      newGroupName: 'New Group Name',
+      editGroupName: true,
+    });
 
     await wrapper.vm.updateGroupName();
-
-    expect(wrapper.vm.groupInformations.name).toBe(newName);
+  
+    expect(wrapper.vm.groupInformations.name).toBe('New Group Name');
     expect(wrapper.vm.editGroupName).toBe(false);
   });
   

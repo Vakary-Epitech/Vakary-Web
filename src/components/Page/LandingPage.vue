@@ -15,7 +15,7 @@
                 <label class="p-1">{{ $t("landingPage.mobile") }}</label>
               </div>
               <div class="mt-2 mb-3">
-                <button class="invertedBlueVakaryButton biggerButton py-1" @click="openSignUpPage">{{
+                <button class="invertedBlueVakaryButton biggerButton py-1" @click="openConnexionPage">{{
                   $t("landingPage.registration") }}</button>
               </div>
             </div>
@@ -32,7 +32,7 @@
               <label>{{ $t("landingPage.pref") }}</label>
               <label>{{ $t("landingPage.mobile") }}</label>
             </div>
-            <button class="col-4 offset-4 invertedBlueVakaryButton py-1 mt-1 mb-1" @click="openSignUpPage">{{
+            <button class="col-4 offset-4 invertedBlueVakaryButton py-1 mt-1 mb-1" @click="openConnexionPage">{{
               $t("landingPage.registration") }}</button>
           </div>
         </div>
@@ -201,11 +201,8 @@ export default {
     changeLanguage() {
       this.$i18n.locale = this.$i18n.locale === 'fr' ? 'en' : 'fr';
     },
-    openSignUpPage() {
-      this.$router.push("/InscriptionPage");
-    },
-    openMobilePage() {
-      this.$router.push("/mobilePage");
+    openConnexionPage() {
+      this.$router.push("/connexionPage");
     },
     openLearnMorePage() {
       this.$router.push("/learnMorePage");

@@ -87,7 +87,14 @@
         "register": "S'inscrire",
         "email": "Adresse email",
         "username": "Nom d'utilisateur",
-        "password": "Nouveau mot de passe"
+        "password": "Nouveau mot de passe",
+        "errors": {
+            "failed": "L'inscription a échouée",
+            "email": "L'adresse email est invalide",
+            "username": "Votre nom d'utilisteur doit contenir minimum 3 caractères",
+            "password": "Votre mot de passe doit contenir minimum 8 caractères, au moins une minuscule une majuscule et un chiffre",
+            "error": "Une erreur s'est produite"
+        }
     },
     "forgetPassword": {
         "title": "Trouvez votre compte",
@@ -96,11 +103,13 @@
             "code": "Code d'authentification",
             "password": "Nouveau mot de passe"
         },
-        "error": {
+        "errors": {
             "idWrong": "Aucun résultat de recherche",
             "messageID": "Votre recherche ne donne aucun résultat. Veuillez réessayer avec d'autres informations.",
             "codeWrong": "Code invalide",
-            "messageCode": "Le code entré est incorrect. Veuillez vérifier vos emails."
+            "messageCode": "Le code entré est incorrect. Veuillez vérifier vos emails.",
+            "password": "Nouveau mot de passe invalide",
+            "messagePassword": "Votre mot de passe doit contenir minimum 8 caractères, au moins une minuscule une majuscule et un chiffre."
         },
         "success": {
             "idCorrect": "Compte trouvé",

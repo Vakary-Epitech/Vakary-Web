@@ -54,9 +54,6 @@ export default {
 </script>
 
 <style scoped>
-@import "@/components/Style/Button.scss";
-@import "@/components/Style/Position.scss";
-@import "@/components/Style/Text.scss";
 
 .centerEverything {
     display: flex;
