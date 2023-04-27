@@ -1,5 +1,5 @@
 import { mount } from '@vue/test-utils'
-import ForgotPassword from '@/components/UI/ForgotPassword.vue'
+import ForgotPassword from '@/components/UI/forgotPassword.vue'
 import i18n from '../../src/i18n.js'
 
 describe('ForgotPassword', () => {

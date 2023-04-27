@@ -1,6 +1,6 @@
 import { mount } from '@vue/test-utils';
 import i18n from '../../src/i18n.js'
-import LoginCard from '@/components/UI/LoginCard.vue';
+import LoginCard from '@/components/UI/loginCard.vue';
 
 describe('LoginCard', () => {
     let wrapper

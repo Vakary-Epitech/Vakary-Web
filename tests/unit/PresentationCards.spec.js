@@ -1,5 +1,5 @@
 import { mount } from '@vue/test-utils'
-import PresentationCards from '@/components/UI/PresentationCards.vue'
+import PresentationCards from '@/components/UI/presentationCards.vue'
 import i18n from '../../src/i18n.js'
 import { createRouter, createWebHistory } from 'vue-router'
 
