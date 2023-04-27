@@ -26,6 +26,17 @@
             <span>{{ $t("forgetPassword.success.messageID")}}</span>
           </p>
         </div>
+        <div v-else-if="errorPassword">
+          <p class="wrongID text-center">
+            <span class="bold">
+              Nouveau mot de passe invalide
+            </span>
+            <br>
+            <span>
+              Votre mot de passe doit contenir minimum 8 caractères, au moins une minuscule, une majuscule et un chiffre
+            </span>
+          </p>
+        </div>
         <div v-if="userExist">
           <div class="my-2">
               <input type="text" class="form-control"  v-model="token"
@@ -69,11 +80,16 @@ export default {
       userDontExist: false,
       newPassword: '',
       invalidToken: false,
+      errorPassword: false,
     }
   },
   methods: {
     openLoginPage() {
       this.$router.push("/loginPage");
+    },
+    isValidPassword(password) {
+      const re = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
+      return re.test(String(password));
     },
     requestPasswordReset() {
       this.$store.dispatch("requestPasswordReset", this.id).then(() => {
@@ -85,6 +101,11 @@ export default {
       });
     },
     sendNewPassword() {
+      if (!this.isValidPassword(this.newPassword)) {
+        this.errorPassword = true;
+        return;
+      }
+      this.errorPassword = false;
       this.$store.dispatch("sendNewPassword", { password: this.newPassword, authorization: this.token }).then(() => {
         this.serverHasSendMail = true;
         this.invalidToken = true;

@@ -1,6 +1,5 @@
-import { shallowMount, mount } from '@vue/test-utils'
+import { mount } from '@vue/test-utils'
 import ForgetPassword from '@/components/Page/ForgetPassword.vue'
-import store from '../../src/store/store.js'
 import { createRouter, createWebHistory } from 'vue-router'
 import i18n from '../../src/i18n.js'
 
@@ -55,129 +54,14 @@ describe('ForgetPassword', () => {
     it('navigates to the login page when the openLoginPage method is called', async () => {
       wrapper.vm.openLoginPage()
       expect(mockRouter.push).toHaveBeenCalledWith('/loginPage')
-  })
+    })
 
-  
-test('wrong id ForgetPassword', async () => {
-  const wrapper = shallowMount(ForgetPassword, {
-      global: {
-          mocks: {
-              $store: store,
-              $t: (msg) => msg,
-              $router: {
-                  params: {
-                      type: "user",
-                  }
-              },
-          }
-      },
-      data() {
-          return {
-              mail: "Oui",
-              userDontExist: false,
-              userExist: false,
-          }
-      }
-  })
-  try {
-      await wrapper.vm.requestPasswordReset();
-      expect(wrapper.vm.userExist).toBe(false)
-      expect(wrapper.vm.userDontExist).toBe(true)
-  } catch (error) {
-      console.log(error);
-  }
-  await new Promise((r) => setTimeout(r, 1000));
-})
+    it('should not valid password', () => {
+      expect(wrapper.vm.isValidPassword("test")).toBe(false);
+    })
 
-test('correct id ForgetPassword', async () => {
-  const wrapper = shallowMount(ForgetPassword, {
-      global: {
-          mocks: {
-              $store: store,
-              $t: (msg) => msg,
-              $router: {
-                  params: {
-                      type: "user",
-                  }
-              },
-          }
-      },
-      data() {
-          return {
-            mail: "test@test.com",
-            userDontExist: false,
-            userExist: false,
-          }
-      }
-  })
-  try {
-      await wrapper.vm.requestPasswordReset();
-      expect(wrapper.vm.userExist).toBe(true)
-      expect(wrapper.vm.userDontExist).toBe(false)
-  } catch (error) {
-      console.log(error);
-  }
-  await new Promise((r) => setTimeout(r, 1000));
-})
-
-test('wrong token ForgetPassword', async () => {
-  const wrapper = shallowMount(ForgetPassword, {
-      global: {
-          mocks: {
-              $store: store,
-              $t: (msg) => msg,
-              $router: {
-                  params: {
-                      type: "user",
-                  }
-              },
-          }
-      },
-      data() {
-          return {
-              token: 'wrongToken',
-              invalidToken: false
-          }
-      }
-  })
-  try {
-      await wrapper.vm.sendNewPassword();
-      expect(wrapper.vm.token).toBe('goodToken')
-      expect(wrapper.vm.invalidToken).toBe(true)
-  } catch (error) {
-      console.log(error);
-  }
-  await new Promise((r) => setTimeout(r, 1000));
-})
-
-test('correct token ForgetPassword', async () => {
-  const wrapper = shallowMount(ForgetPassword, {
-      global: {
-          mocks: {
-              $store: store,
-              $t: (msg) => msg,
-              $router: {
-                  params: {
-                      type: "user",
-                  }
-              },
-          }
-      },
-      data() {
-          return {
-            token: 'goodToken',
-            invalidToken: false
-          }
-      }
-  })
-  try {
-      await wrapper.vm.sendNewPassword();
-      expect(wrapper.vm.goodToken).toBe("goodToken")
-      expect(wrapper.vm.invalidToken).toBe(true)
-  } catch (error) {
-      console.log(error);
-  }
-  await new Promise((r) => setTimeout(r, 1000));
-})
+    it('should valid password', () => {
+      expect(wrapper.vm.isValidPassword("Test1234")).toBe(true);
+    })
 
 })

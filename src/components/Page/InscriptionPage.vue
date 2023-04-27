@@ -8,10 +8,12 @@
         <h4 class="text-center mt-3">{{ $t("inscriptionPage.create")}}</h4>
       </div>
       <div class="card-body row">
-        <div v-if="userDontExist" >
+        <div v-if="error">
           <p class="wrongID text-center">
-            <span class="bold">L'inscription a echouée<br></span>
-            <span>{{ $t("loginPage.wrong2") }}</span>
+            <span class="bold">L'inscription a échouée<br></span>
+            <span v-if="emailError">Email invalide</span>
+            <span v-else-if="passwordError">Votre mot de passe doit contenir minimum 8 caractères, au moins une minuscule une majuscule et un chiffre</span>
+            <span v-else>Une erreur s'est produite</span>
           </p>
         </div>
         <div class="my-2">
@@ -42,18 +44,45 @@ export default {
   data() {
     return {
       password: "",
+      passwordError: false,
+      error: false,
+      emailError: false,
     }
   },
   methods: {
     openLoginPage () {
       this.$router.push("/loginPage");
     },
+    isValidEmail(email) {
+      const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      return re.test(String(email).toLowerCase());
+    },
+    isValidPassword(password) {
+      const re = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
+      return re.test(String(password));
+    },
+    checkInformations(email, password) {
+      if (!this.isValidEmail(email)) {
+        this.emailError = true;
+        this.error = true;
+        return;
+      }
+      this.emailError = false;
+      if (!this.isValidPassword(password)) {
+        this.passwordError = true;
+        this.error = true;
+        return;
+      }
+      this.passwordError = false;
+    },
     confirmInscription() {
+      this.checkInformations(this.$store.state.userStore.mail, this.password);
       this.$store.dispatch("checkIfAccountCanBeCreated", this.password).then(() => {
         this.$store.state.userStore.userIsLoggedIn = true;
         this.$router.push("/mapPage");
-      }).catch(() => {
-        this.userDontExist = true;
+      }).catch((error) => {
+        console.log(error);
+        this.error = true;
       })
     }
   }

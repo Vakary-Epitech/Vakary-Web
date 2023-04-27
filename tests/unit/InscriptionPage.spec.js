@@ -1,8 +1,7 @@
-import { mount, shallowMount } from '@vue/test-utils';
+import { mount } from '@vue/test-utils';
 import { createRouter, createWebHistory } from 'vue-router'
 import i18n from '../../src/i18n.js'
 import InscriptionPage from '@/components/Page/InscriptionPage.vue';
-import store from '../../src/store/store.js'
 
 const mockRouter = {
     push: jest.fn()
@@ -62,67 +61,38 @@ describe('InscriptionPage', () => {
         expect(mockRouter.push).toHaveBeenCalledWith('/loginPage')
     })
 
-    
-test('wrong password InscriptionPage', async () => {
-    const wrapper = shallowMount(InscriptionPage, {
-        global: {
-            mocks: {
-                $store: store,
-                $t: (msg) => msg,
-                $router: {
-                    params: {
-                        type: "user",
-                    }
-                },
-            }
-        },
-        data() {
-            return {
-                password: "az",
-                passwordConfirm: "re",
-                postalCode: "",
-                passwordAreNotTheSame: false,
-            }
-        }
+    it('should not valid email', () => {
+      expect(wrapper.vm.isValidEmail("test")).toBe(false);
     })
-    try {
-        await wrapper.vm.confirmInscription();
-        expect(wrapper.vm.passwordAreNotTheSame).toBe(true)
-    } catch (error) {
-        console.log(error);
-    }
-    await new Promise((r) => setTimeout(r, 1000));
-})
 
-test('correct password InscriptionPage', async () => {
-    const wrapper = shallowMount(InscriptionPage, {
-        global: {
-            mocks: {
-                $store: store,
-                $t: (msg) => msg,
-                $router: {
-                    params: {
-                        type: "user",
-                    }
-                },
-            }
-        },
-        data() {
-            return {
-                password: "Oui",
-                passwordConfirm: "Oui",
-                postalCode: "",
-                passwordAreNotTheSame: false,
-            }
-        }
+    it('should valid email', () => {
+      expect(wrapper.vm.isValidEmail("test@test.co")).toBe(true);
     })
-    try {
-        await wrapper.vm.confirmInscription();
-        expect(wrapper.vm.passwordAreNotTheSame).toBe(false)
-    } catch (error) {
-        console.log (error);
-    }
-    await new Promise((r) => setTimeout(r, 1000));
-})
+
+    it('should not valid password', () => {
+      expect(wrapper.vm.isValidPassword("test")).toBe(false);
+    })
+
+    it('should valid password', () => {
+      expect(wrapper.vm.isValidPassword("Test1234")).toBe(true);
+    })
+
+    it('should not valid email in the CheckInformations', () => {
+      wrapper.vm.checkInformations("test", "Test1234");
+      expect(wrapper.vm.emailError).toBe(true);
+      expect(wrapper.vm.passwordError).toBe(false);
+    })
+
+    it('should valid email but not password in the CheckInformations', () => {
+      wrapper.vm.checkInformations("test@test.co", "test1234");
+      expect(wrapper.vm.emailError).toBe(false);
+      expect(wrapper.vm.passwordError).toBe(true);
+    })
+
+    it('should valid email and password in the CheckInformations', () => {
+      wrapper.vm.checkInformations("test@test.co", "Test1234");
+      expect(wrapper.vm.emailError).toBe(false);
+      expect(wrapper.vm.passwordError).toBe(false);
+    })
 
 })
