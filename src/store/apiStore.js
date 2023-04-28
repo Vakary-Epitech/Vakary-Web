@@ -88,6 +88,28 @@ const apiStore = {
             })
         },
 
+        deleteGroup(context, group) {
+            return new Promise((resolve, reject) => {
+                try {
+                    let config = {
+                        method: 'delete',
+                        maxBodyLength: Infinity,
+                        url: wording.serverAdress + "group/" + group.backendGroupId,
+                        headers: {},
+                    };
+
+                    axios.request(config)
+                        .then((result) => {
+                            resolve(result);
+                        }).catch((error) => {
+                            reject(error);
+                        })
+                } catch (error) {
+                    reject(error);
+                }
+            })
+        },
+
         getGroup(context) {
             return new Promise((resolve, reject) => {
                 try {

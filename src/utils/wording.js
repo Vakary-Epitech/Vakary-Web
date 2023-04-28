@@ -1,3 +1,3 @@
 module.exports = {
-    serverAdress: "http://localhost:8080/v1/" 
+    serverAdress: "https://tiny-swan-elq251.c2rgw946.traefikhub.io/v1/" 
 };

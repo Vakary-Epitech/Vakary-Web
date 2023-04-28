@@ -174,9 +174,10 @@ export default {
         },
         deleteGroup() {
             let index = this.$store.state.globalNonPersistantData.groups.findIndex(group => group.id === this.groupInformations.id);
-            this.$store.state.globalNonPersistantData.groups.splice(index, 1);
             this.showMembers = false;
             this.$emit("goBackToGroupDropdown");
+            this.$store.dispatch("deleteGroup", this.$store.state.globalNonPersistantData.groups[index]);
+            this.$store.state.globalNonPersistantData.groups.splice(index, 1);
         },
         deleteGroupPicture() {
             this.groupInformations.photo = {
