@@ -117,12 +117,12 @@
                 </div>
 
                 <div class="cursorOnButton" @click=" groupCardsHasBeenClicked(index) "
-                  v-for="( group, index ) in  this.$store.state.userStore.groups " :key=" group.id ">
+                  v-for="( group, index ) in  this.$store.state.globalNonPersistantData.groups " :key=" group.id ">
                   <div class="topBorder mt-2">&nbsp;</div>
                   <i class="fas fa-users ms-2 mt-2"></i>
                   <i class="fas fa-person fa-lg me-2 mt-2" style="float: right"></i>
                   <Transition name="slide-fade">
-                    <mapGroupCardsVue :groupName=" group.name " :numberOfMember=" group.members.length " :index=" index " />
+                    <mapGroupCardsVue :groupName="group.name" :numberOfMember="group.emails.length" :index=" index " />
                   </Transition>
                 </div>
               </div>
@@ -138,7 +138,7 @@
           <div v-else-if=" groupHasBeenClicked ">
             <Transition name="slide-fade">
               <showMembers @change-group-photo=" changeGroupPhoto "
-                :groups= this.$store.state.userStore.groups[selectedGroup]  :key=" keyShowGroup "
+                :groups= this.$store.state.globalNonPersistantData.groups[selectedGroup]  :key=" keyShowGroup "
                 @goBackToGroupDropdown=" groupHasBeenClicked = false; showGroupCreationModal = false; displayItineraryInformation = false "
                 class="componentsGroupDropdown" />
             </Transition>
@@ -265,6 +265,9 @@ export default {
         },
       ],
     }
+  },
+  mounted() {
+    this.$store.dispatch("getGroup");
   },
   computed: {
     itineraryCssDropdown() {

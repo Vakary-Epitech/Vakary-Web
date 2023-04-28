@@ -88,11 +88,12 @@ const apiStore = {
             })
         },
 
-        getGroup() {
+        getGroup(context) {
             return new Promise((resolve, reject) => {
                 try {
-                    axios.get(wording.serverAdress + "group/").then((group) => {
-                        console.log("group")
+                    axios.post(wording.serverAdress + "group/getAll", { id: this.state.userStore.userId }).then((group) => {
+                        console.log(group)
+                        context.commit('UPDATE_USER_GROUP', group);
                         resolve(group);
                     }).catch((error) => {
                         reject(error);
@@ -108,9 +109,7 @@ const apiStore = {
                 try {
                     let mailsList = [];
                     for (let mailIndex in groupInformation.members) {
-                        if (mailIndex > 0) {
-                            mailsList.push(groupInformation.members[mailIndex].mail)
-                        }
+                        mailsList.push(groupInformation.members[mailIndex].mail)
                     }
                     axios.put(wording.serverAdress + "group", { groupname: groupInformation.name, adminId: this.state.userStore.userId, emails: mailsList }).then((group) => {
                         resolve(group);

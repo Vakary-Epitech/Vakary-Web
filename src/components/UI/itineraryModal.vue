@@ -147,7 +147,7 @@ export default {
             // not working function yet: need to find a way to get the index of the active carousel item
             setTimeout(() => {
                 if (this.indexOfGroup == 0) {
-                    this.indexOfGroup = this.$store.state.userStore.groups.length;
+                    this.indexOfGroup = this.$store.state.globalNonPersistantData.groups.length;
                 } else {
                     this.indexOfGroup--;
                 }
@@ -155,7 +155,7 @@ export default {
         },
         next() {
             // not working function yet: need to find a way to get the index of the active carousel item
-            if (this.indexOfGroup < this.$store.state.userStore.groups.length) {
+            if (this.indexOfGroup < this.$store.state.globalNonPersistantData.groups.length) {
                 this.indexOfGroup++;
             }
             else {

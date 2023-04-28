@@ -121,7 +121,7 @@ export default {
     },
     computed: {
         getGroups() {
-            return this.$store.state.userStore.groups;
+            return this.$store.state.globalNonPersistantData.groups;
         },
     },
     created() {
@@ -173,8 +173,8 @@ export default {
             this.askingDelete = false;
         },
         deleteGroup() {
-            let index = this.$store.state.userStore.groups.findIndex(group => group.id === this.groupInformations.id);
-            this.$store.state.userStore.groups.splice(index, 1);
+            let index = this.$store.state.globalNonPersistantData.groups.findIndex(group => group.id === this.groupInformations.id);
+            this.$store.state.globalNonPersistantData.groups.splice(index, 1);
             this.showMembers = false;
             this.$emit("goBackToGroupDropdown");
         },

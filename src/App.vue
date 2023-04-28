@@ -17,24 +17,6 @@ export default {
     geti18n() {
       return this.$i18n.locale;
     },
-    openLoginPage() {
-      this.$router.push("/loginPage");
-    },
-    openMapPage() {
-      this.$router.push("/mapPage");
-    },
-    openProfilePage() {
-      this.$router.push("/profilePage");
-    },
-    openMobilePage() {
-      this.$router.push("/mobilePage");
-    },
-    openWebPage() {
-      this.$router.push("/VakaryWeb");
-    },
-    openLandingPage() {
-      this.$router.push("/");
-    },
   },
 };
 </script>

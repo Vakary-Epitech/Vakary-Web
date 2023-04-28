@@ -141,7 +141,7 @@ export default {
             console.log(this.groupInformations.members[1].mail)
 
             this.$store.dispatch("addGroup", this.groupInformations);
-            this.$store.state.userStore.groups.push(this.groupInformations);
+            //this.$store.state.globalNonPersistantData.groups.push(this.groupInformations);
             this.CreateGroup = false;
 
             this.$emit("goBackToGroupDropdown");
