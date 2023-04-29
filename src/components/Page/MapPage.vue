@@ -62,7 +62,7 @@
         </div>
 
         <div v-else-if="showItineraryCreationModal">
-          <itineraryModal @goBackToItineraryDropdown="showItineraryCreationModal = false" />
+          <itineraryModal @goBackToItineraryDropdown="showItineraryCreationModal = false" style="min-width: 400px"/>
         </div>
 
         <div v-else>
@@ -491,7 +491,8 @@ export default {
 
 <style scoped>
 .componentsGroupDropdown {
-  max-width: 20vw;
+  min-width: 400px;
+  max-height: 300px !important;
   margin: 1vh;
   height: 10%;
 }
@@ -519,7 +520,6 @@ export default {
   display: flex;
   flex-direction: column;
   max-height: 70vh;
-  max-width: 60vw;
 }
 
 .dropdown-content {
