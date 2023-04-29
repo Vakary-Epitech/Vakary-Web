@@ -67,7 +67,7 @@
                     </div>
                 </section>
                 <section name="picture">
-                    <div v-if="groupInformations.photo">
+                    <div v-if="groupInformations.photo" class="text-center">
                         <img :src="groupInformations.photo?.preview" :alt="groupInformations.photo?.name" class="img-thumbnail my-1"/>
                     </div>
                     <label class="btn-add-group-picture mt-1" v-if="!groupInformations.photo?.preview">
@@ -239,8 +239,8 @@ export default {
     padding: 15px;
     border-radius: 15px;
     border: 2px solid rgb(192, 150, 40);
-    max-height: 500px;
-    min-width: 350px;
+    max-height: 400px;
+    max-width: 400px;
     overflow: auto;
 }
 ::-webkit-scrollbar {
