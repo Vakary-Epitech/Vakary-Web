@@ -80,14 +80,14 @@
       @click="showProfile = !showProfile; showGroupCreationModal = false; showItineraryCreationModal = false" />
   </div>
 
-  <Transition name="slide-fade fadeshow1">
-    <div class="profileModalPosition" v-if=" showProfile ">
+  <Transition name="slide-fade">
+    <div class="profileModalPosition fadeshow1" v-if=" showProfile ">
       <profileModal />
     </div>
   </Transition>
 
-  <section name="groupDropdown fadeshow1">
-    <div class="groupDropdownPosition">
+  <section name="groupDropdown">
+    <div class="groupDropdownPosition fadeshow1">
       <div class="widgetPanel">
         <Transition name="slide-fade">
           <div v-if=" !displayItineraryInformation && !showGroupCreationModal && !groupHasBeenClicked "
@@ -646,4 +646,5 @@ export default {
   .fadeshow2 {
     display: none;
   }
-}</style>
+}
+</style>
