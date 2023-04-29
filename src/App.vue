@@ -23,7 +23,7 @@ export default {
     //this.$store.dispatch("retrievedMarkerData");
   },
   beforeCreate() {
-    this.$router.push("/mapPage");
+    this.$router.push("/");
   },
   methods: {
     geti18n() {
