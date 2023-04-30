@@ -68,7 +68,8 @@
         "lastEventAttended": "Dernier événement visité",
         "totalKm": "Km total",
         "cityPass": "Pass de ville",
-        "disconnect": "Déconnexion"
+        "disconnect": "Déconnexion",
+        "delete": "Supprimer le compte"
     },
     "loginPage": {
         "signin": "Se connecter à Vakary",

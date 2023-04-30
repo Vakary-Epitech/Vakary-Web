@@ -134,7 +134,9 @@
     "lastPlaceVisited": "Last Place Visited",
     "lastEventAttended": "Last Event Attended",
     "totalKm": "Total Km Traveled",
-    "cityPass": "City Pass"
+    "cityPass": "City Pass",
+    "disconnect": "Disconnect",
+    "delete": "Delete the account"
   },
   "itineraryModal": {
     "creation": "Creation of your itinerary",
