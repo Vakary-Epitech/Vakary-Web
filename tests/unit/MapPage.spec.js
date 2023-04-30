@@ -34,7 +34,6 @@ test('Router MapPage', async () => {
       },
     },
   })
-  await wrapper.vm.goToProfilePage();
 })
 
 test('Lang MapPage', async () => {
@@ -187,6 +186,4 @@ test('Basic test MapPage', async () => {
   await wrapper.vm.goBackToItineraryDropdown();
   await wrapper.vm.setItineraryDropdownState();
   await wrapper.vm.setGroupDropdownState();
-
-  await wrapper.vm.drawPathBetweenSelectedPoint();
 })

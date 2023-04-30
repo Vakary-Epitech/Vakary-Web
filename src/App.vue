@@ -1,60 +1,37 @@
 <template>
   <div class="app">
     <div>
-      <Transition>
       <router-view v-slot="{ Component }">
         <component :is="Component" :key="this.$route.path"></component>
       </router-view>
-      <!--<button @click="(openLandingPage)">Landing</button>
-      <button @click="(openLoginPage)">Login</button>
-      <button @click="(openMapPage)">Map</button>
-      <button @click="(openProfilePage)">Profile</button>
-      <button @click="(openHomePage)">Home</button>
-      <button @click="(openMobilePage)">Mobile</button>
-      <button @click="(openWebPage)">Web</button>
-      -->
-    </Transition>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  mounted() {
-    this.$store.dispatch("retrievedCurrentUserPosition");
-    this.$store.dispatch("retrievedMarkerData");
-  },
   beforeCreate() {
     this.$router.push("/");
   },
   methods: {
-    openLoginPage() {
-      this.$router.push("/loginPage");
-    },
-    openMapPage() {
-      this.$router.push("/mapPage");
-    },
-    openProfilePage() {
-      this.$router.push("/profilePage");
-    },
-    openMobilePage() {
-      this.$router.push("/mobilePage");
-    },
-    openWebPage() {
-      this.$router.push("/VakaryWeb");
-    },
-    openLandingPage() {
-      this.$router.push("/");
+    geti18n() {
+      return this.$i18n.locale;
     },
   },
 };
 </script>
 
-<style>
+<style lang="scss">
+@import '@/components/Style/Button.scss';
+@import '@/components/Style/Main.scss';
+@import '@/components/Style/Position.scss';
+@import '@/components/Style/Text.scss';
+@import '@/components/Style/Image.scss';
+
 :root {
-    --background-color-primary: white;
-    --accent-color: #cacaca;
-    --text-primary-color: #222;
+  --background-color-primary: white;
+  --accent-color: #cacaca;
+  --text-primary-color: #222;
 }
 
 .v-enter-active,

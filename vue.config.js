@@ -1,16 +1,24 @@
-const { defineConfig } = require('@vue/cli-service')
-
 const path = require("path");
 
-module.exports = defineConfig({
-  publicPath: './',
+module.exports = {
+  css: {
+    loaderOptions: {
+      scss: {
+        additionalData: `
+        @import '@/components/Style/Button.scss';
+        @import '@/components/Style/Main.scss';
+        @import '@/components/Style/Position.scss';
+        @import '@/components/Style/Text.scss';
+        @import '@/components/Style/Image.scss';
+        `
+      }
+    }
+  },
   transpileDependencies: true,
   transpileDependencies: ['vuex-persist'],
   publicPath: './',
   pluginOptions: {
-    vuetify: {
-      // https://github.com/vuetifyjs/vuetify-loader/tree/next/packages/vuetify-loader
-    },
+    vuetify: {},
     i18n: {
       locale: 'en',
       fallbackLocale: 'en',
@@ -29,4 +37,4 @@ module.exports = defineConfig({
       },
     },
   },
-})
+};

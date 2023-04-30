@@ -84,17 +84,16 @@
                     </div>
                 </div>
 
-                <!--
-                <hr class="separationBar" v-if="$store.state.userStore.groups.length > 0">
-                <div class="col-12" v-if="$store.state.userStore.groups.length > 0">
+                <hr class="separationBar" v-if="$store.state.globalNonPersistantData.groups.length > 0">
+                <div class="col-12" v-if="$store.state.globalNonPersistantData.groups.length > 0">
                     <span>Vos groupes</span><br>
                     <div id="carouselExampleControls" class="carousel slide" data-bs-touch="false" data-bs-interval="false">
                         <div class="carousel-inner">
-                            <div class="carousel-item active" v-for="(group, index) in $store.state.userStore.groups"
+                            <div class="carousel-item active" v-for="(group, index) in $store.state.globalNonPersistantData.groups"
                                 :key="index">
                                 <cardsGroup :group="group" :index="index" :exists="true"></cardsGroup>
                                 {{ group.name }}
-                                {{ $store.state.userStore.groups[index] }}
+                                {{ $store.state.globalNonPersistantData.groups[index] }}
                                 {{ setIndex(index) }}
                             </div>
                         </div>
@@ -112,7 +111,6 @@
                         </button>
                     </div>
                 </div>
-                -->
 
                 <hr class="separationBar">
                 <div class="col-12 mb-1">
@@ -135,11 +133,7 @@
 </template>
   
 <script>
-//import CardsGroup from "../UI/CardsGroup.vue";
 export default {
-    components: {
-        //CardsGroup,
-    },
     data() {
         return {
             date: "",
@@ -182,7 +176,7 @@ export default {
             // not working function yet: need to find a way to get the index of the active carousel item
             setTimeout(() => {
                 if (this.indexOfGroup == 0) {
-                    this.indexOfGroup = this.$store.state.userStore.groups.length;
+                    this.indexOfGroup = this.$store.state.globalNonPersistantData.groups.length;
                 } else {
                     this.indexOfGroup--;
                 }
@@ -190,7 +184,7 @@ export default {
         },
         next() {
             // not working function yet: need to find a way to get the index of the active carousel item
-            if (this.indexOfGroup < this.$store.state.userStore.groups.length) {
+            if (this.indexOfGroup < this.$store.state.globalNonPersistantData.groups.length) {
                 this.indexOfGroup++;
             }
             else {
@@ -206,17 +200,16 @@ export default {
             if (duration < 0) {
                 duration += 24;
             }
-            // this.$store.dispatch("mapStore/generateItinerary", {
-            //     date: this.date,
-            //     timeOfStart: this.timeOfStart,
-            //     timeOfEnd: this.timeOfEnd,
-            //     duration: duration,
-            //     budget: this.budget,
-            //     people: this.people,
-            //     children: this.children,
-            //     typeOfInterest: this.$store.state.mapStore.selectedTypeOfInterest,
-            //     group: this.$store.state.userStore.groups[this.indexOfGroup],
-            // });
+            this.$store.dispatch("createNewItinerary", {
+                city: this.city,
+                availableTime: duration,
+                budget: this.budget,
+                nbPeople: this.people,
+                nbChild: this.children,
+                typeResearchLocations: this.$store.state.mapStore.selectedTypeOfInterest,
+                group: this.$store.state.userStore.groups[this.indexOfGroup],
+                handicapAccess: false,
+            });
         },
     }
 }
@@ -271,7 +264,7 @@ export default {
     border-radius: 15px;
     border: none;
     font-size: calc(6px + 0.6vw);
-    width: 20vw;
+    width: 350px;
     height: 85vh;
     margin-top: 5px;
     margin-bottom: 5px;

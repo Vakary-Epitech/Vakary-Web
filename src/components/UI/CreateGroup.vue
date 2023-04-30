@@ -1,52 +1,74 @@
 <template>
     <div id="app">
-        <transition name="fade" appear>
-            <div class="modal-overlay" v-if="CreateGroup"></div>
-        </transition>
-        <transition name="pop" appear>
-            <div class="modalCreateGroup" v-if="CreateGroup">
-                <div class="row">
-                    <div class="col-12 text-end">
-                        <font-awesome-icon class="xMark" @click="goBackToGroupDropdown()" icon="fa-solid fa-xmark" />
+        <div class="background">
+            <div class="row">
+                <div class="col-12 text-end">
+                    <button class="xMark" @click="goBackToGroupDropdown()"><i class="fa-solid fa-xmark fa-lg"></i></button>
+                </div>
+            </div>
+            <h2>{{ $t("createGroup.title") }}</h2>
+            <section name="groupName">
+                <div class="col-12 mt-3">
+                    <input @blur="v$.groupInformations.name.$touch" 
+                    :placeholder="$t('createGroup.placeholders.name')"
+                    v-model="groupInformations.name" 
+                    class="inputClass"/>
+                    <div v-if="v$.groupInformations.name.$error" class="text-danger">
+                        {{ $t("createGroup.errors.name") }}                
                     </div>
                 </div>
-                <h2>Créer un nouveau groupe</h2>
-                <div class="col-12 mt-3">
-                    <input @blur="v$.groupInformations.name.$touch" placeholder="Nom du groupe"
-                        v-model="groupInformations.name" />
-                    <div v-if="v$.groupInformations.name.$error" class="text-danger">Group name must be between 3 and 15
-                        characters</div>
-                </div>
+            </section>
+            <section name="groupMembers">
                 <div class="row mt-3">
                     <div class="col-12">
-                        <input @blur="v$.mailMember.$touch" placeholder="Adresse mail des membres"
-                            @keydown.enter="addMembers" v-model="mailMember" />
-                        <div v-if="v$.mailMember.$error" class="text-danger">Incorrect email format</div>
-                        <div class="row mt-3" v-for="(member, index) in groupInformations.members" :key="index">
-                            <div class="col-10">
-                                <p>{{ member.mail }}</p>
-                            </div>
-                            <div class="col-2 text-end">
-                                <font-awesome-icon class="xMark" @click="deleteMember(index)" icon="fa-solid fa-xmark" />
-                            </div>
+                        <input 
+                            :placeholder="$t('createGroup.placeholders.mail')"
+                            v-model="mailMember"
+                            @keydown.enter.prevent="addMember()"
+                            class="inputClass"
+                        />
+                        <div v-if="showEmailError" class="text-danger">
+                            {{ $t("createGroup.errors.mail") }}                 
+                        </div>
+                        <div v-if="onlyOneMembers" class="text-danger">
+                            {{ $t("createGroup.errors.oneMembers") }}                 
                         </div>
                     </div>
                 </div>
-                <div class="col-12 mt-3">
-                    <label class="addGroupPicture">
-                        Ajouter une photo de groupe
+                <div class="row mt-3" v-for="(member, index) in groupInformations.members" :key="index">
+                    <div v-if="member.admin" class="col-12">
+                        <span>{{ $t("createGroup.admin") }} {{ member.mail }}</span>
+                    </div>
+                    <div v-else class="row">
+                        <div class="col-10">
+                            <p class="overflow">{{ member.mail }}</p>
+                        </div>
+                        <div class="col-2 text-end">
+                            <button class="trashIcon" @click="deleteMember(index)"><i class="fa-solid fa-trash"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section name="photoGroup">
+                <div v-if="groupInformations.photo" class="text-center">
+                    <img :src="groupInformations.photo?.preview" :alt="groupInformations.photo?.name" class="img-thumbnail my-1"/>
+                </div>
+                <label class="btn-add-group-picture" v-if="!groupInformations.photo?.preview">
+                    {{ $t("createGroup.picture") }}
+                    <input @change="onFileChange" type="file" hidden>
+                </label>
+                <div v-if="groupInformations.photo?.preview">
+                    <label class="btn-change-group-picture">
+                        {{  $t("createGroup.changePicture") }}
                         <input @change="onFileChange" type="file" hidden>
                     </label>
                 </div>
-                <div v-if="groupInformations.photo">
-                    {{ groupInformations.photo.name }}
-                </div>
-                <div class="col-12 mt-3 text-center">
-                    <button @click="sendMessage" class="saveButton">Sauvegarder</button>
-                </div>
-                <div v-if="v$.groupInformations.name.$error" class="text-danger">Name required</div>
+            </section>
+            <div class="col-12 mt-3 text-center">
+                <button @click="sendMessage" class="btn-save-group">{{ $t("createGroup.save") }}</button>
             </div>
-        </transition>
+            <div v-if="v$.groupInformations.name.$error || errorName" class="text-danger">{{ $t("createGroup.errors.name-required") }}</div>
+        </div>
     </div>
 </template>
   
@@ -63,6 +85,7 @@ export default {
     data() {
         return {
             CreateGroup: true,
+            errorName: false,
             mailMember: "",
             firstName: "",
             listMembers: [],
@@ -72,47 +95,71 @@ export default {
                 photo: "",
                 id: ""
             },
+            showEmailError: false,
+            onlyOneMembers: false,
         }
     },
+    created() {
+        this.groupInformations.members.push({ mail: this.$store.state.userStore.userInfo.email, status: "accepted", admin: true })
+    },
     methods: {
-        addMembers() {
-            if (this.v$.mailMember.$error) {
+        addMember() {
+            if (!this.isValidEmail(this.mailMember)) {
+                this.showEmailError = true;
                 return;
             }
-            this.groupInformations.members.push({ mail: this.mailMember, status: "pending" })
-            this.mailMember = "";
-        },
-        sendMessage() {
-            if (this.v$.$invalid) {
-                this.v$.groupInformations.name.$touch();
+            if (this.groupInformations.members.some(member => member.mail === this.mailMember)) {
+                this.showEmailError = true;
                 return;
             }
-            if (this.mailMember.length != 0) {
-                this.addMembers();
-            }
-            this.groupInformations.id = uuidv4();
-
-            // save image to base64 format then save it to local storage
-            // if photo
-            if (this.groupInformations.photo) {
-                const reader = new FileReader();
-                reader.readAsDataURL(this.groupInformations.photo);
-                reader.onload = () => {
-                    this.groupInformations.photo = reader.result;
-                    this.$store.state.userStore.groups.push(this.groupInformations);
-                }
-            } else {
-                this.$store.state.userStore.groups.push(this.groupInformations);
-            }
-            this.CreateGroup = false;
-            this.$emit("goBackToGroupDropdown");
+            this.showEmailError = false;
+            this.groupInformations.members.push({ mail: this.mailMember, status: "pending", admin: false })
+            this.mailMember = ''; 
         },
         deleteMember(index) {
             this.groupInformations.members.splice(index, 1);
         },
-        onFileChange(e) {
-            const file = e.target.files[0];
-            this.groupInformations.photo = file;
+        isValidEmail(email) {
+            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return re.test(String(email).toLowerCase());
+        },
+        sendMessage() {
+            if (this.mailMember.length !== 0) {
+                this.addMember();
+            }
+            if (!this.groupInformations.name) {
+                this.errorName = true;
+                return;
+            }
+            if (this.groupInformations.members.length < 2) {
+                this.onlyOneMembers = true;
+                return;
+            }
+            this.errorName = false;
+            this.groupInformations.id = uuidv4();
+            console.log(this.groupInformations)
+
+            this.$store.dispatch("addGroup", this.groupInformations);
+            this.CreateGroup = false;
+
+            this.$emit("goBackToGroupDropdown");
+        },
+        onFileChange(event) {
+            const file = event.target.files[0];
+            const reader = new FileReader();
+
+            reader.onload = () => {
+            this.groupInformations.photo = {
+                name: file.name,
+                size: file.size,
+                type: file.type,
+                preview: reader.result
+                };
+            };
+
+            if (file) {
+                reader.readAsDataURL(file);
+            }
         },
         goBackToGroupDropdown() {
             this.CreateGroup = false;
@@ -128,7 +175,7 @@ export default {
                 name: {
                     minLength: minLength(3),
                     required,
-                    maxLength: maxLength(15)
+                    maxLength: maxLength(18)
                 }
             }
         }
@@ -137,81 +184,96 @@ export default {
 </script>
 
 <style scoped>
-.addGroupPicture {
-    background: #FFE9D3;
+
+.inputClass {
     border: 1px solid rgb(192, 150, 40);
     border-radius: 5px;
-    padding: 10px 20px;
-    cursor: pointer;
+    padding: 5px 5px;
+    width: 100%;
 }
 
-.addGroupPicture:hover {
-    background: #FFD9B3;
+.background {
+    background-color: white;
+    padding: 15px;
+    border-radius: 15px;
+    border: 2px solid rgb(192, 150, 40);
+    min-width: 300px;
+    max-height: 400px;
+    overflow: auto;
+}
+::-webkit-scrollbar {
+  width: 0 !important;
 }
 
-.saveButton {
-    background: #FFE9D3;
-    border: 1px solid #000642;
+.btn-add-group-picture {
+    background-color: #0077B5;
+    border: 1px solid #0077B5;
     border-radius: 5px;
+    color: #FFFFFF;
     padding: 10px 20px;
+    width: 100%;
     cursor: pointer;
+    text-align: center;
 }
 
-.saveButton:hover {
-    background: #FFD9B3;
+.btn-add-group-picture:hover {
+    box-shadow: 0px 0px 5px 0px #0077B5;
+}
+
+.btn-change-group-picture {
+    background-color: #0077B5;
+    border: 1px solid #0077B5;
+    border-radius: 5px;
+    color: #FFFFFF;
+    padding: 10px 20px;
+    width: 100%;
+    cursor: pointer;
+    text-align: center;
+}
+
+.btn-change-group-picture:hover {
+    box-shadow: 0px 0px 5px 0px #0077B5;
+}
+
+.btn-save-group {
+    background-color: #FFFFFF;
+    border: 1px solid rgb(192, 150, 40);
+    border-radius: 5px;
+    color: black;
+    padding: 10px 20px;
+    width: 50%;
+    text-align: center;
+}
+
+.btn-save-group:hover {
+    box-shadow: 0px 0px 5px 0px rgb(192, 150, 40);
+}
+
+.overflow {
+    overflow: auto;
+    max-height: 200px;
 }
 
 .xMark {
-    font-size: 2rem;
-    color: #000;
-    cursor: pointer;
-}
-
-.buttonSave {
-    background: #FFE9D3;
+    background-color: #FFFFFF;
     border: none;
     border-radius: 5px;
-    padding: 10px 20px;
+    padding: 2px 5px;
+    color: black;
 }
 
-.modalCreateGroup {
-    position: absolute;
-    position: fixed;
-    background-color: #FFF;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    overflow-y: auto;
-    margin: auto;
-    text-align: center;
-    width: 40%;
-    height: 80%;
-    padding: 2rem;
-    border-radius: 1rem;
-    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
-    z-index: 1000;
-    transform: none;
+.xMark:hover {
+    box-shadow: 0 0 0 2px black;
 }
 
-.modal-overlay {
-    content: '';
-    position: absolute;
-    position: fixed;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    z-index: 999;
-    background: #2c3e50;
-    opacity: 0.6;
+.trashIcon {
+    color: #dc3545;
+    border: none;
+    background-color: white;
+    border-radius: 5px;
 }
 
-/* create the same modal but with width and height at 100% if the media query is small */
-@media screen and (max-width: 600px) {
-    .modalCreateGroup {
-        width: 100%;
-        height: 100%;
-        border-radius: 0;
-    }
-}</style>
+.trashIcon:hover {
+    box-shadow: 0 0 0 2px #dc3545;
+}
+</style>
