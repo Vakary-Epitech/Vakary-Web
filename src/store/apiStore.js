@@ -206,7 +206,21 @@ const apiStore = {
                     reject(error);
                 }
             })
-        }
+        },
+        // get function
+        get(path) {
+            return new Promise((resolve, reject) => {
+                try {
+                    axios.get(wording.serverAdress + path).then((response) => {
+                        resolve(response);
+                    }).catch((error) => {
+                        reject(error);
+                    })
+                } catch (error) {
+                    reject(error);
+                }
+            })
+        },
     },
 }
 

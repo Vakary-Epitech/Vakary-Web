@@ -50,7 +50,7 @@
                 </div>
             </section>
             <section name="photoGroup">
-                <div v-if="groupInformations.photo">
+                <div v-if="groupInformations.photo" class="text-center">
                     <img :src="groupInformations.photo?.preview" :alt="groupInformations.photo?.name" class="img-thumbnail my-1"/>
                 </div>
                 <label class="btn-add-group-picture" v-if="!groupInformations.photo?.preview">
@@ -200,7 +200,7 @@ export default {
     border-radius: 15px;
     border: 2px solid rgb(192, 150, 40);
     min-width: 300px;
-    max-height: 500px;
+    max-height: 400px;
     overflow: auto;
 }
 ::-webkit-scrollbar {

@@ -171,17 +171,16 @@ export default {
             if (duration < 0) {
                 duration += 24;
             }
-            // this.$store.dispatch("mapStore/generateItinerary", {
-            //     date: this.date,
-            //     timeOfStart: this.timeOfStart,
-            //     timeOfEnd: this.timeOfEnd,
-            //     duration: duration,
-            //     budget: this.budget,
-            //     people: this.people,
-            //     children: this.children,
-            //     typeOfInterest: this.$store.state.mapStore.selectedTypeOfInterest,
-            //     group: this.$store.state.userStore.groups[this.indexOfGroup],
-            // });
+            this.$store.dispatch("createNewItinerary", {
+                city: this.city,
+                availableTime: duration,
+                budget: this.budget,
+                nbPeople: this.people,
+                nbChild: this.children,
+                typeResearchLocations: this.$store.state.mapStore.selectedTypeOfInterest,
+                group: this.$store.state.userStore.groups[this.indexOfGroup],
+                handicapAccess: false,
+            });
         },
     }
 }

@@ -68,7 +68,8 @@
         "lastEventAttended": "Dernier événement visité",
         "totalKm": "Km total",
         "cityPass": "Pass de ville",
-        "disconnect": "Déconnexion"
+        "disconnect": "Déconnexion",
+        "delete": "Supprimer le compte"
     },
     "loginPage": {
         "signin": "Se connecter à Vakary",
@@ -154,7 +155,8 @@
         "generate": "Générer l'itinéraire"
     },
     "screenSizePage": {
-        "ScreenSizeTooSmall": "Désolé la taille d'écran de votre appareil est trop petite, veuillez télécharger une de nos applications mobiles: ",
+        "screenSizeTooSmall": "Désolé, l'accès à notre application web est actuellement bloqué car votre écran est trop petit.",
+        "mobile": "Pour accéder à notre service, veuillez télécharger notre application mobile depuis l'App Store ou le Google Play Store.",
         "goBack": "Retour"
     },
     "createGroup": {

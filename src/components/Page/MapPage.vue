@@ -62,7 +62,7 @@
         </div>
 
         <div v-else-if="showItineraryCreationModal">
-          <itineraryModal @goBackToItineraryDropdown="showItineraryCreationModal = false" />
+          <itineraryModal @goBackToItineraryDropdown="showItineraryCreationModal = false" style="min-width: 400px"/>
         </div>
 
         <div v-else>
@@ -80,14 +80,14 @@
       @click="showProfile = !showProfile; showGroupCreationModal = false; showItineraryCreationModal = false" />
   </div>
 
-  <Transition name="slide-fade fadeshow1">
-    <div class="profileModalPosition" v-if=" showProfile ">
+  <Transition name="slide-fade">
+    <div class="profileModalPosition fadeshow1" v-if=" showProfile ">
       <profileModal />
     </div>
   </Transition>
 
-  <section name="groupDropdown fadeshow1">
-    <div class="groupDropdownPosition">
+  <section name="groupDropdown">
+    <div class="groupDropdownPosition fadeshow1">
       <div class="widgetPanel">
         <Transition name="slide-fade">
           <div v-if=" !displayItineraryInformation && !showGroupCreationModal && !groupHasBeenClicked "
@@ -495,7 +495,8 @@ export default {
 
 <style scoped>
 .componentsGroupDropdown {
-  max-width: 20vw;
+  min-width: 400px;
+  max-height: 300px !important;
   margin: 1vh;
   height: 10%;
 }
@@ -523,7 +524,6 @@ export default {
   display: flex;
   flex-direction: column;
   max-height: 70vh;
-  max-width: 60vw;
 }
 
 .dropdown-content {
@@ -650,4 +650,5 @@ export default {
   .fadeshow2 {
     display: none;
   }
-}</style>
+}
+</style>
