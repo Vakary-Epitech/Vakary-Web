@@ -83,6 +83,35 @@
                         </div>
                     </div>
                 </div>
+
+                <hr class="separationBar" v-if="$store.state.globalNonPersistantData.groups.length > 0">
+                <div class="col-12" v-if="$store.state.globalNonPersistantData.groups.length > 0">
+                    <span>Vos groupes</span><br>
+                    <div id="carouselExampleControls" class="carousel slide" data-bs-touch="false" data-bs-interval="false">
+                        <div class="carousel-inner">
+                            <div class="carousel-item active" v-for="(group, index) in $store.state.globalNonPersistantData.groups"
+                                :key="index">
+                                <cardsGroup :group="group" :index="index" :exists="true"></cardsGroup>
+                                {{ group.name }}
+                                {{ $store.state.globalNonPersistantData.groups[index] }}
+                                {{ setIndex(index) }}
+                            </div>
+                        </div>
+                        <button v-if="$store.state.userStore.groups.length > 1" @click="prev"
+                            class="carousel-control-prev black" type="button" data-bs-target="#carouselExampleControls"
+                            data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button v-if="$store.state.userStore.groups.length > 1" @click.prevent="next"
+                            class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"
+                            data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
+                </div>
+
                 <hr class="separationBar">
                 <div class="col-12 mb-1">
                     <span>{{ $t("itineraryModal.interest") }}</span><br>

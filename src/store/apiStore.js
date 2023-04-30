@@ -77,7 +77,6 @@ const apiStore = {
             return new Promise((resolve, reject) => {
                 try {
                     axios.post(wording.serverAdress + "login", { username: this.state.userStore.username, password: password }).then((canAuthentify) => {
-                        console.log(canAuthentify);
                         resolve(canAuthentify);
                     }).catch((error) => {
                         reject(error);
@@ -91,7 +90,8 @@ const apiStore = {
         retrieveUserInformation(context) {
             return new Promise((resolve, reject) => {
                 try {
-                    axios.get(wording.serverAdress + "user/email/" + this.state.userStore.username, {}).then((userInfo) => {
+                    axios.get(wording.serverAdress + "user/email/" + this.state.userStore.mail, {}).then((userInfo) => {
+                        console.log(userInfo);
                         context.commit('UPDATE_USER_INFO', userInfo);
                         resolve(userInfo);
                     }).catch((error) => {
@@ -146,9 +146,11 @@ const apiStore = {
                 try {
                     let mailsList = [];
                     for (let mailIndex in groupInformation.members) {
-                        mailsList.push(groupInformation.members[mailIndex].mail)
+                        if (groupInformation.members[mailIndex].mail)
+                            mailsList.push(groupInformation.members[mailIndex].mail)
                     }
                     axios.put(wording.serverAdress + "group", { groupname: groupInformation.name, adminId: this.state.userStore.userId, emails: mailsList }).then((group) => {
+                        context.commit('ADD_NEW_GROUP', group);
                         resolve(group);
                     }).catch((error) => {
                         reject(error);

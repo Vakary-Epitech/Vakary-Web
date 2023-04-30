@@ -267,6 +267,7 @@ export default {
     }
   },
   mounted() {
+    this.$store.dispatch("retrieveUserInformation");
     if (this.$store.state.globalNonPersistantData.groups.length == 0)
       this.$store.dispatch("getGroup");
   },
