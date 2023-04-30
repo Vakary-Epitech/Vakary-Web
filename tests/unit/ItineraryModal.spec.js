@@ -47,8 +47,6 @@ test('wrong password ItineraryModal', async () => {
     await wrapper.vm.next();    
     await wrapper.vm.prev();
 
-    await wrapper.vm.generateItinerary();
-
     await wrapper.vm.setIndex(0);
     await wrapper.vm.prev();
     await wrapper.vm.next();

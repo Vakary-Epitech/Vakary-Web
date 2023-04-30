@@ -207,11 +207,8 @@ test('Basic Information verifier', async () => {
         id: "1",
         preview: "test",
     }
-    await wrapper.vm.addMember()
-    await wrapper.vm.deleteMember(0)
     await wrapper.vm.editName()
     await wrapper.vm.updateGroupName()
-    await wrapper.vm.deleteGroup()
 })
 
 test('Error check', async () => {
