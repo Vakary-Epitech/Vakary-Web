@@ -100,8 +100,7 @@ export default {
         }
     },
     created() {
-        this.groupInformations.members.admin = this.$store.state.userStore.mail;
-        this.groupInformations.members.push({ mail: this.groupInformations.members.admin, status: "accepted", admin: true })
+        this.groupInformations.members.push({ mail: this.$store.state.userStore.userInfo.email, status: "accepted", admin: true })
     },
     methods: {
         addMember() {
@@ -138,10 +137,9 @@ export default {
             }
             this.errorName = false;
             this.groupInformations.id = uuidv4();
-            console.log(this.groupInformations.members[1].mail)
+            console.log(this.groupInformations)
 
             this.$store.dispatch("addGroup", this.groupInformations);
-            this.$store.state.userStore.groups.push(this.groupInformations);
             this.CreateGroup = false;
 
             this.$emit("goBackToGroupDropdown");

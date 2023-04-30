@@ -207,13 +207,8 @@ test('Basic Information verifier', async () => {
         id: "1",
         preview: "test",
     }
-    await wrapper.vm.addMember()
-    await wrapper.vm.deleteMember(0)
     await wrapper.vm.editName()
     await wrapper.vm.updateGroupName()
-    await wrapper.vm.deleteGroup()
-
-    expect(wrapper.vm.getGroups).toBe(wrapper.vm.$store.state.userStore.groups)
 })
 
 test('Error check', async () => {

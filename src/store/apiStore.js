@@ -58,11 +58,25 @@ const apiStore = {
             })
         },*/
 
+        createNewItinerary(context, itinerary) {
+            return new Promise((resolve, reject) => {
+                try {
+                    axios.put(wording.serverAdress + "itinerary", { itinerary }).then((canAuthentify) => {
+                        console.log(canAuthentify);
+                        resolve(canAuthentify);
+                    }).catch((error) => {
+                        reject(error);
+                    })
+                } catch (error) {
+                    reject(error);
+                }
+            })
+        },
+
         checkIfUserIsAuthorizedToConnect(context, password) {
             return new Promise((resolve, reject) => {
                 try {
                     axios.post(wording.serverAdress + "login", { username: this.state.userStore.username, password: password }).then((canAuthentify) => {
-                        console.log(canAuthentify);
                         resolve(canAuthentify);
                     }).catch((error) => {
                         reject(error);
@@ -76,7 +90,8 @@ const apiStore = {
         retrieveUserInformation(context) {
             return new Promise((resolve, reject) => {
                 try {
-                    axios.get(wording.serverAdress + "user/email/" + this.state.userStore.username, {}).then((userInfo) => {
+                    axios.get(wording.serverAdress + "user/email/" + this.state.userStore.mail, {}).then((userInfo) => {
+                        console.log(userInfo);
                         context.commit('UPDATE_USER_INFO', userInfo);
                         resolve(userInfo);
                     }).catch((error) => {
@@ -88,11 +103,34 @@ const apiStore = {
             })
         },
 
-        getGroup() {
+        deleteGroup(context, group) {
             return new Promise((resolve, reject) => {
                 try {
-                    axios.get(wording.serverAdress + "group/").then((group) => {
-                        console.log("group")
+                    let config = {
+                        method: 'delete',
+                        maxBodyLength: Infinity,
+                        url: wording.serverAdress + "group/" + group.backendGroupId,
+                        headers: {},
+                    };
+
+                    axios.request(config)
+                        .then((result) => {
+                            resolve(result);
+                        }).catch((error) => {
+                            reject(error);
+                        })
+                } catch (error) {
+                    reject(error);
+                }
+            })
+        },
+
+        getGroup(context) {
+            return new Promise((resolve, reject) => {
+                try {
+                    axios.post(wording.serverAdress + "group/getAll", { id: this.state.userStore.userId }).then((group) => {
+                        console.log(group)
+                        context.commit('UPDATE_USER_GROUP', group);
                         resolve(group);
                     }).catch((error) => {
                         reject(error);
@@ -108,11 +146,11 @@ const apiStore = {
                 try {
                     let mailsList = [];
                     for (let mailIndex in groupInformation.members) {
-                        if (mailIndex > 0) {
+                        if (groupInformation.members[mailIndex].mail)
                             mailsList.push(groupInformation.members[mailIndex].mail)
-                        }
                     }
                     axios.put(wording.serverAdress + "group", { groupname: groupInformation.name, adminId: this.state.userStore.userId, emails: mailsList }).then((group) => {
+                        context.commit('ADD_NEW_GROUP', group);
                         resolve(group);
                     }).catch((error) => {
                         reject(error);
@@ -141,9 +179,7 @@ const apiStore = {
         checkIfAccountCanBeCreated(context, password) {
             return new Promise((resolve, reject) => {
                 try {
-                    console.log("email: ", this.state.userStore.mail, "password: ", password, "username: ", this.state.userStore.username)
                     axios.put(wording.serverAdress + "register", { email: this.state.userStore.mail, password: password, username: this.state.userStore.username }).then((canAuthentify) => {
-                        console.log(canAuthentify.data);
                         context.commit('UPDATE_USER_INFO', canAuthentify);
                         resolve(canAuthentify)
                     }).catch((error) => {
