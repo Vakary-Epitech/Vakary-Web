@@ -267,9 +267,13 @@ export default {
     }
   },
   mounted() {
+    try {
     this.$store.dispatch("retrieveUserInformation");
     if (this.$store.state.globalNonPersistantData.groups.length == 0)
       this.$store.dispatch("getGroup");
+    } catch (error) {
+      console.log(error);
+    }
   },
   computed: {
     itineraryCssDropdown() {

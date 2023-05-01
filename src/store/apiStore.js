@@ -106,6 +106,9 @@ const apiStore = {
         deleteGroup(context, group) {
             return new Promise((resolve, reject) => {
                 try {
+                    if (!group.backendGroupId)
+                        return;
+
                     let config = {
                         method: 'delete',
                         maxBodyLength: Infinity,
@@ -128,6 +131,8 @@ const apiStore = {
         getGroup(context) {
             return new Promise((resolve, reject) => {
                 try {
+                    if (!this.state.userStore.userId)
+                        return
                     axios.post(wording.serverAdress + "group/getAll", { id: this.state.userStore.userId }).then((group) => {
                         console.log(group)
                         context.commit('UPDATE_USER_GROUP', group);
