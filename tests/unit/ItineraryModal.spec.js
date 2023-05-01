@@ -2,9 +2,7 @@ import { shallowMount, mount } from '@vue/test-utils'
 import ItineraryModal from '@/components/UI/itineraryModal.vue'
 import Vuex from 'vuex'
 import store from '../../src/store/store.js'
-import i18 from '../../src/i18n.js'
 import router from '../../src/router/index.js'
-import { waitFor } from '@testing-library/vue'
 
 test('wrong password ItineraryModal', async () => {
     const wrapper = shallowMount(ItineraryModal, {
