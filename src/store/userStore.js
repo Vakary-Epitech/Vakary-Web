@@ -22,6 +22,7 @@ const userStore = {
             state.mail = mail;
         },
         UPDATE_USER_INFO(state, userInfo) {
+            console.log(userInfo);
             state.userInfo = userInfo.data.user;
             state.userId = userInfo.data.user.id;
             state.mail = userInfo.data.user.mail;

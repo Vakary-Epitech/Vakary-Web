@@ -15,9 +15,9 @@
                     <div class="col-12 text-center">
                         <h1>{{ user.username }}</h1>
                     </div>
-                    <div v-if="user?.userInfo?.data?.user?.description" class="col-12 overflow">
+                    <div v-if="user?.description" class="col-12 overflow">
                         <span>{{ $t("profilePage.info") }}</span><br>
-                        <p class="description">{{ user?.userInfo?.data?.user?.description }}</p>
+                        <p class="description">{{ user?.description }}</p>
                     </div>
                 </div>
                 <div class="row" v-if="editMode">
@@ -27,9 +27,10 @@
                     </div>
                     <div class="col-6 mt-3 offset-3">
                         <span>{{ $t("profilePage.info") }}</span><br>
-                        <textarea v-model="user.userInfo.data.user.description" :placeholder="user?.userInfo?.data?.user?.description" rows="5" cols="80"
+                        <textarea v-model="user.description"
+                            :placeholder="user?.description" rows="5" cols="80"
                             maxlength="300">Write stuff here...</textarea>
-                        {{ user?.userInfo?.data?.user?.description?.length }}/300
+                        {{ user?.description?.length }}/300
                     </div>
                     <div class="col-12">
                         <button @click="save" class="btn btn-primary">{{ $t("profilePage.save") }}</button>
@@ -39,24 +40,24 @@
                     <div class="row">
                         <div class="col-5 offset-1">
                             <span>{{ $t("profilePage.comments") }}</span><br>
-                            <p>{{ user?.userInfo?.data?.user?.comments }}</p>
+                            <p>{{ user?.comments }}</p>
                         </div>
                         <div class="col-3 offset-2">
                             <span>{{ $t("profilePage.likes") }}</span><br>
-                            <p>{{ user?.userInfo?.data?.user?.likes }}</p>
+                            <p>{{ user?.likes }}</p>
                         </div>
                     </div>
-                    <div v-if="user?.userInfo?.data?.user?.lastMonument" class="col-12">
+                    <div v-if="user?.lastMonument" class="col-12">
                         <span>{{ $t("profilePage.lastPlaceVisited") }}</span><br>
-                        <p>{{ user?.userInfo?.data?.user?.lastMonument }}</p>
+                        <p>{{ user?.lastMonument }}</p>
                     </div>
-                    <div v-if="user?.userInfo?.data?.user?.lastEvent" class="col-12">
+                    <div v-if="user?.lastEvent" class="col-12">
                         <span>{{ $t("profilePage.lastEventAttended") }}</span><br>
-                        <p>{{ user?.userInfo?.data?.user?.lastEvent }}</p>
+                        <p>{{ user?.lastEvent }}</p>
                     </div>
                     <div class="col-12">
                         <span>{{ $t("profilePage.totalKm") }}</span><br>
-                        <p>{{ user?.userInfo?.data?.user?.milesTraveled }}</p>
+                        <p>{{ user?.milesTraveled }}</p>
                     </div>
                 </div>
                 <div class="col-12 my-2">
@@ -66,7 +67,7 @@
                     <button @click="(disconnectUser)">{{ $t("profilePage.disconnect") }}</button>
                 </div>
                 <div class="col-12 mt-2">
-                    <button @click="(deleteUser)">{{ $t("profilePage.delete")}}</button>
+                    <button @click="(deleteUser)">{{ $t("profilePage.delete") }}</button>
                 </div>
             </div>
         </div>
@@ -79,8 +80,8 @@ export default {
     data() {
         return {
             editMode: false,
-            user: this.$store.state.userStore,
-            }
+            user: this.$store.state.userStore.userInfo,
+        }
     },
     methods: {
         openFileExplorer() {
@@ -150,6 +151,7 @@ p {
 div {
     position: relative;
 }
+
 textarea {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
@@ -171,7 +173,7 @@ textarea {
 }
 
 ::-webkit-scrollbar {
-  width: 0 !important;
+    width: 0 !important;
 }
 
 
@@ -191,6 +193,7 @@ textarea {
 .container div {
     color: var(--text-primary-color);
 }
+
 .ProfilCardDesign {
     display: flex;
     background-color: var(--background-color-primary);
@@ -207,6 +210,7 @@ textarea {
     overflow: auto;
     width: 300px;
 }
+
 .ProfilCardDesign::-webkit-scrollbar {
     width: 1px;
 }
@@ -214,6 +218,5 @@ textarea {
 .container input {
     background-color: var(--background-color-secondary);
     border-color: var(--text-primary-color);
-}
-</style>
+}</style>
     
