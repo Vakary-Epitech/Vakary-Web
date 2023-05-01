@@ -106,6 +106,9 @@ const apiStore = {
         deleteGroup(context, group) {
             return new Promise((resolve, reject) => {
                 try {
+                    if (!group.backendGroupId)
+                        return;
+
                     let config = {
                         method: 'delete',
                         maxBodyLength: Infinity,
