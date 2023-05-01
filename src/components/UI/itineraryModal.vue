@@ -83,6 +83,35 @@
                         </div>
                     </div>
                 </div>
+
+                <hr class="separationBar" v-if="$store.state.globalNonPersistantData.groups.length > 0">
+                <div class="col-12" v-if="$store.state.globalNonPersistantData.groups.length > 0">
+                    <span>Vos groupes</span><br>
+                    <div id="carouselExampleControls" class="carousel slide" data-bs-touch="false" data-bs-interval="false">
+                        <div class="carousel-inner">
+                            <div class="carousel-item active" v-for="(group, index) in $store.state.globalNonPersistantData.groups"
+                                :key="index">
+                                <cardsGroup :group="group" :index="index" :exists="true"></cardsGroup>
+                                {{ group.name }}
+                                {{ $store.state.globalNonPersistantData.groups[index] }}
+                                {{ setIndex(index) }}
+                            </div>
+                        </div>
+                        <button v-if="$store.state.userStore.groups.length > 1" @click="prev"
+                            class="carousel-control-prev black" type="button" data-bs-target="#carouselExampleControls"
+                            data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button v-if="$store.state.userStore.groups.length > 1" @click.prevent="next"
+                            class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"
+                            data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
+                </div>
+
                 <hr class="separationBar">
                 <div class="col-12 mb-1">
                     <span>{{ $t("itineraryModal.interest") }}</span><br>
@@ -147,7 +176,7 @@ export default {
             // not working function yet: need to find a way to get the index of the active carousel item
             setTimeout(() => {
                 if (this.indexOfGroup == 0) {
-                    this.indexOfGroup = this.$store.state.userStore.groups.length;
+                    this.indexOfGroup = this.$store.state.globalNonPersistantData.groups.length;
                 } else {
                     this.indexOfGroup--;
                 }
@@ -155,7 +184,7 @@ export default {
         },
         next() {
             // not working function yet: need to find a way to get the index of the active carousel item
-            if (this.indexOfGroup < this.$store.state.userStore.groups.length) {
+            if (this.indexOfGroup < this.$store.state.globalNonPersistantData.groups.length) {
                 this.indexOfGroup++;
             }
             else {
@@ -171,17 +200,16 @@ export default {
             if (duration < 0) {
                 duration += 24;
             }
-            // this.$store.dispatch("mapStore/generateItinerary", {
-            //     date: this.date,
-            //     timeOfStart: this.timeOfStart,
-            //     timeOfEnd: this.timeOfEnd,
-            //     duration: duration,
-            //     budget: this.budget,
-            //     people: this.people,
-            //     children: this.children,
-            //     typeOfInterest: this.$store.state.mapStore.selectedTypeOfInterest,
-            //     group: this.$store.state.userStore.groups[this.indexOfGroup],
-            // });
+            this.$store.dispatch("createNewItinerary", {
+                city: this.city,
+                availableTime: duration,
+                budget: this.budget,
+                nbPeople: this.people,
+                nbChild: this.children,
+                typeResearchLocations: this.$store.state.mapStore.selectedTypeOfInterest,
+                group: this.$store.state.userStore.groups[this.indexOfGroup],
+                handicapAccess: false,
+            });
         },
     }
 }

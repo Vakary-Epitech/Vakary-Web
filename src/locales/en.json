@@ -134,7 +134,9 @@
     "lastPlaceVisited": "Last Place Visited",
     "lastEventAttended": "Last Event Attended",
     "totalKm": "Total Km Traveled",
-    "cityPass": "City Pass"
+    "cityPass": "City Pass",
+    "disconnect": "Disconnect",
+    "delete": "Delete the account"
   },
   "itineraryModal": {
     "creation": "Creation of your itinerary",
@@ -153,8 +155,9 @@
     "generate": "Generate the Itinerary"
   },
   "screenSizePage": {
-    "ScreenSizeTooSmall": "Sorry the Screen size of your device is too small, please use one of our mobile application :",
-    "goBack": "Go Back"
+    "screenSizeTooSmall": "Sorry, access to our web application is currently blocked because your screen is too small.",
+    "mobile": "To access our service, please download our mobile application from the App Store or Google Play Store.",
+    "goBack": "Go back"
   },
   "createGroup": {
     "title": "Create a new group",

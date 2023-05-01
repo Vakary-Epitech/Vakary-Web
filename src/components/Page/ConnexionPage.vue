@@ -1,5 +1,5 @@
 <template>
-  <div class="background">
+  <div class="background fadeshow1">
     <div class="centered-svg">
       <img src="@/assets/logo_long_vect.svg">
     </div>
@@ -15,17 +15,22 @@
         </div>
     </div>
   </div>
+  <div class="fadeshow2">
+    <ScreenSizeTooSmall></ScreenSizeTooSmall>
+  </div>
 </template>
 
 <script>
 import Register from "@/components/UI/registrationCard.vue";
 import Login from "@/components/UI/loginCard.vue";
 import Password from "@/components/UI/forgotPassword.vue";
+import ScreenSizeTooSmall from "@/components/UI/ScreenSizeTooSmall.vue";
 export default {
   components : {
     Register,
     Login,
-    Password
+    Password,
+    ScreenSizeTooSmall
   },
   data() {
     return {
@@ -79,5 +84,17 @@ export default {
   max-width: 400px;
   position: relative;
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+}
+
+@media only screen and (max-width: 767px) {
+  .fadeshow1 {
+    display: none;
+  }
+}
+
+@media only screen and (min-width: 767px) {
+  .fadeshow2 {
+    display: none;
+  }
 }
 </style>

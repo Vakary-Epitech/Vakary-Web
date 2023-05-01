@@ -50,7 +50,7 @@
                 </div>
             </section>
             <section name="photoGroup">
-                <div v-if="groupInformations.photo">
+                <div v-if="groupInformations.photo" class="text-center">
                     <img :src="groupInformations.photo?.preview" :alt="groupInformations.photo?.name" class="img-thumbnail my-1"/>
                 </div>
                 <label class="btn-add-group-picture" v-if="!groupInformations.photo?.preview">
@@ -100,8 +100,7 @@ export default {
         }
     },
     created() {
-        this.groupInformations.members.admin = this.$store.state.userStore.mail;
-        this.groupInformations.members.push({ mail: this.groupInformations.members.admin, status: "accepted", admin: true })
+        this.groupInformations.members.push({ mail: this.$store.state.userStore.userInfo.email, status: "accepted", admin: true })
     },
     methods: {
         addMember() {
@@ -138,10 +137,9 @@ export default {
             }
             this.errorName = false;
             this.groupInformations.id = uuidv4();
-            console.log(this.groupInformations.members[1].mail)
+            console.log(this.groupInformations)
 
             this.$store.dispatch("addGroup", this.groupInformations);
-            this.$store.state.userStore.groups.push(this.groupInformations);
             this.CreateGroup = false;
 
             this.$emit("goBackToGroupDropdown");
@@ -200,7 +198,7 @@ export default {
     border-radius: 15px;
     border: 2px solid rgb(192, 150, 40);
     min-width: 300px;
-    max-height: 500px;
+    max-height: 400px;
     overflow: auto;
 }
 ::-webkit-scrollbar {
