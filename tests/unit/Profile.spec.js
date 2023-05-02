@@ -10,13 +10,14 @@ describe('Profile', () => {
     state: {
       userStore: {
         userIsLoggedIn: true,
-        user: {
+        userInfo: {
           id: '123',
           name: 'John Doe',
           description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed et commodo justo.',
           email: 'john.doe@example.com',
-          image: 'https://via.placeholder.com/150'
-        }
+          image: 'https://via.placeholder.com/150',
+          username: 'test'
+        },
       }
     },
   };

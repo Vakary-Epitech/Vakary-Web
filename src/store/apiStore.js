@@ -62,7 +62,6 @@ const apiStore = {
             return new Promise((resolve, reject) => {
                 try {
                     axios.put(wording.serverAdress + "itinerary", { itinerary }).then((canAuthentify) => {
-                        console.log(canAuthentify);
                         resolve(canAuthentify);
                     }).catch((error) => {
                         reject(error);
@@ -91,7 +90,6 @@ const apiStore = {
             return new Promise((resolve, reject) => {
                 try {
                     axios.get(wording.serverAdress + "user/email/" + this.state.userStore.mail, {}).then((userInfo) => {
-                        console.log(userInfo);
                         context.commit('UPDATE_USER_INFO', userInfo);
                         resolve(userInfo);
                     }).catch((error) => {
@@ -134,7 +132,6 @@ const apiStore = {
                     if (!this.state.userStore.userId)
                         return
                     axios.post(wording.serverAdress + "group/getAll", { id: this.state.userStore.userId }).then((group) => {
-                        console.log(group)
                         context.commit('UPDATE_USER_GROUP', group);
                         resolve(group);
                     }).catch((error) => {
@@ -170,7 +167,6 @@ const apiStore = {
             return new Promise((resolve, reject) => {
                 try {
                     axios.post(wording.serverAdress + "forgotPassword", { email: email }).then((canAuthentify) => {
-                        console.log(canAuthentify);
                         resolve(canAuthentify)
                     }).catch((error) => {
                         reject(error);
@@ -204,7 +200,6 @@ const apiStore = {
                             'authorization': requestParameters.authorization
                         }
                     }).then((canAuthentify) => {
-                        console.log(canAuthentify);
                         resolve(canAuthentify)
                     }).catch((error) => {
                         reject(error);
