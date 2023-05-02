@@ -62,7 +62,7 @@
         </div>
 
         <div v-else-if="showItineraryCreationModal">
-          <itineraryModal @goBackToItineraryDropdown="showItineraryCreationModal = false" style="min-width: 400px"/>
+          <itineraryModal @goBackToItineraryDropdown="showItineraryCreationModal = false" style="min-width: 400px" />
         </div>
 
         <div v-else>
@@ -104,8 +104,7 @@
               <div v-if=" this.groupDropdown && !this.groupHasBeenClicked " style="background-color: white;"
                 class="dropdown-content">
 
-                <div style="display: flex; flex-direction: row;" class="cursorOnButton"
-                  @click=" callGroupCreation() ">
+                <div style="display: flex; flex-direction: row;" class="cursorOnButton" @click=" callGroupCreation() ">
                   <div class="dropboxText cardBasicContainer" style="display: flex; width: 70%; height: 100%;">
                     <span class="dropboxText cardBasicContainer dropdownCreateTextPosition">{{
                       $t("mapPage.newGroup") }}</span>
@@ -117,12 +116,14 @@
                 </div>
 
                 <div class="cursorOnButton" @click=" groupCardsHasBeenClicked(index) "
-                  v-for="( group, index ) in  this.$store.state.globalNonPersistantData.groups " :key=" group.id ">
+                  v-for="(    group, index    ) in     this.$store.state.globalNonPersistantData.groups    "
+                  :key=" group.id ">
                   <div class="topBorder mt-2">&nbsp;</div>
                   <i class="fas fa-users ms-2 mt-2"></i>
                   <i class="fas fa-person fa-lg me-2 mt-2" style="float: right"></i>
                   <Transition name="slide-fade">
-                    <mapGroupCardsVue :groupName="group.name" :numberOfMember="group.emails.length" :index=" index " />
+                    <mapGroupCardsVue :groupName=" group.name " :numberOfMember=" group.emails.length "
+                      :index=" index " />
                   </Transition>
                 </div>
               </div>
@@ -267,12 +268,14 @@ export default {
     }
   },
   mounted() {
-    try {
-    this.$store.dispatch("retrieveUserInformation");
-    if (this.$store.state.globalNonPersistantData.groups.length == 0)
-      this.$store.dispatch("getGroup");
-    } catch (error) {
-      console.log(error);
+    if (this.$store.state.userId) {
+      try {
+        this.$store.dispatch("retrieveUserInformation");
+        if (this.$store.state.globalNonPersistantData.groups.length == 0)
+          this.$store.dispatch("getGroup");
+      } catch (error) {
+        console.log(error);
+      }
     }
   },
   computed: {
