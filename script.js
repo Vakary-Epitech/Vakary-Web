@@ -17,7 +17,7 @@ fs.readdir(directoryPath, (err, files) => {
             console.error('Error reading file:', filePath, err);
             return;
         }
-        const modifiedData = data.replace(/p\+"img\//g, 'p+"2024/vakary/img/');
+        const modifiedData = data.replace(/p\+"img\//g, '/img/');
         fs.writeFile(filePath, modifiedData, 'utf8', err => {
             if (err) {
             console.error('Error writing file:', filePath, err);
