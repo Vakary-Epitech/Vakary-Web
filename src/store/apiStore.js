@@ -62,7 +62,6 @@ const apiStore = {
             return new Promise((resolve, reject) => {
                 try {
                     axios.put(wording.serverAdress + "itinerary", { itinerary }).then((canAuthentify) => {
-                        console.log(canAuthentify);
                         resolve(canAuthentify);
                     }).catch((error) => {
                         reject(error);
@@ -181,10 +180,7 @@ const apiStore = {
         checkIfAccountCanBeCreated(context, password) {
             return new Promise((resolve, reject) => {
                 try {
-                    console.log("mail send ", this.state.userStore.mail);
-                    console.log("username send ", this.state.userStore.username);
                     axios.put(wording.serverAdress + "register", { email: this.state.userStore.mail, password: password, username: this.state.userStore.username }).then((canAuthentify) => {
-                        console.log("register: ", canAuthentify);
                         context.commit('UPDATE_USER_INFO', canAuthentify);
                         resolve(canAuthentify)
                     }).catch((error) => {
