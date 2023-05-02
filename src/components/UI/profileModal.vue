@@ -10,7 +10,7 @@
             <div class="container">
                 <div class="row" v-if="!editMode">
                     <div>
-                        <img class="profile-picture" :src="user?.userProfileImage" alt="profile-picture">
+                        <img class="profile-picture" :src="$store.state.userStore.userProfileImage" alt="profile-picture">
                     </div>
                     <div class="col-12 text-center">
                         <h1>{{ user.username }}</h1>

@@ -7,9 +7,11 @@ exports[`Profile renders the component 1`] = `
       <div class="row">
         <div><img class="profile-picture" alt="profile-picture"></div>
         <div class="col-12 text-center">
-          <h1></h1>
+          <h1>test</h1>
         </div>
-        <!--v-if-->
+        <div class="col-12 overflow"><span>Description</span><br>
+          <p class="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed et commodo justo.</p>
+        </div>
       </div>
       <!--v-if-->
       <div class="row">
