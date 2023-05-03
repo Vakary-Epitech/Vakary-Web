@@ -76,6 +76,7 @@ const apiStore = {
             return new Promise((resolve, reject) => {
                 try {
                     axios.post(wording.serverAdress + "login", { username: this.state.userStore.username, password: password }).then((canAuthentify) => {
+                        context.commit('UPDATE_USER_INFO', canAuthentify);
                         resolve(canAuthentify);
                     }).catch((error) => {
                         reject(error);
@@ -131,7 +132,16 @@ const apiStore = {
                 try {
                     if (!this.state.userStore.userId)
                         return
-                    axios.post(wording.serverAdress + "group/getAll", { id: this.state.userStore.userId }).then((group) => {
+                    console.log(this.state.userStore.userId)
+
+                    let config = {
+                        method: 'post',
+                        maxBodyLength: Infinity,
+                        url: wording.serverAdress + 'group/getAll/' + this.state.userStore.userId,
+                        headers: { }
+                    }
+                    axios.request(config).then((group) => {
+                        console.log(group);
                         context.commit('UPDATE_USER_GROUP', group);
                         resolve(group);
                     }).catch((error) => {
@@ -151,7 +161,23 @@ const apiStore = {
                         if (groupInformation.members[mailIndex].mail)
                             mailsList.push(groupInformation.members[mailIndex].mail)
                     }
-                    axios.put(wording.serverAdress + "group", { groupname: groupInformation.name, adminId: this.state.userStore.userId, emails: mailsList }).then((group) => {
+
+                    const formData = new FormData();
+                    formData.append("emails", mailsList);
+                    formData.append("groupname", groupInformation.name);
+                    formData.append("file", groupInformation.picture);
+
+                    let config = {
+                        method: 'put',
+                        maxBodyLength: Infinity,
+                        header: {
+                            'Content-Type': 'multipart/form-data'
+                        },
+                        url: wording.serverAdress + 'group',
+                        data: formData,
+                    }
+
+                    axios.request(config).then((group) => {
                         context.commit('ADD_NEW_GROUP', group);
                         resolve(group);
                     }).catch((error) => {

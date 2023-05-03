@@ -116,7 +116,7 @@
                 </div>
 
                 <div class="cursorOnButton" @click=" groupCardsHasBeenClicked(index) "
-                  v-for="(    group, index    ) in     this.$store.state.globalNonPersistantData.groups    "
+                  v-for="(     group, index     ) in      this.$store.state.globalNonPersistantData.groups     "
                   :key=" group.id ">
                   <div class="topBorder mt-2">&nbsp;</div>
                   <i class="fas fa-users ms-2 mt-2"></i>
@@ -268,11 +268,9 @@ export default {
     }
   },
   mounted() {
-    if (this.$store.state.userId) {
+    if (this.$store.state.userStore.userId) {
       try {
-        this.$store.dispatch("retrieveUserInformation");
-        if (this.$store.state.globalNonPersistantData.groups.length == 0)
-          this.$store.dispatch("getGroup");
+        this.$store.dispatch("getGroup");
       } catch (error) {
         console.log(error);
       }
