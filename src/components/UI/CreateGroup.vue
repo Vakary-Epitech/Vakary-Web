@@ -9,29 +9,23 @@
             <h2>{{ $t("createGroup.title") }}</h2>
             <section name="groupName">
                 <div class="col-12 mt-3">
-                    <input @blur="v$.groupInformations.name.$touch" 
-                    :placeholder="$t('createGroup.placeholders.name')"
-                    v-model="groupInformations.name" 
-                    class="inputClass"/>
+                    <input @blur="v$.groupInformations.name.$touch" :placeholder="$t('createGroup.placeholders.name')"
+                        v-model="groupInformations.name" class="inputClass" />
                     <div v-if="v$.groupInformations.name.$error" class="text-danger">
-                        {{ $t("createGroup.errors.name") }}                
+                        {{ $t("createGroup.errors.name") }}
                     </div>
                 </div>
             </section>
             <section name="groupMembers">
                 <div class="row mt-3">
                     <div class="col-12">
-                        <input 
-                            :placeholder="$t('createGroup.placeholders.mail')"
-                            v-model="mailMember"
-                            @keydown.enter.prevent="addMember()"
-                            class="inputClass"
-                        />
+                        <input :placeholder="$t('createGroup.placeholders.mail')" v-model="mailMember"
+                            @keydown.enter.prevent="addMember()" class="inputClass" />
                         <div v-if="showEmailError" class="text-danger">
-                            {{ $t("createGroup.errors.mail") }}                 
+                            {{ $t("createGroup.errors.mail") }}
                         </div>
                         <div v-if="onlyOneMembers" class="text-danger">
-                            {{ $t("createGroup.errors.oneMembers") }}                 
+                            {{ $t("createGroup.errors.oneMembers") }}
                         </div>
                     </div>
                 </div>
@@ -44,14 +38,16 @@
                             <p class="overflow">{{ member.mail }}</p>
                         </div>
                         <div class="col-2 text-end">
-                            <button class="trashIcon" @click="deleteMember(index)"><i class="fa-solid fa-trash"></i></button>
+                            <button class="trashIcon" @click="deleteMember(index)"><i
+                                    class="fa-solid fa-trash"></i></button>
                         </div>
                     </div>
                 </div>
             </section>
             <section name="photoGroup">
-                <div v-if="groupInformations.photo" class="text-center">
-                    <img :src="groupInformations.photo?.preview" :alt="groupInformations.photo?.name" class="img-thumbnail my-1"/>
+                <div v-if="groupInformations.photo" class="text-center" style="max-width: 300px; margin: auto">
+                    <img :src="groupInformations.photo?.preview" :alt="groupInformations.photo?.name"
+                        class="img-thumbnail my-1" />
                 </div>
                 <label class="btn-add-group-picture" v-if="!groupInformations.photo?.preview">
                     {{ $t("createGroup.picture") }}
@@ -59,7 +55,7 @@
                 </label>
                 <div v-if="groupInformations.photo?.preview">
                     <label class="btn-change-group-picture">
-                        {{  $t("createGroup.changePicture") }}
+                        {{ $t("createGroup.changePicture") }}
                         <input @change="onFileChange" type="file" hidden>
                     </label>
                 </div>
@@ -67,7 +63,8 @@
             <div class="col-12 mt-3 text-center">
                 <button @click="sendMessage" class="btn-save-group">{{ $t("createGroup.save") }}</button>
             </div>
-            <div v-if="v$.groupInformations.name.$error || errorName" class="text-danger">{{ $t("createGroup.errors.name-required") }}</div>
+            <div v-if="v$.groupInformations.name.$error || errorName" class="text-danger">{{
+                $t("createGroup.errors.name-required") }}</div>
         </div>
     </div>
 </template>
@@ -114,7 +111,7 @@ export default {
             }
             this.showEmailError = false;
             this.groupInformations.members.push({ mail: this.mailMember, status: "pending", admin: false })
-            this.mailMember = ''; 
+            this.mailMember = '';
         },
         deleteMember(index) {
             this.groupInformations.members.splice(index, 1);
@@ -149,14 +146,14 @@ export default {
             const reader = new FileReader();
 
             reader.onload = () => {
-            this.groupInformations.photo = {
-                name: file.name,
-                size: file.size,
-                type: file.type,
-                preview: reader.result
+                this.groupInformations.picture = event.target.files;
+                this.groupInformations.photo = {
+                    file: file.name,
+                    size: file.size,
+                    type: file.type,
+                    preview: reader.result
                 };
             };
-
             if (file) {
                 reader.readAsDataURL(file);
             }
@@ -184,7 +181,6 @@ export default {
 </script>
 
 <style scoped>
-
 .inputClass {
     border: 1px solid rgb(192, 150, 40);
     border-radius: 5px;
@@ -201,8 +197,9 @@ export default {
     max-height: 400px;
     overflow: auto;
 }
+
 ::-webkit-scrollbar {
-  width: 0 !important;
+    width: 0 !important;
 }
 
 .btn-add-group-picture {
