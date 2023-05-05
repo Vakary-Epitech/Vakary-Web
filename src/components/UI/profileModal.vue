@@ -22,7 +22,7 @@
                 </div>
                 <div class="row" v-if="editMode">
                     <div>
-                        <img @click="openFileExplorer()" class="profile-picture clickable" :src="user?.userProfileImage"
+                        <img @click="openFileExplorer()" class="profile-picture clickable" :src="$store?.state?.userStore?.userProfileImage"
                             alt="profile-picture">
                     </div>
                     <div class="col-6 mt-3 offset-3">
