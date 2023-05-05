@@ -17,7 +17,7 @@
       :placeholder="$t('inscriptionPage.username')">
     </div>
     <div class="my-2">
-      <input type="text" class="form-control"  v-model="$store.state.userStore.mail" 
+      <input type="email" class="form-control"  v-model="$store.state.userStore.mail" 
       :placeholder="$t('inscriptionPage.email')">
     </div>
     <div class="my-2">
