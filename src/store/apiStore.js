@@ -20,6 +20,23 @@ const apiStore = {
             })
         },
 
+        deleteItinerary(context, itineraryId) {
+            return new Promise((resolve, reject) => {
+                try {
+                    axios.delete(wording.serverAdress + "itinerary/" + itineraryId, {}).then((itinerary) => {
+                        if (itinerary.data.itinerary) {
+                            context.commit('UPDATE_ITINERARY', itinerary.data.itinerary);
+                        }
+                        resolve(itinerary.data);
+                    }).catch((error) => {
+                        reject(error);
+                    })
+                } catch (error) {
+                    reject(error);
+                }
+            })
+        },
+
         createNewItinerary(context, itinerary) {
             return new Promise((resolve, reject) => {
                 try {
