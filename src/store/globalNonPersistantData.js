@@ -2,14 +2,11 @@ const globalNonPersistantData = {
     state: {
         userId: "",
         userInfo: {},
-        currentUserLocation: {
-            latitude: 0,
-            longitude: 0,
-        },
         mail: "",
         userIsLoggedIn: true,
         username: "",
         groups: [],
+        itinerary: [],
     },
     mutations: {
         UPDATE_USER_GROUP(state, groups) {
@@ -49,6 +46,16 @@ const globalNonPersistantData = {
                 emails: emails,
             })
         },
+        UPDATE_ITINERARY(state, itineraryArray) {
+            state.itinerary = [];
+            for (let itinerary in itineraryArray) {
+                state.itinerary.push(JSON.parse(itineraryArray[itinerary].data));
+            }
+            console.log(state.itinerary);
+        },
+        ADD_NEW_ITINERARY(state, newItinerary) {
+            state.itinerary.push(JSON.parse(newItinerary));
+        }
     }
 };
 

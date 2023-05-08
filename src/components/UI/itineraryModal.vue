@@ -120,7 +120,7 @@
                     <input class="form-check-input mx-1" type="checkbox" :id="POI.id" :value=POI.POIType
                         v-model="$store.state.mapStore.selectedTypeOfInterest" />
                     <label class="form-check-label" :for="POI.id">
-                        <span>{{ POI.POIType }}</span>
+                        <span>{{ POI.POIName }}</span>
                     </label>
                 </div>
             </div>
@@ -146,17 +146,17 @@ export default {
             children: 0,
             indexOfGroup: 0,
             possibleType: [
-                { id: 1, POIType: "Sites culturel" },
-                { id: 2, POIType: "Points d'intérêt" },
-                { id: 3, POIType: "Bâtiments remarquable" },
-                { id: 4, POIType: "Sites religieux" },
-                { id: 5, POIType: "Places intéressante" },
-                { id: 6, POIType: "Parcs et jardins" },
-                { id: 7, POIType: "Lieux de mémoire" },
-                { id: 8, POIType: "Cimetières militaire" },
-                { id: 9, POIType: "Sites archéologique" },
-                { id: 10, POIType: "Evenements sportif" },
-                { id: 11, POIType: "Evenements divertissant" }
+                { id: 1, POIType: "Cultural Site", POIName: "Sites culturel" },
+                { id: 2, POIType: "Castle", POIName: "Chateau" },
+                { id: 3, POIType: "Remarkable Building", POIName: "Bâtiments remarquable" },
+                { id: 4, POIType: "Museum", POIName: "Musée" },
+                { id: 5, POIType: "Stadium", POIName: "Stade" },
+                { id: 6, POIType: "Amusement Park", POIName: "Parcs et jardins" },
+                { id: 7, POIType: "Walking Tour", POIName: "Itinéraire à pieds" },
+                { id: 8, POIType: "Restaurant", POIName: "Restaurant" },
+                { id: 9, POIType: "Nightclub", POIName: "Boite de nuit" },
+                { id: 10, POIType: "Hotel", POIName: "Hotel" },
+                { id: 11, POIType: "Church", POIName: "Eglise" }
             ],
         }
     },
@@ -209,7 +209,7 @@ export default {
                 typeResearchLocations: this.$store.state.mapStore.selectedTypeOfInterest,
                 group: this.$store.state.userStore.groups[this.indexOfGroup],
                 handicapAccess: false,
-            });
+            })
             this.$emit("goBackToItineraryDropdown");
         },
     }

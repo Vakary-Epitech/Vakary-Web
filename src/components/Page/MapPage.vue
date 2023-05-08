@@ -271,6 +271,7 @@ export default {
     if (this.$store.state.userStore.userId) {
       try {
         this.$store.dispatch("getGroup");
+        this.$store.dispatch("getItinerary");
       } catch (error) {
         console.log(error);
       }

@@ -3,6 +3,22 @@ import wording from "@/utils/wording";
 
 const apiStore = {
     actions: {
+        getItinerary(context) {
+            return new Promise((resolve, reject) => {
+                try {
+                    axios.get(wording.serverAdress + "itinerary/getAll/" + this.state.userStore.userId, {}).then((itinerary) => {
+                        if (itinerary.data.itinerary) {
+                            context.commit('UPDATE_ITINERARY', itinerary.data.itinerary);
+                        }
+                        resolve(itinerary.data);
+                    }).catch((error) => {
+                        reject(error);
+                    })
+                } catch (error) {
+                    reject(error);
+                }
+            })
+        },
 
         createNewItinerary(context, itinerary) {
             return new Promise((resolve, reject) => {
@@ -16,8 +32,11 @@ const apiStore = {
                         typeResearchLocations: itinerary.typeResearchLocations,
                         handicapAccess: itinerary.handicapAccess,
                         userId: this.state.userStore.userId
-                    }).then((canAuthentify) => {
-                        resolve(canAuthentify);
+                    }).then((newItinerary) => {
+                        if (newItinerary.data.createdItinerary) {
+                            context.commit('ADD_NEW_ITINERARY', newItinerary.data.createdItinerary);
+                        }
+                        resolve(newItinerary);
                     }).catch((error) => {
                         reject(error);
                     })
@@ -89,7 +108,7 @@ const apiStore = {
                         return
 
                     let config = {
-                        method: 'post',
+                        method: 'get',
                         maxBodyLength: Infinity,
                         url: wording.serverAdress + 'group/getAll/' + this.state.userStore.userId,
                         headers: {}
