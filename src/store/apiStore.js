@@ -3,65 +3,20 @@ import wording from "@/utils/wording";
 
 const apiStore = {
     actions: {
-        //DONT DELETE FOR NOW COULD BE USEFULL LATER
-
-        /*retrievedCurrentUserPosition(context) {
-            return new Promise((resolve, reject) => {
-                try {
-                    const isSupported = 'navigator' in window && 'geolocation' in navigator
-                    if (isSupported)
-                        resolve(
-                            navigator.geolocation.getCurrentPosition(function (position) {
-                                context.commit('UPDATE_USER_LOCATION', position.coords);
-                            })
-                        );
-                    else {
-                        reject("not supported");
-                    }
-                } catch (error) {
-                    reject(error);
-                }
-            })
-        },
-        retrievedMarkerData(context) {
-            return new Promise((resolve, reject) => {
-                try {
-                    axios.post(wording.serverAdress + "getData").then((markerData) => {
-                        context.commit('UPDATE_MARKER_ARRAY', markerData.data);
-                        resolve(markerData);
-                    }).catch((error) => {
-                        reject(error);
-                    })
-                } catch (error) {
-                    reject(error)
-                }
-            })
-        },
-        calculatePath() {
-            return new Promise((resolve, reject) => {
-                try {
-                    const userProfile = {
-                        selectedTypeOfInterest: this.state.mapStore.selectedTypeOfInterest,
-                        tripTime: this.state.mapStore.tripTime,
-                        methodOfLocomotion: this.state.mapStore.selectedMethodOfLocomotion,
-                        currentLocation: this.state.userStore.currentUserLocation,
-                    };
-
-                    axios.post(wording.serverAdress + "getWaypoints", { userProfile: userProfile }).then((path) => {
-                        resolve(path);
-                    }).catch((error) => {
-                        reject(error);
-                    })
-                } catch (error) {
-                    reject(error);
-                }
-            })
-        },*/
 
         createNewItinerary(context, itinerary) {
             return new Promise((resolve, reject) => {
                 try {
-                    axios.put(wording.serverAdress + "itinerary", { itinerary }).then((canAuthentify) => {
+                    axios.put(wording.serverAdress + "itinerary", {
+                        city: itinerary.city,
+                        availableTime: itinerary.availableTime,
+                        budget: itinerary.budget,
+                        nbPeople: itinerary.nbPeople,
+                        nbChild: itinerary.nbChild,
+                        typeResearchLocations: itinerary.typeResearchLocations,
+                        handicapAccess: itinerary.handicapAccess,
+                        userId: this.state.userStore.userId
+                    }).then((canAuthentify) => {
                         resolve(canAuthentify);
                     }).catch((error) => {
                         reject(error);
@@ -132,13 +87,12 @@ const apiStore = {
                 try {
                     if (!this.state.userStore.userId)
                         return
-                    console.log(this.state.userStore.userId)
 
                     let config = {
                         method: 'post',
                         maxBodyLength: Infinity,
                         url: wording.serverAdress + 'group/getAll/' + this.state.userStore.userId,
-                        headers: { }
+                        headers: {}
                     }
                     axios.request(config).then((group) => {
                         console.log(group);

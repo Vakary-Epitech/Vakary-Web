@@ -89,8 +89,8 @@
                     <span>Vos groupes</span><br>
                     <div id="carouselExampleControls" class="carousel slide" data-bs-touch="false" data-bs-interval="false">
                         <div class="carousel-inner">
-                            <div class="carousel-item active" v-for="(group, index) in $store.state.globalNonPersistantData.groups"
-                                :key="index">
+                            <div class="carousel-item active"
+                                v-for="(group, index) in $store.state.globalNonPersistantData.groups" :key="index">
                                 <cardsGroup :group="group" :index="index" :exists="true"></cardsGroup>
                                 {{ group.name }}
                                 {{ $store.state.globalNonPersistantData.groups[index] }}
@@ -125,7 +125,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button @click="generateItinerary" type="button" class="btn btn-primary" data-bs-dismiss="modal"
+                <button @click="generateItinerary" type="button" class="btn btn-primary"
                     style="margin: auto; margin-top: 10px; margin-bottom: 10px">{{ $t("itineraryModal.generate") }}</button>
             </div>
         </div>
@@ -210,6 +210,7 @@ export default {
                 group: this.$store.state.userStore.groups[this.indexOfGroup],
                 handicapAccess: false,
             });
+            this.$emit("goBackToItineraryDropdown");
         },
     }
 }
@@ -275,4 +276,5 @@ export default {
 
 .explanatoryCardDesign::-webkit-scrollbar {
     width: 1px;
-}</style>
+}
+</style>
