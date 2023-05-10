@@ -40,7 +40,7 @@ const apiStore = {
         createNewItinerary(context, itinerary) {
             return new Promise((resolve, reject) => {
                 try {
-                    axios.put(wording.serverAdress + "itinerary", {
+                    axios.put(wording.serverAdress + "itinerary/" + this.state.userStore.userId, {
                         city: itinerary.city,
                         availableTime: itinerary.availableTime,
                         budget: itinerary.budget,
@@ -48,8 +48,8 @@ const apiStore = {
                         nbChild: itinerary.nbChild,
                         typeResearchLocations: itinerary.typeResearchLocations,
                         handicapAccess: itinerary.handicapAccess,
-                        userId: this.state.userStore.userId
                     }).then((newItinerary) => {
+                        console.log(newItinerary);
                         if (newItinerary.data.createdItinerary) {
                             context.commit('ADD_NEW_ITINERARY', newItinerary.data.createdItinerary);
                         }

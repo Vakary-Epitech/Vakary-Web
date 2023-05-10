@@ -51,6 +51,7 @@ const globalNonPersistantData = {
             for (let itinerary in itineraryArray) {
                 state.itinerary.push(JSON.parse(itineraryArray[itinerary].data));
             }
+            console.log(state.itinerary);
         },
         ADD_NEW_ITINERARY(state, newItinerary) {
             state.itinerary.push(JSON.parse(newItinerary));
