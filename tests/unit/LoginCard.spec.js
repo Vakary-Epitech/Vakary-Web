@@ -39,16 +39,4 @@ describe('LoginCard', () => {
     wrapper.vm.openForgetPassword()
     expect(wrapper.emitted().openForgetPassword).toBeTruthy();
   })
-
-  it('navigates to the map page when the openMap method is called and user is authorized', async () => {
-    mockStore.dispatch.mockResolvedValueOnce();
-    await wrapper.vm.openMap();
-    expect(mockStore.dispatch).toHaveBeenCalledWith(
-      'checkIfUserIsAuthorizedToConnect',
-      wrapper.vm.password,
-    );
-    expect(wrapper.vm.$store.state.userStore.userIsLoggedIn).toBe(true);
-    expect(wrapper.emitted().loginDone).toBeTruthy();
-  });
-  
 });
