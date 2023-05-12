@@ -84,12 +84,18 @@ export default {
       this.userNameError = false;
       this.error = false;
       this.checkInformations(this.$store.state.userStore.username, this.$store.state.userStore.mail, this.password);
-      this.$store.dispatch("checkIfAccountCanBeCreated", this.password).then(() => {
-        this.$store.state.userStore.userIsLoggedIn = true;
-        this.$router.push("/mapPage");
-      }).catch((error) => {
-        console.log(error);
-        this.error = true;
+      if (this.error === true) {
+        return;
+      }        
+      this.$store.dispatch("put", {
+        path: 'register',
+        data: this.password
+        }).then(() => {
+          this.$store.state.userStore.userIsLoggedIn = true;
+          this.$router.push("/mapPage");
+        }).catch((error) => {
+          console.log(error);
+          this.error = true;
       })
     }
   }
