@@ -195,7 +195,7 @@ const apiStore = {
         sendNewPassword(context, requestParameters) {
             return new Promise((resolve, reject) => {
                 try {
-                    axios.patch(wording.serverAdress + "/changePassword", { id: this.state.userStore.userId }, {
+                    axios.patch(wording.serverAdress + "changePassword", { id: this.state.userStore.userId }, {
                         headers: {
                             'authorization': requestParameters.authorization
                         }
@@ -223,6 +223,34 @@ const apiStore = {
                 }
             })
         },
+        put(context, {path, data}) {
+            return new Promise((resolve, reject) => {
+                try {
+                    axios.put(wording.serverAdress + path, data).then((response) => {
+                        resolve(response);
+                    }).catch((error) => {
+                        reject(error);
+                    })
+                } catch (error) {
+                    reject(error);
+                }
+            })
+        },
+        delete(context, {path, data}) {
+            return new Promise((resolve, reject) => {
+                try {
+                    axios.delete(wording.serverAdress + path, data).then((response) => {
+                        console.log(data);
+                        console.log(response);
+                        resolve(response);
+                    }).catch((error) => {
+                        reject(error);
+                    })
+                } catch (error) {
+                    reject(error);
+                }
+            })
+        }
     },
 }
 
