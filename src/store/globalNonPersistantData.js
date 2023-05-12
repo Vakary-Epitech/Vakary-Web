@@ -48,10 +48,13 @@ const globalNonPersistantData = {
         },
         UPDATE_ITINERARY(state, itineraryArray) {
             state.itinerary = [];
+
             for (let itinerary in itineraryArray) {
+                console.log(itineraryArray[itinerary].data)
+                //itineraryArray[itinerary].data.substring(0, itineraryArray[itinerary].data.length - 1)
                 state.itinerary.push(JSON.parse(itineraryArray[itinerary].data));
-            }
-            console.log(state.itinerary);
+            } 
+            console.log("state.itinerary variable value:", state.itinerary);
         },
         ADD_NEW_ITINERARY(state, newItinerary) {
             state.itinerary.push(JSON.parse(newItinerary));

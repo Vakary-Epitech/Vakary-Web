@@ -7,9 +7,8 @@ const apiStore = {
             return new Promise((resolve, reject) => {
                 try {
                     axios.get(wording.serverAdress + "itinerary/getAll/" + this.state.userStore.userId, {}).then((itinerary) => {
-                        if (itinerary.data.itinerary) {
-                            context.commit('UPDATE_ITINERARY', itinerary.data.itinerary);
-                        }
+                        console.log(itinerary.data.itinerary)
+                        context.commit('UPDATE_ITINERARY', itinerary.data.itinerary);
                         resolve(itinerary.data);
                     }).catch((error) => {
                         reject(error);
@@ -81,7 +80,7 @@ const apiStore = {
         retrieveUserInformation(context) {
             return new Promise((resolve, reject) => {
                 try {
-                    axios.get(wording.serverAdress + "user/email/" + this.state.userStore.mail, {}).then((userInfo) => {
+                    axios.get(wording.serverAdress + "user/email/" + this.state.userStore.userInfo.email, {}).then((userInfo) => {
                         context.commit('UPDATE_USER_INFO', userInfo);
                         resolve(userInfo);
                     }).catch((error) => {
@@ -178,7 +177,7 @@ const apiStore = {
                 }
             })
         },
-
+        
         requestPasswordReset(context, email) {
             return new Promise((resolve, reject) => {
                 try {
