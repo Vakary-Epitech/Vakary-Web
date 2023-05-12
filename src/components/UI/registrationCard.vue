@@ -86,10 +86,14 @@ export default {
       this.checkInformations(this.$store.state.userStore.username, this.$store.state.userStore.mail, this.password);
       if (this.error === true) {
         return;
-      }        
+      }
       this.$store.dispatch("put", {
         path: 'register',
-        data: this.password
+        data: {
+          username: this.$store.state.userStore.username,
+          email: this.$store.state.userStore.mail,
+          password: this.password
+        }
         }).then(() => {
           this.$store.state.userStore.userIsLoggedIn = true;
           this.$router.push("/mapPage");

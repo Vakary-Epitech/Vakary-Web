@@ -8,7 +8,7 @@
       </p>
     </div>
     <div class="my-2">
-      <input type="text" class="form-control"  v-model="$store.state.userStore.mail" 
+      <input type="text" class="form-control"  v-model="name" 
       :placeholder="$t('loginPage.email')">
     </div>
     <div class="mt-3">
@@ -31,6 +31,7 @@ export default {
   emits: ['openRegistration', 'openForgetPassword', 'loginDone'],
   data() {
     return {
+      name: "",
       password: "",
       userDontExist: false,
     }
@@ -43,11 +44,18 @@ export default {
       this.$emit("openForgetPassword");
     },
     openMap() {
-      this.checkIfUserIsAuthorizeToConnect();
+      this.login();
     },
-    checkIfUserIsAuthorizeToConnect() {
+    login() {
       this.userDontExist = false;
-      this.$store.dispatch("checkIfUserIsAuthorizedToConnect", this.password).then(() => {
+      console.log(this.name);
+      this.$store.dispatch("post", {
+        path: "login",
+        data: {
+          username: this.name, 
+          password: this.password
+        },
+      }).then(() => {
         this.$store.state.userStore.userIsLoggedIn = true;
         this.$emit("loginDone");
       }).catch(() => {

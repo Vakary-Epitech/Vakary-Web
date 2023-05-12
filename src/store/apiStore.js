@@ -210,7 +210,7 @@ const apiStore = {
             })
         },
         // get function
-        get(path) {
+        get(context, path) {
             return new Promise((resolve, reject) => {
                 try {
                     axios.get(wording.serverAdress + path).then((response) => {
@@ -223,10 +223,25 @@ const apiStore = {
                 }
             })
         },
+        post(context, {path, data}) {
+            return new Promise((resolve, reject) => {
+                try {
+                    axios.post(wording.serverAdress + path, {...data}).then((response) => {
+                        context.commit('UPDATE_USER_INFO', response);
+                        resolve(response);
+                    }).catch((error) => {
+                        reject(error);
+                    })
+                } catch (error) {
+                    reject(error);
+                }
+            })
+        },
         put(context, {path, data}) {
             return new Promise((resolve, reject) => {
                 try {
-                    axios.put(wording.serverAdress + path, data).then((response) => {
+                    axios.put(wording.serverAdress + path, {...data}).then((response) => {
+                        context.commit('UPDATE_USER_INFO', response);
                         resolve(response);
                     }).catch((error) => {
                         reject(error);
@@ -239,9 +254,7 @@ const apiStore = {
         delete(context, {path, data}) {
             return new Promise((resolve, reject) => {
                 try {
-                    axios.delete(wording.serverAdress + path, data).then((response) => {
-                        console.log(data);
-                        console.log(response);
+                    axios.delete(wording.serverAdress + path, {...data}).then((response) => {
                         resolve(response);
                     }).catch((error) => {
                         reject(error);

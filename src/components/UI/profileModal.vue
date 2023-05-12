@@ -112,11 +112,15 @@ export default {
         deleteUser() {
             this.$store.dispatch('delete', {
                 path: "user/" + this.user.id,
-                data: this.user.id,
-
-            });
-            this.$router.push("/");
-            this.$store.state.userStore.userIsLoggedIn = false;
+                data: {
+                    id: this.user.id,
+                }
+            }).then(() => {
+                this.$router.push("/");
+                this.$store.state.userStore.userIsLoggedIn = false;
+            }).catch((error) => {
+                console.log(error);
+            })
         },
     },
 }
