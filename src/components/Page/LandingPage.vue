@@ -114,15 +114,6 @@
           <presentationCards />
         </div>
       </section>
-      <!-- <section name="dog">
-        <hr class="separationBar marginSeparationDogo">
-        <div class="textOnDogo">
-          <label class="textOnTopOfCard">{{ $t("landingPage.ready") }}</label>
-          <button class="invertedBlueVakaryButton dogoButton biggerButton" @click="openSignUpPage">{{
-            $t("landingPage.registration") }}<span class="arrow"></span></button>
-        </div>
-        <img src="@/assets/LandingPage/beautifulDogo.jpg" class="beautifulDogoImage">
-      </section> -->
       <section name="team">
         <hr class="separationBar marginSeparationDogo">
         <div class="col-12 text-center">
@@ -268,19 +259,6 @@ export default {
   margin-bottom: 10vh;
 }
 
-.textOnDogo {
-  transform: translate(30%, 20vw);
-  width: 70%;
-  z-index: 1;
-  position: absolute;
-}
-
-.beautifulDogoImage {
-  width: 100%;
-  height: 50vw;
-  filter: brightness(70%);
-}
-
 .basicVakaryButton {
   display: inline;
   padding: 10px 20px;
@@ -420,11 +398,6 @@ export default {
   flex-wrap: wrap;
   padding: 90px 0 70px 90px;
   background: #FFE9D3;
-}
-
-
-.dogoButton:hover {
-  background-color: #F5F5F5;
 }
 
 .invertedBlueVakaryButton {
