@@ -12,6 +12,7 @@ const globalNonPersistantData = {
         UPDATE_USER_GROUP(state, groups) {
             state.groups = [];
             let emails = [];
+            console.log(groups.data);
             for (let group in groups.data.groups) {
                 emails = [];
                 for (let mail in groups.data.groups[group].emails) {
@@ -26,6 +27,7 @@ const globalNonPersistantData = {
                     backendGroupId: groups.data.groups[group].id,
                     name: groups.data.groups[group].name,
                     emails: emails,
+                    itinerary: groups.data.groups[group].itinerary,
                 })
             }
         },
@@ -45,19 +47,27 @@ const globalNonPersistantData = {
                 name: group.data.groupName,
                 emails: emails,
             })
+
         },
         UPDATE_ITINERARY(state, itineraryArray) {
             state.itinerary = [];
 
             for (let itinerary in itineraryArray) {
-                console.log(itineraryArray[itinerary].data)
-                //itineraryArray[itinerary].data.substring(0, itineraryArray[itinerary].data.length - 1)
-                state.itinerary.push(JSON.parse(itineraryArray[itinerary].data));
-            } 
-            console.log("state.itinerary variable value:", state.itinerary);
+                let itinerayData = {
+                    itineraryPOI: JSON.parse(itineraryArray[itinerary].data),
+                    id: itineraryArray[itinerary].id,
+                };
+                state.itinerary.push(itinerayData)
+            }
+            console.log(state.itinerary)
         },
         ADD_NEW_ITINERARY(state, newItinerary) {
-            state.itinerary.push(JSON.parse(newItinerary));
+            let itinerayData = {
+                itineraryPOI: JSON.parse(newItinerary.data),
+                id: newItinerary.id,
+            };
+            state.itinerary.push(itinerayData);
+            console.log(state.itinerary);
         }
     }
 };
