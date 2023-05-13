@@ -290,6 +290,7 @@ const apiStore = {
                 }
             })
         },
+
         put(context, {path, data}) {
             return new Promise((resolve, reject) => {
                 try {
@@ -304,10 +305,20 @@ const apiStore = {
                 }
             })
         },
-        delete(context, {path, data}) {
+        delete(context, { path }) {
             return new Promise((resolve, reject) => {
                 try {
-                    axios.delete(wording.serverAdress + path, {...data}).then((response) => {
+
+                    let config = {
+                        method: 'delete',
+                        maxBodyLength: Infinity,
+                        url: wording.serverAdress + path,
+                        headers: {
+                            "Authorization": this.state.userStore.token,
+                        },
+                    }
+
+                    axios.request(config).then((response) => {
                         resolve(response);
                     }).catch((error) => {
                         reject(error);
