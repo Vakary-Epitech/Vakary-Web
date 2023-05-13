@@ -185,10 +185,11 @@ export default {
                 nbPeople: this.people,
                 nbChild: this.children,
                 typeResearchLocations: this.$store.state.mapStore.selectedTypeOfInterest,
-                group: this.$store.state.userStore.groups[this.indexOfGroup],
+                group: this.$store.state.globalNonPersistantData.groups[this.indexOfGroup],
                 handicapAccess: false,
-            })
-            this.$emit("goBackToItineraryDropdown");
+            }).then(() => {
+                this.$emit("goBackToItineraryDropdown");
+            });
         },
     }
 }

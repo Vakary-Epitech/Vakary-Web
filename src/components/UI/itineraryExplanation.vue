@@ -1,20 +1,21 @@
 <template>
-    <div class="explanatoryCardDesign">
+    <div class="explanatoryCardDesign row">
         <div>
             <div class="topBarExplanation">
                 <div class="backArrow" @click="goBackToItineraryDropdown"></div>
-                <span class="titlePosition" style="font-size: calc(8px + 0.6vw);">{{ this.selectedItineraryInfo.city
-                }}</span>
+                <!-- {{ this.selectedItineraryInfo }} -->
+                <!-- <span class="titlePosition" style="font-size: calc(8px + 0.6vw);">{{ this.selectedItineraryInfo.itineraryPOI[this.currentWaypointIndex].City.name
+                }}</span> -->
             </div>
             <span style="font-size: calc(6px + 0.6vw);">{{ getCurrentPOIName }}</span>
             <br />
-            <div class="imgWrapper">
+            <div class="imgWrapper text-center">
                 <img class="imageProportion" :src="getCurrentPOIImage" />
             </div>
             <span class="textMargin descriptionLimiterSize" style="font-size: calc(6px + 1.2vh)">{{ getCurrentPOIDescription
             }}</span>
             <div class="openHoursDesign timeSizeLimiter">
-                <span style="white-space: pre-line; font-size: calc(6px + 1.2vh);">{{ $t("mapPage.openHours") }} <br />{{ getCurrentPOIOpenHours }}</span>
+                <!-- <span style="white-space: pre-line; font-size: calc(6px + 1.2vh);">{{ $t("mapPage.openHours") }} <br />{{ getCurrentPOIOpenHours }}</span> -->
             </div>
             <div class="arrowOnTheLine">
                 <div style="display: flex; width: 50%;">
@@ -23,9 +24,9 @@
                         $t("mapPage.previousPoint") }}</span>
                 </div>
                 <div style="display: flex; width: 50%; justify-content: right;">
-                    <span v-if="this.currentWaypointIndex < this.selectedItineraryInfo.POIInfo.length - 1"
+                    <span v-if="this.currentWaypointIndex < this.selectedItineraryInfo?.itineraryPOI.length - 1"
                         style="font-size: calc(4px + 1.2vh); margin: auto">{{ $t("mapPage.nextPoint") }}</span>
-                    <div v-if="this.currentWaypointIndex < this.selectedItineraryInfo.POIInfo.length - 1" class="frontArrow"
+                    <div v-if="this.currentWaypointIndex < this.selectedItineraryInfo?.itineraryPOI.length - 1" class="frontArrow"
                         @click="checkNextPOI"></div>
                 </div>
             </div>
@@ -41,18 +42,21 @@ export default {
             currentWaypointIndex: 0,
         }
     },
+    created() {
+        // console.log(this.selectedItineraryInfo);
+    },
     computed: {
         getCurrentPOIName() {
-            return (this.selectedItineraryInfo.POIInfo[this.currentWaypointIndex].name);
+            return (this.selectedItineraryInfo?.itineraryPOI[this.currentWaypointIndex].name);
         },
         getCurrentPOIDescription() {
-            return (this.selectedItineraryInfo.POIInfo[this.currentWaypointIndex].description);
+            return (this.selectedItineraryInfo?.itineraryPOI[this.currentWaypointIndex].Description[this.$i18n.locale]);
         },
         getCurrentPOIImage() {
-            return (this.selectedItineraryInfo.POIInfo[this.currentWaypointIndex].image);
+            return (this.selectedItineraryInfo?.itineraryPOI[this.currentWaypointIndex].image);
         },
         getCurrentPOIOpenHours() {
-            return (this.selectedItineraryInfo.POIInfo[this.currentWaypointIndex].openHours);
+            return (this.selectedItineraryInfo?.itineraryPOI[this.currentWaypointIndex].openHours);
         },
     },
     methods: {
@@ -60,7 +64,7 @@ export default {
             this.$emit("goBackToItineraryDropdown");
         },
         checkNextPOI() {
-            if (this.currentWaypointIndex < this.selectedItineraryInfo.POIInfo.length - 1) {
+            if (this.currentWaypointIndex < this.selectedItineraryInfo?.itineraryPOI.length - 1) {
                 this.currentWaypointIndex += 1;
                 this.$emit("checkNextPOI");
             }
@@ -105,6 +109,7 @@ export default {
 
 .imageProportion {
     height: 20vh;
+    max-width: 285px;
     margin-top: calc(2px + 0.6vh);
     margin-bottom: calc(2px + 0.6vh);
 }
@@ -155,6 +160,7 @@ export default {
 }
 
 div.backArrow {
+    cursor: pointer;
     width: 3vmin;
     height: 3vmin;
     box-sizing: border-box;
@@ -205,6 +211,7 @@ div.backArrow {
 }
 
 .frontArrow {
+    cursor: pointer;
     width: 3vmin;
     height: 3vmin;
     box-sizing: border-box;
@@ -253,6 +260,7 @@ div.backArrow {
 }
 
 div.backArrowBottom {
+    cursor: pointer;
     width: 3vmin;
     height: 3vmin;
     box-sizing: border-box;
