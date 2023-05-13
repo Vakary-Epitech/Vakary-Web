@@ -1,4 +1,5 @@
 <template>
+  <img @click="changeLanguage()" class="buttonLanguage" :src="geti18n() == 'en' ? require('@/assets/badges/flags/french-flag.svg') : require('@/assets/badges/flags/gb-flag.svg')">
   <div class="background fadeshow1">
     <div class="centered-svg">
       <img src="@/assets/logo_long_vect.svg">
@@ -59,12 +60,29 @@ export default {
       this.login = false;
       this.forgetPassword = true;
     },
+    changeLanguage() {
+      this.$i18n.locale = this.$i18n.locale === 'fr' ? 'en' : 'fr';
+    },
+    geti18n() {
+      return this.$i18n.locale;
+    },
   }
 };
 </script>
 
 
 <style scoped>
+
+.buttonLanguage {
+  cursor: pointer;
+  border-radius: 6px;
+  width: 30px;
+  right: 20px;
+  position: fixed; 
+  top: 20px; 
+  z-index: 2;  
+}
+
 .background {
   width: 100vw;
   height: 100vh;

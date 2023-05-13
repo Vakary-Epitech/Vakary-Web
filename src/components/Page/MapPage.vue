@@ -82,7 +82,7 @@
 
   <Transition name="slide-fade">
     <div class="profileModalPosition fadeshow1" v-if=" showProfile ">
-      <profileModal />
+      <profileModal style="max-width:300px"/>
     </div>
   </Transition>
 
