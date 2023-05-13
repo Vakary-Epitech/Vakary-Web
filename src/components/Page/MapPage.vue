@@ -90,10 +90,10 @@
     <div class="groupDropdownPosition fadeshow1">
       <div class="widgetPanel">
         <Transition name="slide-fade">
-          <div v-if=" !displayItineraryInformation && !showGroupCreationModal && !groupHasBeenClicked "
-            :class=" (groupDropdownStatus) ">
-            <div class="dropdown-trigger" @click=" (setGroupDropdownState()) ">
-              <button class="dropdownDesignMapPage" :style=" groupCssDropdown " aria-haspopup="true"
+          <div v-if="!displayItineraryInformation && !showGroupCreationModal && !groupHasBeenClicked"
+            :class="(groupDropdownStatus)">
+            <div class="dropdown-trigger" @click=" (setGroupDropdownState())">
+              <button class="dropdownDesignMapPage" :style="groupCssDropdown" aria-haspopup="true"
                 aria-controls="dropdown-menu2">
                 <span class="dropdownTextPosition dropboxText">{{ $t("mapPage.group") }}</span>
                 <span class="icon is-small dropdownArrowPosition">
@@ -101,10 +101,10 @@
                 </span>
               </button>
 
-              <div v-if=" this.groupDropdown && !this.groupHasBeenClicked " style="background-color: white;"
+              <div v-if="this.groupDropdown && !this.groupHasBeenClicked" style="background-color: white;"
                 class="dropdown-content">
 
-                <div style="display: flex; flex-direction: row;" class="cursorOnButton" @click=" callGroupCreation() ">
+                <div style="display: flex; flex-direction: row;" class="cursorOnButton" @click=" callGroupCreation()">
                   <div class="dropboxText cardBasicContainer" style="display: flex; width: 70%; height: 100%;">
                     <span class="dropboxText cardBasicContainer dropdownCreateTextPosition">{{
                       $t("mapPage.newGroup") }}</span>
@@ -115,32 +115,31 @@
                   </div>
                 </div>
 
-                <div class="cursorOnButton" @click=" groupCardsHasBeenClicked(index) "
-                  v-for="(    group, index    ) in     this.$store.state.globalNonPersistantData.groups    "
-                  :key=" group.id ">
+                <div class="cursorOnButton" @click=" groupCardsHasBeenClicked(index)"
+                  v-for="(     group, index     ) in      this.$store.state.globalNonPersistantData.groups     "
+                  :key="group.id">
                   <div class="topBorder mt-2">&nbsp;</div>
                   <i class="fas fa-users ms-2 mt-2"></i>
                   <i class="fas fa-person fa-lg me-2 mt-2" style="float: right"></i>
                   <Transition name="slide-fade">
-                    <mapGroupCardsVue :groupName=" group.name " :numberOfMember=" group.emails.length "
-                      :index=" index " />
+                    <mapGroupCardsVue :groupName="group.name" :numberOfMember="group.emails.length" :index="index" />
                   </Transition>
                 </div>
               </div>
             </div>
           </div>
 
-          <div v-else-if=" showGroupCreationModal ">
+          <div v-else-if="showGroupCreationModal">
             <Transition name="slide-fade">
-              <CreateGroup @goBackToGroupDropdown=" showGroupCreationModal = false " class="componentsGroupDropdown" />
+              <CreateGroup @goBackToGroupDropdown=" showGroupCreationModal = false" class="componentsGroupDropdown" />
             </Transition>
           </div>
 
-          <div v-else-if=" groupHasBeenClicked ">
+          <div v-else-if="groupHasBeenClicked">
             <Transition name="slide-fade">
-              <showMembers @change-group-photo=" changeGroupPhoto "
-                :groups= this.$store.state.globalNonPersistantData.groups[selectedGroup]  :key=" keyShowGroup "
-                @goBackToGroupDropdown=" groupHasBeenClicked = false; showGroupCreationModal = false; displayItineraryInformation = false "
+              <showMembers @change-group-photo="changeGroupPhoto"
+                :groups=this.$store.state.globalNonPersistantData.groups[selectedGroup] :key="keyShowGroup"
+                @goBackToGroupDropdown=" groupHasBeenClicked = false; showGroupCreationModal = false; displayItineraryInformation = false"
                 class="componentsGroupDropdown" />
             </Transition>
           </div>
@@ -268,14 +267,11 @@ export default {
     }
   },
   mounted() {
-    if (this.$store.state.userId) {
-      try {
-        this.$store.dispatch("retrieveUserInformation");
-        if (this.$store.state.globalNonPersistantData.groups.length == 0)
-          this.$store.dispatch("getGroup");
-      } catch (error) {
-        console.log(error);
-      }
+    try {
+      this.$store.dispatch("getItinerary");
+      this.$store.dispatch("getGroup");
+    } catch (error) {
+      console.log(error);
     }
   },
   computed: {

@@ -3,9 +3,23 @@ import ShowMembers from '@/components/UI/ShowMembers.vue'
 import store from '../../src/store/store.js'
 import i18n from '../../src/i18n.js'
 
+const mockRouter = {
+  push: jest.fn()
+}
+
+const mockStore = {
+  dispatch: jest.fn().mockResolvedValue(),
+  state: {
+    userStore: {
+      userIsLoggedIn: false,
+    },
+  },
+};
+
+
 describe('showMembers', () => {
   let wrapper;
-  
+
   beforeEach(() => {
     wrapper = mount(ShowMembers, {
         global: {
@@ -19,6 +33,7 @@ describe('showMembers', () => {
                       clear: jest.fn(),
                     },
                   },
+                  $store: mockStore,
                   $route: {
                     params: {
                       id: 'test-id',

@@ -3,52 +3,23 @@ import wording from "@/utils/wording";
 
 const apiStore = {
     actions: {
-        //DONT DELETE FOR NOW COULD BE USEFULL LATER
+        getItinerary(context) {
+            return new Promise((resolve, reject) => {
+                try {
 
-        /*retrievedCurrentUserPosition(context) {
-            return new Promise((resolve, reject) => {
-                try {
-                    const isSupported = 'navigator' in window && 'geolocation' in navigator
-                    if (isSupported)
-                        resolve(
-                            navigator.geolocation.getCurrentPosition(function (position) {
-                                context.commit('UPDATE_USER_LOCATION', position.coords);
-                            })
-                        );
-                    else {
-                        reject("not supported");
-                    }
-                } catch (error) {
-                    reject(error);
-                }
-            })
-        },
-        retrievedMarkerData(context) {
-            return new Promise((resolve, reject) => {
-                try {
-                    axios.post(wording.serverAdress + "getData").then((markerData) => {
-                        context.commit('UPDATE_MARKER_ARRAY', markerData.data);
-                        resolve(markerData);
-                    }).catch((error) => {
-                        reject(error);
-                    })
-                } catch (error) {
-                    reject(error)
-                }
-            })
-        },
-        calculatePath() {
-            return new Promise((resolve, reject) => {
-                try {
-                    const userProfile = {
-                        selectedTypeOfInterest: this.state.mapStore.selectedTypeOfInterest,
-                        tripTime: this.state.mapStore.tripTime,
-                        methodOfLocomotion: this.state.mapStore.selectedMethodOfLocomotion,
-                        currentLocation: this.state.userStore.currentUserLocation,
+                    let config = {
+                        method: 'get',
+                        maxBodyLength: Infinity,
+                        url: wording.serverAdress + "itinerary/getAll/me",
+                        headers: {
+                            "Authorization": this.state.userStore.token
+                        },
                     };
 
-                    axios.post(wording.serverAdress + "getWaypoints", { userProfile: userProfile }).then((path) => {
-                        resolve(path);
+                    axios.request(config).then((itinerary) => {
+                        console.log(itinerary.data.itinerary)
+                        context.commit('UPDATE_ITINERARY', itinerary.data.itinerary);
+                        resolve(itinerary.data);
                     }).catch((error) => {
                         reject(error);
                     })
@@ -56,13 +27,51 @@ const apiStore = {
                     reject(error);
                 }
             })
-        },*/
+        },
+
+        deleteItinerary(context, itineraryId) {
+            return new Promise((resolve, reject) => {
+                try {
+                    axios.delete(wording.serverAdress + "itinerary/" + itineraryId, {}).then((itinerary) => {
+                        if (itinerary.data.itinerary) {
+                            context.commit('UPDATE_ITINERARY', itinerary.data.itinerary);
+                        }
+                        resolve(itinerary.data);
+                    }).catch((error) => {
+                        reject(error);
+                    })
+                } catch (error) {
+                    reject(error);
+                }
+            })
+        },
 
         createNewItinerary(context, itinerary) {
             return new Promise((resolve, reject) => {
                 try {
-                    axios.put(wording.serverAdress + "itinerary", { itinerary }).then((canAuthentify) => {
-                        resolve(canAuthentify);
+                    let config = {
+                        method: 'put',
+                        maxBodyLength: Infinity,
+                        url: wording.serverAdress + "itinerary/me",
+                        headers: {
+                            "Authorization": this.state.userStore.token
+                        },
+                        data: {
+                            city: itinerary.city,
+                            availableTime: itinerary.availableTime,
+                            budget: itinerary.budget,
+                            nbPeople: itinerary.nbPeople,
+                            nbChild: itinerary.nbChild,
+                            typeResearchLocations: itinerary.typeResearchLocations,
+                            handicapAccess: itinerary.handicapAccess,
+                        },
+                    };
+
+                    axios.request(config).then((newItinerary) => {
+                        if (newItinerary.data.createdItinerary) {
+                            context.commit('ADD_NEW_ITINERARY', newItinerary.data.createdItinerary);
+                        }
+                        resolve(newItinerary);
                     }).catch((error) => {
                         reject(error);
                     })
@@ -75,23 +84,10 @@ const apiStore = {
         checkIfUserIsAuthorizedToConnect(context, password) {
             return new Promise((resolve, reject) => {
                 try {
-                    axios.post(wording.serverAdress + "login", { username: this.state.userStore.username, password: password }).then((canAuthentify) => {
+                    axios.post(wording.serverAdress + "login", { username: this.state.userStore.mail, password: password }).then((canAuthentify) => {
+                        console.log(canAuthentify);
+                        context.commit('UPDATE_USER_INFO', canAuthentify);
                         resolve(canAuthentify);
-                    }).catch((error) => {
-                        reject(error);
-                    })
-                } catch (error) {
-                    reject(error);
-                }
-            })
-        },
-
-        retrieveUserInformation(context) {
-            return new Promise((resolve, reject) => {
-                try {
-                    axios.get(wording.serverAdress + "user/email/" + this.state.userStore.mail, {}).then((userInfo) => {
-                        context.commit('UPDATE_USER_INFO', userInfo);
-                        resolve(userInfo);
                     }).catch((error) => {
                         reject(error);
                     })
@@ -129,9 +125,18 @@ const apiStore = {
         getGroup(context) {
             return new Promise((resolve, reject) => {
                 try {
-                    if (!this.state.userStore.userId)
+                    if (!this.state.userStore.token)
                         return
-                    axios.post(wording.serverAdress + "group/getAll", { id: this.state.userStore.userId }).then((group) => {
+
+                    let config = {
+                        method: 'get',
+                        maxBodyLength: Infinity,
+                        url: wording.serverAdress + 'group/getAll/me',
+                        headers: {
+                            "Authorization": this.state.userStore.token
+                        }
+                    }
+                    axios.request(config).then((group) => {
                         context.commit('UPDATE_USER_GROUP', group);
                         resolve(group);
                     }).catch((error) => {
@@ -146,12 +151,28 @@ const apiStore = {
         addGroup(context, groupInformation) {
             return new Promise((resolve, reject) => {
                 try {
-                    let mailsList = [];
+                    let mailsList = "";
                     for (let mailIndex in groupInformation.members) {
                         if (groupInformation.members[mailIndex].mail)
-                            mailsList.push(groupInformation.members[mailIndex].mail)
+                            mailsList += groupInformation.members[mailIndex].mail + ";";
                     }
-                    axios.put(wording.serverAdress + "group", { groupname: groupInformation.name, adminId: this.state.userStore.userId, emails: mailsList }).then((group) => {
+                    mailsList = mailsList.slice(0, -1);
+
+                    let config = {
+                        method: 'put',
+                        maxBodyLength: Infinity,
+                        url: wording.serverAdress + 'group',
+                        headers: {
+                            "Authorization": this.state.userStore.token,
+                        },
+                        data: {
+                            emails: mailsList,
+                            groupname: groupInformation.name,
+                            file: groupInformation.picture,
+                        },
+                    }
+
+                    axios.request(config).then((group) => {
                         context.commit('ADD_NEW_GROUP', group);
                         resolve(group);
                     }).catch((error) => {
@@ -181,6 +202,7 @@ const apiStore = {
             return new Promise((resolve, reject) => {
                 try {
                     axios.put(wording.serverAdress + "register", { email: this.state.userStore.mail, password: password, username: this.state.userStore.username }).then((canAuthentify) => {
+                        console.log(canAuthentify);
                         context.commit('UPDATE_USER_INFO', canAuthentify);
                         resolve(canAuthentify)
                     }).catch((error) => {
@@ -209,6 +231,22 @@ const apiStore = {
                 }
             })
         },
+        // eslint-disable-next-line
+        addGroupToItinerary(context, data) {
+            return new Promise((resolve, reject) => {
+                try {
+                    console.log(data);
+                    axios.patch(wording.serverAdress + "group/" + data.groupId, { groupname: data.groupName, itineraryId: data.itineraryId }).then((response) => {
+                        resolve(response);
+                    }).catch((error) => {
+                        reject(error);
+                    })
+                } catch (error) {
+                    reject(error);
+                }
+            })
+        },
+
         // get function
         get(context, path) {
             return new Promise((resolve, reject) => {

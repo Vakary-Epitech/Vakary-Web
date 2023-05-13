@@ -84,6 +84,28 @@
                             $t("showMembers.deletePicture") }} </button>
                     </div>
                 </section>
+
+                <div class="col-12" v-if="$store.state.globalNonPersistantData?.itinerary.length > 0">
+                    <span>Vos Itinéraires</span><br>
+                    <button v-if="$store.state.globalNonPersistantData?.itinerary.length > 1" @click="prev"
+                        class="black" type="button"
+                        data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button v-if="$store.state.globalNonPersistantData?.itinerary.length > 1" @click.prevent="next" type="button"
+                        data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                    <div style="display: flex; margin-left: 50px">
+                        <input type="checkbox" id="checkbox" v-model="addGroupToItinerary" />
+                        <label for="checkbox">Ajouter le groupe a l'itinéraire</label>
+                    </div>
+                    itinerary id:
+                    {{ this.$store.state.globalNonPersistantData?.itinerary[indexItinerary].id }}
+                </div>
+
                 <div class="col-12 mt-3 text-center">
                     <button @click="goBackToGroupDropdown" class="btn-save-group">{{ $t("showMembers.save") }}</button>
                 </div>
@@ -113,6 +135,8 @@ export default {
                 },
                 id: "",
             },
+            indexItinerary: 0,
+            addGroupToItinerary: false,
             newGroupName: "",
             askingDelete: false,
             editGroupName: false,
@@ -131,10 +155,33 @@ export default {
         this.newGroupName = this.groupInformations.name;
     },
     methods: {
+        prev() {
+            if (this.indexItinerary == 0) {
+                this.indexItinerary = this.$store.state.globalNonPersistantData.itinerary.length - 1;
+            } else {
+                this.indexItinerary--;
+            }
+        },
+        next() {
+            if (this.indexItinerary < this.$store.state.globalNonPersistantData.itinerary.length - 1) {
+                this.indexItinerary++;
+            }
+            else {
+                this.indexItinerary = 0;
+            }
+        },
         messageDeleteGroup() {
             this.askingDelete = true;
         },
         goBackToGroupDropdown() {
+            if (this.addGroupToItinerary) {
+                this.$store.dispatch("addGroupToItinerary", {
+                    groupName: this.groupInformations.name,
+                    groupId: this.groupInformations.backendGroupId,
+                    itineraryId: this.$store.state.globalNonPersistantData.itinerary[this.indexItinerary].id
+                });
+            }
+
             this.CreateGroup = false;
             this.$emit("goBackToGroupDropdown");
         },
