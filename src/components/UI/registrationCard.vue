@@ -17,7 +17,7 @@
       :placeholder="$t('inscriptionPage.username')">
     </div>
     <div class="my-2">
-      <input type="text" class="form-control"  v-model="$store.state.userStore.mail" 
+      <input type="email" class="form-control"  v-model="$store.state.userStore.mail" 
       :placeholder="$t('inscriptionPage.email')">
     </div>
     <div class="my-2">
@@ -84,12 +84,22 @@ export default {
       this.userNameError = false;
       this.error = false;
       this.checkInformations(this.$store.state.userStore.username, this.$store.state.userStore.mail, this.password);
-      this.$store.dispatch("checkIfAccountCanBeCreated", this.password).then(() => {
-        this.$store.state.userStore.userIsLoggedIn = true;
-        this.$router.push("/mapPage");
-      }).catch((error) => {
-        console.log(error);
-        this.error = true;
+      if (this.error === true) {
+        return;
+      }
+      this.$store.dispatch("put", {
+        path: 'register',
+        data: {
+          username: this.$store.state.userStore.username,
+          email: this.$store.state.userStore.mail,
+          password: this.password
+        }
+        }).then(() => {
+          this.$store.state.userStore.userIsLoggedIn = true;
+          this.$router.push("/mapPage");
+        }).catch((error) => {
+          console.log(error);
+          this.error = true;
       })
     }
   }

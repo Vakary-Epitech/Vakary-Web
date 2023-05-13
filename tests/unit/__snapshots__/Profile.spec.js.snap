@@ -6,8 +6,8 @@ exports[`Profile renders the component 1`] = `
     <div class="container">
       <div class="row">
         <div><img class="profile-picture" alt="profile-picture"></div>
-        <div class="col-12 text-center">
-          <h1>test</h1>
+        <div class="text-center">
+          <h1 class="overflow" style="max-width: 200px;">test</h1>
         </div>
         <div class="col-12 overflow"><span>Description</span><br>
           <p class="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed et commodo justo.</p>
