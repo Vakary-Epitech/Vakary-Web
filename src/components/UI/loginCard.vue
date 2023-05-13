@@ -48,7 +48,6 @@ export default {
     },
     login() {
       this.userDontExist = false;
-      console.log(this.name);
       this.$store.dispatch("post", {
         path: "login",
         data: {
