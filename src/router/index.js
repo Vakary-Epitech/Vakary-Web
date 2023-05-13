@@ -4,6 +4,7 @@ import LandingPage from "@/components/Page/LandingPage.vue"
 import store from '@/store/store';
 import LearnMorePage from "@/components/Page/LearnMorePage.vue";
 import ConnexionPage from "@/components/Page/ConnexionPage.vue";
+import resetPasswordPage from "@/components/Page/ResetPassword.vue";
 
 const routes = [
     {
@@ -25,6 +26,11 @@ const routes = [
         path: '/mapPage',
         name: 'MapPage',
         component: MapPage,
+    },
+    {
+        path: '/resetPasswordPage/:id',
+        name: 'resetPasswordPage',
+        component: resetPasswordPage,
     },
     { path: '/:pathMatch(.*)*', redirect: '/' }
 ];
