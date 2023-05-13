@@ -85,15 +85,15 @@
                     </div>
                 </section>
 
-                <div class="col-12" v-if="$store.state.globalNonPersistantData.itinerary.length > 0">
+                <div class="col-12" v-if="$store.state.globalNonPersistantData?.itinerary.length > 0">
                     <span>Vos Itinéraires</span><br>
-                    <button v-if="$store.state.globalNonPersistantData.itinerary.length > 1" @click="prev"
+                    <button v-if="$store.state.globalNonPersistantData?.itinerary.length > 1" @click="prev"
                         class="black" type="button"
                         data-bs-slide="prev">
                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                         <span class="visually-hidden">Previous</span>
                     </button>
-                    <button v-if="$store.state.globalNonPersistantData.itinerary.length > 1" @click.prevent="next" type="button"
+                    <button v-if="$store.state.globalNonPersistantData?.itinerary.length > 1" @click.prevent="next" type="button"
                         data-bs-slide="next">
                         <span class="carousel-control-next-icon" aria-hidden="true"></span>
                         <span class="visually-hidden">Next</span>
@@ -103,7 +103,7 @@
                         <label for="checkbox">Ajouter le groupe a l'itinéraire</label>
                     </div>
                     itinerary id:
-                    {{ this.$store.state.globalNonPersistantData.itinerary[indexItinerary].id }}
+                    {{ this.$store.state.globalNonPersistantData?.itinerary[indexItinerary].id }}
                 </div>
 
                 <div class="col-12 mt-3 text-center">
