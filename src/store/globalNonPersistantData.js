@@ -10,6 +10,7 @@ const globalNonPersistantData = {
     },
     mutations: {
         UPDATE_USER_GROUP(state, groups) {
+            console.log(groups);
             state.groups = [];
             let emails = [];
             console.log(groups.data);
@@ -68,7 +69,19 @@ const globalNonPersistantData = {
             };
             state.itinerary.push(itinerayData);
             console.log(state.itinerary);
-        }
+        },
+        // eslint-disable-next-line
+        UDPATE_GROUP_USER_STATUS(state, userStatus) {
+            for (let group in state.groups) {
+                if (state.groups[group].backendGroupId == userStatus.groupId) {
+                    const i = state.groups[group].emails.findIndex(mail => mail.emails === userStatus.User.email)
+                    if (i > -1) {
+                        state.groups[group].emails[i].status = userStatus.status;
+                    }
+                    state.groups[group].emails[userStatus.User.email] = userStatus.User.status;
+                }
+            }
+        },
     }
 };
 

@@ -54,7 +54,7 @@
                         <div class="col-6 text-start">
                             {{ member.emails }}
                         </div>
-                        <div class="col-4 status">
+                        <div class="col-4 status" :class="getStatus(index)">
                             {{ member.status }}
                         </div>
                         <div class="col-2" v-if="!member.admin">
@@ -186,7 +186,8 @@ export default {
             this.$emit("goBackToGroupDropdown");
         },
         getStatus(index) {
-            return this.groupInformations.members[index].status;
+            let groupIndex = this.$store.state.globalNonPersistantData.groups.findIndex(group => group.id === this.groupInformations.id);
+            return this.$store.state.globalNonPersistantData.groups[groupIndex].emails[index].status;
         },
         addMember() {
             if (!this.isValidEmail(this.mailMember)) {
@@ -438,7 +439,7 @@ export default {
     border: 1px red solid;
 }
 
-.accepted {
+.joined {
     background-color: #B6FBB2;
     border: 1px green solid;
 }

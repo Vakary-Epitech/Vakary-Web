@@ -50,11 +50,9 @@
               <div class="topBorder">&nbsp;</div>
               <div v-for="(itineraryDisplay, index) of itinerary" :key="itineraryDisplay.id">
                 <Transition name="slide-fade">
-                  <mapCards
-                    @click="itineraryCardsHasBeenClicked(index)"
-                    class="cardOnDropdown mt-2" 
-                    :itinerary="itineraryDisplay"/>
-                  </Transition>
+                  <mapCards @click="itineraryCardsHasBeenClicked(index)" class="cardOnDropdown mt-2"
+                    :itinerary="itineraryDisplay" />
+                </Transition>
                 <div class="topBorder">&nbsp;</div>
               </div>
             </div>
@@ -62,7 +60,9 @@
         </div>
 
         <div v-else-if="showItineraryCreationModal">
-          <itineraryModal @goBackToItineraryDropdown="showItineraryCreationModal = false; this.itinerary = this.$store.state.globalNonPersistantData.itinerary;" style="min-width: 400px" />
+          <itineraryModal
+            @goBackToItineraryDropdown="showItineraryCreationModal = false; this.itinerary = this.$store.state.globalNonPersistantData.itinerary;"
+            style="min-width: 400px" />
         </div>
 
         <div v-else>
@@ -81,8 +81,8 @@
   </div>
 
   <Transition name="slide-fade">
-    <div class="profileModalPosition fadeshow1" v-if=" showProfile ">
-      <profileModal style="max-width:300px"/>
+    <div class="profileModalPosition fadeshow1" v-if="showProfile">
+      <profileModal style="max-width:300px" />
     </div>
   </Transition>
 
@@ -124,6 +124,8 @@
                   <Transition name="slide-fade">
                     <mapGroupCardsVue :groupName="group.name" :numberOfMember="group.emails.length" :index="index" />
                   </Transition>
+                  <button @click="acceptGroupInvitation(group.backendGroupId)">Accept</button>
+                  <button @click="refuseGroupInvitation(group.backendGroupId)">Refuse</button>
                 </div>
               </div>
             </div>
@@ -241,7 +243,12 @@ export default {
   mounted() {
     try {
       this.$store.dispatch("getItinerary");
-      this.$store.dispatch("getGroup");
+      this.$store.dispatch("getGroup").then((groups) => {
+        // eslint-disable-next-line
+        for (let groupsId in groups["groups"]) {
+          this.$store.dispatch("getGroupStatus", groups["groups"][groupsId]);
+        }
+      });
     } catch (error) {
       console.log(error);
     }
@@ -304,6 +311,14 @@ export default {
     },
   },
   methods: {
+    acceptGroupInvitation(backendGroupId) {
+      console.log("accept", backendGroupId);
+      this.$store.dispatch("acceptGroupInvitation", backendGroupId);
+    },
+    refuseGroupInvitation(backendGroupId) {
+      console.log("refuse", backendGroupId);
+      this.$store.dispatch("refuseGroupInvitation", backendGroupId);
+    },
     itineraryCardsHasBeenClicked(itineraryId) {
       this.selectedItinerary = itineraryId + 1;
       this.displayItineraryInformation = true;
@@ -519,7 +534,7 @@ export default {
 }
 
 ::-webkit-scrollbar {
-    width: 0 !important;
+  width: 0 !important;
 }
 
 .dropdownTextPosition {
