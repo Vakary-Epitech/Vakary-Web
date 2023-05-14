@@ -10,9 +10,6 @@
 
 <script>
 export default {
-  beforeCreate() {
-    this.$router.push("/");
-  },
   methods: {
     geti18n() {
       return this.$i18n.locale;

@@ -198,6 +198,38 @@ const apiStore = {
             })
         },
 
+        verifyTokenPasswordReset(context, token) {
+            return new Promise((resolve, reject) => {
+                try {
+                    axios.post(wording.serverAdress + "password/verificationToken", { token: token }).then(() => {
+                        resolve(true);
+                    }).catch((error) => {
+                        reject(error);
+                    })
+                } catch (error) {
+                    reject(error);
+                }
+            })
+        },
+
+        sendNewPassword(context, requestParameters) {
+            return new Promise((resolve, reject) => {
+                try {
+                    axios.post(wording.serverAdress + "changePassword", { password: requestParameters.password,  }, {
+                        headers: {
+                            'Authorization': requestParameters.token
+                        }
+                    }).then((canAuthentify) => {
+                        resolve(canAuthentify)
+                    }).catch((error) => {
+                        reject(error);
+                    })
+                } catch (error) {
+                    reject(error);
+                }
+            })
+        },
+
         checkIfAccountCanBeCreated(context, password) {
             return new Promise((resolve, reject) => {
                 try {
@@ -214,23 +246,6 @@ const apiStore = {
             })
         },
 
-        sendNewPassword(context, requestParameters) {
-            return new Promise((resolve, reject) => {
-                try {
-                    axios.patch(wording.serverAdress + "changePassword", { id: this.state.userStore.userId }, {
-                        headers: {
-                            'authorization': requestParameters.authorization
-                        }
-                    }).then((canAuthentify) => {
-                        resolve(canAuthentify)
-                    }).catch((error) => {
-                        reject(error);
-                    })
-                } catch (error) {
-                    reject(error);
-                }
-            })
-        },
         // eslint-disable-next-line
         addGroupToItinerary(context, data) {
             return new Promise((resolve, reject) => {
@@ -275,6 +290,7 @@ const apiStore = {
                 }
             })
         },
+
         put(context, {path, data}) {
             return new Promise((resolve, reject) => {
                 try {
@@ -289,10 +305,20 @@ const apiStore = {
                 }
             })
         },
-        delete(context, {path, data}) {
+        delete(context, { path }) {
             return new Promise((resolve, reject) => {
                 try {
-                    axios.delete(wording.serverAdress + path, {...data}).then((response) => {
+
+                    let config = {
+                        method: 'delete',
+                        maxBodyLength: Infinity,
+                        url: wording.serverAdress + path,
+                        headers: {
+                            "Authorization": this.state.userStore.token,
+                        },
+                    }
+
+                    axios.request(config).then((response) => {
                         resolve(response);
                     }).catch((error) => {
                         reject(error);
