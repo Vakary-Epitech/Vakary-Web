@@ -2,7 +2,7 @@
     <div class="explanatoryCardDesign row">
         <div>
             <div class="my-3 backArrow" @click="goBackToItineraryDropdown"></div>
-            <h4 class="titleLimiterSize">{{ this.selectedItineraryInfo.itineraryPOI[this.currentWaypointIndex].City.name }}</h4>
+            <h4 class="titleLimiterSize">{{ this.selectedItineraryInfo?.itineraryPOI[this.currentWaypointIndex].City.name }}</h4>
             <div class="ms-3 my-auto text-center titleLimiterSize">
                 <h4>{{ getCurrentPOIName }}</h4>
             </div>
@@ -134,12 +134,6 @@ export default {
     margin-top: calc(2px + 0.6vh);
     margin-bottom: calc(2px + 0.6vh);
 }
-
-.topBarExplanation {
-    // display: flex;
-    // margin-bottom: calc(6px + 0.4vh);
-}
-
 .textMargin {
     display: flex;
     margin-left: calc(3px + 0.6vw);
