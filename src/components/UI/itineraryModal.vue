@@ -1,5 +1,4 @@
 <template>
-    <!-- Modal -->
     <div class="explanatoryCardDesign descriptionLimiterSize">
         <div>
             <div class="modal-header">
@@ -9,10 +8,11 @@
             <div class="modal-body">
                 <div class="col-12">
                     <span>{{ $t("itineraryModal.startingCity") }} </span><br>
+                    <span v-if="error" class="text-danger">{{ $t("itineraryModal.error") }}</span>
                     <input class="w-100 form-control" type="text" v-model="city" :placeholder="placeholderCity">
                 </div>
                 <hr class="separationBar">
-                <span>{{ $t("itineraryModal.startingCity") }}</span><br>
+                <span >{{ $t("itineraryModal.howLong") }}</span><br>
                 <div class="form-check col-12">
                     <input class="form-check-input mx-1" type="checkbox" value="" id="onehour">
                     <label class="form-check-label" for="onehour">
@@ -116,6 +116,7 @@ export default {
             timeOfEnd: "00:00",
             budget: 0,
             people: 1,
+            error: false,
             days: 1,
             city: "",
             children: 0,
@@ -131,7 +132,8 @@ export default {
                 { id: 8, POIType: "Restaurant", POIName: "Restaurant" },
                 { id: 9, POIType: "Nightclub", POIName: "Boite de nuit" },
                 { id: 10, POIType: "Hotel", POIName: "Hotel" },
-                { id: 11, POIType: "Church", POIName: "Eglise" }
+                { id: 11, POIType: "Church", POIName: "Eglise" },
+                { id: 12, POIType: "InterestPointTypePlaceToVisit ", POIName: "test" }
             ],
         }
     },
@@ -189,7 +191,9 @@ export default {
                 handicapAccess: false,
             }).then(() => {
                 this.$emit("goBackToItineraryDropdown");
-            });
+            }).catch(() => {
+                this.error = true;
+            })
         },
     }
 }

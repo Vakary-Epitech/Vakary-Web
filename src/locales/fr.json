@@ -138,6 +138,9 @@
         "newGroup": "Créer un nouveau groupe",
         "openHours": "Heure d'ouverture:"
     },
+    "mapCards": {
+        "noGroups": "Aucun groupe assigné"
+    },
     "itineraryModal": {
         "creation": "Création de votre itinéraire",
         "startingCity": "Ville de départ",
@@ -152,7 +155,8 @@
         "adult": "Adulte",
         "child": "Enfant",
         "interest": "Centres D'intérêts",
-        "generate": "Générer l'itinéraire"
+        "generate": "Générer l'itinéraire",
+        "error": "Champs requis"
     },
     "screenSizePage": {
         "screenSizeTooSmall": "Désolé, l'accès à notre application web est actuellement bloqué car votre écran est trop petit.",

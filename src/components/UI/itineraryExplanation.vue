@@ -1,14 +1,11 @@
 <template>
     <div class="explanatoryCardDesign row">
         <div>
-            <div class="topBarExplanation">
-                <div class="backArrow" @click="goBackToItineraryDropdown"></div>
-                <!-- {{ this.selectedItineraryInfo }} -->
-                <!-- <span class="titlePosition" style="font-size: calc(8px + 0.6vw);">{{ this.selectedItineraryInfo.itineraryPOI[this.currentWaypointIndex].City.name
-                }}</span> -->
+            <div class="my-3 backArrow" @click="goBackToItineraryDropdown"></div>
+            <h4 class="titleLimiterSize">{{ this.selectedItineraryInfo.itineraryPOI[this.currentWaypointIndex].City.name }}</h4>
+            <div class="ms-3 my-auto text-center titleLimiterSize">
+                <h4>{{ getCurrentPOIName }}</h4>
             </div>
-            <span style="font-size: calc(6px + 0.6vw);">{{ getCurrentPOIName }}</span>
-            <br />
             <div class="imgWrapper text-center">
                 <img class="imageProportion" :src="getCurrentPOIImage" />
             </div>
@@ -17,17 +14,14 @@
             <div class="openHoursDesign timeSizeLimiter">
                 <!-- <span style="white-space: pre-line; font-size: calc(6px + 1.2vh);">{{ $t("mapPage.openHours") }} <br />{{ getCurrentPOIOpenHours }}</span> -->
             </div>
-            <div class="arrowOnTheLine">
-                <div style="display: flex; width: 50%;">
-                    <div v-if="this.currentWaypointIndex > 0" class="backArrowBottom" @click="checkPreviousPOI"></div>
-                    <span style="font-size: calc(4px + 1.2vh); margin: auto" v-if="this.currentWaypointIndex > 0">{{
-                        $t("mapPage.previousPoint") }}</span>
+            <div class="row custom">
+                <div class="col-6 text-start">
+                    <button v-if="this.currentWaypointIndex > 0" class="custom-button" @click="checkPreviousPOI"><i class="fa-solid fa-2xl fa-arrow-left custom-arrow"></i></button>
+                    <span class="ms-1" v-if="this.currentWaypointIndex > 0"> {{ $t("mapPage.previousPoint") }}</span>
                 </div>
-                <div style="display: flex; width: 50%; justify-content: right;">
-                    <span v-if="this.currentWaypointIndex < this.selectedItineraryInfo?.itineraryPOI.length - 1"
-                        style="font-size: calc(4px + 1.2vh); margin: auto">{{ $t("mapPage.nextPoint") }}</span>
-                    <div v-if="this.currentWaypointIndex < this.selectedItineraryInfo?.itineraryPOI.length - 1" class="frontArrow"
-                        @click="checkNextPOI"></div>
+                <div class="col-6 text-end">
+                    <span v-if="this.currentWaypointIndex < this.selectedItineraryInfo?.itineraryPOI.length - 1"> {{ $t("mapPage.nextPoint") }}</span>
+                    <button v-if="this.currentWaypointIndex < this.selectedItineraryInfo?.itineraryPOI.length - 1" class="custom-button ms-1" @click="checkNextPOI"><i class="fa-solid fa-2xl fa-arrow-right custom-arrow"></i></button>
                 </div>
             </div>
         </div>
@@ -80,7 +74,30 @@ export default {
 </script>
 
 <style scoped lang="scss">
+.custom {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.custom-arrow {
+    color: rgb(192, 150, 40);
+}
+
+.custom-button {
+    margin-bottom: 15px;
+    background-color: #fff;
+    border: 3px solid #fff;
+    border-radius: 15px;
+}
+
+.custom-button:hover {
+    border: 3px solid rgb(192, 150, 40);
+}
+
 .explanatoryCardDesign {
+    overflow: auto;
     display: flex;
     background-color: var(--background-color-primary);
     color: var(--text-primary-color);
@@ -93,6 +110,10 @@ export default {
     margin-bottom: 0.1vh;
     text-align: center;
     border: 2px solid rgb(192, 150, 40);
+}
+
+::-webkit-scrollbar {
+    width: 0 !important;
 }
 
 .imgWrapper {
@@ -115,8 +136,8 @@ export default {
 }
 
 .topBarExplanation {
-    display: flex;
-    margin-bottom: calc(6px + 0.4vh);
+    // display: flex;
+    // margin-bottom: calc(6px + 0.4vh);
 }
 
 .textMargin {
@@ -134,22 +155,13 @@ export default {
     box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.2);
 }
 
-.titlePosition {
-    display: flex;
-    width: 100%;
-    margin-top: calc(12px + 0.6vh);
-    justify-content: center;
-}
-
-.arrowOnTheLine {
-    display: flex;
-    flex-direction: row;
-    margin-top: calc(6px + 0.6vh);
-    height: 5vmin;
-}
-
 .descriptionLimiterSize {
     max-height: 30vh;
+    overflow: auto;
+}
+
+.titleLimiterSize {
+    max-height: 10vh;
     overflow: auto;
 }
 
@@ -165,9 +177,6 @@ div.backArrow {
     height: 3vmin;
     box-sizing: border-box;
     transform: rotate(-135deg);
-    margin-top: calc(12px + 0.6vh);
-    margin-left: calc(16px + 0.6vw);
-    position: absolute;
 
     &::before {
         content: '';

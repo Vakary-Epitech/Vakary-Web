@@ -99,6 +99,9 @@
     "newGroup": "Create a new group",
     "openHours": "Open Hours:"
   },
+  "mapCards": {
+    "noGroups": "No groups assigned"
+  },
   "forgetPassword": {
     "title": "Find Your Account",
     "placeholders": {
@@ -152,7 +155,8 @@
     "adult": "Adult",
     "child": "Child",
     "interest": "Center of interest",
-    "generate": "Generate the Itinerary"
+    "generate": "Generate the Itinerary",
+    "error": "Required"
   },
   "screenSizePage": {
     "screenSizeTooSmall": "Sorry, access to our web application is currently blocked because your screen is too small.",
