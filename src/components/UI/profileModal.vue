@@ -12,8 +12,8 @@
                     <div>
                         <img class="profile-picture" :src="$store.state.userStore.userProfileImage" alt="profile-picture">
                     </div>
-                    <div class="col-12 text-center">
-                        <h1>{{ user.username }}</h1>
+                    <div class="text-center">
+                        <h1 class="overflow" style="max-width:200px">{{ user.username }}</h1>
                     </div>
                     <div v-if="user?.description" class="col-12 overflow">
                         <span>{{ $t("profilePage.info") }}</span><br>
@@ -22,7 +22,7 @@
                 </div>
                 <div class="row" v-if="editMode">
                     <div>
-                        <img @click="openFileExplorer()" class="profile-picture clickable" :src="user?.userProfileImage"
+                        <img @click="openFileExplorer()" class="profile-picture clickable" :src="$store?.state?.userStore?.userProfileImage"
                             alt="profile-picture">
                     </div>
                     <div class="col-6 mt-3 offset-3">
@@ -110,14 +110,23 @@ export default {
             this.$store.state.userStore.userIsLoggedIn = false;
         },
         deleteUser() {
-            this.$store.dispatch('deleteUser', this.user.id);
-            this.$router.push("/");
-            this.$store.state.userStore.userIsLoggedIn = false;
+            this.$store.dispatch('delete', {
+                path: "me",
+            }).then(() => {
+                this.$router.push("/");
+                this.$store.state.userStore.userIsLoggedIn = false;
+            }).catch((error) => {
+                console.log(error);
+            })
         },
     },
 }
 </script>
 <style scoped>
+
+.row {
+    margin: 0 !important;
+}
 .overflow {
     overflow-x: auto;
 }
@@ -201,18 +210,21 @@ textarea {
     border-radius: 15px;
     border: none;
     font-size: calc(6px + 0.6vw);
-    width: 20vw;
     max-height: 85vh;
     margin-top: 15px;
     margin-bottom: 5px;
     border: 2px solid rgb(192, 150, 40);
     padding: 15px;
     overflow: auto;
-    width: 300px;
+    /* width: 300px; */
 }
 
 .ProfilCardDesign::-webkit-scrollbar {
     width: 1px;
+}
+
+.overflow {
+    overflow: auto;
 }
 
 .container input {

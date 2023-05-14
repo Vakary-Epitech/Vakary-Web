@@ -15,7 +15,7 @@
                 <label class="p-1">{{ $t("landingPage.mobile") }}</label>
               </div>
               <div class="mt-2 mb-3">
-                <button class="invertedBlueVakaryButton biggerButton py-1" @click="openConnexionPage">{{
+                <button class="invertedBlueVakaryButton biggerButton py-1 text-center" @click="openConnexionPage">{{
                   $t("landingPage.registration") }}</button>
               </div>
             </div>
@@ -32,8 +32,10 @@
               <label>{{ $t("landingPage.pref") }}</label>
               <label>{{ $t("landingPage.mobile") }}</label>
             </div>
-            <button class="col-4 offset-4 invertedBlueVakaryButton py-1 mt-1 mb-1" @click="openConnexionPage">{{
+            <div class="col-12 text-center my-1">
+            <button class="blueButton py-1 text-center" @click="openConnexionPage">{{
               $t("landingPage.registration") }}</button>
+            </div>
           </div>
         </div>
       </section>
@@ -112,15 +114,6 @@
           <presentationCards />
         </div>
       </section>
-      <!-- <section name="dog">
-        <hr class="separationBar marginSeparationDogo">
-        <div class="textOnDogo">
-          <label class="textOnTopOfCard">{{ $t("landingPage.ready") }}</label>
-          <button class="invertedBlueVakaryButton dogoButton biggerButton" @click="openSignUpPage">{{
-            $t("landingPage.registration") }}<span class="arrow"></span></button>
-        </div>
-        <img src="@/assets/LandingPage/beautifulDogo.jpg" class="beautifulDogoImage">
-      </section> -->
       <section name="team">
         <hr class="separationBar marginSeparationDogo">
         <div class="col-12 text-center">
@@ -266,19 +259,6 @@ export default {
   margin-bottom: 10vh;
 }
 
-.textOnDogo {
-  transform: translate(30%, 20vw);
-  width: 70%;
-  z-index: 1;
-  position: absolute;
-}
-
-.beautifulDogoImage {
-  width: 100%;
-  height: 50vw;
-  filter: brightness(70%);
-}
-
 .basicVakaryButton {
   display: inline;
   padding: 10px 20px;
@@ -309,6 +289,14 @@ export default {
   margin-top: 25px;
 }
 
+.blueButton {
+    padding: 10px 16px;
+    background-color: #000642;
+    color: white;
+    border: 2px solid #000642 solid;
+    border-radius: 20px;
+    transition: all .3s ease;
+}
 
 .alignPhoneImage {
   display: flex;
@@ -410,11 +398,6 @@ export default {
   flex-wrap: wrap;
   padding: 90px 0 70px 90px;
   background: #FFE9D3;
-}
-
-
-.dogoButton:hover {
-  background-color: #F5F5F5;
 }
 
 .invertedBlueVakaryButton {

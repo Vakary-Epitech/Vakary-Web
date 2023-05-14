@@ -34,19 +34,19 @@
     </div>
     <div v-if="userExist">
       <div class="my-2">
-          <input type="text" class="form-control"  v-model="token"
+          <input class="form-control"  v-model="token"
           :placeholder="$t('forgetPassword.placeholders.code')">
       </div>
       <div class="my-2">
-          <input type="password" class="form-control"  v-model="newPassword"
+          <input class="form-control" type="password" autocomplete="new-password" v-model="newPassword"
           :placeholder="$t('forgetPassword.placeholders.password')">
       </div>
       <div>
-        <button @click="(requestPasswordReset)" class="btn newButton text-center">{{ $t("forgetPassword.buttons.change")}}</button>
+        <button @click="(sendNewPassword)" class="btn newButton text-center">{{ $t("forgetPassword.buttons.change")}}</button>
       </div>
     </div>
     <div v-if="!userExist" class="my-2">
-      <input type="text" class="form-control"  v-model="id" 
+      <input class="form-control"  v-model="id" 
       :placeholder="$t('forgetPassword.placeholders.id')">
     </div>
   </div>
@@ -101,7 +101,8 @@ export default {
       this.$store.dispatch("sendNewPassword", { password: this.newPassword, authorization: this.token }).then(() => {
         this.invalidToken = true;
         this.openLoginPage();
-      }).catch(() => {
+      }).catch((error) => {
+        console.log(error);
         this.invalidToken = true;
       });
     },

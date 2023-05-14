@@ -85,32 +85,6 @@
                 </div>
 
                 <hr class="separationBar" v-if="$store.state.globalNonPersistantData.groups.length > 0">
-                <div class="col-12" v-if="$store.state.globalNonPersistantData.groups.length > 0">
-                    <span>Vos groupes</span><br>
-                    <div id="carouselExampleControls" class="carousel slide" data-bs-touch="false" data-bs-interval="false">
-                        <div class="carousel-inner">
-                            <div class="carousel-item active" v-for="(group, index) in $store.state.globalNonPersistantData.groups"
-                                :key="index">
-                                <cardsGroup :group="group" :index="index" :exists="true"></cardsGroup>
-                                {{ group.name }}
-                                {{ $store.state.globalNonPersistantData.groups[index] }}
-                                {{ setIndex(index) }}
-                            </div>
-                        </div>
-                        <button v-if="$store.state.userStore.groups.length > 1" @click="prev"
-                            class="carousel-control-prev black" type="button" data-bs-target="#carouselExampleControls"
-                            data-bs-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Previous</span>
-                        </button>
-                        <button v-if="$store.state.userStore.groups.length > 1" @click.prevent="next"
-                            class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"
-                            data-bs-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Next</span>
-                        </button>
-                    </div>
-                </div>
 
                 <hr class="separationBar">
                 <div class="col-12 mb-1">
@@ -120,12 +94,12 @@
                     <input class="form-check-input mx-1" type="checkbox" :id="POI.id" :value=POI.POIType
                         v-model="$store.state.mapStore.selectedTypeOfInterest" />
                     <label class="form-check-label" :for="POI.id">
-                        <span>{{ POI.POIType }}</span>
+                        <span>{{ POI.POIName }}</span>
                     </label>
                 </div>
             </div>
             <div class="modal-footer">
-                <button @click="generateItinerary" type="button" class="btn btn-primary" data-bs-dismiss="modal"
+                <button @click="generateItinerary" type="button" class="btn btn-primary"
                     style="margin: auto; margin-top: 10px; margin-bottom: 10px">{{ $t("itineraryModal.generate") }}</button>
             </div>
         </div>
@@ -133,6 +107,7 @@
 </template>
   
 <script>
+
 export default {
     data() {
         return {
@@ -146,17 +121,17 @@ export default {
             children: 0,
             indexOfGroup: 0,
             possibleType: [
-                { id: 1, POIType: "Sites culturel" },
-                { id: 2, POIType: "Points d'intérêt" },
-                { id: 3, POIType: "Bâtiments remarquable" },
-                { id: 4, POIType: "Sites religieux" },
-                { id: 5, POIType: "Places intéressante" },
-                { id: 6, POIType: "Parcs et jardins" },
-                { id: 7, POIType: "Lieux de mémoire" },
-                { id: 8, POIType: "Cimetières militaire" },
-                { id: 9, POIType: "Sites archéologique" },
-                { id: 10, POIType: "Evenements sportif" },
-                { id: 11, POIType: "Evenements divertissant" }
+                { id: 1, POIType: "Cultural Site", POIName: "Sites culturel" },
+                { id: 2, POIType: "Castle", POIName: "Chateau" },
+                { id: 3, POIType: "Remarkable Building", POIName: "Bâtiments remarquable" },
+                { id: 4, POIType: "Museum", POIName: "Musée" },
+                { id: 5, POIType: "Stadium", POIName: "Stade" },
+                { id: 6, POIType: "Amusement Park", POIName: "Parcs et jardins" },
+                { id: 7, POIType: "Walking Tour", POIName: "Itinéraire à pieds" },
+                { id: 8, POIType: "Restaurant", POIName: "Restaurant" },
+                { id: 9, POIType: "Nightclub", POIName: "Boite de nuit" },
+                { id: 10, POIType: "Hotel", POIName: "Hotel" },
+                { id: 11, POIType: "Church", POIName: "Eglise" }
             ],
         }
     },
@@ -166,6 +141,9 @@ export default {
         },
     },
     methods: {
+        test(index) {
+            console.log(this.$store.state.globalNonPersistantData.groups[index])
+        },
         leaveGroupCreation() {
             this.$emit("goBackToItineraryDropdown");
         },
@@ -207,8 +185,10 @@ export default {
                 nbPeople: this.people,
                 nbChild: this.children,
                 typeResearchLocations: this.$store.state.mapStore.selectedTypeOfInterest,
-                group: this.$store.state.userStore.groups[this.indexOfGroup],
+                group: this.$store.state.globalNonPersistantData.groups[this.indexOfGroup],
                 handicapAccess: false,
+            }).then(() => {
+                this.$emit("goBackToItineraryDropdown");
             });
         },
     }
@@ -275,4 +255,5 @@ export default {
 
 .explanatoryCardDesign::-webkit-scrollbar {
     width: 1px;
-}</style>
+}
+</style>
