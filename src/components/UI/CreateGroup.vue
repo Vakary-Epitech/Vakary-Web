@@ -136,7 +136,13 @@ export default {
             this.groupInformations.id = uuidv4();
             console.log(this.groupInformations)
 
-            this.$store.dispatch("addGroup", this.groupInformations);
+            this.$store.dispatch("addGroup", this.groupInformations).then(() => {
+                this.$store.dispatch("getGroup").then((groups) => {
+                    for (let groupsId in groups["groups"]) {
+                        this.$store.dispatch("getGroupStatus", groups["groups"][groupsId]);
+                    }
+                });
+            });
             this.CreateGroup = false;
 
             this.$emit("goBackToGroupDropdown");

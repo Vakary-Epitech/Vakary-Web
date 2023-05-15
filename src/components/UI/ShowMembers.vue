@@ -87,14 +87,13 @@
 
                 <div class="col-12" v-if="$store.state.globalNonPersistantData?.itinerary.length > 0">
                     <span>Vos Itinéraires</span><br>
-                    <button v-if="$store.state.globalNonPersistantData?.itinerary.length > 1" @click="prev"
-                        class="black" type="button"
-                        data-bs-slide="prev">
+                    <button v-if="$store.state.globalNonPersistantData?.itinerary.length > 1" @click="prev" class="black"
+                        type="button" data-bs-slide="prev">
                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                         <span class="visually-hidden">Previous</span>
                     </button>
-                    <button v-if="$store.state.globalNonPersistantData?.itinerary.length > 1" @click.prevent="next" type="button"
-                        data-bs-slide="next">
+                    <button v-if="$store.state.globalNonPersistantData?.itinerary.length > 1" @click.prevent="next"
+                        type="button" data-bs-slide="next">
                         <span class="carousel-control-next-icon" aria-hidden="true"></span>
                         <span class="visually-hidden">Next</span>
                     </button>
@@ -203,7 +202,21 @@ export default {
             return re.test(String(email).toLowerCase());
         },
         deleteMember(index) {
-            this.groupInformations.members.splice(index, 1);
+            let groupIndex = this.$store.state.globalNonPersistantData.groups.findIndex(group => group.id === this.groupInformations.id);
+            const group = this.$store.state.globalNonPersistantData.groups[groupIndex];
+            const user = this.$store.state.globalNonPersistantData.groups[groupIndex].emails[index];
+            console.log("user", user);
+            console.log("group", group);
+
+            this.$store.dispatch("patch", {
+                path: "group_user/deleteUserFromGroup",
+                data: {
+                    groupId: group.backendGroupId,
+                    email: user.emails,
+                }
+            }).then(() => {
+                this.$store.dispatch("getGroup");
+            })
         },
         editName() {
             this.editNameGroup = true;
@@ -226,7 +239,9 @@ export default {
             let index = this.$store.state.globalNonPersistantData.groups.findIndex(group => group.id === this.groupInformations.id);
             this.showMembers = false;
             this.$emit("goBackToGroupDropdown");
-            this.$store.dispatch("deleteGroup", this.$store.state.globalNonPersistantData.groups[index]);
+            this.$store.dispatch("deleteGroup", this.$store.state.globalNonPersistantData.groups[index]).then(() => {
+                this.$store.dispatch("getGroup");
+            });
             this.$store.state.globalNonPersistantData.groups.splice(index, 1);
         },
         deleteGroupPicture() {

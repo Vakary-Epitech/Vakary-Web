@@ -115,17 +115,19 @@
                   </div>
                 </div>
 
-                <div class="cursorOnButton" @click=" groupCardsHasBeenClicked(index)"
-                  v-for="(     group, index     ) in      this.$store.state.globalNonPersistantData.groups     "
+                <div class="cursorOnButton" v-for="(group, index) in this.$store.state.globalNonPersistantData.groups"
                   :key="group.id">
                   <div class="topBorder mt-2">&nbsp;</div>
                   <i class="fas fa-users ms-2 mt-2"></i>
                   <i class="fas fa-person fa-lg me-2 mt-2" style="float: right"></i>
                   <Transition name="slide-fade">
-                    <mapGroupCardsVue :groupName="group.name" :numberOfMember="group.emails.length" :index="index" />
+                    <mapGroupCardsVue :groupName="group.name" :numberOfMember="group.emails.length"
+                      @click=" groupCardsHasBeenClicked(index)" :index="index" />
                   </Transition>
-                  <button @click="acceptGroupInvitation(group.backendGroupId)">Accept</button>
-                  <button @click="refuseGroupInvitation(group.backendGroupId)">Refuse</button>
+                  <div v-if="shouldDisplayButton(group.emails)">
+                    <button @click="groupInvitation(group.backendGroupId, true)">Accept</button>
+                    <button @click="groupInvitation(group.backendGroupId, false)">Refuse</button>
+                  </div>
                 </div>
               </div>
             </div>
@@ -244,7 +246,6 @@ export default {
     try {
       this.$store.dispatch("getItinerary");
       this.$store.dispatch("getGroup").then((groups) => {
-        // eslint-disable-next-line
         for (let groupsId in groups["groups"]) {
           this.$store.dispatch("getGroupStatus", groups["groups"][groupsId]);
         }
@@ -311,13 +312,26 @@ export default {
     },
   },
   methods: {
-    acceptGroupInvitation(backendGroupId) {
-      console.log("accept", backendGroupId);
-      this.$store.dispatch("acceptGroupInvitation", backendGroupId);
+    shouldDisplayButton(emails) {
+      for (let mail in emails) {
+        if (emails[mail].emails == this.$store.state.userStore.mail) {
+          if (emails[mail].status == "pending")
+            return true;
+          else
+            return false;
+        }
+      }
     },
-    refuseGroupInvitation(backendGroupId) {
-      console.log("refuse", backendGroupId);
-      this.$store.dispatch("refuseGroupInvitation", backendGroupId);
+    groupInvitation(backendGroupId, status) {
+      this.$store.dispatch("groupInvitation", { backendGroupId: backendGroupId, status: status }).then(() => {
+        this.$store.dispatch("getItinerary");
+        this.$store.dispatch("getGroup").then((groups) => {
+          for (let groupsId in groups["groups"]) {
+            this.$store.dispatch("getGroupStatus", groups["groups"][groupsId]);
+          }
+        });
+
+      });
     },
     itineraryCardsHasBeenClicked(itineraryId) {
       this.selectedItinerary = itineraryId + 1;

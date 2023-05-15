@@ -171,7 +171,7 @@ const apiStore = {
                             file: groupInformation.picture,
                         },
                     }
-
+                    
                     axios.request(config).then((group) => {
                         context.commit('ADD_NEW_GROUP', group);
                         resolve(group);
@@ -306,17 +306,7 @@ const apiStore = {
         delete(context, { path }) {
             return new Promise((resolve, reject) => {
                 try {
-
-                    let config = {
-                        method: 'delete',
-                        maxBodyLength: Infinity,
-                        url: wording.serverAdress + path,
-                        headers: {
-                            "Authorization": this.state.userStore.token,
-                        },
-                    }
-
-                    axios.request(config).then((response) => {
+                    axios.delete(wording.serverAdress + path, { headers: { "Authorization": this.state.userStore.token } }).then((response) => {
                         resolve(response);
                     }).catch((error) => {
                         reject(error);
@@ -355,21 +345,20 @@ const apiStore = {
             })
         },
 
-        /* eslint-disable */
-        acceptGroupInvitation(context, backendGroupId) {
+        groupInvitation(context, action) {
             return new Promise((resolve, reject) => {
                 try {
 
                     let config = {
                         method: 'patch',
                         maxBodyLength: Infinity,
-                        url: wording.serverAdress + "group_user/" + backendGroupId,
+                        url: wording.serverAdress + "group_user/" + action.backendGroupId,
                         headers: {
                             "Authorization": this.state.userStore.token,
                         },
                         data: {
                             email: this.state.userStore.mail,
-                            status: "joined",
+                            status: action.status,
                         }
                     }
 
@@ -384,26 +373,11 @@ const apiStore = {
                 }
             })
         },
-
-        // eslint-disable-next-line
-        refuseGroupInvitation(context, backendGroupId) {
+        patch(context, { path, data }) {
             return new Promise((resolve, reject) => {
                 try {
-                    console.log(this.state.userStore.mail);
-                    let config = {
-                        method: 'patch',
-                        maxBodyLength: Infinity,
-                        url: wording.serverAdress + "group_user/" + backendGroupId,
-                        headers: {
-                            "Authorization": this.state.userStore.token,
-                        },
-                        data: {
-                            email: this.state.userStore.mail,
-                            status: "denied",
-                        }
-                    }
-
-                    axios.request(config).then((response) => {
+                    axios.patch(wording.serverAdress + path, { ...data }, { headers: { "Authorization": this.state.userStore.token } }).then((response) => {
+                        // context.commit('UPDATE_USER_INFO', response);
                         console.log(response);
                         resolve(response);
                     }).catch((error) => {
@@ -413,7 +387,7 @@ const apiStore = {
                     reject(error);
                 }
             })
-        },
+        }
     },
 }
 
