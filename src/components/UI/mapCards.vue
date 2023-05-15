@@ -3,7 +3,7 @@
         <div>
             <span>{{ this.itinerary.id }}. </span>
             <span>{{ this.itinerary.itineraryPOI[0].City.name }}</span>
-            <span class="alignRight ">{{ $t("mapPage.group") }}: {{ this.groupName ? this.groupName : "Aucun groupe assigné" }}</span>
+            <span class="alignRight ">{{ $t("mapPage.group") }}: {{ this.groupName ? this.groupName : $t("mapCards.noGroups") }}</span>
         </div>
         <!-- <div>
             <span class="dropboxText">{{ this.time }}</span> -->
