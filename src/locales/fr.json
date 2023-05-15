@@ -138,6 +138,9 @@
         "newGroup": "Créer un nouveau groupe",
         "openHours": "Heure d'ouverture:"
     },
+    "mapCards": {
+        "noGroups": "Aucun groupe assigné"
+    },
     "itineraryModal": {
         "creation": "Création de votre itinéraire",
         "startingCity": "Ville de départ",
@@ -148,11 +151,12 @@
         "moreThanFourHours": "Plus de 4 heures",
         "startingDate": "Quelle est la date de départ de votre itinéraire ?",
         "budget": "Budget total",
-        "howManyPeople": "Combien de personnes vont vous accompagner ?",
+        "howManyPeople": "Combien de personnes feront partie du voyage ?",
         "adult": "Adulte",
         "child": "Enfant",
-        "interest": "Centres D'intérêts",
-        "generate": "Générer l'itinéraire"
+        "interest": "Centres d'intérêts",
+        "generate": "Générer l'itinéraire",
+        "error": "Champs requis"
     },
     "screenSizePage": {
         "screenSizeTooSmall": "Désolé, l'accès à notre application web est actuellement bloqué car votre écran est trop petit.",
@@ -189,5 +193,64 @@
             "name": "Le nom du groupe doit contenir entre 3 et 18 caractères",
             "mail": "Email incorrect"
         }
-    }
+    },
+    "POI": {
+        "interestPointTypeAccommodation": {
+          "accommodation": "Hébergement",
+          "guestHouse": "Maison d'hôtes",
+          "hotel": "Hôtel",
+          "holidayResort": "Station de vacances",
+          "winery": "Cave",
+          "selfCateringAccommodation": "Location avec cuisine",
+          "lodgingBusiness": "Établissement d'hébergement"
+        },
+        "interestPointTypeRestauration": {
+          "restaurant": "Restaurant",
+          "fastFood": "Fast-food",
+          "cafe": "Café",
+          "bistro": "Bistro",
+          "pub": "Pub",
+          "nightClub": "Boîte de nuit"
+        },
+        "interestPointTypeShop": {
+          "store": "Magasin",
+          "craftsmanShop": "Atelier d'artisan",
+          "businessPlace": "Lieu commercial"
+        },
+        "interestPointTypeSport": {
+          "stadium": "Stade",
+          "arena": "Arène",
+          "sportPlace": "Lieu sportif",
+          "miniGold": "Mini-golf",
+          "swimmingPool": "Piscine",
+          "bowling": "Bowling"
+        },
+        "interestPointTypePlaceToVisit": {
+          "amusementPark": "Parc d'attractions",
+          "church": "Église",
+          "cinema": "Cinéma",
+          "culturalSite": "Site culturel",
+          "cyclingTour": "Tour à vélo",
+          "landForm": "Formation géologique",
+          "naturalHeritage": "Patrimoine naturel",
+          "remarkableBuilding": "Bâtiment remarquable",
+          "theater": "Théâtre",
+          "library": "Bibliothèque",
+          "cityHeritage": "Patrimoine urbain",
+          "museum": "Musée",
+          "castle": "Château",
+          "river": "Rivière",
+          "leisureComplex": "Complexe de loisirs",
+          "roadTour": "Tour routier",
+          "parkGarden": "Parc Jardin",
+          "walkingTour": "Tour à pied"
+        },
+        "interestPointTypeGroup": {
+          "accomodation": "Hébergement",
+          "restauration": "Restauration",
+          "placeToVisit": "Lieu à visiter",
+          "shop": "Shopping",
+          "sport": "Sport"
+        }
+      }      
 }

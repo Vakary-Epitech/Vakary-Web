@@ -499,7 +499,7 @@ export default {
 .widgetPanel {
   display: flex;
   flex-direction: column;
-  max-height: 70vh;
+  /* max-height: 70vh; */
 }
 
 .dropdown-content {
