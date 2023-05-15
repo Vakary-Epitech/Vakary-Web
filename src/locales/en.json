@@ -151,7 +151,7 @@
     "moreThanFourHours": "More than 4 hours",
     "startingDate": "What's the starting date of your itinerary ?",
     "budget": "Total budget",
-    "howManyPeople": "How many people will come with you ?",
+    "howManyPeople": "How many people will come ?",
     "adult": "Adult",
     "child": "Child",
     "interest": "Center of interest",
@@ -192,6 +192,65 @@
     "errors": {
       "name": "The group name must be between 3 and 18 characters",
       "mail": "Invalid email"
+    }
+  },
+  "POI": {
+    "interestPointTypeAccomodation": {
+      "accomodation": "Accomodation",
+      "guestHouse": "GuestHouse",
+      "hotel": "Hotel",
+      "holidayResort": "Holiday Resort",
+      "winery": "Winery",
+      "selfCateringAccomodation": "Self Catering Accomodation",
+      "lodgingBusiness": "Lodging Business"
+    },
+    "interestPointTypeRestauration": {
+      "restaurant": "Restaurant",
+      "fastFood": "Fast Food",
+      "cafe": "Cafe",
+      "bistro": "Bistro",
+      "pub": "Pub",
+      "nightClub": "Night Club"
+    },
+    "interestPointTypeShop": {
+      "store": "Club",
+      "craftsmanShop": "Craftsman Shop",
+      "businessPlace": "Business Place"
+    },
+    "interestPointTypeSport": {
+      "stadium": "Stadium",
+      "arena": "Arena",
+      "sportPlace": "Sport Place",
+      "miniGold": "Minigolf",
+      "swimmingPool": "Swimming Pool",
+      "bowling": "Bowling"
+    },
+    "interestPointTypePlaceToVisit": {
+      "amusementPark": "Amusement Park",
+      "church": "Church",
+      "cinema": "Cinema",
+      "culturalSite": "Cultural Site",
+      "cyclingTour": "Cycling Tour",
+      "landForm": "Landform",
+      "naturalHeritage": "Natural Heritage",
+      "remarkableBuilding": "Remarkable Building",
+      "theater": "Theater",
+      "library": "Library",
+      "cityHeritage": "City Heritage",
+      "museum": "Museum",
+      "castle": "Castle",
+      "river": "River",
+      "leisureComplex": "Leisure Complex",
+      "roadTour": "Road Tour",
+      "parkGarden": "Park Garden",
+      "walkingTour": "Walking Tour"
+    },
+    "interestPointTypeGroup": {
+      "accomodation": "Accommodation",
+      "restauration": "Restauration",
+      "placeToVisit": "Place to visit",
+      "shop": "Shopping",
+      "sport": "Sport"
     }
   }
 }
