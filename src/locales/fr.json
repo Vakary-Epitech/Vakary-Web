@@ -106,20 +106,24 @@
         },
         "errors": {
             "idWrong": "Aucun résultat de recherche",
-            "messageID": "Votre recherche ne donne aucun résultat. Veuillez réessayer avec d'autres informations.",
-            "codeWrong": "Code invalide",
-            "messageCode": "Le code entré est incorrect. Veuillez vérifier vos emails.",
-            "password": "Nouveau mot de passe invalide",
-            "messagePassword": "Votre mot de passe doit contenir minimum 8 caractères, au moins une minuscule une majuscule et un chiffre."
+            "messageID": "Votre recherche ne donne aucun résultat. Veuillez réessayer avec d'autres informations."
         },
         "success": {
             "idCorrect": "Compte trouvé",
-            "messageID": "Veuillez entrer le code reçu par email."
+            "messageID": "Un email contenant des instructions a été envoyé à l'adresse fournie. Veuillez vérifier votre boîte de réception et suivre les étapes indiquées pour continuer le processus."
         },
         "buttons": {
             "cancel": "Annuler",
-            "search": "Rechercher",
-            "change": "Changer de mot de passe"
+            "search": "Rechercher"
+        }
+    },
+    "resetPassword": {
+        "title": "Réinitialisation du mot de passe",
+        "errors": {
+            "password": "Nouveau mot de passe invalide",
+            "messagePassword": "Votre mot de passe doit contenir minimum 8 caractères, au moins une minuscule une majuscule et un chiffre.",
+            "error": "Une erreur inattendue s'est produite.",
+            "messageError": "Veuillez réessayer plus tard."
         }
     },
     "groupCards": {

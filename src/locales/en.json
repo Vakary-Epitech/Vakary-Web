@@ -111,20 +111,24 @@
     },
     "errors": {
       "idWrong": "No Search Results",
-      "messageID": "Your search did not return any results. Please try again with different information.",
-      "codeWrong": "Invalid Code",
-      "messageCode": "The code entered is incorrect. Please check your email.",
-      "password": "New password is invalid",
-      "messagePassword": "Your password must contain at least 8 characters, including at least one lowercase letter, one uppercase letter, and one number"
+      "messageID": "Your search did not return any results. Please try again with different information."
     },
     "success": {
       "idCorrect": "Account Found",
-      "messageID": "Please enter the code received by email."
+      "messageID": "An email with instructions has been sent to the provided address. Please check your inbox and follow the steps outlined to proceed with the process."
     },
     "buttons": {
       "cancel": "Cancel",
-      "search": "Search",
-      "change": "Change Password"
+      "search": "Search"
+    }
+  },
+  "resetPassword": {
+    "title": "Password Reset",
+    "errors": {
+        "password": "Invalid new password",
+        "messagePassword": "Your password must be at least 8 characters long and include at least one lowercase letter, one uppercase letter, and one number.",
+        "error": "An unexpected error occurred.",
+        "messageError": "Please try again later."
     }
   },
   "profilePage": {
