@@ -1,8 +1,8 @@
 import { mount } from '@vue/test-utils'
-import ForgotPassword from '@/components/UI/forgotPassword.vue'
+import ResetPassword from '@/components/page/ResetPassword.vue'
 import i18n from '../../src/i18n.js'
 
-describe('ForgotPassword', () => {
+describe('ResetPassword', () => {
     let wrapper
   
     const mockStore = {
@@ -15,7 +15,7 @@ describe('ForgotPassword', () => {
       };
   
     beforeEach(() => {
-      wrapper = mount(ForgotPassword, {
+      wrapper = mount(ResetPassword, {
         global: {
           plugins: [i18n],
           mocks: {
@@ -29,11 +29,6 @@ describe('ForgotPassword', () => {
     afterEach(() => {
       wrapper.unmount()
     })
-
-    it('should emit openLogin event when openLoginPage is called', () => {
-      wrapper.vm.openLoginPage();
-      expect(wrapper.emitted().openLogin).toBeTruthy();
-    });
 
     it('should not valid password', () => {
       expect(wrapper.vm.isValidPassword("test")).toBe(false);

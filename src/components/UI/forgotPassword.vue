@@ -43,9 +43,6 @@ export default {
     }
   },
   methods: {
-    openLoginPage() {
-      this.$emit("openLogin");
-    },
     requestPasswordReset() {
       this.userDontExist = false,
       this.$store.dispatch("requestPasswordReset", this.id).then(() => {

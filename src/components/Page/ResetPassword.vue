@@ -67,7 +67,7 @@ export default {
         }
     },
     mounted() {
-        this.$store.dispatch("verifyTokenPasswordReset", this.$route.params.id).then(() => {
+        this.$store.dispatch("verifyTokenPasswordReset", this.$route?.params?.id).then(() => {
             this.isTokenVerified = true;
         });
     },
