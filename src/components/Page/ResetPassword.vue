@@ -60,7 +60,7 @@
 export default {
     data() {
         return {
-            isTokenVerified: true,
+            isTokenVerified: false,
             newPassword: "",
             errorPassword: false,
             error: false,
