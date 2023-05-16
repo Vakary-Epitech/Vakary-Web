@@ -129,7 +129,8 @@
         "messagePassword": "Your password must be at least 8 characters long and include at least one lowercase letter, one uppercase letter, and one number.",
         "error": "An unexpected error occurred.",
         "messageError": "Please try again later."
-    }
+    },
+    "button": "Reset password"
   },
   "profilePage": {
     "edit": "Edit",

@@ -124,7 +124,8 @@
             "messagePassword": "Votre mot de passe doit contenir minimum 8 caractères, au moins une minuscule une majuscule et un chiffre.",
             "error": "Une erreur inattendue s'est produite.",
             "messageError": "Veuillez réessayer plus tard."
-        }
+        },
+        "button": "Changer de mot de passe"
     },
     "groupCards": {
         "group": "Groupe",

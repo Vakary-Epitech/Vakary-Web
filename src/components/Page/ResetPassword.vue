@@ -36,7 +36,7 @@
                     :placeholder="$t('forgetPassword.placeholders.password')">
                 </div>
                 <div>
-                    <button @click="(sendNewPassword)" class="btn newButton text-center">{{ $t("forgetPassword.buttons.change")}}</button>
+                    <button @click="(sendNewPassword)" class="btn newButton text-center">{{ $t("resetPassword.button")}}</button>
                 </div>
             </div>
             <div v-else>
@@ -60,7 +60,7 @@
 export default {
     data() {
         return {
-            isTokenVerified: false,
+            isTokenVerified: true,
             newPassword: "",
             errorPassword: false,
             error: false,
