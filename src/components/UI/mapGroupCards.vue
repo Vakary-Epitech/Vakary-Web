@@ -10,6 +10,11 @@
 <script>
 export default {
     props: ["groupName", "numberOfMember"],
+    mounted() {
+        this.$store.dispatch("getGroup").then(() => {
+            this.$store.dispatch("getItinerary")
+        });
+    },
 }
 </script>
 

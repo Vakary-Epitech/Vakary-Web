@@ -205,8 +205,6 @@ export default {
             let groupIndex = this.$store.state.globalNonPersistantData.groups.findIndex(group => group.id === this.groupInformations.id);
             const group = this.$store.state.globalNonPersistantData.groups[groupIndex];
             const user = this.$store.state.globalNonPersistantData.groups[groupIndex].emails[index];
-            console.log("user", user);
-            console.log("group", group);
 
             this.$store.dispatch("patch", {
                 path: "group_user/deleteUserFromGroup",

@@ -17,7 +17,6 @@ const apiStore = {
                     };
 
                     axios.request(config).then((itinerary) => {
-                        console.log(itinerary.data.itinerary)
                         context.commit('UPDATE_ITINERARY', itinerary.data.itinerary);
                         resolve(itinerary.data);
                     }).catch((error) => {
@@ -85,7 +84,6 @@ const apiStore = {
             return new Promise((resolve, reject) => {
                 try {
                     axios.post(wording.serverAdress + "login", { username: this.state.userStore.mail, password: password }).then((canAuthentify) => {
-                        console.log(canAuthentify);
                         context.commit('UPDATE_USER_INFO', canAuthentify);
                         resolve(canAuthentify);
                     }).catch((error) => {
@@ -138,6 +136,9 @@ const apiStore = {
                     }
                     axios.request(config).then((group) => {
                         context.commit('UPDATE_USER_GROUP', group);
+                        for (let id in group.data.groups) {
+                            context.dispatch("getGroupStatus", group.data.groups[id]);
+                        }
                         resolve(group.data);
                     }).catch((error) => {
                         reject(error);
@@ -171,7 +172,7 @@ const apiStore = {
                             file: groupInformation.picture,
                         },
                     }
-                    
+
                     axios.request(config).then((group) => {
                         context.commit('ADD_NEW_GROUP', group);
                         resolve(group);
@@ -234,7 +235,6 @@ const apiStore = {
             return new Promise((resolve, reject) => {
                 try {
                     axios.put(wording.serverAdress + "register", { email: this.state.userStore.mail, password: password, username: this.state.userStore.username }).then((canAuthentify) => {
-                        console.log(canAuthentify);
                         context.commit('UPDATE_USER_INFO', canAuthentify);
                         resolve(canAuthentify)
                     }).catch((error) => {
@@ -331,7 +331,6 @@ const apiStore = {
                     }
 
                     axios.request(config).then((response) => {
-                        console.log("group user", response.data.groupUser);
                         for (let userStatus in response.data.groupUser) {
                             context.commit('UDPATE_GROUP_USER_STATUS', response.data.groupUser[userStatus]);
                         }
@@ -363,7 +362,6 @@ const apiStore = {
                     }
 
                     axios.request(config).then((response) => {
-                        console.log(response);
                         resolve(response);
                     }).catch((error) => {
                         reject(error);
@@ -378,7 +376,6 @@ const apiStore = {
                 try {
                     axios.patch(wording.serverAdress + path, { ...data }, { headers: { "Authorization": this.state.userStore.token } }).then((response) => {
                         // context.commit('UPDATE_USER_INFO', response);
-                        console.log(response);
                         resolve(response);
                     }).catch((error) => {
                         reject(error);
@@ -387,7 +384,49 @@ const apiStore = {
                     reject(error);
                 }
             })
-        }
+        },
+        calculatePath(context, itinerary) {
+            return new Promise((resolve, reject) => {
+                try {
+                    if (itinerary.itineraryPOI.length < 2) {
+                        return;
+                    }
+                    let arrayOfOrigin = [];
+                    for (let itineraryData in itinerary.itineraryPOI) {
+                        arrayOfOrigin.push({
+                            lat: itinerary.itineraryPOI[itineraryData].Localisation.latitude,
+                            lng: itinerary.itineraryPOI[itineraryData].Localisation.longitude,
+                        })
+                    }
+
+                    const destination = arrayOfOrigin[arrayOfOrigin.length - 1]
+                    const origin = arrayOfOrigin[0]
+
+                    arrayOfOrigin.pop();
+                    arrayOfOrigin.shift();
+
+                    let config = {
+                        method: 'post',
+                        maxBodyLength: Infinity,
+                        url: wording.serverAdress + "getPath",
+                        data: {
+                            destination: destination,
+                            origin: origin,
+                            waypoints: arrayOfOrigin,
+                        }
+                    }
+                    axios.request(config).then((steps) => {
+                        context.commit('UPDATE_PATH', steps.data.path);
+                        resolve(steps);
+                    }).catch((error) => {
+                        console.log(error);
+                    })
+
+                } catch (error) {
+                    reject(error);
+                }
+            })
+        },
     },
 }
 

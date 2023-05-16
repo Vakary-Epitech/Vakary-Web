@@ -247,6 +247,7 @@ export default {
                 group: this.$store.state.globalNonPersistantData.groups[this.indexOfGroup],
                 handicapAccess: false,
             }).then(() => {
+                this.$store.dispatch("getItinerary");
                 this.$emit("goBackToItineraryDropdown");
             }).catch((error) => {
                 console.log(error.response.data);

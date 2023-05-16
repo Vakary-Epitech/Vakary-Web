@@ -80,6 +80,7 @@ export default {
     data() {
         return {
             editMode: false,
+            description: this.$store.state.userStore.userInfo.description,
             user: this.$store.state.userStore.userInfo,
         }
     },
