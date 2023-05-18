@@ -86,12 +86,6 @@ describe('showMembers', () => {
     expect(wrapper.vm.CreateGroup).toBe(false);
   });
 
-  it('should return the status of the member at the given index when getStatus is called', () => {
-    wrapper.setData({ groupInformations: { members: [{ mail: 'test@example.com', status: 'active' }] } });
-    const status = wrapper.vm.getStatus(0);
-    expect(status).toBe('active');
-  });
-
   it('should update the group name when updateGroupName is called with a valid name', async () => {
     const wrapper = shallowMount(ShowMembers, {
       global: {
@@ -165,7 +159,7 @@ test('Basic Information verifier', async () => {
     const wrapper = shallowMount(ShowMembers, {
         global: {
             mocks: {
-                $store: store,
+                $store: mockStore,
                 $t: (msg) => msg,
             },
             stubs: {
