@@ -288,8 +288,9 @@ export default {
     padding: 15px;
     border-radius: 15px;
     border: 2px solid rgb(192, 150, 40);
-    max-height: 400px;
+    min-height: 300px;
     max-width: 400px;
+    max-height: 80vh;
     overflow: auto;
 }
 

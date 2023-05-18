@@ -63,6 +63,9 @@
             <div class="col-12 mt-3 text-center">
                 <button @click="sendMessage" class="btn-save-group">{{ $t("createGroup.save") }}</button>
             </div>
+            <div v-if="error" class="text-danger">
+                <p>{{ errorMessage }}</p>
+            </div>
             <div v-if="v$.groupInformations.name.$error || errorName" class="text-danger">{{
                 $t("createGroup.errors.name-required") }}</div>
         </div>
@@ -83,6 +86,7 @@ export default {
         return {
             CreateGroup: true,
             errorName: false,
+            error: false,
             mailMember: "",
             firstName: "",
             listMembers: [],
@@ -134,12 +138,15 @@ export default {
             }
             this.errorName = false;
             this.groupInformations.id = uuidv4();
-            console.log(this.groupInformations)
+            this.error = false;
+            this.$store.dispatch("addGroup", this.groupInformations).then( () => {
+                this.CreateGroup = false;
+                this.$emit("goBackToGroupDropdown");
+            }).catch( (error) => {
+                this.error = true;
+                this.errorMessage = error.response.data.message;
+            })
 
-            this.$store.dispatch("addGroup", this.groupInformations);
-            this.CreateGroup = false;
-
-            this.$emit("goBackToGroupDropdown");
         },
         onFileChange(event) {
             const file = event.target.files[0];
@@ -194,8 +201,9 @@ export default {
     border-radius: 15px;
     border: 2px solid rgb(192, 150, 40);
     min-width: 300px;
-    max-height: 400px;
+    min-height: 300px;
     overflow: auto;
+    max-height: 80vh;
 }
 
 ::-webkit-scrollbar {

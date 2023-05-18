@@ -97,7 +97,8 @@
     "nextPoint": "Next point",
     "previousPoint": "Previous point",
     "newGroup": "Create a new group",
-    "openHours": "Open Hours:"
+    "openHours": "Open Hours:",
+    "noOpeningHours": "Unavailable"
   },
   "mapCards": {
     "noGroups": "No groups assigned"

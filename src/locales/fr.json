@@ -141,7 +141,8 @@
         "nextPoint": "Prochain point",
         "previousPoint": "Point précédent",
         "newGroup": "Créer un nouveau groupe",
-        "openHours": "Heure d'ouverture:"
+        "openHours": "Heure d'ouverture:",
+        "noOpeningHours": "Non disponible"
     },
     "mapCards": {
         "noGroups": "Aucun groupe assigné"
