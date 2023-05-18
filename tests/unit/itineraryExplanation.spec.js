@@ -4,9 +4,15 @@ import itineraryExplanation from '@/components/UI/itineraryExplanation.vue'
 
 describe('itineraryExplanation', () => {
   test('should render the component', () => {
-    const wrapper = shallowMount(itineraryExplanation);
-
+    const wrapper = shallowMount(itineraryExplanation, {
+      global: {
+        mocks: {
+          $t: (msg) => msg
+        }
+      }
+    });
     expect(wrapper.exists()).toBe(true);
+      
   });
 });
 
