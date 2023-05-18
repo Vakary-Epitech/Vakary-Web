@@ -21,12 +21,13 @@ export default {
         }
     },
     created() {
-        console.log(this.itinerary)
     },
     mounted() {
         this.$store.dispatch("getGroup").then(() => {
+            this.$store.dispatch("getItinerary")
             const group = this.$store.state.globalNonPersistantData.groups.find((group) => {
-                return group.itinerary.id === this.itinerary.id;
+                if (group.itinerary)
+                    group.itinerary.id === this.itinerary.id;
             });
             if (group) {
                 this.groupName = group.name;

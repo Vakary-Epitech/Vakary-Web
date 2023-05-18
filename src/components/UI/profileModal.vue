@@ -15,9 +15,9 @@
                     <div class="text-center">
                         <h1 class="overflow" style="max-width:200px">{{ user.username }}</h1>
                     </div>
-                    <div v-if="user?.description" class="col-12 overflow">
+                    <div v-if="description" class="col-12 overflow">
                         <span>{{ $t("profilePage.info") }}</span><br>
-                        <p class="description">{{ user?.description }}</p>
+                        <p class="description">{{ description }}</p>
                     </div>
                 </div>
                 <div class="row" v-if="editMode">
@@ -27,10 +27,10 @@
                     </div>
                     <div class="col-6 mt-3 offset-3">
                         <span>{{ $t("profilePage.info") }}</span><br>
-                        <textarea v-model="user.description"
-                            :placeholder="user?.description" rows="5" cols="80"
+                        <textarea v-model="description"
+                            :placeholder="description" rows="5" cols="80"
                             maxlength="300">Write stuff here...</textarea>
-                        {{ user?.description?.length }}/300
+                        {{ description?.length }}/300
                     </div>
                     <div class="col-12">
                         <button @click="save" class="btn btn-primary">{{ $t("profilePage.save") }}</button>
@@ -80,6 +80,7 @@ export default {
     data() {
         return {
             editMode: false,
+            description: this.$store.state.userStore.userInfo.description,
             user: this.$store.state.userStore.userInfo,
         }
     },
@@ -103,7 +104,17 @@ export default {
             this.editMode = true
         },
         save() {
-            this.editMode = false
+            this.$store.dispatch('patch', {
+                path: "me",
+                data: {
+                    description: this.description,
+                    userProfileImage: this.$store.state.userStore.userProfileImage,
+                },
+            }).then(() => {
+                this.editMode = false
+            }).catch(() => {
+                console.log("error");
+            })
         },
         disconnectUser() {
             this.$router.push("/");
