@@ -194,8 +194,6 @@ export default {
                 return;
             }
             this.showEmailError = false;
-            //this.groupInformations.members.push({ mail: this.mailMember, status: "pending", admin: false })
-            console.log(this.groupInformations)
 
             this.$store.dispatch("patch", { path: "group/invitation/" + this.groupInformations.backendGroupId, data: { email: this.mailMember } }).then(() => {
                 this.$emit("goBackToGroupDropdown");
