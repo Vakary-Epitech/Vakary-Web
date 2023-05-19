@@ -374,9 +374,6 @@ const apiStore = {
         patch(context, { path, data }) {
             return new Promise((resolve, reject) => {
                 try {
-                    console.log(path);
-                    console.log(data);
-
                     axios.patch(wording.serverAdress + path, { ...data }).then((response) => {
                         // context.commit('UPDATE_USER_INFO', response);
                         resolve(response);
