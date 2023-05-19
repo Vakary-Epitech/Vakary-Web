@@ -250,7 +250,7 @@ const apiStore = {
             return new Promise((resolve, reject) => {
                 try {
                     axios.patch(wording.serverAdress + "group/" + data.groupId, { groupname: data.groupName, itineraryId: data.itineraryId }).then((response) => {
-                        resolve(response);
+                        resolve(    response);
                     }).catch((error) => {
                         reject(error);
                     })
@@ -374,7 +374,10 @@ const apiStore = {
         patch(context, { path, data }) {
             return new Promise((resolve, reject) => {
                 try {
-                    axios.patch(wording.serverAdress + path, { ...data }, { headers: { "Authorization": this.state.userStore.token } }).then((response) => {
+                    console.log(path);
+                    console.log(data);
+
+                    axios.patch(wording.serverAdress + path, { ...data }).then((response) => {
                         // context.commit('UPDATE_USER_INFO', response);
                         resolve(response);
                     }).catch((error) => {

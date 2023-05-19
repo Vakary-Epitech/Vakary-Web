@@ -1,3 +1,3 @@
 module.exports = {
-    serverAdress: "https://eip.vakary.fr/v1/" 
+    serverAdress: "http://localhost:8080/v1/" 
 };
