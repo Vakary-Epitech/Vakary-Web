@@ -1,19 +1,17 @@
 <template>
     <div class="explanatoryCardDesign row">
         <div>
-            <div class="my-3 backArrow" @click="goBackToItineraryDropdown"></div>
-            <h4 class="titleLimiterSize">{{ this.selectedItineraryInfo?.itineraryPOI[this.currentWaypointIndex].City.name }}
-            </h4>
+            <div class="mt-3 backArrow" @click="goBackToItineraryDropdown"></div>
+            <h4 class="titleLimiterSize">{{ this.selectedItineraryInfo?.itineraryPOI[this.currentWaypointIndex].City.name }}</h4>
             <div class="ms-3 my-auto text-center titleLimiterSize">
                 <h4>{{ getCurrentPOIName }}</h4>
             </div>
             <div class="imgWrapper text-center">
                 <img class="imageProportion" :src="getCurrentPOIImage" />
             </div>
-            <span class="textMargin descriptionLimiterSize" style="font-size: calc(6px + 1.2vh)">{{ getCurrentPOIDescription
-            }}</span>
+            <span class="textMargin descriptionLimiterSize" style="font-size: calc(6px + 1.2vh)">{{ getCurrentPOIDescription}}</span>
             <div class="openHoursDesign timeSizeLimiter">
-                <!-- <span style="white-space: pre-line; font-size: calc(6px + 1.2vh);">{{ $t("mapPage.openHours") }} <br />{{ getCurrentPOIOpenHours }}</span> -->
+                <span style="white-space: pre-line; font-size: calc(6px + 1.2vh);">{{ $t("mapPage.openHours") }} <br />{{ getCurrentPOIOpenHours }}</span>
             </div>
             <div class="row custom">
                 <div class="col-6 text-start">
@@ -58,7 +56,10 @@ export default {
             return (this.selectedItineraryInfo?.itineraryPOI[this.currentWaypointIndex].image);
         },
         getCurrentPOIOpenHours() {
-            return (this.selectedItineraryInfo?.itineraryPOI[this.currentWaypointIndex].openHours);
+            if (this.selectedItineraryInfo?.itineraryPOI[this.currentWaypointIndex].openingHours === "false") {
+                return (this.$t("mapPage.noOpeningHours"));
+            }
+            return (this.selectedItineraryInfo?.itineraryPOI[this.currentWaypointIndex].openingHours);
         },
     },
     methods: {
@@ -159,7 +160,7 @@ export default {
 }
 
 .descriptionLimiterSize {
-    max-height: 30vh;
+    max-height: 20vh;
     overflow: auto;
 }
 

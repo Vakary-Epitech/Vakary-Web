@@ -17,11 +17,12 @@ describe('itineraryExplanation', () => {
       global: {
         mocks: {
           $store: mockStore,
+          $t: (msg) => msg
 
         }
       }
     });
-
     expect(wrapper.exists()).toBe(true);
+      
   });
 });
