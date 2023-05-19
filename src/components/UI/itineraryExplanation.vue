@@ -15,12 +15,16 @@
             </div>
             <div class="row custom">
                 <div class="col-6 text-start">
-                    <button v-if="this.currentWaypointIndex > 0" class="custom-button" @click="checkPreviousPOI"><i class="fa-solid fa-2xl fa-arrow-left custom-arrow"></i></button>
+                    <button v-if="this.currentWaypointIndex > 0" class="custom-button" @click="checkPreviousPOI"><i
+                            class="fa-solid fa-2xl fa-arrow-left custom-arrow"></i></button>
                     <span class="ms-1" v-if="this.currentWaypointIndex > 0"> {{ $t("mapPage.previousPoint") }}</span>
                 </div>
                 <div class="col-6 text-end">
-                    <span v-if="this.currentWaypointIndex < this.selectedItineraryInfo?.itineraryPOI.length - 1"> {{ $t("mapPage.nextPoint") }}</span>
-                    <button v-if="this.currentWaypointIndex < this.selectedItineraryInfo?.itineraryPOI.length - 1" class="custom-button ms-1" @click="checkNextPOI"><i class="fa-solid fa-2xl fa-arrow-right custom-arrow"></i></button>
+                    <span v-if="this.currentWaypointIndex < this.selectedItineraryInfo?.itineraryPOI.length - 1"> {{
+                        $t("mapPage.nextPoint") }}</span>
+                    <button v-if="this.currentWaypointIndex < this.selectedItineraryInfo?.itineraryPOI.length - 1"
+                        class="custom-button ms-1" @click="checkNextPOI"><i
+                            class="fa-solid fa-2xl fa-arrow-right custom-arrow"></i></button>
                 </div>
             </div>
         </div>
@@ -34,6 +38,12 @@ export default {
         return {
             currentWaypointIndex: 0,
         }
+    },
+    created() {
+        // console.log(this.selectedItineraryInfo);
+    },
+    mounted() {
+        this.$store.dispatch("calculatePath", this.selectedItineraryInfo)
     },
     computed: {
         getCurrentPOIName() {
@@ -133,6 +143,7 @@ export default {
     margin-top: calc(2px + 0.6vh);
     margin-bottom: calc(2px + 0.6vh);
 }
+
 .textMargin {
     display: flex;
     margin-left: calc(3px + 0.6vw);
@@ -161,7 +172,7 @@ export default {
 .timeSizeLimiter {
     margin-top: 15px;
     max-height: 14vh;
-    overflow: auto;   
+    overflow: auto;
 }
 
 div.backArrow {
@@ -325,4 +336,5 @@ div.backArrowBottom {
 .slide-fade-leave-to {
     transform: translateX(20px);
     opacity: 0;
-}</style>
+}
+</style>

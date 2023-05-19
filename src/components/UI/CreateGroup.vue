@@ -139,7 +139,13 @@ export default {
             this.errorName = false;
             this.groupInformations.id = uuidv4();
             this.error = false;
-            this.$store.dispatch("addGroup", this.groupInformations).then( () => {
+            this.$store.dispatch("addGroup", this.groupInformations).then(() => {
+                this.$store.dispatch("getGroup").then((groups) => {
+                    for (let groupsId in groups["groups"]) {
+                        this.$store.dispatch("getGroupStatus", groups["groups"][groupsId]);
+                    }
+                });
+            }).then( () => {
                 this.CreateGroup = false;
                 this.$emit("goBackToGroupDropdown");
             }).catch( (error) => {
