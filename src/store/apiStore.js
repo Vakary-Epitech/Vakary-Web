@@ -374,7 +374,7 @@ const apiStore = {
         patch(context, { path, data }) {
             return new Promise((resolve, reject) => {
                 try {
-                    axios.patch(wording.serverAdress + path, { ...data }).then((response) => {
+                    axios.patch(wording.serverAdress + path, { ...data }, { headers: { "Authorization": this.state.userStore.token } }).then((response) => {
                         // context.commit('UPDATE_USER_INFO', response);
                         resolve(response);
                     }).catch((error) => {
