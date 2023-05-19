@@ -237,6 +237,7 @@ export default {
                 duration += 24;
             }
             this.generateGoodFormat(this.selectedPOIs);
+            this.error = "";
             this.$store.dispatch("createNewItinerary", {
                 city: this.city,
                 availableTime: duration,

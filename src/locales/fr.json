@@ -142,7 +142,10 @@
         "previousPoint": "Point précédent",
         "newGroup": "Créer un nouveau groupe",
         "openHours": "Heure d'ouverture:",
-        "noOpeningHours": "Non disponible"
+        "noOpeningHours": "Non disponible",
+        "invitation": "Vous avez été invité à rejoindre ce groupe",
+        "accept": "Accepter",
+        "decline": "Refuser"
     },
     "mapCards": {
         "noGroups": "Aucun groupe assigné"
@@ -192,6 +195,9 @@
         "changePicture": "Changer la photo de groupe",
         "deletePicture": "Supprimer la photo de groupe",
         "save": "Sauvegarder",
+        "itineraries": "Vos itinéraires",
+        "idItinerary": "Identifiant de l'itinéraire",
+        "addGroupItinerary": "Ajouter un itinéraire au groupe",
         "placeholders": {
             "mail": "Adresse mail pour ajouter un membre"
         },

@@ -278,7 +278,9 @@ const apiStore = {
             return new Promise((resolve, reject) => {
                 try {
                     axios.post(wording.serverAdress + path, { ...data }).then((response) => {
-                        context.commit('UPDATE_USER_INFO', response);
+                        if (path != "forgotPassword") {
+                            context.commit('UPDATE_USER_INFO', response);
+                        }
                         resolve(response);
                     }).catch((error) => {
                         reject(error);

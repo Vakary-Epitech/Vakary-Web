@@ -116,15 +116,30 @@
                 <div class="cursorOnButton" v-for="(group, index) in this.$store.state.globalNonPersistantData.groups"
                   :key="group.id">
                   <div class="topBorder mt-2">&nbsp;</div>
-                  <i class="fas fa-users ms-2 mt-2"></i>
-                  <i class="fas fa-person fa-lg me-2 mt-2" style="float: right"></i>
-                  <Transition name="slide-fade">
-                    <mapGroupCardsVue :groupName="group.name" :numberOfMember="group.emails.length"
-                      @click=" groupCardsHasBeenClicked(index)" :index="index" />
-                  </Transition>
-                  <div v-if="shouldDisplayButton(group.emails)">
-                    <button @click="groupInvitation(group.backendGroupId, true)">Accept</button>
-                    <button @click="groupInvitation(group.backendGroupId, false)">Refuse</button>
+                  <div @click=" groupCardsHasBeenClicked(index)">
+                    <i class="fas fa-users ms-4 mt-2"></i>
+                    <i class="fas fa-person fa-lg me-3 mt-2" style="float: right"></i>
+                    <Transition name="slide-fade">
+                      <mapGroupCardsVue :groupName="group.name" :numberOfMember="group.emails.length"
+                         :index="index" />
+                    </Transition>
+                  </div>
+                  <div v-if="shouldDisplayButton(group.emails)" class="row my-2">
+                    <div class="col-12 text-center">
+                      {{ $t("mapPage.invitation") }}
+                    </div>
+                    <div class="col-6 text-center">
+                      <button class="button-invit" @click="groupInvitation(group.backendGroupId, true)">
+                        <i class="fa-solid fa-check custom-check"></i>
+                        <span class="ms-1">{{ $t("mapPage.accept") }}</span>
+                      </button>
+                    </div>
+                    <div class="col-6 text-center">
+                      <button class="button-invit" @click="groupInvitation(group.backendGroupId, false)">
+                        <i class="fa-solid fa-xmark custom-xmark"></i>
+                        <span class="ms-1">{{ $t("mapPage.decline") }}</span>
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -447,6 +462,27 @@ export default {
 </script>
 
 <style scoped>
+
+.button-invit {
+  background-color: #fff;
+  border: solid 1px rgb(192, 150, 40);
+  color: black;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+.button-invit:hover {
+  background-color: rgb(192, 150, 40);
+  color: white;
+}
+
+.custom-check {
+    color: green;
+}
+
+.custom-xmark {
+    color: red;
+}
 .componentsGroupDropdown {
   min-width: 400px;
   max-height: 300px !important;
@@ -475,6 +511,7 @@ export default {
 
 .widgetPanel {
   display: flex;
+  max-width: 400px;
   flex-direction: column;
   /* max-height: 70vh; */
 }

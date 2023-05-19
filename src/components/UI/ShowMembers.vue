@@ -85,24 +85,26 @@
                     </div>
                 </section>
 
-                <div class="col-12" v-if="$store.state.globalNonPersistantData?.itinerary.length > 0">
-                    <span>Vos Itinéraires</span><br>
-                    <button v-if="$store.state.globalNonPersistantData?.itinerary.length > 1" @click="prev" class="black"
-                        type="button" data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Previous</span>
-                    </button>
-                    <button v-if="$store.state.globalNonPersistantData?.itinerary.length > 1" @click.prevent="next"
-                        type="button" data-bs-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Next</span>
-                    </button>
-                    <div style="display: flex; margin-left: 50px">
-                        <input type="checkbox" id="checkbox" v-model="addGroupToItinerary" />
-                        <label for="checkbox">Ajouter le groupe a l'itinéraire</label>
+                <div class="row" v-if="$store.state.globalNonPersistantData?.itinerary.length > 0">
+                    <p>{{ $t("showMembers.itineraries") }}</p>
+                    <div class="col-3 my-auto">
+                        <button class="custom-button" v-if="$store.state.globalNonPersistantData?.itinerary.length > 1" @click="prev">
+                            <i class="fa-solid fa-arrow-left fa-xl custom-arrow"></i>
+                        </button>
                     </div>
-                    itinerary id:
-                    {{ this.$store.state.globalNonPersistantData?.itinerary[indexItinerary].id }}
+                    <div class="col-6 text-center">
+                        <span>{{ $t("showMembers.idItinerary") }}</span><br>
+                        {{ this.$store.state.globalNonPersistantData?.itinerary[indexItinerary].id }}
+                    </div>
+                    <div class="col-3 my-auto text-end">
+                        <button class="custom-button" v-if="$store.state.globalNonPersistantData?.itinerary.length > 1" @click.prevent="next">
+                            <i class="fa-solid fa-arrow-right fa-xl custom-arrow"></i>
+                        </button>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="checkbox" v-model="addGroupToItinerary" />
+                        <label for="checkbox"><p>{{ $t("showMembers.addGroupItinerary") }}</p></label>
+                    </div>
                 </div>
 
                 <div class="col-12 mt-3 text-center">
@@ -290,6 +292,21 @@ export default {
 </script>
 
 <style scoped>
+.custom-button {
+    margin-bottom: 15px;
+    background-color: #fff;
+    border: 3px solid #fff;
+    border-radius: 15px;
+}
+
+.custom-button:hover {
+    border: 3px solid rgb(192, 150, 40);
+}
+
+.custom-arrow {
+    color: rgb(192, 150, 40);
+}
+
 .inputClass {
     border: 1px solid rgb(192, 150, 40);
     border-radius: 5px;

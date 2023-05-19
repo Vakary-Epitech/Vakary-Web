@@ -25,7 +25,7 @@
       <button @click="(openLoginPage)" class="btn buttonCancelCards text-center">{{ $t("forgetPassword.buttons.cancel")}}</button>
     </div>
     <div class="col-6">
-      <button @click="(requestPasswordReset)" class="btn newButton text-center">{{ $t("forgetPassword.buttons.search")}}</button>
+      <button @click="(passwordReset)" class="btn newButton text-center">{{ $t("forgetPassword.buttons.search")}}</button>
     </div>
   </div>
 </template>
@@ -46,7 +46,7 @@ export default {
     openLoginPage() {
       this.$emit('openLogin');
     },
-    requestPasswordReset() {
+    passwordReset() {
       this.userDontExist = false,
       this.$store.dispatch("post", {
         path: "forgotPassword",
