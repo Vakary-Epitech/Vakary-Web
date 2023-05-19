@@ -250,7 +250,7 @@ const apiStore = {
             return new Promise((resolve, reject) => {
                 try {
                     axios.patch(wording.serverAdress + "group/" + data.groupId, { groupname: data.groupName, itineraryId: data.itineraryId }).then((response) => {
-                        resolve(    response);
+                        resolve(response);
                     }).catch((error) => {
                         reject(error);
                     })
