@@ -196,7 +196,11 @@ export default {
                 return;
             }
             this.showEmailError = false;
-            this.groupInformations.members.push({ mail: this.mailMember, status: "pending", admin: false })
+
+            this.$store.dispatch("patch", { path: "group/invitation/" + this.groupInformations.backendGroupId, data: { email: this.mailMember } }).then(() => {
+                this.$emit("goBackToGroupDropdown");
+            })
+
             this.mailMember = '';
         },
         isValidEmail(email) {
@@ -216,6 +220,7 @@ export default {
                 }
             }).then(() => {
                 this.$store.dispatch("getGroup");
+                this.$emit("goBackToGroupDropdown");
             })
         },
         editName() {
