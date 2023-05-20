@@ -251,8 +251,7 @@ export default {
                 this.$store.dispatch("getItinerary");
                 this.$emit("goBackToItineraryDropdown");
             }).catch((error) => {
-                console.log(error.response.data);
-                this.error = error.response.data;
+                this.error = error?.response?.data;
             })
         },
     }

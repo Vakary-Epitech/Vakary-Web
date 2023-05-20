@@ -9,7 +9,7 @@
         <span v-if="emailError">{{ $t("inscriptionPage.errors.email")}}</span>
         <span v-else-if="userNameError">{{ $t("inscriptionPage.errors.username")}}</span>
         <span v-else-if="passwordError">{{ $t("inscriptionPage.errors.password")}}</span>
-        <span v-else>{{ $t("inscriptionPage.errors.error")}}</span>
+        <span v-else>{{ errorMessage }}</span>
       </p>
     </div>
     <div class="my-2">
@@ -39,6 +39,7 @@ export default {
   data() {
     return {
       password: "",
+      errorMessage: "",
       passwordError: false,
       error: false,
       emailError: false,
@@ -87,6 +88,7 @@ export default {
       if (this.error === true) {
         return;
       }
+      this.errorMessage = "";
       this.$store.dispatch("put", {
         path: 'register',
         data: {
@@ -98,7 +100,7 @@ export default {
           this.$store.state.userStore.userIsLoggedIn = true;
           this.$router.push("/mapPage");
         }).catch((error) => {
-          console.log(error);
+          this.errorMessage = error?.response?.data?.message;
           this.error = true;
       })
     }
