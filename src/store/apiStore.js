@@ -172,7 +172,6 @@ const apiStore = {
                             file: groupInformation.picture,
                         },
                     }
-
                     axios.request(config).then((group) => {
                         context.commit('ADD_NEW_GROUP', group);
                         resolve(group);
@@ -260,11 +259,22 @@ const apiStore = {
             })
         },
 
-        // get function
-        get(context, path) {
+        get(context, {path, token}) {
             return new Promise((resolve, reject) => {
                 try {
-                    axios.get(wording.serverAdress + path).then((response) => {
+                    const headers = {};
+                    if (token) {
+                        headers.Authorization = token;
+                    }
+                    axios.get(wording.serverAdress + path, { headers }).then((response) => {
+                        if (path == "group/getAll/me") {
+                            context.commit('UPDATE_USER_GROUP', response);
+                        }
+                        if (path == "") {
+                            for (let userStatus in response.data.groupUser) {
+                                context.commit('UDPATE_GROUP_USER_STATUS', response.data.groupUser[userStatus]);
+                            }
+                        }
                         resolve(response);
                     }).catch((error) => {
                         reject(error);
@@ -274,10 +284,14 @@ const apiStore = {
                 }
             })
         },
-        post(context, { path, data }) {
+        post(context, { path, data, token }) {
             return new Promise((resolve, reject) => {
                 try {
-                    axios.post(wording.serverAdress + path, { ...data }).then((response) => {
+                    const headers = {};
+                    if (token) {
+                        headers.Authorization = token;
+                    }
+                    axios.post(wording.serverAdress + path, { ...data }, { headers }).then((response) => {
                         if (path != "forgotPassword") {
                             context.commit('UPDATE_USER_INFO', response);
                         }
@@ -291,11 +305,20 @@ const apiStore = {
             })
         },
 
-        put(context, { path, data }) {
+        put(context, { path, data, token }) {
             return new Promise((resolve, reject) => {
                 try {
-                    axios.put(wording.serverAdress + path, { ...data }).then((response) => {
-                        context.commit('UPDATE_USER_INFO', response);
+                    const headers = {};
+                    if (token) {
+                        headers.Authorization = token;
+                    }
+                    axios.put(wording.serverAdress + path, { ...data }, { headers }).then((response) => {
+                        if (path == "group") {
+                            context.commit('ADD_NEW_GROUP', response);
+                        }
+                        else {
+                            context.commit('UPDATE_USER_INFO', response);
+                        }
                         resolve(response);
                     }).catch((error) => {
                         reject(error);

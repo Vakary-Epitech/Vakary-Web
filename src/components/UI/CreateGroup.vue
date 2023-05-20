@@ -139,20 +139,53 @@ export default {
             this.errorName = false;
             this.groupInformations.id = uuidv4();
             this.error = false;
-            this.$store.dispatch("addGroup", this.groupInformations).then(() => {
-                this.$store.dispatch("getGroup").then((groups) => {
-                    for (let groupsId in groups["groups"]) {
-                        this.$store.dispatch("getGroupStatus", groups["groups"][groupsId]);
-                    }
-                });
+            let mailsList = "";
+            for (let mailIndex in this.groupInformations.members) {
+                if (this.groupInformations.members[mailIndex].mail)
+                    mailsList += this.groupInformations.members[mailIndex].mail + ";";
+            }
+            mailsList = mailsList.slice(0, -1);
+            this.$store.dispatch("put", {
+                path: "group",
+                data: {
+                    emails: mailsList,
+                    groupname: this.groupInformations.name,
+                    file: this.groupInformations.picture
+                },
+                token: this.$store.state.userStore.token,
             }).then( () => {
+                this.$store.dispatch("get", {
+                    path: "group/getAll/me",
+                    token: this.$store.state.userStore.token,
+                }).then((groups) => {
+                    for (let groupsId in groups["groups"]) {
+                        this.$store.dispatch("get", {
+                            path: "group_user/getAll/" + groups["groups"][groupsId].id,
+                            token: this.$store.state.userStore.token,
+                        });
+                    }
+                }).catch( (error) => {
+                    this.errorMessage = error?.response?.data?.message;
+                })
                 this.CreateGroup = false;
                 this.$emit("goBackToGroupDropdown");
             }).catch( (error) => {
                 this.error = true;
-                this.errorMessage = error.response.data.message;
+                this.errorMessage = error?.response?.data?.message;
             })
-
+            // this.$store.dispatch("addGroup", this.groupInformations).then(() => {
+            //     this.$store.dispatch("getGroup").then((groups) => {
+            //         for (let groupsId in groups["groups"]) {
+            //             this.$store.dispatch("getGroupStatus", groups["groups"][groupsId]);
+            //         }
+            //     });
+            // }).then( () => {
+            //     this.CreateGroup = false;
+            //     this.$emit("goBackToGroupDropdown");
+            // }).catch( (error) => {
+            //     this.error = true;
+            //     this.errorMessage = error.response.data.message;
+            // })
         },
         onFileChange(event) {
             const file = event.target.files[0];
