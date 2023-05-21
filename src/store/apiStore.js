@@ -272,7 +272,7 @@ const apiStore = {
                         }
                         if (path == "") {
                             for (let userStatus in response.data.groupUser) {
-                                context.commit('UDPATE_GROUP_USER_STATUS', response.data.groupUser[userStatus]);
+                                context.commit('UPDATE_GROUP_USER_STATUS', response.data.groupUser[userStatus]);
                             }
                         }
                         resolve(response);
@@ -357,7 +357,7 @@ const apiStore = {
 
                     axios.request(config).then((response) => {
                         for (let userStatus in response.data.groupUser) {
-                            context.commit('UDPATE_GROUP_USER_STATUS', response.data.groupUser[userStatus]);
+                            context.commit('UPDATE_GROUP_USER_STATUS', response.data.groupUser[userStatus]);
                         }
                         resolve(response);
                     }).catch((error) => {

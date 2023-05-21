@@ -161,7 +161,6 @@ export default {
                     for (let groupsId in groups["groups"]) {
                         this.$store.dispatch("get", {
                             path: "group_user/getAll/" + groups["groups"][groupsId].id,
-                            token: this.$store.state.userStore.token,
                         });
                     }
                 }).catch( (error) => {

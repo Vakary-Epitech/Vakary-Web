@@ -116,7 +116,7 @@
                 <div class="cursorOnButton" v-for="(group, index) in this.$store.state.globalNonPersistantData.groups"
                   :key="group.id">
                   <div class="topBorder mt-2">&nbsp;</div>
-                  <div @click=" groupCardsHasBeenClicked(index)">
+                  <div @click=" groupCardsHasBeenClicked(group, index)">
                     <i class="fas fa-users ms-4 mt-2"></i>
                     <i class="fas fa-person fa-lg me-3 mt-2" style="float: right"></i>
                     <Transition name="slide-fade">
@@ -329,11 +329,13 @@ export default {
       this.displayItineraryInformation = false;
       this.mapZoom = 12;
     },
-    groupCardsHasBeenClicked(index) {
-      this.selectedGroup = index;
-      this.groupHasBeenClicked = true;
-      this.showItineraryCreationModal = false;
-      this.showProfile = false;
+    groupCardsHasBeenClicked(group, index) {
+      if (!this.shouldDisplayButton(group.emails)) {
+        this.selectedGroup = index;
+        this.groupHasBeenClicked = true;
+        this.showItineraryCreationModal = false;
+        this.showProfile = false;
+      }
     },
     goBackToGroupDropdown() {
       this.displayGroupInformation = true;

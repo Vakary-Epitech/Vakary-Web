@@ -22,21 +22,26 @@
                             <p v-else-if="askingDelete">{{ $t("showMembers.deleteMessage") }}</p>
                             <h4 v-else class="overflow mt-3">{{ groupInformations.name }}</h4>
                         </div>
-                        <div class="col-2 mx-auto my-auto">
-                            <button v-if="editGroupName" class="btn-check-change-group-name" @click="updateGroupName()"><i
-                                    class="fa-solid fa-check fa-lg"></i></button>
-                            <button v-else-if="askingDelete" class="btn-check-change-group-name" @click="deleteGroup()"><i
-                                    class="fa-solid fa-check fa-lg"></i></button>
-                            <button v-else class="btn-change-group-name" @click="editGroupName = true"><i
-                                    class="fa-solid fa-pen"></i></button>
-                        </div>
-                        <div class="col-2 mx-auto my-auto">
-                            <button v-if="editGroupName" class="btn-mark-change-group-name" @click="leaveEditName()"><i
+                        <div v-if="role == 'admin'" class="col-4 row">
+                            <div class="col-6 my-auto mx-auto">
+                                <button v-if="editGroupName" class="btn-check-change-group-name" @click="updateGroupName()"><i
+                                        class="fa-solid fa-check fa-lg"></i></button>
+                                <button v-else-if="askingDelete" class="btn-check-change-group-name" @click="deleteGroup()"><i
+                                        class="fa-solid fa-check fa-lg"></i></button>
+                                <button v-else class="btn-change-group-name" @click="editGroupName = true"><i
+                                        class="fa-solid fa-pen"></i></button>
+                            </div>
+                            <div class="col-6 my-auto mx-auto">
+                                <button v-if="editGroupName" class="btn-mark-change-group-name" @click="leaveEditName()"><i
                                     class="fa-solid fa-xmark fa-lg"></i></button>
-                            <button v-else-if="askingDelete" class="btn-mark-change-group-name"
-                                @click="leaveAskingDelete()"><i class="fa-solid fa-xmark fa-lg"></i></button>
-                            <button v-else class="btn-delete-group ms-2" @click="messageDeleteGroup"><i
-                                    class="fa-solid fa-trash"></i></button>
+                                    <button v-else-if="askingDelete" class="btn-mark-change-group-name"
+                                    @click="leaveAskingDelete()"><i class="fa-solid fa-xmark fa-lg"></i></button>
+                                    <button v-else class="btn-delete-group ms-2" @click="messageDeleteGroup"><i
+                                        class="fa-solid fa-trash"></i></button>
+                            </div>
+                        </div>
+                        <div v-if="role == 'member'" class="col-4 mx-auto my-auto">
+                            <button @click="leaveGroup" class="btn-delete-group-picture">{{ $t("showMembers.leave") }}</button>
                         </div>
                     </div>
                 </section>
@@ -57,11 +62,11 @@
                         <div class="col-4 status" :class="getStatus(index)">
                             {{ member.status }}
                         </div>
-                        <div class="col-2" v-if="!member.admin">
+                        <div class="col-2 text-center" v-if="role == 'admin' && this.groupInformations.emails[index].role != 'admin'">
                             <button class="trashIcon" @click="deleteMember(index)"><i
                                     class="fa-solid fa-trash"></i></button>
                         </div>
-                        <div class="col-2 text-center" v-else>
+                        <div class="col-2 text-center" v-if="this.groupInformations.emails[index].role == 'admin'">
                             <i class="fas fa-crown goldCrown" aria-hidden="true"></i>
                         </div>
                     </div>
@@ -136,6 +141,7 @@ export default {
                 },
                 id: "",
             },
+            role: "",
             indexItinerary: 0,
             addGroupToItinerary: false,
             newGroupName: "",
@@ -153,6 +159,22 @@ export default {
     },
     created() {
         this.groupInformations = this.groups;
+        this.$store.dispatch("get", {
+            path: "group_user/getAll/" + this.groups.backendGroupId,
+        }).then((response) => {
+            for (let i = 0; response?.data?.groupUser?.length; i++) {
+                if (this.$store.state.userStore.mail == response.data.groupUser[i].User.email) {
+                    this.role = response.data.groupUser[i].role;
+                    break;
+                }
+            }
+            for (let i = 0; i < response?.data?.groupUser?.length; i++) {
+                for (let j = 0; j < this.groupInformations.emails.length; j++) {
+                    if (this.groupInformations.emails[j].emails == response.data.groupUser[i].User.email)
+                        this.groupInformations.emails[j].role = response.data.groupUser[i].role;
+                }
+            }
+        });
         this.newGroupName = this.groupInformations.name;
     },
     methods: {
@@ -256,6 +278,20 @@ export default {
                 size: "",
                 type: "",
             }
+        },
+        leaveGroup() {
+            let groupIndex = this.$store.state.globalNonPersistantData.groups.findIndex(group => group.id === this.groupInformations.id);
+            const group = this.$store.state.globalNonPersistantData.groups[groupIndex];
+            this.$store.dispatch("patch", {
+                path: "group_user/deleteUserFromGroup",
+                data: {
+                    groupId: group.backendGroupId,
+                    email: this.$store.state.userStore.mail,
+                }
+            }).then(() => {
+                this.$store.dispatch("getGroup");
+                this.$emit("goBackToGroupDropdown");
+            })
         },
         onFileChange(event) {
             const file = event.target.files[0];

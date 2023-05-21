@@ -198,6 +198,7 @@
         "itineraries": "Vos itinéraires",
         "idItinerary": "Identifiant de l'itinéraire",
         "addGroupItinerary": "Ajouter un itinéraire au groupe",
+        "leave": "Quitter",
         "placeholders": {
             "mail": "Adresse mail pour ajouter un membre"
         },
