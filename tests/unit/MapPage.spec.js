@@ -6,7 +6,7 @@ import router from '../../src/router/index.js'
 import ItineraryModal from '@/components/UI/itineraryModal.vue'
 
 
-test('wrong password ItineraryModal', async () => {
+test('mapPage', async () => {
   const wrapper = shallowMount(ItineraryModal, {
       global: {
           mocks: {

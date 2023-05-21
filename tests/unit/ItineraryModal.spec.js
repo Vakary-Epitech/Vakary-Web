@@ -1,10 +1,9 @@
-import { shallowMount, mount } from '@vue/test-utils'
+import { shallowMount } from '@vue/test-utils'
 import ItineraryModal from '@/components/UI/itineraryModal.vue'
-import Vuex from 'vuex'
 import store from '../../src/store/store.js'
 import router from '../../src/router/index.js'
 
-test('wrong password ItineraryModal', async () => {
+test('ItineraryModal', async () => {
     const wrapper = shallowMount(ItineraryModal, {
         global: {
             mocks: {
