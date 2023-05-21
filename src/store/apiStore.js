@@ -292,8 +292,11 @@ const apiStore = {
                         headers.Authorization = token;
                     }
                     axios.post(wording.serverAdress + path, { ...data }, { headers }).then((response) => {
-                        if (path != "forgotPassword") {
+                        if (path == "login") {
                             context.commit('UPDATE_USER_INFO', response);
+                        }
+                        if (path == "getPath") {
+                            context.commit('UPDATE_PATH', response.data.path);
                         }
                         resolve(response);
                     }).catch((error) => {
@@ -316,7 +319,12 @@ const apiStore = {
                         if (path == "group") {
                             context.commit('ADD_NEW_GROUP', response);
                         }
-                        else {
+                        if (path == "itinerary/me") {
+                            if (response.data.createdItinerary) {
+                                context.commit('ADD_NEW_ITINERARY', response.data.createdItinerary);
+                            }
+                        }
+                        if (path == "register") {
                             context.commit('UPDATE_USER_INFO', response);
                         }
                         resolve(response);
@@ -328,10 +336,14 @@ const apiStore = {
                 }
             })
         },
-        delete(context, { path }) {
+        delete(context, { path, token }) {
             return new Promise((resolve, reject) => {
                 try {
-                    axios.delete(wording.serverAdress + path, { headers: { "Authorization": this.state.userStore.token } }).then((response) => {
+                    const headers = {};
+                    if (token) {
+                        headers.Authorization = token;
+                    }
+                    axios.delete(wording.serverAdress + path, { headers }).then((response) => {
                         resolve(response);
                     }).catch((error) => {
                         reject(error);
@@ -396,10 +408,14 @@ const apiStore = {
                 }
             })
         },
-        patch(context, { path, data }) {
+        patch(context, { path, data, token }) {
             return new Promise((resolve, reject) => {
                 try {
-                    axios.patch(wording.serverAdress + path, { ...data }, { headers: { "Authorization": this.state.userStore.token } }).then((response) => {
+                    const headers = {};
+                    if (token) {
+                        headers.Authorization = token;
+                    }
+                    axios.patch(wording.serverAdress + path, { ...data }, { headers }).then((response) => {
                         // context.commit('UPDATE_USER_INFO', response);
                         resolve(response);
                     }).catch((error) => {

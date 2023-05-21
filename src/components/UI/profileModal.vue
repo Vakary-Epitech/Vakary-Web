@@ -110,6 +110,7 @@ export default {
                     description: this.description,
                     userProfileImage: this.$store.state.userStore.userProfileImage,
                 },
+                token: this.$store.state.userStore.userToken,
             }).then(() => {
                 this.editMode = false
             }).catch(() => {
@@ -123,6 +124,7 @@ export default {
         deleteUser() {
             this.$store.dispatch('delete', {
                 path: "me",
+                token: this.$store.state.userStore.userToken,
             }).then(() => {
                 this.$router.push("/");
                 this.$store.state.userStore.userIsLoggedIn = false;

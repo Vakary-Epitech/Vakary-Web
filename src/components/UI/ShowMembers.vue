@@ -202,6 +202,8 @@ export default {
                     groupName: this.groupInformations.name,
                     groupId: this.groupInformations.backendGroupId,
                     itineraryId: this.$store.state.globalNonPersistantData.itinerary[this.indexItinerary].id
+                }).catch((error) => {
+                    console.log(error);
                 });
             }
 
@@ -221,7 +223,9 @@ export default {
 
             this.$store.dispatch("patch", { path: "group/invitation/" + this.groupInformations.backendGroupId, data: { email: this.mailMember } }).then(() => {
                 this.$emit("goBackToGroupDropdown");
-            })
+            }).catch((error) => {
+                console.log(error);
+            });
 
             this.mailMember = '';
         },
@@ -241,8 +245,12 @@ export default {
                     email: user.emails,
                 }
             }).then(() => {
-                this.$store.dispatch("getGroup");
+                this.$store.dispatch("getGroup").catch((error) => {
+                    console.log(error);
+                })
                 this.$emit("goBackToGroupDropdown");
+            }).catch((error) => {
+                console.log(error);
             })
         },
         editName() {
@@ -267,7 +275,11 @@ export default {
             this.showMembers = false;
             this.$emit("goBackToGroupDropdown");
             this.$store.dispatch("deleteGroup", this.$store.state.globalNonPersistantData.groups[index]).then(() => {
-                this.$store.dispatch("getGroup");
+                this.$store.dispatch("getGroup").catch((error) => {
+                    console.log(error);
+                })
+            }).catch((error) => {
+                console.log(error);
             });
             this.$store.state.globalNonPersistantData.groups.splice(index, 1);
         },
@@ -289,8 +301,12 @@ export default {
                     email: this.$store.state.userStore.mail,
                 }
             }).then(() => {
-                this.$store.dispatch("getGroup");
+                this.$store.dispatch("getGroup").catch((error) => {
+                    console.log(error);
+                })
                 this.$emit("goBackToGroupDropdown");
+            }).catch((error) => {
+                console.log(error);
             })
         },
         onFileChange(event) {

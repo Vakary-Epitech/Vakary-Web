@@ -232,16 +232,22 @@ export default {
     }
   },
   mounted() {
-    try {
-      this.$store.dispatch("getGroup").then((groups) => {
-        this.$store.dispatch("getItinerary")
+    this.$store.dispatch("getGroup").then((groups) => {
+      this.$store.dispatch("getItinerary").then(() => {
         for (let groupsId in groups["groups"]) {
-          this.$store.dispatch("getGroupStatus", groups["groups"][groupsId]);
+          this.$store.dispatch("getGroupStatus", groups["groups"][groupsId]).catch(
+            (error) => {
+              console.log(error);
+            }
+          );
         }
-      });
-    } catch (error) {
+      })
+      .catch ((error) => {
+        console.log(error);
+      })
+    }).catch((error) => {
       console.log(error);
-    }
+    });
   },
   computed: {
     itineraryCssDropdown() {
@@ -308,16 +314,24 @@ export default {
     },
     groupInvitation(backendGroupId, status) {
       this.$store.dispatch("groupInvitation", { backendGroupId: backendGroupId, status: status }).then(() => {
-        this.$store.dispatch("getItinerary");
+        this.$store.dispatch("getItinerary").catch((error) => {
+          console.log(error);
+        })
         this.$store.dispatch("getGroup").then((groups) => {
           for (let groupsId in groups["groups"]) {
             this.$store.dispatch("getGroupStatus", groups["groups"][groupsId]).then(() => {
-              this.$store.dispatch("getItinerary")
-            });
+              this.$store.dispatch("getItinerary").catch((error) => {
+                console.log(error);
+              })
+            }).catch((error) => {
+              console.log(error);
+            })
           }
         });
 
-      });
+      }).catch((error) => {
+        console.log(error);
+      })
     },
     itineraryCardsHasBeenClicked(itineraryId) {
       this.selectedItinerary = itineraryId + 1;
@@ -422,9 +436,13 @@ export default {
 
     openInfoWindow(label, geolocalisation) {
       if (this.$store.state.mapStore.selectedMarker.length > 2)
-        this.$store.dispatch("resetSelectedMarker");
+        this.$store.dispatch("resetSelectedMarker").catch((error) => {
+          console.log(error);
+        });
       else if (geolocalisation)
-        this.$store.dispatch("markerHasBeenSelected", geolocalisation);
+        this.$store.dispatch("markerHasBeenSelected", geolocalisation).catch((error) => {
+          console.log(error);
+        });
       this.openedMarkerID = label;
     },
 
