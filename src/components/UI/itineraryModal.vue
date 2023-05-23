@@ -238,18 +238,28 @@ export default {
             }
             this.generateGoodFormat(this.selectedPOIs);
             this.error = "";
-            this.$store.dispatch("createNewItinerary", {
-                city: this.city,
-                availableTime: duration,
-                budget: this.budget,
-                nbPeople: this.people,
-                nbChild: this.children,
-                typeResearchLocations: this.generateGoodFormat(this.selectedPOIs),
-                group: this.$store.state.globalNonPersistantData.groups[this.indexOfGroup],
-                handicapAccess: false,
+            this.$store.dispatch("put", {
+                path: "itinerary/me",
+                data: {
+                    city: this.city,
+                    availableTime: duration,
+                    budget: this.budget,
+                    nbPeople: this.people,
+                    nbChild: this.children,
+                    typeResearchLocations: this.generateGoodFormat(this.selectedPOIs),
+                    group: this.$store.state.globalNonPersistantData.groups[this.indexOfGroup],
+                    handicapAccess: false,
+                },
+                token: this.$store.state.userStore.token,
             }).then(() => {
-                this.$store.dispatch("getItinerary");
-                this.$emit("goBackToItineraryDropdown");
+                this.$store.dispatch("get", {
+                    path: "itinerary/getAll/me",
+                    token: this.$store.state.userStore.token,
+                }).then(() => {
+                    this.$emit("goBackToItineraryDropdown");
+                }).catch((error) => {
+                    this.error = error?.response?.data;
+                })
             }).catch((error) => {
                 this.error = error?.response?.data;
             })

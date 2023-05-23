@@ -11,8 +11,25 @@
 export default {
     props: ["groupName", "numberOfMember"],
     mounted() {
-        this.$store.dispatch("getGroup").then(() => {
-            this.$store.dispatch("getItinerary")
+        this.$store.dispatch("get", {
+            path: "group/getAll/me",
+            token: this.$store.state.userStore.token,
+        }).then((response) => {
+            this.$store.commit('UPDATE_USER_GROUP', response);
+            for (let id in response.data.groups) {
+                this.$store.dispatch("get", {
+                    path: "group_user/getAll/" + response.data.groups[id].id,
+                    token: this.$store.state.userStore.token,
+                }).then((response) => {
+                    for (let userStatus in response.data.groupUser) {
+                            this.$store.commit('UPDATE_GROUP_USER_STATUS', response.data.groupUser[userStatus]);
+                        }
+                }).catch((error) => {
+                    console.log(error);
+                })
+            }
+        }).catch((error) => {
+            console.log(error);
         });
     },
 }

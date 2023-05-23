@@ -69,7 +69,10 @@ export default {
     mounted() {
         this.$store.dispatch("verifyTokenPasswordReset", this.$route?.params?.id).then(() => {
             this.isTokenVerified = true;
-        });
+        }).catch((error) => {
+            this.error = true;
+            console.log(error);
+        })
     },
     methods: {
         isValidPassword(password) {

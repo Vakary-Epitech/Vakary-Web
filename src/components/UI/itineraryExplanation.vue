@@ -39,11 +39,36 @@ export default {
             currentWaypointIndex: 0,
         }
     },
-    created() {
-        // console.log(this.selectedItineraryInfo);
-    },
     mounted() {
-        this.$store.dispatch("calculatePath", this.selectedItineraryInfo)
+        if (this.selectedItineraryInfo?.itineraryPOI.length < 2) {
+                        return;
+                    }
+        let arrayOfOrigin = [];
+        for (let itineraryData in this.selectedItineraryInfo?.itineraryPOI) {
+            arrayOfOrigin.push({
+                lat: this.selectedItineraryInfo.itineraryPOI[itineraryData].Localisation.latitude,
+                lng: this.selectedItineraryInfo.itineraryPOI[itineraryData].Localisation.longitude,
+            })
+        }
+
+        const destination = arrayOfOrigin[arrayOfOrigin.length - 1]
+        const origin = arrayOfOrigin[0]
+
+        arrayOfOrigin.pop();
+        arrayOfOrigin.shift();
+        this.$store.dispatch("post", {
+            path: "getPath",
+            data: {
+                origin: origin,
+                destination: destination,
+                waypoints: arrayOfOrigin,
+            }
+        }).then(() => {
+            console.log("all fine")
+        })
+        .catch((error) => {
+            console.log(error);
+        });
     },
     computed: {
         getCurrentPOIName() {

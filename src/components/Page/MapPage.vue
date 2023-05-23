@@ -116,7 +116,7 @@
                 <div class="cursorOnButton" v-for="(group, index) in this.$store.state.globalNonPersistantData.groups"
                   :key="group.id">
                   <div class="topBorder mt-2">&nbsp;</div>
-                  <div @click=" groupCardsHasBeenClicked(index)">
+                  <div @click=" groupCardsHasBeenClicked(group, index)">
                     <i class="fas fa-users ms-4 mt-2"></i>
                     <i class="fas fa-person fa-lg me-3 mt-2" style="float: right"></i>
                     <Transition name="slide-fade">
@@ -232,16 +232,22 @@ export default {
     }
   },
   mounted() {
-    try {
-      this.$store.dispatch("getGroup").then((groups) => {
-        this.$store.dispatch("getItinerary")
+    this.$store.dispatch("getGroup").then((groups) => {
+      this.$store.dispatch("getItinerary").then(() => {
         for (let groupsId in groups["groups"]) {
-          this.$store.dispatch("getGroupStatus", groups["groups"][groupsId]);
+          this.$store.dispatch("getGroupStatus", groups["groups"][groupsId]).catch(
+            (error) => {
+              console.log(error);
+            }
+          );
         }
-      });
-    } catch (error) {
+      })
+      .catch ((error) => {
+        console.log(error);
+      })
+    }).catch((error) => {
       console.log(error);
-    }
+    });
   },
   computed: {
     itineraryCssDropdown() {
@@ -308,16 +314,24 @@ export default {
     },
     groupInvitation(backendGroupId, status) {
       this.$store.dispatch("groupInvitation", { backendGroupId: backendGroupId, status: status }).then(() => {
-        this.$store.dispatch("getItinerary");
+        this.$store.dispatch("getItinerary").catch((error) => {
+          console.log(error);
+        })
         this.$store.dispatch("getGroup").then((groups) => {
           for (let groupsId in groups["groups"]) {
             this.$store.dispatch("getGroupStatus", groups["groups"][groupsId]).then(() => {
-              this.$store.dispatch("getItinerary")
-            });
+              this.$store.dispatch("getItinerary").catch((error) => {
+                console.log(error);
+              })
+            }).catch((error) => {
+              console.log(error);
+            })
           }
         });
 
-      });
+      }).catch((error) => {
+        console.log(error);
+      })
     },
     itineraryCardsHasBeenClicked(itineraryId) {
       this.selectedItinerary = itineraryId + 1;
@@ -329,11 +343,13 @@ export default {
       this.displayItineraryInformation = false;
       this.mapZoom = 12;
     },
-    groupCardsHasBeenClicked(index) {
-      this.selectedGroup = index;
-      this.groupHasBeenClicked = true;
-      this.showItineraryCreationModal = false;
-      this.showProfile = false;
+    groupCardsHasBeenClicked(group, index) {
+      if (!this.shouldDisplayButton(group.emails)) {
+        this.selectedGroup = index;
+        this.groupHasBeenClicked = true;
+        this.showItineraryCreationModal = false;
+        this.showProfile = false;
+      }
     },
     goBackToGroupDropdown() {
       this.displayGroupInformation = true;
@@ -420,9 +436,13 @@ export default {
 
     openInfoWindow(label, geolocalisation) {
       if (this.$store.state.mapStore.selectedMarker.length > 2)
-        this.$store.dispatch("resetSelectedMarker");
+        this.$store.dispatch("resetSelectedMarker").catch((error) => {
+          console.log(error);
+        });
       else if (geolocalisation)
-        this.$store.dispatch("markerHasBeenSelected", geolocalisation);
+        this.$store.dispatch("markerHasBeenSelected", geolocalisation).catch((error) => {
+          console.log(error);
+        });
       this.openedMarkerID = label;
     },
 

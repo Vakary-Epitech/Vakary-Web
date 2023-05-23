@@ -161,8 +161,9 @@ export default {
                     for (let groupsId in groups["groups"]) {
                         this.$store.dispatch("get", {
                             path: "group_user/getAll/" + groups["groups"][groupsId].id,
-                            token: this.$store.state.userStore.token,
-                        });
+                        }).catch( (error) => {
+                            this.errorMessage = error?.response?.data?.message;
+                        })
                     }
                 }).catch( (error) => {
                     this.errorMessage = error?.response?.data?.message;
@@ -173,19 +174,6 @@ export default {
                 this.error = true;
                 this.errorMessage = error?.response?.data?.message;
             })
-            // this.$store.dispatch("addGroup", this.groupInformations).then(() => {
-            //     this.$store.dispatch("getGroup").then((groups) => {
-            //         for (let groupsId in groups["groups"]) {
-            //             this.$store.dispatch("getGroupStatus", groups["groups"][groupsId]);
-            //         }
-            //     });
-            // }).then( () => {
-            //     this.CreateGroup = false;
-            //     this.$emit("goBackToGroupDropdown");
-            // }).catch( (error) => {
-            //     this.error = true;
-            //     this.errorMessage = error.response.data.message;
-            // })
         },
         onFileChange(event) {
             const file = event.target.files[0];

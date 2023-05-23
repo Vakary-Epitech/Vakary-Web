@@ -102,7 +102,7 @@ const globalNonPersistantData = {
                 });
             }
         },
-        UDPATE_GROUP_USER_STATUS(state, userStatus) {
+        UPDATE_GROUP_USER_STATUS(state, userStatus) {
             for (let group in state.groups) {
                 if (state.groups[group].backendGroupId == userStatus.groupId) {
                     const i = state.groups[group].emails.findIndex(mail => mail.emails === userStatus.User.email)
