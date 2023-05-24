@@ -232,6 +232,12 @@ export default {
             }
             this.groupInformations.name = this.newGroupName;
             this.editGroupName = false;
+            this.$store.dispatch("patch", {
+                path: "group/" + this.groupInformations.backendGroupId,
+                data: {
+                    groupname: this.newGroupName,
+                }
+            });
         },
         leaveEditName() {
             this.editGroupName = false;
