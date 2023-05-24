@@ -44,32 +44,12 @@ jobs:
           
       - name: Copy build files and delete old SVN repository
         run: |
-              ls
-              cd svn
-              svn info svn/www/index.html > /dev/null 2>&1
-              if [[ $? -eq 0 ]]; then
-                svn delete --force svn/www/index.html
-              fi
-              svn info svn/www/css > /dev/null 2>&1
-              if [[ $? -eq 0 ]]; then
-                svn delete --force svn/www/css
-              fi
-              svn info svn/www/js > /dev/null 2>&1
-              if [[ $? -eq 0 ]]; then
-                svn delete --force svn/www/js
-              fi
-              svn info svn/www/img > /dev/null 2>&1
-              if [[ $? -eq 0 ]]; then
-                svn delete --force svn/www/img
-              fi
-              svn info svn/www/logoVakary.png > /dev/null 2>&1
-              if [[ $? -eq 0 ]]; then
-                svn delete --force svn/www/logoVakary.png
-              fi
-              svn commit --username ${{ secrets.SVN_USERNAME }} --password ${{ secrets.SVN_PASSWORD }} -m "Delete old files"
-
-              cd ..
-              cp -R dist/* svn/www/
+            ls
+            svn delete --force svn/www/index.html svn/www/css svn/www/js svn/www/img svn/www/logoVakary.png
+            cd svn
+            svn commit  --username ${{ secrets.SVN_USERNAME }} --password ${{ secrets.SVN_PASSWORD }} -m "Delete old "
+            cd ..
+            cp -R dist/* svn/www/
 
       - name: Commit changes to SVN repository
         run: |
