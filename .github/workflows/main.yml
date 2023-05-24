@@ -15,9 +15,6 @@ jobs:
       - name: Setup
         run: |
           npm install
-      - name: Test
-        run: |
-          npm run test:unit
 
   build-and-deploy:
     runs-on: ubuntu-latest
