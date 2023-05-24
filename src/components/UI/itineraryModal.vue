@@ -233,6 +233,7 @@ export default {
             timeOfStart = parseInt(timeOfStart[0]) * 3600 + parseInt(timeOfStart[1]) * 60;
             timeOfEnd = parseInt(timeOfEnd[0]) * 3600 + parseInt(timeOfEnd[1]) * 60;
             let duration = timeOfEnd - timeOfStart;
+            
             if (duration < 0) {
                 duration += 24;
             }

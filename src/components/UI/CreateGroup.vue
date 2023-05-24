@@ -93,7 +93,7 @@ export default {
             groupInformations: {
                 name: "",
                 members: [],
-                photo: "",
+                photo: {},
                 id: ""
             },
             showEmailError: false,
@@ -139,21 +139,9 @@ export default {
             this.errorName = false;
             this.groupInformations.id = uuidv4();
             this.error = false;
-            let mailsList = "";
-            for (let mailIndex in this.groupInformations.members) {
-                if (this.groupInformations.members[mailIndex].mail)
-                    mailsList += this.groupInformations.members[mailIndex].mail + ";";
-            }
-            mailsList = mailsList.slice(0, -1);
-            this.$store.dispatch("put", {
-                path: "group",
-                data: {
-                    emails: mailsList,
-                    groupname: this.groupInformations.name,
-                    file: this.groupInformations.picture
-                },
-                token: this.$store.state.userStore.token,
-            }).then( () => {
+            this.$store.dispatch("addGroup",
+                this.groupInformations
+            ).then(() => {
                 this.$store.dispatch("get", {
                     path: "group/getAll/me",
                     token: this.$store.state.userStore.token,
@@ -165,12 +153,12 @@ export default {
                             this.errorMessage = error?.response?.data?.message;
                         })
                     }
-                }).catch( (error) => {
+                }).catch((error) => {
                     this.errorMessage = error?.response?.data?.message;
                 })
                 this.CreateGroup = false;
                 this.$emit("goBackToGroupDropdown");
-            }).catch( (error) => {
+            }).catch((error) => {
                 this.error = true;
                 this.errorMessage = error?.response?.data?.message;
             })
