@@ -5,7 +5,6 @@
   <div class="fadeshow1">
     <GMapMap :center="getCenterOfMap" :options="options" :zoom="mapZoom" style="width: 100vw; height: 100vh"
       ref="myMapRef">
-      <GMapMarker :position="userPosition" />
       <GMapMarker :key="marker.label" v-for="marker in markersData" :position="marker.geolocalisation"
         :title="marker.label" :clickable="true" @click="openInfoWindow(marker.label, marker.geolocalisation)">
         <GMapInfoWindow :closeclick="true" @closeclick="openInfoWindow(null)" :opened="openedMarkerID === marker.label">
@@ -48,13 +47,12 @@
                 </div>
               </div>
               <div class="topBorder">&nbsp;</div>
-              <div v-for="(itineraryDisplay, index) of itinerary" :key="itineraryDisplay.id">
+              <div v-for="(itineraryDisplay, index) of this.$store.state.globalNonPersistantData.itinerary"
+                :key="itineraryDisplay.id">
                 <Transition name="slide-fade">
-                  <mapCards
-                    @click="itineraryCardsHasBeenClicked(index)"
-                    class="cardOnDropdown mt-2" 
-                    :itinerary="itineraryDisplay"/>
-                  </Transition>
+                  <mapCards @click="itineraryCardsHasBeenClicked(index)" class="cardOnDropdown mt-2"
+                    :itinerary="itineraryDisplay" />
+                </Transition>
                 <div class="topBorder">&nbsp;</div>
               </div>
             </div>
@@ -62,7 +60,7 @@
         </div>
 
         <div v-else-if="showItineraryCreationModal">
-          <itineraryModal @goBackToItineraryDropdown="showItineraryCreationModal = false; this.itinerary = this.$store.state.globalNonPersistantData.itinerary;" style="min-width: 400px" />
+          <itineraryModal @goBackToItineraryDropdown="showItineraryCreationModal = false" style="min-width: 400px" />
         </div>
 
         <div v-else>
@@ -81,8 +79,8 @@
   </div>
 
   <Transition name="slide-fade">
-    <div class="profileModalPosition fadeshow1" v-if=" showProfile ">
-      <profileModal style="max-width:300px"/>
+    <div class="profileModalPosition fadeshow1" v-if="showProfile">
+      <profileModal style="max-width:300px" />
     </div>
   </Transition>
 
@@ -115,15 +113,34 @@
                   </div>
                 </div>
 
-                <div class="cursorOnButton" @click=" groupCardsHasBeenClicked(index)"
-                  v-for="(     group, index     ) in      this.$store.state.globalNonPersistantData.groups     "
+                <div class="cursorOnButton" v-for="(group, index) in this.$store.state.globalNonPersistantData.groups"
                   :key="group.id">
                   <div class="topBorder mt-2">&nbsp;</div>
-                  <i class="fas fa-users ms-2 mt-2"></i>
-                  <i class="fas fa-person fa-lg me-2 mt-2" style="float: right"></i>
-                  <Transition name="slide-fade">
-                    <mapGroupCardsVue :groupName="group.name" :numberOfMember="group.emails.length" :index="index" />
-                  </Transition>
+                  <div @click=" groupCardsHasBeenClicked(group, index)">
+                    <i class="fas fa-users ms-4 mt-2"></i>
+                    <i class="fas fa-person fa-lg me-3 mt-2" style="float: right"></i>
+                    <Transition name="slide-fade">
+                      <mapGroupCardsVue :groupName="group.name" :numberOfMember="group.emails.length"
+                         :index="index" />
+                    </Transition>
+                  </div>
+                  <div v-if="shouldDisplayButton(group.emails)" class="row my-2">
+                    <div class="col-12 text-center">
+                      {{ $t("mapPage.invitation") }}
+                    </div>
+                    <div class="col-6 text-center">
+                      <button class="button-invit" @click="groupInvitation(group.backendGroupId, true)">
+                        <i class="fa-solid fa-check custom-check"></i>
+                        <span class="ms-1">{{ $t("mapPage.accept") }}</span>
+                      </button>
+                    </div>
+                    <div class="col-6 text-center">
+                      <button class="button-invit" @click="groupInvitation(group.backendGroupId, false)">
+                        <i class="fa-solid fa-xmark custom-xmark"></i>
+                        <span class="ms-1">{{ $t("mapPage.decline") }}</span>
+                      </button>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -212,39 +229,25 @@ export default {
           }
         ],
       },
-      locomotionMethod: [
-        { id: 1, locomotionType: "walking" },
-        { id: 2, locomotionType: "driving" },
-        { id: 3, locomotionType: "bicycling" },
-        { id: 4, locomotionType: "transit" },
-      ],
-      selectedLocomotionType: "walking",
-      possibleType: [
-        { id: 1, POIType: "CulturalSite" },
-        { id: 2, POIType: "PointOfInterest" },
-        { id: 3, POIType: "RemarkableBuilding" },
-        { id: 4, POIType: "ReligiousSite" },
-        { id: 5, POIType: "PlaceOfInterest" },
-        { id: 6, POIType: "ParkAndGarden" },
-        { id: 7, POIType: "RemembranceSite" },
-        { id: 8, POIType: "MilitaryCemetery" },
-        { id: 9, POIType: "ArcheologicalSite" },
-        { id: 10, POIType: "SportsEvent" },
-        { id: 11, POIType: "EntertainmentAndEvent" }
-      ],
-      itinerary: this.$store.state.globalNonPersistantData.itinerary,
     }
-  },
-  created() {
-    this.itinerary = this.$store.state.globalNonPersistantData.itinerary;
   },
   mounted() {
-    try {
-      this.$store.dispatch("getItinerary");
-      this.$store.dispatch("getGroup");
-    } catch (error) {
+    this.$store.dispatch("getGroup").then((groups) => {
+      this.$store.dispatch("getItinerary").then(() => {
+        for (let groupsId in groups["groups"]) {
+          this.$store.dispatch("getGroupStatus", groups["groups"][groupsId]).catch(
+            (error) => {
+              console.log(error);
+            }
+          );
+        }
+      })
+      .catch ((error) => {
+        console.log(error);
+      })
+    }).catch((error) => {
       console.log(error);
-    }
+    });
   },
   computed: {
     itineraryCssDropdown() {
@@ -262,27 +265,22 @@ export default {
       }
     },
     selectedPath() {
-      if (this.selectedItinerary == 0)
-        return ([]);
-      return (this.itinerary[this.selectedItinerary - 1].path);
+      return (this.$store.state.globalNonPersistantData.waypoints);
     },
     selectedItineraryInfo() {
-      return (this.itinerary[this.selectedItinerary - 1])
-    },
-    userPosition() {
-      return ({
-        lat: this.$store.state.userStore.currentUserLocation.latitude,
-        lng: this.$store.state.userStore.currentUserLocation.longitude
-      });
+      return (this.$store.state.globalNonPersistantData.itinerary[this.selectedItinerary - 1])
     },
     getCenterOfMap() {
       if (this.selectedItinerary == 0)
         return ({
-          lat: this.$store.state.userStore.currentUserLocation.latitude,
-          lng: this.$store.state.userStore.currentUserLocation.longitude
+          lat: 49.1172801,
+          lng: 6.21190790000003
         });
       else {
-        return (this.itinerary[this.selectedItinerary - 1].itineraryPOI[this.currentWaypointIndex].Localisation);
+        return ({
+          lat: this.$store.state.globalNonPersistantData.itinerary[this.selectedItinerary - 1].itineraryPOI[this.currentWaypointIndex].Localisation.latitude,
+          lng: this.$store.state.globalNonPersistantData.itinerary[this.selectedItinerary - 1].itineraryPOI[this.currentWaypointIndex].Localisation.longitude,
+        });
       }
     },
     itineraryDropdownStatus() {
@@ -300,10 +298,41 @@ export default {
       }
     },
     markersData() {
-      return (this.$store.state.mapStore.marker);
+      return (this.$store.state.globalNonPersistantData.marker);
     },
   },
   methods: {
+    shouldDisplayButton(emails) {
+      for (let mail in emails) {
+        if (emails[mail].emails == this.$store.state.userStore.mail) {
+          if (emails[mail].status == "pending")
+            return true;
+          else
+            return false;
+        }
+      }
+    },
+    groupInvitation(backendGroupId, status) {
+      this.$store.dispatch("groupInvitation", { backendGroupId: backendGroupId, status: status }).then(() => {
+        this.$store.dispatch("getItinerary").catch((error) => {
+          console.log(error);
+        })
+        this.$store.dispatch("getGroup").then((groups) => {
+          for (let groupsId in groups["groups"]) {
+            this.$store.dispatch("getGroupStatus", groups["groups"][groupsId]).then(() => {
+              this.$store.dispatch("getItinerary").catch((error) => {
+                console.log(error);
+              })
+            }).catch((error) => {
+              console.log(error);
+            })
+          }
+        });
+
+      }).catch((error) => {
+        console.log(error);
+      })
+    },
     itineraryCardsHasBeenClicked(itineraryId) {
       this.selectedItinerary = itineraryId + 1;
       this.displayItineraryInformation = true;
@@ -314,11 +343,13 @@ export default {
       this.displayItineraryInformation = false;
       this.mapZoom = 12;
     },
-    groupCardsHasBeenClicked(index) {
-      this.selectedGroup = index;
-      this.groupHasBeenClicked = true;
-      this.showItineraryCreationModal = false;
-      this.showProfile = false;
+    groupCardsHasBeenClicked(group, index) {
+      if (!this.shouldDisplayButton(group.emails)) {
+        this.selectedGroup = index;
+        this.groupHasBeenClicked = true;
+        this.showItineraryCreationModal = false;
+        this.showProfile = false;
+      }
     },
     goBackToGroupDropdown() {
       this.displayGroupInformation = true;
@@ -336,6 +367,7 @@ export default {
     setGroupDropdownState() {
       this.groupDropdown = !this.groupDropdown;
     },
+
     addCenterControl(controlDiv) {
       const controlUI = document.createElement('div');
       controlUI.id = 'centerControl';
@@ -404,9 +436,13 @@ export default {
 
     openInfoWindow(label, geolocalisation) {
       if (this.$store.state.mapStore.selectedMarker.length > 2)
-        this.$store.dispatch("resetSelectedMarker");
+        this.$store.dispatch("resetSelectedMarker").catch((error) => {
+          console.log(error);
+        });
       else if (geolocalisation)
-        this.$store.dispatch("markerHasBeenSelected", geolocalisation);
+        this.$store.dispatch("markerHasBeenSelected", geolocalisation).catch((error) => {
+          console.log(error);
+        });
       this.openedMarkerID = label;
     },
 
@@ -441,35 +477,32 @@ export default {
       this.createGroup = true;
     },
 
-    drawPathBetweenSelectedPoint() {
-      this.$store.dispatch("calculatePath").then((steps) => {
-        this.waypoints = [];
-        this.path = [];
-        let index = 0;
-        steps.data.forEach(waypoint => {
-          waypoint.steps.forEach(element => {
-            let points = {};
-            points.duration = element.duration;
-            points.instruction = element.html_instructions;
-            points.distance = element.distance;
-            points.location = element.start_location;
-            this.waypoints.push(points);
-            this.path.push(element.start_location);
-            if (index == steps.data.length - 1) {
-              points.location = element.end_location;
-              this.waypoints.push(points);
-              this.path.push(element.end_location);
-            }
-            index += 1;
-          })
-        });
-      });
-    },
   },
 }
 </script>
 
 <style scoped>
+
+.button-invit {
+  background-color: #fff;
+  border: solid 1px rgb(192, 150, 40);
+  color: black;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+.button-invit:hover {
+  background-color: rgb(192, 150, 40);
+  color: white;
+}
+
+.custom-check {
+    color: green;
+}
+
+.custom-xmark {
+    color: red;
+}
 .componentsGroupDropdown {
   min-width: 400px;
   max-height: 300px !important;
@@ -498,8 +531,9 @@ export default {
 
 .widgetPanel {
   display: flex;
+  max-width: 400px;
   flex-direction: column;
-  max-height: 70vh;
+  /* max-height: 70vh; */
 }
 
 .dropdown-content {
@@ -519,7 +553,7 @@ export default {
 }
 
 ::-webkit-scrollbar {
-    width: 0 !important;
+  width: 0 !important;
 }
 
 .dropdownTextPosition {

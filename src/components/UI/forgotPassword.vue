@@ -9,41 +9,11 @@
         <span>{{ $t("forgetPassword.errors.messageID")}}</span>
       </p>
     </div>
-    <div v-else-if="invalidToken" >
-      <p class="wrongID text-center">
-        <span class="bold">{{ $t("forgetPassword.errors.codeWrong")}}<br></span>
-        <span>{{ $t("forgetPassword.errors.messageCode")}}</span>
-      </p>
-    </div>
     <div v-else-if="userExist && !invalidToken">
       <p class="correctID text-center">
         <span class="bold">{{ $t("forgetPassword.success.idCorrect")}}<br></span>
         <span>{{ $t("forgetPassword.success.messageID")}}</span>
       </p>
-    </div>
-    <div v-else-if="errorPassword">
-      <p class="wrongID text-center">
-        <span class="bold">
-          {{ $t("forgetPassword.errors.password")}}
-        </span>
-        <br>
-        <span>
-          {{ $t("forgetPassword.errors.messagePassword")}}
-        </span>
-      </p>
-    </div>
-    <div v-if="userExist">
-      <div class="my-2">
-          <input class="form-control"  v-model="token"
-          :placeholder="$t('forgetPassword.placeholders.code')">
-      </div>
-      <div class="my-2">
-          <input class="form-control" type="password" autocomplete="new-password" v-model="newPassword"
-          :placeholder="$t('forgetPassword.placeholders.password')">
-      </div>
-      <div>
-        <button @click="(sendNewPassword)" class="btn newButton text-center">{{ $t("forgetPassword.buttons.change")}}</button>
-      </div>
     </div>
     <div v-if="!userExist" class="my-2">
       <input class="form-control"  v-model="id" 
@@ -55,7 +25,7 @@
       <button @click="(openLoginPage)" class="btn buttonCancelCards text-center">{{ $t("forgetPassword.buttons.cancel")}}</button>
     </div>
     <div class="col-6">
-      <button @click="(requestPasswordReset)" class="btn newButton text-center">{{ $t("forgetPassword.buttons.search")}}</button>
+      <button @click="(passwordReset)" class="btn newButton text-center">{{ $t("forgetPassword.buttons.search")}}</button>
     </div>
   </div>
 </template>
@@ -68,42 +38,25 @@ export default {
   data() {
     return {
       id: '',
-      token: '',
       userExist: false,
       userDontExist: false,
-      newPassword: '',
-      invalidToken: false,
-      errorPassword: false,
     }
   },
   methods: {
     openLoginPage() {
-      this.$emit("openLogin");
+      this.$emit('openLogin');
     },
-    isValidPassword(password) {
-      const re = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_])?[a-zA-Z\d\W_]{8,}$/;
-      return re.test(String(password));
-    },
-    requestPasswordReset() {
+    passwordReset() {
       this.userDontExist = false,
-      this.$store.dispatch("requestPasswordReset", this.id).then(() => {
+      this.$store.dispatch("post", {
+        path: "forgotPassword",
+        data: {
+          email: this.id
+        }
+      }).then(() => {
         this.userExist = true;
       }).catch(() => {
         this.userDontExist = true;
-      });
-    },
-    sendNewPassword() {
-      if (!this.isValidPassword(this.newPassword)) {
-        this.errorPassword = true;
-        return;
-      }
-      this.errorPassword = false;
-      this.$store.dispatch("sendNewPassword", { password: this.newPassword, authorization: this.token }).then(() => {
-        this.invalidToken = true;
-        this.openLoginPage();
-      }).catch((error) => {
-        console.log(error);
-        this.invalidToken = true;
       });
     },
   },

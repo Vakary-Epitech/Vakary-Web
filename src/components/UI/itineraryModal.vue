@@ -1,5 +1,4 @@
 <template>
-    <!-- Modal -->
     <div class="explanatoryCardDesign descriptionLimiterSize">
         <div>
             <div class="modal-header">
@@ -12,7 +11,7 @@
                     <input class="w-100 form-control" type="text" v-model="city" :placeholder="placeholderCity">
                 </div>
                 <hr class="separationBar">
-                <span>{{ $t("itineraryModal.startingCity") }}</span><br>
+                <span >{{ $t("itineraryModal.howLong") }}</span><br>
                 <div class="form-check col-12">
                     <input class="form-check-input mx-1" type="checkbox" value="" id="onehour">
                     <label class="form-check-label" for="onehour">
@@ -90,14 +89,23 @@
                 <div class="col-12 mb-1">
                     <span>{{ $t("itineraryModal.interest") }}</span><br>
                 </div>
-                <div class="form-check col-12" v-for="POI in possibleType" :key="POI.id">
-                    <input class="form-check-input mx-1" type="checkbox" :id="POI.id" :value=POI.POIType
-                        v-model="$store.state.mapStore.selectedTypeOfInterest" />
-                    <label class="form-check-label" :for="POI.id">
-                        <span>{{ POI.POIName }}</span>
-                    </label>
+                <div>
+                    <div v-for="(category, categoryIndex) in categories" :key="categoryIndex">
+                        <div class="row my-2">
+                            <input class="col-1 ms-2" type="checkbox" :checked="checkToggle(category)" @change="toggleAllPOIs(category)" />
+                            <button class="col-10 mx-auto dropDownButton" @click="toggleDropdown(categoryIndex)" >
+                                {{ category }}
+                                <font-awesome-icon class="mt-1" :icon="dropdownOpen[categoryIndex] ? ['fas', 'caret-up'] : ['fas', 'caret-down']" style="float: right"/>
+                            </button>
+                        </div>
+                        <div class="row my-2" v-show="isDropdownOpen(categoryIndex)" v-for="(poi, poiIndex) in getPoisByCategory(category)" :key="poiIndex">
+                            <input class="col sameSize" type="checkbox" v-model="selectedPOIs[poi]" value="poi"/>
+                            <span class="col-10">{{ poi }}</span>
+                        </div>
+                    </div>
                 </div>
             </div>
+            <span v-if="error" class="text-danger">{{ error['message'] }}</span>
             <div class="modal-footer">
                 <button @click="generateItinerary" type="button" class="btn btn-primary"
                     style="margin: auto; margin-top: 10px; margin-bottom: 10px">{{ $t("itineraryModal.generate") }}</button>
@@ -107,6 +115,7 @@
 </template>
   
 <script>
+import { InterestPointTypeAccommodation, InterestPointTypeEatOrDrink, InterestPointTypeShop, InterestPointTypeSport, InterestPointTypePlaceToVisit, InterestPointTypeGroup } from "@/utils/poiTypes.js";
 
 export default {
     data() {
@@ -116,23 +125,21 @@ export default {
             timeOfEnd: "00:00",
             budget: 0,
             people: 1,
+            error: false,
             days: 1,
             city: "",
             children: 0,
             indexOfGroup: 0,
-            possibleType: [
-                { id: 1, POIType: "Cultural Site", POIName: "Sites culturel" },
-                { id: 2, POIType: "Castle", POIName: "Chateau" },
-                { id: 3, POIType: "Remarkable Building", POIName: "Bâtiments remarquable" },
-                { id: 4, POIType: "Museum", POIName: "Musée" },
-                { id: 5, POIType: "Stadium", POIName: "Stade" },
-                { id: 6, POIType: "Amusement Park", POIName: "Parcs et jardins" },
-                { id: 7, POIType: "Walking Tour", POIName: "Itinéraire à pieds" },
-                { id: 8, POIType: "Restaurant", POIName: "Restaurant" },
-                { id: 9, POIType: "Nightclub", POIName: "Boite de nuit" },
-                { id: 10, POIType: "Hotel", POIName: "Hotel" },
-                { id: 11, POIType: "Church", POIName: "Eglise" }
-            ],
+            categories: Object.values(InterestPointTypeGroup),
+            selectedPOIs: {},
+            poiData: {
+                [InterestPointTypeGroup.ACCOMMODATION]: Object.values(InterestPointTypeAccommodation),
+                [InterestPointTypeGroup.RESTAURATION]: Object.values(InterestPointTypeEatOrDrink),
+                [InterestPointTypeGroup.SHOP]: Object.values(InterestPointTypeShop),
+                [InterestPointTypeGroup.SPORT]: Object.values(InterestPointTypeSport),
+                [InterestPointTypeGroup.PLACE_TO_VISIT]: Object.values(InterestPointTypePlaceToVisit)
+            },
+            dropdownOpen: [],
         }
     },
     computed: {
@@ -141,8 +148,52 @@ export default {
         },
     },
     methods: {
-        test(index) {
-            console.log(this.$store.state.globalNonPersistantData.groups[index])
+        toTranslationKey(value) {
+            const normalized = value.toLowerCase().replace(/\s+(.)/g, (_, char) => char.toUpperCase());
+            return normalized.charAt(0).toLowerCase() + normalized.slice(1);
+        },
+        checkToggle(category) {
+            const pois = this.poiData[category];
+            const areAllTrue = pois.every(poi => this.selectedPOIs[poi]);
+            const areAllFalse = pois.every(poi => !this.selectedPOIs[poi]);
+
+            if (areAllTrue) {
+                return true;
+            } else if (areAllFalse) {
+                return false;
+            } else {
+                return null;
+            }
+        },
+        toggleAllPOIs(category) {
+            const pois = this.poiData[category];
+            const areAllTrue = pois.every(poi => this.selectedPOIs[poi]);
+            const areAllFalse = pois.every(poi => !this.selectedPOIs[poi]);
+
+            if (areAllTrue) {
+                for (const poi of pois) {
+                this.selectedPOIs[poi] = false;
+                }
+            } 
+            else if (areAllFalse) {
+                    for (const poi of pois) {
+                    this.selectedPOIs[poi] = true;
+                }
+            } 
+            else {
+                    for (const poi of pois) {
+                    this.selectedPOIs[poi] = true;
+                }
+            }
+        },
+        toggleDropdown(categoryIndex) {
+            this.dropdownOpen[categoryIndex] = !this.dropdownOpen[categoryIndex];
+        },
+        isDropdownOpen(categoryIndex) {
+            return this.dropdownOpen[categoryIndex];
+        },
+        getPoisByCategory(category) {
+            return this.poiData[category] || [];
         },
         leaveGroupCreation() {
             this.$emit("goBackToItineraryDropdown");
@@ -169,27 +220,50 @@ export default {
                 this.indexOfGroup = 0;
             }
         },
+        generateGoodFormat(POIs) {
+            let goodFormat = [];
+            for (var poi in POIs) {
+                goodFormat.push(poi);
+            }
+            return goodFormat;
+        },
         generateItinerary() {
             let timeOfStart = this.timeOfStart.split(":");
             let timeOfEnd = this.timeOfEnd.split(":");
             timeOfStart = parseInt(timeOfStart[0]) * 3600 + parseInt(timeOfStart[1]) * 60;
             timeOfEnd = parseInt(timeOfEnd[0]) * 3600 + parseInt(timeOfEnd[1]) * 60;
             let duration = timeOfEnd - timeOfStart;
+            
             if (duration < 0) {
                 duration += 24;
             }
-            this.$store.dispatch("createNewItinerary", {
-                city: this.city,
-                availableTime: duration,
-                budget: this.budget,
-                nbPeople: this.people,
-                nbChild: this.children,
-                typeResearchLocations: this.$store.state.mapStore.selectedTypeOfInterest,
-                group: this.$store.state.globalNonPersistantData.groups[this.indexOfGroup],
-                handicapAccess: false,
+            this.generateGoodFormat(this.selectedPOIs);
+            this.error = "";
+            this.$store.dispatch("put", {
+                path: "itinerary/me",
+                data: {
+                    city: this.city,
+                    availableTime: duration,
+                    budget: this.budget,
+                    nbPeople: this.people,
+                    nbChild: this.children,
+                    typeResearchLocations: this.generateGoodFormat(this.selectedPOIs),
+                    group: this.$store.state.globalNonPersistantData.groups[this.indexOfGroup],
+                    handicapAccess: false,
+                },
+                token: this.$store.state.userStore.token,
             }).then(() => {
-                this.$emit("goBackToItineraryDropdown");
-            });
+                this.$store.dispatch("get", {
+                    path: "itinerary/getAll/me",
+                    token: this.$store.state.userStore.token,
+                }).then(() => {
+                    this.$emit("goBackToItineraryDropdown");
+                }).catch((error) => {
+                    this.error = error?.response?.data;
+                })
+            }).catch((error) => {
+                this.error = error?.response?.data;
+            })
         },
     }
 }
@@ -200,8 +274,25 @@ export default {
     float: none !important;
 }
 
+.dropDownButton {
+    background-color: #fff;
+    border: 1px solid rgb(192, 150, 40);
+    border-radius: 10px;
+    color: black;
+    padding: 5px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+
 .form-control {
     width: auto !important;
+}
+
+.sameSize {
+    width: 30px;
+    height: 30px;
 }
 
 .form-check {
@@ -253,7 +344,11 @@ export default {
     overflow: auto;
 }
 
-.explanatoryCardDesign::-webkit-scrollbar {
-    width: 1px;
-}
+/* .explanatoryCardDesign::-webkit-scrollbar {
+    width: 10px;
+} */
+
+/* ::-webkit-scrollbar {
+    width: 100px !important;
+} */
 </style>

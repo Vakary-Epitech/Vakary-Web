@@ -3,9 +3,6 @@ import ShowMembers from '@/components/UI/ShowMembers.vue'
 import store from '../../src/store/store.js'
 import i18n from '../../src/i18n.js'
 
-const mockRouter = {
-  push: jest.fn()
-}
 
 const mockStore = {
   dispatch: jest.fn().mockResolvedValue(),
@@ -86,12 +83,6 @@ describe('showMembers', () => {
     expect(wrapper.vm.CreateGroup).toBe(false);
   });
 
-  it('should return the status of the member at the given index when getStatus is called', () => {
-    wrapper.setData({ groupInformations: { members: [{ mail: 'test@example.com', status: 'active' }] } });
-    const status = wrapper.vm.getStatus(0);
-    expect(status).toBe('active');
-  });
-
   it('should update the group name when updateGroupName is called with a valid name', async () => {
     const wrapper = shallowMount(ShowMembers, {
       global: {
@@ -160,99 +151,3 @@ describe('showMembers', () => {
   });
 
 });
-
-test('Basic Information verifier', async () => {
-    const wrapper = shallowMount(ShowMembers, {
-        global: {
-            mocks: {
-                $store: store,
-                $t: (msg) => msg,
-            },
-            stubs: {
-                'font-awesome-icon': {
-                    template: '<i />',
-                },
-            },
-        },
-        data() {
-            return {
-                groupInformations: {
-                    name: "Vakary",
-                    members: [],
-                    photo: {
-                        name: "photo.png",
-                        size: 20,
-                        type: "type",
-                        preview: "preview",
-                    },
-                    id: "1",
-                },
-                editGroupName: false,
-                newGroupName: "Vak",
-                mailMember: 'mail@test.com',
-                showMembers: true,
-            }
-        }
-    })
-    wrapper.vm.$data.groupInformations = {
-        name: "Vakary",
-        members: [],
-        photo: {
-            name: "photo.png",
-            size: 20,
-            type: "type",
-            preview: "preview",
-        },
-        id: "1",
-        preview: "test",
-    }
-})
-
-test('Error check', async () => {
-    const wrapper = shallowMount(ShowMembers, {
-        global: {
-            mocks: {
-                $store: store,
-                $t: (msg) => msg,
-            },
-            stubs: {
-                'font-awesome-icon': {
-                    template: '<i />',
-                },
-            },
-        },
-        data() {
-            return {
-                groupInformations: {
-                    name: "Vakary",
-                    members: [{mail: "mail@test.fr", status: "pending"}, {mail: "mail2@test.fr", status: "pending"}],
-                    photo: {
-                        name: "photo.png",
-                        size: 20,
-                        type: "type",
-                        preview: "preview",
-                    },
-                    id: "1",
-                    preview: "test",
-                },
-                editGroupName: false,
-                newGroupName: "Vak",
-                mailMember: 'mail@test.com',
-                showMembers: true,
-            }
-        }
-    })
-    wrapper.vm.$data.groupInformations = {
-        name: "Vakary",
-        members: [],
-        photo: {
-            name: "photo.png",
-            size: 20,
-            type: "type",
-            preview: "preview",
-        },
-        id: "1",
-        preview: "test",
-    }
-    await wrapper.vm.updateGroupName();
-})

@@ -22,21 +22,26 @@
                             <p v-else-if="askingDelete">{{ $t("showMembers.deleteMessage") }}</p>
                             <h4 v-else class="overflow mt-3">{{ groupInformations.name }}</h4>
                         </div>
-                        <div class="col-2 mx-auto my-auto">
-                            <button v-if="editGroupName" class="btn-check-change-group-name" @click="updateGroupName()"><i
-                                    class="fa-solid fa-check fa-lg"></i></button>
-                            <button v-else-if="askingDelete" class="btn-check-change-group-name" @click="deleteGroup()"><i
-                                    class="fa-solid fa-check fa-lg"></i></button>
-                            <button v-else class="btn-change-group-name" @click="editGroupName = true"><i
-                                    class="fa-solid fa-pen"></i></button>
-                        </div>
-                        <div class="col-2 mx-auto my-auto">
-                            <button v-if="editGroupName" class="btn-mark-change-group-name" @click="leaveEditName()"><i
+                        <div v-if="role == 'admin'" class="col-4 row">
+                            <div class="col-6 my-auto mx-auto">
+                                <button v-if="editGroupName" class="btn-check-change-group-name" @click="updateGroupName()"><i
+                                        class="fa-solid fa-check fa-lg"></i></button>
+                                <button v-else-if="askingDelete" class="btn-check-change-group-name" @click="deleteGroup()"><i
+                                        class="fa-solid fa-check fa-lg"></i></button>
+                                <button v-else class="btn-change-group-name" @click="editGroupName = true"><i
+                                        class="fa-solid fa-pen"></i></button>
+                            </div>
+                            <div class="col-6 my-auto mx-auto">
+                                <button v-if="editGroupName" class="btn-mark-change-group-name" @click="leaveEditName()"><i
                                     class="fa-solid fa-xmark fa-lg"></i></button>
-                            <button v-else-if="askingDelete" class="btn-mark-change-group-name"
-                                @click="leaveAskingDelete()"><i class="fa-solid fa-xmark fa-lg"></i></button>
-                            <button v-else class="btn-delete-group ms-2" @click="messageDeleteGroup"><i
-                                    class="fa-solid fa-trash"></i></button>
+                                    <button v-else-if="askingDelete" class="btn-mark-change-group-name"
+                                    @click="leaveAskingDelete()"><i class="fa-solid fa-xmark fa-lg"></i></button>
+                                    <button v-else class="btn-delete-group ms-2" @click="messageDeleteGroup"><i
+                                        class="fa-solid fa-trash"></i></button>
+                            </div>
+                        </div>
+                        <div v-if="role == 'member'" class="col-4 mx-auto my-auto">
+                            <button @click="leaveGroup" class="btn-delete-group-picture">{{ $t("showMembers.leave") }}</button>
                         </div>
                     </div>
                 </section>
@@ -54,14 +59,14 @@
                         <div class="col-6 text-start">
                             {{ member.emails }}
                         </div>
-                        <div class="col-4 status">
+                        <div class="col-4 status" :class="getStatus(index)">
                             {{ member.status }}
                         </div>
-                        <div class="col-2" v-if="!member.admin">
+                        <div class="col-2 text-center" v-if="role == 'admin' && this.groupInformations.emails[index].role != 'admin'">
                             <button class="trashIcon" @click="deleteMember(index)"><i
                                     class="fa-solid fa-trash"></i></button>
                         </div>
-                        <div class="col-2 text-center" v-else>
+                        <div class="col-2 text-center" v-if="this.groupInformations.emails[index].role == 'admin'">
                             <i class="fas fa-crown goldCrown" aria-hidden="true"></i>
                         </div>
                     </div>
@@ -85,25 +90,26 @@
                     </div>
                 </section>
 
-                <div class="col-12" v-if="$store.state.globalNonPersistantData?.itinerary.length > 0">
-                    <span>Vos Itinéraires</span><br>
-                    <button v-if="$store.state.globalNonPersistantData?.itinerary.length > 1" @click="prev"
-                        class="black" type="button"
-                        data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Previous</span>
-                    </button>
-                    <button v-if="$store.state.globalNonPersistantData?.itinerary.length > 1" @click.prevent="next" type="button"
-                        data-bs-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Next</span>
-                    </button>
-                    <div style="display: flex; margin-left: 50px">
-                        <input type="checkbox" id="checkbox" v-model="addGroupToItinerary" />
-                        <label for="checkbox">Ajouter le groupe a l'itinéraire</label>
+                <div class="row" v-if="$store.state.globalNonPersistantData?.itinerary.length > 0">
+                    <p>{{ $t("showMembers.itineraries") }}</p>
+                    <div class="col-3 my-auto">
+                        <button class="custom-button" v-if="$store.state.globalNonPersistantData?.itinerary.length > 1" @click="prev">
+                            <i class="fa-solid fa-arrow-left fa-xl custom-arrow"></i>
+                        </button>
                     </div>
-                    itinerary id:
-                    {{ this.$store.state.globalNonPersistantData?.itinerary[indexItinerary].id }}
+                    <div class="col-6 text-center">
+                        <span>{{ $t("showMembers.idItinerary") }}</span><br>
+                        {{ this.$store.state.globalNonPersistantData?.itinerary[indexItinerary].id }}
+                    </div>
+                    <div class="col-3 my-auto text-end">
+                        <button class="custom-button" v-if="$store.state.globalNonPersistantData?.itinerary.length > 1" @click.prevent="next">
+                            <i class="fa-solid fa-arrow-right fa-xl custom-arrow"></i>
+                        </button>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="checkbox" v-model="addGroupToItinerary" />
+                        <label for="checkbox"><p>{{ $t("showMembers.addGroupItinerary") }}</p></label>
+                    </div>
                 </div>
 
                 <div class="col-12 mt-3 text-center">
@@ -135,6 +141,7 @@ export default {
                 },
                 id: "",
             },
+            role: "",
             indexItinerary: 0,
             addGroupToItinerary: false,
             newGroupName: "",
@@ -152,6 +159,22 @@ export default {
     },
     created() {
         this.groupInformations = this.groups;
+        this.$store.dispatch("get", {
+            path: "group_user/getAll/" + this.groups.backendGroupId,
+        }).then((response) => {
+            for (let i = 0; response?.data?.groupUser?.length; i++) {
+                if (this.$store.state.userStore.mail == response.data.groupUser[i].User.email) {
+                    this.role = response.data.groupUser[i].role;
+                    break;
+                }
+            }
+            for (let i = 0; i < response?.data?.groupUser?.length; i++) {
+                for (let j = 0; j < this.groupInformations.emails.length; j++) {
+                    if (this.groupInformations.emails[j].emails == response.data.groupUser[i].User.email)
+                        this.groupInformations.emails[j].role = response.data.groupUser[i].role;
+                }
+            }
+        });
         this.newGroupName = this.groupInformations.name;
     },
     methods: {
@@ -179,6 +202,8 @@ export default {
                     groupName: this.groupInformations.name,
                     groupId: this.groupInformations.backendGroupId,
                     itineraryId: this.$store.state.globalNonPersistantData.itinerary[this.indexItinerary].id
+                }).catch((error) => {
+                    console.log(error);
                 });
             }
 
@@ -186,7 +211,8 @@ export default {
             this.$emit("goBackToGroupDropdown");
         },
         getStatus(index) {
-            return this.groupInformations.members[index].status;
+            let groupIndex = this.$store.state.globalNonPersistantData.groups.findIndex(group => group.id === this.groupInformations.id);
+            return this.$store.state.globalNonPersistantData.groups[groupIndex].emails[index].status;
         },
         addMember() {
             if (!this.isValidEmail(this.mailMember)) {
@@ -194,7 +220,13 @@ export default {
                 return;
             }
             this.showEmailError = false;
-            this.groupInformations.members.push({ mail: this.mailMember, status: "pending", admin: false })
+
+            this.$store.dispatch("patch", { path: "group/invitation/" + this.groupInformations.backendGroupId, data: { email: this.mailMember } }).then(() => {
+                this.$emit("goBackToGroupDropdown");
+            }).catch((error) => {
+                console.log(error);
+            });
+
             this.mailMember = '';
         },
         isValidEmail(email) {
@@ -202,7 +234,24 @@ export default {
             return re.test(String(email).toLowerCase());
         },
         deleteMember(index) {
-            this.groupInformations.members.splice(index, 1);
+            let groupIndex = this.$store.state.globalNonPersistantData.groups.findIndex(group => group.id === this.groupInformations.id);
+            const group = this.$store.state.globalNonPersistantData.groups[groupIndex];
+            const user = this.$store.state.globalNonPersistantData.groups[groupIndex].emails[index];
+
+            this.$store.dispatch("patch", {
+                path: "group_user/deleteUserFromGroup",
+                data: {
+                    groupId: group.backendGroupId,
+                    email: user.emails,
+                }
+            }).then(() => {
+                this.$store.dispatch("getGroup").catch((error) => {
+                    console.log(error);
+                })
+                this.$emit("goBackToGroupDropdown");
+            }).catch((error) => {
+                console.log(error);
+            })
         },
         editName() {
             this.editNameGroup = true;
@@ -213,6 +262,12 @@ export default {
             }
             this.groupInformations.name = this.newGroupName;
             this.editGroupName = false;
+            this.$store.dispatch("patch", {
+                path: "group/" + this.groupInformations.backendGroupId,
+                data: {
+                    groupname: this.newGroupName,
+                }
+            });
         },
         leaveEditName() {
             this.editGroupName = false;
@@ -225,7 +280,13 @@ export default {
             let index = this.$store.state.globalNonPersistantData.groups.findIndex(group => group.id === this.groupInformations.id);
             this.showMembers = false;
             this.$emit("goBackToGroupDropdown");
-            this.$store.dispatch("deleteGroup", this.$store.state.globalNonPersistantData.groups[index]);
+            this.$store.dispatch("deleteGroup", this.$store.state.globalNonPersistantData.groups[index]).then(() => {
+                this.$store.dispatch("getGroup").catch((error) => {
+                    console.log(error);
+                })
+            }).catch((error) => {
+                console.log(error);
+            });
             this.$store.state.globalNonPersistantData.groups.splice(index, 1);
         },
         deleteGroupPicture() {
@@ -235,6 +296,24 @@ export default {
                 size: "",
                 type: "",
             }
+        },
+        leaveGroup() {
+            let groupIndex = this.$store.state.globalNonPersistantData.groups.findIndex(group => group.id === this.groupInformations.id);
+            const group = this.$store.state.globalNonPersistantData.groups[groupIndex];
+            this.$store.dispatch("patch", {
+                path: "group_user/deleteUserFromGroup",
+                data: {
+                    groupId: group.backendGroupId,
+                    email: this.$store.state.userStore.mail,
+                }
+            }).then(() => {
+                this.$store.dispatch("getGroup").catch((error) => {
+                    console.log(error);
+                })
+                this.$emit("goBackToGroupDropdown");
+            }).catch((error) => {
+                console.log(error);
+            })
         },
         onFileChange(event) {
             const file = event.target.files[0];
@@ -276,6 +355,21 @@ export default {
 </script>
 
 <style scoped>
+.custom-button {
+    margin-bottom: 15px;
+    background-color: #fff;
+    border: 3px solid #fff;
+    border-radius: 15px;
+}
+
+.custom-button:hover {
+    border: 3px solid rgb(192, 150, 40);
+}
+
+.custom-arrow {
+    color: rgb(192, 150, 40);
+}
+
 .inputClass {
     border: 1px solid rgb(192, 150, 40);
     border-radius: 5px;
@@ -288,8 +382,9 @@ export default {
     padding: 15px;
     border-radius: 15px;
     border: 2px solid rgb(192, 150, 40);
-    max-height: 400px;
+    min-height: 300px;
     max-width: 400px;
+    max-height: 80vh;
     overflow: auto;
 }
 
@@ -438,7 +533,7 @@ export default {
     border: 1px red solid;
 }
 
-.accepted {
+.joined {
     background-color: #B6FBB2;
     border: 1px green solid;
 }

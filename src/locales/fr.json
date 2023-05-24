@@ -106,21 +106,26 @@
         },
         "errors": {
             "idWrong": "Aucun résultat de recherche",
-            "messageID": "Votre recherche ne donne aucun résultat. Veuillez réessayer avec d'autres informations.",
-            "codeWrong": "Code invalide",
-            "messageCode": "Le code entré est incorrect. Veuillez vérifier vos emails.",
-            "password": "Nouveau mot de passe invalide",
-            "messagePassword": "Votre mot de passe doit contenir minimum 8 caractères, au moins une minuscule une majuscule et un chiffre."
+            "messageID": "Votre recherche ne donne aucun résultat. Veuillez réessayer avec d'autres informations."
         },
         "success": {
             "idCorrect": "Compte trouvé",
-            "messageID": "Veuillez entrer le code reçu par email."
+            "messageID": "Un email contenant des instructions a été envoyé à l'adresse fournie. Veuillez vérifier votre boîte de réception et suivre les étapes indiquées pour continuer le processus."
         },
         "buttons": {
             "cancel": "Annuler",
-            "search": "Rechercher",
-            "change": "Changer de mot de passe"
+            "search": "Rechercher"
         }
+    },
+    "resetPassword": {
+        "title": "Réinitialisation du mot de passe",
+        "errors": {
+            "password": "Nouveau mot de passe invalide",
+            "messagePassword": "Votre mot de passe doit contenir minimum 8 caractères, au moins une minuscule une majuscule et un chiffre.",
+            "error": "Une erreur inattendue s'est produite.",
+            "messageError": "Veuillez réessayer plus tard."
+        },
+        "button": "Changer de mot de passe"
     },
     "groupCards": {
         "group": "Groupe",
@@ -136,7 +141,14 @@
         "nextPoint": "Prochain point",
         "previousPoint": "Point précédent",
         "newGroup": "Créer un nouveau groupe",
-        "openHours": "Heure d'ouverture:"
+        "openHours": "Heure d'ouverture:",
+        "noOpeningHours": "Non disponible",
+        "invitation": "Vous avez été invité à rejoindre ce groupe",
+        "accept": "Accepter",
+        "decline": "Refuser"
+    },
+    "mapCards": {
+        "noGroups": "Aucun groupe assigné"
     },
     "itineraryModal": {
         "creation": "Création de votre itinéraire",
@@ -148,11 +160,12 @@
         "moreThanFourHours": "Plus de 4 heures",
         "startingDate": "Quelle est la date de départ de votre itinéraire ?",
         "budget": "Budget total",
-        "howManyPeople": "Combien de personnes vont vous accompagner ?",
+        "howManyPeople": "Combien de personnes feront partie du voyage ?",
         "adult": "Adulte",
         "child": "Enfant",
-        "interest": "Centres D'intérêts",
-        "generate": "Générer l'itinéraire"
+        "interest": "Centres d'intérêts",
+        "generate": "Générer l'itinéraire",
+        "error": "Champs requis"
     },
     "screenSizePage": {
         "screenSizeTooSmall": "Désolé, l'accès à notre application web est actuellement bloqué car votre écran est trop petit.",
@@ -182,6 +195,10 @@
         "changePicture": "Changer la photo de groupe",
         "deletePicture": "Supprimer la photo de groupe",
         "save": "Sauvegarder",
+        "itineraries": "Vos itinéraires",
+        "idItinerary": "Identifiant de l'itinéraire",
+        "addGroupItinerary": "Ajouter un itinéraire au groupe",
+        "leave": "Quitter",
         "placeholders": {
             "mail": "Adresse mail pour ajouter un membre"
         },
@@ -189,5 +206,64 @@
             "name": "Le nom du groupe doit contenir entre 3 et 18 caractères",
             "mail": "Email incorrect"
         }
-    }
+    },
+    "POI": {
+        "interestPointTypeAccommodation": {
+          "accommodation": "Hébergement",
+          "guestHouse": "Maison d'hôtes",
+          "hotel": "Hôtel",
+          "holidayResort": "Station de vacances",
+          "winery": "Cave",
+          "selfCateringAccommodation": "Location avec cuisine",
+          "lodgingBusiness": "Établissement d'hébergement"
+        },
+        "interestPointTypeRestauration": {
+          "restaurant": "Restaurant",
+          "fastFood": "Fast-food",
+          "cafe": "Café",
+          "bistro": "Bistro",
+          "pub": "Pub",
+          "nightClub": "Boîte de nuit"
+        },
+        "interestPointTypeShop": {
+          "store": "Magasin",
+          "craftsmanShop": "Atelier d'artisan",
+          "businessPlace": "Lieu commercial"
+        },
+        "interestPointTypeSport": {
+          "stadium": "Stade",
+          "arena": "Arène",
+          "sportPlace": "Lieu sportif",
+          "miniGold": "Mini-golf",
+          "swimmingPool": "Piscine",
+          "bowling": "Bowling"
+        },
+        "interestPointTypePlaceToVisit": {
+          "amusementPark": "Parc d'attractions",
+          "church": "Église",
+          "cinema": "Cinéma",
+          "culturalSite": "Site culturel",
+          "cyclingTour": "Tour à vélo",
+          "landForm": "Formation géologique",
+          "naturalHeritage": "Patrimoine naturel",
+          "remarkableBuilding": "Bâtiment remarquable",
+          "theater": "Théâtre",
+          "library": "Bibliothèque",
+          "cityHeritage": "Patrimoine urbain",
+          "museum": "Musée",
+          "castle": "Château",
+          "river": "Rivière",
+          "leisureComplex": "Complexe de loisirs",
+          "roadTour": "Tour routier",
+          "parkGarden": "Parc Jardin",
+          "walkingTour": "Tour à pied"
+        },
+        "interestPointTypeGroup": {
+          "accomodation": "Hébergement",
+          "restauration": "Restauration",
+          "placeToVisit": "Lieu à visiter",
+          "shop": "Shopping",
+          "sport": "Sport"
+        }
+      }      
 }
