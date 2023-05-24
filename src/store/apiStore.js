@@ -65,7 +65,6 @@ const apiStore = {
                             handicapAccess: itinerary.handicapAccess,
                         },
                     };
-                    console.log(config.data.availableTime);
                     axios.request(config).then((newItinerary) => {
                         if (newItinerary.data.createdItinerary) {
                             context.commit('ADD_NEW_ITINERARY', newItinerary.data.createdItinerary);
@@ -164,7 +163,6 @@ const apiStore = {
                     data.append('emails', mailsList)
                     data.append('file', groupInformation.picture[0], groupInformation.picture[0].name);
                     
-                    console.log(groupInformation.picture[0], groupInformation.picture[0].name)
                     axios.put(wording.serverAdress + 'group', data, { headers: { "Authorization": this.state.userStore.token }}).then((group) => {
                         context.commit('ADD_NEW_GROUP', group);
                         resolve(group);
@@ -305,7 +303,6 @@ const apiStore = {
                     if (token) {
                         headers.Authorization = token;
                     }
-                    console.log(data);
                     axios.put(wording.serverAdress + path, { ...data }, { headers }).then((response) => {
                         if (path == "group") {
                             context.commit('ADD_NEW_GROUP', response);
