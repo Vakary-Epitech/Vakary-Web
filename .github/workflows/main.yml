@@ -44,15 +44,15 @@ jobs:
           echo ${{ secrets.SVN_USERNAME }}
           echo ${{ secrets.SVN_PASSWORD }}
           svn checkout --username ${{ secrets.SVN_USERNAME }} --password ${{ secrets.SVN_PASSWORD }} https://labeip.epitech.eu/svn/2024/vakary/ svn
-
+          
       - name: Copy build files and delete old SVN repository
         run: |
-          ls
-          svn delete --force svn/www/index.html svn/www/css svn/www/js svn/www/img svn/www/logoVakary.png
-          cd svn
-          svn commit  --username ${{ secrets.SVN_USERNAME }} --password ${{ secrets.SVN_PASSWORD }} -m "Delete old "
-          cd ..
-          cp -R dist/* svn/www/
+            ls
+            svn delete --force svn/www/index.html svn/www/css svn/www/js svn/www/img svn/www/logoVakary.png
+            cd svn
+            svn commit  --username ${{ secrets.SVN_USERNAME }} --password ${{ secrets.SVN_PASSWORD }} -m "Delete old "
+            cd ..
+            cp -R dist/* svn/www/
 
       - name: Commit changes to SVN repository
         run: |
