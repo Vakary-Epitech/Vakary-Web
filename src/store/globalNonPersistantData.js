@@ -122,7 +122,6 @@ const globalNonPersistantData = {
             }
         },
         CLEAR_PATH(state) {
-            console.log("SVP MR");
             state.waypoints = [];
         }
     }
