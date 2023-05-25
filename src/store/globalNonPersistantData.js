@@ -120,6 +120,10 @@ const globalNonPersistantData = {
                     state.waypoints.push(path[point].steps[steps].start_location)
                 }
             }
+        },
+        CLEAR_PATH(state) {
+            console.log("SVP MR");
+            state.waypoints = [];
         }
     }
 };
