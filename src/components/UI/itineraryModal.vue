@@ -253,10 +253,7 @@ export default {
                 },
                 token: this.$store.state.userStore.token,
             }).then(() => {
-                this.$store.dispatch("get", {
-                    path: "itinerary/getAll/me",
-                    token: this.$store.state.userStore.token,
-                }).then(() => {
+                this.$store.dispatch("getItinerary").then(() => {
                     this.$emit("goBackToItineraryDropdown");
                 }).catch((error) => {
                     this.error = error?.response?.data;
