@@ -1,8 +1,14 @@
 <template>
     <div class="explanatoryCardDesign row">
         <div>
-            <button @click="deleteItinerary()">delete itinerary</button>
-            <div class="mt-3 backArrow" @click="goBackToItineraryDropdown"></div>
+            <div class="mt-3">
+                <div class="backArrow" @click="goBackToItineraryDropdown"></div>
+                <div class="text-end">
+                    <button class="deleteButton" @click="deleteItinerary()">
+                        <i class="fa-solid fa-trash fa-xl"></i>
+                    </button>
+                </div>
+            </div>
             <h4 class="titleLimiterSize">{{ this.selectedItineraryInfo?.itineraryPOI[this.currentWaypointIndex].City.name }}</h4>
             <div class="ms-3 my-auto text-center titleLimiterSize">
                 <h4>{{ getCurrentPOIName }}</h4>
@@ -120,6 +126,20 @@ export default {
 </script>
 
 <style scoped lang="scss">
+.deleteButton {
+    border-radius: 5px;
+    border: 1px solid red;
+    background-color: #fff;
+    padding: 5px;
+    top: 10px;
+    right: 5px;
+    position: absolute;
+}
+
+.deleteButton:hover {
+    color: red;
+}
+
 .custom {
     position: absolute;
     bottom: 0;
