@@ -32,10 +32,7 @@ const apiStore = {
             return new Promise((resolve, reject) => {
                 try {
                     axios.delete(wording.serverAdress + "itinerary/" + itineraryId, {}).then((itinerary) => {
-                        if (itinerary.data.itinerary) {
-                            context.commit('UPDATE_ITINERARY', itinerary.data.itinerary);
-                        }
-                        resolve(itinerary.data);
+                        resolve(itinerary);
                     }).catch((error) => {
                         reject(error);
                     })

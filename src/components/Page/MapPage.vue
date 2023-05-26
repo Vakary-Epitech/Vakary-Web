@@ -342,6 +342,7 @@ export default {
       this.currentWaypointIndex = 0;
       this.displayItineraryInformation = false;
       this.mapZoom = 12;
+      this.$store.commit("CLEAR_PATH");
     },
     groupCardsHasBeenClicked(group, index) {
       if (!this.shouldDisplayButton(group.emails)) {
