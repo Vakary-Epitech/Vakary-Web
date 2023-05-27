@@ -271,7 +271,7 @@ export default {
       return (this.$store.state.globalNonPersistantData.itinerary[this.selectedItinerary - 1])
     },
     getCenterOfMap() {
-      if (this.selectedItinerary == 0)
+      if (this.selectedItinerary == 0 || ! this.$store.state.globalNonPersistantData.itinerary[this.selectedItinerary - 1])
         return ({
           lat: 49.1172801,
           lng: 6.21190790000003
@@ -340,6 +340,7 @@ export default {
     },
     goBackToItineraryDropdown() {
       this.currentWaypointIndex = 0;
+      this.selectedItinerary = 0;     
       this.displayItineraryInformation = false;
       this.mapZoom = 12;
       this.$store.commit("CLEAR_PATH");

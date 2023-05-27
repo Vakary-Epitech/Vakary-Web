@@ -81,7 +81,7 @@ export default {
             editMode: false,
             description: this.$store.state.userStore.userInfo.description,
             user: this.$store.state.userStore.userInfo,
-            pictureRaw: this.$store.state.userStore.userProfileImage,
+            picture: this.$store.state.userStore.userProfileImage,
             photoDisplay: this.$store.state.userStore.userProfileImage,
         }
     },

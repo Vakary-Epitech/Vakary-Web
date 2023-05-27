@@ -158,7 +158,8 @@ const apiStore = {
                     let data = new FormData();
                     data.append('groupname', groupInformation.name)
                     data.append('emails', mailsList)
-                    data.append('file', groupInformation.picture[0], groupInformation.picture[0].name);
+                    if (typeof(groupInformation.picture) == "object")
+                        data.append('file', groupInformation.picture[0], groupInformation.picture[0].name);
 
                     axios.put(wording.serverAdress + 'group', data, { headers: { "Authorization": this.state.userStore.token } }).then((group) => {
                         resolve(group);
@@ -401,8 +402,8 @@ const apiStore = {
                 try {
                     let data = new FormData();
                     data.append('description', newProfile.description)
-                    data.append('profilPicture', newProfile.picture[0], newProfile.picture[0].name);
-                    console.log("pr", newProfile.picture[0])
+                    if (typeof(newProfile.picture) == 'object')
+                        data.append('profilPicture', newProfile.picture[0], newProfile.picture[0].name);
                     axios.patch(wording.serverAdress + 'me', data, { headers: { "Authorization": this.state.userStore.token } }).then(() => {
                         axios.get(wording.serverAdress + 'me', { headers: { "Authorization": this.state.userStore.token } }).then((userProfile) => {
                             context.commit('UPDATE_USER_INFO', userProfile);
