@@ -159,9 +159,8 @@ const apiStore = {
                     data.append('groupname', groupInformation.name)
                     data.append('emails', mailsList)
                     data.append('file', groupInformation.picture[0], groupInformation.picture[0].name);
-                    
-                    axios.put(wording.serverAdress + 'group', data, { headers: { "Authorization": this.state.userStore.token }}).then((group) => {
-                        context.commit('ADD_NEW_GROUP', group);
+
+                    axios.put(wording.serverAdress + 'group', data, { headers: { "Authorization": this.state.userStore.token } }).then((group) => {
                         resolve(group);
                     }).catch((error) => {
                         reject(error);
@@ -247,7 +246,7 @@ const apiStore = {
             })
         },
 
-        get(context, {path, token}) {
+        get(context, { path, token }) {
             return new Promise((resolve, reject) => {
                 try {
                     const headers = {};
@@ -396,6 +395,30 @@ const apiStore = {
                 }
             })
         },
+
+        updateUserProfile(context, newProfile) {
+            return new Promise((resolve, reject) => {
+                try {
+                    let data = new FormData();
+                    data.append('description', newProfile.description)
+                    data.append('profilPicture', newProfile.picture[0], newProfile.picture[0].name);
+                    console.log("pr", newProfile.picture[0])
+                    axios.patch(wording.serverAdress + 'me', data, { headers: { "Authorization": this.state.userStore.token } }).then(() => {
+                        axios.get(wording.serverAdress + 'me', { headers: { "Authorization": this.state.userStore.token } }).then((userProfile) => {
+                            context.commit('UPDATE_USER_INFO', userProfile);
+                            resolve(userProfile);
+                        }).catch((error) => {
+                            reject(error)
+                        })
+                    }).catch((error) => {
+                        reject(error);
+                    })
+                } catch (error) {
+                    reject(error);
+                }
+            })
+        },
+
         patch(context, { path, data, token }) {
             return new Promise((resolve, reject) => {
                 try {

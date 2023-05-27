@@ -30,6 +30,10 @@
     <div class="mt-2 text-center">
       <button class="redirectButton" @click="openLoginPage()">{{ $t("inscriptionPage.alreadyHaveAnAccount") }}</button>
     </div>
+    <button @click="authenticateWithGoogle" class="google-button">
+      <img src="google-icon.png" alt="Google Icon" class="google-icon" />
+      Connect with Google
+    </button>
   </div>
 </template>
 
@@ -47,6 +51,10 @@ export default {
     }
   },
   methods: {
+    /*authenticateWithGoogle() {
+      // Rediriger vers l'URL d'authentification Google
+      //window.location.href = "http://localhost:8080/v1/auth/google";
+    },*/
     openLoginPage () {
       this.$emit("openLogin");
     },

@@ -14,6 +14,7 @@ const globalNonPersistantData = {
         UPDATE_USER_GROUP(state, groups) {
             state.groups = [];
             let emails = [];
+            console.log(groups)
             for (let group in groups.data.groups) {
                 emails = [];
                 for (let mail in groups.data.groups[group].emails) {
@@ -29,6 +30,7 @@ const globalNonPersistantData = {
                     name: groups.data.groups[group].name,
                     emails: emails,
                     itinerary: groups.data.groups[group].itinerary,
+                    photo: groups.data.groups[group].picture,
                 })
             }
         },

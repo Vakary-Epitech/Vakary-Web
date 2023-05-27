@@ -24,24 +24,25 @@
                         </div>
                         <div v-if="role == 'admin'" class="col-4 row">
                             <div class="col-6 my-auto mx-auto">
-                                <button v-if="editGroupName" class="btn-check-change-group-name" @click="updateGroupName()"><i
-                                        class="fa-solid fa-check fa-lg"></i></button>
-                                <button v-else-if="askingDelete" class="btn-check-change-group-name" @click="deleteGroup()"><i
-                                        class="fa-solid fa-check fa-lg"></i></button>
+                                <button v-if="editGroupName" class="btn-check-change-group-name"
+                                    @click="updateGroupName()"><i class="fa-solid fa-check fa-lg"></i></button>
+                                <button v-else-if="askingDelete" class="btn-check-change-group-name"
+                                    @click="deleteGroup()"><i class="fa-solid fa-check fa-lg"></i></button>
                                 <button v-else class="btn-change-group-name" @click="editGroupName = true"><i
                                         class="fa-solid fa-pen"></i></button>
                             </div>
                             <div class="col-6 my-auto mx-auto">
                                 <button v-if="editGroupName" class="btn-mark-change-group-name" @click="leaveEditName()"><i
-                                    class="fa-solid fa-xmark fa-lg"></i></button>
-                                    <button v-else-if="askingDelete" class="btn-mark-change-group-name"
+                                        class="fa-solid fa-xmark fa-lg"></i></button>
+                                <button v-else-if="askingDelete" class="btn-mark-change-group-name"
                                     @click="leaveAskingDelete()"><i class="fa-solid fa-xmark fa-lg"></i></button>
-                                    <button v-else class="btn-delete-group ms-2" @click="messageDeleteGroup"><i
+                                <button v-else class="btn-delete-group ms-2" @click="messageDeleteGroup"><i
                                         class="fa-solid fa-trash"></i></button>
                             </div>
                         </div>
                         <div v-if="role == 'member'" class="col-4 mx-auto my-auto">
-                            <button @click="leaveGroup" class="btn-delete-group-picture">{{ $t("showMembers.leave") }}</button>
+                            <button @click="leaveGroup" class="btn-delete-group-picture">{{ $t("showMembers.leave")
+                            }}</button>
                         </div>
                     </div>
                 </section>
@@ -62,7 +63,8 @@
                         <div class="col-4 status" :class="getStatus(index)">
                             {{ member.status }}
                         </div>
-                        <div class="col-2 text-center" v-if="role == 'admin' && this.groupInformations.emails[index].role != 'admin'">
+                        <div class="col-2 text-center"
+                            v-if="role == 'admin' && this.groupInformations.emails[index].role != 'admin'">
                             <button class="trashIcon" @click="deleteMember(index)"><i
                                     class="fa-solid fa-trash"></i></button>
                         </div>
@@ -73,10 +75,9 @@
                 </section>
                 <section name="picture">
                     <div v-if="groupInformations.photo" class="text-center">
-                        <img :src="groupInformations.photo?.preview" :alt="groupInformations.photo?.name"
-                            class="img-thumbnail my-1" />
+                        <img :src="groupInformations.photo" class="img-thumbnail my-1" />
                     </div>
-                    <label class="btn-add-group-picture mt-1" v-if="!groupInformations.photo?.preview">
+                    <label class="btn-add-group-picture mt-1" v-if="!groupInformations.photo">
                         {{ $t("showMembers.picture") }}
                         <input @change="onFileChange" type="file" hidden>
                     </label>
@@ -93,7 +94,8 @@
                 <div class="row" v-if="$store.state.globalNonPersistantData?.itinerary.length > 0">
                     <p>{{ $t("showMembers.itineraries") }}</p>
                     <div class="col-3 my-auto">
-                        <button class="custom-button" v-if="$store.state.globalNonPersistantData?.itinerary.length > 1" @click="prev">
+                        <button class="custom-button" v-if="$store.state.globalNonPersistantData?.itinerary.length > 1"
+                            @click="prev">
                             <i class="fa-solid fa-arrow-left fa-xl custom-arrow"></i>
                         </button>
                     </div>
@@ -102,13 +104,16 @@
                         {{ this.$store.state.globalNonPersistantData?.itinerary[indexItinerary].id }}
                     </div>
                     <div class="col-3 my-auto text-end">
-                        <button class="custom-button" v-if="$store.state.globalNonPersistantData?.itinerary.length > 1" @click.prevent="next">
+                        <button class="custom-button" v-if="$store.state.globalNonPersistantData?.itinerary.length > 1"
+                            @click.prevent="next">
                             <i class="fa-solid fa-arrow-right fa-xl custom-arrow"></i>
                         </button>
                     </div>
                     <div>
                         <input type="checkbox" id="checkbox" v-model="addGroupToItinerary" />
-                        <label for="checkbox"><p>{{ $t("showMembers.addGroupItinerary") }}</p></label>
+                        <label for="checkbox">
+                            <p>{{ $t("showMembers.addGroupItinerary") }}</p>
+                        </label>
                     </div>
                 </div>
 
@@ -130,6 +135,7 @@ export default {
     },
     data() {
         return {
+            picture: "",
             groupInformations: {
                 name: "",
                 members: [],
@@ -556,5 +562,4 @@ export default {
 
 .trashIcon:hover {
     box-shadow: 0 0 0 2px #dc3545;
-}
-</style>
+}</style>
