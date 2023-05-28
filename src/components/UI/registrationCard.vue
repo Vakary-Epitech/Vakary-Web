@@ -30,10 +30,16 @@
     <div class="mt-2 text-center">
       <button class="redirectButton" @click="openLoginPage()">{{ $t("inscriptionPage.alreadyHaveAnAccount") }}</button>
     </div>
-    <button @click="authenticateWithGoogle" class="google-button">
-      <img src="google-icon.png" alt="Google Icon" class="google-icon" />
-      Connect with Google
-    </button>
+    <div class="mt-2 text-center">
+      <button 
+      @click="authenticateWithGoogle"
+      class="btn google-signin-button">
+          <img class="google-logo" src="https://aid-frontend.prod.atl-paas.net/atlassian-id/front-end/5.0.441/static/media/google-logo.e086107b.svg" alt="google-logo"/>
+        <span class="google-text">
+          {{ $t("inscriptionPage.google") }}
+        </span>
+      </button>
+    </div>
   </div>
 </template>
 
@@ -117,6 +123,31 @@ export default {
 </script>
 
 <style scoped lang="scss">
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+.google-signin-button {
+  border: 1px solid grey;
+  height: 40px;
+  padding: 8px 8px;
+}
+
+.google-signin-button:hover {
+  border: 1px solid rgb(192, 150, 40);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+}
+
+.google-text {
+  font-family: 'Roboto', sans-serif;
+  size: 14px;
+  color: 0,0,0 (54%);
+}
+
+.google-logo {
+  width: 18px;
+  height: 18px;
+  margin-right: 24px;
+  margin-bottom: 5px;
+}
+
 .bold {
   font-weight: 600;
 }

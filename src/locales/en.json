@@ -75,6 +75,7 @@
     "email": "Email address",
     "username": "Username",
     "password": "New password",
+    "google": "Sign up with Google",
     "errors": {
       "failed": "Registration failed",
       "email": "Invalid email address",

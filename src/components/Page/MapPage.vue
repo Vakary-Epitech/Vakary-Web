@@ -51,7 +51,7 @@
                 :key="itineraryDisplay.id">
                 <Transition name="slide-fade">
                   <mapCards @click="itineraryCardsHasBeenClicked(index)" class="cardOnDropdown mt-2"
-                    :itinerary="itineraryDisplay" />
+                    :itinerary="itineraryDisplay" :index="index" />
                 </Transition>
                 <div class="topBorder">&nbsp;</div>
               </div>
