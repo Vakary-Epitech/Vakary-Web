@@ -29,6 +29,7 @@ const globalNonPersistantData = {
                     name: groups.data.groups[group].name,
                     emails: emails,
                     itinerary: groups.data.groups[group].itinerary,
+                    photo: groups.data.groups[group].picture,
                 })
             }
         },

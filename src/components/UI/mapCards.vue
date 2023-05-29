@@ -1,7 +1,7 @@
 <template>
     <div class="cardBasicContainer">
         <div>
-            <span>{{ this.itinerary.id }}. </span>
+            <span>{{ this.index + 1 }}. </span>
             <span>{{ this.itinerary.itineraryPOI[0].City.name }}</span>
             <span class="alignRight ">{{ $t("mapPage.group") }}: {{ this.groupName ? this.groupName : $t("mapCards.noGroups") }}</span>
         </div>
@@ -14,7 +14,7 @@
 
 <script>
 export default {
-    props :["itinerary"],
+    props :["itinerary", "index"],
     data () {
         return {
             groupName: null

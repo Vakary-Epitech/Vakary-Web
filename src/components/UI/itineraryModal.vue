@@ -354,4 +354,5 @@ export default {
 
 /* ::-webkit-scrollbar {
     width: 100px !important;
-} */</style>
+} */
+</style>
