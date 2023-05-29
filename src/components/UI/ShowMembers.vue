@@ -251,7 +251,11 @@ export default {
                     email: user.emails,
                 }
             }).then(() => {
-                this.$store.dispatch("getGroup").catch((error) => {
+                this.$store.dispatch("getGroup").then(() => {
+                    this.$store.dispatch("getItinerary").catch((error) => {
+                        console.log(error);
+                    })
+                }).catch((error) => {
                     console.log(error);
                 })
                 this.$emit("goBackToGroupDropdown");
@@ -562,4 +566,5 @@ export default {
 
 .trashIcon:hover {
     box-shadow: 0 0 0 2px #dc3545;
-}</style>
+}
+</style>

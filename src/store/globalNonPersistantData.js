@@ -71,15 +71,29 @@ const globalNonPersistantData = {
                     });
                 }
             }
+
             for (let group in state.groups) {
                 if (state.groups[group].itinerary) {
                     const i = state.itinerary.findIndex(itinerary => itinerary.id === state.groups[group].itinerary.id)
-                    if (i == -1)
-                        state.itinerary.push({
+                    if (i == -1) {
+
+                        let itinerayData = {
                             itineraryPOI: JSON.parse(state.groups[group].itinerary.data),
                             id: state.groups[group].itinerary.id,
-                        })
+                        };
 
+                        state.itinerary.push(itinerayData)
+
+                        for (let POI in itinerayData.itineraryPOI) {
+                            state.marker.push({
+                                label: itinerayData.itineraryPOI[POI].name,
+                                geolocalisation: {
+                                    lat: itinerayData.itineraryPOI[POI].Localisation.latitude,
+                                    lng: itinerayData.itineraryPOI[POI].Localisation.longitude,
+                                },
+                            });
+                        }
+                    }
                 }
             }
         },

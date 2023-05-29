@@ -120,8 +120,7 @@
                     <i class="fas fa-users ms-4 mt-2"></i>
                     <i class="fas fa-person fa-lg me-3 mt-2" style="float: right"></i>
                     <Transition name="slide-fade">
-                      <mapGroupCardsVue :groupName="group.name" :numberOfMember="group.emails.length"
-                         :index="index" />
+                      <mapGroupCardsVue :groupName="group.name" :numberOfMember="group.emails.length" :index="index" />
                     </Transition>
                   </div>
                   <div v-if="shouldDisplayButton(group.emails)" class="row my-2">
@@ -242,9 +241,9 @@ export default {
           );
         }
       })
-      .catch ((error) => {
-        console.log(error);
-      })
+        .catch((error) => {
+          console.log(error);
+        })
     }).catch((error) => {
       console.log(error);
     });
@@ -271,7 +270,7 @@ export default {
       return (this.$store.state.globalNonPersistantData.itinerary[this.selectedItinerary - 1])
     },
     getCenterOfMap() {
-      if (this.selectedItinerary == 0 || ! this.$store.state.globalNonPersistantData.itinerary[this.selectedItinerary - 1])
+      if (this.selectedItinerary == 0 || !this.$store.state.globalNonPersistantData.itinerary[this.selectedItinerary - 1])
         return ({
           lat: 49.1172801,
           lng: 6.21190790000003
@@ -340,7 +339,7 @@ export default {
     },
     goBackToItineraryDropdown() {
       this.currentWaypointIndex = 0;
-      this.selectedItinerary = 0;     
+      this.selectedItinerary = 0;
       this.displayItineraryInformation = false;
       this.mapZoom = 12;
       this.$store.commit("CLEAR_PATH");
@@ -364,6 +363,9 @@ export default {
       this.currentWaypointIndex -= 1;
     },
     setItineraryDropdownState() {
+      this.$store.dispatch("getItinerary").catch((error) => {
+        console.log(error);
+      })
       this.itineraryDropdown = !this.itineraryDropdown;
     },
     setGroupDropdownState() {
@@ -484,7 +486,6 @@ export default {
 </script>
 
 <style scoped>
-
 .button-invit {
   background-color: #fff;
   border: solid 1px rgb(192, 150, 40);
@@ -499,12 +500,13 @@ export default {
 }
 
 .custom-check {
-    color: green;
+  color: green;
 }
 
 .custom-xmark {
-    color: red;
+  color: red;
 }
+
 .componentsGroupDropdown {
   min-width: 400px;
   max-height: 300px !important;
