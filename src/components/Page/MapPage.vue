@@ -336,9 +336,6 @@ export default {
       this.selectedItinerary = itineraryId + 1;
       this.displayItineraryInformation = true;
       this.mapZoom = 15;
-      this.$store.dispatch("getItinerary").catch((error) => {
-        console.log(error);
-      })
     },
     goBackToItineraryDropdown() {
       this.currentWaypointIndex = 0;
@@ -366,6 +363,9 @@ export default {
       this.currentWaypointIndex -= 1;
     },
     setItineraryDropdownState() {
+      this.$store.dispatch("getItinerary").catch((error) => {
+        console.log(error);
+      })
       this.itineraryDropdown = !this.itineraryDropdown;
     },
     setGroupDropdownState() {
