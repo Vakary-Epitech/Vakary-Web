@@ -29,6 +29,7 @@ const globalNonPersistantData = {
                     name: groups.data.groups[group].name,
                     emails: emails,
                     itinerary: groups.data.groups[group].itinerary,
+                    photo: groups.data.groups[group].picture,
                 })
             }
         },
@@ -120,6 +121,9 @@ const globalNonPersistantData = {
                     state.waypoints.push(path[point].steps[steps].start_location)
                 }
             }
+        },
+        CLEAR_PATH(state) {
+            state.waypoints = [];
         }
     }
 };

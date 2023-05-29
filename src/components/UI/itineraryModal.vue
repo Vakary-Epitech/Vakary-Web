@@ -11,19 +11,22 @@
                     <input class="w-100 form-control" type="text" v-model="city" :placeholder="placeholderCity">
                 </div>
                 <hr class="separationBar">
-                <span >{{ $t("itineraryModal.howLong") }}</span><br>
+                <span>{{ $t("itineraryModal.howLong") }}</span><br>
                 <div class="form-check col-12">
-                    <input class="form-check-input mx-1" type="checkbox" value="" id="onehour">
+                    <input class="form-check-input mx-1" type="radio" value="one" v-model="checkItineraryLength"
+                        id="onehour">
                     <label class="form-check-label" for="onehour">
                         <span>{{ $t("itineraryModal.lessThanOneHour") }}</span>
                     </label>
                     <br>
-                    <input class="form-check-input mx-1" type="checkbox" value="" id="multihours">
+                    <input class="form-check-input mx-1" type="radio" value="oneToFour" v-model="checkItineraryLength"
+                        id="multihours">
                     <label class="form-check-label" for="multihours">
                         <span>{{ $t("itineraryModal.fromOneToFour") }}</span>
                     </label>
                     <br>
-                    <input class="form-check-input mx-1" type="checkbox" value="" id="morehours">
+                    <input class="form-check-input mx-1" type="radio" value="FourOrMore" v-model="checkItineraryLength"
+                        id="morehours">
                     <label class="form-check-label" for="morehours">
                         <span>{{ $t("itineraryModal.moreThanFourHours") }}</span>
                     </label>
@@ -92,14 +95,18 @@
                 <div>
                     <div v-for="(category, categoryIndex) in categories" :key="categoryIndex">
                         <div class="row my-2">
-                            <input class="col-1 ms-2" type="checkbox" :checked="checkToggle(category)" @change="toggleAllPOIs(category)" />
-                            <button class="col-10 mx-auto dropDownButton" @click="toggleDropdown(categoryIndex)" >
+                            <input class="col-1 ms-2" type="checkbox" :checked="checkToggle(category)"
+                                @change="toggleAllPOIs(category)" />
+                            <button class="col-10 mx-auto dropDownButton" @click="toggleDropdown(categoryIndex)">
                                 {{ category }}
-                                <font-awesome-icon class="mt-1" :icon="dropdownOpen[categoryIndex] ? ['fas', 'caret-up'] : ['fas', 'caret-down']" style="float: right"/>
+                                <font-awesome-icon class="mt-1"
+                                    :icon="dropdownOpen[categoryIndex] ? ['fas', 'caret-up'] : ['fas', 'caret-down']"
+                                    style="float: right" />
                             </button>
                         </div>
-                        <div class="row my-2" v-show="isDropdownOpen(categoryIndex)" v-for="(poi, poiIndex) in getPoisByCategory(category)" :key="poiIndex">
-                            <input class="col sameSize" type="checkbox" v-model="selectedPOIs[poi]" value="poi"/>
+                        <div class="row my-2" v-show="isDropdownOpen(categoryIndex)"
+                            v-for="(poi, poiIndex) in getPoisByCategory(category)" :key="poiIndex">
+                            <input class="col sameSize" type="checkbox" v-model="selectedPOIs[poi]" value="poi" />
                             <span class="col-10">{{ poi }}</span>
                         </div>
                     </div>
@@ -120,6 +127,7 @@ import { InterestPointTypeAccommodation, InterestPointTypeEatOrDrink, InterestPo
 export default {
     data() {
         return {
+            checkItineraryLength: "",
             date: "",
             timeOfStart: "00:00",
             timeOfEnd: "00:00",
@@ -172,16 +180,16 @@ export default {
 
             if (areAllTrue) {
                 for (const poi of pois) {
-                this.selectedPOIs[poi] = false;
+                    this.selectedPOIs[poi] = false;
                 }
-            } 
+            }
             else if (areAllFalse) {
-                    for (const poi of pois) {
+                for (const poi of pois) {
                     this.selectedPOIs[poi] = true;
                 }
-            } 
+            }
             else {
-                    for (const poi of pois) {
+                for (const poi of pois) {
                     this.selectedPOIs[poi] = true;
                 }
             }
@@ -228,16 +236,15 @@ export default {
             return goodFormat;
         },
         generateItinerary() {
-            let timeOfStart = this.timeOfStart.split(":");
-            let timeOfEnd = this.timeOfEnd.split(":");
-            timeOfStart = parseInt(timeOfStart[0]) * 3600 + parseInt(timeOfStart[1]) * 60;
-            timeOfEnd = parseInt(timeOfEnd[0]) * 3600 + parseInt(timeOfEnd[1]) * 60;
-            let duration = timeOfEnd - timeOfStart;
-            
-            if (duration < 0) {
-                duration += 24;
-            }
-            this.generateGoodFormat(this.selectedPOIs);
+            let duration = 0;
+
+            if (this.checkItineraryLength == "one")
+                duration = 3600; //One hour in second
+            else if (this.checkItineraryLength == "oneToFour")
+                duration = 3600 * 4; //Four hours in seconds
+            else
+                duration = 3600 * 8; //Eight hours in seconds
+
             this.error = "";
             this.$store.dispatch("put", {
                 path: "itinerary/me",

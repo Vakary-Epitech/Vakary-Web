@@ -10,7 +10,7 @@
             <div class="container">
                 <div class="row" v-if="!editMode">
                     <div>
-                        <img class="profile-picture" :src="$store.state.userStore.userProfileImage" alt="profile-picture">
+                        <img class="profile-picture" :src="photoDisplay" alt="profile-picture">
                     </div>
                     <div class="text-center">
                         <h1 class="overflow" style="max-width:200px">{{ user.username }}</h1>
@@ -22,13 +22,12 @@
                 </div>
                 <div class="row" v-if="editMode">
                     <div>
-                        <img @click="openFileExplorer()" class="profile-picture clickable" :src="$store?.state?.userStore?.userProfileImage"
-                            alt="profile-picture">
+                        <img @click="openFileExplorer()" class="profile-picture clickable"
+                            :src="photoDisplay" alt="profile-picture">
                     </div>
                     <div class="col-6 mt-3 offset-3">
                         <span>{{ $t("profilePage.info") }}</span><br>
-                        <textarea v-model="description"
-                            :placeholder="description" rows="5" cols="80"
+                        <textarea v-model="description" :placeholder="description" rows="5" cols="80"
                             maxlength="300">Write stuff here...</textarea>
                         {{ description?.length }}/300
                     </div>
@@ -82,6 +81,8 @@ export default {
             editMode: false,
             description: this.$store.state.userStore.userInfo.description,
             user: this.$store.state.userStore.userInfo,
+            picture: this.$store.state.userStore.userProfileImage,
+            photoDisplay: this.$store.state.userStore.userProfileImage,
         }
     },
     methods: {
@@ -94,8 +95,8 @@ export default {
                 const file = fileExplorer.files[0];
                 const fileReader = new FileReader();
                 fileReader.onload = () => {
-                    const result = fileReader.result;
-                    this.$store.state.userStore.userProfileImage = result;
+                    this.photoDisplay = fileReader.result;
+                    this.picture = fileExplorer.files;
                 }
                 fileReader.readAsDataURL(file);
             }
@@ -104,17 +105,14 @@ export default {
             this.editMode = true
         },
         save() {
-            this.$store.dispatch('patch', {
-                path: "me",
-                data: {
-                    description: this.description,
-                    userProfileImage: this.$store.state.userStore.userProfileImage,
-                },
-                token: this.$store.state.userStore.token,
+            this.$store.dispatch('updateUserProfile', {
+                description: this.description,
+                picture: this.picture,
             }).then(() => {
-                this.editMode = false
-            }).catch(() => {
-                console.log("error");
+                this.photoDisplay = this.$store.state.userStore.userProfileImage;
+                this.editMode = false;
+            }).catch((error) => {
+                console.log(error);
             })
         },
         disconnectUser() {
@@ -136,10 +134,10 @@ export default {
 }
 </script>
 <style scoped>
-
 .row {
     margin: 0 !important;
 }
+
 .overflow {
     overflow-x: auto;
 }
@@ -243,5 +241,6 @@ textarea {
 .container input {
     background-color: var(--background-color-secondary);
     border-color: var(--text-primary-color);
-}</style>
+}
+</style>
     

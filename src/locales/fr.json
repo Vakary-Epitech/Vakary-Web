@@ -89,6 +89,7 @@
         "email": "Adresse email",
         "username": "Nom d'utilisateur",
         "password": "Nouveau mot de passe",
+        "google": "S'inscrire avec Google",
         "errors": {
             "failed": "L'inscription a échouée",
             "email": "L'adresse email est invalide",
