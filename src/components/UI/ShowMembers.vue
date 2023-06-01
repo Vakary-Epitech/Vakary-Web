@@ -116,7 +116,9 @@
                         </label>
                     </div>
                 </div>
-
+                <div class="text-danger">
+                    {{ errorMessage }}
+                </div>
                 <div class="col-12 mt-3 text-center">
                     <button @click="goBackToGroupDropdown" class="btn-save-group">{{ $t("showMembers.save") }}</button>
                 </div>
@@ -155,7 +157,8 @@ export default {
             editGroupName: false,
             mailMember: '',
             showMembers: true,
-            showEmailError: false
+            showEmailError: false,
+            errorMessage: ''
         }
     },
     computed: {
@@ -226,11 +229,11 @@ export default {
                 return;
             }
             this.showEmailError = false;
-
+            this.errorMessage = '';
             this.$store.dispatch("patch", { path: "group/invitation/" + this.groupInformations.backendGroupId, data: { email: this.mailMember } }).then(() => {
                 this.$emit("goBackToGroupDropdown");
             }).catch((error) => {
-                console.log(error);
+                this.errorMessage = error.response.data.message;
             });
 
             this.mailMember = '';
