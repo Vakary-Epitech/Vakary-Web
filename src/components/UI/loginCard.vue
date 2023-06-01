@@ -48,16 +48,13 @@ export default {
     },
     login() {
       this.userDontExist = false;
-      this.$store.dispatch("post", {
-        path: "login",
-        data: {
+      this.$store.dispatch("userConnection", {
           username: this.name, 
           password: this.password
-        },
       }).then(() => {
-        this.$store.state.userStore.userIsLoggedIn = true;
         this.$emit("loginDone");
-      }).catch(() => {
+      }).catch((error) => {
+        console.log(error);
         this.userDontExist = true;
       })
     },

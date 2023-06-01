@@ -1,36 +1,107 @@
+import axios from "axios";
+//import wording from "@/utils/wording";
+/* eslint-disable */
 const userStore = {
     state: {
-        userId: "",
         token: "",
         userInfo: {},
-        currentUserLocation: {
-            latitude: 0,
-            longitude: 0,
-        },
         mail: "",
-        userIsLoggedIn: true,
         username: "",
         userProfileImage: "",
     },
     mutations: {
-        UPDATE_USER_LOCATION(state, coords) {
-            console.log("User Coords:", coords.latitude, coords.longitude);
-            state.currentUserLocation.latitude = 48.8610061;
-            state.currentUserLocation.longitude = 2.3359302999999727;
-        },
-        USER_CAN_LOG_IN(state, mail) {
-            state.userIsLoggedIn = true;
-            state.mail = mail;
-        },
         UPDATE_USER_INFO(state, userInfo) {
             state.userInfo = {};
             state.userInfo = userInfo.data.user;
-            if (userInfo.data.token)
-                state.token = userInfo.data.token;
             state.mail = userInfo.data.user.email;
             state.userProfileImage = userInfo.data.user.picture;
         },
     },
+    actions: {
+        userConnection({ commit, rootGetters }, data) {
+            return new Promise((resolve, reject) => {
+                try {                    
+                    let conf = rootGetters.getConfig({url: "login", data: data, method: "post"})
+
+                    axios.request(conf).then((canAuthentify) => {
+                        commit('UPDATE_USER_INFO', canAuthentify);
+                        commit('UPDATE_USER_TOKEN', canAuthentify.data.token);
+                        resolve("user connected");
+                    }).catch((error) => {
+                        reject(error);
+                    })
+                } catch (error) {
+                    reject(error);
+                }
+            })
+        },
+
+        userRegister({ commit, rootGetters }, data) {
+            return new Promise((resolve, reject) => {
+                try {
+                    let conf = rootGetters.getConfig({url: "register", data: data, method: "put"})
+
+                    axios.request(conf).then((canAuthentify) => {
+                        commit('UPDATE_USER_INFO', canAuthentify);
+                        commit('UPDATE_USER_TOKEN', canAuthentify.data.token);
+                        resolve("user Created");
+                    }).catch((error) => {
+                        reject(error);
+                    })
+                } catch (error) {
+                    reject(error);
+                }
+            })
+        },
+
+        userPasswordReset({ rootGetters }, data) {
+            return new Promise((resolve, reject) => {
+                try {
+                    let conf = rootGetters.getConfig({url: "forgotPassword", data: data, method: "post"})
+
+                    axios.request(conf).then((canAuthentify) => {
+                        resolve(canAuthentify)
+                    }).catch((error) => {
+                        reject(error);
+                    })
+                } catch (error) {
+                    reject(error);
+                }
+            })
+        },
+
+        userTokenPasswordResetCheck({ rootGetters }, data) {
+            return new Promise((resolve, reject) => {
+                try {
+                    let conf = rootGetters.getConfig({url: "password/verificationToken", data: data, method: "post"})
+
+                    axios.request(conf).then(() => {
+                        resolve(true);
+                    }).catch((error) => {
+                        reject(error);
+                    })
+                } catch (error) {
+                    reject(error);
+                }
+            })
+        },
+
+        userSendNewPassword({ rootGetters }, data) {
+            return new Promise((resolve, reject) => {
+                try {
+                    let conf = rootGetters.getConfig({url: "changePassword", data: data, method: "post"})
+
+                    axios.request(conf).then((canAuthentify) => {
+                        resolve(canAuthentify)
+                    }).catch((error) => {
+                        reject(error);
+                    })
+                } catch (error) {
+                    reject(error);
+                }
+            })
+        },
+    }
 };
 
 export default userStore;

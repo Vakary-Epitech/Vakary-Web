@@ -12,7 +12,7 @@ const apiStore = {
                         maxBodyLength: Infinity,
                         url: wording.serverAdress + "itinerary/getAll/me",
                         headers: {
-                            "Authorization": this.state.userStore.token
+                            "Authorization": this.state.store.token
                         },
                     };
 
@@ -50,7 +50,7 @@ const apiStore = {
                         maxBodyLength: Infinity,
                         url: wording.serverAdress + "itinerary/me",
                         headers: {
-                            "Authorization": this.state.userStore.token
+                            "Authorization": this.state.store.token
                         },
                         data: {
                             city: itinerary.city,
@@ -67,21 +67,6 @@ const apiStore = {
                             context.commit('ADD_NEW_ITINERARY', newItinerary.data.createdItinerary);
                         }
                         resolve(newItinerary);
-                    }).catch((error) => {
-                        reject(error);
-                    })
-                } catch (error) {
-                    reject(error);
-                }
-            })
-        },
-
-        checkIfUserIsAuthorizedToConnect(context, password) {
-            return new Promise((resolve, reject) => {
-                try {
-                    axios.post(wording.serverAdress + "login", { username: this.state.userStore.mail, password: password }).then((canAuthentify) => {
-                        context.commit('UPDATE_USER_INFO', canAuthentify);
-                        resolve(canAuthentify);
                     }).catch((error) => {
                         reject(error);
                     })
@@ -172,67 +157,6 @@ const apiStore = {
             })
         },
 
-        requestPasswordReset(context, email) {
-            return new Promise((resolve, reject) => {
-                try {
-                    axios.post(wording.serverAdress + "forgotPassword", { email: email }).then((canAuthentify) => {
-                        resolve(canAuthentify)
-                    }).catch((error) => {
-                        reject(error);
-                    })
-                } catch (error) {
-                    reject(error);
-                }
-            })
-        },
-
-        verifyTokenPasswordReset(context, token) {
-            return new Promise((resolve, reject) => {
-                try {
-                    axios.post(wording.serverAdress + "password/verificationToken", { token: token }).then(() => {
-                        resolve(true);
-                    }).catch((error) => {
-                        reject(error);
-                    })
-                } catch (error) {
-                    reject(error);
-                }
-            })
-        },
-
-        sendNewPassword(context, requestParameters) {
-            return new Promise((resolve, reject) => {
-                try {
-                    axios.post(wording.serverAdress + "changePassword", { password: requestParameters.password, }, {
-                        headers: {
-                            'Authorization': requestParameters.token
-                        }
-                    }).then((canAuthentify) => {
-                        resolve(canAuthentify)
-                    }).catch((error) => {
-                        reject(error);
-                    })
-                } catch (error) {
-                    reject(error);
-                }
-            })
-        },
-
-        checkIfAccountCanBeCreated(context, password) {
-            return new Promise((resolve, reject) => {
-                try {
-                    axios.put(wording.serverAdress + "register", { email: this.state.userStore.mail, password: password, username: this.state.userStore.username }).then((canAuthentify) => {
-                        context.commit('UPDATE_USER_INFO', canAuthentify);
-                        resolve(canAuthentify)
-                    }).catch((error) => {
-                        reject(error);
-                    })
-                } catch (error) {
-                    reject(error);
-                }
-            })
-        },
-
         addGroupToItinerary(context, data) {
             return new Promise((resolve, reject) => {
                 try {
@@ -282,6 +206,7 @@ const apiStore = {
                     axios.post(wording.serverAdress + path, { ...data }, { headers }).then((response) => {
                         if (path == "login") {
                             context.commit('UPDATE_USER_INFO', response);
+                            context.commit('UPDATE_USER_TOKEN', response.data.token);
                         }
                         if (path == "getPath") {
                             context.commit('UPDATE_PATH', response.data.path);
@@ -311,9 +236,6 @@ const apiStore = {
                             if (response.data.createdItinerary) {
                                 context.commit('ADD_NEW_ITINERARY', response.data.createdItinerary);
                             }
-                        }
-                        if (path == "register") {
-                            context.commit('UPDATE_USER_INFO', response);
                         }
                         resolve(response);
                     }).catch((error) => {

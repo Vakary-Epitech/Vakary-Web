@@ -258,7 +258,7 @@ export default {
                     group: this.$store.state.globalNonPersistantData.groups[this.indexOfGroup],
                     handicapAccess: false,
                 },
-                token: this.$store.state.userStore.token,
+                token: this.$store.state.store.token,
             }).then(() => {
                 this.$store.dispatch("getItinerary").then(() => {
                     this.$emit("goBackToItineraryDropdown");

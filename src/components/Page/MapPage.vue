@@ -231,6 +231,8 @@ export default {
     }
   },
   mounted() {
+    this.$store.dispatch("testNewStore");
+
     this.$store.dispatch("getGroup").then((groups) => {
       this.$store.dispatch("getItinerary").then(() => {
         for (let groupsId in groups["groups"]) {

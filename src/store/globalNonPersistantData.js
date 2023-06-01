@@ -1,10 +1,5 @@
 const globalNonPersistantData = {
     state: {
-        userId: "",
-        userInfo: {},
-        mail: "",
-        userIsLoggedIn: true,
-        username: "",
         groups: [],
         itinerary: [],
         marker: [],

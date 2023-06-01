@@ -67,7 +67,7 @@ export default {
         }
     },
     mounted() {
-        this.$store.dispatch("verifyTokenPasswordReset", this.$route?.params?.id).then(() => {
+        this.$store.dispatch("userTokenPasswordResetCheck", this.$route?.params?.id).then(() => {
             this.isTokenVerified = true;
         }).catch((error) => {
             this.error = true;
@@ -85,7 +85,7 @@ export default {
                 return;
             }
             this.errorPassword = false;
-            this.$store.dispatch("sendNewPassword", { password: this.newPassword, token: this.$route.params.id }).then(() => {
+            this.$store.dispatch("userSendNewPassword", { password: this.newPassword, token: this.$route.params.id }).then(() => {
                 this.$router.push("/connexionPage");
             }).catch((error) => {
                 this.error = true;
