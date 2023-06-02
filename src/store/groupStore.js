@@ -142,6 +142,22 @@ const groupStore = {
                 }
             })
         },
+
+        addGroupToItinerary({ getters }, data) {
+            return new Promise((resolve, reject) => {
+                try {
+                    let config = getters.getConfig({ url: "group/" + data.groupId, data: data, method: "patch" })
+
+                    axios.request(config).then((response) => {
+                        resolve(response);
+                    }).catch((error) => {
+                        reject(error);
+                    })
+                } catch (error) {
+                    reject(error);
+                }
+            })
+        },
     }
 };
 

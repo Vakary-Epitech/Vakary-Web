@@ -203,7 +203,7 @@ export default {
         goBackToGroupDropdown() {
             if (this.addGroupToItinerary) {
                 this.$store.dispatch("addGroupToItinerary", {
-                    groupName: this.groupInformations.name,
+                    groupname: this.groupInformations.name,
                     groupId: this.groupInformations.backendGroupId,
                     itineraryId: this.$store.state.itineraryStore.itinerary[this.indexItinerary].id
                 }).catch((error) => {
