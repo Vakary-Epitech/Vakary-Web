@@ -47,7 +47,7 @@
                 </div>
               </div>
               <div class="topBorder">&nbsp;</div>
-              <div v-for="(itineraryDisplay, index) of this.$store.state.globalNonPersistantData.itinerary"
+              <div v-for="(itineraryDisplay, index) of this.$store.state.itineraryStore.itinerary"
                 :key="itineraryDisplay.id">
                 <Transition name="slide-fade">
                   <mapCards @click="itineraryCardsHasBeenClicked(index)" class="cardOnDropdown mt-2"
@@ -269,18 +269,18 @@ export default {
       return (this.$store.state.globalNonPersistantData.waypoints);
     },
     selectedItineraryInfo() {
-      return (this.$store.state.globalNonPersistantData.itinerary[this.selectedItinerary - 1])
+      return (this.$store.state.itineraryStore.itinerary[this.selectedItinerary - 1])
     },
     getCenterOfMap() {
-      if (this.selectedItinerary == 0 || !this.$store.state.globalNonPersistantData.itinerary[this.selectedItinerary - 1])
+      if (this.selectedItinerary == 0 || !this.$store.state.itineraryStore.itinerary[this.selectedItinerary - 1])
         return ({
           lat: 49.1172801,
           lng: 6.21190790000003
         });
       else {
         return ({
-          lat: this.$store.state.globalNonPersistantData.itinerary[this.selectedItinerary - 1].itineraryPOI[this.currentWaypointIndex].Localisation.latitude,
-          lng: this.$store.state.globalNonPersistantData.itinerary[this.selectedItinerary - 1].itineraryPOI[this.currentWaypointIndex].Localisation.longitude,
+          lat: this.$store.state.itineraryStore.itinerary[this.selectedItinerary - 1].itineraryPOI[this.currentWaypointIndex].Localisation.latitude,
+          lng: this.$store.state.itineraryStore.itinerary[this.selectedItinerary - 1].itineraryPOI[this.currentWaypointIndex].Localisation.longitude,
         });
       }
     },

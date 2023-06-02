@@ -186,13 +186,13 @@ export default {
     methods: {
         prev() {
             if (this.indexItinerary == 0) {
-                this.indexItinerary = this.$store.state.globalNonPersistantData.itinerary.length - 1;
+                this.indexItinerary = this.$store.state.itineraryStore.itinerary.length - 1;
             } else {
                 this.indexItinerary--;
             }
         },
         next() {
-            if (this.indexItinerary < this.$store.state.globalNonPersistantData.itinerary.length - 1) {
+            if (this.indexItinerary < this.$store.state.itineraryStore.itinerary.length - 1) {
                 this.indexItinerary++;
             }
             else {
@@ -207,7 +207,7 @@ export default {
                 this.$store.dispatch("addGroupToItinerary", {
                     groupName: this.groupInformations.name,
                     groupId: this.groupInformations.backendGroupId,
-                    itineraryId: this.$store.state.globalNonPersistantData.itinerary[this.indexItinerary].id
+                    itineraryId: this.$store.state.itineraryStore.itinerary[this.indexItinerary].id
                 }).catch((error) => {
                     console.log(error);
                 });

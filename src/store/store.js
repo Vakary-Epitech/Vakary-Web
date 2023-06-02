@@ -5,6 +5,7 @@ import mapStore from './mapStore';
 import VuexPersistence from 'vuex-persist'
 import globalNonPersistantData from './globalNonPersistantData'
 import groupStore from './groupStore';
+import itineraryStore from './groupStore';
 import wording from "@/utils/wording";
 
 //Make the userStore persistent
@@ -20,28 +21,28 @@ const store = createStore({
         userStore: userStore, //Store every user information, action and mutation
         mapStore: mapStore, //Store every map information, action and mutation
         groupStore: groupStore,
+        itineraryStore: itineraryStore,
     },
     state: {
         config: {
             maxBodyLength: Infinity,
             url: wording.serverAdress,
-            headers: {
-                "Authorization": "",
-            },
+            headers: {},
         },
     },
     getters: {
         getConfig: (state) => ({ url, data, method }) => {
-            let conf = state.config;
+            let conf = { ...state.config };
             conf.url += url;
-            conf.data = data;
+            if (data)
+                conf.data = data;
             conf.method = method;
             return conf;
         }
     },
     mutations: {
         UPDATE_USER_TOKEN(state, token) {
-            state.config.headers.Authorization = token; 
+            state.config.headers.Authorization = token;
         },
     },
     plugins: [vuexLocal.plugin],

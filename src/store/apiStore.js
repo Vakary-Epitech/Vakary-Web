@@ -319,29 +319,6 @@ const apiStore = {
             })
         },
 
-        updateUserProfile(context, newProfile) {
-            return new Promise((resolve, reject) => {
-                try {
-                    let data = new FormData();
-                    data.append('description', newProfile.description)
-                    if (typeof(newProfile.picture) == 'object')
-                        data.append('profilPicture', newProfile.picture[0], newProfile.picture[0].name);
-                    axios.patch(wording.serverAdress + 'me', data, { headers: { "Authorization": this.state.userStore.token } }).then(() => {
-                        axios.get(wording.serverAdress + 'me', { headers: { "Authorization": this.state.userStore.token } }).then((userProfile) => {
-                            context.commit('UPDATE_USER_INFO', userProfile);
-                            resolve(userProfile);
-                        }).catch((error) => {
-                            reject(error)
-                        })
-                    }).catch((error) => {
-                        reject(error);
-                    })
-                } catch (error) {
-                    reject(error);
-                }
-            })
-        },
-
         patch(context, { path, data, token }) {
             return new Promise((resolve, reject) => {
                 try {

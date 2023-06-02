@@ -1,6 +1,6 @@
 import axios from "axios";
-//import wording from "@/utils/wording";
-/* eslint-disable */
+import wording from "@/utils/wording";
+
 const userStore = {
     state: {
         token: "",
@@ -20,8 +20,8 @@ const userStore = {
     actions: {
         userConnection({ commit, rootGetters }, data) {
             return new Promise((resolve, reject) => {
-                try {                    
-                    let conf = rootGetters.getConfig({url: "login", data: data, method: "post"})
+                try {
+                    let conf = rootGetters.getConfig({ url: "login", data: data, method: "post" })
 
                     axios.request(conf).then((canAuthentify) => {
                         commit('UPDATE_USER_INFO', canAuthentify);
@@ -39,7 +39,7 @@ const userStore = {
         userRegister({ commit, rootGetters }, data) {
             return new Promise((resolve, reject) => {
                 try {
-                    let conf = rootGetters.getConfig({url: "register", data: data, method: "put"})
+                    let conf = rootGetters.getConfig({ url: "register", data: data, method: "put" })
 
                     axios.request(conf).then((canAuthentify) => {
                         commit('UPDATE_USER_INFO', canAuthentify);
@@ -57,7 +57,7 @@ const userStore = {
         userPasswordReset({ rootGetters }, data) {
             return new Promise((resolve, reject) => {
                 try {
-                    let conf = rootGetters.getConfig({url: "forgotPassword", data: data, method: "post"})
+                    let conf = rootGetters.getConfig({ url: "forgotPassword", data: data, method: "post" })
 
                     axios.request(conf).then((canAuthentify) => {
                         resolve(canAuthentify)
@@ -73,7 +73,7 @@ const userStore = {
         userTokenPasswordResetCheck({ rootGetters }, data) {
             return new Promise((resolve, reject) => {
                 try {
-                    let conf = rootGetters.getConfig({url: "password/verificationToken", data: data, method: "post"})
+                    let conf = rootGetters.getConfig({ url: "password/verificationToken", data: data, method: "post" })
 
                     axios.request(conf).then(() => {
                         resolve(true);
@@ -89,10 +89,36 @@ const userStore = {
         userSendNewPassword({ rootGetters }, data) {
             return new Promise((resolve, reject) => {
                 try {
-                    let conf = rootGetters.getConfig({url: "changePassword", data: data, method: "post"})
+                    let conf = rootGetters.getConfig({ url: "changePassword", data: data, method: "post" })
 
                     axios.request(conf).then((canAuthentify) => {
                         resolve(canAuthentify)
+                    }).catch((error) => {
+                        reject(error);
+                    })
+                } catch (error) {
+                    reject(error);
+                }
+            })
+        },
+
+        updateUserProfile({ commit, rootGetters }, data) {
+            return new Promise((resolve, reject) => {
+                try {
+                    let conf = rootGetters.getConfig({ url: "me", data: null, method: "get" })
+                    let requestData = new FormData();
+                    requestData.append('description', requestData.description)
+
+                    if (typeof (data.picture) == 'object')
+                        requestData.append('profilPicture', data.picture[0], data.picture[0].name);
+
+                    axios.patch(wording.serverAdress + 'me', requestData, { headers: { "Authorization": conf.headers.Authorization } }).then(() => {
+                        axios.request(conf).then((userProfile) => {
+                            commit('UPDATE_USER_INFO', userProfile);
+                            resolve("profile updated");
+                        }).catch((error) => {
+                            reject(error)
+                        })
                     }).catch((error) => {
                         reject(error);
                     })
