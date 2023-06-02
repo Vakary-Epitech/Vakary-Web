@@ -119,10 +119,7 @@ export default {
             this.$router.push("/");
         },
         deleteUser() {
-            this.$store.dispatch('delete', {
-                path: "me",
-                token: this.$store.state.userStore.token,
-            }).then(() => {
+            this.$store.dispatch('deleteUser').then(() => {
                 this.$router.push("/");
             }).catch((error) => {
                 console.log(error);

@@ -135,12 +135,27 @@ const userStore = {
 
                     axios.patch(wording.serverAdress + 'me', requestData, { headers: { "Authorization": conf.headers.Authorization } }).then(() => {
                         axios.request(conf).then((userProfile) => {
-                            console.log("userProfile", userProfile)
                             commit('UPDATE_USER_INFO', userProfile);
                             resolve("profile updated");
                         }).catch((error) => {
                             reject(error)
                         })
+                    }).catch((error) => {
+                        reject(error);
+                    })
+                } catch (error) {
+                    reject(error);
+                }
+            })
+        },
+
+        deleteUser({ getters }) {
+            return new Promise((resolve, reject) => {
+                try {
+                    let conf = getters.getConfig({ url: "me", data: null, method: "delete" })
+
+                    axios.request(conf).then((canAuthentify) => {
+                        resolve(canAuthentify)
                     }).catch((error) => {
                         reject(error);
                     })

@@ -28,23 +28,6 @@ const groupStore = {
                 })
             }
         },
-        ADD_NEW_GROUP(state, group) {
-            let emails = [];
-
-            for (let mail in group.data.membersEmails) {
-                emails.push({
-                    id: mail,
-                    emails: group.data.membersEmails[mail],
-                    status: "unverified"
-                })
-            }
-            state.groups.push({
-                id: state.groups.length,
-                backendGroupId: group.data.groupId,
-                name: group.data.groupName,
-                emails: emails,
-            })
-        },
         UPDATE_GROUP_USER_STATUS(state, userStatus) {
             for (let group in state.groups) {
                 if (state.groups[group].backendGroupId == userStatus.groupId) {

@@ -231,9 +231,9 @@ export default {
   },
   mounted() {
     this.$store.dispatch("getGroup").then(() => {
-      //this.$store.dispatch("getItinerary").catch((error) => {
-      //  console.log(error);
-      //})
+      this.$store.dispatch("getItinerary").catch((error) => {
+        console.log(error);
+      })
     }).catch((error) => {
       console.log(error);
     });
@@ -349,9 +349,7 @@ export default {
     },
     setGroupDropdownState() {
       this.groupDropdown = !this.groupDropdown;
-      console.log("EEERRRREEERR")
       if (this.groupDropdown) {
-        console.log("NONONO")
         this.$store.dispatch("getGroup").catch((error) => {
           console.log(error);
         })

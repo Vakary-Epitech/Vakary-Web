@@ -111,7 +111,7 @@ export default {
             }
         },
         deleteItinerary() {
-            this.$store.dispatch("deleteItinerary", this.selectedItineraryInfo.id).then(() => {
+            this.$store.dispatch("deleteItinerary", { itineraryId: this.selectedItineraryInfo.id}).then(() => {
                 this.$store.dispatch("getItinerary").then(() => {
                     this.$emit("goBackToItineraryDropdown");
                 }).catch((error) => {

@@ -246,25 +246,17 @@ export default {
                 duration = 3600 * 8; //Eight hours in seconds
 
             this.error = "";
-            this.$store.dispatch("put", {
-                path: "itinerary/me",
-                data: {
-                    city: this.city,
-                    availableTime: duration,
-                    budget: this.budget,
-                    nbPeople: this.people,
-                    nbChild: this.children,
-                    typeResearchLocations: this.generateGoodFormat(this.selectedPOIs),
-                    group: this.$store.state.groupStore.groups[this.indexOfGroup],
-                    handicapAccess: false,
-                },
-                token: this.$store.state.store.token,
+            this.$store.dispatch("addItinerary", {
+                city: this.city,
+                availableTime: duration,
+                budget: this.budget,
+                nbPeople: this.people,
+                nbChild: this.children,
+                typeResearchLocations: this.generateGoodFormat(this.selectedPOIs),
+                group: this.$store.state.groupStore.groups[this.indexOfGroup],
+                handicapAccess: false,
             }).then(() => {
-                this.$store.dispatch("getItinerary").then(() => {
-                    this.$emit("goBackToItineraryDropdown");
-                }).catch((error) => {
-                    this.error = error?.response?.data;
-                })
+                this.$emit("goBackToItineraryDropdown");
             }).catch((error) => {
                 this.error = error?.response?.data;
             })
