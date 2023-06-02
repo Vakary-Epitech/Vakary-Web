@@ -8,8 +8,29 @@ const userStore = {
         mail: "",
         username: "",
         userProfileImage: "",
+        config: {
+            maxBodyLength: Infinity,
+            url: wording.serverAdress,
+            headers: {},
+        },
+    },
+    getters: {
+        getConfig: (state) => ({ url, data, method }) => {
+            let conf = { ...state.config };
+            conf.url += url;
+            if (data)
+                conf.data = data;
+            conf.method = method;
+            return conf;
+        },
+        getToken: (state) => {
+            return (state.config.headers.Authorization)
+        },
     },
     mutations: {
+        UPDATE_USER_TOKEN(state, token) {
+            state.config.headers.Authorization = token;
+        },
         UPDATE_USER_INFO(state, userInfo) {
             state.userInfo = {};
             state.userInfo = userInfo.data.user;
@@ -18,10 +39,10 @@ const userStore = {
         },
     },
     actions: {
-        userConnection({ commit, rootGetters }, data) {
-            return new Promise((resolve, reject) => {
+        userConnection({ commit, getters }, data) {
+            return new Promise((resolve, reject) => {   
                 try {
-                    let conf = rootGetters.getConfig({ url: "login", data: data, method: "post" })
+                    let conf = getters.getConfig({ url: "login", data: data, method: "post" })
 
                     axios.request(conf).then((canAuthentify) => {
                         commit('UPDATE_USER_INFO', canAuthentify);
@@ -36,10 +57,10 @@ const userStore = {
             })
         },
 
-        userRegister({ commit, rootGetters }, data) {
+        userRegister({ commit, getters }, data) {
             return new Promise((resolve, reject) => {
                 try {
-                    let conf = rootGetters.getConfig({ url: "register", data: data, method: "put" })
+                    let conf = getters.getConfig({ url: "register", data: data, method: "put" })
 
                     axios.request(conf).then((canAuthentify) => {
                         commit('UPDATE_USER_INFO', canAuthentify);
@@ -54,10 +75,10 @@ const userStore = {
             })
         },
 
-        userPasswordReset({ rootGetters }, data) {
+        userPasswordReset({ getters }, data) {
             return new Promise((resolve, reject) => {
                 try {
-                    let conf = rootGetters.getConfig({ url: "forgotPassword", data: data, method: "post" })
+                    let conf = getters.getConfig({ url: "forgotPassword", data: data, method: "post" })
 
                     axios.request(conf).then((canAuthentify) => {
                         resolve(canAuthentify)
@@ -70,10 +91,10 @@ const userStore = {
             })
         },
 
-        userTokenPasswordResetCheck({ rootGetters }, data) {
+        userTokenPasswordResetCheck({ getters }, data) {
             return new Promise((resolve, reject) => {
                 try {
-                    let conf = rootGetters.getConfig({ url: "password/verificationToken", data: data, method: "post" })
+                    let conf = getters.getConfig({ url: "password/verificationToken", data: data, method: "post" })
 
                     axios.request(conf).then(() => {
                         resolve(true);
@@ -86,10 +107,10 @@ const userStore = {
             })
         },
 
-        userSendNewPassword({ rootGetters }, data) {
+        userSendNewPassword({ getters }, data) {
             return new Promise((resolve, reject) => {
                 try {
-                    let conf = rootGetters.getConfig({ url: "changePassword", data: data, method: "post" })
+                    let conf = getters.getConfig({ url: "changePassword", data: data, method: "post" })
 
                     axios.request(conf).then((canAuthentify) => {
                         resolve(canAuthentify)
@@ -102,18 +123,19 @@ const userStore = {
             })
         },
 
-        updateUserProfile({ commit, rootGetters }, data) {
+        updateUserProfile({ commit, getters }, data) {
             return new Promise((resolve, reject) => {
                 try {
-                    let conf = rootGetters.getConfig({ url: "me", data: null, method: "get" })
+                    let conf = getters.getConfig({ url: "me", data: null, method: "get" })
+                    
                     let requestData = new FormData();
-                    requestData.append('description', requestData.description)
-
+                    requestData.append('description', data.description)
                     if (typeof (data.picture) == 'object')
                         requestData.append('profilPicture', data.picture[0], data.picture[0].name);
 
                     axios.patch(wording.serverAdress + 'me', requestData, { headers: { "Authorization": conf.headers.Authorization } }).then(() => {
                         axios.request(conf).then((userProfile) => {
+                            console.log("userProfile", userProfile)
                             commit('UPDATE_USER_INFO', userProfile);
                             resolve("profile updated");
                         }).catch((error) => {

@@ -190,9 +190,6 @@ export default {
   components: {
     presentationCards,
   },
-  mounted() {
-    this.$store.dispatch("testNewStore");
-  },
   methods: {
     changeLanguage() {
       this.$i18n.locale = this.$i18n.locale === 'fr' ? 'en' : 'fr';

@@ -91,20 +91,20 @@
                     </div>
                 </section>
 
-                <div class="row" v-if="$store.state.globalNonPersistantData?.itinerary.length > 0">
+                <div class="row" v-if="$store.state.itineraryStore?.itinerary.length > 0">
                     <p>{{ $t("showMembers.itineraries") }}</p>
                     <div class="col-3 my-auto">
-                        <button class="custom-button" v-if="$store.state.globalNonPersistantData?.itinerary.length > 1"
+                        <button class="custom-button" v-if="$store.state.itineraryStore?.itinerary.length > 1"
                             @click="prev">
                             <i class="fa-solid fa-arrow-left fa-xl custom-arrow"></i>
                         </button>
                     </div>
                     <div class="col-6 text-center">
                         <span>{{ $t("showMembers.idItinerary") }}</span><br>
-                        {{ this.$store.state.globalNonPersistantData?.itinerary[indexItinerary].id }}
+                        {{ this.$store.state.itineraryStore?.itinerary[indexItinerary].id }}
                     </div>
                     <div class="col-3 my-auto text-end">
-                        <button class="custom-button" v-if="$store.state.globalNonPersistantData?.itinerary.length > 1"
+                        <button class="custom-button" v-if="$store.state.itineraryStore?.itinerary.length > 1"
                             @click.prevent="next">
                             <i class="fa-solid fa-arrow-right fa-xl custom-arrow"></i>
                         </button>
@@ -160,14 +160,12 @@ export default {
     },
     computed: {
         getGroups() {
-            return this.$store.state.globalNonPersistantData.groups;
+            return this.$store.state.groupStore.groups;
         },
     },
     created() {
         this.groupInformations = this.groups;
-        this.$store.dispatch("get", {
-            path: "group_user/getAll/" + this.groups.backendGroupId,
-        }).then((response) => {
+        this.$store.dispatch("getGroup").then((response) => {
             for (let i = 0; response?.data?.groupUser?.length; i++) {
                 if (this.$store.state.userStore.mail == response.data.groupUser[i].User.email) {
                     this.role = response.data.groupUser[i].role;
@@ -217,8 +215,8 @@ export default {
             this.$emit("goBackToGroupDropdown");
         },
         getStatus(index) {
-            let groupIndex = this.$store.state.globalNonPersistantData.groups.findIndex(group => group.id === this.groupInformations.id);
-            return this.$store.state.globalNonPersistantData.groups[groupIndex].emails[index].status;
+            let groupIndex = this.$store.state.groupStore.groups.findIndex(group => group.id === this.groupInformations.id);
+            return this.$store.state.groupStore.groups[groupIndex].emails[index].status;
         },
         addMember() {
             if (!this.isValidEmail(this.mailMember)) {
@@ -240,9 +238,9 @@ export default {
             return re.test(String(email).toLowerCase());
         },
         deleteMember(index) {
-            let groupIndex = this.$store.state.globalNonPersistantData.groups.findIndex(group => group.id === this.groupInformations.id);
-            const group = this.$store.state.globalNonPersistantData.groups[groupIndex];
-            const user = this.$store.state.globalNonPersistantData.groups[groupIndex].emails[index];
+            let groupIndex = this.$store.state.groupStore.groups.findIndex(group => group.id === this.groupInformations.id);
+            const group = this.$store.state.groupStore.groups[groupIndex];
+            const user = this.$store.state.groupStore.groups[groupIndex].emails[index];
 
             this.$store.dispatch("patch", {
                 path: "group_user/deleteUserFromGroup",
@@ -251,11 +249,7 @@ export default {
                     email: user.emails,
                 }
             }).then(() => {
-                this.$store.dispatch("getGroup").then(() => {
-                    this.$store.dispatch("getItinerary").catch((error) => {
-                        console.log(error);
-                    })
-                }).catch((error) => {
+                this.$store.dispatch("getGroup").catch((error) => {
                     console.log(error);
                 })
                 this.$emit("goBackToGroupDropdown");
@@ -287,17 +281,17 @@ export default {
             this.askingDelete = false;
         },
         deleteGroup() {
-            let index = this.$store.state.globalNonPersistantData.groups.findIndex(group => group.id === this.groupInformations.id);
+            let index = this.$store.state.groupStore.groups.findIndex(group => group.id === this.groupInformations.id);
             this.showMembers = false;
             this.$emit("goBackToGroupDropdown");
-            this.$store.dispatch("deleteGroup", this.$store.state.globalNonPersistantData.groups[index]).then(() => {
+            this.$store.dispatch("deleteGroup", this.$store.state.groupStore.groups[index]).then(() => {
                 this.$store.dispatch("getGroup").catch((error) => {
                     console.log(error);
                 })
             }).catch((error) => {
                 console.log(error);
             });
-            this.$store.state.globalNonPersistantData.groups.splice(index, 1);
+            this.$store.state.groupStore.groups.splice(index, 1);
         },
         deleteGroupPicture() {
             this.groupInformations.photo = {
@@ -308,8 +302,8 @@ export default {
             }
         },
         leaveGroup() {
-            let groupIndex = this.$store.state.globalNonPersistantData.groups.findIndex(group => group.id === this.groupInformations.id);
-            const group = this.$store.state.globalNonPersistantData.groups[groupIndex];
+            let groupIndex = this.$store.state.groupStore.groups.findIndex(group => group.id === this.groupInformations.id);
+            const group = this.$store.state.groupStore.groups[groupIndex];
             this.$store.dispatch("patch", {
                 path: "group_user/deleteUserFromGroup",
                 data: {

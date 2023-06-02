@@ -86,7 +86,7 @@
                     </div>
                 </div>
 
-                <hr class="separationBar" v-if="$store.state.globalNonPersistantData.groups.length > 0">
+                <hr class="separationBar" v-if="$store.state.groupStore.groups.length > 0">
 
                 <hr class="separationBar">
                 <div class="col-12 mb-1">
@@ -213,7 +213,7 @@ export default {
             // not working function yet: need to find a way to get the index of the active carousel item
             setTimeout(() => {
                 if (this.indexOfGroup == 0) {
-                    this.indexOfGroup = this.$store.state.globalNonPersistantData.groups.length;
+                    this.indexOfGroup = this.$store.state.groupStore.groups.length;
                 } else {
                     this.indexOfGroup--;
                 }
@@ -221,7 +221,7 @@ export default {
         },
         next() {
             // not working function yet: need to find a way to get the index of the active carousel item
-            if (this.indexOfGroup < this.$store.state.globalNonPersistantData.groups.length) {
+            if (this.indexOfGroup < this.$store.state.groupStore.groups.length) {
                 this.indexOfGroup++;
             }
             else {
@@ -255,7 +255,7 @@ export default {
                     nbPeople: this.people,
                     nbChild: this.children,
                     typeResearchLocations: this.generateGoodFormat(this.selectedPOIs),
-                    group: this.$store.state.globalNonPersistantData.groups[this.indexOfGroup],
+                    group: this.$store.state.groupStore.groups[this.indexOfGroup],
                     handicapAccess: false,
                 },
                 token: this.$store.state.store.token,

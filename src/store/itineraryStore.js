@@ -164,3 +164,5 @@ const itineraryStore = {
         }
     },
 }
+
+export default itineraryStore;

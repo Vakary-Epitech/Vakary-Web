@@ -3,10 +3,11 @@ import wording from "@/utils/wording";
 
 const groupStore = {
     state: {
-        groups: "UIUIUI",
+        groups: [],
     },
     mutations: {
         UPDATE_USER_GROUP(state, groups) {
+            console.log("TEST");
             state.groups = [];
             let emails = [];
             for (let group in groups.data.groups) {
@@ -58,22 +59,13 @@ const groupStore = {
         },
     },
     actions: {
-        testNewStore({ context, rootState }) {
-            console.log(context);
-            console.log(rootState);
-        },
-        deleteGroup(context, group) {
+        deleteGroup({ getters }, data) {
             return new Promise((resolve, reject) => {
                 try {
-                    if (!group.backendGroupId)
+                    if (!data.backendGroupId)
                         return;
 
-                    let config = {
-                        method: 'delete',
-                        maxBodyLength: Infinity,
-                        url: wording.serverAdress + "group/" + group.backendGroupId,
-                        headers: {},
-                    };
+                    let config = getters.getConfig({ url: "group/" + data.backendGroupId, data: null, method: "delete" })
 
                     axios.request(config)
                         .then((result) => {
@@ -86,26 +78,21 @@ const groupStore = {
                 }
             })
         },
-        getGroup(context) {
+
+        getGroup({ commit, getters, dispatch }) {
+            console.log("RRRREEEEQQQQ")
+
             return new Promise((resolve, reject) => {
                 try {
-                    if (!this.state.userStore.token)
-                        return
+                    //console.trace()
+                    let config = getters.getConfig({ url: "group/getAll/me", data: null, method: "get" })
 
-                    let config = {
-                        method: 'get',
-                        maxBodyLength: Infinity,
-                        url: wording.serverAdress + 'group/getAll/me',
-                        headers: {
-                            "Authorization": this.state.userStore.token
-                        }
-                    }
                     axios.request(config).then((group) => {
-                        context.commit('UPDATE_USER_GROUP', group);
+                        commit('UPDATE_USER_GROUP', group);
                         for (let id in group.data.groups) {
-                            context.dispatch("getGroupStatus", group.data.groups[id]);
+                            dispatch("getGroupStatus", group.data.groups[id]);
                         }
-                        resolve(group.data);
+                        resolve(group)
                     }).catch((error) => {
                         reject(error);
                     })
@@ -115,23 +102,24 @@ const groupStore = {
             })
         },
 
-        addGroup(context, groupInformation) {
+        addGroup({ getters }, data) {
+            console.log("RRRREEEEQQQQ")
             return new Promise((resolve, reject) => {
                 try {
                     let mailsList = "";
-                    for (let mailIndex in groupInformation.members) {
-                        if (groupInformation.members[mailIndex].mail)
-                            mailsList += groupInformation.members[mailIndex].mail + ";";
+                    for (let mailIndex in data.members) {
+                        if (data.members[mailIndex].mail)
+                            mailsList += data.members[mailIndex].mail + ";";
                     }
                     mailsList = mailsList.slice(0, -1);
 
-                    let data = new FormData();
-                    data.append('groupname', groupInformation.name)
-                    data.append('emails', mailsList)
-                    if (typeof(groupInformation.picture) == "object")
-                        data.append('file', groupInformation.picture[0], groupInformation.picture[0].name);
+                    let formData = new FormData();
+                    formData.append('groupname', data.name)
+                    formData.append('emails', mailsList)
+                    if (typeof (data.picture) == "object")
+                        formData.append('file', data.picture[0], data.picture[0].name);
 
-                    axios.put(wording.serverAdress + 'group', data, { headers: { "Authorization": this.state.userStore.token } }).then((group) => {
+                    axios.put(wording.serverAdress + 'group', formData, { headers: { "Authorization": getters.getToken } }).then((group) => {
                         resolve(group);
                     }).catch((error) => {
                         reject(error);
@@ -142,22 +130,14 @@ const groupStore = {
             })
         },
 
-        getGroupStatus(context, groups) {
+        getGroupStatus({ commit, getters }, data) {
             return new Promise((resolve, reject) => {
                 try {
-
-                    let config = {
-                        method: 'get',
-                        maxBodyLength: Infinity,
-                        url: wording.serverAdress + "group_user/getAll/" + groups.id,
-                        headers: {
-                            "Authorization": this.state.userStore.token,
-                        },
-                    }
+                    let config = getters.getConfig({ url: "group_user/getAll/" + data.id, data: null, method: "get" })
 
                     axios.request(config).then((response) => {
                         for (let userStatus in response.data.groupUser) {
-                            context.commit('UPDATE_GROUP_USER_STATUS', response.data.groupUser[userStatus]);
+                            commit('UPDATE_GROUP_USER_STATUS', response.data.groupUser[userStatus]);
                         }
                         resolve(response);
                     }).catch((error) => {
@@ -169,22 +149,10 @@ const groupStore = {
             })
         },
 
-        groupInvitation(context, action) {
+        groupInvitation({ getters }, data) {
             return new Promise((resolve, reject) => {
                 try {
-
-                    let config = {
-                        method: 'patch',
-                        maxBodyLength: Infinity,
-                        url: wording.serverAdress + "group_user/" + action.backendGroupId,
-                        headers: {
-                            "Authorization": this.state.userStore.token,
-                        },
-                        data: {
-                            email: this.state.userStore.mail,
-                            status: action.status,
-                        }
-                    }
+                    let config = getters.getConfig({ url: "group_user/" + data.backendGroupId, data: data, method: "patch" })
 
                     axios.request(config).then((response) => {
                         resolve(response);

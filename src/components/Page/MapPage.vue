@@ -113,8 +113,7 @@
                   </div>
                 </div>
 
-                <div class="cursorOnButton" v-for="(group, index) in this.$store.state.globalNonPersistantData.groups"
-                  :key="group.id">
+                <div class="cursorOnButton" v-for="(group, index) in this.$store.state.groupStore.groups" :key="group.id">
                   <div class="topBorder mt-2">&nbsp;</div>
                   <div @click=" groupCardsHasBeenClicked(group, index)">
                     <i class="fas fa-users ms-4 mt-2"></i>
@@ -154,7 +153,7 @@
           <div v-else-if="groupHasBeenClicked">
             <Transition name="slide-fade">
               <showMembers @change-group-photo="changeGroupPhoto"
-                :groups=this.$store.state.globalNonPersistantData.groups[selectedGroup] :key="keyShowGroup"
+                :groups=this.$store.state.groupStore.groups[selectedGroup] :key="keyShowGroup"
                 @goBackToGroupDropdown=" groupHasBeenClicked = false; showGroupCreationModal = false; displayItineraryInformation = false"
                 class="componentsGroupDropdown" />
             </Transition>
@@ -231,21 +230,10 @@ export default {
     }
   },
   mounted() {
-    this.$store.dispatch("testNewStore");
-
-    this.$store.dispatch("getGroup").then((groups) => {
-      this.$store.dispatch("getItinerary").then(() => {
-        for (let groupsId in groups["groups"]) {
-          this.$store.dispatch("getGroupStatus", groups["groups"][groupsId]).catch(
-            (error) => {
-              console.log(error);
-            }
-          );
-        }
-      })
-        .catch((error) => {
-          console.log(error);
-        })
+    this.$store.dispatch("getGroup").then(() => {
+      //this.$store.dispatch("getItinerary").catch((error) => {
+      //  console.log(error);
+      //})
     }).catch((error) => {
       console.log(error);
     });
@@ -266,7 +254,7 @@ export default {
       }
     },
     selectedPath() {
-      return (this.$store.state.globalNonPersistantData.waypoints);
+      return (this.$store.state.itineraryStore.waypoints);
     },
     selectedItineraryInfo() {
       return (this.$store.state.itineraryStore.itinerary[this.selectedItinerary - 1])
@@ -299,7 +287,7 @@ export default {
       }
     },
     markersData() {
-      return (this.$store.state.globalNonPersistantData.marker);
+      return (this.$store.state.itineraryStore.marker);
     },
   },
   methods: {
@@ -318,21 +306,10 @@ export default {
         this.$store.dispatch("getItinerary").catch((error) => {
           console.log(error);
         })
-        this.$store.dispatch("getGroup").then((groups) => {
-          for (let groupsId in groups["groups"]) {
-            this.$store.dispatch("getGroupStatus", groups["groups"][groupsId]).then(() => {
-              this.$store.dispatch("getItinerary").catch((error) => {
-                console.log(error);
-              })
-            }).catch((error) => {
-              console.log(error);
-            })
-          }
-        });
-
-      }).catch((error) => {
-        console.log(error);
-      })
+        this.$store.dispatch("getGroup").catch((error) => {
+          console.log(error);
+        })
+      });
     },
     itineraryCardsHasBeenClicked(itineraryId) {
       this.selectedItinerary = itineraryId + 1;
@@ -372,6 +349,13 @@ export default {
     },
     setGroupDropdownState() {
       this.groupDropdown = !this.groupDropdown;
+      console.log("EEERRRREEERR")
+      if (this.groupDropdown) {
+        console.log("NONONO")
+        this.$store.dispatch("getGroup").catch((error) => {
+          console.log(error);
+        })
+      }
     },
 
     addCenterControl(controlDiv) {

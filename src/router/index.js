@@ -1,7 +1,6 @@
 import { createRouter, createWebHashHistory } from 'vue-router';
 import MapPage from "@/components/Page/MapPage.vue";
 import LandingPage from "@/components/Page/LandingPage.vue"
-//import store from '@/store/store';
 import LearnMorePage from "@/components/Page/LearnMorePage.vue";
 import ConnexionPage from "@/components/Page/ConnexionPage.vue";
 import resetPasswordPage from "@/components/Page/ResetPassword.vue";
@@ -40,8 +39,6 @@ const router = createRouter({
     routes,
 });
 
-router.beforeEach((to, from, next) => {
-    next();
-})
+
 
 export default router;
