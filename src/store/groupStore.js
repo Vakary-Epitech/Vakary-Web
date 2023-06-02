@@ -7,7 +7,6 @@ const groupStore = {
     },
     mutations: {
         UPDATE_USER_GROUP(state, groups) {
-            console.log("TEST");
             state.groups = [];
             let emails = [];
             for (let group in groups.data.groups) {
@@ -80,11 +79,8 @@ const groupStore = {
         },
 
         getGroup({ commit, getters, dispatch }) {
-            console.log("RRRREEEEQQQQ")
-
             return new Promise((resolve, reject) => {
                 try {
-                    //console.trace()
                     let config = getters.getConfig({ url: "group/getAll/me", data: null, method: "get" })
 
                     axios.request(config).then((group) => {
@@ -103,7 +99,6 @@ const groupStore = {
         },
 
         addGroup({ getters }, data) {
-            console.log("RRRREEEEQQQQ")
             return new Promise((resolve, reject) => {
                 try {
                     let mailsList = "";

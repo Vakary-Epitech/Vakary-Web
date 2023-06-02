@@ -165,7 +165,7 @@ export default {
     },
     created() {
         this.groupInformations = this.groups;
-        this.$store.dispatch("getGroup").then((response) => {
+        this.$store.dispatch("getGroupStatus", { id: this.groups.backendGroupId }).then((response) => {
             for (let i = 0; response?.data?.groupUser?.length; i++) {
                 if (this.$store.state.userStore.mail == response.data.groupUser[i].User.email) {
                     this.role = response.data.groupUser[i].role;
