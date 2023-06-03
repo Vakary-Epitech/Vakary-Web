@@ -89,16 +89,25 @@
                     <hr class="separationBar" v-if="$store.state.globalNonPersistantData.groups.length > 0">
                     <div class="row">
                         <div id="carouselExample" class="carousel slide">
-                            <div class="carousel-inner">
-                                <button @click="prevSlide" class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-                                    <i class="fa-solid fa-2xl fa-arrow-left custom-arrow"></i>
-                                </button>
+                            <div class="row">
+                                <div class="col-3 text-start">
+                                    <button @click="prevSlide" class="arrowButton" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+                                        <i class="fa-solid fa-xl fa-arrow-left"></i>
+                                    </button>
+                                </div>
+                                <div class="col-6 text-center">
+                                    {{ $t("itineraryModal.group") }}
+                                </div>
+                                <div class="col-3 text-end">
+                                    <button @click="nextSlide" class="arrowButton" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                                        <i class="fa-solid fa-xl fa-arrow-right"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="carousel-inner mt-2">
                                 <div class="carousel-item" v-for="(group, index) in groups" :key="index" :class="{ 'active': index === activeIndex }">
                                     <cardsGroup :group="group"></cardsGroup>
                                 </div>
-                                <button @click="nextSlide" class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-                                    <i class="fa-solid fa-2xl fa-arrow-right custom-arrow"></i>
-                                </button>
                             </div>
                         </div>
                     </div>
@@ -315,11 +324,26 @@ export default {
 
 <style scoped>
 
-.custom-arrow {
-    color: rgb(192, 150, 40);
-}
 .form-check .form-check-input {
     float: none !important;
+}
+
+.arrowButton {
+    background-color: #fff;
+    border: 1px solid rgb(192, 150, 40);
+    border-radius: 10px;
+    color: black;
+    padding: 5px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+
+.arrowButton:hover {
+    background-color: rgb(192, 150, 40);
+    color: white;
+    cursor: pointer;
 }
 
 .dropDownButton {

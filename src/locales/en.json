@@ -167,7 +167,8 @@
     "interest": "Center of interest",
     "generate": "Generate the Itinerary",
     "error": "Required",
-    "noGroup": "No group"
+    "noGroup": "No group",
+    "group": "Chose a group"
   },
   "screenSizePage": {
     "screenSizeTooSmall": "Sorry, access to our web application is currently blocked because your screen is too small.",

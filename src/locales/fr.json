@@ -167,7 +167,8 @@
         "interest": "Centres d'intérêts",
         "generate": "Générer l'itinéraire",
         "error": "Champs requis",
-        "noGroup": "Aucun groupe"
+        "noGroup": "Aucun groupe",
+        "group": "Choix du groupe"
     },
     "screenSizePage": {
         "screenSizeTooSmall": "Désolé, l'accès à notre application web est actuellement bloqué car votre écran est trop petit.",
