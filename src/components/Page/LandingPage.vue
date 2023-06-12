@@ -2,7 +2,6 @@
   <div>
     <main>
       <languages></languages>
-      <!-- <img @click="changeLanguage()" class="buttonLanguage" :src="geti18n() == 'en' ? require('@/assets/badges/flags/french-flag.svg') : require('@/assets/badges/flags/gb-flag.svg')"> -->
       <section name="cardTop" class="d-none d-md-block">
         <img class="background" src="@/assets/LandingPage/landingPageBackground.jpg">
         <div class="row">
@@ -194,9 +193,6 @@ export default {
     languages,
   },
   methods: {
-    changeLanguage() {
-      this.$i18n.locale = this.$i18n.locale === 'fr' ? 'en' : 'fr';
-    },
     openConnexionPage() {
       this.$router.push("/connexionPage");
     },

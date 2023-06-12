@@ -43,19 +43,7 @@ describe('LandingPage', () => {
     wrapper.unmount()
   })
 
-  it('changes the language when the changeLanguage method is called', () => {
-    const initialLocale = wrapper.vm.geti18n()
-    wrapper.vm.changeLanguage()
-    const newLocale = wrapper.vm.geti18n()
-    expect(initialLocale).not.toEqual(newLocale)
-  })
-  
-  it('changes the language to "en" if the current language is "fr"', () => {
-    wrapper.vm.$i18n.locale = 'fr';
-    wrapper.vm.changeLanguage();
-    expect(wrapper.vm.$i18n.locale).toBe('en');
-  });
-  
+
 
   it('navigates to the sign up page when the openConnexionPage method is called', async () => {
     wrapper.vm.openConnexionPage()

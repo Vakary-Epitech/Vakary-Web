@@ -1,6 +1,5 @@
 <template>
     <div class="background">
-        <!-- <img @click="changeLanguage()" class="buttonLanguage" :src="geti18n() == 'en' ? require('@/assets/badges/flags/french-flag.svg') : require('@/assets/badges/flags/gb-flag.svg')"> -->
         <div class="centered-svg">
         <img src="@/assets/logo_long_vect.svg">
         </div>
@@ -95,13 +94,6 @@ export default {
         geti18n() {
             return this.$i18n.locale;
         },
-        changeLanguage() {
-            if (this.geti18n() == "en") {
-                this.$i18n.locale = "fr";
-            } else {
-                this.$i18n.locale = "en";
-            }
-        }
     },
 }
 </script>
