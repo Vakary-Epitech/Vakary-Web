@@ -142,23 +142,13 @@ export default {
             this.$store.dispatch("addGroup",
                 this.groupInformations
             ).then(() => {
-                this.$store.dispatch("get", {
-                    path: "group/getAll/me",
-                    token: this.$store.state.userStore.token,
-                }).then((groups) => {
-                    for (let groupsId in groups["groups"]) {
-                        this.$store.dispatch("get", {
-                            path: "group_user/getAll/" + groups["groups"][groupsId].id,
-                        }).catch( (error) => {
-                            this.errorMessage = error?.response?.data?.message;
-                        })
-                    }
-                }).catch((error) => {
+                this.$store.dispatch("getGroup").catch((error) => {
                     this.errorMessage = error?.response?.data?.message;
                 })
                 this.CreateGroup = false;
                 this.$emit("goBackToGroupDropdown");
             }).catch((error) => {
+                console.log(error)
                 this.error = true;
                 this.errorMessage = error?.response?.data?.message;
             })

@@ -1,40 +1,40 @@
 <template>
   <div class="card-header">
-    <h4 class="text-center mt-3">{{ $t("inscriptionPage.create")}}</h4>
+    <h4 class="text-center mt-3">{{ $t("inscriptionPage.create") }}</h4>
   </div>
   <div class="card-body row">
     <div v-if="error">
       <p class="wrongID text-center">
-        <span class="bold">{{ $t("inscriptionPage.errors.failed")}}<br></span>
-        <span v-if="emailError">{{ $t("inscriptionPage.errors.email")}}</span>
-        <span v-else-if="userNameError">{{ $t("inscriptionPage.errors.username")}}</span>
-        <span v-else-if="passwordError">{{ $t("inscriptionPage.errors.password")}}</span>
+        <span class="bold">{{ $t("inscriptionPage.errors.failed") }}<br></span>
+        <span v-if="emailError">{{ $t("inscriptionPage.errors.email") }}</span>
+        <span v-else-if="userNameError">{{ $t("inscriptionPage.errors.username") }}</span>
+        <span v-else-if="passwordError">{{ $t("inscriptionPage.errors.password") }}</span>
         <span v-else>{{ errorMessage }}</span>
       </p>
     </div>
     <div class="my-2">
-      <input type="text" class="form-control"  v-model="$store.state.userStore.username" 
-      :placeholder="$t('inscriptionPage.username')">
+      <input type="text" class="form-control" v-model="$store.state.userStore.username"
+        :placeholder="$t('inscriptionPage.username')">
     </div>
     <div class="my-2">
-      <input type="email" class="form-control"  v-model="$store.state.userStore.mail" 
-      :placeholder="$t('inscriptionPage.email')">
+      <input type="email" class="form-control" v-model="$store.state.userStore.mail"
+        :placeholder="$t('inscriptionPage.email')">
     </div>
     <div class="my-2">
-      <input type="password" class="form-control"  v-model="password" 
-      :placeholder="$t('inscriptionPage.password')">
+      <input type="password" class="form-control" v-model="password" :placeholder="$t('inscriptionPage.password')">
     </div>
     <div>
-      <button @click="(confirmInscription)" class="btn newButton text-center">{{ $t("inscriptionPage.register") }}</button>
+      <button @click="(confirmInscription)" class="btn newButton text-center">{{ $t("inscriptionPage.register")
+      }}</button>
     </div>
     <div class="mt-2 text-center">
       <button class="redirectButton" @click="openLoginPage()">{{ $t("inscriptionPage.alreadyHaveAnAccount") }}</button>
     </div>
     <div class="mt-2 text-center">
-      <button 
-      @click="authenticateWithGoogle"
-      class="btn google-signin-button">
-          <img class="google-logo" src="https://aid-frontend.prod.atl-paas.net/atlassian-id/front-end/5.0.441/static/media/google-logo.e086107b.svg" alt="google-logo"/>
+      <button @click="authenticateWithGoogle" class="btn google-signin-button">
+        <img class="google-logo"
+          src="https://aid-frontend.prod.atl-paas.net/atlassian-id/front-end/5.0.441/static/media/google-logo.e086107b.svg"
+          alt="google-logo" />
         <span class="google-text">
           {{ $t("inscriptionPage.google") }}
         </span>
@@ -61,7 +61,7 @@ export default {
       // Rediriger vers l'URL d'authentification Google
       //window.location.href = "http://localhost:8080/v1/auth/google";
     },*/
-    openLoginPage () {
+    openLoginPage() {
       this.$emit("openLogin");
     },
     isValidEmail(email) {
@@ -103,19 +103,15 @@ export default {
         return;
       }
       this.errorMessage = "";
-      this.$store.dispatch("put", {
-        path: 'register',
-        data: {
-          username: this.$store.state.userStore.username,
-          email: this.$store.state.userStore.mail,
-          password: this.password
-        }
-        }).then(() => {
-          this.$store.state.userStore.userIsLoggedIn = true;
-          this.$router.push("/mapPage");
-        }).catch((error) => {
-          this.errorMessage = error?.response?.data?.message;
-          this.error = true;
+      this.$store.dispatch("userRegister", {
+        username: this.$store.state.userStore.username,
+        email: this.$store.state.userStore.mail,
+        password: this.password
+      }).then(() => {
+        this.$router.push("/mapPage");
+      }).catch((error) => {
+        this.errorMessage = error?.response?.data?.message;
+        this.error = true;
       })
     }
   }
@@ -124,6 +120,7 @@ export default {
 
 <style scoped lang="scss">
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
 .google-signin-button {
   border: 1px solid grey;
   height: 40px;
@@ -138,7 +135,7 @@ export default {
 .google-text {
   font-family: 'Roboto', sans-serif;
   size: 14px;
-  color: 0,0,0 (54%);
+  color: 0, 0, 0 (54%);
 }
 
 .google-logo {
