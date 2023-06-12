@@ -200,6 +200,7 @@
     "save": "Save",
     "itineraries": "Itineraries",
     "idItinerary": "ID of the itinerary",
+    "cityItinerary": "City of the itinerary",
     "addGroupItinerary": "Add an itinerary to the group",
     "leave": "Leave",
     "placeholders": {

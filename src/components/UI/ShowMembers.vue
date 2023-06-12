@@ -81,7 +81,7 @@
                         {{ $t("showMembers.picture") }}
                         <input @change="onFileChange" type="file" hidden>
                     </label>
-                    <div v-if="groupInformations.photo?.preview">
+                    <div v-if="groupInformations.photo">
                         <label class="btn-change-group-picture">
                             {{ $t("showMembers.changePicture") }}
                             <input @change="onFileChange" type="file" hidden>
@@ -90,32 +90,9 @@
                             $t("showMembers.deletePicture") }} </button>
                     </div>
                 </section>
-
-                <div class="row" v-if="$store.state.globalNonPersistantData?.itinerary.length > 0">
-                    <p>{{ $t("showMembers.itineraries") }}</p>
-                    <div class="col-3 my-auto">
-                        <button class="custom-button" v-if="$store.state.globalNonPersistantData?.itinerary.length > 1"
-                            @click="prev">
-                            <i class="fa-solid fa-arrow-left fa-xl custom-arrow"></i>
-                        </button>
-                    </div>
-                    <div class="col-6 text-center">
-                        <span>{{ $t("showMembers.idItinerary") }}</span><br>
-                        {{ this.$store.state.globalNonPersistantData?.itinerary[indexItinerary].id }}
-                    </div>
-                    <div class="col-3 my-auto text-end">
-                        <button class="custom-button" v-if="$store.state.globalNonPersistantData?.itinerary.length > 1"
-                            @click.prevent="next">
-                            <i class="fa-solid fa-arrow-right fa-xl custom-arrow"></i>
-                        </button>
-                    </div>
-                    <div>
-                        <input type="checkbox" id="checkbox" v-model="addGroupToItinerary" />
-                        <label for="checkbox">
-                            <p>{{ $t("showMembers.addGroupItinerary") }}</p>
-                        </label>
-                    </div>
-                </div>
+                <section name="itinerary">
+                    <ChoseItinerary @updateIndex="updateGroupIndex"></ChoseItinerary>
+                </section>
                 <div class="text-danger">
                     {{ errorMessage }}
                 </div>
@@ -129,11 +106,15 @@
   
 <script>
 import useVuelidate from '@vuelidate/core';
+import ChoseItinerary from "@/components/UI/ChoseItinerary.vue";
 import { required, email, minLength, maxLength } from '@vuelidate/validators';
 export default {
     name: "createGroup",
     setup() {
         return { v$: useVuelidate() }
+    },
+    components: {
+        ChoseItinerary,
     },
     data() {
         return {
@@ -158,7 +139,7 @@ export default {
             mailMember: '',
             showMembers: true,
             showEmailError: false,
-            errorMessage: ''
+            errorMessage: '',
         }
     },
     computed: {
@@ -187,23 +168,12 @@ export default {
         this.newGroupName = this.groupInformations.name;
     },
     methods: {
-        prev() {
-            if (this.indexItinerary == 0) {
-                this.indexItinerary = this.$store.state.globalNonPersistantData.itinerary.length - 1;
-            } else {
-                this.indexItinerary--;
-            }
-        },
-        next() {
-            if (this.indexItinerary < this.$store.state.globalNonPersistantData.itinerary.length - 1) {
-                this.indexItinerary++;
-            }
-            else {
-                this.indexItinerary = 0;
-            }
-        },
         messageDeleteGroup() {
             this.askingDelete = true;
+        },
+        updateGroupIndex(index, addGroup) {
+            this.indexItinerary = index;
+            this.addGroupToItinerary = addGroup;
         },
         goBackToGroupDropdown() {
             if (this.addGroupToItinerary) {
@@ -215,7 +185,6 @@ export default {
                     console.log(error);
                 });
             }
-
             this.CreateGroup = false;
             this.$emit("goBackToGroupDropdown");
         },
@@ -368,21 +337,6 @@ export default {
 </script>
 
 <style scoped>
-.custom-button {
-    margin-bottom: 15px;
-    background-color: #fff;
-    border: 3px solid #fff;
-    border-radius: 15px;
-}
-
-.custom-button:hover {
-    border: 3px solid rgb(192, 150, 40);
-}
-
-.custom-arrow {
-    color: rgb(192, 150, 40);
-}
-
 .inputClass {
     border: 1px solid rgb(192, 150, 40);
     border-radius: 5px;
@@ -427,6 +381,18 @@ export default {
     padding: 10px 20px;
     width: 50%;
     text-align: center;
+}
+
+.cardsItinerary {
+    background-color: #FFFFFF;
+    border-radius: 5px;
+    color: black;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.cardsItinerary:hover {
+    background-color: #F5F5F5;
 }
 
 .btn-save-group:hover {
