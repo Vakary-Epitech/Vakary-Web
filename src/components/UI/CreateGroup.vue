@@ -142,8 +142,6 @@ export default {
             this.$store.dispatch("addGroup",
                 this.groupInformations
             ).then(() => {
-                console.log("create groupe req");
-
                 this.$store.dispatch("getGroup").catch((error) => {
                     this.errorMessage = error?.response?.data?.message;
                 })
