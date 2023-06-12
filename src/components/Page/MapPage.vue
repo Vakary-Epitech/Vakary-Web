@@ -72,10 +72,9 @@
   </div>
 
   <div class="langButtonPos fadeshow1">
-    <img src="https://cdn-icons-png.flaticon.com/512/197/197374.png" class="flag-button" @click="(engLanguage)" />
-    <img src="https://cdn-icons-png.flaticon.com/512/197/197560.png" class="flag-button" @click="(frenchLanguage)" />
     <img :src="this.$store.state.userStore.userProfileImage" class="flag-button profileIcon"
-      @click="showProfile = !showProfile; showGroupCreationModal = false; showItineraryCreationModal = false" />
+    @click="showProfile = !showProfile; showGroupCreationModal = false; showItineraryCreationModal = false" />
+    <languages></languages>
   </div>
 
   <Transition name="slide-fade">
@@ -171,6 +170,7 @@
 <script>
 import ScreenSizeTooSmall from '../UI/ScreenSizeTooSmall.vue'
 import mapCards from '../UI/mapCards.vue';
+import languages from '../UI/languagesModal.vue';
 import itineratyExplanation from '../UI/itineraryExplanation.vue';
 import mapGroupCardsVue from '../UI/mapGroupCards.vue';
 import CreateGroup from '../UI/CreateGroup.vue';
@@ -189,6 +189,7 @@ export default {
     profileModal,
     showMembers,
     ScreenSizeTooSmall,
+    languages,
   },
   data() {
     return {
@@ -615,13 +616,13 @@ export default {
   align-content: right;
   align-items: right;
   margin: 5px;
-  left: calc(100vw - 200px);
+  right: 0px;
   flex-direction: row;
-  top: 5vh;
+  top: 15px;
 }
 
 .profileIcon {
-  border-radius: 50px;
+  border-radius: 6px;
 }
 
 .profileModalPosition {

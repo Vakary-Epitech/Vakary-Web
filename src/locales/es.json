@@ -1,0 +1,211 @@
+{
+    "message": "¡Hola i18n!",
+    "vakary": "VAKARY",
+    "slogan": "Tus vacaciones según tus deseos",
+    "vakarySlogan": "¡Vakary, planifica tus vacaciones como desees!",
+    "landingPage": {
+        "modal": {
+            "obtain": "Obtener Vakary",
+            "close": "Cerrar",
+            "download": "Descarga nuestra aplicación directamente para probarla.",
+            "scan": "Escanea el código QR con tu dispositivo móvil para descargar la aplicación."
+        },
+        "learnMore": "Descubre la emocionante historia de nuestro proyecto y conoce al talentoso equipo que lo hace posible. Haz clic aquí para obtener más información sobre nuestro viaje y ambiciones.",
+        "learnMoreButton": "Más información",
+        "footer": {
+            "follow-us": "Síguenos para estar al día con nuestras últimas noticias.",
+            "twitter": "Síguenos en Twitter",
+            "instagram": "Síguenos en Instagram",
+            "contact-us": "Contáctanos por correo electrónico",
+            "email-description": "Para cualquier pregunta, sugerencia o comentario, contáctanos."
+        },
+        "free": "Organizamos tus vacaciones soñadas para ti, de forma gratuita",
+        "pref": "Cuéntanos tus preferencias, la ciudad que deseas visitar, y te propondremos un itinerario personalizado para ti",
+        "mobile": "¡Con Vakary Mobile, también puedes seguir tu itinerario en tiempo real y mucho más!",
+        "registration": "Registrarse",
+        "religious": "Sitios religiosos",
+        "sport": "Deportes",
+        "museum": "Museos",
+        "park": "Parques",
+        "resto": "Restaurantes",
+        "monuments": "Monumentos",
+        "enjoy": "¡Disfruta al máximo de tus vacaciones!",
+        "enjoy2": "Ya sea que prefieras un paseo, monumentos, restaurantes o cualquier otra cosa, tenemos lo que necesitas",
+        "enjoy3": "Ya sea que te gusten los paseos, visitar monumentos, probar platos locales u otras actividades, tenemos el itinerario personalizado que mejor se adapta a ti.",
+        "block3Text1": "¡Vakary se va de aventura contigo!",
+        "block3Text2": "Vakary viaja contigo a todas partes, gracias a nuestra aplicación móvil, puedes seguir tu itinerario en tiempo real y geolocalizarte. También puedes encontrar a tus amigos con quienes compartes el itinerario",
+        "block3Text2b": "Vakary es una poderosa herramienta de viaje que te permite crear itinerarios personalizados basados en tus intereses y horario. Con nuestra aplicación móvil, puedes seguir tu itinerario en tiempo real, descubrir emocionantes sitios turísticos y compartir tus viajes con tus amigos y familiares.",
+        "block3Text3": "¡Comparte tus vacaciones!",
+        "block3Text4": "Con nuestra función de grupo, puedes compartir tus itinerarios, rastrear la ubicación de los miembros de tu grupo y chatear con ellos",
+        "ready": "¿Listo para unirte a la aventura?",
+        "find": "Encuentra nuestras aplicaciones"
+    },
+    "presentationCards": {
+        "card1": {
+            "title": "VIAJA CON TU GRUPO",
+            "description": "Con la función de grupo de Vakary, comparte tu experiencia de viaje con tus seres queridos para tener recuerdos inolvidables.",
+            "registration": "Regístrate ahora"
+        },
+        "card2": {
+            "title": "CREA UN PERFIL",
+            "description": "Comparte tus deseos, intereses y preséntate para compartir tu amor por los viajes con la comunidad de Vakary.",
+            "registration": "Regístrate ahora"
+        },
+        "card3": {
+            "title": "DESCUBRE FRANCIA",
+            "description": "¡Sin importar tus preferencias, Vakary ofrece un itinerario a medida para descubrir los lugares más hermosos de Francia!",
+            "registration": "Regístrate ahora"
+        }
+    },
+    "loginPage": {
+        "signin": "Iniciar sesión en Vakary",
+        "email": "Correo electrónico o nombre de usuario",
+        "password": "Contraseña",
+        "forgot": "¿Olvidaste tu cuenta?",
+        "wrong": "Credenciales incorrectas",
+        "wrong2": "Nombre de usuario o contraseña inválidos",
+        "connect": "Iniciar sesión",
+        "register": "Crear una nueva cuenta",
+        "pro": "Iniciar sesión en Vakary Pro"
+    },
+    "inscriptionPage": {
+        "create": "Crear una cuenta",
+        "alreadyHaveAnAccount": "¿Ya tienes una cuenta?",
+        "register": "Registrarse",
+        "email": "Dirección de correo electrónico",
+        "username": "Nombre de usuario",
+        "password": "Nueva contraseña",
+        "google": "Registrarse con Google",
+        "errors": {
+            "failed": "Error al registrarse",
+            "email": "Dirección de correo electrónico no válida",
+            "username": "Tu nombre de usuario debe contener al menos 3 caracteres",
+            "password": "Tu contraseña debe contener al menos 8 caracteres, incluyendo al menos una letra minúscula, una letra mayúscula y un número",
+            "error": "Se produjo un error"
+        }
+    },
+    "groupCards": {
+        "group": "Grupo: ",
+        "numberOfMembers": "Miembros: ",
+        "numberOfMember": "Miembro: "
+    },
+    "mapPage": {
+        "itinerary": "Itinerario",
+        "newItinerary": "Crear un nuevo itinerario",
+        "group": "Grupo",
+        "from": "desde ",
+        "to": " hasta ",
+        "nextPoint": "Siguiente punto",
+        "previousPoint": "Punto anterior",
+        "newGroup": "Crear un nuevo grupo",
+        "openHours": "Horario de apertura:",
+        "noOpeningHours": "No disponible",
+        "invitation": "Has sido invitado/a a unirte al grupo",
+        "accept": "Aceptar",
+        "decline": "Rechazar"
+    },
+    "mapCards": {
+        "noGroups": "No se han asignado grupos"
+    },
+    "forgetPassword": {
+        "title": "Encuentra tu cuenta",
+        "placeholders": {
+            "id": "Correo electrónico o nombre de usuario",
+            "code": "Código de autenticación",
+            "password": "Nueva contraseña"
+        },
+        "errors": {
+            "idWrong": "No se encontraron resultados",
+            "messageID": "Tu búsqueda no arrojó ningún resultado. Por favor, inténtalo nuevamente con información diferente."
+        },
+        "success": {
+            "idCorrect": "Cuenta encontrada",
+            "messageID": "Se ha enviado un correo electrónico con instrucciones a la dirección proporcionada. Por favor, verifica tu bandeja de entrada y sigue los pasos indicados para continuar con el proceso."
+        },
+        "buttons": {
+            "cancel": "Cancelar",
+            "search": "Buscar"
+        }
+    },
+    "resetPassword": {
+        "title": "Restablecimiento de contraseña",
+        "errors": {
+            "password": "Contraseña nueva no válida",
+            "messagePassword": "Tu contraseña debe tener al menos 8 caracteres e incluir al menos una letra minúscula, una letra mayúscula y un número.",
+            "error": "Se produjo un error inesperado.",
+            "messageError": "Por favor, inténtalo nuevamente más tarde."
+        },
+        "button": "Restablecer contraseña"
+    },
+    "profilePage": {
+        "edit": "Editar",
+        "info": "Descripción",
+        "save": "Guardar",
+        "comments": "Comentarios",
+        "likes": "Me gusta",
+        "favoriteCity": "Ciudad favorita",
+        "lastPlaceVisited": "Último lugar visitado",
+        "lastEventAttended": "Último evento al que asististe",
+        "totalKm": "Total de kilómetros recorridos",
+        "cityPass": "City Pass",
+        "disconnect": "Desconectar",
+        "delete": "Eliminar la cuenta"
+    },
+    "itineraryModal": {
+        "creation": "Creación de tu itinerario",
+        "startingCity": "Ciudad de inicio",
+        "city": "Ciudad",
+        "howLong": "¿Por cuánto tiempo?",
+        "lessThanOneHour": "Menos de una hora",
+        "fromOneToFour": "1 a 4 horas",
+        "moreThanFourHours": "Más de 4 horas",
+        "startingDate": "¿Cuál es la fecha de inicio de tu itinerario?",
+        "budget": "Presupuesto total",
+        "howManyPeople": "¿Cuántas personas vendrán?",
+        "adult": "Adulto",
+        "child": "Niño",
+        "interest": "Centro de interés",
+        "generate": "Generar el itinerario",
+        "error": "Requerido"
+    },
+    "screenSizePage": {
+        "screenSizeTooSmall": "Lo sentimos, el acceso a nuestra aplicación web está bloqueado actualmente porque tu pantalla es demasiado pequeña.",
+        "mobile": "Para acceder a nuestro servicio, descarga nuestra aplicación móvil desde la App Store o Google Play Store.",
+        "goBack": "Volver"
+    },
+    "createGroup": {
+        "title": "Crear un nuevo grupo",
+        "admin": "Administrador:",
+        "picture": "Agregar una foto de grupo",
+        "changePicture": "Cambiar la foto de grupo",
+        "save": "Guardar",
+        "placeholders": {
+            "name": "Nombre del grupo",
+            "mail": "Dirección de correo electrónico de los miembros"
+        },
+        "errors": {
+            "name": "El nombre del grupo debe tener entre 3 y 18 caracteres",
+            "mail": "Correo electrónico incorrecto",
+            "name-required": "Se requiere el nombre del grupo",
+            "oneMembers": "No puedes crear un grupo con solo un miembro"
+        }
+    },
+    "showMembers": {
+        "deleteMessage": "¿Realmente deseas eliminar el grupo?",
+        "picture": "Agregar una foto de grupo",
+        "changePicture": "Cambiar la foto de grupo",
+        "deletePicture": "Eliminar la foto de grupo",
+        "save": "Guardar",
+        "itineraries": "Itinerarios",
+        "idItinerary": "ID del itinerario",
+        "addGroupItinerary": "Agregar un itinerario al grupo",
+        "leave": "Salir",
+        "placeholders": {
+            "mail": "Dirección de correo electrónico de los miembros para agregar al grupo"
+        },
+        "errors": {
+            "name": "El nombre del grupo debe tener entre 3 y 18 caracteres",
+            "mail": "Correo electrónico no válido"
+        }
+    }
+}
