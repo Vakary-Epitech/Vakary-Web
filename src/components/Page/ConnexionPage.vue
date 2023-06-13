@@ -1,5 +1,5 @@
 <template>
-  <img @click="changeLanguage()" class="buttonLanguage" :src="geti18n() == 'en' ? require('@/assets/badges/flags/french-flag.svg') : require('@/assets/badges/flags/gb-flag.svg')">
+  <languages></languages>
   <div class="background fadeshow1">
     <div class="centered-svg">
       <img src="@/assets/logo_long_vect.svg">
@@ -25,13 +25,15 @@
 import Register from "@/components/UI/registrationCard.vue";
 import Login from "@/components/UI/loginCard.vue";
 import Password from "@/components/UI/forgotPassword.vue";
+import languages from "@/components/UI/languagesModal.vue";
 import ScreenSizeTooSmall from "@/components/UI/ScreenSizeTooSmall.vue";
 export default {
   components : {
     Register,
     Login,
     Password,
-    ScreenSizeTooSmall
+    ScreenSizeTooSmall,
+    languages
   },
   data() {
     return {
@@ -59,9 +61,6 @@ export default {
     openPassword() {
       this.login = false;
       this.forgetPassword = true;
-    },
-    changeLanguage() {
-      this.$i18n.locale = this.$i18n.locale === 'fr' ? 'en' : 'fr';
     },
     geti18n() {
       return this.$i18n.locale;
