@@ -10,10 +10,10 @@
                 <div class="modal-body">
                     <div v-for="pair in getPair()" :key="pair.id" class="row">
                         <div class="col-6">
-                            <button @click="setLanguage(pair[0])" class="btn btn-language"><img class="me-2 flags-language" :src="pair[0].img" alt="pair[0].name"/>{{ pair[0].name }}</button>
+                            <button @click="setLanguage(pair[0])" class="btn btn-language"><img class="me-2 flags-language" :src="pair[0]?.img" alt="pair[0].name"/>{{ pair[0]?.name }}</button>
                         </div>
-                        <div class="col-6">
-                            <button @click="setLanguage(pair[1])" class="btn btn-language"><img class="me-2 flags-language" :src="pair[1].img" alt="pair[1].name"/>{{ pair[1].name }}</button>
+                        <div class="col-6" v-if="pair[1]">
+                            <button @click="setLanguage(pair[1])" class="btn btn-language"><img class="me-2 flags-language" :src="pair[1]?.img" alt="pair[1].name"/>{{ pair[1]?.name }}</button>
                         </div>
                     </div>
                 </div>
@@ -68,6 +68,10 @@ export default {
         getPair() {
             let pair = [];
             for (let i = 0; i < this.languages.length; i += 2) {
+                if (this.languages.length % 2 === 1 && i === this.languages.length - 1) {
+                    pair.push([this.languages[i], null]);
+                    break;
+                }
                 pair.push([this.languages[i], this.languages[i + 1]]);
             }
             return pair;
