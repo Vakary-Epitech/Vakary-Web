@@ -166,7 +166,9 @@
         "child": "Enfant",
         "interest": "Centres d'intérêts",
         "generate": "Générer l'itinéraire",
-        "error": "Champs requis"
+        "error": "Champs requis",
+        "noGroup": "Aucun groupe",
+        "group": "Choix du groupe"
     },
     "screenSizePage": {
         "screenSizeTooSmall": "Désolé, l'accès à notre application web est actuellement bloqué car votre écran est trop petit.",
@@ -198,6 +200,7 @@
         "save": "Sauvegarder",
         "itineraries": "Vos itinéraires",
         "idItinerary": "Identifiant de l'itinéraire",
+        "cityItinerary": "Ville de l'itinéraire",
         "addGroupItinerary": "Ajouter un itinéraire au groupe",
         "leave": "Quitter",
         "placeholders": {
@@ -266,5 +269,8 @@
           "shop": "Shopping",
           "sport": "Sport"
         }
-      }      
+      },
+      "cardsGroup": {
+        "members": "Membres"
+      }
 }

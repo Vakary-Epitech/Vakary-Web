@@ -166,7 +166,9 @@
     "child": "Child",
     "interest": "Center of interest",
     "generate": "Generate the Itinerary",
-    "error": "Required"
+    "error": "Required",
+    "noGroup": "No group",
+    "group": "Chose a group"
   },
   "screenSizePage": {
     "screenSizeTooSmall": "Sorry, access to our web application is currently blocked because your screen is too small.",
@@ -198,6 +200,7 @@
     "save": "Save",
     "itineraries": "Itineraries",
     "idItinerary": "ID of the itinerary",
+    "cityItinerary": "City of the itinerary",
     "addGroupItinerary": "Add an itinerary to the group",
     "leave": "Leave",
     "placeholders": {
@@ -266,5 +269,8 @@
       "shop": "Shopping",
       "sport": "Sport"
     }
+  },
+  "cardsGroup": {
+    "members": "Members"
   }
 }

@@ -18,19 +18,20 @@ export default {
     props: ["itinerary", "index"],
     data() {
         return {
-            groupName: null
+            groupName: null,
+            test: null,
         }
     },
     mounted() {
+
         this.$store.dispatch("getGroup").then(() => {
 
-            /*const group = this.$store.state.groupStore.groups.find((group) => {
-                if (group.itinerary)
-                    group.itinerary.id === this.itinerary.id;
-            })
-            if (group) {
-                this.groupName = group.name;
-            }*/
+            const group = this.$store.state.groupStore.groups.find((group) => {
+                if (group.itinerary) {
+                    if (group.itinerary.id === this.itinerary.id) {
+                        this.groupName = group.name;
+                    }
+                }
         }).catch((error) => {
             console.log(error);
         });
