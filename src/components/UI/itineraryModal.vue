@@ -85,8 +85,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-12" v-if="$store.state.globalNonPersistantData.groups.length > 0">
-                    <hr class="separationBar" v-if="$store.state.globalNonPersistantData.groups.length > 0">
+                <div class="col-12" v-if="$store.state.groupStore.groups.length > 0">
+                    <hr class="separationBar" v-if="$store.state.groupStore.groups.length > 0">
                     <div class="row">
                         <div id="carouselExample" class="carousel slide">
                             <div class="row">
@@ -188,7 +188,7 @@ export default {
         },
     },
     mounted () {
-        this.totalItems = this.$store.state.globalNonPersistantData.groups.length + 1;
+        this.totalItems = this.$store.state.groupStore.groups.length + 1;
     },
     created() {
         const noGroup = {
@@ -197,7 +197,7 @@ export default {
             default: true
         };
         this.groups.push(noGroup);
-        this.$store.state.globalNonPersistantData.groups.forEach(group => {
+        this.$store.state.groupStore.groups.forEach(group => {
             this.groups.push(group);
         });
     },

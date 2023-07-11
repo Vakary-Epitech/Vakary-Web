@@ -67,6 +67,7 @@ const groupStore = {
                     let config = getters.getConfig({ url: "group/getAll/me", data: null, method: "get" })
 
                     axios.request(config).then((group) => {
+                        console.log("group", group)
                         commit('UPDATE_USER_GROUP', group);
                         for (let id in group.data.groups) {
                             dispatch("getGroupStatus", group.data.groups[id]);

@@ -162,7 +162,7 @@ export default {
                     this.$store.dispatch("addGroupToItinerary", {
                         groupName: this.groupInformations.name,
                         groupId: this.groupInformations.backendGroupId,
-                        itineraryId: this.$store.state.globalNonPersistantData.itinerary[this.indexItinerary].id
+                        itineraryId: this.$store.state.itineraryStore.itinerary[this.indexItinerary].id
                     }).catch((error) => {
                         console.log(error);
                     });
