@@ -76,7 +76,6 @@ const itineraryStore = {
                     config.maxBodyLength = Infinity;
 
                     axios.request(config).then((itinerary) => {
-                        console.log(itinerary);
                         commit('UPDATE_ITINERARY', itinerary.data.itinerary);
                         resolve(itinerary.data);
                     }).catch((error) => {
