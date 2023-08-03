@@ -136,7 +136,6 @@ const itineraryStore = {
                         })
                     }
 
-
                     const destination = arrayOfOrigin[arrayOfOrigin.length - 1]
                     const origin = arrayOfOrigin[0]
 
