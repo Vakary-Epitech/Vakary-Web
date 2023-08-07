@@ -35,19 +35,24 @@ const userStore = {
             state.userInfo = {};
             state.userInfo = userInfo.data.user;
             state.mail = userInfo.data.user.email;
-            state.userProfileImage = userInfo.data.user.picture;
+            state.userProfileImage = userInfo.data.user.Pictures[0].link;
         },
     },
     actions: {
         userConnection({ commit, getters }, data) {
-            return new Promise((resolve, reject) => {   
+            return new Promise((resolve, reject) => {
                 try {
                     let conf = getters.getConfig({ url: "login", data: data, method: "post" })
 
                     axios.request(conf).then((canAuthentify) => {
-                        commit('UPDATE_USER_INFO', canAuthentify);
                         commit('UPDATE_USER_TOKEN', canAuthentify.data.token);
-                        resolve("user connected");
+                        let confData = getters.getConfig({ url: "me", data: null, method: "get" })
+                        axios.request(confData).then((canAuthentify) => {
+                            commit('UPDATE_USER_INFO', canAuthentify);
+                            resolve("user connected");
+                        }).catch((error) => {
+                            reject(error);
+                        })
                     }).catch((error) => {
                         reject(error);
                     })
@@ -63,8 +68,15 @@ const userStore = {
                     let conf = getters.getConfig({ url: "register", data: data, method: "put" })
 
                     axios.request(conf).then((canAuthentify) => {
-                        commit('UPDATE_USER_INFO', canAuthentify);
                         commit('UPDATE_USER_TOKEN', canAuthentify.data.token);
+
+                        let confData = getters.getConfig({ url: "me", data: null, method: "get" })
+                        axios.request(confData).then((canAuthentify) => {
+                            commit('UPDATE_USER_INFO', canAuthentify);
+                            resolve("user connected");
+                        }).catch((error) => {
+                            reject(error);
+                        })
                         resolve("user Created");
                     }).catch((error) => {
                         reject(error);
@@ -127,7 +139,7 @@ const userStore = {
             return new Promise((resolve, reject) => {
                 try {
                     let conf = getters.getConfig({ url: "me", data: null, method: "get" })
-                    
+
                     let requestData = new FormData();
                     requestData.append('description', data.description)
                     if (typeof (data.picture) == 'object')

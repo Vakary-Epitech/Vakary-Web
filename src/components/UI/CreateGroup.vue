@@ -154,15 +154,15 @@ export default {
             this.error = false;
             this.$store.dispatch("addGroup",
                 this.groupInformations
-            ).then(() => {
+            ).then((groupInfo) => {
                 this.$store.dispatch("getGroup").catch((error) => {
                     this.errorMessage = error?.response?.data?.message;
                 })
                 if (this.addGroupToItinerary) {
                     this.$store.dispatch("addGroupToItinerary", {
                         groupName: this.groupInformations.name,
-                        groupId: this.groupInformations.backendGroupId,
-                        itineraryId: this.$store.state.globalNonPersistantData.itinerary[this.indexItinerary].id
+                        groupId: groupInfo.data.groupId,
+                        itineraryId: this.$store.state.itineraryStore.itinerary[this.indexItinerary].id
                     }).catch((error) => {
                         console.log(error);
                     });

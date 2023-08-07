@@ -302,7 +302,7 @@ export default {
       }
     },
     groupInvitation(backendGroupId, status) {
-      this.$store.dispatch("groupInvitation", { backendGroupId: backendGroupId, status: status }).then(() => {
+      this.$store.dispatch("groupInvitation", { backendGroupId: backendGroupId, status: status, email: this.$store.state.userStore.mail }).then(() => {
         this.$store.dispatch("getItinerary").catch((error) => {
           console.log(error);
         })

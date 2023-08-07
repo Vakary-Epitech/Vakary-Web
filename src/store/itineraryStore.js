@@ -73,6 +73,7 @@ const itineraryStore = {
             return new Promise((resolve, reject) => {
                 try {
                     let config = getters.getConfig({ url: "itinerary/getAll/me", data: null, method: "get" })
+                    config.maxBodyLength = Infinity;
 
                     axios.request(config).then((itinerary) => {
                         commit('UPDATE_ITINERARY', itinerary.data.itinerary);
@@ -133,7 +134,6 @@ const itineraryStore = {
                             lng: itinerary.itineraryPOI[itineraryData].Localisation.longitude,
                         })
                     }
-
 
                     const destination = arrayOfOrigin[arrayOfOrigin.length - 1]
                     const origin = arrayOfOrigin[0]

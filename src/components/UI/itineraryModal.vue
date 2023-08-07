@@ -85,8 +85,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-12" v-if="$store.state.globalNonPersistantData.groups.length > 0">
-                    <hr class="separationBar" v-if="$store.state.globalNonPersistantData.groups.length > 0">
+                <div class="col-12" v-if="$store.state.groupStore.groups.length > 0">
+                    <hr class="separationBar" v-if="$store.state.groupStore.groups.length > 0">
                     <div class="row">
                         <div id="carouselExample" class="carousel slide">
                             <div class="row">
@@ -146,7 +146,7 @@
 </template>
   
 <script>
-import { InterestPointTypeAccommodation, InterestPointTypeEatOrDrink, InterestPointTypeShop, InterestPointTypeSport, InterestPointTypePlaceToVisit, InterestPointTypeGroup } from "@/utils/poiTypes.js";
+import { IPTNatural, IPTActivity, IPTDrinking, IPTCultural, IPTEating, IPTEvent, IPTTour, IPTTypeGroup } from "@/utils/poiTypes.js";
 import cardsGroup from "../UI/CardsGroup.vue";
 
 export default {
@@ -166,14 +166,16 @@ export default {
             city: "",
             children: 0,
             indexOfGroup: 0,
-            categories: Object.values(InterestPointTypeGroup),
+            categories: Object.values(IPTTypeGroup),
             selectedPOIs: {},
             poiData: {
-                [InterestPointTypeGroup.ACCOMMODATION]: Object.values(InterestPointTypeAccommodation),
-                [InterestPointTypeGroup.RESTAURATION]: Object.values(InterestPointTypeEatOrDrink),
-                [InterestPointTypeGroup.SHOP]: Object.values(InterestPointTypeShop),
-                [InterestPointTypeGroup.SPORT]: Object.values(InterestPointTypeSport),
-                [InterestPointTypeGroup.PLACE_TO_VISIT]: Object.values(InterestPointTypePlaceToVisit)
+                [IPTTypeGroup.TOUR]: Object.values(IPTTour),
+                [IPTTypeGroup.EVENT]: Object.values(IPTEvent),
+                [IPTTypeGroup.NATURAL]: Object.values(IPTNatural),
+                [IPTTypeGroup.ACTIVITY]: Object.values(IPTActivity),
+                [IPTTypeGroup.DRINKING]: Object.values(IPTDrinking),
+                [IPTTypeGroup.CULTURAL]: Object.values(IPTCultural),
+                [IPTTypeGroup.EATING]: Object.values(IPTEating)
             },
             dropdownOpen: [],
             activeIndex: 0,
@@ -188,7 +190,7 @@ export default {
         },
     },
     mounted () {
-        this.totalItems = this.$store.state.globalNonPersistantData.groups.length + 1;
+        this.totalItems = this.$store.state.groupStore.groups.length + 1;
     },
     created() {
         const noGroup = {
@@ -197,7 +199,7 @@ export default {
             default: true
         };
         this.groups.push(noGroup);
-        this.$store.state.globalNonPersistantData.groups.forEach(group => {
+        this.$store.state.groupStore.groups.forEach(group => {
             this.groups.push(group);
         });
     },
@@ -296,6 +298,7 @@ export default {
                 duration = 3600 * 8; //Eight hours in seconds
 
             this.error = "";
+            console.log(this.generateGoodFormat(this.selectedPOIs))
             this.$store.dispatch("addItinerary", {
                 city: this.city,
                 availableTime: duration,
@@ -303,9 +306,8 @@ export default {
                 nbPeople: this.people,
                 nbChild: this.children,
                 typeResearchLocations: this.generateGoodFormat(this.selectedPOIs),
-                group: this.groups[this.activeIndex]?.default ? null : this.groups[this.activeIndex],
+                //group: this.groups[this.activeIndex]?.default ? null : this.groups[this.activeIndex],
                 handicapAccess: false,
-
             }).then(() => {
                 this.$emit("goBackToItineraryDropdown");
             }).catch((error) => {

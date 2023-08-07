@@ -23,19 +23,16 @@ export default {
         }
     },
     mounted() {
-
         this.$store.dispatch("getGroup").then(() => {
-
-            const group = this.$store.state.groupStore.groups.find((group) => {
+            this.$store.state.groupStore.groups.find((group) => {
                 if (group.itinerary) {
                     if (group.itinerary.id === this.itinerary.id) {
                         this.groupName = group.name;
                     }
                 }
-        }).catch((error) => {
-            console.log(error);
-        });
-    },
+            })
+        })
+    }
 }
 </script>
 

@@ -1,17 +1,17 @@
 <template>
-    <div class="row mt-3" v-if="$store.state.globalNonPersistantData?.itinerary.length > 0">
+    <div class="row mt-3" v-if="$store.state.itineraryStore?.itinerary.length > 0">
         <p class="text-center">{{ $t("showMembers.addGroupItinerary") }}</p>
         <div class="col-2 my-auto">
-            <button class="custom-button" v-if="$store.state.globalNonPersistantData?.itinerary.length > 1"
+            <button class="custom-button" v-if="$store.state.itineraryStore?.itinerary.length > 1"
                 @click="prev">
                 <i class="fa-solid fa-arrow-left fa-xl custom-arrow"></i>
             </button>
         </div>
         <div class="col-8 text-center">
-            <CardsItinerary class="cardsItinerary" :itinerary="this.$store.state.globalNonPersistantData?.itinerary[indexItinerary]"></CardsItinerary>
+            <CardsItinerary class="cardsItinerary" :itinerary="this.$store.state.itineraryStore?.itinerary[indexItinerary]"></CardsItinerary>
         </div>
         <div class="col-2 my-auto text-end">
-            <button class="custom-button" v-if="$store.state.globalNonPersistantData?.itinerary.length > 1"
+            <button class="custom-button" v-if="$store.state.itineraryStore?.itinerary.length > 1"
                 @click.prevent="next">
                 <i class="fa-solid fa-arrow-right fa-xl custom-arrow"></i>
             </button>
@@ -40,7 +40,7 @@ export default {
     },
     methods: {
         next() {
-            if (this.indexItinerary < this.$store.state.globalNonPersistantData?.itinerary.length - 1) {
+            if (this.indexItinerary < this.$store.state.itineraryStore?.itinerary.length - 1) {
                 this.indexItinerary++;
             }
             else {
@@ -53,7 +53,7 @@ export default {
                 this.indexItinerary--;
             }
             else {
-                this.indexItinerary = this.$store.state.globalNonPersistantData?.itinerary.length - 1;
+                this.indexItinerary = this.$store.state.itineraryStore?.itinerary.length - 1;
             }
             this.$emit("updateIndex", this.indexItinerary, this.addGroupToItinerary);
         },
