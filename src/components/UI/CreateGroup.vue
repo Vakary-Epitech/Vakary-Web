@@ -60,6 +60,9 @@
                     </label>
                 </div>
             </section>
+            <section name="itinerary">
+                <ChoseItinerary @updateIndex="updateGroupIndex"></ChoseItinerary>
+            </section>
             <div class="col-12 mt-3 text-center">
                 <button @click="sendMessage" class="btn-save-group">{{ $t("createGroup.save") }}</button>
             </div>
@@ -74,6 +77,7 @@
   
 <script>
 import useVuelidate from '@vuelidate/core';
+import ChoseItinerary from "@/components/UI/ChoseItinerary.vue";
 import { v4 as uuidv4 } from 'uuid';
 import { required, email, minLength, maxLength } from '@vuelidate/validators';
 export default {
@@ -81,6 +85,9 @@ export default {
     name: "createGroup",
     setup() {
         return { v$: useVuelidate() }
+    },
+    components: {
+        ChoseItinerary
     },
     data() {
         return {
@@ -98,12 +105,18 @@ export default {
             },
             showEmailError: false,
             onlyOneMembers: false,
+            indexItinerary: 0,
+            addGroupToItinerary: false,
         }
     },
     created() {
         this.groupInformations.members.push({ mail: this.$store.state.userStore.userInfo.email, status: "accepted", admin: true })
     },
     methods: {
+        updateGroupIndex(index, addGroup) {
+            this.indexItinerary = index;
+            this.addGroupToItinerary = addGroup;
+        },
         addMember() {
             if (!this.isValidEmail(this.mailMember)) {
                 this.showEmailError = true;
@@ -141,24 +154,23 @@ export default {
             this.error = false;
             this.$store.dispatch("addGroup",
                 this.groupInformations
-            ).then(() => {
-                this.$store.dispatch("get", {
-                    path: "group/getAll/me",
-                    token: this.$store.state.userStore.token,
-                }).then((groups) => {
-                    for (let groupsId in groups["groups"]) {
-                        this.$store.dispatch("get", {
-                            path: "group_user/getAll/" + groups["groups"][groupsId].id,
-                        }).catch( (error) => {
-                            this.errorMessage = error?.response?.data?.message;
-                        })
-                    }
-                }).catch((error) => {
+            ).then((groupInfo) => {
+                this.$store.dispatch("getGroup").catch((error) => {
                     this.errorMessage = error?.response?.data?.message;
                 })
+                if (this.addGroupToItinerary) {
+                    this.$store.dispatch("addGroupToItinerary", {
+                        groupName: this.groupInformations.name,
+                        groupId: groupInfo.data.groupId,
+                        itineraryId: this.$store.state.itineraryStore.itinerary[this.indexItinerary].id
+                    }).catch((error) => {
+                        console.log(error);
+                    });
+                }
                 this.CreateGroup = false;
                 this.$emit("goBackToGroupDropdown");
             }).catch((error) => {
+                console.log(error)
                 this.error = true;
                 this.errorMessage = error?.response?.data?.message;
             })

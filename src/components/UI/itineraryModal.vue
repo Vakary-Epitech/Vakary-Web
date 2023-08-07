@@ -85,9 +85,33 @@
                         </div>
                     </div>
                 </div>
-
-                <hr class="separationBar" v-if="$store.state.globalNonPersistantData.groups.length > 0">
-
+                <div class="col-12" v-if="$store.state.groupStore.groups.length > 0">
+                    <hr class="separationBar" v-if="$store.state.groupStore.groups.length > 0">
+                    <div class="row">
+                        <div id="carouselExample" class="carousel slide">
+                            <div class="row">
+                                <div class="col-3 text-start">
+                                    <button @click="prevSlide" class="arrowButton" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+                                        <i class="fa-solid fa-xl fa-arrow-left"></i>
+                                    </button>
+                                </div>
+                                <div class="col-6 text-center">
+                                    {{ $t("itineraryModal.group") }}
+                                </div>
+                                <div class="col-3 text-end">
+                                    <button @click="nextSlide" class="arrowButton" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                                        <i class="fa-solid fa-xl fa-arrow-right"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="carousel-inner mt-2">
+                                <div class="carousel-item" v-for="(group, index) in groups" :key="index" :class="{ 'active': index === activeIndex }">
+                                    <cardsGroup :group="group"></cardsGroup>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <hr class="separationBar">
                 <div class="col-12 mb-1">
                     <span>{{ $t("itineraryModal.interest") }}</span><br>
@@ -122,9 +146,13 @@
 </template>
   
 <script>
-import { InterestPointTypeAccommodation, InterestPointTypeEatOrDrink, InterestPointTypeShop, InterestPointTypeSport, InterestPointTypePlaceToVisit, InterestPointTypeGroup } from "@/utils/poiTypes.js";
+import { IPTNatural, IPTActivity, IPTDrinking, IPTCultural, IPTEating, IPTEvent, IPTTour, IPTTypeGroup } from "@/utils/poiTypes.js";
+import cardsGroup from "../UI/CardsGroup.vue";
 
 export default {
+    components: {
+        cardsGroup
+    },
     data() {
         return {
             checkItineraryLength: "",
@@ -138,22 +166,42 @@ export default {
             city: "",
             children: 0,
             indexOfGroup: 0,
-            categories: Object.values(InterestPointTypeGroup),
+            categories: Object.values(IPTTypeGroup),
             selectedPOIs: {},
             poiData: {
-                [InterestPointTypeGroup.ACCOMMODATION]: Object.values(InterestPointTypeAccommodation),
-                [InterestPointTypeGroup.RESTAURATION]: Object.values(InterestPointTypeEatOrDrink),
-                [InterestPointTypeGroup.SHOP]: Object.values(InterestPointTypeShop),
-                [InterestPointTypeGroup.SPORT]: Object.values(InterestPointTypeSport),
-                [InterestPointTypeGroup.PLACE_TO_VISIT]: Object.values(InterestPointTypePlaceToVisit)
+                [IPTTypeGroup.TOUR]: Object.values(IPTTour),
+                [IPTTypeGroup.EVENT]: Object.values(IPTEvent),
+                [IPTTypeGroup.NATURAL]: Object.values(IPTNatural),
+                [IPTTypeGroup.ACTIVITY]: Object.values(IPTActivity),
+                [IPTTypeGroup.DRINKING]: Object.values(IPTDrinking),
+                [IPTTypeGroup.CULTURAL]: Object.values(IPTCultural),
+                [IPTTypeGroup.EATING]: Object.values(IPTEating)
             },
             dropdownOpen: [],
+            activeIndex: 0,
+            totalItems: 0,
+            isAnimating: false,
+            groups: [],
         }
     },
     computed: {
         placeholderCity() {
             return (this.$t('itineraryModal.city'));
         },
+    },
+    mounted () {
+        this.totalItems = this.$store.state.groupStore.groups.length + 1;
+    },
+    created() {
+        const noGroup = {
+            name: this.$t('itineraryModal.noGroup'),
+            photo: "https://eip.vakary.fr/uploads/group/base/basic_group_image_1.jpg",
+            default: true
+        };
+        this.groups.push(noGroup);
+        this.$store.state.groupStore.groups.forEach(group => {
+            this.groups.push(group);
+        });
     },
     methods: {
         toTranslationKey(value) {
@@ -209,24 +257,28 @@ export default {
         setIndex(index) {
             this.indexOfGroup = index;
         },
-        prev() {
-            // not working function yet: need to find a way to get the index of the active carousel item
+        prevSlide() {
+            if (this.isAnimating) return;
+            
+            this.isAnimating = true;
             setTimeout(() => {
-                if (this.indexOfGroup == 0) {
-                    this.indexOfGroup = this.$store.state.globalNonPersistantData.groups.length;
+
+                if (this.activeIndex === 0) {
+                    this.activeIndex = this.totalItems - 1;
                 } else {
-                    this.indexOfGroup--;
+                    this.activeIndex--;
                 }
-            }, "1 second");
+                this.isAnimating = false;
+            }, 500); // Temps d'animation (ajustez selon vos besoins)
         },
-        next() {
-            // not working function yet: need to find a way to get the index of the active carousel item
-            if (this.indexOfGroup < this.$store.state.globalNonPersistantData.groups.length) {
-                this.indexOfGroup++;
-            }
-            else {
-                this.indexOfGroup = 0;
-            }
+        nextSlide() {
+            if (this.isAnimating) return;
+            
+            this.isAnimating = true;
+            setTimeout(() => {
+                this.activeIndex = (this.activeIndex + 1) % this.totalItems;
+                this.isAnimating = false;
+            }, 500); // Temps d'animation (ajustez selon vos besoins)
         },
         generateGoodFormat(POIs) {
             let goodFormat = [];
@@ -246,25 +298,18 @@ export default {
                 duration = 3600 * 8; //Eight hours in seconds
 
             this.error = "";
-            this.$store.dispatch("put", {
-                path: "itinerary/me",
-                data: {
-                    city: this.city,
-                    availableTime: duration,
-                    budget: this.budget,
-                    nbPeople: this.people,
-                    nbChild: this.children,
-                    typeResearchLocations: this.generateGoodFormat(this.selectedPOIs),
-                    group: this.$store.state.globalNonPersistantData.groups[this.indexOfGroup],
-                    handicapAccess: false,
-                },
-                token: this.$store.state.userStore.token,
+            console.log(this.generateGoodFormat(this.selectedPOIs))
+            this.$store.dispatch("addItinerary", {
+                city: this.city,
+                availableTime: duration,
+                budget: this.budget,
+                nbPeople: this.people,
+                nbChild: this.children,
+                typeResearchLocations: this.generateGoodFormat(this.selectedPOIs),
+                //group: this.groups[this.activeIndex]?.default ? null : this.groups[this.activeIndex],
+                handicapAccess: false,
             }).then(() => {
-                this.$store.dispatch("getItinerary").then(() => {
-                    this.$emit("goBackToItineraryDropdown");
-                }).catch((error) => {
-                    this.error = error?.response?.data;
-                })
+                this.$emit("goBackToItineraryDropdown");
             }).catch((error) => {
                 this.error = error?.response?.data;
             })
@@ -274,8 +319,27 @@ export default {
 </script>
 
 <style scoped>
+
 .form-check .form-check-input {
     float: none !important;
+}
+
+.arrowButton {
+    background-color: #fff;
+    border: 1px solid rgb(192, 150, 40);
+    border-radius: 10px;
+    color: black;
+    padding: 5px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+
+.arrowButton:hover {
+    background-color: rgb(192, 150, 40);
+    color: white;
+    cursor: pointer;
 }
 
 .dropDownButton {

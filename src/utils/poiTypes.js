@@ -1,62 +1,79 @@
-export const InterestPointTypeAccommodation = {
-    ACCOMMODATION: "Accommodation",
-    GUESTHOUSE: "GuestHouse",
-    HOTEL: "Hotel",
-    HOLIDAYRESORT: "Holiday Resort",
-    WINERY: "Winery",
-    SELF_CATERING_ACCOMMODATION: "Self Catering Accommodation",
-    LODGING_BUSINESS: "Lodging Business",
+export const IPTTour = {
+    CYCLING_TOUR: "CyclingTour",
+    ROAD_TOUR: "RoadTour",
+    WALKING_TOUR: "WalkingTour",
+    TOUR: "Tour",
+    TOURIST_TRAIN: "TouristTrain",
 };
 
-export const InterestPointTypeEatOrDrink = {
-    RESTAURANT: "Restaurant",
-    FASTFOOD: "Fast Food",
-    CAFE: "Cafe",
-    BISTRO: "Bistro",
-    PUB: "Pub",
-    NIGHTCLUB: "Nightclub",
+export const IPTEvent = {
+    SHOW_EVENT: "ShowEvent",
+    SOCIAL_EVENT: "SocialEvent",
+    SPORTS_EVENT: "SportsEvent",
+    ENTERTAINMENT_EVENT: "EntertainmentAndEvent",
+    EXHIBITION_EVENT: "ExhibitionEvent",
+    CULTURAL_EVENT: "CulturalEvent",
 };
 
-export const InterestPointTypeShop = {
-    STORE: "Club",
-    CRAFTSMAN_SHOP: "Craftsman Shop",
-    BUSINESS_PLACE: "Business Place",
-};
-
-export const InterestPointTypeSport = {
-    STADIUM: "Stadium",
-    ARENA: "Arena",
-    SPORT_PLACE: "Sport Place",
-    MINIGOLF: "Minigolf",
-    SWIMMINGPOOL: "Swimming Pool",
-    BOWLING: "Bowling",
-};
-
-export const InterestPointTypePlaceToVisit = {
-    AMUSEMENT_PARK: "Amusement Park",
-    CHURCH: "Church",
-    CINEMA: "Cinema",
-    CULTURAL_SITE: "Cultural Site",
-    CYCLING_TOUR: "Cycling Tour",
+export const IPTNatural = {
     LANDFORM: "Landform",
-    NATURAL_HERITAGE: "Natural Heritage",
-    REMARKABLE_BUILDING: "Remarkable Building",
-    THEATER: "Theater",
-    LIBRARY: "Library",
-    CITY_HERITAGE: "City Heritage",
-    MUSEUM: "Museum",
-    CASTLE: "Castle",
+    PARK: "Park",
+    PARK_GARDEN: "ParkAndGarden",
     RIVER: "River",
-    LEISURE_COMPLEX: "Leisure Complex",
-    ROAD_TOUR: "Road Tour",
-    PARK_GARDEN: "Park Garden",
-    WALKING_TOUR: "Walking Tour",
+    RIVER_PORT: "RiverPort",
 };
 
-export const InterestPointTypeGroup = {
-    ACCOMMODATION: "Accommodation",
-    RESTAURATION: "Restauration",
-    PLACE_TO_VISIT: "Place to visit",
-    SHOP: "Shopping",
-    SPORT: "Sport",
+export const IPTActivity = {
+    BOWLING: "BowlingAlley",
+    CINEMA: "Cinema",
+    GAME: "Game",
+    MINIGOLF: "Minigolf",
+    MOVIE_THEATER: "MovieTheater",
+    THEATER: "Theater",
+    AMUSEMENT_PARK: "AmusementPark",
+    THEME_PARK: "ThemePark",
+    EXHIBITION: "Exhibition",
+    LEISURE_COMPLEX: "LeisureComplex",
+    MARINE: "Marine",
+};
+
+export const IPTDrinking = {
+    BAR_PUB: "BarOrPub",
+    BISTRO_WINE_BAR: "BistroOrWineBar",
+    NIGHT_CLUB: "NightClub",
+    WINERY: "Winery",
+    TASTING_PROVIDER: "TastingProvider",
+};
+
+export const IPTCultural = {
+    CASTLE: "Castle",
+    CHURCH: "Church",
+    CITY_HERITAGE: "CityHeritage",
+    MILITARY_CEMETERY: "MilitaryCemetery",
+    MUSEUM: "Museum",
+    NATURAL_HERITAGE: "NaturalHeritage",
+    RELIGIOUS_SITE: "ReligiousSite",
+    REMEMBRANCE_SITE: "RemembranceSite",
+    REMARKABLE_BUILDING: "RemarkableBuilding",
+    CULTURAL_SITE: "CulturalSite",
+};
+
+export const IPTEating = {
+    FAST_FOOD: "FastFoodRestaurant",
+    FOOD_ESTABLISHMENT: "FoodEstablishment",
+    RESTAURANT: "Restaurant",
+    SELF_CATERING: "SelfCateringAccommodation",
+    SELF_SERVICE: "SelfServiceCafeteria",
+    CAFE_COFFE_SHOP: "CafeOrCoffeeShop",
+    CAFE_TEAHOUSE: "CafeOrTeahouse",
+};
+
+export const IPTTypeGroup = {
+    TOUR: "Tour",
+    EVENT: "Event",
+    NATURAL: "Natural",
+    ACTIVITY: "Activity",
+    DRINKING: "Drinking",
+    CULTURAL: "Cultural",
+    EATING: "Eating",
 };
