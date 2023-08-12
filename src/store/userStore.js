@@ -35,7 +35,7 @@ const userStore = {
             state.userInfo = {};
             state.userInfo = userInfo.data.user;
             state.mail = userInfo.data.user.email;
-            state.userProfileImage = userInfo.data.user.Pictures[0].link;
+            state.userProfileImage = userInfo.data.user.picture;
         },
     },
     actions: {
