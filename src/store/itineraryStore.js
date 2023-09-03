@@ -12,7 +12,6 @@ const itineraryStore = {
     mutations: {
         UPDATE_ITINERARY(state, itineraryArray) {
             state.itinerary = [];
-            state.marker = [];
 
             for (let itinerary in itineraryArray) {
                 let itinerayData = {
@@ -20,15 +19,6 @@ const itineraryStore = {
                     id: itineraryArray[itinerary].id,
                 };
                 state.itinerary.push(itinerayData)
-                for (let POI in itinerayData.itineraryPOI) {
-                    state.marker.push({
-                        label: itinerayData.itineraryPOI[POI].name,
-                        geolocalisation: {
-                            lat: itinerayData.itineraryPOI[POI].Localisation.latitude,
-                            lng: itinerayData.itineraryPOI[POI].Localisation.longitude,
-                        },
-                    });
-                }
             }
 
             for (let group in state.groups) {
@@ -42,16 +32,6 @@ const itineraryStore = {
                         };
 
                         state.itinerary.push(itinerayData)
-
-                        for (let POI in itinerayData.itineraryPOI) {
-                            state.marker.push({
-                                label: itinerayData.itineraryPOI[POI].name,
-                                geolocalisation: {
-                                    lat: itinerayData.itineraryPOI[POI].Localisation.latitude,
-                                    lng: itinerayData.itineraryPOI[POI].Localisation.longitude,
-                                },
-                            });
-                        }
                     }
                 }
             }
@@ -66,6 +46,21 @@ const itineraryStore = {
         },
         CLEAR_PATH(state) {
             state.waypoints = [];
+        },
+        UPDATE_MARKER(state, itineraryData) {
+            state.marker = [];
+            for (let POI in itineraryData.itineraryPOI) {
+                state.marker.push({
+                    label: itineraryData.itineraryPOI[POI].name,
+                    geolocalisation: {
+                        lat: itineraryData.itineraryPOI[POI].Localisation.latitude,
+                        lng: itineraryData.itineraryPOI[POI].Localisation.longitude,
+                    },
+                });
+            }
+        },
+        REMOVE_MARKER(state) {
+            state.marker = [];
         }
     },
     actions: {
@@ -148,6 +143,7 @@ const itineraryStore = {
                     }
                     let config = getters.getConfig({ url: "getPath", data: data, method: "post" })
                     
+
                     axios.request(config).then((steps) => {
                         commit('UPDATE_PATH', steps.data.path);
                         resolve(steps);
