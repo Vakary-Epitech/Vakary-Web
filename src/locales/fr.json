@@ -270,7 +270,12 @@
           "sport": "Sport"
         }
       },
-      "cardsGroup": {
-        "members": "Membres"
-      }
+    "cardsGroup": {
+      "members": "Membres"
+    },
+    "loadingSpin": {
+        "loading": "Chargement en cours...",
+        "loadingItinerary": "Chargement de l'itinéraire...",
+        "loadMore": "Chargement de nouveaux points d'intérêts..."
+    }
 }

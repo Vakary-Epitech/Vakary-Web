@@ -160,6 +160,38 @@ const itineraryStore = {
                 }
             })
         },
+        getNewCards({ getters }, data) {
+            return new Promise((resolve, reject) => {
+                try {
+                    let config = getters.getConfig({ url: "itinerary/getNewCards", data: data, method: "post" })
+                    
+                    axios.request(config).then((cards) => {
+                        resolve(cards);
+                    }).catch((error) => {
+                        console.log(error);
+                    })
+
+                } catch (error) {
+                    reject(error);
+                }
+            })
+        },
+        sendLikedPOI({ getters }, data) {
+            return new Promise((resolve, reject) => {
+                try {
+                    let config = getters.getConfig({ url: "itinerary/sendLikedPOI", data: data, method: "post" })
+                    
+                    axios.request(config).then((cards) => {
+                        resolve(cards);
+                    }).catch((error) => {
+                        console.log(error);
+                    })
+
+                } catch (error) {
+                    reject(error);
+                }
+            })
+        },
     },
 }
 
