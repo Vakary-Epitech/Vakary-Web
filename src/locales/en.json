@@ -272,5 +272,10 @@
   },
   "cardsGroup": {
     "members": "Members"
+  },
+  "loadingSpin": {
+      "loading": "Loading...",
+      "loadingItinerary": "Loading itinerary...",
+      "loadMore": "Loading new points of interest..."
   }
 }

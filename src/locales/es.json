@@ -207,5 +207,10 @@
             "name": "El nombre del grupo debe tener entre 3 y 18 caracteres",
             "mail": "Correo electrónico no válido"
         }
+    },
+    "loadingSpin": {
+        "loading": "Cargando...",
+        "loadingItinerary": "Cargando itinerario...",
+        "loadMore": "Cargando nuevos puntos de interés..."
     }
 }
