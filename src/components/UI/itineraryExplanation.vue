@@ -9,16 +9,19 @@
                     </button>
                 </div>
             </div>
-            <h4 class="titleLimiterSize">{{ this.selectedItineraryInfo?.itineraryPOI[this.currentWaypointIndex].City.name }}</h4>
+            <h4 class="titleLimiterSize">{{ this.selectedItineraryInfo?.itineraryPOI[this.currentWaypointIndex].City.name }}
+            </h4>
             <div class="ms-3 my-auto text-center titleLimiterSize">
                 <h4>{{ getCurrentPOIName }}</h4>
             </div>
             <div class="imgWrapper text-center">
                 <img class="imageProportion" :src="getCurrentPOIImage" />
             </div>
-            <span class="textMargin descriptionLimiterSize" style="font-size: calc(6px + 1.2vh)">{{ getCurrentPOIDescription}}</span>
+            <span class="textMargin descriptionLimiterSize" style="font-size: calc(6px + 1.2vh)">{{
+                getCurrentPOIDescription }}</span>
             <div class="openHoursDesign timeSizeLimiter">
-                <span style="white-space: pre-line; font-size: calc(6px + 1.2vh);">{{ $t("mapPage.openHours") }} <br />{{ getCurrentPOIOpenHours }}</span>
+                <span style="white-space: pre-line; font-size: calc(6px + 1.2vh);">{{ $t("mapPage.openHours") }} <br />{{
+                    getCurrentPOIOpenHours }}</span>
             </div>
             <div class="row custom">
                 <div class="col-6 text-start">
@@ -47,35 +50,8 @@ export default {
         }
     },
     mounted() {
-        if (this.selectedItineraryInfo?.itineraryPOI.length < 2) {
-                        return;
-                    }
-        let arrayOfOrigin = [];
-        for (let itineraryData in this.selectedItineraryInfo?.itineraryPOI) {
-            arrayOfOrigin.push({
-                lat: this.selectedItineraryInfo.itineraryPOI[itineraryData].Localisation.latitude,
-                lng: this.selectedItineraryInfo.itineraryPOI[itineraryData].Localisation.longitude,
-            })
-        }
-
-        const destination = arrayOfOrigin[arrayOfOrigin.length - 1]
-        const origin = arrayOfOrigin[0]
-
-        arrayOfOrigin.pop();
-        arrayOfOrigin.shift();
-        this.$store.dispatch("post", {
-            path: "getPath",
-            data: {
-                origin: origin,
-                destination: destination,
-                waypoints: arrayOfOrigin,
-            }
-        }).then(() => {
-            console.log("all fine")
-        })
-        .catch((error) => {
-            console.log(error);
-        });
+        this.$store.dispatch("calculatePath", this.selectedItineraryInfo)
+        this.$store.commit('UPDATE_MARKER', this.selectedItineraryInfo)
     },
     computed: {
         getCurrentPOIName() {
@@ -97,6 +73,7 @@ export default {
     methods: {
         goBackToItineraryDropdown() {
             this.$emit("goBackToItineraryDropdown");
+            this.$store.commit('REMOVE_MARKER')
         },
         checkNextPOI() {
             if (this.currentWaypointIndex < this.selectedItineraryInfo?.itineraryPOI.length - 1) {
@@ -111,7 +88,7 @@ export default {
             }
         },
         deleteItinerary() {
-            this.$store.dispatch("deleteItinerary", { itineraryId: this.selectedItineraryInfo.id}).then(() => {
+            this.$store.dispatch("deleteItinerary", { itineraryId: this.selectedItineraryInfo.id }).then(() => {
                 this.$store.dispatch("getItinerary").then(() => {
                     this.$emit("goBackToItineraryDropdown");
                 }).catch((error) => {
@@ -393,5 +370,4 @@ div.backArrowBottom {
 .slide-fade-leave-to {
     transform: translateX(20px);
     opacity: 0;
-}
-</style>
+}</style>
