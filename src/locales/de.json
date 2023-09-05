@@ -208,5 +208,10 @@
             "name": "Der Gruppenname muss zwischen 3 und 18 Zeichen lang sein",
             "mail": "Ungültige E-Mail-Adresse"
         }
+    },
+    "loadingSpin": {
+        "loading": "Laden läuft...",
+        "loadingItinerary": "Routenladen...",
+        "loadMore": "Laden neuer Sehenswürdigkeiten..."
     }
 }

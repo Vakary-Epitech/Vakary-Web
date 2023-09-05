@@ -15,6 +15,7 @@ import { dom } from "@fortawesome/fontawesome-svg-core";
 import i18n from './i18n'
 import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
+import Vue3TouchEvents from "vue3-touch-events";
 
 library.add(fab);
 library.add(fas);
@@ -34,7 +35,7 @@ app.use(i18n);
 app.use(ElementPlus)
 app.use(router);
 app.use(store);
-
+app.use(Vue3TouchEvents)
 library.add(faPlus, faXmark)
 
 app.config.compilerOptions.isCustomElement = (tag) => {
