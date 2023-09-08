@@ -1,9 +1,9 @@
 <template>
-    <div class="card card-custom" :style="cardStyle" :key="currentCardIndex" v-if="!endList && likedPOI.length < 7 && !skip"
+    <div class="card" :style="cardStyle" :key="currentCardIndex" v-if="!endList && likedPOI.length < 7 && !skip"
         @mousedown="startDrag"
         @mousemove="dragCard"
         @mouseup="stopDrag">
-        <div class="card-header row">
+        <div class="card-header">
             <div class="col-10">
                 {{ cardsTest[currentCardIndex].name }}
             </div>
