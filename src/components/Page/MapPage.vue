@@ -3,8 +3,6 @@
 
 <template>
   <div class="fadeshow1">
-    <div>
-    </div>
     <GMapMap :center="getCenterOfMap" :options="options" :zoom="mapZoom" style="width: 100vw; height: 100vh"
       ref="myMapRef">
 
@@ -361,26 +359,6 @@ export default {
         })
       }
     },
-
-    openInfoWindow(label, geolocalisation) {
-      if (this.$store.state.mapStore.selectedMarker.length > 2)
-        this.$store.dispatch("resetSelectedMarker").catch((error) => {
-          console.log(error);
-        });
-      else if (geolocalisation)
-        this.$store.dispatch("markerHasBeenSelected", geolocalisation).catch((error) => {
-          console.log(error);
-        });
-      this.openedMarkerID = label;
-    },
-
-
-    frenchLanguage() {
-      this.$i18n.locale = "fr";
-    },
-    engLanguage() {
-      this.$i18n.locale = "en";
-    },
     callGroupCreation() {
       this.showGroupCreationModal = true;
       this.showItineraryCreationModal = false;
@@ -392,18 +370,6 @@ export default {
       this.showGroupCreationModal = false;
       this.showProfile = false;
     },
-
-    update(object) {
-      const fileReader = new FileReader();
-      fileReader.onload = () => { }
-      if (object.photo) {
-        fileReader.readAsDataURL(object.photo);
-      }
-    },
-    createGroupe() {
-      this.createGroup = true;
-    },
-
   },
 }
 </script>
