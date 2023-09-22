@@ -3,18 +3,18 @@
 
 <template>
   <div class="fadeshow1">
+    <div>
+    </div>
     <GMapMap :center="getCenterOfMap" :options="options" :zoom="mapZoom" style="width: 100vw; height: 100vh"
       ref="myMapRef">
-      <GMapMarker :key="marker.label" v-for="marker in markersData" :position="marker.geolocalisation"
-        :title="marker.label" :clickable="true" @click="openInfoWindow(marker.label, marker.geolocalisation)">
-        <GMapInfoWindow :closeclick="true" @closeclick="openInfoWindow(null)" :opened="openedMarkerID === marker.label">
-          <div>
-            <div class="col-12">
-              <h4>{{ marker.label }}</h4>
-            </div>
-          </div>
-        </GMapInfoWindow>
-      </GMapMarker>
+
+      <GMapMarker :key="marker.label" v-for="marker in unselectedWaypoint" :position="marker.geolocalisation"
+        :title="marker.label" :clickable="false" />
+      <GMapMarker v-if="!this.markersData.length == 0" :key="this.markersData[this.currentWaypointIndex].label"
+        :position="this.markersData[this.currentWaypointIndex].geolocalisation"
+        :title="this.markersData[this.currentWaypointIndex].label" :clickable="false"
+        :icon='{ url: "https://cdn-icons-png.flaticon.com/512/7310/7310018.png", scaledSize: { width: 44, height: 44 } }' />
+
       <map-info></map-info>
       <GMapPolyline :options="{ strokeColor: '#000642' }" :path="selectedPath" ref="polyline" />
     </GMapMap>
@@ -73,7 +73,7 @@
 
   <div class="langButtonPos fadeshow1">
     <img :src="this.$store.state.userStore.userProfileImage" class="flag-button profileIcon"
-    @click="showProfile = !showProfile; showGroupCreationModal = false; showItineraryCreationModal = false" />
+      @click="showProfile = !showProfile; showGroupCreationModal = false; showItineraryCreationModal = false" />
     <languages></languages>
   </div>
 
@@ -203,7 +203,7 @@ export default {
 
       selectedItinerary: 0,
       selectedGroup: "",
-      mapZoom: 12,
+      mapZoom: 6.3,
       openedMarkerID: null,
       waypoints: [],
       currentWaypointIndex: 0,
@@ -239,6 +239,11 @@ export default {
     });
   },
   computed: {
+    unselectedWaypoint() {
+      let unselectedWaypointData = this.$store.state.itineraryStore.marker.slice();
+      unselectedWaypointData.splice(this.currentWaypointIndex, 1);
+      return unselectedWaypointData;
+    },
     itineraryCssDropdown() {
       if (this.itineraryDropdown) {
         return ("border-radius: 20px 20px 0px 0px;");
@@ -262,8 +267,9 @@ export default {
     getCenterOfMap() {
       if (this.selectedItinerary == 0 || !this.$store.state.itineraryStore.itinerary[this.selectedItinerary - 1])
         return ({
-          lat: 49.1172801,
-          lng: 6.21190790000003
+          lat: 46.7172801,
+          lng: 1.21190790000003,
+          zoom: 6.3
         });
       else {
         return ({
@@ -314,13 +320,13 @@ export default {
     itineraryCardsHasBeenClicked(itineraryId) {
       this.selectedItinerary = itineraryId + 1;
       this.displayItineraryInformation = true;
-      this.mapZoom = 15;
+      this.mapZoom = 14;
     },
     goBackToItineraryDropdown() {
       this.currentWaypointIndex = 0;
       this.selectedItinerary = 0;
       this.displayItineraryInformation = false;
-      this.mapZoom = 12;
+      this.mapZoom = 6.3;
       this.$store.commit("CLEAR_PATH");
     },
     groupCardsHasBeenClicked(group, index) {
@@ -354,72 +360,6 @@ export default {
           console.log(error);
         })
       }
-    },
-
-    addCenterControl(controlDiv) {
-      const controlUI = document.createElement('div');
-      controlUI.id = 'centerControl';
-      controlDiv.appendChild(controlUI);
-      if (this.currentWaypointIndex == this.path.length - 1) {
-        controlUI.innerHTML = '<div style="background: white; padding: 1rem;"><h2>Finished</h2></div>'
-      } else {
-        const currentWaypoint = this.waypoints[this.currentWaypointIndex];
-        controlUI.innerHTML = '<div style="background: white; padding: 1rem; margin-top: 10px"><div class="col-12 text-start">Duration: ' + currentWaypoint.duration.text + '</div><div class="col-12 text-start">Distance: ' + currentWaypoint.distance.text + '</div><div class="col-12 text-start">' + currentWaypoint.instruction + '</div></div>';
-      }
-    },
-
-    infos() {
-      // This function is used to get the informations about the path between two points
-      // Display informations about the path like the total duration and the total distance
-      if (this.$store.state.mapStore.selectedMarker.length < 2 || this.waypoints.length == 0) {
-        return;
-      }
-      let totalTime = 0;
-      let totalDistance = 0;
-      for (let i = 0; i < this.waypoints.length; i++) {
-        totalTime += this.waypoints[i].duration.value;
-        totalDistance += this.waypoints[i].distance.value;
-      }
-      let hours = Math.floor(totalTime / 3600);
-      let minutes = Math.floor((totalTime % 3600) / 60);
-      let seconds = totalTime % 60;
-      let time = "";
-      if (hours > 0) {
-        time = hours + "h " + minutes + "m " + seconds + "s";
-      } else {
-        time = minutes + "m " + seconds + "s";
-      }
-      let km = Math.floor(totalDistance / 1000);
-      let m = totalDistance % 1000;
-      let distance = "";
-      if (km > 0) {
-        distance = km + "." + m + "km";
-      } else {
-        distance = m + "m";
-      }
-      const infoDiv = document.createElement('div');
-      infoDiv.id = 'infoDiv';
-      this.$refs.myMapRef.$mapPromise.then((map) => {
-        infoDiv.innerHTML = '<div style="background: white; padding: 1rem;"><h3>Total Time :' + time + '</h3><h3>Total Distance: ' + distance + '</h3></div>'
-        map.controls[google.maps.ControlPosition.TOP_RIGHT].clear(); // eslint-disable-line no-undef
-        map.controls[google.maps.ControlPosition.TOP_RIGHT].push( // eslint-disable-line no-undef
-          infoDiv
-        );
-      });
-    },
-
-    increaseWaypointsIndex() {
-      this.currentWaypointIndex += 1;
-      if (this.currentWaypointIndex > this.path.length - 1)
-        this.currentWaypointIndex = 0;
-      this.$refs.myMapRef.$mapPromise.then((map) => {
-        const centerControlDiv = document.createElement('div');
-        this.addCenterControl(centerControlDiv, map);
-        map.controls[google.maps.ControlPosition.TOP_LEFT].clear(); // eslint-disable-line no-undef
-        map.controls[google.maps.ControlPosition.TOP_LEFT].push( // eslint-disable-line no-undef
-          centerControlDiv
-        );
-      });
     },
 
     openInfoWindow(label, geolocalisation) {
