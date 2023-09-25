@@ -133,7 +133,7 @@
           </div>
           <div class="col text-center my-5">
             <h4>{{ $t("landingPage.footer.twitter") }}</h4>
-            <a href="https://twitter.com/VakaryApp" target="_blank"><img class="mt-3 twitterLogo" src="@/assets/badges/twitter-logo.svg" alt="Twitter"></a>
+            <a href="https://twitter.com/VakaryApp" target="_blank"><img class="mt-3 twitterLogo" src="https://logowik.com/content/uploads/images/twitter-x5265.logowik.com.webp" alt="Twitter"></a>
           </div>
         </div>
         <hr class="separationBar marginSeparationDogo">

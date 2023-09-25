@@ -5,6 +5,8 @@ import LearnMorePage from "@/components/Page/LearnMorePage.vue";
 import ConnexionPage from "@/components/Page/ConnexionPage.vue";
 import resetPasswordPage from "@/components/Page/ResetPassword.vue";
 import TestPage from "@/components/Page/TestPage.vue";
+import VakaryTeam from "@/components/Page/PresentationVakaryTeam.vue";
+
 const routes = [
     {
         path: '/',
@@ -35,6 +37,11 @@ const routes = [
         path: '/testPage',
         name: 'TestPage',
         component: TestPage,
+    },
+    {
+        path: '/vakaryTeam',
+        name: 'VakaryTeam',
+        component: VakaryTeam,
     },
     { path: '/:pathMatch(.*)*', redirect: '/' }
 ];

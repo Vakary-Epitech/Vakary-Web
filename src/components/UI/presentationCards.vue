@@ -74,7 +74,7 @@ export default {
 
 
 .buttonCards {
-    margin-top: 5%;
+    margin-top: 10%;
     width: 50%;
     height: 15%;
     min-height: 40px;
@@ -97,7 +97,7 @@ export default {
 
 .cards {
     position: relative;
-    max-width: 15vw;
+    max-width: 18vw;
     min-width: 288px;
 }
 
@@ -120,7 +120,7 @@ export default {
 }
 
 .imageSizeClass {
-    width: 15vw;
+    width: 18vw;
     min-width: 288px;
 }
 
@@ -138,17 +138,23 @@ export default {
 }
 
 .seperationBetweenTextAndImage {
-    margin-top: 15%;
     text-align: center;
     padding: 8%;
+    height: 100%;
+    margin-top: 10%;
 }
 
 .titleText {
+    display: flex;
     font-size: calc(24px + 0.8vw);
-    color: white
+    color: white;
+    height: 15vh;
 }
 
 .descriptionText {
+    display: flex;
+    height: 12vh;
+    margin-top: 4vh;
     font-size: calc(16px + 0.1vw);
     color: white
 }
