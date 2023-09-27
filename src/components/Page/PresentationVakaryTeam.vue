@@ -58,7 +58,7 @@
             <div>
                 <div class="midImagePresentation">
                     <img class="imgDesign"
-                        src="https://media.licdn.com/dms/image/D4E35AQHPSo7LQj2eHw/profile-framedphoto-shrink_100_100/0/1689926894557?e=1696359600&v=beta&t=ry2Y54F-3F3CDo2dNIar07kxNCXrzj17dBnxPSSpz1Q">
+                        src="https://media.licdn.com/dms/image/C4D03AQFOoYwnaS4zJQ/profile-displayphoto-shrink_100_100/0/1548236271555?e=1701302400&v=beta&t=vuMUZ-vkpMGpWouGAP7VZOJuDrQu6Em9Dh8bFNAsl2M">
                     <div style="display: flex; flex-direction: column; text-align:center;">
                         <span>Thibault Humbert</span>
                         <span>IOS</span>
