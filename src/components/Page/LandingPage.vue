@@ -91,7 +91,7 @@
                 </div>
             </div>
             <div class="alignPhoneImage">
-              <img class="telImage" src="@/assets/LandingPage/pointmap.png">
+              <img class="telImage" src="@/assets/LandingPage/mapTelephone.png">
             </div>
           </div>
           <div class="pinkBackgroundSmall d-md-none d-flex">
@@ -118,7 +118,7 @@
         <hr class="separationBar marginSeparationDogo">
         <div class="col-12 text-center">
           <h4 class="mx-5">{{ $t("landingPage.learnMore") }}</h4>
-          <button @click="openLearnMorePage()" class="basicVakaryButton availableSoon mt-3" :class="`availableSoon${geti18n()}`"> <!--{{ $t("landingPage.learnMoreButton") }}--></button>
+          <button @click="openLearnMorePage()" class="basicVakaryButton mt-3" :class="`availableSoon${geti18n()}`"> <!--{{ $t("landingPage.learnMoreButton") }}--></button>
         </div>
       </section>
       <section name="footer">
@@ -197,7 +197,7 @@ export default {
       this.$router.push("/connexionPage");
     },
     openLearnMorePage() {
-      this.$router.push("/learnMorePage");
+      this.$router.push("/vakaryTeam");
     },
     geti18n() {
       return this.$i18n.locale;
@@ -386,8 +386,6 @@ export default {
   text-align: left;
   justify-content: center;
 }
-
-
 
 .pinkBackground {
   display: flex;
