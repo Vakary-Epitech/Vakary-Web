@@ -49,6 +49,8 @@ const itineraryStore = {
         },
         UPDATE_MARKER(state, itineraryData) {
             state.marker = [];
+            let index = 0;
+
             for (let POI in itineraryData.itineraryPOI) {
                 state.marker.push({
                     label: itineraryData.itineraryPOI[POI].name,
@@ -56,7 +58,9 @@ const itineraryStore = {
                         lat: itineraryData.itineraryPOI[POI].Localisation.latitude,
                         lng: itineraryData.itineraryPOI[POI].Localisation.longitude,
                     },
+                    index: index,
                 });
+                index += 1;
             }
         },
         REMOVE_MARKER(state) {
