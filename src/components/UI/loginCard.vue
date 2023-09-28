@@ -21,7 +21,7 @@
       <button @click="openForgetPassword()" class="redirectButton">{{ $t("loginPage.forgot") }}</button> <i class="fa fa-circle smallCircle mb-1"></i> <button @click="openRegistration()" class="redirectButton" >{{ $t("loginPage.register") }}</button>
     </div>
     <div class="mt-2 text-center">
-      <span><a href="https://vakary.pro.smartbazaar.app/" target="_blank">{{ $t("loginPage.pro") }}</a></span>
+      <span><a href="https://linguistic-viper-n4vg8x.s73guk9y.traefikhub.io/auth/login" target="_blank">{{ $t("loginPage.pro") }}</a></span>
     </div>
   </div>
 </template>

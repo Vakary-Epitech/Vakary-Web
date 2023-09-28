@@ -91,7 +91,7 @@
                 </div>
             </div>
             <div class="alignPhoneImage">
-              <img class="telImage" src="@/assets/LandingPage/pointmap.png">
+              <img class="telImage" src="@/assets/LandingPage/mapTelephone.png">
             </div>
           </div>
           <div class="pinkBackgroundSmall d-md-none d-flex">
@@ -118,7 +118,7 @@
         <hr class="separationBar marginSeparationDogo">
         <div class="col-12 text-center">
           <h4 class="mx-5">{{ $t("landingPage.learnMore") }}</h4>
-          <button @click="openLearnMorePage()" class="basicVakaryButton availableSoon mt-3" :class="`availableSoon${geti18n()}`"> <!--{{ $t("landingPage.learnMoreButton") }}--></button>
+          <button @click="openLearnMorePage()" class="basicVakaryButton mt-3" :class="`availableSoon${geti18n()}`"> <!--{{ $t("landingPage.learnMoreButton") }}--></button>
         </div>
       </section>
       <section name="footer">
@@ -133,7 +133,7 @@
           </div>
           <div class="col text-center my-5">
             <h4>{{ $t("landingPage.footer.twitter") }}</h4>
-            <a href="https://twitter.com/VakaryApp" target="_blank"><img class="mt-3 twitterLogo" src="@/assets/badges/twitter-logo.svg" alt="Twitter"></a>
+            <a href="https://twitter.com/VakaryApp" target="_blank"><img class="mt-3 twitterLogo" src="https://logowik.com/content/uploads/images/twitter-x5265.logowik.com.webp" alt="Twitter"></a>
           </div>
         </div>
         <hr class="separationBar marginSeparationDogo">
@@ -197,7 +197,7 @@ export default {
       this.$router.push("/connexionPage");
     },
     openLearnMorePage() {
-      this.$router.push("/learnMorePage");
+      this.$router.push("/vakaryTeam");
     },
     geti18n() {
       return this.$i18n.locale;
@@ -386,8 +386,6 @@ export default {
   text-align: left;
   justify-content: center;
 }
-
-
 
 .pinkBackground {
   display: flex;
