@@ -59,7 +59,7 @@
     },
     "profilePage": {
         "edit": "Editer le profil",
-        "info": "Description",
+        "info": "A propos de moi",
         "save": "Enregistrer",
         "comments": "Commentaires",
         "likes": "J'aime",
@@ -67,6 +67,7 @@
         "lastPlaceVisited": "Dernier lieu visité",
         "lastEventAttended": "Dernier événement visité",
         "totalKm": "Km total",
+        "verified": "Vérifié",
         "cityPass": "Pass de ville",
         "disconnect": "Déconnexion",
         "delete": "Supprimer le compte"

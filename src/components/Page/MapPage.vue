@@ -65,7 +65,7 @@
 
         <div v-else>
           <itineratyExplanation @goBackToItineraryDropdown="goBackToItineraryDropdown" @checkNextPOI="checkNextPOI"
-            @checkPreviousPOI="checkPreviousPOI" :selectedItineraryInfo="selectedItineraryInfo" />
+            @checkPreviousPOI="checkPreviousPOI" :selectedItineraryInfo="selectedItineraryInfo" style="min-width: 400px"/>
         </div>
       </Transition>
     </div>
@@ -79,7 +79,7 @@
 
   <Transition name="slide-fade">
     <div class="profileModalPosition fadeshow1" v-if="showProfile">
-      <profileModal style="max-width:300px" />
+      <profileModal/>
     </div>
   </Transition>
 
@@ -145,7 +145,7 @@
 
           <div v-else-if="showGroupCreationModal">
             <Transition name="slide-fade">
-              <CreateGroup @goBackToGroupDropdown=" showGroupCreationModal = false" class="componentsGroupDropdown" />
+              <CreateGroup @goBackToGroupDropdown=" showGroupCreationModal = false" />
             </Transition>
           </div>
 
@@ -154,7 +154,7 @@
               <showMembers @change-group-photo="changeGroupPhoto"
                 :groups=this.$store.state.groupStore.groups[selectedGroup] :key="keyShowGroup"
                 @goBackToGroupDropdown=" groupHasBeenClicked = false; showGroupCreationModal = false; displayItineraryInformation = false"
-                class="componentsGroupDropdown" />
+                 />
             </Transition>
           </div>
 
@@ -627,8 +627,8 @@ export default {
 
 .profileModalPosition {
   position: absolute;
+  right: 20px;
   top: 10vh;
-  left: calc(98.5vw - 300px);
 }
 
 .dropdownPlusPlacement {

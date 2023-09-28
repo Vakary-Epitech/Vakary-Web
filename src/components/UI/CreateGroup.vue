@@ -1,6 +1,6 @@
 <template>
     <div id="app">
-        <div class="background">
+        <MapWindows>
             <div class="row">
                 <div class="col-12 text-end">
                     <button class="xMark" @click="goBackToGroupDropdown()"><i class="fa-solid fa-xmark fa-lg"></i></button>
@@ -70,8 +70,9 @@
                 <p>{{ errorMessage }}</p>
             </div>
             <div v-if="v$.groupInformations.name.$error || errorName" class="text-danger">{{
-                $t("createGroup.errors.name-required") }}</div>
-        </div>
+                $t("createGroup.errors.name-required") }}
+            </div>
+        </MapWindows>
     </div>
 </template>
   
@@ -80,6 +81,7 @@ import useVuelidate from '@vuelidate/core';
 import ChoseItinerary from "@/components/UI/ChoseItinerary.vue";
 import { v4 as uuidv4 } from 'uuid';
 import { required, email, minLength, maxLength } from '@vuelidate/validators';
+import MapWindows from "@/components/UI/MapWindows.vue";
 export default {
 
     name: "createGroup",
@@ -87,7 +89,8 @@ export default {
         return { v$: useVuelidate() }
     },
     components: {
-        ChoseItinerary
+        ChoseItinerary,
+        MapWindows
     },
     data() {
         return {
@@ -220,17 +223,6 @@ export default {
     border-radius: 5px;
     padding: 5px 5px;
     width: 100%;
-}
-
-.background {
-    background-color: white;
-    padding: 15px;
-    border-radius: 15px;
-    border: 2px solid rgb(192, 150, 40);
-    min-width: 300px;
-    min-height: 300px;
-    overflow: auto;
-    max-height: 80vh;
 }
 
 ::-webkit-scrollbar {

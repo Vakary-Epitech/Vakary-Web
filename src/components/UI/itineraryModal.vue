@@ -1,5 +1,5 @@
 <template>
-    <div class="explanatoryCardDesign descriptionLimiterSize">
+    <MapWindows>
         <div>
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">{{ $t("itineraryModal.creation") }}</h5>
@@ -43,10 +43,10 @@
                         <div class="col-8 mt-2">
                             <input type="range" v-model="budget" class="form-range" min="0" max="300">
                         </div>
-                        <div class="col-3">
+                        <div class="col-2">
                             <input class="form-control medium-input ms-1" disabled v-model="budget">
                         </div>
-                        <div class="col-1 mt-2">
+                        <div class="col-1 mt-1">
                             <span>€</span>
                         </div>
                     </div>
@@ -142,16 +142,17 @@
                     style="margin: auto; margin-top: 10px; margin-bottom: 10px">{{ $t("itineraryModal.generate") }}</button>
             </div>
         </div>
-    </div>
+    </MapWindows>
 </template>
   
 <script>
 import { IPTNatural, IPTActivity, IPTDrinking, IPTCultural, IPTEating, IPTEvent, IPTTour, IPTTypeGroup } from "@/utils/poiTypes.js";
 import cardsGroup from "../UI/CardsGroup.vue";
-
+import MapWindows from "../UI/MapWindows.vue";
 export default {
     components: {
-        cardsGroup
+        cardsGroup,
+        MapWindows
     },
     data() {
         return {
@@ -388,35 +389,7 @@ export default {
     border: none;
 }
 
-.separation-bar {
-    border-top: 3px solid rgb(192, 150, 40);
-}
-
 .form-range {
     color: red;
 }
-
-.explanatoryCardDesign {
-    display: flex;
-    background-color: var(--background-color-primary);
-    color: var(--text-primary-color);
-    border-radius: 15px;
-    border: none;
-    font-size: calc(6px + 0.6vw);
-    width: 350px;
-    height: 85vh;
-    margin-top: 5px;
-    margin-bottom: 5px;
-    border: 2px solid rgb(192, 150, 40);
-    padding: 15px;
-    overflow: auto;
-}
-
-/* .explanatoryCardDesign::-webkit-scrollbar {
-    width: 10px;
-} */
-
-/* ::-webkit-scrollbar {
-    width: 100px !important;
-} */
 </style>
