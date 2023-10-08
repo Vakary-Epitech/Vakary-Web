@@ -163,7 +163,6 @@ const itineraryStore = {
                     }
                     let config = getters.getConfig({ url: "getPath", data: data, method: "post" })
 
-
                     axios.request(config).then((steps) => {
                         commit('UPDATE_PATH', steps.data.path);
                         resolve(steps);
