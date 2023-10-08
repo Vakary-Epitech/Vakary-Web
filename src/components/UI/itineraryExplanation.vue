@@ -1,17 +1,17 @@
 <template>
-    <div class="explanatoryCardDesign row">
-        <div>
-            <div class="mt-3">
+    <MapWindows  style="min-height: 80vh;">
+        <div class="row">
+            <div class="col-3 my-auto">
                 <div class="backArrow" @click="goBackToItineraryDropdown"></div>
-                <div class="text-end">
-                    <button class="deleteButton" @click="deleteItinerary()">
-                        <i class="fa-solid fa-trash fa-xl"></i>
-                    </button>
-                </div>
             </div>
-            <h4 class="titleLimiterSize">{{ this.selectedItineraryInfo?.itineraryPOI[this.currentWaypointIndex].City.name }}
+            <h4 class="titleLimiterSize col-6 my-auto text-center">{{ this.selectedItineraryInfo?.itineraryPOI[this.currentWaypointIndex].City.name }}
             </h4>
-            <div class="ms-3 my-auto text-center titleLimiterSize">
+            <div class="col-3 text-end my-auto">
+                <button class="deleteButton" @click="deleteItinerary()">
+                    <i class="fa-solid fa-trash fa-xl"></i>
+                </button>
+            </div>
+            <div class="col-12 ms-3 my-auto text-center titleLimiterSize">
                 <h4>{{ getCurrentPOIName }}</h4>
             </div>
             <div class="imgWrapper text-center">
@@ -25,9 +25,9 @@
             </div>
             <div class="row custom">
                 <div class="col-6 text-start">
+                    <span class="ms-1" v-if="this.currentWaypointIndex > 0"> {{ $t("mapPage.previousPoint") }}</span>
                     <button v-if="this.currentWaypointIndex > 0" class="custom-button" @click="checkPreviousPOI"><i
                             class="fa-solid fa-2xl fa-arrow-left custom-arrow"></i></button>
-                    <span class="ms-1" v-if="this.currentWaypointIndex > 0"> {{ $t("mapPage.previousPoint") }}</span>
                 </div>
                 <div class="col-6 text-end">
                     <span v-if="this.currentWaypointIndex < this.selectedItineraryInfo?.itineraryPOI.length - 1"> {{
@@ -38,11 +38,15 @@
                 </div>
             </div>
         </div>
-    </div>
+    </MapWindows>
 </template>
 
 <script>
+import MapWindows from "@/components/UI/MapWindows.vue";
 export default {
+    components: {
+        MapWindows,
+    },
     props: ["selectedItineraryInfo"],
     data() {
         return {
@@ -108,9 +112,6 @@ export default {
     border: 1px solid red;
     background-color: #fff;
     padding: 5px;
-    top: 10px;
-    right: 5px;
-    position: absolute;
 }
 
 .deleteButton:hover {
@@ -137,22 +138,6 @@ export default {
 
 .custom-button:hover {
     border: 3px solid rgb(192, 150, 40);
-}
-
-.explanatoryCardDesign {
-    overflow: auto;
-    display: flex;
-    background-color: var(--background-color-primary);
-    color: var(--text-primary-color);
-    border-radius: 15px;
-    border: none;
-    font-size: calc(6px + 0.6vw);
-    width: 350px;
-    height: 90vh;
-    margin-top: 0.1vh;
-    margin-bottom: 0.1vh;
-    text-align: center;
-    border: 2px solid rgb(192, 150, 40);
 }
 
 ::-webkit-scrollbar {
@@ -205,7 +190,6 @@ export default {
 
 .timeSizeLimiter {
     margin-top: 15px;
-    max-height: 14vh;
     overflow: auto;
 }
 
@@ -256,118 +240,4 @@ div.backArrow {
     }
 
 }
-
-.frontArrow {
-    cursor: pointer;
-    width: 3vmin;
-    height: 3vmin;
-    box-sizing: border-box;
-    transform: rotate(45deg);
-    margin-top: calc(4px + 0.6vh);
-    margin-right: calc(6px + 0.6vw);
-
-    &::before {
-        content: '';
-        width: 100%;
-        height: 100%;
-        border-width: .3vmin .3vmin 0 0;
-        border-style: solid;
-        border-color: #C09628;
-        transition: .2s ease;
-        display: block;
-        transform-origin: 100% 0;
-    }
-
-
-    &:after {
-        content: '';
-        float: left;
-        position: relative;
-        top: -100%;
-        width: 100%;
-        height: 100%;
-        border-width: 0 .3vmin 0 0;
-        border-style: solid;
-        border-color: #C09628;
-        transform-origin: 90% 0;
-        transition: .2s ease;
-    }
-
-    &:hover::after {
-        transform: rotate(45deg);
-        border-color: #C09628;
-        height: 120%;
-    }
-
-    &:hover::before {
-        border-color: #C09628;
-        transform: scale(.8);
-
-    }
-}
-
-div.backArrowBottom {
-    cursor: pointer;
-    width: 3vmin;
-    height: 3vmin;
-    box-sizing: border-box;
-    transform: rotate(-135deg);
-    margin-top: calc(4px + 0.6vh);
-    margin-left: calc(6px + 0.6vw);
-
-    &::before {
-        content: '';
-        width: 100%;
-        height: 100%;
-        border-width: .3vmin .3vmin 0 0;
-        border-style: solid;
-        border-color: #C09628;
-        transition: .2s ease;
-        display: block;
-        transform-origin: 100% 0;
-    }
-
-
-    &:after {
-        content: '';
-        float: left;
-        position: relative;
-        top: -100%;
-        width: 100%;
-        height: 100%;
-        border-width: 0 .3vmin 0 0;
-        border-style: solid;
-        border-color: #C09628;
-        transform-origin: 90% 0;
-        transition: .2s ease;
-    }
-
-    &:hover::after {
-        transform: rotate(45deg);
-        border-color: #C09628;
-        height: 120%;
-    }
-
-    &:hover::before {
-        border-color: #C09628;
-        transform: scale(.8);
-
-    }
-
-}
-
-
-.slide-fade-enter-active {
-    position: absolute;
-    transition: all 0.5s ease-out;
-}
-
-.slide-fade-leave-active {
-    transition: all 0.4s cubic-bezier(1, 0.5, 0.8, 1);
-}
-
-.slide-fade-enter-from,
-.slide-fade-leave-to {
-    transform: translateX(20px);
-    opacity: 0;
-}</style>
+</style>

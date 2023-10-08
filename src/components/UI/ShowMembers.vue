@@ -1,7 +1,7 @@
 <template>
     <div id="app" v-if="showMembers">
         <section name="groupManagement">
-            <div class="background">
+            <MapWindows>
                 <div class="row">
                     <div class="col-12 text-end">
                         <button class="xMark" @click="goBackToGroupDropdown()"><i
@@ -99,7 +99,7 @@
                 <div class="col-12 mt-3 text-center">
                     <button @click="goBackToGroupDropdown" class="btn-save-group">{{ $t("showMembers.save") }}</button>
                 </div>
-            </div>
+            </MapWindows>
         </section>
     </div>
 </template>
@@ -108,6 +108,7 @@
 import useVuelidate from '@vuelidate/core';
 import ChoseItinerary from "@/components/UI/ChoseItinerary.vue";
 import { required, email, minLength, maxLength } from '@vuelidate/validators';
+import MapWindows from "@/components/UI/MapWindows.vue";
 export default {
     name: "createGroup",
     setup() {
@@ -115,6 +116,7 @@ export default {
     },
     components: {
         ChoseItinerary,
+        MapWindows
     },
     data() {
         return {
@@ -338,17 +340,6 @@ export default {
     width: 100%;
 }
 
-.background {
-    background-color: white;
-    padding: 15px;
-    border-radius: 15px;
-    border: 2px solid rgb(192, 150, 40);
-    min-height: 300px;
-    max-width: 400px;
-    max-height: 80vh;
-    overflow: auto;
-}
-
 ::-webkit-scrollbar {
     width: 0 !important;
 }
@@ -375,18 +366,6 @@ export default {
     padding: 10px 20px;
     width: 50%;
     text-align: center;
-}
-
-.cardsItinerary {
-    background-color: #FFFFFF;
-    border-radius: 5px;
-    color: black;
-    margin-bottom: 10px;
-    cursor: pointer;
-}
-
-.cardsItinerary:hover {
-    background-color: #F5F5F5;
 }
 
 .btn-save-group:hover {

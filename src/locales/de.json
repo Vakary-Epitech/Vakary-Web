@@ -149,6 +149,7 @@
         "lastEventAttended": "Zuletzt besuchte Veranstaltung",
         "totalKm": "Gesamte zurückgelegte Kilometer",
         "cityPass": "City Pass",
+        "verified": "Verified",
         "disconnect": "Abmelden",
         "delete": "Account löschen"
     },

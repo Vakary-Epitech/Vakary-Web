@@ -139,7 +139,7 @@
   },
   "profilePage": {
     "edit": "Edit",
-    "info": "Description",
+    "info": "About me",
     "save": "Save",
     "comments": "Comments",
     "likes": "Likes",
@@ -147,6 +147,7 @@
     "lastPlaceVisited": "Last Place Visited",
     "lastEventAttended": "Last Event Attended",
     "totalKm": "Total Km Traveled",
+    "verified": "Verified",
     "cityPass": "City Pass",
     "disconnect": "Disconnect",
     "delete": "Delete the account"
