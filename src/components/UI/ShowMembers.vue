@@ -216,13 +216,7 @@ export default {
             const group = this.$store.state.groupStore.groups[groupIndex];
             const user = this.$store.state.groupStore.groups[groupIndex].emails[index];
 
-            this.$store.dispatch("patch", {
-                path: "group_user/deleteUserFromGroup",
-                data: {
-                    groupId: group.backendGroupId,
-                    email: user.emails,
-                }
-            }).then(() => {
+            this.$store.dispatch("kickUserFromGroup", { groupId: group.backendGroupId, email: user.emails }).then(() => {
                 this.$store.dispatch("getGroup").catch((error) => {
                     console.log(error);
                 })

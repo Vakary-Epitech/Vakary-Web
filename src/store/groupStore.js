@@ -157,6 +157,22 @@ const groupStore = {
                 }
             })
         },
+
+        kickUserFromGroup({ getters, dispatch }, data) {
+            return new Promise((resolve, reject) => {
+                try {
+                    let config = getters.getConfig({ url: "group_user/deleteUserFromGroup", data: data, method: "patch" })
+                    axios.request(config).then((response) => {
+                        dispatch("getGroup")
+                        resolve(response);
+                    }).catch((error) => {
+                        reject(error);
+                    })
+                } catch (error) {
+                    reject(error);
+                }
+            })
+        }
     }
 };
 
