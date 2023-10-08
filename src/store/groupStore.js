@@ -95,7 +95,7 @@ const groupStore = {
                     formData.append('groupname', data.name)
                     formData.append('emails', mailsList)
                     if (typeof (data.picture) == "object")
-                        formData.append('file', data.photo);
+                        formData.append('groupPicture', data.picture[0], data.picture[0].name);
 
                     axios.put(wording.serverAdress + 'group', formData, { headers: { "Authorization": getters.getToken } }).then((group) => {
                         resolve(group);
