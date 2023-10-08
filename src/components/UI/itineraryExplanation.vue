@@ -1,10 +1,11 @@
 <template>
-    <MapWindows  style="min-height: 80vh;">
+    <MapWindows style="min-height: 80vh;">
         <div class="row">
             <div class="col-3 my-auto">
                 <div class="backArrow" @click="goBackToItineraryDropdown"></div>
             </div>
-            <h4 class="titleLimiterSize col-6 my-auto text-center">{{ this.selectedItineraryInfo?.itineraryPOI[this.currentWaypointIndex].City.name }}
+            <h4 class="titleLimiterSize col-6 my-auto text-center">{{
+                this.selectedItineraryInfo?.itineraryPOI[this.currentWaypointIndex].City.name }}
             </h4>
             <div class="col-3 text-end my-auto">
                 <button class="deleteButton" @click="deleteItinerary()">
@@ -71,7 +72,23 @@ export default {
             if (this.selectedItineraryInfo?.itineraryPOI[this.currentWaypointIndex].openingHours === "false") {
                 return (this.$t("mapPage.noOpeningHours"));
             }
-            return (this.selectedItineraryInfo?.itineraryPOI[this.currentWaypointIndex].openingHours);
+            let timeStamp = JSON.parse(this.selectedItineraryInfo?.itineraryPOI[this.currentWaypointIndex].openingHours);
+            try {
+                let timeString = "";
+                for (let i in timeStamp.label[this.$i18n.locale])
+                    timeString += timeStamp.label[this.$i18n.locale][i];
+                return (timeString);
+            } catch (error) {
+                let timeString = "";
+                for (let i in timeStamp[0]['opens'])
+                    timeString += timeStamp[0]['opens'][i];
+                timeString += " - ";
+                for (let i in timeStamp[0]['closes'])
+                    timeString += timeStamp[0]['closes'][i];
+                if (timeString.includes("false"))
+                    return (this.$t("mapPage.noOpeningHours"))
+                return (timeString);
+            }
         },
     },
     methods: {
