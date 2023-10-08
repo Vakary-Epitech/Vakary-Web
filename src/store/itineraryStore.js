@@ -11,14 +11,14 @@ const itineraryStore = {
     },
     mutations: {
         UPDATE_ITINERARY(state, itineraryArray) {
-            state.itinerary = [];
-
             for (let itinerary in itineraryArray) {
-                let itinerayData = {
-                    itineraryPOI: JSON.parse(itineraryArray[itinerary].data),
-                    id: itineraryArray[itinerary].id,
-                };
-                state.itinerary.push(itinerayData)
+                if (!state.itinerary.some(el => el.id === itineraryArray[itinerary].id)) {
+                    let itinerayData = {
+                        itineraryPOI: JSON.parse(itineraryArray[itinerary].data),
+                        id: itineraryArray[itinerary].id,
+                    };
+                    state.itinerary.push(itinerayData)
+                }
             }
 
             for (let group in state.groups) {
@@ -65,6 +65,9 @@ const itineraryStore = {
         },
         REMOVE_MARKER(state) {
             state.marker = [];
+        },
+        RESET_ITINERARY(state) {
+            state.itinerary = [];
         }
     },
     actions: {
@@ -72,10 +75,23 @@ const itineraryStore = {
             return new Promise((resolve, reject) => {
                 try {
                     let config = getters.getConfig({ url: "itinerary/getAll/me", data: null, method: "get" })
+                    let configGroupItinerary = getters.getConfig({ url: "group/getAll/me", data: null, method: "get" })
+
                     config.maxBodyLength = Infinity;
+                    commit('RESET_ITINERARY');
 
                     axios.request(config).then((itinerary) => {
                         commit('UPDATE_ITINERARY', itinerary.data.itinerary);
+                        axios.request(configGroupItinerary).then((group) => {
+                            for (let id in group.data.groups) {
+                                if (group.data.groups[id].itinerary != undefined) {
+                                    commit('UPDATE_ITINERARY', [group.data.groups[id].itinerary]);
+                                }
+                            }
+                            resolve(group)
+                        }).catch((error) => {
+                            reject(error);
+                        })
                         resolve(itinerary.data);
                     }).catch((error) => {
                         reject(error);
@@ -119,7 +135,7 @@ const itineraryStore = {
                 }
             })
         },
-        
+
         calculatePath({ getters, commit }, itinerary) {
             return new Promise((resolve, reject) => {
                 try {
@@ -146,7 +162,7 @@ const itineraryStore = {
                         waypoints: arrayOfOrigin,
                     }
                     let config = getters.getConfig({ url: "getPath", data: data, method: "post" })
-                    
+
 
                     axios.request(config).then((steps) => {
                         commit('UPDATE_PATH', steps.data.path);
@@ -164,7 +180,7 @@ const itineraryStore = {
             return new Promise((resolve, reject) => {
                 try {
                     let config = getters.getConfig({ url: "itinerary/getNewCards", data: data, method: "post" })
-                    
+
                     axios.request(config).then((cards) => {
                         resolve(cards);
                     }).catch((error) => {
@@ -180,7 +196,7 @@ const itineraryStore = {
             return new Promise((resolve, reject) => {
                 try {
                     let config = getters.getConfig({ url: "itinerary/sendLikedPOI", data: data, method: "post" })
-                    
+
                     axios.request(config).then((cards) => {
                         resolve(cards);
                     }).catch((error) => {
