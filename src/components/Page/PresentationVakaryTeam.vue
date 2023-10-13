@@ -111,8 +111,8 @@
             <span style="font-size: calc(15px + 0.8vw); margin: auto">Roadmap</span>
             <hr class="separationBar">
         </div>
+        <RoadMap style="margin-top: 40px;" />
     </div>
-    <RoadMap style="margin-top: 40px;" />
 </template>
 
 <script>

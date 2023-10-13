@@ -55,9 +55,9 @@
 
 <script>
 export default {
-    setup() {
-
-    },
+    mounted() {
+        window.scrollTo(0 ,0)
+    }
 }
 </script>
 
