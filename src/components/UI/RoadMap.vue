@@ -1,54 +1,52 @@
 <template>
     <div class="timeline">
         <div class="container left">
-            <div class="date">30 JUN 2023</div>
+            <div class="date">{{ $t("roadMap.betaDate") }}</div>
             <i class="icon fa fa-check"></i>
             <div class="content">
-                <h2>Sortie de la bêta Vakary</h2>
+                <h2>{{ $t("roadMap.betaTitle") }}</h2>
                 <p>
-                    La bêta Vakary est devenu disponible est ouverte au public, permettant aux utilisateurs
-                    au travers de la plateforme Web de créer un itinéraire ainsi que de le partager
+                    {{ $t("roadMap.betaBody") }}
                 </p>
             </div>
         </div>
         <div class="container right">
-            <div class="date">1 SEP 2023</div>
+            <div class="date">{{ $t("roadMap.corrDate") }}</div>
             <i class="icon fa fa-check"></i>
             <div class="content">
-                <h2>Correction et amélioration</h2>
+                <h2>{{ $t("roadMap.corrTitle") }}</h2>
                 <p>
-                    Vakary vous a écouté et s'améliore grâce au retour de ses bêta-testeurs !
+                    {{ $t("roadMap.corrBody") }}
                 </p>
             </div>
         </div>
         <div class="container left">
-            <div class="date">30 NOV 2023</div>
+            <div class="date">{{ $t("roadMap.sauvDate") }}</div>
             <i class="icon fa fa-heart"></i>
             <div class="content">
-                <h2>Ajout de la sauvegarde des préfèrences</h2>
+                <h2>{{ $t("roadMap.sauvTitle") }}</h2>
                 <p>
-                    Vakary vous permettra de renseigner vos préférences de point d'intérêt dans votre profil. Ainsi
-                    vous n'aurez plus besoin à chaque fois de sélectionner vos préférences.
+                    {{ $t("roadMap.sauvBody") }}
                 </p>
             </div>
         </div>
         <div class="container right">
-            <div class="date">30 DEC 2023</div>
+            <div class="date">{{ $t("roadMap.profDate") }}</div>
             <i class="icon fa fa-magnifying-glass"></i>
             <div class="content">
-                <h2>Ajout de la visite des profils Vakary</h2>
+                <h2>{{ $t("roadMap.profTitle") }}</h2>
                 <p>
-                    Vous pourrez visiter les profils des autres utilisateurs et ainsi voir ce que vos amis préférés visiter.
+                    {{ $t("roadMap.profBody") }}
                 </p>
             </div>
         </div>
         <div class="container left">
-            <div class="date">30 JAN 2024</div>
+            <div class="date">{{ $t("roadMap.commDate") }}</div>
             <i class="icon fa fa-user"></i>
             <div class="content">
-                <h2>Communication et Business</h2>
+                <h2>{{ $t("roadMap.commDate") }}</h2>
                 <p>
-                    Vakary a pour objectif de s'étendre donc nos réseaux sociaux deviendront beaucoup plus actifs.
+                    {{ $t("roadMap.commBody") }}
                 </p>
             </div>
         </div>
@@ -182,14 +180,14 @@ body {
 .container.left .icon {
     right: 56px;
     margin: auto;
-    transform: translate(0px, -7px);
+    transform: translate(0px, -9px);
     padding: 7px;
 }
 
 .container.right .icon {
     left: 56px;
     margin: auto;
-    transform: translate(0px, -7px);
+    transform: translate(0px, -9px);
     padding: 7px;
 }
 
