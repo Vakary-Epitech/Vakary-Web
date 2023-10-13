@@ -1,4 +1,5 @@
 <template>
+    <languages></languages>
     <div class="barClass">
         <hr class="separationBar">
         <span style="font-size: calc(15px + 0.8vw); margin: auto">Notre équipe</span>
@@ -111,10 +112,17 @@
             <hr class="separationBar">
         </div>
     </div>
+    <RoadMap style="margin-top: 40px;" />
 </template>
 
 <script>
+import RoadMap from '../UI/RoadMap.vue'
+import languages from '../UI/languagesModal.vue';
 export default {
+    components: {
+        RoadMap,
+        languages,
+    },
     setup() {
 
     },
