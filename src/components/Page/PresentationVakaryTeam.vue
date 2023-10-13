@@ -111,10 +111,15 @@
             <hr class="separationBar">
         </div>
     </div>
+    <RoadMap style="margin-top: 40px;"/>
 </template>
 
 <script>
+import RoadMap from '../UI/RoadMap.vue'
 export default {
+    components: {
+        RoadMap,
+    },
     setup() {
 
     },
