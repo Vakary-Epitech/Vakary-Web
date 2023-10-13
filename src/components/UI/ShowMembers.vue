@@ -74,18 +74,22 @@
                     </div>
                 </section>
                 <section name="picture">
-                    <div v-if="groupInformations.photo" class="text-center">
-                        <img :src="groupInformations.photo" class="img-thumbnail my-1" />
-                    </div>
-                    <label class="btn-add-group-picture mt-1" v-if="!groupInformations.photo">
-                        {{ $t("showMembers.picture") }}
-                        <input @change="onFileChange" type="file" hidden>
-                    </label>
-                    <div v-if="groupInformations.photo">
-                        <label class="btn-change-group-picture">
-                            {{ $t("showMembers.changePicture") }}
+                    <div v-if="groupInformations.photo?.preview" class="text-center">
+                        <img :src="groupInformations.photo?.preview" class="img-thumbnail my-1" />
+                        <label class="btn-add-group-picture mt-1" v-if="!groupInformations.photo?.preview">
+                            {{ $t("showMembers.picture") }}
                             <input @change="onFileChange" type="file" hidden>
                         </label>
+                    </div>
+                    <div v-else class="text-center">
+                        <img :src="groupInformations.photo" class="img-thumbnail my-1" />
+                    </div>
+
+                    <label class="btn-change-group-picture">
+                        {{ $t("showMembers.changePicture") }}
+                        <input @change="onFileChange" type="file" hidden>
+                    </label>
+                    <div v-if="groupInformations.photo != null">
                         <button @click="deleteGroupPicture" class="btn-delete-group-picture my-2"> {{
                             $t("showMembers.deletePicture") }} </button>
                     </div>
@@ -185,6 +189,7 @@ export default {
                     console.log(error);
                 });
             }
+            this.$store.dispatch("updateGroup", this.groupInformations)
             this.CreateGroup = false;
             this.$emit("goBackToGroupDropdown");
         },
@@ -262,12 +267,7 @@ export default {
             this.$store.state.groupStore.groups.splice(index, 1);
         },
         deleteGroupPicture() {
-            this.groupInformations.photo = {
-                name: "",
-                preview: "",
-                size: "",
-                type: "",
-            }
+            this.groupInformations.photo = "https://eip.vakary.fr/uploads/group/base/basic_group_image_1.jpg";
         },
         leaveGroup() {
             let groupIndex = this.$store.state.groupStore.groups.findIndex(group => group.id === this.groupInformations.id);
@@ -292,14 +292,14 @@ export default {
             const reader = new FileReader();
 
             reader.onload = () => {
+                this.groupInformations.picture = event.target.files;
                 this.groupInformations.photo = {
-                    name: file.name,
+                    file: file.name,
                     size: file.size,
                     type: file.type,
                     preview: reader.result
                 };
             };
-
             if (file) {
                 reader.readAsDataURL(file);
             }
