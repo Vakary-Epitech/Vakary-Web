@@ -139,7 +139,7 @@
   },
   "profilePage": {
     "edit": "Edit",
-    "info": "Description",
+    "info": "About me",
     "save": "Save",
     "comments": "Comments",
     "likes": "Likes",
@@ -147,6 +147,7 @@
     "lastPlaceVisited": "Last Place Visited",
     "lastEventAttended": "Last Event Attended",
     "totalKm": "Total Km Traveled",
+    "verified": "Verified",
     "cityPass": "City Pass",
     "disconnect": "Disconnect",
     "delete": "Delete the account"
@@ -277,5 +278,24 @@
       "loading": "Loading...",
       "loadingItinerary": "Loading itinerary...",
       "loadMore": "Loading new points of interest..."
+  },
+  "roadMap": {
+      "betaDate": "30 JUN 2023",
+      "betaTitle": "Vakary beta released",
+      "betaBody": "The Vakary beta has become available and is open to the public, allowing users through the web platform to create a route as well as share it",
+      "corrDate": "1 SEP 2023",
+      "corrTitle": "Correction and improvement",
+      "corrBody": "Vakary has listened to you and is improving thanks to feedback from its beta testers!",
+      "sauvDate": "30 NOV 2023",
+      "sauvTitle": "Preference save added",
+      "sauvBody": "Vakary lets you enter your point-of-interest preferences in your profile. This way you won't have to select your preferences every time",
+      "profDate": "30 DEC 2023",
+      "profTitle": "Vakary profiles visit added",
+      "profBody": "You'll be able to visit other users' profiles and see what your favorite friends are visiting.",
+      "commDate": "30 JAN 2024",
+      "commTitle": "Communication and Business",
+      "commBody": "Vakary aims to expand so our social networks will become much more active.",
+      "CDP": "Project Manager",
+      "team": "Our team"
   }
 }

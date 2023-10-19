@@ -118,7 +118,7 @@
         <hr class="separationBar marginSeparationDogo">
         <div class="col-12 text-center">
           <h4 class="mx-5">{{ $t("landingPage.learnMore") }}</h4>
-          <button @click="openLearnMorePage()" class="basicVakaryButton mt-3" :class="`availableSoon${geti18n()}`"> <!--{{ $t("landingPage.learnMoreButton") }}--></button>
+          <button @click="openLearnMorePage()" class="basicVakaryButton mt-3">{{ $t("landingPage.learnMoreButton") }}</button>
         </div>
       </section>
       <section name="footer">

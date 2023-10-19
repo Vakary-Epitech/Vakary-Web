@@ -5,79 +5,86 @@
         - div col 
      It is using as well the i18n system for a translation system -->
 <template>
-    <div class="ProfilCardDesign">
-        <div class="basicContainer">
-            <div class="container">
+    <MapWindows style="max-width: 15vw; max-height: 85vh;">
+        <div class="row">
+            <div class="col-12">
                 <div class="row" v-if="!editMode">
-                    <div>
+                    <div class="text-center">
                         <img class="profile-picture" :src="photoDisplay" alt="profile-picture">
                     </div>
-                    <div class="text-center">
-                        <h1 class="overflow" style="max-width:200px">{{ user.username }}</h1>
+                    <div class="col-12 text-center">
+                        <h1 class="overflow">{{ user.username }}</h1>
                     </div>
-                    <div v-if="description" class="col-12 overflow">
-                        <span>{{ $t("profilePage.info") }}</span><br>
-                        <p class="description">{{ description }}</p>
+                    <div v-if="description" class="col-12 mt-2" style="min-height: 15vh">
+                        <h5>{{ $t("profilePage.info") }}</h5>
+                        <span class="description">{{ description }}</span>
                     </div>
                 </div>
-                <div class="row" v-if="editMode">
-                    <div>
+                <div class="row" v-if="editMode" style="min-height: 15vh">
+                    <div class="text-center">
                         <img @click="openFileExplorer()" class="profile-picture clickable"
                             :src="photoDisplay" alt="profile-picture">
                     </div>
-                    <div class="col-6 mt-3 offset-3">
+                    <div class="col-12 mt-2 ">
                         <span>{{ $t("profilePage.info") }}</span><br>
                         <textarea v-model="description" :placeholder="description" rows="5" cols="80"
                             maxlength="300">Write stuff here...</textarea>
                         {{ description?.length }}/300
                     </div>
-                    <div class="col-12">
+                    <div class="col-12 text-center">
                         <button @click="save" class="btn btn-primary">{{ $t("profilePage.save") }}</button>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="row">
-                        <div class="col-5 offset-1">
-                            <span>{{ $t("profilePage.comments") }}</span><br>
-                            <p>{{ user?.comments }}</p>
-                        </div>
-                        <div class="col-3 offset-2">
-                            <span>{{ $t("profilePage.likes") }}</span><br>
-                            <p>{{ user?.likes }}</p>
-                        </div>
-                    </div>
-                    <div v-if="user?.lastMonument" class="col-12">
-                        <span>{{ $t("profilePage.lastPlaceVisited") }}</span><br>
-                        <p>{{ user?.lastMonument }}</p>
-                    </div>
-                    <div v-if="user?.lastEvent" class="col-12">
-                        <span>{{ $t("profilePage.lastEventAttended") }}</span><br>
-                        <p>{{ user?.lastEvent }}</p>
-                    </div>
+                <div class="row mt-3">
                     <div class="col-12">
-                        <span>{{ $t("profilePage.totalKm") }}</span><br>
+                        <h5>Statistiques</h5>
+                    </div>
+                    <div class="col-6 col-xxxl-3 text-center">
+                        <h6>{{ $t("profilePage.likes") }}</h6>
+                        <p>{{ user?.likes }}</p>
+                    </div>
+                    <div class="col-6 col-xxxl-3 text-center">
+                        <h6>{{ $t("profilePage.totalKm") }}</h6>
                         <p>{{ user?.milesTraveled }}</p>
                     </div>
+                    <div class="col-6 col-xxxl-3 text-center">
+                        <h6>{{ $t("profilePage.comments") }}</h6>
+                        <p>{{ user?.comments }}</p>
+                    </div>
+                    <div class="col-6 col-xxxl-3 text-center">
+                        <h6>{{ $t("profilePage.verified") }}</h6>
+                        <p v-if="user?.verified === 'true'"><i class="fa-solid fa-check green-check"></i></p>
+                        <p v-if="user?.verified === 'false'"><i class="fa-solid fa-xmark red-xmark"></i></p>
+                    </div>
                 </div>
-                <div class="col-12 my-2">
-                    <button @click="edit">{{ $t("profilePage.edit") }}</button>
-                </div>
-                <div class="col-12 my-2">
-                    <button @click="(disconnectUser)">{{ $t("profilePage.disconnect") }}</button>
-                </div>
-                <div class="col-12 mt-2">
-                    <button @click="(deleteUser)">{{ $t("profilePage.delete") }}</button>
+                <LoadingSpin v-if="loading" />
+                <div class="row text-center">
+                    <div class="col-12 col-xxxl-6">
+                        <button class="btn btn-edit" @click="edit"><i class="fa-solid fa-pen me-2"></i>{{ $t("profilePage.edit") }}</button>
+                    </div>
+                    <div class="col-12 mt-2 mt-xxxl-0 col-xxxl-6">
+                        <button class="btn btn-delete" @click="(deleteUser)"><i class="fa-solid fa-trash me-2"></i>{{ $t("profilePage.delete") }}</button>
+                    </div>
+                    <div class="col-12 mt-2">
+                        <button class="btn btn-disconnect" @click="(disconnectUser)"><i class="fa-solid fa-arrow-right-from-bracket me-2"></i>{{ $t("profilePage.disconnect") }}</button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    </MapWindows>
 </template>
     
 <script>
-
+import MapWindows from "./MapWindows.vue";
+import LoadingSpin from "./loadingSpin.vue";
 export default {
+    components: {
+        MapWindows,
+        LoadingSpin
+    },
     data() {
         return {
+            loading: false,
             editMode: false,
             description: this.$store.state.userStore.userInfo.description,
             user: this.$store.state.userStore.userInfo,
@@ -105,13 +112,16 @@ export default {
             this.editMode = true
         },
         save() {
+            this.loading = true;
             this.$store.dispatch('updateUserProfile', {
                 description: this.description,
                 picture: this.picture,
             }).then(() => {
+                this.loading = false;
                 this.photoDisplay = this.$store.state.userStore.userProfileImage;
                 this.editMode = false;
             }).catch((error) => {
+                this.loading = false;
                 console.log(error);
             })
         },
@@ -119,9 +129,12 @@ export default {
             this.$router.push("/");
         },
         deleteUser() {
+            this.loading = true;
             this.$store.dispatch('deleteUser').then(() => {
+                this.loading = false;
                 this.$router.push("/");
             }).catch((error) => {
+                this.loading = false;
                 console.log(error);
             })
         },
@@ -129,16 +142,39 @@ export default {
 }
 </script>
 <style scoped>
-.row {
-    margin: 0 !important;
-}
-
-.overflow {
-    overflow-x: auto;
-}
 
 .description {
     max-width: 30ch;
+}
+
+.btn-edit {
+    background-color: #fff;
+    border: 1px solid rgb(192, 150, 40);
+}
+
+.btn-edit:hover {
+    background-color: rgb(192, 150, 40);
+    color: #fff;
+}
+
+.btn-disconnect {
+    background-color: #fff;
+    border: 1px solid rgb(192, 150, 40);
+}
+
+.btn-disconnect:hover {
+    background-color: rgb(192, 150, 40);
+    color: #fff;
+}
+
+.btn-delete {
+    background-color: #fff;
+    border: 1px solid #dd3c10;
+}
+
+.btn-delete:hover {
+    background-color: #dd3c10;
+    color: #fff;
 }
 
 .profile-picture {
@@ -150,21 +186,16 @@ export default {
     margin-right: auto;
 }
 
+.btn {
+    width: 200px;
+}
+
 .clickable {
     cursor: pointer;
 }
 
 .clickable:hover {
     box-shadow: 0 0 0 2px black;
-}
-
-p {
-    color: #c09628;
-    overflow: auto;
-}
-
-div {
-    position: relative;
 }
 
 textarea {
@@ -174,68 +205,20 @@ textarea {
     width: 100%;
 }
 
-.carousel-control-next {
-    filter: invert(100%);
-}
-
-.carousel-control-prev {
-    filter: invert(100%);
-}
-
-.container {
-    background-color: var(--background-color-primary);
-    max-width: 300px;
-}
-
 ::-webkit-scrollbar {
     width: 0 !important;
-}
-
-
-.container button {
-    background: white;
-    color: black;
-    background-color: var(--background-color-secondary);
-    color: var(--text-primary-color);
-    border: 2px solid rgb(192, 150, 40);
-    border-radius: 20px;
-}
-
-.container button:hover {
-    box-shadow: 0 0 10px rgb(192, 150, 40);
-}
-
-.container div {
-    color: var(--text-primary-color);
-}
-
-.ProfilCardDesign {
-    display: flex;
-    background-color: var(--background-color-primary);
-    color: var(--text-primary-color);
-    border-radius: 15px;
-    border: none;
-    font-size: calc(6px + 0.6vw);
-    max-height: 85vh;
-    margin-top: 15px;
-    margin-bottom: 5px;
-    border: 2px solid rgb(192, 150, 40);
-    padding: 15px;
-    overflow: auto;
-    /* width: 300px; */
-}
-
-.ProfilCardDesign::-webkit-scrollbar {
-    width: 1px;
 }
 
 .overflow {
     overflow: auto;
 }
 
-.container input {
-    background-color: var(--background-color-secondary);
-    border-color: var(--text-primary-color);
+.green-check {
+    color: #00ff00;
+}
+
+.red-xmark {
+    color: #ff0000;
 }
 </style>
     

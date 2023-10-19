@@ -1,7 +1,7 @@
 <template>
     <div id="app" v-if="showMembers">
         <section name="groupManagement">
-            <div class="background">
+            <MapWindows>
                 <div class="row">
                     <div class="col-12 text-end">
                         <button class="xMark" @click="goBackToGroupDropdown()"><i
@@ -74,18 +74,22 @@
                     </div>
                 </section>
                 <section name="picture">
-                    <div v-if="groupInformations.photo" class="text-center">
-                        <img :src="groupInformations.photo" class="img-thumbnail my-1" />
-                    </div>
-                    <label class="btn-add-group-picture mt-1" v-if="!groupInformations.photo">
-                        {{ $t("showMembers.picture") }}
-                        <input @change="onFileChange" type="file" hidden>
-                    </label>
-                    <div v-if="groupInformations.photo">
-                        <label class="btn-change-group-picture">
-                            {{ $t("showMembers.changePicture") }}
+                    <div v-if="groupInformations.photo?.preview" class="text-center">
+                        <img :src="groupInformations.photo?.preview" class="img-thumbnail my-1" />
+                        <label class="btn-add-group-picture mt-1" v-if="!groupInformations.photo?.preview">
+                            {{ $t("showMembers.picture") }}
                             <input @change="onFileChange" type="file" hidden>
                         </label>
+                    </div>
+                    <div v-else class="text-center">
+                        <img :src="groupInformations.photo" class="img-thumbnail my-1" />
+                    </div>
+
+                    <label class="btn-change-group-picture">
+                        {{ $t("showMembers.changePicture") }}
+                        <input @change="onFileChange" type="file" hidden>
+                    </label>
+                    <div v-if="groupInformations.photo != null">
                         <button @click="deleteGroupPicture" class="btn-delete-group-picture my-2"> {{
                             $t("showMembers.deletePicture") }} </button>
                     </div>
@@ -99,7 +103,7 @@
                 <div class="col-12 mt-3 text-center">
                     <button @click="goBackToGroupDropdown" class="btn-save-group">{{ $t("showMembers.save") }}</button>
                 </div>
-            </div>
+            </MapWindows>
         </section>
     </div>
 </template>
@@ -108,6 +112,7 @@
 import useVuelidate from '@vuelidate/core';
 import ChoseItinerary from "@/components/UI/ChoseItinerary.vue";
 import { required, email, minLength, maxLength } from '@vuelidate/validators';
+import MapWindows from "@/components/UI/MapWindows.vue";
 export default {
     name: "createGroup",
     setup() {
@@ -115,6 +120,7 @@ export default {
     },
     components: {
         ChoseItinerary,
+        MapWindows
     },
     data() {
         return {
@@ -183,6 +189,7 @@ export default {
                     console.log(error);
                 });
             }
+            this.$store.dispatch("updateGroup", this.groupInformations)
             this.CreateGroup = false;
             this.$emit("goBackToGroupDropdown");
         },
@@ -214,13 +221,7 @@ export default {
             const group = this.$store.state.groupStore.groups[groupIndex];
             const user = this.$store.state.groupStore.groups[groupIndex].emails[index];
 
-            this.$store.dispatch("patch", {
-                path: "group_user/deleteUserFromGroup",
-                data: {
-                    groupId: group.backendGroupId,
-                    email: user.emails,
-                }
-            }).then(() => {
+            this.$store.dispatch("kickUserFromGroup", { groupId: group.backendGroupId, email: user.emails }).then(() => {
                 this.$store.dispatch("getGroup").catch((error) => {
                     console.log(error);
                 })
@@ -266,12 +267,7 @@ export default {
             this.$store.state.groupStore.groups.splice(index, 1);
         },
         deleteGroupPicture() {
-            this.groupInformations.photo = {
-                name: "",
-                preview: "",
-                size: "",
-                type: "",
-            }
+            this.groupInformations.photo = "https://eip.vakary.fr/uploads/group/base/basic_group_image_1.jpg";
         },
         leaveGroup() {
             let groupIndex = this.$store.state.groupStore.groups.findIndex(group => group.id === this.groupInformations.id);
@@ -296,14 +292,14 @@ export default {
             const reader = new FileReader();
 
             reader.onload = () => {
+                this.groupInformations.picture = event.target.files;
                 this.groupInformations.photo = {
-                    name: file.name,
+                    file: file.name,
                     size: file.size,
                     type: file.type,
                     preview: reader.result
                 };
             };
-
             if (file) {
                 reader.readAsDataURL(file);
             }
@@ -338,17 +334,6 @@ export default {
     width: 100%;
 }
 
-.background {
-    background-color: white;
-    padding: 15px;
-    border-radius: 15px;
-    border: 2px solid rgb(192, 150, 40);
-    min-height: 300px;
-    max-width: 400px;
-    max-height: 80vh;
-    overflow: auto;
-}
-
 ::-webkit-scrollbar {
     width: 0 !important;
 }
@@ -375,18 +360,6 @@ export default {
     padding: 10px 20px;
     width: 50%;
     text-align: center;
-}
-
-.cardsItinerary {
-    background-color: #FFFFFF;
-    border-radius: 5px;
-    color: black;
-    margin-bottom: 10px;
-    cursor: pointer;
-}
-
-.cardsItinerary:hover {
-    background-color: #F5F5F5;
 }
 
 .btn-save-group:hover {
