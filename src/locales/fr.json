@@ -278,5 +278,24 @@
         "loading": "Chargement en cours...",
         "loadingItinerary": "Chargement de l'itinéraire...",
         "loadMore": "Chargement de nouveaux points d'intérêts..."
+    },
+    "roadMap": {
+        "betaDate": "30 JUN 2023",
+        "betaTitle": "Sortie de la bêta Vakary",
+        "betaBody": "La bêta Vakary est devenu disponible est ouverte au public, permettant aux utilisateurs au travers de la plateforme Web de créer un itinéraire ainsi que de le partager",
+        "corrDate": "1 SEP 2023",
+        "corrTitle": "Correction et amélioration",
+        "corrBody": "Vakary vous a écouté et s'améliore grâce au retour de ses bêta-testeurs !",
+        "sauvDate": "30 NOV 2023",
+        "sauvTitle": "Ajout de la sauvegarde des préfèrences",
+        "sauvBody": "Vakary vous permettra de renseigner vos préférences de point d'intérêt dans votre profil. Ainsi vous n'aurez plus besoin à chaque fois de sélectionner vos préférences.",
+        "profDate": "30 DEC 2023",
+        "profTitle": "Ajout de la visite des profils Vakary",
+        "profBody": "Vous pourrez visiter les profils des autres utilisateurs et ainsi voir ce que vos amis préférés visiter.",
+        "commDate": "30 JAN 2024",
+        "commTitle": "Communication et Business",
+        "commBody": "Vakary a pour objectif de s'étendre donc nos réseaux sociaux deviendront beaucoup plus actifs.",
+        "CDP": "Chef de projet",
+        "team": "Notre équipe"
     }
 }

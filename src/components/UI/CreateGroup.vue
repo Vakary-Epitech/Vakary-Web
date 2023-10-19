@@ -45,7 +45,7 @@
                 </div>
             </section>
             <section name="photoGroup">
-                <div v-if="groupInformations.photo" class="text-center" style="max-width: 300px; margin: auto">
+                <div v-if="Object.keys(this.groupInformations.photo).length > 0" class="text-center" style="max-width: 300px; margin: auto">
                     <img :src="groupInformations.photo?.preview" :alt="groupInformations.photo?.name"
                         class="img-thumbnail my-1" />
                 </div>

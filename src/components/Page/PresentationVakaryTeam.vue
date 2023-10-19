@@ -1,7 +1,8 @@
 <template>
+    <languages></languages>
     <div class="barClass">
         <hr class="separationBar">
-        <span style="font-size: calc(15px + 0.8vw); margin: auto">Notre équipe</span>
+        <span style="font-size: calc(15px + 0.8vw); margin: auto">{{ $t("roadMap.team") }}</span>
         <hr class="separationBar">
     </div>
     <div style="display: flex; flex-direction: column;">
@@ -11,7 +12,7 @@
                     src="https://media.licdn.com/dms/image/C4E03AQFMqYwrYHxFlQ/profile-displayphoto-shrink_800_800/0/1651511948893?e=2147483647&v=beta&t=YjwK1lP3Z_I19gJHaEfP2S20vlEFuIbL4rxAYfwnwsM">
                 <div style="display: flex; flex-direction: column;">
                     <span style="margin:auto">Jean</span>
-                    <span style="margin:auto">Chef de projet</span>
+                    <span style="margin:auto">{{ $t("roadMap.CDP") }}</span>
                 </div>
             </div>
             <div>
@@ -110,11 +111,18 @@
             <span style="font-size: calc(15px + 0.8vw); margin: auto">Roadmap</span>
             <hr class="separationBar">
         </div>
+        <RoadMap style="margin-top: 40px;" />
     </div>
 </template>
 
 <script>
+import RoadMap from '../UI/RoadMap.vue'
+import languages from '../UI/languagesModal.vue';
 export default {
+    components: {
+        RoadMap,
+        languages,
+    },
     setup() {
 
     },

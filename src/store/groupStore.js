@@ -95,7 +95,7 @@ const groupStore = {
                     formData.append('groupname', data.name)
                     formData.append('emails', mailsList)
                     if (typeof (data.picture) == "object")
-                        formData.append('file', data.photo);
+                        formData.append('groupPicture', data.picture[0], data.picture[0].name);
 
                     axios.put(wording.serverAdress + 'group', formData, { headers: { "Authorization": getters.getToken } }).then((group) => {
                         resolve(group);
@@ -157,6 +157,45 @@ const groupStore = {
                 }
             })
         },
+
+        kickUserFromGroup({ getters, dispatch }, data) {
+            return new Promise((resolve, reject) => {
+                try {
+                    let config = getters.getConfig({ url: "group_user/deleteUserFromGroup", data: data, method: "patch" })
+                    axios.request(config).then((response) => {
+                        dispatch("getGroup")
+                        resolve(response);
+                    }).catch((error) => {
+                        reject(error);
+                    })
+                } catch (error) {
+                    reject(error);
+                }
+            })
+        },
+
+        updateGroup({ getters, dispatch }, data) {
+            return new Promise((resolve, reject) => {
+                try {
+                    let formData = new FormData();
+                    formData.append('groupname', data.name)
+                    if (typeof (data.picture) == "object")
+                        formData.append('groupPicture', data.picture[0], data.picture[0].name);
+                    else if (data.picture == null)
+                        formData.append('picture', "https://eip.vakary.fr/uploads/group/base/basic_group_image_1.jpg");
+
+                    let config = getters.getConfig({ url: "group/" + data.backendGroupId, data: formData, method: "patch" })
+                    axios.request(config).then((response) => {
+                        dispatch("getGroup")
+                        resolve(response);
+                    }).catch((error) => {
+                        reject(error);
+                    })
+                } catch (error) {
+                    reject(error);
+                }
+            })
+        }
     }
 };
 
