@@ -131,7 +131,6 @@ const groupStore = {
             return new Promise((resolve, reject) => {
                 try {
                     let config = getters.getConfig({ url: "group_user/" + data.backendGroupId, data: data, method: "patch" })
-
                     axios.request(config).then((response) => {
                         resolve(response);
                     }).catch((error) => {
@@ -181,8 +180,6 @@ const groupStore = {
                     formData.append('groupname', data.name)
                     if (typeof (data.picture) == "object")
                         formData.append('groupPicture', data.picture[0], data.picture[0].name);
-                    else if (data.picture == null)
-                        formData.append('picture', "https://eip.vakary.fr/uploads/group/base/basic_group_image_1.jpg");
 
                     let config = getters.getConfig({ url: "group/" + data.backendGroupId, data: formData, method: "patch" })
                     axios.request(config).then((response) => {
