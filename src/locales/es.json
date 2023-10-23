@@ -232,5 +232,8 @@
         "commBody": "Vakary pretende expandirse por lo que nuestras redes sociales serán mucho más activas",
         "CDP": "Jefe de proyecto",
         "team": "Nuestro equipo"
+    },
+    "languagesModal": {
+        "selectLanguage": "Seleccionar idioma"
     }
 }

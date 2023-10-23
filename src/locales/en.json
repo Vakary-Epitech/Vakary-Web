@@ -297,5 +297,8 @@
       "commBody": "Vakary aims to expand so our social networks will become much more active.",
       "CDP": "Project Manager",
       "team": "Our team"
+  },
+  "languagesModal": {
+    "selectLanguage": "Select language"
   }
 }
