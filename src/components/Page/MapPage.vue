@@ -19,55 +19,51 @@
   </div>
 
   <div class="boxPosition fadeshow1">
-    <div class="widgetPanel">
       <Transition name="slide-fade">
 
         <div v-if="!displayItineraryInformation && !showItineraryCreationModal" :class="(itineraryDropdownStatus)">
-          <div class="dropdown-trigger" @click="(setItineraryDropdownState())">
+          <div class="dropdown-trigger" @click="setItineraryDropdownState()">
             <button class="dropdownDesignMapPage" :style="itineraryCssDropdown" aria-haspopup="true"
               aria-controls="dropdown-menu2">
               <span class="dropdownTextPosition">{{ $t("mapPage.itinerary") }}</span>
-              <span class="icon is-small dropdownArrowPosition">
+              <span v-if="!itineraryDropdown" class="icon is-small dropdownArrowPosition">
                 <i class="fas fa-angle-down" aria-hidden="true"></i>
               </span>
+              <span v-if="itineraryDropdown" class="icon is-small dropdownArrowPosition">
+                <i class="fas fa-angle-up" aria-hidden="true"></i>
+              </span>
             </button>
-
-            <div v-if="this.itineraryDropdown" style="background-color: white;" class="dropdown-content">
-              <div style="display: flex; flex-direction: row;" class="cursorOnButton"
-                @click="callItineraryCreationModal()">
-                <div class="cardBasicContainer" style="display: flex; width: 70%; height: 100%;">
-                  <span class="cardBasicContainer dropdownCreateTextPosition">{{
-                    $t("mapPage.newItinerary") }}</span>
-                </div>
-                <div class="dropdownPlusPlacement">
-                  <img style="max-height: 8vh; float: right"
-                    src="https://thenounproject.com/api/private/icons/1939717/edit/?backgroundShape=SQUARE&backgroundShapeColor=%23000000&backgroundShapeOpacity=0&exportSize=752&flipX=false&flipY=false&foregroundColor=%23000000&foregroundOpacity=1&imageFormat=png&rotation=0&token=gAAAAABkelyDx9zHAaBM2c-I2z8OqRc69gxfkRuq_k-p69-dWetmWZQoWsvYdfQXFK3PmtXgIZ9EdiaxWOdqU4LIDr_-VRuy2A%3D%3D" />
-                </div>
+            <div v-if="this.itineraryDropdown" class="dropdown-content">
+              <div class="card cardOnDropdown" style="display: flex; flex-direction: row;" @click="callItineraryCreationModal()">
+                  <div class="cardBasicContainer" style="display: flex; width: 70%">
+                    <span class="col-12">{{
+                      $t("mapPage.newItinerary") }}</span>
+                  </div>
+                  <div class="dropdownPlusPlacement">
+                    <i class="fas fa-plus plus-custom float-right" aria-hidden="true"></i>
+                  </div>
               </div>
-              <div class="topBorder">&nbsp;</div>
               <div v-for="(itineraryDisplay, index) of this.$store.state.itineraryStore.itinerary"
                 :key="itineraryDisplay.id">
                 <Transition name="slide-fade">
-                  <mapCards @click="itineraryCardsHasBeenClicked(index)" class="cardOnDropdown mt-2"
+                  <mapCards @click="itineraryCardsHasBeenClicked(index)" class="card cardOnDropdown mt-2"
                     :itinerary="itineraryDisplay" :index="index" />
                 </Transition>
-                <div class="topBorder">&nbsp;</div>
               </div>
             </div>
           </div>
         </div>
 
         <div v-else-if="showItineraryCreationModal">
-          <itineraryModal @goBackToItineraryDropdown="showItineraryCreationModal = false" style="min-width: 400px" />
+          <itineraryModal @goBackToItineraryDropdown="showItineraryCreationModal = false"/>
         </div>
 
         <div v-else>
           <itineratyExplanation @goBackToItineraryDropdown="goBackToItineraryDropdown" @checkNextPOI="checkNextPOI"
-            @checkPreviousPOI="checkPreviousPOI" :selectedItineraryInfo="selectedItineraryInfo" style="min-width: 400px"/>
+            @checkPreviousPOI="checkPreviousPOI" :selectedItineraryInfo="selectedItineraryInfo"/>
         </div>
       </Transition>
     </div>
-  </div>
 
   <div class="langButtonPos fadeshow1">
     <img :src="this.$store.state.userStore.userProfileImage" class="flag-button profileIcon"
@@ -83,7 +79,6 @@
 
   <section name="groupDropdown">
     <div class="groupDropdownPosition fadeshow1">
-      <div class="widgetPanel">
         <Transition name="slide-fade">
           <div v-if="!displayItineraryInformation && !showGroupCreationModal && !groupHasBeenClicked"
             :class="(groupDropdownStatus)">
@@ -91,33 +86,36 @@
               <button class="dropdownDesignMapPage" :style="groupCssDropdown" aria-haspopup="true"
                 aria-controls="dropdown-menu2">
                 <span class="dropdownTextPosition dropboxText">{{ $t("mapPage.group") }}</span>
-                <span class="icon is-small dropdownArrowPosition">
+                <span v-if="!groupDropdown" class="icon is-small dropdownArrowPosition">
                   <i class="fas fa-angle-down" aria-hidden="true"></i>
+                </span>
+                <span v-if="groupDropdown" class="icon is-small dropdownArrowPosition">
+                  <i class="fas fa-angle-up" aria-hidden="true"></i>
                 </span>
               </button>
 
-              <div v-if="this.groupDropdown && !this.groupHasBeenClicked" style="background-color: white;"
-                class="dropdown-content">
-
-                <div style="display: flex; flex-direction: row;" class="cursorOnButton" @click=" callGroupCreation()">
-                  <div class="dropboxText cardBasicContainer" style="display: flex; width: 70%; height: 100%;">
-                    <span class="dropboxText cardBasicContainer dropdownCreateTextPosition">{{
+              <div v-if="this.groupDropdown && !this.groupHasBeenClicked" class="dropdown-content">
+                <div class="card cardOnDropdown" style="display: flex; flex-direction: row;" @click="callGroupCreation()">
+                  <div class="cardBasicContainer" style="display: flex; width: 70%">
+                    <span class="col-12">{{
                       $t("mapPage.newGroup") }}</span>
                   </div>
                   <div class="dropdownPlusPlacement">
-                    <img style="max-height: 8vh; float: right"
-                      src="https://thenounproject.com/api/private/icons/1939717/edit/?backgroundShape=SQUARE&backgroundShapeColor=%23000000&backgroundShapeOpacity=0&exportSize=752&flipX=false&flipY=false&foregroundColor=%23000000&foregroundOpacity=1&imageFormat=png&rotation=0&token=gAAAAABkelyDx9zHAaBM2c-I2z8OqRc69gxfkRuq_k-p69-dWetmWZQoWsvYdfQXFK3PmtXgIZ9EdiaxWOdqU4LIDr_-VRuy2A%3D%3D" />
+                    <i class="fas fa-plus plus-custom float-right" aria-hidden="true"></i>
                   </div>
                 </div>
 
-                <div class="cursorOnButton" v-for="(group, index) in this.$store.state.groupStore.groups" :key="group.id">
-                  <div class="topBorder mt-2">&nbsp;</div>
-                  <div @click=" groupCardsHasBeenClicked(group, index)">
-                    <i class="fas fa-users ms-4 mt-2"></i>
-                    <i class="fas fa-person fa-lg me-3 mt-2" style="float: right"></i>
-                    <Transition name="slide-fade">
-                      <mapGroupCardsVue :groupName="group.name" :numberOfMember="group.emails.length" :index="index" />
-                    </Transition>
+                <div class="cursorOnButton card cardOnDropdown" v-for="(group, index) in this.$store.state.groupStore.groups" :key="group.id">
+                  <div class="row" @click="groupCardsHasBeenClicked(group, index)">
+                    <div class="col-2 my-auto text-center">
+                      <img :src="group.photo" style="max-width: 40px">
+                    </div>
+                    <div class="col-6 my-auto">
+                      <span>{{ group.name }}</span>
+                    </div>
+                    <div class="col-2 text-center">
+                      {{ $t("groupCards.numberOfMembers") }} {{ group.emails.length }}
+                    </div>
                   </div>
                   <div v-if="shouldDisplayButton(group.emails)" class="row my-2">
                     <div class="col-12 text-center">
@@ -158,7 +156,6 @@
 
         </Transition>
       </div>
-    </div>
   </section>
   <div class="fadeshow2">
     <ScreenSizeTooSmall />
@@ -170,7 +167,6 @@ import ScreenSizeTooSmall from '../UI/ScreenSizeTooSmall.vue'
 import mapCards from '../UI/mapCards.vue';
 import languages from '../UI/languagesModal.vue';
 import itineratyExplanation from '../UI/itineraryExplanation.vue';
-import mapGroupCardsVue from '../UI/mapGroupCards.vue';
 import CreateGroup from '../UI/CreateGroup.vue';
 import itineraryModal from '../UI/itineraryModal.vue';
 import profileModal from '../UI/profileModal.vue';
@@ -182,7 +178,6 @@ export default {
     mapCards,
     CreateGroup,
     itineratyExplanation,
-    mapGroupCardsVue,
     itineraryModal,
     profileModal,
     showMembers,
@@ -350,6 +345,7 @@ export default {
         console.log(error);
       })
       this.itineraryDropdown = !this.itineraryDropdown;
+      this.groupDropdown = false;
     },
     setGroupDropdownState() {
       this.groupDropdown = !this.groupDropdown;
@@ -362,12 +358,14 @@ export default {
     callGroupCreation() {
       this.showGroupCreationModal = true;
       this.showItineraryCreationModal = false;
+      this.itineraryDropdown = false;
       this.showProfile = false;
     },
 
     callItineraryCreationModal() {
       this.showItineraryCreationModal = !this.showItineraryCreationModal;
       this.showGroupCreationModal = false;
+      this.groupDropdown = !this.groupDropdown;
       this.showProfile = false;
     },
   },
@@ -396,17 +394,10 @@ export default {
   color: red;
 }
 
-.componentsGroupDropdown {
-  min-width: 400px;
-  max-height: 300px !important;
-  margin: 1vh;
-  height: 10%;
-}
-
-.fa-plus {
+.plus-custom {
+  border: 1px solid rgb(192, 150, 40);
   border-radius: 100%;
   padding: 7px 8px;
-  border: 1px solid black;
 }
 
 .boxPosition {
@@ -422,13 +413,6 @@ export default {
   left: 2vw;
 }
 
-.widgetPanel {
-  display: flex;
-  max-width: 400px;
-  flex-direction: column;
-  /* max-height: 70vh; */
-}
-
 .dropdown-content {
   display: flex;
   flex-direction: column;
@@ -437,6 +421,8 @@ export default {
   padding-bottom: 20px;
   max-height: 400px;
   overflow: auto;
+  background-color: var(--background-color-primary) !important;
+  color: var(--text-primary-color);
 }
 
 .dropdownArrowPosition {
@@ -461,12 +447,7 @@ export default {
 
 .cursorOnButton:hover {
   background-color: #e7e7e7;
-}
-
-.newItineraryButton {
-  height: 5vh;
-  margin-top: 6px;
-  margin-bottom: 6px;
+  color: black;
 }
 
 .cardOnDropdown {
@@ -475,8 +456,13 @@ export default {
   height: 50px;
 }
 
+.card {
+  background-color: var(--background-cards-color);
+}
+
 .cardOnDropdown:hover {
   background-color: #e7e7e7;
+  color: black;
 }
 
 .topBorder {
@@ -488,7 +474,7 @@ export default {
 
 .dropdownDesignMapPage {
   display: flex;
-  background-color: var(--background-color-primary);
+  background-color: var(--background-cards-color);
   color: var(--text-primary-color);
   border: none;
   height: 6vh;
@@ -497,7 +483,7 @@ export default {
   padding-right: 1vw;
   margin-top: 5px;
   margin-bottom: 5px;
-  min-width: 400px;
+  min-width: 30vw;
   min-height: 60px;
 }
 
@@ -549,13 +535,13 @@ export default {
   align-items: center;
 }
 
-@media only screen and (max-width: 767px) {
+@media only screen and (max-width: 1055px) {
   .fadeshow1 {
     display: none;
   }
 }
 
-@media only screen and (min-width: 767px) {
+@media only screen and (min-width: 1056px) {
   .fadeshow2 {
     display: none;
   }

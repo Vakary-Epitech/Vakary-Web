@@ -1,9 +1,9 @@
 <template>
-    <MapWindows>
+    <MapWindows dropdown="true">
         <div>
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">{{ $t("itineraryModal.creation") }}</h5>
-                <button @click="leaveGroupCreation" type="button" class="btn-close" aria-label="Close"></button>
+                <button @click="leaveGroupCreation" class="xMark"><i class="fa-solid fa-xmark fa-lg"></i></button>
             </div>
             <div class="modal-body">
                 <div class="col-12">
@@ -164,6 +164,7 @@ export default {
             people: 1,
             error: false,
             days: 1,
+            loading: true,
             city: "",
             children: 0,
             indexOfGroup: 0,
@@ -324,12 +325,18 @@ export default {
 .form-check .form-check-input {
     float: none !important;
 }
-
+.xMark {
+    background-color: var(--background-color-primary);
+    border: none;
+    border-radius: 5px;
+    padding: 2px 5px;
+    color: var(--text-primary-color);
+}
 .arrowButton {
-    background-color: #fff;
+    background-color: var(--background-color-primary);
     border: 1px solid rgb(192, 150, 40);
     border-radius: 10px;
-    color: black;
+    color: var(--text-primary-color);
     padding: 5px 10px;
     text-align: center;
     text-decoration: none;
@@ -344,10 +351,10 @@ export default {
 }
 
 .dropDownButton {
-    background-color: #fff;
+    background-color: var(--background-color-primary);
     border: 1px solid rgb(192, 150, 40);
     border-radius: 10px;
-    color: black;
+    color: var(--text-primary-color);
     padding: 5px 10px;
     text-align: center;
     text-decoration: none;
@@ -377,15 +384,15 @@ export default {
 }
 
 .custom-maths {
-    color: #000642;
-    border: 1px solid #000642;
+    color: var(--text-primary-color);
+    border: 1px solid var(--text-primary-color);
     border-radius: 50%;
     padding: 5px;
     cursor: pointer;
 }
 
 .remove-decoration {
-    background-color: #fff;
+    background-color: var(--background-color-primary);
     border: none;
 }
 

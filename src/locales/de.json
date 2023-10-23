@@ -106,7 +106,8 @@
         "decline": "Ablehnen"
     },
     "mapCards": {
-        "noGroups": "Keine zugewiesenen Gruppen"
+        "noGroups": "Keine zugewiesenen Gruppen",
+        "createdAt": "Erstellt am "
     },
     "forgetPassword": {
         "title": "Finde deinen Account",

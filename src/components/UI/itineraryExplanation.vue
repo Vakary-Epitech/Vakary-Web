@@ -1,5 +1,5 @@
 <template>
-    <MapWindows style="min-height: 80vh;">
+    <MapWindows style="min-height: 80vh;" dropdown="true">
         <div class="row">
             <div class="col-3 my-auto">
                 <div class="backArrow" @click="goBackToItineraryDropdown"></div>
@@ -20,7 +20,7 @@
             </div>
             <span class="textMargin descriptionLimiterSize" style="font-size: calc(6px + 1.2vh)">{{
                 getCurrentPOIDescription }}</span>
-            <div class="openHoursDesign timeSizeLimiter">
+            <div class="openHoursDesign timeSizeLimiter card">
                 <span style="white-space: pre-line; font-size: calc(6px + 1.2vh);">{{ $t("mapPage.openHours") }} <br />{{
                     getCurrentPOIOpenHours }}</span>
             </div>
@@ -257,4 +257,8 @@ div.backArrow {
     }
 
 }
+.card {
+  background-color: var(--background-cards-color);
+}
+
 </style>

@@ -83,6 +83,11 @@ export default {
 
 <style scoped>
 
+.modal-content {
+    background-color: var(--background-color-primary);
+    color: var(--text-primary-color);
+}
+
 .button-language {
   cursor: pointer;
   border-radius: 6px;
@@ -96,7 +101,8 @@ export default {
 .btn-language {
     width: 100%;
     border-radius: 6px;
-    background-color: #fff;
+    background-color: var(--background-color-primary);
+    color: var(--text-primary-color);
     border: 1px solid #e5e5e5;
     padding: 10px 20px;
     margin-bottom: 10px;
