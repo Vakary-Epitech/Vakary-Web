@@ -449,6 +449,7 @@ export default {
 .btn-change-group-name {
     background-color: var(--background-color-primary);
     border: none;
+    color: var(--text-color);
     border-radius: 5px;
     padding: 2px 5px;
 }
@@ -472,16 +473,19 @@ export default {
 .pending {
     border: 1px grey solid;
     background-color: #C4C4C4;
+    color: black;
 }
 
 .denied {
     background-color: #FFBABA;
     border: 1px red solid;
+    color: black;
 }
 
 .joined {
     background-color: #B6FBB2;
     border: 1px green solid;
+    color: black;
 }
 
 .status {

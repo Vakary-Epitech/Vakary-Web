@@ -122,10 +122,10 @@
                             <input class="col-1 ms-2" type="checkbox" :checked="checkToggle(category)"
                                 @change="toggleAllPOIs(category)" />
                             <button class="col-10 mx-auto dropDownButton" @click="toggleDropdown(categoryIndex)">
-                                {{ category }}
-                                <font-awesome-icon class="mt-1"
-                                    :icon="dropdownOpen[categoryIndex] ? ['fas', 'caret-up'] : ['fas', 'caret-down']"
-                                    style="float: right" />
+                                <font-awesome-icon class="mt-1 ms-2"
+                                    :icon="dropdownOpen[categoryIndex] ? ['fas', 'caret-down'] : ['fas', 'caret-right']"
+                                    style="float: left" />
+                                <span style="float: left" class="ms-3">{{ category }}</span>
                             </button>
                         </div>
                         <div class="row my-2" v-show="isDropdownOpen(categoryIndex)"

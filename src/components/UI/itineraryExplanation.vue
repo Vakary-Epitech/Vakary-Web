@@ -127,7 +127,8 @@ export default {
 .deleteButton {
     border-radius: 5px;
     border: 1px solid red;
-    background-color: #fff;
+    background-color: var(--background-color);
+    color: var(--text-color);
     padding: 5px;
 }
 
@@ -148,8 +149,8 @@ export default {
 
 .custom-button {
     margin-bottom: 15px;
-    background-color: #fff;
-    border: 3px solid #fff;
+    background-color: var(--background-color);
+    border: 3px solid var(--background-cards-color);
     border-radius: 15px;
 }
 

@@ -392,6 +392,7 @@ export default {
   flex-wrap: wrap;
   padding: 90px 0 70px 90px;
   background: #FFE9D3;
+  color: black;
 }
 
 .invertedBlueVakaryButton {
