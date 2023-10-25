@@ -15,14 +15,6 @@ export default {
       return this.$i18n.locale;
     },
   },
-  mounted() {
-    if (this.$store.state.userStore.token)
-      this.$store.dispatch("getItinerary").then(() => {
-        this.$router.push("/mapPage");
-      }).catch((error) => {
-        console.log(error);
-      })
-  }
 };
 </script>
 

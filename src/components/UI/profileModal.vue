@@ -126,6 +126,7 @@ export default {
             })
         },
         disconnectUser() {
+            this.$store.commit('CLEAR_USER_INFO')
             this.$router.push("/");
         },
         deleteUser() {

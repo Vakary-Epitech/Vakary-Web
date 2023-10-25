@@ -33,8 +33,8 @@
               <label>{{ $t("landingPage.mobile") }}</label>
             </div>
             <div class="col-12 text-center my-1">
-            <button class="blueButton py-1 text-center" @click="openConnexionPage">{{
-              $t("landingPage.registration") }}</button>
+              <button class="blueButton py-1 text-center" @click="openConnexionPage">{{
+                $t("landingPage.registration") }}</button>
             </div>
           </div>
         </div>
@@ -86,9 +86,10 @@
               <b><span class="groupText">{{ $t("landingPage.block3Text1") }}</span></b>
               <span class="groupText subtitleGroupText mt-4">{{ $t("landingPage.block3Text2b") }}</span>
               <div class="alignLeft">
-                <button class="invertedBlueVakaryButton biggerButton availableSoon"  :class="`availableSoon${geti18n()}`" data-bs-toggle="modal"
-                  data-bs-target="#modalMobile"><!-- {{ $t("landingPage.find") }}--><span class="arrow"></span></button>
-                </div>
+                <button class="invertedBlueVakaryButton biggerButton availableSoon" :class="`availableSoon${geti18n()}`"
+                  data-bs-toggle="modal" data-bs-target="#modalMobile"><!-- {{ $t("landingPage.find") }}--><span
+                    class="arrow"></span></button>
+              </div>
             </div>
             <div class="alignPhoneImage">
               <img class="telImage" src="@/assets/LandingPage/mapTelephone.png">
@@ -100,7 +101,8 @@
                 <b><span class="text-center ms-3">{{ $t("landingPage.block3Text1") }}</span></b>
                 <p class="text-center mt-3">{{ $t("landingPage.block3Text2b") }}</p>
                 <div class="text-center">
-                  <button class="invertedBlueVakaryButtonSmall mb-3 availableSoon"  :class="`availableSoon${geti18n()}`" data-bs-toggle="modal" data-bs-target="#modalMobile">
+                  <button class="invertedBlueVakaryButtonSmall mb-3 availableSoon" :class="`availableSoon${geti18n()}`"
+                    data-bs-toggle="modal" data-bs-target="#modalMobile">
                     <!-- {{ $t("landingPage.find") }} --><span class="arrow"></span></button>
                 </div>
               </div>
@@ -118,7 +120,8 @@
         <hr class="separationBar marginSeparationDogo">
         <div class="col-12 text-center">
           <h4 class="mx-5">{{ $t("landingPage.learnMore") }}</h4>
-          <button @click="openLearnMorePage()" class="basicVakaryButton mt-3">{{ $t("landingPage.learnMoreButton") }}</button>
+          <button @click="openLearnMorePage()" class="basicVakaryButton mt-3">{{ $t("landingPage.learnMoreButton")
+          }}</button>
         </div>
       </section>
       <section name="footer">
@@ -129,11 +132,13 @@
           </div>
           <div class="col text-center my-5">
             <h4>{{ $t("landingPage.footer.instagram") }}</h4>
-            <a href="https://www.instagram.com/vakaryapp/" target="_blank"><img class="mt-2 instagramLogo" src="@/assets/badges/instagram-logo.svg" alt="Instagram"></a>
+            <a href="https://www.instagram.com/vakaryapp/" target="_blank"><img class="mt-2 instagramLogo"
+                src="@/assets/badges/instagram-logo.svg" alt="Instagram"></a>
           </div>
           <div class="col text-center my-5">
             <h4>{{ $t("landingPage.footer.twitter") }}</h4>
-            <a href="https://twitter.com/VakaryApp" target="_blank"><img class="mt-3 twitterLogo" src="https://logowik.com/content/uploads/images/twitter-x5265.logowik.com.webp" alt="Twitter"></a>
+            <a href="https://twitter.com/VakaryApp" target="_blank"><img class="mt-3 twitterLogo"
+                src="https://logowik.com/content/uploads/images/twitter-x5265.logowik.com.webp" alt="Twitter"></a>
           </div>
         </div>
         <hr class="separationBar marginSeparationDogo">
@@ -206,7 +211,6 @@ export default {
 }
 </script>
 <style scoped>
-
 @media (min-width: 768px) and (max-width: 991.98px) {
   .col-md-6 {
     width: 45%;
@@ -218,9 +222,9 @@ export default {
   border-radius: 6px;
   width: 30px;
   right: 20px;
-  position: fixed; 
-  top: 20px; 
-  z-index: 2;  
+  position: fixed;
+  top: 20px;
+  z-index: 2;
 }
 
 @media (max-width: 991.98px) {
@@ -289,12 +293,12 @@ export default {
 }
 
 .blueButton {
-    padding: 10px 16px;
-    background-color: #000642;
-    color: white;
-    border: 2px solid #000642 solid;
-    border-radius: 20px;
-    transition: all .3s ease;
+  padding: 10px 16px;
+  background-color: #000642;
+  color: white;
+  border: 2px solid #000642 solid;
+  border-radius: 20px;
+  transition: all .3s ease;
 }
 
 .alignPhoneImage {
