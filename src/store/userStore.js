@@ -39,6 +39,23 @@ const userStore = {
         },
     },
     actions: {
+        fetchUserData({ commit, getters }) {
+            return new Promise((resolve, reject) => {
+                try {
+                    let conf = getters.getConfig({ url: "me", data: null, method: "get" })
+
+                    axios.request(conf).then((canAuthentify) => {
+                        commit('UPDATE_USER_INFO', canAuthentify);
+                        resolve("user connected");
+                    }).catch((error) => {
+                        reject(error);
+                    })
+                } catch (error) {
+                    reject(error);
+                }
+            })
+        },
+
         userConnection({ commit, getters }, data) {
             return new Promise((resolve, reject) => {
                 try {
