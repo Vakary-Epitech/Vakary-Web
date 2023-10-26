@@ -5,7 +5,7 @@
         - div col 
      It is using as well the i18n system for a translation system -->
 <template>
-    <MapWindows style="min-width: 15vh; max-width: 30vh; max-height: 85vh;">
+    <MapWindows style="min-width: 250px; max-width: 30vh; max-height: 85vh;">
         <div class="row">
             <div class="col-12">
                 <div class="row" v-if="!editMode">
