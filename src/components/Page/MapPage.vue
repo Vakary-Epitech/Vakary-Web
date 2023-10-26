@@ -95,7 +95,7 @@
               </button>
 
               <div v-if="this.groupDropdown && !this.groupHasBeenClicked" class="dropdown-content">
-                <div class="card cardOnDropdown" style="display: flex; flex-direction: row;" @click="callGroupCreation()">
+                <div class="card cardOnDropdown mt-2" style="display: flex; flex-direction: row;" @click="callGroupCreation()">
                   <div class="cardBasicContainer" style="display: flex; width: 70%">
                     <span class="col-12">{{
                       $t("mapPage.newGroup") }}</span>
@@ -106,15 +106,16 @@
                 </div>
 
                 <div class="cursorOnButton card cardOnDropdown" v-for="(group, index) in this.$store.state.groupStore.groups" :key="group.id">
-                  <div class="row" @click="groupCardsHasBeenClicked(group, index)">
+                  <div class="row my-auto" @click="groupCardsHasBeenClicked(group, index)">
                     <div class="col-2 my-auto text-center">
-                      <img :src="group.photo" style="max-width: 40px">
+                      <img class="ms-2" :src="group.photo" style="max-width: 40px">
                     </div>
                     <div class="col-6 my-auto">
                       <span>{{ group.name }}</span>
                     </div>
-                    <div class="col-2 text-center">
-                      {{ $t("groupCards.numberOfMembers") }} {{ group.emails.length }}
+                    <div class="col-4 my-auto text-end">
+                      {{ group.emails.length }}
+                      <i class="fa-solid fa-user me-4"></i>
                     </div>
                   </div>
                   <div v-if="shouldDisplayButton(group.emails)" class="row my-2">
