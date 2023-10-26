@@ -1,6 +1,6 @@
 <template>
     <MapWindows style="min-height: 80vh;" dropdown="true">
-        <div class="row">
+        <div class="row" v-if="!loading">
             <div class="col-3 my-auto">
                 <div class="backArrow" @click="goBackToItineraryDropdown"></div>
             </div>
@@ -39,18 +39,22 @@
                 </div>
             </div>
         </div>
+        <Loading v-if="loading"/>
     </MapWindows>
 </template>
 
 <script>
+import Loading from "./loadingSpin.vue";
 import MapWindows from "@/components/UI/MapWindows.vue";
 export default {
     components: {
         MapWindows,
+        Loading
     },
     props: ["selectedItineraryInfo"],
     data() {
         return {
+            loading: false,
             currentWaypointIndex: 0,
         }
     },
@@ -109,13 +113,17 @@ export default {
             }
         },
         deleteItinerary() {
+            this.loading = true;
             this.$store.dispatch("deleteItinerary", { itineraryId: this.selectedItineraryInfo.id }).then(() => {
                 this.$store.dispatch("getItinerary").then(() => {
+                    this.loading = false;
                     this.$emit("goBackToItineraryDropdown");
                 }).catch((error) => {
+                    this.loading = false;
                     this.error = error?.response?.data;
                 })
             }).catch((error) => {
+                this.loading = false;
                 this.error = error?.response?.data;
             })
         },

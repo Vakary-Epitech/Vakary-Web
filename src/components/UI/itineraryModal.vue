@@ -1,6 +1,6 @@
 <template>
     <MapWindows dropdown="true">
-        <div>
+        <div v-if="!loading">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">{{ $t("itineraryModal.creation") }}</h5>
                 <button @click="leaveGroupCreation" class="xMark"><i class="fa-solid fa-xmark fa-lg"></i></button>
@@ -143,16 +143,19 @@
                     style="margin: auto; margin-top: 10px; margin-bottom: 10px">{{ $t("itineraryModal.generate") }}</button>
             </div>
         </div>
+        <Loading v-if="loading"/>
     </MapWindows>
 </template>
   
 <script>
+import Loading from "../UI/loadingSpin.vue";
 import { IPTNatural, IPTActivity, IPTDrinking, IPTCultural, IPTEating, IPTEvent, IPTTour, IPTTypeGroup } from "@/utils/poiTypes.js";
 import cardsGroup from "../UI/CardsGroup.vue";
 import MapWindows from "../UI/MapWindows.vue";
 export default {
     components: {
         cardsGroup,
+        Loading,
         MapWindows
     },
     data() {
@@ -165,7 +168,7 @@ export default {
             people: 1,
             error: false,
             days: 1,
-            loading: true,
+            loading: false,
             city: "",
             children: 0,
             indexOfGroup: 0,
@@ -291,17 +294,17 @@ export default {
             return goodFormat;
         },
         generateItinerary() {
+            this.loading = true;
             let duration = 0;
 
             if (this.checkItineraryLength == "one")
-                duration = 3600; //One hour in second
+                duration = 3600;
             else if (this.checkItineraryLength == "oneToFour")
-                duration = 3600 * 4; //Four hours in seconds
+                duration = 3600 * 4;
             else
-                duration = 3600 * 8; //Eight hours in seconds
+                duration = 3600 * 8;
 
             this.error = "";
-            console.log(this.generateGoodFormat(this.selectedPOIs))
             this.$store.dispatch("addItinerary", {
                 city: this.city,
                 availableTime: duration,
@@ -312,8 +315,10 @@ export default {
                 //group: this.groups[this.activeIndex]?.default ? null : this.groups[this.activeIndex],
                 handicapAccess: false,
             }).then(() => {
+                this.loading = false;
                 this.$emit("goBackToItineraryDropdown");
             }).catch((error) => {
+                this.loading = false;
                 this.error = error?.response?.data;
             })
         },

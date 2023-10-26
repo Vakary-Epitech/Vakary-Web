@@ -1,6 +1,6 @@
 <template>
   <h4 class="text-center mt-3">{{ $t("loginPage.signin")}} </h4>
-  <div class="card-body row">
+  <div class="card-body row" v-if="!loading">
     <div v-if="userDontExist" >
       <p class="wrongID text-center">
         <span class="bold">{{ $t("loginPage.wrong") }}<br></span>
@@ -12,7 +12,7 @@
       :placeholder="$t('loginPage.email')">
     </div>
     <div class="mt-3">
-      <input v-model="password" type="password" class="form-control" :placeholder="$t('loginPage.password')">
+      <input @keyup.enter="(openMap)" v-model="password" type="password" class="form-control" :placeholder="$t('loginPage.password')">
     </div>
     <div>
       <button @click="(openMap)" class="btn newButton text-center">{{ $t("loginPage.connect") }}</button>
@@ -24,16 +24,22 @@
       <span><a href="https://linguistic-viper-n4vg8x.s73guk9y.traefikhub.io/auth/login" target="_blank">{{ $t("loginPage.pro") }}</a></span>
     </div>
   </div>
+  <Loading v-if="loading"/>
 </template>
   
 <script>
+import Loading from "@/components/UI/loadingSpin.vue";
 export default {
   emits: ['openRegistration', 'openForgetPassword', 'loginDone'],
+  components: {
+    Loading
+  },
   data() {
     return {
       name: "",
       password: "",
       userDontExist: false,
+      loading: false
     }
   },
   methods: {
@@ -47,15 +53,17 @@ export default {
       this.login();
     },
     login() {
+      this.loading = true;
       this.userDontExist = false;
       this.$store.dispatch("userConnection", {
           username: this.name, 
           password: this.password
       }).then(() => {
         this.$emit("loginDone");
-      }).catch((error) => {
-        console.log(error);
+        this.loading = false;
+      }).catch(() => {
         this.userDontExist = true;
+        this.loading = false;
       })
     },
   },
