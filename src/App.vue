@@ -1,7 +1,7 @@
 <template>
   <div class="app">
     <div :class="{'root-dark': isDarkMode}">
-      <button :class="{'black-moon': isDarkMode}" class="btn-dark-mode" @click="isDarkMode = !isDarkMode">
+      <button v-if="this.$route.path === '/mapPage'" :class="{'black-moon': isDarkMode}" class="btn-dark-mode" @click="isDarkMode = !isDarkMode">
         <i class="fas fa-moon"></i>
       </button>
       <router-view v-slot="{ Component }">
