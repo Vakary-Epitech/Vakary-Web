@@ -54,10 +54,10 @@ export default {
 }
 
 .root-dark {
-  --background-color-primary: black;
+  --background-color-primary: #282b30;
   --text-primary-color: white;
   --accent-color: #cacaca;
-  --background-cards-color: #1c1c1c;
+  --background-cards-color: #1e2124;
 }
 
 .v-enter-active,

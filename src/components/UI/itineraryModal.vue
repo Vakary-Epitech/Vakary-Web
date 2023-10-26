@@ -36,6 +36,7 @@
                     <span>{{ $t("itineraryModal.startingDate") }}</span><br>
                     <input class="form-control ms-1" type="date" v-model="date">
                 </div>
+                <!-- <hr class="separationBar">
                 <hr class="separationBar">
                 <div class="col-12">
                     <span>{{ $t("itineraryModal.budget") }} </span><br>
@@ -84,7 +85,7 @@
                                     class="fa-solid fa-plus custom-maths"></i></button>
                         </div>
                     </div>
-                </div>
+                </div> -->
                 <div class="col-12" v-if="$store.state.groupStore.groups.length > 0">
                     <hr class="separationBar" v-if="$store.state.groupStore.groups.length > 0">
                     <div class="row">
