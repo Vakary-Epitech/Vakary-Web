@@ -3,7 +3,7 @@
         <div>
             <span>{{ this.index + 1 }}. </span>
             <span>{{ this.itinerary.itineraryPOI[0].City.name }}</span>
-            <span class="float-end">{{ $t("mapPage.group") }}: {{ this.groupName ? this.groupName :
+            <span class="float-end">{{ this.groupName ? this.groupName :
                 $t("mapCards.noGroups") }}</span>
         </div>
         <div class="text-end">
@@ -36,3 +36,7 @@ export default {
     }
 }
 </script>
+
+<style scoped>
+
+</style>

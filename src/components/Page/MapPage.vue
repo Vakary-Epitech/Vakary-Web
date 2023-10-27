@@ -418,10 +418,11 @@ export default {
   display: flex;
   flex-direction: column;
   transform: translate(0, -2vh);
-  border-radius: 0px 0px 20px 20px;
-  padding-bottom: 20px;
+  border-radius: 0px 0px 10px 10px;
+  padding-bottom: 7px;
   max-height: 400px;
   overflow: auto;
+  max-width: 30vw;
   background-color: var(--background-color-primary) !important;
   color: var(--text-primary-color);
 }
