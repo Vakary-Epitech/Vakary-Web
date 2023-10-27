@@ -3,13 +3,12 @@
         <div>
             <span>{{ this.index + 1 }}. </span>
             <span>{{ this.itinerary.itineraryPOI[0].City.name }}</span>
-            <span class="alignRight ">{{ $t("mapPage.group") }}: {{ this.groupName ? this.groupName :
+            <span class="float-end">{{ this.groupName ? this.groupName :
                 $t("mapCards.noGroups") }}</span>
         </div>
-        <!-- <div>
-            <span class="dropboxText">{{ this.time }}</span> -->
-        <!-- <span class="dropboxText textBasicMargin alignRight">{{ this.itinerary.itineraryPOI[0].Description.createdAt }}</span>
-        </div> -->
+        <div class="text-end">
+            <span class="dropboxText">{{ $t("mapCards.createdAt") }} {{ formattedDate }}</span>
+        </div>
     </div>
 </template>
 
@@ -19,7 +18,7 @@ export default {
     data() {
         return {
             groupName: null,
-            test: null,
+            formattedDate: null,
         }
     },
     mounted() {
@@ -32,12 +31,12 @@ export default {
                 }
             })
         })
+        const date = new Date(this.itinerary.itineraryPOI[0].Description.createdAt);
+        this.formattedDate = date.toLocaleString();
     }
 }
 </script>
 
 <style scoped>
-.alignRight {
-    float: right;
-}
+
 </style>

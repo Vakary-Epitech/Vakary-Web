@@ -1,6 +1,6 @@
 <template>
-    <MapWindows style="min-height: 80vh;">
-        <div class="row">
+    <MapWindows style="min-height: 80vh;" dropdown="true">
+        <div class="row" v-if="!loading">
             <div class="col-3 my-auto">
                 <div class="backArrow" @click="goBackToItineraryDropdown"></div>
             </div>
@@ -20,7 +20,7 @@
             </div>
             <span class="textMargin descriptionLimiterSize" style="font-size: calc(6px + 1.2vh)">{{
                 getCurrentPOIDescription }}</span>
-            <div class="openHoursDesign timeSizeLimiter">
+            <div class="openHoursDesign timeSizeLimiter card">
                 <span style="white-space: pre-line; font-size: calc(6px + 1.2vh);">{{ $t("mapPage.openHours") }} <br />{{
                     getCurrentPOIOpenHours }}</span>
             </div>
@@ -39,18 +39,22 @@
                 </div>
             </div>
         </div>
+        <Loading v-if="loading"/>
     </MapWindows>
 </template>
 
 <script>
+import Loading from "./loadingSpin.vue";
 import MapWindows from "@/components/UI/MapWindows.vue";
 export default {
     components: {
         MapWindows,
+        Loading
     },
     props: ["selectedItineraryInfo"],
     data() {
         return {
+            loading: false,
             currentWaypointIndex: 0,
         }
     },
@@ -109,13 +113,17 @@ export default {
             }
         },
         deleteItinerary() {
+            this.loading = true;
             this.$store.dispatch("deleteItinerary", { itineraryId: this.selectedItineraryInfo.id }).then(() => {
                 this.$store.dispatch("getItinerary").then(() => {
+                    this.loading = false;
                     this.$emit("goBackToItineraryDropdown");
                 }).catch((error) => {
+                    this.loading = false;
                     this.error = error?.response?.data;
                 })
             }).catch((error) => {
+                this.loading = false;
                 this.error = error?.response?.data;
             })
         },
@@ -127,7 +135,8 @@ export default {
 .deleteButton {
     border-radius: 5px;
     border: 1px solid red;
-    background-color: #fff;
+    background-color: var(--background-color);
+    color: var(--text-color);
     padding: 5px;
 }
 
@@ -148,8 +157,8 @@ export default {
 
 .custom-button {
     margin-bottom: 15px;
-    background-color: #fff;
-    border: 3px solid #fff;
+    background-color: var(--background-color);
+    border: 3px solid var(--background-cards-color);
     border-radius: 15px;
 }
 
@@ -257,4 +266,8 @@ div.backArrow {
     }
 
 }
+.card {
+  background-color: var(--background-cards-color);
+}
+
 </style>

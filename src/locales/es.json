@@ -105,7 +105,8 @@
         "decline": "Rechazar"
     },
     "mapCards": {
-        "noGroups": "No se han asignado grupos"
+        "noGroups": "No se han asignado grupos",
+        "createdAt": "Creado el "
     },
     "forgetPassword": {
         "title": "Encuentra tu cuenta",

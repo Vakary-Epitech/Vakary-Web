@@ -4,10 +4,12 @@
         <img src="@/assets/logo_long_vect.svg">
         </div>
         <div class="card mx-auto my-auto mt-3">
-            <div class="card-body row">
-                <div class="text-center">
-                    <p>{{ $t("screenSizePage.screenSizeTooSmall")}}</p>
-                    <p>{{ $t("screenSizePage.mobile")}}</p>
+            <div class="card-body">
+                <div class="row">
+                    <div class="text-center">
+                        <p>{{ $t("screenSizePage.screenSizeTooSmall")}}</p>
+                        <p>{{ $t("screenSizePage.mobile")}}</p>
+                    </div>
                 </div>
                 <div class="row text-center">
                     <div class="col-6">

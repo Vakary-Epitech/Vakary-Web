@@ -90,9 +90,9 @@
     "numberOfMember": "Member: "
   },
   "mapPage": {
-    "itinerary": "Itinerary",
+    "itinerary": "My itineraries",
     "newItinerary": "Create a new itinerary",
-    "group": "Group",
+    "group": "My groups",
     "from": "from ",
     "to": " to ",
     "nextPoint": "Next point",
@@ -105,7 +105,8 @@
     "decline": "Decline"
   },
   "mapCards": {
-    "noGroups": "No groups assigned"
+    "noGroups": "No groups assigned",
+    "createdAt": "Created on "
   },
   "forgetPassword": {
     "title": "Find Your Account",

@@ -2,7 +2,7 @@
   <div class="card-header">
     <h4 class="text-center mt-3">{{ $t("inscriptionPage.create") }}</h4>
   </div>
-  <div class="card-body row">
+  <div class="card-body row" v-if="!loading">
     <div v-if="error">
       <p class="wrongID text-center">
         <span class="bold">{{ $t("inscriptionPage.errors.failed") }}<br></span>
@@ -21,7 +21,7 @@
         :placeholder="$t('inscriptionPage.email')">
     </div>
     <div class="my-2">
-      <input type="password" class="form-control" v-model="password" :placeholder="$t('inscriptionPage.password')">
+      <input @keyup.enter="(confirmInscription)" type="password" class="form-control" v-model="password" :placeholder="$t('inscriptionPage.password')">
     </div>
     <div>
       <button @click="(confirmInscription)" class="btn newButton text-center">{{ $t("inscriptionPage.register")
@@ -41,11 +41,16 @@
       </button>
     </div>
   </div>
+  <Loading v-if="loading"/>
 </template>
 
 <script>
+import Loading from "@/components/UI/loadingSpin.vue";
 export default {
   emits: ['openLogin'],
+  components: {
+    Loading
+  },
   data() {
     return {
       password: "",
@@ -54,6 +59,7 @@ export default {
       error: false,
       emailError: false,
       userNameError: false,
+      loading: false
     }
   },
   methods: {
@@ -94,6 +100,7 @@ export default {
       }
     },
     confirmInscription() {
+      this.loading = true;
       this.emailError = false;
       this.passwordError = false;
       this.userNameError = false;
@@ -108,8 +115,10 @@ export default {
         email: this.$store.state.userStore.mail,
         password: this.password
       }).then(() => {
+        this.loading = false;
         this.$router.push("/mapPage");
       }).catch((error) => {
+        this.loading = false;
         this.errorMessage = error?.response?.data?.message;
         this.error = true;
       })
