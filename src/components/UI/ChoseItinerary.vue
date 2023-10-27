@@ -69,7 +69,7 @@ export default {
 <style scoped>
 .custom-button {
     margin-bottom: 15px;
-    background-color: #fff;
+    background-color: var(--background-color-primary);
     border: 3px solid #fff;
     border-radius: 15px;
 }

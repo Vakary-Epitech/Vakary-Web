@@ -1,6 +1,6 @@
 <template>
     <div id="app">
-        <MapWindows>
+        <MapWindows dropdown="true">
             <div class="row">
                 <div class="col-12 text-end">
                     <button class="xMark" @click="goBackToGroupDropdown()"><i class="fa-solid fa-xmark fa-lg"></i></button>
@@ -279,11 +279,11 @@ export default {
 }
 
 .xMark {
-    background-color: #FFFFFF;
+    background-color: var(--background-color-primary);
     border: none;
     border-radius: 5px;
     padding: 2px 5px;
-    color: black;
+    color: var(--text-primary-color);
 }
 
 .xMark:hover {

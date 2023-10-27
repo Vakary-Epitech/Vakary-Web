@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="colors">
     <main>
       <languages></languages>
       <section name="cardTop" class="d-none d-md-block">
@@ -8,7 +8,7 @@
           <div class="positionBackgroundCard">
             <b class="textOnTopOfCard">{{ $t("vakarySlogan") }}</b>
             <div class="backgroundCardPosition">
-              <img src="@/assets/Logo_vect.svg" class="logoSize logoPosition">
+              <img src="@/assets/logov2.5.png" class="logoSize logoPosition">
               <div class="textPosition">
                 <label>{{ $t("landingPage.free") }}</label>
                 <label>{{ $t("landingPage.pref") }}</label>
@@ -216,17 +216,6 @@ export default {
     width: 45%;
   }
 }
-
-.buttonLanguage {
-  cursor: pointer;
-  border-radius: 6px;
-  width: 30px;
-  right: 20px;
-  position: fixed;
-  top: 20px;
-  z-index: 2;
-}
-
 @media (max-width: 991.98px) {
   .ajustedMargin {
     margin-top: 250px;
@@ -242,6 +231,11 @@ export default {
   .ajustedMargin {
     margin-top: 150px;
   }
+}
+
+.colors {
+  background-color: var(--background-color-primary);
+  color: var(--text-primary-color);
 }
 
 .qrCodeImage {
@@ -336,7 +330,8 @@ export default {
   justify-content: center;
   align-items: center;
   width: 60vw;
-  background-color: white;
+  background-color: var(--background-color-primary);
+  color: var(--text-primary-color);
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
   transition: 0.3s;
   border-radius: 16px;
@@ -361,7 +356,8 @@ export default {
   justify-content: left;
   align-items: left;
   width: 100%;
-  background-color: white;
+  background-color: var(--background-color-primary);
+  color: var(--text-primary-color);
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
   transition: 0.3s;
   border-radius: 16px;
@@ -399,6 +395,7 @@ export default {
   flex-wrap: wrap;
   padding: 90px 0 70px 90px;
   background: #FFE9D3;
+  color: black;
 }
 
 .invertedBlueVakaryButton {
@@ -430,6 +427,12 @@ export default {
   display: flex;
   margin-top: 10px;
   margin-right: 15px;
+}
+
+.logoSize {
+  height: 10vh;
+  border-radius: 200px;
+  width: 10vh;
 }
 
 .textPosition {

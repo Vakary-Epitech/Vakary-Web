@@ -128,5 +128,8 @@ export default {
     margin-top: calc(2px + 0.6vh);
     margin-bottom: calc(2px + 0.6vh);
 }
+.card {
+  background-color: var(--background-cards-color);
+}
 
 </style>

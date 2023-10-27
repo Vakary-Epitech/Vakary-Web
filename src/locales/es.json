@@ -105,7 +105,8 @@
         "decline": "Rechazar"
     },
     "mapCards": {
-        "noGroups": "No se han asignado grupos"
+        "noGroups": "No se han asignado grupos",
+        "createdAt": "Creado el "
     },
     "forgetPassword": {
         "title": "Encuentra tu cuenta",
@@ -232,5 +233,8 @@
         "commBody": "Vakary pretende expandirse por lo que nuestras redes sociales serán mucho más activas",
         "CDP": "Jefe de proyecto",
         "team": "Nuestro equipo"
+    },
+    "languagesModal": {
+        "selectLanguage": "Seleccionar idioma"
     }
 }

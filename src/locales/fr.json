@@ -135,9 +135,9 @@
         "numberOfMember": "Membre: "
     },
     "mapPage": {
-        "itinerary": "Itinéraires",
+        "itinerary": "Mes itinéraires",
         "newItinerary": "Créer un nouvel itinéraire",
-        "group": "Groupe",
+        "group": "Mes groupes",
         "from": "De ",
         "to": " a ",
         "nextPoint": "Prochain point",
@@ -150,7 +150,8 @@
         "decline": "Refuser"
     },
     "mapCards": {
-        "noGroups": "Aucun groupe assigné"
+        "noGroups": "Aucun groupe assigné",
+        "createdAt": "Créé le "
     },
     "itineraryModal": {
         "creation": "Création de votre itinéraire",
@@ -297,5 +298,8 @@
         "commBody": "Vakary a pour objectif de s'étendre donc nos réseaux sociaux deviendront beaucoup plus actifs.",
         "CDP": "Chef de projet",
         "team": "Notre équipe"
+    },
+    "languagesModal": {
+      "selectLanguage": "Sélectionner la langue"
     }
 }
