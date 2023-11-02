@@ -223,7 +223,7 @@ const itineraryStore = {
                 }
             })
         },
-        dislikePOI({ getters }, data) {
+        removelikePOI({ getters }, data) {
             return new Promise((resolve, reject) => {
                 try {
                     let config = getters.getConfig({ url: "interestPoint/" + data.id + "/removeLike", data: data, method: "patch" })

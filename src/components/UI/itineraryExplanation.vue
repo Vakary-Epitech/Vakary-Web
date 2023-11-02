@@ -134,7 +134,7 @@ export default {
         },
         likeClicked() {
             this.liked = !this.liked;
-            this.liked === true ? this.$store.dispatch("likePOI", { id: this.selectedItineraryInfo?.itineraryPOI[this.currentWaypointIndex].id } ) : this.$store.dispatch("dislikePOI", { id: this.selectedItineraryInfo?.itineraryPOI[this.currentWaypointIndex].id } )
+            this.liked === true ? this.$store.dispatch("likePOI", { id: this.selectedItineraryInfo?.itineraryPOI[this.currentWaypointIndex].id } ) : this.$store.dispatch("removelikePOI", { id: this.selectedItineraryInfo?.itineraryPOI[this.currentWaypointIndex].id } )
             this.isAnimating = true;
             setTimeout(() => {
                 this.isAnimating = false;
