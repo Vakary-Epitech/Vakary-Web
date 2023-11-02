@@ -207,6 +207,38 @@ const itineraryStore = {
                 }
             })
         },
+        likePOI({ getters }, data) {
+            return new Promise((resolve, reject) => {
+                try {
+                    let config = getters.getConfig({ url: "interestPoint/" + data.id + "/like", data: data, method: "patch" })
+
+                    axios.request(config).then((cards) => {
+                        resolve(cards);
+                    }).catch((error) => {
+                        console.log(error);
+                    })
+
+                } catch (error) {
+                    reject(error);
+                }
+            })
+        },
+        dislikePOI({ getters }, data) {
+            return new Promise((resolve, reject) => {
+                try {
+                    let config = getters.getConfig({ url: "interestPoint/" + data.id + "/removeLike", data: data, method: "patch" })
+
+                    axios.request(config).then((cards) => {
+                        resolve(cards);
+                    }).catch((error) => {
+                        console.log(error);
+                    })
+
+                } catch (error) {
+                    reject(error);
+                }
+            })
+        }
     },
 }
 
