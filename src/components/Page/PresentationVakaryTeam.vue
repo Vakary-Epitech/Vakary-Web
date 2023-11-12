@@ -40,7 +40,7 @@
         <div style="display: flex; margin: auto">
             <div class="midImagePresentation">
                 <img class="imgDesign"
-                    src="https://media.licdn.com/dms/image/C4D03AQHY6Xn4DULh1g/profile-displayphoto-shrink_200_200/0/1579179836690?e=1701302400&v=beta&t=Lon3II_Lom7Lyjis7wRfvmPFrbd1qqoCPN3s7_Egpi8">
+                    src="https://media.licdn.com/dms/image/D4E03AQGmwd-J5-Iqvg/profile-displayphoto-shrink_800_800/0/1698421142990?e=1705536000&v=beta&t=NQXxfp8ToMMIJB3pQ5u7rd-B44-vQQzQKmn0-Yqog3Q">
                 <div style="display: flex; flex-direction: column; text-align:center;">
                     <span>Eliott Ferry</span>
                     <span>Back</span>
@@ -59,7 +59,7 @@
             <div>
                 <div class="midImagePresentation">
                     <img class="imgDesign"
-                        src="https://media.licdn.com/dms/image/C4D03AQFOoYwnaS4zJQ/profile-displayphoto-shrink_100_100/0/1548236271555?e=1701302400&v=beta&t=vuMUZ-vkpMGpWouGAP7VZOJuDrQu6Em9Dh8bFNAsl2M">
+                        src="https://media.licdn.com/dms/image/D4E35AQE29T9mT9cbAg/profile-framedphoto-shrink_800_800/0/1697876291654?e=1700416800&v=beta&t=__y9ZISco9lnOAv--zkupUjGqOnDFgl9QY_8Ldj44CA">
                     <div style="display: flex; flex-direction: column; text-align:center;">
                         <span>Thibault Humbert</span>
                         <span>IOS</span>
@@ -80,7 +80,7 @@
         <div style="display: flex; margin: auto">
             <div class="presentationImg">
                 <img class="imgDesign"
-                    src="https://media.licdn.com/dms/image/C5603AQF_nTwii8LKMw/profile-displayphoto-shrink_100_100/0/1581420998194?e=1701302400&v=beta&t=ZxJzW-FNMxtARhVhWcWRCakGHBWZtJmdUHKx0zOP7gw">
+                    src="https://media.licdn.com/dms/image/D4D03AQEcq9XQHWQMmQ/profile-displayphoto-shrink_800_800/0/1697563781683?e=1705536000&v=beta&t=JxxH8JpEU9Dg18LPkNec9hNlLvIOx6mPYFvUysRPX6A">
                 <div style="display: flex; flex-direction: column; text-align:center;">
                     <span>Tom Wederich</span>
                     <span>Fullstack</span>

@@ -44,7 +44,7 @@
             <div class="date">{{ $t("roadMap.commDate") }}</div>
             <i class="icon fa fa-user"></i>
             <div class="content">
-                <h2>{{ $t("roadMap.commDate") }}</h2>
+                <h2>{{ $t("roadMap.commTitle") }}</h2>
                 <p>
                     {{ $t("roadMap.commBody") }}
                 </p>
