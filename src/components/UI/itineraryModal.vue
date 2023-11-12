@@ -126,13 +126,13 @@
                                 <font-awesome-icon class="mt-1 ms-2"
                                     :icon="dropdownOpen[categoryIndex] ? ['fas', 'caret-down'] : ['fas', 'caret-right']"
                                     style="float: left" />
-                                <span style="float: left" class="ms-3">{{ category }}</span>
+                                <span style="float: left" class="ms-3">{{ $t(category.key) }}</span>
                             </button>
                         </div>
                         <div class="row my-2" v-show="isDropdownOpen(categoryIndex)"
                             v-for="(poi, poiIndex) in getPoisByCategory(category)" :key="poiIndex">
-                            <input class="col sameSize" type="checkbox" v-model="selectedPOIs[poi]" value="poi" />
-                            <span class="col-10">{{ poi }}</span>
+                            <input class="col sameSize" type="checkbox" v-model="selectedPOIs[poi.value]" value="poi.value" />
+                            <span class="col-10">{{ $t(poi.key) }}</span>
                         </div>
                     </div>
                 </div>
@@ -175,13 +175,13 @@ export default {
             categories: Object.values(IPTTypeGroup),
             selectedPOIs: {},
             poiData: {
-                [IPTTypeGroup.TOUR]: Object.values(IPTTour),
-                [IPTTypeGroup.EVENT]: Object.values(IPTEvent),
-                [IPTTypeGroup.NATURAL]: Object.values(IPTNatural),
-                [IPTTypeGroup.ACTIVITY]: Object.values(IPTActivity),
-                [IPTTypeGroup.DRINKING]: Object.values(IPTDrinking),
-                [IPTTypeGroup.CULTURAL]: Object.values(IPTCultural),
-                [IPTTypeGroup.EATING]: Object.values(IPTEating)
+                Tour: Object.values(IPTTour),
+                Event: Object.values(IPTEvent),
+                Natural: Object.values(IPTNatural),
+                Activity: Object.values(IPTActivity),
+                Drinking: Object.values(IPTDrinking),
+                Eating: Object.values(IPTEating),
+                Cultural: Object.values(IPTCultural),
             },
             dropdownOpen: [],
             activeIndex: 0,
@@ -215,9 +215,9 @@ export default {
             return normalized.charAt(0).toLowerCase() + normalized.slice(1);
         },
         checkToggle(category) {
-            const pois = this.poiData[category];
-            const areAllTrue = pois.every(poi => this.selectedPOIs[poi]);
-            const areAllFalse = pois.every(poi => !this.selectedPOIs[poi]);
+            const pois = this.poiData[category.value];
+            const areAllTrue = pois.every(poi => this.selectedPOIs[poi.value]);
+            const areAllFalse = pois.every(poi => !this.selectedPOIs[poi.value]);
 
             if (areAllTrue) {
                 return true;
@@ -228,23 +228,23 @@ export default {
             }
         },
         toggleAllPOIs(category) {
-            const pois = this.poiData[category];
-            const areAllTrue = pois.every(poi => this.selectedPOIs[poi]);
-            const areAllFalse = pois.every(poi => !this.selectedPOIs[poi]);
+            const pois = this.poiData[category.value];
+            const areAllTrue = pois.every(poi => this.selectedPOIs[poi.value]);
+            const areAllFalse = pois.every(poi => !this.selectedPOIs[poi.value]);
 
             if (areAllTrue) {
                 for (const poi of pois) {
-                    this.selectedPOIs[poi] = false;
+                    this.selectedPOIs[poi.value] = false;
                 }
             }
             else if (areAllFalse) {
                 for (const poi of pois) {
-                    this.selectedPOIs[poi] = true;
+                    this.selectedPOIs[poi.value] = true;
                 }
             }
             else {
                 for (const poi of pois) {
-                    this.selectedPOIs[poi] = true;
+                    this.selectedPOIs[poi.value] = true;
                 }
             }
         },
@@ -255,7 +255,7 @@ export default {
             return this.dropdownOpen[categoryIndex];
         },
         getPoisByCategory(category) {
-            return this.poiData[category] || [];
+            return this.poiData[category.value] || [];
         },
         leaveGroupCreation() {
             this.$emit("goBackToItineraryDropdown");
