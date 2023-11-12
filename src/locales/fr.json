@@ -214,79 +214,64 @@
         }
     },
     "POI": {
-        "interestPointTypeTour": {
-            "cyclingTour": "Circuit à vélo",
-            "roadTour": "Circuit routier",
-            "walkingTour": "Circuit pédestre",
-            "tour": "Visite guidée",
-            "touristTrain": "Train touristique"
+        "interestPointTypeAccommodation": {
+          "accommodation": "Hébergement",
+          "guestHouse": "Maison d'hôtes",
+          "hotel": "Hôtel",
+          "holidayResort": "Station de vacances",
+          "winery": "Cave",
+          "selfCateringAccommodation": "Location avec cuisine",
+          "lodgingBusiness": "Établissement d'hébergement"
         },
-        "interestPointTypeEvent": {
-            "showEvent": "Spectacle",
-            "socialEvent": "Événement social",
-            "sportsEvent": "Événement sportif",
-            "entertainmentAndEvent": "Divertissement et événement",
-            "exhibitionEvent": "Exposition",
-            "culturalEvent": "Événement culturel"
+        "interestPointTypeRestauration": {
+          "restaurant": "Restaurant",
+          "fastFood": "Fast-food",
+          "cafe": "Café",
+          "bistro": "Bistro",
+          "pub": "Pub",
+          "nightClub": "Boîte de nuit"
         },
-        "interestPointTypeNatural": {
-            "landform": "Relief",
-            "park": "Parc",
-            "parkAndGarden": "Parc et jardin",
-            "river": "Rivière",
-            "riverPort": "Port fluvial"
+        "interestPointTypeShop": {
+          "store": "Magasin",
+          "craftsmanShop": "Atelier d'artisan",
+          "businessPlace": "Lieu commercial"
         },
-        "interestPointTypeActivity": {
-            "bowling": "Bowling",
-            "cinema": "Cinéma",
-            "game": "Salle de jeux",
-            "minigolf": "Minigolf",
-            "movieTheater": "Salle de cinéma",
-            "theater": "Théâtre",
-            "amusementPark": "Parc d'attractions",
-            "themePark": "Parc à thème",
-            "exhibition": "Exposition",
-            "leisureComplex": "Complexe de loisirs",
-            "marine": "Maritime"
+        "interestPointTypeSport": {
+          "stadium": "Stade",
+          "arena": "Arène",
+          "sportPlace": "Lieu sportif",
+          "miniGold": "Mini-golf",
+          "swimmingPool": "Piscine",
+          "bowling": "Bowling"
         },
-        "interestPointTypeDrinking": {
-            "barOrPub": "Bar ou pub",
-            "bistroOrWineBar": "Bistrot ou bar à vin",
-            "nightclub": "Discothèque",
-            "winery": "Cave",
-            "tastingProvider": "Dégustation"
-        },
-        "interestPointTypeCultural": {
-            "castle": "Château",
-            "church": "Église",
-            "cityHeritage": "Patrimoine urbain",
-            "militaryCemetery": "Cimetière militaire",
-            "museum": "Musée",
-            "naturalHeritage": "Patrimoine naturel",
-            "religiousSite": "Site religieux",
-            "remembranceSite": "Site de mémoire",
-            "remarkableBuilding": "Bâtiment remarquable",
-            "culturalSite": "Site culturel"
-        },
-        "interestPointTypeEating": {
-            "fastFoodRestaurant": "Restaurant de restauration rapide",
-            "foodEstablishment": "Établissement alimentaire",
-            "restaurant": "Restaurant",
-            "selfCateringAccomodation": "Hébergement en gestion libre",
-            "selfServiceCafetaria": "Cafétéria en libre-service",
-            "cafeOrCoffeeShop": "Café ou salon de thé",
-            "cafeOrTeahouse": "Café ou salon de thé"
+        "interestPointTypePlaceToVisit": {
+          "amusementPark": "Parc d'attractions",
+          "church": "Église",
+          "cinema": "Cinéma",
+          "culturalSite": "Site culturel",
+          "cyclingTour": "Tour à vélo",
+          "landForm": "Formation géologique",
+          "naturalHeritage": "Patrimoine naturel",
+          "remarkableBuilding": "Bâtiment remarquable",
+          "theater": "Théâtre",
+          "library": "Bibliothèque",
+          "cityHeritage": "Patrimoine urbain",
+          "museum": "Musée",
+          "castle": "Château",
+          "river": "Rivière",
+          "leisureComplex": "Complexe de loisirs",
+          "roadTour": "Tour routier",
+          "parkGarden": "Parc Jardin",
+          "walkingTour": "Tour à pied"
         },
         "interestPointTypeGroup": {
-            "tour": "Circuit",
-            "event": "Événement",
-            "natural": "Nature",
-            "activity": "Activité",
-            "drinking": "Boisson",
-            "cultural": "Culture",
-            "eating": "Restauration"
+          "accomodation": "Hébergement",
+          "restauration": "Restauration",
+          "placeToVisit": "Lieu à visiter",
+          "shop": "Shopping",
+          "sport": "Sport"
         }
-    }, 
+      },
     "cardsGroup": {
       "members": "Membres"
     },

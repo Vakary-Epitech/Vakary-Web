@@ -1,16 +1,13 @@
 <template>
     <MapWindows style="min-height: 80vh;" dropdown="true">
         <div class="row" v-if="!loading">
-            <div class="col-2 my-auto">
+            <div class="col-3 my-auto">
                 <div class="backArrow" @click="goBackToItineraryDropdown"></div>
             </div>
             <h4 class="titleLimiterSize col-6 my-auto text-center">{{
                 this.selectedItineraryInfo?.itineraryPOI[this.currentWaypointIndex].City.name }}
             </h4>
-            <div class="col-4 text-end my-auto">
-                <button @click="likeClicked" class="btn btn-link" :class="{'text-danger': liked, 'heart-animation': isAnimating }">
-                    <i class="fa-solid fa-heart fa-xl"></i>
-                </button>
+            <div class="col-3 text-end my-auto">
                 <button class="deleteButton" @click="deleteItinerary()">
                     <i class="fa-solid fa-trash fa-xl"></i>
                 </button>
@@ -59,8 +56,6 @@ export default {
         return {
             loading: false,
             currentWaypointIndex: 0,
-            liked: false,
-            isAnimating: false,
         }
     },
     mounted() {
@@ -132,36 +127,11 @@ export default {
                 this.error = error?.response?.data;
             })
         },
-        likeClicked() {
-            this.liked = !this.liked;
-            this.liked === true ? this.$store.dispatch("likePOI", { id: this.selectedItineraryInfo?.itineraryPOI[this.currentWaypointIndex].id } ) : this.$store.dispatch("removelikePOI", { id: this.selectedItineraryInfo?.itineraryPOI[this.currentWaypointIndex].id } )
-            this.isAnimating = true;
-            setTimeout(() => {
-                this.isAnimating = false;
-            }, 1000);
-        }
     }
 }
 </script>
 
 <style scoped lang="scss">
-
-.heart-animation {
-  animation: heartbeat 0.5s;
-}
-
-@keyframes heartbeat {
-  0% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.2);
-  }
-  100% {
-    transform: scale(1);
-  }
-}
-
 .deleteButton {
     border-radius: 5px;
     border: 1px solid red;
