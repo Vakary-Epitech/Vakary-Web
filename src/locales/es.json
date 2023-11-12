@@ -222,15 +222,15 @@
         "corrTitle": "Corrección y Mejora",
         "corrBody": "¡Vakary te ha escuchado y se está mejorando gracias a los comentarios de sus beta testers!",
         "sauvDate": "30 NOV 2023",
-        "sauvTitle": "Añadida la copia de seguridad de preferencias",
-        "sauvBody": "Vakary te permitirá ingresar tus preferencias de puntos de interés en tu perfil. De esta manera, no necesitarás seleccionar tus preferencias cada vez que lo uses.",
-        "profDate": "30 MAR 2024",
-        "profTitle": "Añadida la visita a los perfiles de Vakary",
-        "profBody": "Podrás visitar los perfiles de otros usuarios y ver qué han visitado tus amigos.",
+        "sauvTitle": "Añadido de la Guarda de Preferencias",
+        "sauvBody": "Vakary te permitirá ingresar tus preferencias de puntos de interés en tu perfil. Así, no tendrás que seleccionar tus preferencias cada vez que lo uses.",
+        "profDate": "30 DIC 2023",
+        "profTitle": "Añadido de la Visita a Perfiles de Vakary",
+        "profBody": "Podrás visitar los perfiles de otros usuarios y ver lo que han visitado tus amigos.",
         "commDate": "30 AGO 2024",
-        "commTitle": "Desarrollo y expansión de Vakary",
-        "commBody": "Vakary tiene como objetivo expandirse a todas las ciudades de Europa.",
+        "commTitle": "Expansión de Vakary",
+        "commBody": "Vakary tiene como objetivo llegar a 100,000 usuarios.",
         "CDP": "Jefe de Proyecto",
         "team": "Nuestro Equipo"
-    }    
+    }        
 }
