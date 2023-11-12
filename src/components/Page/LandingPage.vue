@@ -86,10 +86,9 @@
               <b><span class="groupText">{{ $t("landingPage.block3Text1") }}</span></b>
               <span class="groupText subtitleGroupText mt-4">{{ $t("landingPage.block3Text2b") }}</span>
               <div class="alignLeft">
-                <button class="invertedBlueVakaryButton biggerButton availableSoon" :class="`availableSoon${geti18n()}`"
-                  data-bs-toggle="modal" data-bs-target="#modalMobile"><!-- {{ $t("landingPage.find") }}--><span
-                    class="arrow"></span></button>
-              </div>
+                <button class="invertedBlueVakaryButton biggerButton"  data-bs-toggle="modal"
+                  data-bs-target="#modalMobile">{{ $t("landingPage.find") }}<span class="arrow"></span></button>
+                </div>
             </div>
             <div class="alignPhoneImage">
               <img class="telImage" src="@/assets/LandingPage/mapTelephone.png">
