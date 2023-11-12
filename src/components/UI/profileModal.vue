@@ -43,14 +43,14 @@
                         <h6>{{ $t("profilePage.likes") }}</h6>
                         <p>{{ user?.likes }}</p>
                     </div>
-                    <div class="col-6 col-xxxl-3 text-center">
+                    <!-- <div class="col-6 col-xxxl-3 text-center">
                         <h6>{{ $t("profilePage.totalKm") }}</h6>
                         <p>{{ user?.milesTraveled }}</p>
                     </div>
                     <div class="col-6 col-xxxl-3 text-center">
                         <h6>{{ $t("profilePage.comments") }}</h6>
                         <p>{{ user?.comments }}</p>
-                    </div>
+                    </div> -->
                     <div class="col-6 col-xxxl-3 text-center">
                         <h6>{{ $t("profilePage.verified") }}</h6>
                         <p v-if="user?.verified === 'true'"><i class="fa-solid fa-check green-check"></i></p>
@@ -126,6 +126,7 @@ export default {
             })
         },
         disconnectUser() {
+            this.$store.commit('CLEAR_USER_INFO')
             this.$router.push("/");
         },
         deleteUser() {

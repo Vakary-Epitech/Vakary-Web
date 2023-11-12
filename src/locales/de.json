@@ -211,6 +211,80 @@
             "mail": "Ungültige E-Mail-Adresse"
         }
     },
+    "POI": {
+        "interestPointTypeTour": {
+            "cyclingTour": "Fahrradtour",
+            "roadTour": "Straßentour",
+            "walkingTour": "Wandertour",
+            "tour": "Rundgang",
+            "touristTrain": "Touristenzug"
+        },
+        "interestPointTypeEvent": {
+            "showEvent": "Show-Veranstaltung",
+            "socialEvent": "Soziale Veranstaltung",
+            "sportsEvent": "Sportveranstaltung",
+            "entertainmentAndEvent": "Unterhaltungsveranstaltung",
+            "exhibitionEvent": "Ausstellung",
+            "culturalEvent": "Kulturveranstaltung"
+        },
+        "interestPointTypeNatural": {
+            "landform": "Landschaftsform",
+            "park": "Park",
+            "parkAndGarden": "Park und Garten",
+            "river": "Fluss",
+            "riverPort": "Flusshafen"
+        },
+        "interestPointTypeActivity": {
+            "bowling": "Bowling",
+            "cinema": "Kino",
+            "game": "Spielhalle",
+            "minigolf": "Minigolf",
+            "movieTheater": "Kino",
+            "theater": "Theater",
+            "amusementPark": "Freizeitpark",
+            "themePark": "Themenpark",
+            "exhibition": "Ausstellung",
+            "leisureComplex": "Freizeitzentrum",
+            "marine": "Meer"
+        },
+        "interestPointTypeDrinking": {
+            "barOrPub": "Bar oder Kneipe",
+            "bistroOrWineBar": "Bistro oder Weinbar",
+            "nightclub": "Nachtclub",
+            "winery": "Weingut",
+            "tastingProvider": "Verkostungsanbieter"
+        },
+        "interestPointTypeCultural": {
+            "castle": "Schloss",
+            "church": "Kirche",
+            "cityHeritage": "Stadterbe",
+            "militaryCemetery": "Militärfriedhof",
+            "museum": "Museum",
+            "naturalHeritage": "Naturerbe",
+            "religiousSite": "Religiöse Stätte",
+            "remembranceSite": "Gedenkstätte",
+            "remarkableBuilding": "Bemerkenswertes Gebäude",
+            "culturalSite": "Kulturstätte"
+        },
+        "interestPointTypeEating": {
+            "fastFoodRestaurant": "Schnellrestaurant",
+            "foodEstablishment": "Lebensmittelunternehmen",
+            "restaurant": "Restaurant",
+            "selfCateringAccomodation": "Selbstversorgerunterkunft",
+            "selfServiceCafetaria": "Selbstbedienungskafeteria",
+            "cafeOrCoffeeShop": "Café oder Kaffeegeschäft",
+            "cafeOrTeahouse": "Café oder Teestube"
+        },
+        "interestPointTypeGroup": {
+            "tour": "Rundgang",
+            "event": "Veranstaltung",
+            "natural": "Natur",
+            "activity": "Aktivität",
+            "drinking": "Getränke",
+            "cultural": "Kultur",
+            "eating": "Essen"
+        }
+    },
     "loadingSpin": {
         "loading": "Laden läuft...",
         "loadingItinerary": "Routenladen...",
