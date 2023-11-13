@@ -105,7 +105,8 @@
         "decline": "Rechazar"
     },
     "mapCards": {
-        "noGroups": "No se han asignado grupos"
+        "noGroups": "No se han asignado grupos",
+        "createdAt": "Creado el "
     },
     "forgetPassword": {
         "title": "Encuentra tu cuenta",
@@ -209,6 +210,80 @@
             "mail": "Correo electrónico no válido"
         }
     },
+    "POI": {
+        "interestPointTypeTour": {
+          "cyclingTour": "Tour en bicicleta",
+          "roadTour": "Tour en carretera",
+          "walkingTour": "Tour a pie",
+          "tour": "Recorrido",
+          "touristTrain": "Tren turístico"
+        },
+        "interestPointTypeEvent": {
+          "showEvent": "Espectáculo",
+          "socialEvent": "Evento social",
+          "sportsEvent": "Evento deportivo",
+          "entertainmentAndEvent": "Entretenimiento y evento",
+          "exhibitionEvent": "Exposición",
+          "culturalEvent": "Evento cultural"
+        },
+        "interestPointTypeNatural": {
+          "landform": "Formación natural",
+          "park": "Parque",
+          "parkAndGarden": "Parque y jardín",
+          "river": "Río",
+          "riverPort": "Puerto fluvial"
+        },
+        "interestPointTypeActivity": {
+          "bowling": "Bolera",
+          "cinema": "Cine",
+          "game": "Sala de juegos",
+          "minigolf": "Minigolf",
+          "movieTheater": "Sala de cine",
+          "theater": "Teatro",
+          "amusementPark": "Parque de atracciones",
+          "themePark": "Parque temático",
+          "exhibition": "Exposición",
+          "leisureComplex": "Complejo de ocio",
+          "marine": "Marino"
+        },
+        "interestPointTypeDrinking": {
+          "barOrPub": "Bar o pub",
+          "bistroOrWineBar": "Bistró o bar de vinos",
+          "nightclub": "Discoteca",
+          "winery": "Bodega",
+          "tastingProvider": "Proveedor de degustaciones"
+        },
+        "interestPointTypeCultural": {
+          "castle": "Castillo",
+          "church": "Iglesia",
+          "cityHeritage": "Patrimonio de la ciudad",
+          "militaryCemetery": "Cementerio militar",
+          "museum": "Museo",
+          "naturalHeritage": "Patrimonio natural",
+          "religiousSite": "Lugar religioso",
+          "remembranceSite": "Lugar de recuerdo",
+          "remarkableBuilding": "Edificio destacado",
+          "culturalSite": "Lugar cultural"
+        },
+        "interestPointTypeEating": {
+          "fastFoodRestaurant": "Restaurante de comida rápida",
+          "foodEstablishment": "Establecimiento de alimentos",
+          "restaurant": "Restaurante",
+          "selfCateringAccomodation": "Alojamiento de autoservicio",
+          "selfServiceCafetaria": "Cafetería de autoservicio",
+          "cafeOrCoffeeShop": "Café o tienda de café",
+          "cafeOrTeahouse": "Café o casa de té"
+        },
+        "interestPointTypeGroup": {
+          "tour": "Recorrido",
+          "event": "Evento",
+          "natural": "Natural",
+          "activity": "Actividad",
+          "drinking": "Bebida",
+          "cultural": "Cultural",
+          "eating": "Comida"
+        }
+    },
     "loadingSpin": {
         "loading": "Cargando...",
         "loadingItinerary": "Cargando itinerario...",
@@ -225,12 +300,15 @@
         "sauvTitle": "Añadido de la Guarda de Preferencias",
         "sauvBody": "Vakary te permitirá ingresar tus preferencias de puntos de interés en tu perfil. Así, no tendrás que seleccionar tus preferencias cada vez que lo uses.",
         "profDate": "30 DIC 2023",
-        "profTitle": "Añadido de la Visita a Perfiles de Vakary",
-        "profBody": "Podrás visitar los perfiles de otros usuarios y ver lo que han visitado tus amigos.",
-        "commDate": "30 AGO 2024",
-        "commTitle": "Expansión de Vakary",
-        "commBody": "Vakary tiene como objetivo llegar a 100,000 usuarios.",
-        "CDP": "Jefe de Proyecto",
-        "team": "Nuestro Equipo"
-    }        
+        "profTitle": "Adición de la visita al perfil de Vakary",
+        "profBody": "Podrás visitar los perfiles de otros usuarios y ver qué visitan tus amigos favoritos",
+        "commDate": "30 ENE 2024",
+        "commTitle": "Comunicación y Negocios",
+        "commBody": "Vakary pretende expandirse por lo que nuestras redes sociales serán mucho más activas",
+        "CDP": "Jefe de proyecto",
+        "team": "Nuestro equipo"
+    },
+    "languagesModal": {
+        "selectLanguage": "Seleccionar idioma"
+    }
 }

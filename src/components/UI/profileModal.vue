@@ -5,8 +5,8 @@
         - div col 
      It is using as well the i18n system for a translation system -->
 <template>
-    <MapWindows style="max-width: 15vw; max-height: 85vh;">
-        <div class="row">
+    <MapWindows style="min-width: 250px; max-width: 30vh; max-height: 85vh;">
+        <div class="row" v-if="!loading">
             <div class="col-12">
                 <div class="row" v-if="!editMode">
                     <div class="text-center">
@@ -43,21 +43,20 @@
                         <h6>{{ $t("profilePage.likes") }}</h6>
                         <p>{{ user?.likes }}</p>
                     </div>
-                    <div class="col-6 col-xxxl-3 text-center">
+                    <!-- <div class="col-6 col-xxxl-3 text-center">
                         <h6>{{ $t("profilePage.totalKm") }}</h6>
                         <p>{{ user?.milesTraveled }}</p>
                     </div>
                     <div class="col-6 col-xxxl-3 text-center">
                         <h6>{{ $t("profilePage.comments") }}</h6>
                         <p>{{ user?.comments }}</p>
-                    </div>
+                    </div> -->
                     <div class="col-6 col-xxxl-3 text-center">
                         <h6>{{ $t("profilePage.verified") }}</h6>
                         <p v-if="user?.verified === 'true'"><i class="fa-solid fa-check green-check"></i></p>
                         <p v-if="user?.verified === 'false'"><i class="fa-solid fa-xmark red-xmark"></i></p>
                     </div>
                 </div>
-                <LoadingSpin v-if="loading" />
                 <div class="row text-center">
                     <div class="col-12 col-xxxl-6">
                         <button class="btn btn-edit" @click="edit"><i class="fa-solid fa-pen me-2"></i>{{ $t("profilePage.edit") }}</button>
@@ -71,16 +70,17 @@
                 </div>
             </div>
         </div>
+        <Loading v-if="loading"/>
     </MapWindows>
 </template>
     
 <script>
 import MapWindows from "./MapWindows.vue";
-import LoadingSpin from "./loadingSpin.vue";
+import Loading from "./loadingSpin.vue";
 export default {
     components: {
         MapWindows,
-        LoadingSpin
+        Loading
     },
     data() {
         return {
@@ -126,6 +126,7 @@ export default {
             })
         },
         disconnectUser() {
+            this.$store.commit('CLEAR_USER_INFO')
             this.$router.push("/");
         },
         deleteUser() {

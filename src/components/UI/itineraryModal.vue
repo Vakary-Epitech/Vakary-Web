@@ -1,9 +1,9 @@
 <template>
-    <MapWindows>
-        <div>
+    <MapWindows dropdown="true">
+        <div v-if="!loading">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">{{ $t("itineraryModal.creation") }}</h5>
-                <button @click="leaveGroupCreation" type="button" class="btn-close" aria-label="Close"></button>
+                <button @click="leaveGroupCreation" class="xMark"><i class="fa-solid fa-xmark fa-lg"></i></button>
             </div>
             <div class="modal-body">
                 <div class="col-12">
@@ -36,6 +36,7 @@
                     <span>{{ $t("itineraryModal.startingDate") }}</span><br>
                     <input class="form-control ms-1" type="date" v-model="date">
                 </div>
+                <!-- <hr class="separationBar">
                 <hr class="separationBar">
                 <div class="col-12">
                     <span>{{ $t("itineraryModal.budget") }} </span><br>
@@ -84,7 +85,7 @@
                                     class="fa-solid fa-plus custom-maths"></i></button>
                         </div>
                     </div>
-                </div>
+                </div> -->
                 <div class="col-12" v-if="$store.state.groupStore.groups.length > 0">
                     <hr class="separationBar" v-if="$store.state.groupStore.groups.length > 0">
                     <div class="row">
@@ -122,16 +123,16 @@
                             <input class="col-1 ms-2" type="checkbox" :checked="checkToggle(category)"
                                 @change="toggleAllPOIs(category)" />
                             <button class="col-10 mx-auto dropDownButton" @click="toggleDropdown(categoryIndex)">
-                                {{ category }}
-                                <font-awesome-icon class="mt-1"
-                                    :icon="dropdownOpen[categoryIndex] ? ['fas', 'caret-up'] : ['fas', 'caret-down']"
-                                    style="float: right" />
+                                <font-awesome-icon class="mt-1 ms-2"
+                                    :icon="dropdownOpen[categoryIndex] ? ['fas', 'caret-down'] : ['fas', 'caret-right']"
+                                    style="float: left" />
+                                <span style="float: left" class="ms-3">{{ $t(category.key) }}</span>
                             </button>
                         </div>
                         <div class="row my-2" v-show="isDropdownOpen(categoryIndex)"
                             v-for="(poi, poiIndex) in getPoisByCategory(category)" :key="poiIndex">
-                            <input class="col sameSize" type="checkbox" v-model="selectedPOIs[poi]" value="poi" />
-                            <span class="col-10">{{ poi }}</span>
+                            <input class="col sameSize" type="checkbox" v-model="selectedPOIs[poi.value]" value="poi.value" />
+                            <span class="col-10">{{ $t(poi.key) }}</span>
                         </div>
                     </div>
                 </div>
@@ -142,16 +143,19 @@
                     style="margin: auto; margin-top: 10px; margin-bottom: 10px">{{ $t("itineraryModal.generate") }}</button>
             </div>
         </div>
+        <Loading v-if="loading"/>
     </MapWindows>
 </template>
   
 <script>
+import Loading from "../UI/loadingSpin.vue";
 import { IPTNatural, IPTActivity, IPTDrinking, IPTCultural, IPTEating, IPTEvent, IPTTour, IPTTypeGroup } from "@/utils/poiTypes.js";
 import cardsGroup from "../UI/CardsGroup.vue";
 import MapWindows from "../UI/MapWindows.vue";
 export default {
     components: {
         cardsGroup,
+        Loading,
         MapWindows
     },
     data() {
@@ -164,19 +168,20 @@ export default {
             people: 1,
             error: false,
             days: 1,
+            loading: false,
             city: "",
             children: 0,
             indexOfGroup: 0,
             categories: Object.values(IPTTypeGroup),
             selectedPOIs: {},
             poiData: {
-                [IPTTypeGroup.TOUR]: Object.values(IPTTour),
-                [IPTTypeGroup.EVENT]: Object.values(IPTEvent),
-                [IPTTypeGroup.NATURAL]: Object.values(IPTNatural),
-                [IPTTypeGroup.ACTIVITY]: Object.values(IPTActivity),
-                [IPTTypeGroup.DRINKING]: Object.values(IPTDrinking),
-                [IPTTypeGroup.CULTURAL]: Object.values(IPTCultural),
-                [IPTTypeGroup.EATING]: Object.values(IPTEating)
+                Tour: Object.values(IPTTour),
+                Event: Object.values(IPTEvent),
+                Natural: Object.values(IPTNatural),
+                Activity: Object.values(IPTActivity),
+                Drinking: Object.values(IPTDrinking),
+                Eating: Object.values(IPTEating),
+                Cultural: Object.values(IPTCultural),
             },
             dropdownOpen: [],
             activeIndex: 0,
@@ -210,9 +215,9 @@ export default {
             return normalized.charAt(0).toLowerCase() + normalized.slice(1);
         },
         checkToggle(category) {
-            const pois = this.poiData[category];
-            const areAllTrue = pois.every(poi => this.selectedPOIs[poi]);
-            const areAllFalse = pois.every(poi => !this.selectedPOIs[poi]);
+            const pois = this.poiData[category.value];
+            const areAllTrue = pois.every(poi => this.selectedPOIs[poi.value]);
+            const areAllFalse = pois.every(poi => !this.selectedPOIs[poi.value]);
 
             if (areAllTrue) {
                 return true;
@@ -223,23 +228,23 @@ export default {
             }
         },
         toggleAllPOIs(category) {
-            const pois = this.poiData[category];
-            const areAllTrue = pois.every(poi => this.selectedPOIs[poi]);
-            const areAllFalse = pois.every(poi => !this.selectedPOIs[poi]);
+            const pois = this.poiData[category.value];
+            const areAllTrue = pois.every(poi => this.selectedPOIs[poi.value]);
+            const areAllFalse = pois.every(poi => !this.selectedPOIs[poi.value]);
 
             if (areAllTrue) {
                 for (const poi of pois) {
-                    this.selectedPOIs[poi] = false;
+                    this.selectedPOIs[poi.value] = false;
                 }
             }
             else if (areAllFalse) {
                 for (const poi of pois) {
-                    this.selectedPOIs[poi] = true;
+                    this.selectedPOIs[poi.value] = true;
                 }
             }
             else {
                 for (const poi of pois) {
-                    this.selectedPOIs[poi] = true;
+                    this.selectedPOIs[poi.value] = true;
                 }
             }
         },
@@ -250,7 +255,7 @@ export default {
             return this.dropdownOpen[categoryIndex];
         },
         getPoisByCategory(category) {
-            return this.poiData[category] || [];
+            return this.poiData[category.value] || [];
         },
         leaveGroupCreation() {
             this.$emit("goBackToItineraryDropdown");
@@ -289,17 +294,17 @@ export default {
             return goodFormat;
         },
         generateItinerary() {
+            this.loading = true;
             let duration = 0;
 
             if (this.checkItineraryLength == "one")
-                duration = 3600; //One hour in second
+                duration = 3600;
             else if (this.checkItineraryLength == "oneToFour")
-                duration = 3600 * 4; //Four hours in seconds
+                duration = 3600 * 4;
             else
-                duration = 3600 * 8; //Eight hours in seconds
+                duration = 3600 * 8;
 
             this.error = "";
-            console.log(this.generateGoodFormat(this.selectedPOIs))
             this.$store.dispatch("addItinerary", {
                 city: this.city,
                 availableTime: duration,
@@ -310,8 +315,10 @@ export default {
                 //group: this.groups[this.activeIndex]?.default ? null : this.groups[this.activeIndex],
                 handicapAccess: false,
             }).then(() => {
+                this.loading = false;
                 this.$emit("goBackToItineraryDropdown");
             }).catch((error) => {
+                this.loading = false;
                 this.error = error?.response?.data;
             })
         },
@@ -324,12 +331,18 @@ export default {
 .form-check .form-check-input {
     float: none !important;
 }
-
+.xMark {
+    background-color: var(--background-color-primary);
+    border: none;
+    border-radius: 5px;
+    padding: 2px 5px;
+    color: var(--text-primary-color);
+}
 .arrowButton {
-    background-color: #fff;
+    background-color: var(--background-color-primary);
     border: 1px solid rgb(192, 150, 40);
     border-radius: 10px;
-    color: black;
+    color: var(--text-primary-color);
     padding: 5px 10px;
     text-align: center;
     text-decoration: none;
@@ -344,10 +357,10 @@ export default {
 }
 
 .dropDownButton {
-    background-color: #fff;
+    background-color: var(--background-color-primary);
     border: 1px solid rgb(192, 150, 40);
     border-radius: 10px;
-    color: black;
+    color: var(--text-primary-color);
     padding: 5px 10px;
     text-align: center;
     text-decoration: none;
@@ -377,15 +390,15 @@ export default {
 }
 
 .custom-maths {
-    color: #000642;
-    border: 1px solid #000642;
+    color: var(--text-primary-color);
+    border: 1px solid var(--text-primary-color);
     border-radius: 50%;
     padding: 5px;
     cursor: pointer;
 }
 
 .remove-decoration {
-    background-color: #fff;
+    background-color: var(--background-color-primary);
     border: none;
 }
 

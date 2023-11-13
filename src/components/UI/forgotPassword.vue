@@ -2,7 +2,7 @@
   <div class="card-header">
     <h4 class="text-center mt-3">{{ $t("forgetPassword.title") }}</h4>
   </div>
-  <div class="card-body row">
+  <div class="card-body row" v-if="!loading">
     <div v-if="userDontExist">
       <p class="wrongID text-center">
         <span class="bold">{{ $t("forgetPassword.errors.idWrong") }}<br></span>
@@ -16,10 +16,10 @@
       </p>
     </div>
     <div v-if="!userExist" class="my-2">
-      <input class="form-control" v-model="id" :placeholder="$t('forgetPassword.placeholders.id')">
+      <input @keyup.enter="(passwordReset)" class="form-control" v-model="id" :placeholder="$t('forgetPassword.placeholders.id')">
     </div>
   </div>
-  <div class="card-body row" v-if="!userExist">
+  <div class="card-body row" v-if="!userExist && !loading">
     <div class="col-6">
       <button @click="(openLoginPage)" class="btn buttonCancelCards text-center">{{
         $t("forgetPassword.buttons.cancel") }}</button>
@@ -29,18 +29,24 @@
       }}</button>
     </div>
   </div>
+  <Loading v-if="loading"/>
 </template>
 
 
   
 <script>
+import Loading from "@/components/UI/loadingSpin.vue";
 export default {
   emits: ['openLogin'],
+  components: {
+    Loading
+  },
   data() {
     return {
       id: '',
       userExist: false,
       userDontExist: false,
+      loading: false,
     }
   },
   methods: {
@@ -49,13 +55,16 @@ export default {
     },
     passwordReset() {
       this.userDontExist = false,
-        this.$store.dispatch("userPasswordReset", {
-          email: this.id
-        }).then(() => {
-          this.userExist = true;
-        }).catch(() => {
-          this.userDontExist = true;
-        });
+      this.loading = true;
+      this.$store.dispatch("userPasswordReset", {
+        email: this.id
+      }).then(() => {
+        this.userExist = true;
+        this.loading = false;
+      }).catch(() => {
+        this.userDontExist = true;
+        this.loading = false;
+      });
     },
   },
 }

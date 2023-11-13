@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="colors">
     <main>
       <languages></languages>
       <section name="cardTop" class="d-none d-md-block">
@@ -8,7 +8,7 @@
           <div class="positionBackgroundCard">
             <b class="textOnTopOfCard">{{ $t("vakarySlogan") }}</b>
             <div class="backgroundCardPosition">
-              <img src="@/assets/Logo_vect.svg" class="logoSize logoPosition">
+              <img src="@/assets/logov2.5.png" class="logoSize logoPosition">
               <div class="textPosition">
                 <label>{{ $t("landingPage.free") }}</label>
                 <label>{{ $t("landingPage.pref") }}</label>
@@ -33,8 +33,8 @@
               <label>{{ $t("landingPage.mobile") }}</label>
             </div>
             <div class="col-12 text-center my-1">
-            <button class="blueButton py-1 text-center" @click="openConnexionPage">{{
-              $t("landingPage.registration") }}</button>
+              <button class="blueButton py-1 text-center" @click="openConnexionPage">{{
+                $t("landingPage.registration") }}</button>
             </div>
           </div>
         </div>
@@ -86,8 +86,8 @@
               <b><span class="groupText">{{ $t("landingPage.block3Text1") }}</span></b>
               <span class="groupText subtitleGroupText mt-4">{{ $t("landingPage.block3Text2b") }}</span>
               <div class="alignLeft">
-                <button class="invertedBlueVakaryButton biggerButton availableSoon"  :class="`availableSoon${geti18n()}`" data-bs-toggle="modal"
-                  data-bs-target="#modalMobile"><!-- {{ $t("landingPage.find") }}--><span class="arrow"></span></button>
+                <button class="invertedBlueVakaryButton biggerButton"  data-bs-toggle="modal"
+                  data-bs-target="#modalMobile">{{ $t("landingPage.find") }}<span class="arrow"></span></button>
                 </div>
             </div>
             <div class="alignPhoneImage">
@@ -100,7 +100,8 @@
                 <b><span class="text-center ms-3">{{ $t("landingPage.block3Text1") }}</span></b>
                 <p class="text-center mt-3">{{ $t("landingPage.block3Text2b") }}</p>
                 <div class="text-center">
-                  <button class="invertedBlueVakaryButtonSmall mb-3 availableSoon"  :class="`availableSoon${geti18n()}`" data-bs-toggle="modal" data-bs-target="#modalMobile">
+                  <button class="invertedBlueVakaryButtonSmall mb-3 availableSoon" :class="`availableSoon${geti18n()}`"
+                    data-bs-toggle="modal" data-bs-target="#modalMobile">
                     <!-- {{ $t("landingPage.find") }} --><span class="arrow"></span></button>
                 </div>
               </div>
@@ -118,7 +119,8 @@
         <hr class="separationBar marginSeparationDogo">
         <div class="col-12 text-center">
           <h4 class="mx-5">{{ $t("landingPage.learnMore") }}</h4>
-          <button @click="openLearnMorePage()" class="basicVakaryButton mt-3">{{ $t("landingPage.learnMoreButton") }}</button>
+          <button @click="openLearnMorePage()" class="basicVakaryButton mt-3">{{ $t("landingPage.learnMoreButton")
+          }}</button>
         </div>
       </section>
       <section name="footer">
@@ -129,11 +131,13 @@
           </div>
           <div class="col text-center my-5">
             <h4>{{ $t("landingPage.footer.instagram") }}</h4>
-            <a href="https://www.instagram.com/vakaryapp/" target="_blank"><img class="mt-2 instagramLogo" src="@/assets/badges/instagram-logo.svg" alt="Instagram"></a>
+            <a href="https://www.instagram.com/vakaryapp/" target="_blank"><img class="mt-2 instagramLogo"
+                src="@/assets/badges/instagram-logo.svg" alt="Instagram"></a>
           </div>
           <div class="col text-center my-5">
             <h4>{{ $t("landingPage.footer.twitter") }}</h4>
-            <a href="https://twitter.com/VakaryApp" target="_blank"><img class="mt-3 twitterLogo" src="https://logowik.com/content/uploads/images/twitter-x5265.logowik.com.webp" alt="Twitter"></a>
+            <a href="https://twitter.com/VakaryApp" target="_blank"><img class="mt-3 twitterLogo"
+                src="https://logowik.com/content/uploads/images/twitter-x5265.logowik.com.webp" alt="Twitter"></a>
           </div>
         </div>
         <hr class="separationBar marginSeparationDogo">
@@ -206,23 +210,11 @@ export default {
 }
 </script>
 <style scoped>
-
 @media (min-width: 768px) and (max-width: 991.98px) {
   .col-md-6 {
     width: 45%;
   }
 }
-
-.buttonLanguage {
-  cursor: pointer;
-  border-radius: 6px;
-  width: 30px;
-  right: 20px;
-  position: fixed; 
-  top: 20px; 
-  z-index: 2;  
-}
-
 @media (max-width: 991.98px) {
   .ajustedMargin {
     margin-top: 250px;
@@ -238,6 +230,11 @@ export default {
   .ajustedMargin {
     margin-top: 150px;
   }
+}
+
+.colors {
+  background-color: var(--background-color-primary);
+  color: var(--text-primary-color);
 }
 
 .qrCodeImage {
@@ -289,12 +286,12 @@ export default {
 }
 
 .blueButton {
-    padding: 10px 16px;
-    background-color: #000642;
-    color: white;
-    border: 2px solid #000642 solid;
-    border-radius: 20px;
-    transition: all .3s ease;
+  padding: 10px 16px;
+  background-color: #000642;
+  color: white;
+  border: 2px solid #000642 solid;
+  border-radius: 20px;
+  transition: all .3s ease;
 }
 
 .alignPhoneImage {
@@ -332,7 +329,8 @@ export default {
   justify-content: center;
   align-items: center;
   width: 60vw;
-  background-color: white;
+  background-color: var(--background-color-primary);
+  color: var(--text-primary-color);
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
   transition: 0.3s;
   border-radius: 16px;
@@ -357,7 +355,8 @@ export default {
   justify-content: left;
   align-items: left;
   width: 100%;
-  background-color: white;
+  background-color: var(--background-color-primary);
+  color: var(--text-primary-color);
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
   transition: 0.3s;
   border-radius: 16px;
@@ -395,6 +394,7 @@ export default {
   flex-wrap: wrap;
   padding: 90px 0 70px 90px;
   background: #FFE9D3;
+  color: black;
 }
 
 .invertedBlueVakaryButton {
@@ -426,6 +426,12 @@ export default {
   display: flex;
   margin-top: 10px;
   margin-right: 15px;
+}
+
+.logoSize {
+  height: 10vh;
+  border-radius: 200px;
+  width: 10vh;
 }
 
 .textPosition {

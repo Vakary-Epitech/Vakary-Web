@@ -90,9 +90,9 @@
     "numberOfMember": "Member: "
   },
   "mapPage": {
-    "itinerary": "Itinerary",
+    "itinerary": "My itineraries",
     "newItinerary": "Create a new itinerary",
-    "group": "Group",
+    "group": "My groups",
     "from": "from ",
     "to": " to ",
     "nextPoint": "Next point",
@@ -105,7 +105,8 @@
     "decline": "Decline"
   },
   "mapCards": {
-    "noGroups": "No groups assigned"
+    "noGroups": "No groups assigned",
+    "createdAt": "Created on "
   },
   "forgetPassword": {
     "title": "Find Your Account",
@@ -213,62 +214,77 @@
     }
   },
   "POI": {
-    "interestPointTypeAccomodation": {
-      "accomodation": "Accomodation",
-      "guestHouse": "GuestHouse",
-      "hotel": "Hotel",
-      "holidayResort": "Holiday Resort",
-      "winery": "Winery",
-      "selfCateringAccomodation": "Self Catering Accomodation",
-      "lodgingBusiness": "Lodging Business"
-    },
-    "interestPointTypeRestauration": {
-      "restaurant": "Restaurant",
-      "fastFood": "Fast Food",
-      "cafe": "Cafe",
-      "bistro": "Bistro",
-      "pub": "Pub",
-      "nightClub": "Night Club"
-    },
-    "interestPointTypeShop": {
-      "store": "Club",
-      "craftsmanShop": "Craftsman Shop",
-      "businessPlace": "Business Place"
-    },
-    "interestPointTypeSport": {
-      "stadium": "Stadium",
-      "arena": "Arena",
-      "sportPlace": "Sport Place",
-      "miniGold": "Minigolf",
-      "swimmingPool": "Swimming Pool",
-      "bowling": "Bowling"
-    },
-    "interestPointTypePlaceToVisit": {
-      "amusementPark": "Amusement Park",
-      "church": "Church",
-      "cinema": "Cinema",
-      "culturalSite": "Cultural Site",
+    "interestPointTypeTour": {    
       "cyclingTour": "Cycling Tour",
-      "landForm": "Landform",
-      "naturalHeritage": "Natural Heritage",
-      "remarkableBuilding": "Remarkable Building",
-      "theater": "Theater",
-      "library": "Library",
-      "cityHeritage": "City Heritage",
-      "museum": "Museum",
-      "castle": "Castle",
-      "river": "River",
-      "leisureComplex": "Leisure Complex",
       "roadTour": "Road Tour",
-      "parkGarden": "Park Garden",
-      "walkingTour": "Walking Tour"
+      "walkingTour": "Walking Tour",
+      "tour": "Tour",
+      "touristTrain": "Tourist Train"
+    },
+    "interestPointTypeEvent": {
+      "showEvent": "Show Event",
+      "socialEvent": "Social Event",
+      "sportsEvent": "Sports Event",
+      "entertainmentAndEvent": "Entertainment And Event",
+      "exhibitionEvent": "Exhibition Event",
+      "culturalEvent": "Cultural Event"
+    },
+    "interestPointTypeNatural": {    
+      "landform": "Landform",
+      "park": "Park",
+      "parkAndGarden": "Park And Garden",
+      "river": "River",
+      "riverPort": "River Port"
+    },
+    "interestPointTypeActivity": {
+      "bowling": "Bowling Alley",
+      "cinema": "Cinema",
+      "game": "Game",
+      "minigolf": "Minigolf",
+      "movieTheater": "Movie Theater",
+      "theater": "Theater",
+      "amusementPark": "Amusement Park",
+      "themePark": "Theme Park",
+      "exhibition": "Exhibition",
+      "leisureComplex": "Leisure Complex",
+      "marine": "Marine"
+    },
+    "interestPointTypeDrinking": {
+      "barOrPub": "Bar Or Pub",
+      "bistroOrWineBar": "Bistro Or Wine Bar",
+      "nightclub": "NightClub",
+      "winery": "Winery",
+      "tastingProvider": "Tasting Provider"
+    },
+    "interestPointTypeCultural": {
+      "castle": "Castle",
+      "church": "Church",
+      "cityHeritage": "City Heritage",
+      "militaryCemetery": "Military Cemetery",
+      "museum": "Museum",
+      "naturalHeritage": "Natural Heritage",
+      "religiousSite": "Religious Site",
+      "remembranceSite": "Remembrance Site",
+      "remarkableBuilding": "Remarkable Building",
+      "culturalSite": "Cultural Site"
+    },
+    "interestPointTypeEating": {
+      "fastFoodRestaurant": "Fast Food Restaurant",
+      "foodEstablishment": "Food Establishment",
+      "restaurant": "Restaurant",
+      "selfCateringAccomodation": "Self Catering Accommodation",
+      "selfServiceCafetaria": "Self Service Cafeteria",
+      "cafeOrCoffeeShop": "Cafe Or Coffee Shop",
+      "cafeOrTeahouse": "Cafe Or Teahouse"
     },
     "interestPointTypeGroup": {
-      "accomodation": "Accommodation",
-      "restauration": "Restauration",
-      "placeToVisit": "Place to visit",
-      "shop": "Shopping",
-      "sport": "Sport"
+      "tour": "Tour",
+      "event": "Event",
+      "natural": "Natural",
+      "activity": "Activity",
+      "drinking": "Drinking",
+      "cultural": "Cultural",
+      "eating": "Eating"
     }
   },
   "cardsGroup": {
@@ -296,6 +312,10 @@
       "commTitle": "Expansion of Vakary",
       "commBody": "Vakary aims to have 100,000 users.",
       "CDP": "Project Manager",
-      "team": "Our Team"
+      "team": "Our team"
+  },
+  "languagesModal": {
+    "selectLanguage": "Select language"
+
   }
 }

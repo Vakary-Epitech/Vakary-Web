@@ -1,6 +1,9 @@
 <template>
   <div class="app">
-    <div>
+    <div :class="{'root-dark': isDarkMode}">
+      <button v-if="this.$route.path === '/mapPage'" :class="{'black-moon': isDarkMode}" class="btn-dark-mode" @click="isDarkMode = !isDarkMode">
+        <i class="fas fa-moon"></i>
+      </button>
       <router-view v-slot="{ Component }">
         <component :is="Component" :key="this.$route.path"></component>
       </router-view>
@@ -10,6 +13,11 @@
 
 <script>
 export default {
+  data() {
+    return {
+      isDarkMode: false,
+    };
+  },
   methods: {
     geti18n() {
       return this.$i18n.locale;
@@ -27,8 +35,29 @@ export default {
 
 :root {
   --background-color-primary: white;
+  --text-primary-color: black;
   --accent-color: #cacaca;
-  --text-primary-color: #222;
+  --background-cards-color: #f6f6f6;
+}
+
+.btn-dark-mode {
+  position: fixed;
+  top: 20px;
+  right: 150px;
+  z-index: 999;
+  border-radius: 6px;
+}
+
+.black-moon {
+  color: white;
+  background-color: black;
+}
+
+.root-dark {
+  --background-color-primary: #282b30;
+  --text-primary-color: white;
+  --accent-color: #cacaca;
+  --background-cards-color: #1e2124;
 }
 
 .v-enter-active,

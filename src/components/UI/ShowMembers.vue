@@ -1,7 +1,7 @@
 <template>
     <div id="app" v-if="showMembers">
         <section name="groupManagement">
-            <MapWindows>
+            <MapWindows dropdown="true">
                 <div class="row">
                     <div class="col-12 text-end">
                         <button class="xMark" @click="goBackToGroupDropdown()"><i
@@ -411,19 +411,19 @@ export default {
 }
 
 .xMark {
-    background-color: #FFFFFF;
+    background-color: var(--background-color-primary);
     border: none;
     border-radius: 5px;
     padding: 2px 5px;
-    color: black;
+    color: var(--text-primary-color);
 }
 
 .xMark:hover {
-    box-shadow: 0 0 0 2px black;
+    box-shadow: 0 0 0 2px var(--accent-color);
 }
 
 .btn-check-change-group-name {
-    background-color: #FFFFFF;
+    background-color: var(--background-color-primary);
     border: none;
     border-radius: 5px;
     padding: 2px 5px;
@@ -435,7 +435,7 @@ export default {
 }
 
 .btn-mark-change-group-name {
-    background-color: #FFFFFF;
+    background-color: var(--background-color-primary);
     border: none;
     border-radius: 5px;
     color: #dc3545;
@@ -447,8 +447,9 @@ export default {
 }
 
 .btn-change-group-name {
-    background-color: #FFFFFF;
+    background-color: var(--background-color-primary);
     border: none;
+    color: var(--text-color);
     border-radius: 5px;
     padding: 2px 5px;
 }
@@ -458,7 +459,7 @@ export default {
 }
 
 .btn-delete-group {
-    background-color: #FFFFFF;
+    background-color: var(--background-color-primary);
     border: none;
     border-radius: 5px;
     color: #dc3545;
@@ -472,16 +473,19 @@ export default {
 .pending {
     border: 1px grey solid;
     background-color: #C4C4C4;
+    color: black;
 }
 
 .denied {
     background-color: #FFBABA;
     border: 1px red solid;
+    color: black;
 }
 
 .joined {
     background-color: #B6FBB2;
     border: 1px green solid;
+    color: black;
 }
 
 .status {
@@ -496,7 +500,7 @@ export default {
 .trashIcon {
     color: #dc3545;
     border: none;
-    background-color: white;
+    background-color: var(--background-color-primary);
     border-radius: 5px;
 }
 

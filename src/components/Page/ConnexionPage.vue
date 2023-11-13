@@ -43,6 +43,12 @@ export default {
       forgetPassword: false
     };
   },
+  mounted() {
+    if (this.$store.state.userStore.userInfo)
+      this.$store.dispatch("fetchUserData").then(() => {
+        this.$router.push("/mapPage");
+      })
+  },
   methods: {
     registrationIsDone() {
         this.registration = true;
