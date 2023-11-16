@@ -63,9 +63,8 @@ const userStore = {
             return new Promise((resolve, reject) => {
                 try {
                     let conf = getters.getConfig({ url: "login", data: data, method: "post" })
-
                     axios.request(conf).then((canAuthentify) => {
-                        commit('UPDATE_USER_TOKEN', canAuthentify.data.token);
+                        commit('UPDATE_USER_TOKEN', canAuthentify.data.user.token);
                         let confData = getters.getConfig({ url: "me", data: null, method: "get" })
                         axios.request(confData).then((canAuthentify) => {
                             commit('UPDATE_USER_INFO', canAuthentify);
@@ -88,8 +87,7 @@ const userStore = {
                     let conf = getters.getConfig({ url: "register", data: data, method: "put" })
 
                     axios.request(conf).then((canAuthentify) => {
-                        commit('UPDATE_USER_TOKEN', canAuthentify.data.token);
-
+                        commit('UPDATE_USER_TOKEN', canAuthentify.data.user.token);
                         let confData = getters.getConfig({ url: "me", data: null, method: "get" })
                         axios.request(confData).then((canAuthentify) => {
                             commit('UPDATE_USER_INFO', canAuthentify);
