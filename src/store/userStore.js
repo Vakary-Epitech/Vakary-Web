@@ -37,15 +37,34 @@ const userStore = {
             state.mail = userInfo.data.user.email;
             state.userProfileImage = userInfo.data.user.picture;
         },
+        CLEAR_USER_INFO(state) {
+            state.userInfo = null;
+            state.token = "";
+        }
     },
     actions: {
+        fetchUserData({ commit, getters }) {
+            return new Promise((resolve, reject) => {
+                try {
+                    let conf = getters.getConfig({ url: "me", data: null, method: "get" })
+                    axios.request(conf).then((canAuthentify) => {
+                        commit('UPDATE_USER_INFO', canAuthentify);
+                        resolve(canAuthentify);
+                    }).catch((error) => {
+                        reject(error);
+                    })
+                } catch (error) {
+                    reject(error);
+                }
+            })
+        },
+
         userConnection({ commit, getters }, data) {
             return new Promise((resolve, reject) => {
                 try {
                     let conf = getters.getConfig({ url: "login", data: data, method: "post" })
-
                     axios.request(conf).then((canAuthentify) => {
-                        commit('UPDATE_USER_TOKEN', canAuthentify.data.token);
+                        commit('UPDATE_USER_TOKEN', canAuthentify.data.user.token);
                         let confData = getters.getConfig({ url: "me", data: null, method: "get" })
                         axios.request(confData).then((canAuthentify) => {
                             commit('UPDATE_USER_INFO', canAuthentify);
@@ -68,8 +87,7 @@ const userStore = {
                     let conf = getters.getConfig({ url: "register", data: data, method: "put" })
 
                     axios.request(conf).then((canAuthentify) => {
-                        commit('UPDATE_USER_TOKEN', canAuthentify.data.token);
-
+                        commit('UPDATE_USER_TOKEN', canAuthentify.data.user.token);
                         let confData = getters.getConfig({ url: "me", data: null, method: "get" })
                         axios.request(confData).then((canAuthentify) => {
                             commit('UPDATE_USER_INFO', canAuthentify);
