@@ -1,4 +1,3 @@
-
 {
     "message": "Hallo i18n !!",
     "vakary": "VAKARY",
@@ -311,5 +310,11 @@
     },
     "languagesModal": {
         "selectLanguage": "Sprache auswählen"
+    },
+    "tripProfile": {
+        "profileName": "Name des Reiseprofils:",
+        "profileCreate": "Erstellen eines neuen Reiseprofils",
+        "interest": "Interessen",
+        "profileButtonConfirmation": "Profil erstellen"
     }
 }

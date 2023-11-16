@@ -19,51 +19,52 @@
   </div>
 
   <div class="boxPosition fadeshow1">
-      <Transition name="slide-fade">
+    <Transition name="slide-fade">
 
-        <div v-if="!displayItineraryInformation && !showItineraryCreationModal" :class="(itineraryDropdownStatus)">
-          <div class="dropdown-trigger" @click="setItineraryDropdownState()">
-            <button class="dropdownDesignMapPage" :style="itineraryCssDropdown" aria-haspopup="true"
-              aria-controls="dropdown-menu2">
-              <span class="dropdownTextPosition">{{ $t("mapPage.itinerary") }}</span>
-              <span v-if="!itineraryDropdown" class="icon is-small dropdownArrowPosition">
-                <i class="fas fa-angle-down" aria-hidden="true"></i>
-              </span>
-              <span v-if="itineraryDropdown" class="icon is-small dropdownArrowPosition">
-                <i class="fas fa-angle-up" aria-hidden="true"></i>
-              </span>
-            </button>
-            <div v-if="this.itineraryDropdown" class="dropdown-content">
-              <div class="card cardOnDropdown" style="display: flex; flex-direction: row;" @click="callItineraryCreationModal()">
-                  <div class="cardBasicContainer" style="display: flex; width: 70%">
-                    <span class="col-12">{{
-                      $t("mapPage.newItinerary") }}</span>
-                  </div>
-                  <div class="dropdownPlusPlacement">
-                    <i class="fas fa-plus plus-custom float-right" aria-hidden="true"></i>
-                  </div>
+      <div v-if="!displayItineraryInformation && !showItineraryCreationModal" :class="(itineraryDropdownStatus)">
+        <div class="dropdown-trigger" @click="setItineraryDropdownState()">
+          <button class="dropdownDesignMapPage" :style="itineraryCssDropdown" aria-haspopup="true"
+            aria-controls="dropdown-menu2">
+            <span class="dropdownTextPosition">{{ $t("mapPage.itinerary") }}</span>
+            <span v-if="!itineraryDropdown" class="icon is-small dropdownArrowPosition">
+              <i class="fas fa-angle-down" aria-hidden="true"></i>
+            </span>
+            <span v-if="itineraryDropdown" class="icon is-small dropdownArrowPosition">
+              <i class="fas fa-angle-up" aria-hidden="true"></i>
+            </span>
+          </button>
+          <div v-if="this.itineraryDropdown" class="dropdown-content">
+            <div class="card cardOnDropdown" style="display: flex; flex-direction: row;"
+              @click="callItineraryCreationModal()">
+              <div class="cardBasicContainer" style="display: flex; width: 70%">
+                <span class="col-12">{{
+                  $t("mapPage.newItinerary") }}</span>
               </div>
-              <div v-for="(itineraryDisplay, index) of this.$store.state.itineraryStore.itinerary"
-                :key="itineraryDisplay.id">
-                <Transition name="slide-fade">
-                  <mapCards @click="itineraryCardsHasBeenClicked(index)" class="card cardOnDropdown mt-2"
-                    :itinerary="itineraryDisplay" :index="index" />
-                </Transition>
+              <div class="dropdownPlusPlacement">
+                <i class="fas fa-plus plus-custom float-right" aria-hidden="true"></i>
               </div>
+            </div>
+            <div v-for="(itineraryDisplay, index) of this.$store.state.itineraryStore.itinerary"
+              :key="itineraryDisplay.id">
+              <Transition name="slide-fade">
+                <mapCards @click="itineraryCardsHasBeenClicked(index)" class="card cardOnDropdown mt-2"
+                  :itinerary="itineraryDisplay" :index="index" />
+              </Transition>
             </div>
           </div>
         </div>
+      </div>
 
-        <div v-else-if="showItineraryCreationModal">
-          <itineraryModal @goBackToItineraryDropdown="showItineraryCreationModal = false"/>
-        </div>
+      <div v-else-if="showItineraryCreationModal">
+        <profileTrip @goBackToItineraryDropdown="showItineraryCreationModal = false" />
+      </div>
 
-        <div v-else>
-          <itineratyExplanation @goBackToItineraryDropdown="goBackToItineraryDropdown" @checkNextPOI="checkNextPOI"
-            @checkPreviousPOI="checkPreviousPOI" :selectedItineraryInfo="selectedItineraryInfo"/>
-        </div>
-      </Transition>
-    </div>
+      <div v-else>
+        <itineratyExplanation @goBackToItineraryDropdown="goBackToItineraryDropdown" @checkNextPOI="checkNextPOI"
+          @checkPreviousPOI="checkPreviousPOI" :selectedItineraryInfo="selectedItineraryInfo" />
+      </div>
+    </Transition>
+  </div>
 
   <div class="langButtonPos fadeshow1">
     <img :src="this.$store.state.userStore.userProfileImage" class="flag-button profileIcon"
@@ -73,90 +74,91 @@
 
   <Transition name="slide-fade">
     <div class="profileModalPosition fadeshow1" v-if="showProfile">
-      <profileModal/>
+      <profileModal />
     </div>
   </Transition>
 
   <section name="groupDropdown">
     <div class="groupDropdownPosition fadeshow1">
-        <Transition name="slide-fade">
-          <div v-if="!displayItineraryInformation && !showGroupCreationModal && !groupHasBeenClicked"
-            :class="(groupDropdownStatus)">
-            <div class="dropdown-trigger" @click=" (setGroupDropdownState())">
-              <button class="dropdownDesignMapPage" :style="groupCssDropdown" aria-haspopup="true"
-                aria-controls="dropdown-menu2">
-                <span class="dropdownTextPosition dropboxText">{{ $t("mapPage.group") }}</span>
-                <span v-if="!groupDropdown" class="icon is-small dropdownArrowPosition">
-                  <i class="fas fa-angle-down" aria-hidden="true"></i>
-                </span>
-                <span v-if="groupDropdown" class="icon is-small dropdownArrowPosition">
-                  <i class="fas fa-angle-up" aria-hidden="true"></i>
-                </span>
-              </button>
+      <Transition name="slide-fade">
+        <div v-if="!displayItineraryInformation && !showGroupCreationModal && !groupHasBeenClicked"
+          :class="(groupDropdownStatus)">
+          <div class="dropdown-trigger" @click=" (setGroupDropdownState())">
+            <button class="dropdownDesignMapPage" :style="groupCssDropdown" aria-haspopup="true"
+              aria-controls="dropdown-menu2">
+              <span class="dropdownTextPosition dropboxText">{{ $t("mapPage.group") }}</span>
+              <span v-if="!groupDropdown" class="icon is-small dropdownArrowPosition">
+                <i class="fas fa-angle-down" aria-hidden="true"></i>
+              </span>
+              <span v-if="groupDropdown" class="icon is-small dropdownArrowPosition">
+                <i class="fas fa-angle-up" aria-hidden="true"></i>
+              </span>
+            </button>
 
-              <div v-if="this.groupDropdown && !this.groupHasBeenClicked" class="dropdown-content">
-                <div class="card cardOnDropdown mt-2" style="display: flex; flex-direction: row;" @click="callGroupCreation()">
-                  <div class="cardBasicContainer" style="display: flex; width: 70%">
-                    <span class="col-12">{{
-                      $t("mapPage.newGroup") }}</span>
+            <div v-if="this.groupDropdown && !this.groupHasBeenClicked" class="dropdown-content">
+              <div class="card cardOnDropdown mt-2" style="display: flex; flex-direction: row;"
+                @click="callGroupCreation()">
+                <div class="cardBasicContainer" style="display: flex; width: 70%">
+                  <span class="col-12">{{
+                    $t("mapPage.newGroup") }}</span>
+                </div>
+                <div class="dropdownPlusPlacement">
+                  <i class="fas fa-plus plus-custom float-right" aria-hidden="true"></i>
+                </div>
+              </div>
+
+              <div class="cursorOnButton card cardOnDropdown"
+                v-for="(group, index) in this.$store.state.groupStore.groups" :key="group.id">
+                <div class="row my-auto" @click="groupCardsHasBeenClicked(group, index)">
+                  <div class="col-2 my-auto text-center">
+                    <img class="ms-2" :src="group.photo" style="max-width: 40px">
                   </div>
-                  <div class="dropdownPlusPlacement">
-                    <i class="fas fa-plus plus-custom float-right" aria-hidden="true"></i>
+                  <div class="col-6 my-auto">
+                    <span>{{ group.name }}</span>
+                  </div>
+                  <div class="col-4 my-auto text-end">
+                    {{ group.emails.length }}
+                    <i class="fa-solid fa-user me-4"></i>
                   </div>
                 </div>
-
-                <div class="cursorOnButton card cardOnDropdown" v-for="(group, index) in this.$store.state.groupStore.groups" :key="group.id">
-                  <div class="row my-auto" @click="groupCardsHasBeenClicked(group, index)">
-                    <div class="col-2 my-auto text-center">
-                      <img class="ms-2" :src="group.photo" style="max-width: 40px">
-                    </div>
-                    <div class="col-6 my-auto">
-                      <span>{{ group.name }}</span>
-                    </div>
-                    <div class="col-4 my-auto text-end">
-                      {{ group.emails.length }}
-                      <i class="fa-solid fa-user me-4"></i>
-                    </div>
+                <div v-if="shouldDisplayButton(group.emails)" class="row my-2">
+                  <div class="col-12 text-center">
+                    {{ $t("mapPage.invitation") }}
                   </div>
-                  <div v-if="shouldDisplayButton(group.emails)" class="row my-2">
-                    <div class="col-12 text-center">
-                      {{ $t("mapPage.invitation") }}
-                    </div>
-                    <div class="col-6 text-center">
-                      <button class="button-invit" @click="groupInvitation(group.backendGroupId, true)">
-                        <i class="fa-solid fa-check custom-check"></i>
-                        <span class="ms-1">{{ $t("mapPage.accept") }}</span>
-                      </button>
-                    </div>
-                    <div class="col-6 text-center">
-                      <button class="button-invit" @click="groupInvitation(group.backendGroupId, false)">
-                        <i class="fa-solid fa-xmark custom-xmark"></i>
-                        <span class="ms-1">{{ $t("mapPage.decline") }}</span>
-                      </button>
-                    </div>
+                  <div class="col-6 text-center">
+                    <button class="button-invit" @click="groupInvitation(group.backendGroupId, true)">
+                      <i class="fa-solid fa-check custom-check"></i>
+                      <span class="ms-1">{{ $t("mapPage.accept") }}</span>
+                    </button>
+                  </div>
+                  <div class="col-6 text-center">
+                    <button class="button-invit" @click="groupInvitation(group.backendGroupId, false)">
+                      <i class="fa-solid fa-xmark custom-xmark"></i>
+                      <span class="ms-1">{{ $t("mapPage.decline") }}</span>
+                    </button>
                   </div>
                 </div>
               </div>
             </div>
           </div>
+        </div>
 
-          <div v-else-if="showGroupCreationModal">
-            <Transition name="slide-fade">
-              <CreateGroup @goBackToGroupDropdown=" showGroupCreationModal = false" />
-            </Transition>
-          </div>
+        <div v-else-if="showGroupCreationModal">
+          <Transition name="slide-fade">
+            <CreateGroup @goBackToGroupDropdown=" showGroupCreationModal = false" />
+          </Transition>
+        </div>
 
-          <div v-else-if="groupHasBeenClicked">
-            <Transition name="slide-fade">
-              <showMembers @change-group-photo="changeGroupPhoto"
-                :groups=this.$store.state.groupStore.groups[selectedGroup] :key="keyShowGroup"
-                @goBackToGroupDropdown=" groupHasBeenClicked = false; showGroupCreationModal = false; displayItineraryInformation = false"
-                 />
-            </Transition>
-          </div>
+        <div v-else-if="groupHasBeenClicked">
+          <Transition name="slide-fade">
+            <showMembers @change-group-photo="changeGroupPhoto" :groups=this.$store.state.groupStore.groups[selectedGroup]
+              :key="keyShowGroup"
+              @goBackToGroupDropdown=" groupHasBeenClicked = false; showGroupCreationModal = false; displayItineraryInformation = false" />
+          </Transition>
+        </div>
 
-        </Transition>
-      </div>
+      </Transition>
+    </div>
   </section>
   <div class="fadeshow2">
     <ScreenSizeTooSmall />
@@ -172,13 +174,16 @@ import CreateGroup from '../UI/CreateGroup.vue';
 import itineraryModal from '../UI/itineraryModal.vue';
 import profileModal from '../UI/profileModal.vue';
 import showMembers from '@/components/UI/ShowMembers.vue';
+import profileTrip from '@/components/UI/ProfileTrip.vue'
 
 export default {
   name: 'App',
   components: {
+    profileTrip,
     mapCards,
     CreateGroup,
     itineratyExplanation,
+    // eslint-disable-next-line
     itineraryModal,
     profileModal,
     showMembers,

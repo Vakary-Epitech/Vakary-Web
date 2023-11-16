@@ -36,56 +36,6 @@
                     <span>{{ $t("itineraryModal.startingDate") }}</span><br>
                     <input class="form-control ms-1" type="date" v-model="date">
                 </div>
-                <!-- <hr class="separationBar">
-                <hr class="separationBar">
-                <div class="col-12">
-                    <span>{{ $t("itineraryModal.budget") }} </span><br>
-                    <div class="row">
-                        <div class="col-8 mt-2">
-                            <input type="range" v-model="budget" class="form-range" min="0" max="300">
-                        </div>
-                        <div class="col-2">
-                            <input class="form-control medium-input ms-1" disabled v-model="budget">
-                        </div>
-                        <div class="col-1 mt-1">
-                            <span>€</span>
-                        </div>
-                    </div>
-                </div>
-                <hr class="separationBar">
-                <div class="col-12">
-                    <span>{{ $t("itineraryModal.howManyPeople") }}</span><br>
-                    <div class="row">
-                        <div class="ms-3 col-2 mt-2 mb-2">
-                            <span>{{ $t("itineraryModal.adult") }}</span>
-                        </div>
-                        <div class="col-3 my-auto text-end mt-2 mb-2">
-                            <button class="remove-decoration" @click="people > 0 ? people-- : people = 0"><i
-                                    class="fa-solid fa-minus custom-maths"></i></button>
-                        </div>
-                        <div class="col-2 mt-2 mb-2">
-                            <input disabled class="form-control small-input" v-model="people">
-                        </div>
-                        <div class="col-3 my-auto text-start mt-2 mb-2">
-                            <button class="remove-decoration" @click="people++"><i
-                                    class="fa-solid fa-plus custom-maths"></i></button>
-                        </div>
-                        <div class="ms-3 col-2">
-                            <span>{{ $t("itineraryModal.child") }}</span>
-                        </div>
-                        <div class="col-3 my-auto text-end">
-                            <button class="remove-decoration" @click="children > 0 ? children-- : children = 0"><i
-                                    class="fa-solid fa-minus custom-maths"></i></button>
-                        </div>
-                        <div class="col-2">
-                            <input disabled class="form-control small-input" v-model="children">
-                        </div>
-                        <div class="col-3 my-auto text-start">
-                            <button class="remove-decoration" @click="children++"><i
-                                    class="fa-solid fa-plus custom-maths"></i></button>
-                        </div>
-                    </div>
-                </div> -->
                 <div class="col-12" v-if="$store.state.groupStore.groups.length > 0">
                     <hr class="separationBar" v-if="$store.state.groupStore.groups.length > 0">
                     <div class="row">
