@@ -297,24 +297,25 @@
   },
   "roadMap": {
       "betaDate": "30 JUN 2023",
-      "betaTitle": "Vakary beta released",
-      "betaBody": "The Vakary beta has become available and is open to the public, allowing users through the web platform to create a route as well as share it",
+      "betaTitle": "Release of Vakary Beta",
+      "betaBody": "Vakary Beta is now available and open to the public, allowing users to create an itinerary and share it with their friends.",
       "corrDate": "1 SEP 2023",
-      "corrTitle": "Correction and improvement",
-      "corrBody": "Vakary has listened to you and is improving thanks to feedback from its beta testers!",
+      "corrTitle": "Correction and Improvement",
+      "corrBody": "Vakary has listened to you and is improving based on feedback from its beta testers!",
       "sauvDate": "30 NOV 2023",
-      "sauvTitle": "Preference save added",
-      "sauvBody": "Vakary lets you enter your point-of-interest preferences in your profile. This way you won't have to select your preferences every time",
+      "sauvTitle": "Addition of Preference Saving",
+      "sauvBody": "Vakary will allow you to input your point of interest preferences in your profile. Thus, you won't need to select your preferences each time you use it.",
       "profDate": "30 DEC 2023",
-      "profTitle": "Vakary profiles visit added",
-      "profBody": "You'll be able to visit other users' profiles and see what your favorite friends are visiting.",
-      "commDate": "30 JAN 2024",
-      "commTitle": "Communication and Business",
-      "commBody": "Vakary aims to expand so our social networks will become much more active.",
+      "profTitle": "Addition of Vakary Profile Visits",
+      "profBody": "You will be able to visit the profiles of other users and see what your friends have visited.",
+      "commDate": "30 AUG 2024",
+      "commTitle": "Expansion of Vakary",
+      "commBody": "Vakary aims to have 100,000 users.",
       "CDP": "Project Manager",
       "team": "Our team"
   },
   "languagesModal": {
     "selectLanguage": "Select language"
+
   }
 }

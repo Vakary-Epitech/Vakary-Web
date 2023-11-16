@@ -298,23 +298,24 @@
     "roadMap": {
         "betaDate": "30 JUN 2023",
         "betaTitle": "Sortie de la bêta Vakary",
-        "betaBody": "La bêta Vakary est devenu disponible est ouverte au public, permettant aux utilisateurs au travers de la plateforme Web de créer un itinéraire ainsi que de le partager",
-        "corrDate": "1 SEP 2023",
+        "betaBody": "La bêta Vakary est désormais disponible et ouverte au public, permettant aux utilisateurs de créer un itinéraire et de le partager avec leurs amis.",
+        "corrDate": "1er SEP 2023",
         "corrTitle": "Correction et amélioration",
-        "corrBody": "Vakary vous a écouté et s'améliore grâce au retour de ses bêta-testeurs !",
+        "corrBody": "Vakary vous a écouté et s'améliore grâce aux retours de ses bêta-testeurs !",
         "sauvDate": "30 NOV 2023",
-        "sauvTitle": "Ajout de la sauvegarde des préfèrences",
-        "sauvBody": "Vakary vous permettra de renseigner vos préférences de point d'intérêt dans votre profil. Ainsi vous n'aurez plus besoin à chaque fois de sélectionner vos préférences.",
+        "sauvTitle": "Ajout de la sauvegarde des préférences",
+        "sauvBody": "Vakary vous permettra de renseigner vos préférences de points d'intérêt dans votre profil. Ainsi, vous n'aurez plus besoin de sélectionner vos préférences à chaque utilisation.",
         "profDate": "30 DEC 2023",
         "profTitle": "Ajout de la visite des profils Vakary",
-        "profBody": "Vous pourrez visiter les profils des autres utilisateurs et ainsi voir ce que vos amis préférés visiter.",
-        "commDate": "30 JAN 2024",
-        "commTitle": "Communication et Business",
-        "commBody": "Vakary a pour objectif de s'étendre donc nos réseaux sociaux deviendront beaucoup plus actifs.",
+        "profBody": "Vous pourrez visiter les profils des autres utilisateurs et ainsi voir ce que vos amis ont visité.",
+        "commDate": "30 AOÛ 2024",
+        "commTitle": "Expansion de Vakary",
+        "commBody": "Vakary a pour objectif d'avoir 100 000 utilisateurs.",
         "CDP": "Chef de projet",
         "team": "Notre équipe"
     },
     "languagesModal": {
       "selectLanguage": "Sélectionner la langue"
     }
+    
 }
