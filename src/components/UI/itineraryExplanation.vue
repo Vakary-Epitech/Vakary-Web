@@ -149,7 +149,6 @@ export default {
         likeClicked() {
             this.liked = !this.liked;
             this.arrayLiked[this.currentWaypointIndex] = this.liked;
-            console.log(this.arrayLiked);
             this.$store.dispatch("likePOI", { id: this.selectedItineraryInfo?.itineraryPOI[this.currentWaypointIndex].id } )
             this.isAnimating = true;
             setTimeout(() => {
