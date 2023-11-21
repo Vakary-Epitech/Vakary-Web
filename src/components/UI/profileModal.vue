@@ -41,7 +41,7 @@
                     </div>
                     <div class="col-6 col-xxxl-3 text-center">
                         <h6>{{ $t("profilePage.likes") }}</h6>
-                        <p>{{ user?.likes }}</p>
+                        <p>{{ likes }}</p>
                     </div>
                     <!-- <div class="col-6 col-xxxl-3 text-center">
                         <h6>{{ $t("profilePage.totalKm") }}</h6>
@@ -90,7 +90,15 @@ export default {
             user: this.$store.state.userStore.userInfo,
             picture: this.$store.state.userStore.userProfileImage,
             photoDisplay: this.$store.state.userStore.userProfileImage,
+            likes: 0,
         }
+    },
+    mounted() {
+        this.$store.dispatch('getUserLikes').then((res) => {
+            this.likes = res.data.likedPOIs.length;
+        }).catch((error) => {
+            console.log(error);
+        })
     },
     methods: {
         openFileExplorer() {

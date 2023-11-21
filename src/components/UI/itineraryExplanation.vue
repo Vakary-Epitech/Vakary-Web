@@ -8,7 +8,7 @@
                 this.selectedItineraryInfo?.itineraryPOI[this.currentWaypointIndex].City.name }}
             </h4>
             <div class="col-4 text-end my-auto">
-                <button @click="likeClicked" class="btn btn-link" :class="{'text-danger': liked, 'heart-animation': isAnimating }">
+                <button @click="likeClicked" class="btn btn-link" :class="{'text-danger': arrayLiked[currentWaypointIndex], 'heart-animation': isAnimating }">
                     <i class="fa-solid fa-heart fa-xl"></i>
                 </button>
                 <button class="deleteButton" @click="deleteItinerary()">
@@ -61,11 +61,25 @@ export default {
             currentWaypointIndex: 0,
             liked: false,
             isAnimating: false,
+            arrayLiked: {}
         }
     },
     mounted() {
+        this.loading = true;
         this.$store.dispatch("calculatePath", this.selectedItineraryInfo)
         this.$store.commit('UPDATE_MARKER', this.selectedItineraryInfo)
+        this.$store.dispatch('getUserLikes').then((res) => {
+            for (const liked of res.data.likedPOIs) {
+                for (const ite of this.selectedItineraryInfo?.itineraryPOI) {
+                    if (liked.name === ite.name) {
+                        this.arrayLiked[this.selectedItineraryInfo?.itineraryPOI.indexOf(ite)] = true;
+                    }
+                }
+            }
+            this.loading = false;
+        }).catch((error) => {
+            console.log(error);
+        })
     },
     computed: {
         getCurrentPOIName() {
@@ -134,7 +148,8 @@ export default {
         },
         likeClicked() {
             this.liked = !this.liked;
-            this.liked === true ? this.$store.dispatch("likePOI", { id: this.selectedItineraryInfo?.itineraryPOI[this.currentWaypointIndex].id } ) : this.$store.dispatch("removelikePOI", { id: this.selectedItineraryInfo?.itineraryPOI[this.currentWaypointIndex].id } )
+            this.arrayLiked[this.currentWaypointIndex] = this.liked;
+            this.$store.dispatch("likePOI", { id: this.selectedItineraryInfo?.itineraryPOI[this.currentWaypointIndex].id } )
             this.isAnimating = true;
             setTimeout(() => {
                 this.isAnimating = false;
