@@ -59,7 +59,6 @@ export default {
         return {
             loading: false,
             currentWaypointIndex: 0,
-            liked: false,
             isAnimating: false,
             arrayLiked: {}
         }
@@ -147,8 +146,7 @@ export default {
             })
         },
         likeClicked() {
-            this.liked = !this.liked;
-            this.arrayLiked[this.currentWaypointIndex] = this.liked;
+            this.arrayLiked[this.currentWaypointIndex] = !this.arrayLiked[this.currentWaypointIndex];
             this.$store.dispatch("likePOI", { id: this.selectedItineraryInfo?.itineraryPOI[this.currentWaypointIndex].id } )
             this.isAnimating = true;
             setTimeout(() => {
