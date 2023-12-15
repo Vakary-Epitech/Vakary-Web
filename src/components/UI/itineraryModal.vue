@@ -6,6 +6,49 @@
                 <button @click="leaveGroupCreation" class="xMark"><i class="fa-solid fa-xmark fa-lg"></i></button>
             </div>
             <div class="modal-body">
+                <div class="col-12" v-if="$store.state.profileStore.userTravelProfile.length > 0">
+                    <hr class="separationBar" v-if="$store.state.profileStore.userTravelProfile.length > 0">
+                    <div class="row">
+                        <div id="carouselExample" class="carousel slide">
+                            <div class="row">
+                                <div class="col-3 text-start">
+                                    <button @click="prevSlideProfile" class="arrowButton" type="button"
+                                        data-bs-target="#carouselExample" data-bs-slide="prev">
+                                        <i class="fa-solid fa-xl fa-arrow-left"></i>
+                                    </button>
+                                </div>
+                                <div class="col-6 text-center">
+                                    {{ $t("itineraryModal.profile") }}
+                                </div>
+                                <div class="col-3 text-end">
+                                    <button @click="nextSlideProfile" class="arrowButton" type="button"
+                                        data-bs-target="#carouselExample" data-bs-slide="next">
+                                        <i class="fa-solid fa-xl fa-arrow-right"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="carousel-inner mt-2">
+                                <div class="carousel-item" v-for="(profile, index) in profile" :key="index"
+                                    :class="{ 'active': index === profileActiveIndex }">
+                                    <CardsProfile :profile="profile" />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-3 text-start">
+                                    <button class="arrowButton" type="button" @click="deleteProfile()">
+                                        <i class="fa-solid fa-trash fa-xl"></i>
+                                    </button>
+                                </div>
+                                <div class="col-6 text-center"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div style="display: flex; justify-content: center; align-items: center;">
+                    <button @click="createProfil()" class="basicVakaryButton mt-3">{{
+                        $t("itineraryModal.profileButton") }}</button>
+                </div>
+                <hr class="separationBar">
                 <div class="col-12">
                     <span>{{ $t("itineraryModal.startingCity") }} </span><br>
                     <input class="w-100 form-control" type="text" v-model="city" :placeholder="placeholderCity">
@@ -42,7 +85,8 @@
                         <div id="carouselExample" class="carousel slide">
                             <div class="row">
                                 <div class="col-3 text-start">
-                                    <button @click="prevSlide" class="arrowButton" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+                                    <button @click="prevSlide" class="arrowButton" type="button"
+                                        data-bs-target="#carouselExample" data-bs-slide="prev">
                                         <i class="fa-solid fa-xl fa-arrow-left"></i>
                                     </button>
                                 </div>
@@ -50,13 +94,15 @@
                                     {{ $t("itineraryModal.group") }}
                                 </div>
                                 <div class="col-3 text-end">
-                                    <button @click="nextSlide" class="arrowButton" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                                    <button @click="nextSlide" class="arrowButton" type="button"
+                                        data-bs-target="#carouselExample" data-bs-slide="next">
                                         <i class="fa-solid fa-xl fa-arrow-right"></i>
                                     </button>
                                 </div>
                             </div>
                             <div class="carousel-inner mt-2">
-                                <div class="carousel-item" v-for="(group, index) in groups" :key="index" :class="{ 'active': index === activeIndex }">
+                                <div class="carousel-item" v-for="(group, index) in groups" :key="index"
+                                    :class="{ 'active': index === activeIndex }">
                                     <cardsGroup :group="group"></cardsGroup>
                                 </div>
                             </div>
@@ -64,28 +110,6 @@
                     </div>
                 </div>
                 <hr class="separationBar">
-                <div class="col-12 mb-1">
-                    <span>{{ $t("itineraryModal.interest") }}</span><br>
-                </div>
-                <div>
-                    <div v-for="(category, categoryIndex) in categories" :key="categoryIndex">
-                        <div class="row my-2">
-                            <input class="col-1 ms-2" type="checkbox" :checked="checkToggle(category)"
-                                @change="toggleAllPOIs(category)" />
-                            <button class="col-10 mx-auto dropDownButton" @click="toggleDropdown(categoryIndex)">
-                                <font-awesome-icon class="mt-1 ms-2"
-                                    :icon="dropdownOpen[categoryIndex] ? ['fas', 'caret-down'] : ['fas', 'caret-right']"
-                                    style="float: left" />
-                                <span style="float: left" class="ms-3">{{ $t(category.key) }}</span>
-                            </button>
-                        </div>
-                        <div class="row my-2" v-show="isDropdownOpen(categoryIndex)"
-                            v-for="(poi, poiIndex) in getPoisByCategory(category)" :key="poiIndex">
-                            <input class="col sameSize" type="checkbox" v-model="selectedPOIs[poi.value]" value="poi.value" />
-                            <span class="col-10">{{ $t(poi.key) }}</span>
-                        </div>
-                    </div>
-                </div>
             </div>
             <span v-if="error" class="text-danger">{{ error['message'] }}</span>
             <div class="modal-footer">
@@ -93,7 +117,7 @@
                     style="margin: auto; margin-top: 10px; margin-bottom: 10px">{{ $t("itineraryModal.generate") }}</button>
             </div>
         </div>
-        <Loading v-if="loading"/>
+        <Loading v-if="loading" />
     </MapWindows>
 </template>
   
@@ -102,11 +126,13 @@ import Loading from "../UI/loadingSpin.vue";
 import { IPTNatural, IPTActivity, IPTDrinking, IPTCultural, IPTEating, IPTEvent, IPTTour, IPTTypeGroup } from "@/utils/poiTypes.js";
 import cardsGroup from "../UI/CardsGroup.vue";
 import MapWindows from "../UI/MapWindows.vue";
+import CardsProfile from './CardsProfile.vue';
 export default {
     components: {
         cardsGroup,
         Loading,
-        MapWindows
+        MapWindows,
+        CardsProfile
     },
     data() {
         return {
@@ -138,15 +164,24 @@ export default {
             totalItems: 0,
             isAnimating: false,
             groups: [],
+
+            profileActiveIndex: 0,
+            profileTotalItems: 0,
+            profile: [],
         }
     },
     computed: {
         placeholderCity() {
             return (this.$t('itineraryModal.city'));
         },
+        getPreferedType() {
+            console.log()
+            return null;
+        }
     },
-    mounted () {
+    mounted() {
         this.totalItems = this.$store.state.groupStore.groups.length + 1;
+        this.profileTotalItems = this.$store.state.profileStore.userTravelProfile.length + 1;
     },
     created() {
         const noGroup = {
@@ -158,8 +193,31 @@ export default {
         this.$store.state.groupStore.groups.forEach(group => {
             this.groups.push(group);
         });
+
+        if (this.$store.state.profileStore.userTravelProfile)
+            this.$store.state.profileStore.userTravelProfile.forEach(profile => {
+                this.profile.push(profile);
+            });
     },
     methods: {
+        deleteProfile() {
+            console.log(this.profileActiveIndex)
+            console.log(this.$store.state.profileStore.userTravelProfile[this.profileActiveIndex])
+            this.$store.dispatch("deleteTravelProfile",
+                this.$store.state.profileStore.userTravelProfile[this.profileActiveIndex].id
+            ).then(() => {
+                this.loading = false;
+                this.$store.dispatch('getUserTravelProfile').then(() => {
+                    this.$emit("goBackToItineraryDropdown");
+                });
+            }).catch((error) => {
+                this.loading = false;
+                this.error = error?.response?.data;
+            })
+        },
+        createProfil() {
+            this.$emit("createProfil");
+        },
         toTranslationKey(value) {
             const normalized = value.toLowerCase().replace(/\s+(.)/g, (_, char) => char.toUpperCase());
             return normalized.charAt(0).toLowerCase() + normalized.slice(1);
@@ -215,7 +273,7 @@ export default {
         },
         prevSlide() {
             if (this.isAnimating) return;
-            
+
             this.isAnimating = true;
             setTimeout(() => {
 
@@ -229,10 +287,36 @@ export default {
         },
         nextSlide() {
             if (this.isAnimating) return;
-            
+
             this.isAnimating = true;
             setTimeout(() => {
                 this.activeIndex = (this.activeIndex + 1) % this.totalItems;
+                this.isAnimating = false;
+            }, 500); // Temps d'animation (ajustez selon vos besoins)
+        },
+        prevSlideProfile() {
+            if (this.isAnimating) return;
+
+            this.isAnimating = true;
+            setTimeout(() => {
+
+                if (this.profileActiveIndex <= 0) {
+                    this.profileActiveIndex = this.profileTotalItems - 1;
+                } else {
+                    this.profileActiveIndex--;
+                }
+                this.isAnimating = false;
+            }, 500); // Temps d'animation (ajustez selon vos besoins)
+        },
+        nextSlideProfile() {
+            if (this.isAnimating) return;
+
+            this.isAnimating = true;
+            setTimeout(() => {
+                if (this.profileActiveIndex >= this.$store.state.profileStore.userTravelProfile.length)
+                    this.profileActiveIndex = 0;
+                else
+                    this.profileActiveIndex++;
                 this.isAnimating = false;
             }, 500); // Temps d'animation (ajustez selon vos besoins)
         },
@@ -261,7 +345,7 @@ export default {
                 budget: this.budget,
                 nbPeople: this.people,
                 nbChild: this.children,
-                typeResearchLocations: this.generateGoodFormat(this.selectedPOIs),
+                typeResearchLocations: this.$store.state.profileStore.userTravelProfile[this.profileActiveIndex].InterestPointTypes,
                 //group: this.groups[this.activeIndex]?.default ? null : this.groups[this.activeIndex],
                 handicapAccess: false,
             }).then(() => {
@@ -277,10 +361,10 @@ export default {
 </script>
 
 <style scoped>
-
 .form-check .form-check-input {
     float: none !important;
 }
+
 .xMark {
     background-color: var(--background-color-primary);
     border: none;
@@ -288,6 +372,7 @@ export default {
     padding: 2px 5px;
     color: var(--text-primary-color);
 }
+
 .arrowButton {
     background-color: var(--background-color-primary);
     border: 1px solid rgb(192, 150, 40);

@@ -8,9 +8,10 @@
             <div class="modal-body">
                 <div class="col-12">
                     <span>{{ $t("tripProfile.profileName") }} </span><br>
-                    <input class="w-100 form-control" type="text" v-model="city" :placeholder="placeholderCity">
+                    <input class="w-100 form-control" type="text" v-model="profileName" :placeholder="placeholderCity"
+                        style="margin-top: 5px;">
                 </div>
-                <hr class="separationBar" style="margin-bottom: 10px; margin-top: 20px;">
+                <hr class="separationBar" style="margin-bottom: 10px; margin-top: 10px;">
                 <div class="col-12 mb-1">
                     <span>{{ $t("itineraryModal.interest") }}</span><br>
                 </div>
@@ -33,8 +34,9 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button @click="generateItinerary" type="button" class="btn btn-primary"
-                    style="margin: auto; margin-top: 10px; margin-bottom: 10px">{{ $t("tripProfile.profileButtonConfirmation") }}</button>
+                <button @click="generateProfile" type="button" class="btn btn-primary"
+                    style="margin: auto; margin-top: 10px; margin-bottom: 10px">{{
+                        $t("tripProfile.profileButtonConfirmation") }}</button>
             </div>
         </div>
         <Loading v-if="loading" />
@@ -65,6 +67,7 @@ export default {
                 Cultural: Object.values(IPTCultural),
             },
             dropdownOpen: [],
+            profileName: "",
             activeIndex: 0,
             totalItems: 0,
             error: false,
@@ -122,12 +125,33 @@ export default {
         leaveGroupCreation() {
             this.$emit("goBackToItineraryDropdown");
         },
+        generateGoodFormat(POIs) {
+            let goodFormat = [];
+            for (var poi in POIs) {
+                goodFormat.push(poi);
+            }
+            return goodFormat;
+        },
+        generateProfile() {
+            this.$store.dispatch('createNewTravelProfil', {
+                typeOfPoi: this.generateGoodFormat(this.selectedPOIs),
+                profilFields: {
+                    name: this.profileName,
+                    adultCount: 0,
+                    childCount: 0,
+                    babyCount: 0,
+                }
+            }).then(() => {
+                this.$store.dispatch('getUserTravelProfile').then(() => {
+                    this.$emit("goBackToItineraryDropdown");
+                });
+            })
+        }
     }
 }
 </script>
 
 <style scoped>
-
 .xMark {
     background-color: var(--background-color-primary);
     border: none;

@@ -170,7 +170,9 @@
         "generate": "Générer l'itinéraire",
         "error": "Champs requis",
         "noGroup": "Aucun groupe",
-        "group": "Choix du groupe"
+        "group": "Choix du groupe",
+        "profile": "Choix du profil",
+        "profileButton": "Créer un profil"
     },
     "screenSizePage": {
         "screenSizeTooSmall": "Désolé, l'accès à notre application web est actuellement bloqué car votre écran est trop petit.",

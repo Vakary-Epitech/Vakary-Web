@@ -55,8 +55,13 @@
         </div>
       </div>
 
+      <div v-else-if="displayTripProfileCreation">
+        <profileTrip @goBackToItineraryDropdown="displayTripProfileCreation = false" />
+      </div>
+
       <div v-else-if="showItineraryCreationModal">
-        <profileTrip @goBackToItineraryDropdown="showItineraryCreationModal = false" />
+        <itineraryModal @goBackToItineraryDropdown="showItineraryCreationModal = false; displayTripProfileCreation = false"
+        @createProfil="displayTripProfileCreation = true" />
       </div>
 
       <div v-else>
@@ -199,6 +204,7 @@ export default {
       showGroupCreationModal: false,
       showProfile: false,
       groupHasBeenClicked: false,
+      displayTripProfileCreation: false,
 
       selectedItinerary: 0,
       selectedGroup: "",
@@ -230,9 +236,13 @@ export default {
   },
   mounted() {
     this.$store.dispatch("getGroup").then(() => {
-      this.$store.dispatch("getItinerary").catch((error) => {
-        console.log(error);
-      })
+      this.$store.dispatch("getItinerary").then(() => {
+        this.$store.dispatch("getUserTravelProfile").catch((error) => {
+          console.log(error);
+        })
+      }).catch((error) => {
+          console.log(error);
+        })
     }).catch((error) => {
       console.log(error);
     });
