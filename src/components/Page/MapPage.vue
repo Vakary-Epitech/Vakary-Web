@@ -188,7 +188,6 @@ export default {
     mapCards,
     CreateGroup,
     itineratyExplanation,
-    // eslint-disable-next-line
     itineraryModal,
     profileModal,
     showMembers,

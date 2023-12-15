@@ -123,7 +123,6 @@
   
 <script>
 import Loading from "../UI/loadingSpin.vue";
-import { IPTNatural, IPTActivity, IPTDrinking, IPTCultural, IPTEating, IPTEvent, IPTTour, IPTTypeGroup } from "@/utils/poiTypes.js";
 import cardsGroup from "../UI/CardsGroup.vue";
 import MapWindows from "../UI/MapWindows.vue";
 import CardsProfile from './CardsProfile.vue';
@@ -138,28 +137,12 @@ export default {
         return {
             checkItineraryLength: "",
             date: "",
-            timeOfStart: "00:00",
-            timeOfEnd: "00:00",
             budget: 0,
             people: 1,
             error: false,
-            days: 1,
             loading: false,
             city: "",
             children: 0,
-            indexOfGroup: 0,
-            categories: Object.values(IPTTypeGroup),
-            selectedPOIs: {},
-            poiData: {
-                Tour: Object.values(IPTTour),
-                Event: Object.values(IPTEvent),
-                Natural: Object.values(IPTNatural),
-                Activity: Object.values(IPTActivity),
-                Drinking: Object.values(IPTDrinking),
-                Eating: Object.values(IPTEating),
-                Cultural: Object.values(IPTCultural),
-            },
-            dropdownOpen: [],
             activeIndex: 0,
             totalItems: 0,
             isAnimating: false,
@@ -174,10 +157,6 @@ export default {
         placeholderCity() {
             return (this.$t('itineraryModal.city'));
         },
-        getPreferedType() {
-            console.log()
-            return null;
-        }
     },
     mounted() {
         this.totalItems = this.$store.state.groupStore.groups.length + 1;
@@ -216,58 +195,8 @@ export default {
         createProfil() {
             this.$emit("createProfil");
         },
-        toTranslationKey(value) {
-            const normalized = value.toLowerCase().replace(/\s+(.)/g, (_, char) => char.toUpperCase());
-            return normalized.charAt(0).toLowerCase() + normalized.slice(1);
-        },
-        checkToggle(category) {
-            const pois = this.poiData[category.value];
-            const areAllTrue = pois.every(poi => this.selectedPOIs[poi.value]);
-            const areAllFalse = pois.every(poi => !this.selectedPOIs[poi.value]);
-
-            if (areAllTrue) {
-                return true;
-            } else if (areAllFalse) {
-                return false;
-            } else {
-                return null;
-            }
-        },
-        toggleAllPOIs(category) {
-            const pois = this.poiData[category.value];
-            const areAllTrue = pois.every(poi => this.selectedPOIs[poi.value]);
-            const areAllFalse = pois.every(poi => !this.selectedPOIs[poi.value]);
-
-            if (areAllTrue) {
-                for (const poi of pois) {
-                    this.selectedPOIs[poi.value] = false;
-                }
-            }
-            else if (areAllFalse) {
-                for (const poi of pois) {
-                    this.selectedPOIs[poi.value] = true;
-                }
-            }
-            else {
-                for (const poi of pois) {
-                    this.selectedPOIs[poi.value] = true;
-                }
-            }
-        },
-        toggleDropdown(categoryIndex) {
-            this.dropdownOpen[categoryIndex] = !this.dropdownOpen[categoryIndex];
-        },
-        isDropdownOpen(categoryIndex) {
-            return this.dropdownOpen[categoryIndex];
-        },
-        getPoisByCategory(category) {
-            return this.poiData[category.value] || [];
-        },
         leaveGroupCreation() {
             this.$emit("goBackToItineraryDropdown");
-        },
-        setIndex(index) {
-            this.indexOfGroup = index;
         },
         prevSlide() {
             if (this.isAnimating) return;
@@ -317,13 +246,6 @@ export default {
                     this.profileActiveIndex++;
                 this.isAnimating = false;
             }, 500); // Temps d'animation (ajustez selon vos besoins)
-        },
-        generateGoodFormat(POIs) {
-            let goodFormat = [];
-            for (var poi in POIs) {
-                goodFormat.push(poi);
-            }
-            return goodFormat;
         },
         generateItinerary() {
             this.loading = true;
