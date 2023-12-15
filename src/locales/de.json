@@ -8,7 +8,8 @@
             "obtain": "Hole dir Vakary",
             "close": "Schließen",
             "download": "Lade unsere Anwendung direkt herunter, um sie auszuprobieren.",
-            "scan": "Scanne den QR-Code mit deinem Mobilgerät, um die Anwendung herunterzuladen."
+            "scan": "Scanne den QR-Code mit deinem Mobilgerät, um die Anwendung herunterzuladen.",
+            "tests": "<p>Bitte geben Sie uns Feedback zur Vakary-Anwendung, indem Sie diesem <a target='_blank' href='https://forms.gle/aMff6D7KnDiewBay7'>Link</a> folgen!</p>"
         },
         "learnMore": "Entdecke die aufregende Geschichte unseres Projekts und lerne das talentierte Team kennen, das dies möglich macht. Klicke hier, um mehr über unsere Reise und Ambitionen zu erfahren.",
         "learnMoreButton": "Mehr erfahren",
@@ -137,6 +138,37 @@
             "messageError": "Bitte versuche es später erneut."
         },
         "button": "Passwort zurücksetzen"
+    },
+    "presentationVakaryTeam": {
+        "faq": {
+            "title": "Q&A",
+            "faq1": "1. Was ist Vakary?",
+            "ans1": "Vakary ist eine mobile Anwendung, die es Ihnen ermöglicht, personalisierte Routen basierend auf Ihren Vorlieben und Interessen zu erstellen.",
+            "faq2": "2. Wie lade ich Vakary auf mein Handy herunter?",
+            "ans2": "Sie können Vakary kostenlos aus dem App Store (für iOS-Geräte) oder dem Google Play Store (für Android-Geräte) herunterladen. Vakary ist auch als Webversion verfügbar.",
+            "faq3": "3. Wie erstelle ich personalisierte Routen?",
+            "ans3": "Vakary verwendet einen intelligenten Algorithmus, der Ihre Reisevorlieben, Interessen, Budget und die Dauer Ihres Aufenthalts berücksichtigt, um einzigartige Routen zu generieren, die auf Ihre Bedürfnisse zugeschnitten sind.",
+            "faq4": "4. Wie plane ich meine Reise mit Vakary?",
+            "ans4": "Nach der Installation der Anwendung öffnen Sie diese und beantworten einige Fragen zu Ihren Reisevorlieben. Vakary wird diese Informationen verwenden, um einen ersten Reiseplan zu erstellen, den Sie dann anpassen können.",
+            "faq5": "5. Kann ich eigene Ziele hinzufügen?",
+            "ans5": "Natürlich! Sie können Ziele in der von Vakary generierten Route hinzufügen, löschen oder ändern. Die Anwendung bietet Ihnen maximale Flexibilität, um die perfekte Route zu erstellen.",
+            "faq6": "6. Wird mein Budget berücksichtigt?",
+            "ans6": "Ja, während der Planung können Sie Ihr Budget für die Reise angeben. Vakary wird diese Informationen berücksichtigen, um Aktivitäten, Unterkünfte und Restaurants zu empfehlen, die zu Ihrem Budget passen.",
+            "faq7": "7. Wie ändere ich einen Teil der Route?",
+            "ans7": "Kein Problem! Sie können Ihre Route jederzeit ändern. Fügen Sie Schritte hinzu, ordnen Sie sie neu an oder entfernen Sie sie entsprechend Ihrer neuen Auswahl.",
+            "faq8": "8. Empfehlungen für lokale Aktivitäten und Restaurants?",
+            "ans8": "Ja, Vakary wird Aktivitäten, Sehenswürdigkeiten, Restaurants und vieles mehr empfehlen, basierend auf Ihren Vorlieben und Ihrem Standort.",
+            "faq9": "9. Kann ich meine Route mit anderen Reisenden teilen?",
+            "ans9": "Natürlich können Sie Ihre Route mit Freunden, Familie oder anderen Reisenden über soziale Netzwerke, E-Mail oder sogar durch Generierung eines direkten Links teilen.",
+            "faq10": "10. Funktioniert Vakary offline?",
+            "ans10": "Nein, leider ist diese Funktion derzeit in Entwicklung und wird in Kürze verfügbar sein.",
+            "faq11": "11. Wie erhalte ich Hilfe?",
+            "ans11": "Die Anwendung verfügt über einen umfassenden Hilfebereich, in dem Sie Antworten auf häufig gestellte Fragen finden. Wenn Sie keine Antworten finden, können Sie unser Support-Team auch über die Anwendung kontaktieren.",
+            "faq12": "12. Sonderangebote/Rabatte für Aktivitäten?",
+            "ans12": "Nein, wir arbeiten derzeit an Partnerschaften, um Ihnen attraktive Preise zu bieten.",
+            "faq13": "13. Sind meine persönlichen Daten sicher?",
+            "ans13": "Absolut, die Sicherheit Ihrer Daten hat für uns höchste Priorität. Ihre persönlichen Informationen sind verschlüsselt und gemäß unseren Datenschutzrichtlinien geschützt."
+        }        
     },
     "profilePage": {
         "edit": "Bearbeiten",

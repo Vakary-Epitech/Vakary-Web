@@ -100,9 +100,9 @@
                 <b><span class="text-center ms-3">{{ $t("landingPage.block3Text1") }}</span></b>
                 <p class="text-center mt-3">{{ $t("landingPage.block3Text2b") }}</p>
                 <div class="text-center">
-                  <button class="invertedBlueVakaryButtonSmall mb-3 availableSoon" :class="`availableSoon${geti18n()}`"
+                  <button class="invertedBlueVakaryButtonSmall mb-3"
                     data-bs-toggle="modal" data-bs-target="#modalMobile">
-                    <!-- {{ $t("landingPage.find") }} --><span class="arrow"></span></button>
+                    {{ $t("landingPage.find") }}<span class="arrow"></span></button>
                 </div>
               </div>
             </div>
@@ -162,17 +162,17 @@
               <div class="modal-body">
                 <p>{{ $t("landingPage.modal.download") }}</p>
                 <div class="row">
-                  <div class="col-6 my-3">
-                    <img src="@/assets/LandingPage/qrcode.jpeg" class="qrCodeImage">
+                  <div class="row" v-if="downloadLink !== 64">
+                    <a v-if="downloadLink === 'x86_64'" target="_blank" href="@/assets/apk/app-x86_64-release.apk" download></a>
+                    <a v-if="downloadLink === 'arm64'" target="_blank" href="@/assets/apk/app-arm64-v8a-release.apk" download></a>
+                    <a v-if="downloadLink === 'arm'" target="_blank" href="@/assets/apk/app-armeabi-v7a-release.apk" download></a>
                   </div>
-                  <div class="col-6 my-auto">
-                    <p class="textOnTopOfQrCode">{{ $t("landingPage.modal.scan") }}</p>
+                  <div class="row" v-if="downloadLink === 64">
+                    <a target="_blank" href="@/assets/apk/app-x86_64-release.apk" download>x86_64</a>
+                    <a target="_blank" href="@/assets/apk/app-arm64-v8a-release.apk" download>ARM64-v8a</a>
+                    <a target="_blank" href="@/assets/apk/app-armeabi-v7a-release.apk" download>ARMv7a</a>
                   </div>
-                  <div class="col-6">
-                    <img :src="require(`@/assets/badges/${geti18n()}/app-store-badge.svg`)" class="iosImage">
-                  </div>
-                  <div class="col-6">
-                    <img :src="require(`@/assets/badges/${geti18n()}/google-play-badge.svg`)" class="androidImage">
+                  <div class="col-12 mt-3" v-html="$t('landingPage.modal.tests')">
                   </div>
                 </div>
               </div>
@@ -191,10 +191,21 @@
 <script>
 import presentationCards from '../UI/presentationCards.vue';
 import languages from '../UI/languagesModal.vue';
+import platform from 'platform';
+
 export default {
   components: {
     presentationCards,
     languages,
+  },
+  data() {
+    return {
+      downloadLink: '',
+    }
+  },
+  mounted() {
+    const architecture = platform.os.architecture;
+    this.downloadLink = architecture;
   },
   methods: {
     openConnexionPage() {

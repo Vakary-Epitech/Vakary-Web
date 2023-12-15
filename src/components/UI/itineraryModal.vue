@@ -181,7 +181,7 @@ export default {
     },
     mounted() {
         this.totalItems = this.$store.state.groupStore.groups.length + 1;
-        this.profileTotalItems = this.$store.state.profileStore.userTravelProfile.length + 1;
+        this.profileTotalItems = this.$store.state.profileStore.userTravelProfile.length;
     },
     created() {
         const noGroup = {
@@ -201,8 +201,6 @@ export default {
     },
     methods: {
         deleteProfile() {
-            console.log(this.profileActiveIndex)
-            console.log(this.$store.state.profileStore.userTravelProfile[this.profileActiveIndex])
             this.$store.dispatch("deleteTravelProfile",
                 this.$store.state.profileStore.userTravelProfile[this.profileActiveIndex].id
             ).then(() => {

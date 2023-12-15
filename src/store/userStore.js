@@ -179,7 +179,21 @@ const userStore = {
                 }
             })
         },
+        getUserLikes({ getters }) {
+            return new Promise((resolve, reject) => {
+                try {
+                    let conf = getters.getConfig({ url: "me/like/interestPoint", data: null, method: "get" })
 
+                    axios.request(conf).then((canAuthentify) => {
+                        resolve(canAuthentify)
+                    }).catch((error) => {
+                        reject(error);
+                    })
+                } catch (error) {
+                    reject(error);
+                }
+            })
+        },        
         deleteUser({ getters }) {
             return new Promise((resolve, reject) => {
                 try {
