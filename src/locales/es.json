@@ -342,5 +342,11 @@
     },
     "languagesModal": {
         "selectLanguage": "Seleccionar idioma"
+    },
+    "tripProfile": {
+        "profileName": "Nombre del perfil de viaje:",
+        "profileCreate": "Creación de un nuevo perfil de viaje",
+        "interest": "Intereses",
+        "profileButtonConfirmation": "Crear perfil"
     }
 }

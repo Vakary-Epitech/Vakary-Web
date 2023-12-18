@@ -83,7 +83,7 @@
       "username": "Your username must contain at least 3 characters",
       "password": "Your password must contain at least 8 characters, including at least one lowercase letter, one uppercase letter, and one number",
       "error": "An error occurred"
-      }
+    }
   },
   "groupCards": {
     "group": "Group: ",
@@ -132,10 +132,10 @@
   "resetPassword": {
     "title": "Password Reset",
     "errors": {
-        "password": "Invalid new password",
-        "messagePassword": "Your password must be at least 8 characters long and include at least one lowercase letter, one uppercase letter, and one number.",
-        "error": "An unexpected error occurred.",
-        "messageError": "Please try again later."
+      "password": "Invalid new password",
+      "messagePassword": "Your password must be at least 8 characters long and include at least one lowercase letter, one uppercase letter, and one number.",
+      "error": "An unexpected error occurred.",
+      "messageError": "Please try again later."
     },
     "button": "Reset password"
   },
@@ -246,7 +246,7 @@
     }
   },
   "POI": {
-    "interestPointTypeTour": {    
+    "interestPointTypeTour": {
       "cyclingTour": "Cycling Tour",
       "roadTour": "Road Tour",
       "walkingTour": "Walking Tour",
@@ -261,7 +261,7 @@
       "exhibitionEvent": "Exhibition Event",
       "culturalEvent": "Cultural Event"
     },
-    "interestPointTypeNatural": {    
+    "interestPointTypeNatural": {
       "landform": "Landform",
       "park": "Park",
       "parkAndGarden": "Park And Garden",
@@ -323,31 +323,36 @@
     "members": "Members"
   },
   "loadingSpin": {
-      "loading": "Loading...",
-      "loadingItinerary": "Loading itinerary...",
-      "loadMore": "Loading new points of interest..."
+    "loading": "Loading...",
+    "loadingItinerary": "Loading itinerary...",
+    "loadMore": "Loading new points of interest..."
   },
   "roadMap": {
-      "betaDate": "30 JUN 2023",
-      "betaTitle": "Release of Vakary Beta",
-      "betaBody": "Vakary Beta is now available and open to the public, allowing users to create an itinerary and share it with their friends.",
-      "corrDate": "1 SEP 2023",
-      "corrTitle": "Correction and Improvement",
-      "corrBody": "Vakary has listened to you and is improving based on feedback from its beta testers!",
-      "sauvDate": "30 NOV 2023",
-      "sauvTitle": "Addition of Preference Saving",
-      "sauvBody": "Vakary will allow you to input your point of interest preferences in your profile. Thus, you won't need to select your preferences each time you use it.",
-      "profDate": "30 DEC 2023",
-      "profTitle": "Addition of Vakary Profile Visits",
-      "profBody": "You will be able to visit the profiles of other users and see what your friends have visited.",
-      "commDate": "30 AUG 2024",
-      "commTitle": "Expansion of Vakary",
-      "commBody": "Vakary aims to have 100,000 users.",
-      "CDP": "Project Manager",
-      "team": "Our team"
+    "betaDate": "30 JUN 2023",
+    "betaTitle": "Release of Vakary Beta",
+    "betaBody": "Vakary Beta is now available and open to the public, allowing users to create an itinerary and share it with their friends.",
+    "corrDate": "1 SEP 2023",
+    "corrTitle": "Correction and Improvement",
+    "corrBody": "Vakary has listened to you and is improving based on feedback from its beta testers!",
+    "sauvDate": "30 NOV 2023",
+    "sauvTitle": "Addition of Preference Saving",
+    "sauvBody": "Vakary will allow you to input your point of interest preferences in your profile. Thus, you won't need to select your preferences each time you use it.",
+    "profDate": "30 DEC 2023",
+    "profTitle": "Addition of Vakary Profile Visits",
+    "profBody": "You will be able to visit the profiles of other users and see what your friends have visited.",
+    "commDate": "30 AUG 2024",
+    "commTitle": "Expansion of Vakary",
+    "commBody": "Vakary aims to have 100,000 users.",
+    "CDP": "Project Manager",
+    "team": "Our team"
   },
   "languagesModal": {
     "selectLanguage": "Select language"
-
+  },
+  "tripProfile": {
+    "profileName": "Trip profile name:",
+    "profileCreate": "Trip profile creation",
+    "interest": "Interests",
+    "profileButtonConfirmation": "Create profile"
   }
 }

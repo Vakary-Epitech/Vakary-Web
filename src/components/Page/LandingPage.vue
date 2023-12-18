@@ -192,6 +192,7 @@
 import presentationCards from '../UI/presentationCards.vue';
 import languages from '../UI/languagesModal.vue';
 import platform from 'platform';
+
 export default {
   components: {
     presentationCards,
