@@ -123,7 +123,8 @@ const itineraryStore = {
             return new Promise((resolve, reject) => {
                 try {
                     let config = getters.getConfig({ url: "itinerary/me", data: data, method: "put" })
-
+                    console.log(data.typeResearchLocations)
+                    
                     axios.request(config).then((newItinerary) => {
                         dispatch("getItinerary");
                         resolve(newItinerary);

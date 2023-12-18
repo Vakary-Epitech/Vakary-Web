@@ -22,8 +22,8 @@
                 </div>
                 <div class="row" v-if="editMode" style="min-height: 15vh">
                     <div class="text-center">
-                        <img @click="openFileExplorer()" class="profile-picture clickable"
-                            :src="photoDisplay" alt="profile-picture">
+                        <img @click="openFileExplorer()" class="profile-picture clickable" :src="photoDisplay"
+                            alt="profile-picture">
                     </div>
                     <div class="col-12 mt-2 ">
                         <span>{{ $t("profilePage.info") }}</span><br>
@@ -41,46 +41,61 @@
                     </div>
                     <div class="col-6 col-xxxl-3 text-center">
                         <h6>{{ $t("profilePage.likes") }}</h6>
-                        <p>{{ user?.likes }}</p>
+                        <p>{{ likes }}</p>
                     </div>
-                    <!-- <div class="col-6 col-xxxl-3 text-center">
-                        <h6>{{ $t("profilePage.totalKm") }}</h6>
-                        <p>{{ user?.milesTraveled }}</p>
-                    </div>
-                    <div class="col-6 col-xxxl-3 text-center">
-                        <h6>{{ $t("profilePage.comments") }}</h6>
-                        <p>{{ user?.comments }}</p>
-                    </div> -->
                     <div class="col-6 col-xxxl-3 text-center">
                         <h6>{{ $t("profilePage.verified") }}</h6>
                         <p v-if="user?.verified === 'true'"><i class="fa-solid fa-check green-check"></i></p>
                         <p v-if="user?.verified === 'false'"><i class="fa-solid fa-xmark red-xmark"></i></p>
                     </div>
                 </div>
-                <div class="row text-center">
-                    <div class="col-12 col-xxxl-6">
-                        <button class="btn btn-edit" @click="edit"><i class="fa-solid fa-pen me-2"></i>{{ $t("profilePage.edit") }}</button>
+                <div class="row mt-3" v-if="$store.state.profileStore.userTravelProfile.length > 0">
+                    <div class="col-12">
+                        <h5>Profil favori</h5>
                     </div>
-                    <div class="col-12 mt-2 mt-xxxl-0 col-xxxl-6">
-                        <button class="btn btn-delete" @click="(deleteUser)"><i class="fa-solid fa-trash me-2"></i>{{ $t("profilePage.delete") }}</button>
-                    </div>
-                    <div class="col-12 mt-2">
-                        <button class="btn btn-disconnect" @click="(disconnectUser)"><i class="fa-solid fa-arrow-right-from-bracket me-2"></i>{{ $t("profilePage.disconnect") }}</button>
+                    <CardsProfile :profile="$store.state.profileStore.userTravelProfile[0]" />
+                    <div>
+                        <div class="col-12 text-center">
+                            <h7  style="margin-top: 10px; margin-bottom: 10px;">Types Favoris:</h7>
+                            <div v-for="(type, index) in topThreeInterestPointTypes" :key="index">
+                                {{ $t(type) }}
+                            </div>
+                        </div>
                     </div>
                 </div>
+                <div class="row text-center">
+                    <div class="col-12 col-xxxl-6">
+                        <button class="btn btn-edit" @click="edit"><i class="fa-solid fa-pen me-2"></i>{{
+                            $t("profilePage.edit") }}</button>
+                    </div>
+                    <div class="col-12 mt-2 mt-xxxl-0 col-xxxl-6">
+                        <button class="btn btn-delete" @click="(deleteUser)"><i class="fa-solid fa-trash me-2"></i>{{
+                            $t("profilePage.delete") }}</button>
+                    </div>
+                    <div class="col-12 mt-2">
+                        <button class="btn btn-disconnect" @click="(disconnectUser)"><i
+                                class="fa-solid fa-arrow-right-from-bracket me-2"></i>{{ $t("profilePage.disconnect")
+                                }}</button>
+                    </div>
+                </div>
+
             </div>
         </div>
-        <Loading v-if="loading"/>
+        <Loading v-if="loading" />
     </MapWindows>
 </template>
     
 <script>
 import MapWindows from "./MapWindows.vue";
 import Loading from "./loadingSpin.vue";
+import CardsProfile from './CardsProfile.vue';
+import { IPTNatural, IPTActivity, IPTDrinking, IPTCultural, IPTEating, IPTEvent, IPTTour, IPTTypeGroup } from "@/utils/poiTypes.js";
+
 export default {
     components: {
         MapWindows,
-        Loading
+        Loading,
+        CardsProfile
     },
     data() {
         return {
@@ -90,6 +105,45 @@ export default {
             user: this.$store.state.userStore.userInfo,
             picture: this.$store.state.userStore.userProfileImage,
             photoDisplay: this.$store.state.userStore.userProfileImage,
+            likes: 0,
+        }
+    },
+    mounted() {
+        this.$store.dispatch('getUserLikes').then((res) => {
+            this.likes = res.data.likedPOIs.length;
+        }).catch((error) => {
+            console.log(error);
+        })
+    },
+    computed: {
+        topThreeInterestPointTypes() {
+            const combinedEnums = {
+                ...IPTTour,
+                ...IPTEvent,
+                ...IPTNatural,
+                ...IPTActivity,
+                ...IPTDrinking,
+                ...IPTCultural,
+                ...IPTEating,
+                ...IPTTypeGroup
+            };
+            const allTypes = this.$store.state.profileStore.userTravelProfile.flatMap(item => item.InterestPointTypes);
+
+            const typeFrequency = allTypes.reduce((acc, type) => {
+                acc[type] = (acc[type] || 0) + 1;
+                return acc;
+            }, {});
+
+            const sortedTypes = Object.entries(typeFrequency).sort((a, b) => b[1] - a[1]);
+            return sortedTypes.slice(0, 3).map(type => {
+                const typeValue = type[0];
+                for (const key in combinedEnums) {
+                    if (combinedEnums[key].value === typeValue) {
+                        return combinedEnums[key].key;
+                    }
+                }
+                return typeValue; // Fallback in case no matching enum is found
+            });
         }
     },
     methods: {
@@ -143,7 +197,6 @@ export default {
 }
 </script>
 <style scoped>
-
 .description {
     max-width: 30ch;
 }

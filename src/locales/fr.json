@@ -8,7 +8,8 @@
             "obtain": "Obtenir Vakary",
             "close": "Fermer",
             "download": "Téléchargez directement notre application pour l'essayer.",
-            "scan": "Scannez le QR code avec votre appareil mobile pour télécharger l'application."
+            "scan": "Scannez le QR code avec votre appareil mobile pour télécharger l'application.",
+            "tests": "<p>Merci de nous faire un retour sur l'application Vakary en suivant ce <a target='_blank' href='https://forms.gle/aMff6D7KnDiewBay7'>lien</a> !</p>"
         },
         "learnMore": "Découvrez l'histoire passionnante de notre projet et rencontrez l'équipe de talents qui le rend possible. Cliquez ici pour en savoir plus sur notre parcours et nos ambitions.",
         "learnMoreButton": "En savoir plus",
@@ -55,6 +56,37 @@
             "title": "DÉCOUVREZ LA FRANCE",
             "description": "Peu importe vos envies, Vakary vous propose un itinéraire sur mesure pour découvrir les plus beaux endroits de France !",
             "registration": "Inscription"
+        }
+    },
+    "presentationVakaryTeam": {
+        "faq": {
+            "title": "FAQ",
+            "faq1": "1. Qu'est-ce que Vakary ?",
+            "ans1": "Vakary est une application mobile qui vous permet de créer des itinéraires personnalisés en fonction de vos préférences et centres d'intérêts.",
+            "faq2": "2. Télécharger Vakary sur mon téléphone ?",
+            "ans2": "Vous pouvez télécharger Vakary gratuitement depuis l'App Store (pour les appareil iOS) ou depuis le Google Play Store (pour les appareils Android). Vakary est également disponible en version Web.",
+            "faq3": "3. Créer des itinéraires personnalisés ?",
+            "ans3": "Vakary utilise un algorithme intelligent qui prend en compte vos préférences de voyages, vos centres d'intérêts, votre budget et la durée de votre séjour pour générer des itinéraires uniques et adaptés à vos besoins.",
+            "faq4": "4. Planifier mon voyage avec Vakary ?",
+            "ans4": "Une fois l'application installée, ouvrez-la et répondez à quelques questions sur vos préférences de voyage. Vakary utilisera ces informations pour élaborer un itinéraire initial que vous pourrez ensuite personnaliser.",
+            "faq5": "5. Ajouter mes propres destinations ?",
+            "ans5": "Absolument ! Vous pouvez ajouter, supprimer ou modifier des destinations dans l'itinéraire généré par Vakary. L'application vous offre une flexibilité totale pour créer l'itinéraire parfait.",
+            "faq6": "6. Prendre en compte mon budget ?",
+            "ans6": "Oui, lors de la planification, vous pouvez spécifier votre budget prévu pour le voyage. Vakary tiendra compte de cette information pour recommander des activités, hébergements et restaurants adaptés à votre budget",
+            "faq7": "7. Changer une partie de l'itinéraire ?",
+            "ans7": "Pas de soucis ! Vous pouvez modifier votre itinéraire à tout moment. Ajoutez, réorganisez ou supprimez des étapes en fonction de vos nouveaux choix.",
+            "faq8": "8. Suggestions d'activités et de restaurants locales ?",
+            "ans8": "Oui, Vakary vous recommandera des activités, des attractions touristiques, des restaurants et bien plus encore, en fonction de vos préférences et de votre emplacement.",
+            "faq9": "9. Partager mon itinéraire avec d'autres voyageurs ?",
+            "ans9": "Bien-sûr, vous pouvez partager votre itinéraire avec vos amis, votre famille ou d'autres voyageurs via les réseaux sociaux, par e-mail ou même en générant un lien direct.",
+            "faq10": "10. Est-ce que Vakary fonctionne hors ligne ?",
+            "ans10": "Non, malheureusement, cette fonctionnalité est en cours de développement et arrivera très prochainement.",
+            "faq11": "11. Obtenir de l'aide ?",
+            "ans11": "L'application dispose d'une section d'aide complète où vous trouverez des réponses aux questions fréquemment posées. Si vous ne trouvez pas de réponses, vous pouvez également contacter notre équipe d'assistance via l'application.",
+            "faq12": "12. Offres spéciales / réductions pour les activités ?",
+            "ans12": "Non, nous sommes actuellement en train de travailler sur des partenariats afin de pouvoir vous faire profiter de tarifs intéressants.",
+            "faq13": "13. Mes données personnelles sont-elles en sécurité ?",
+            "ans13": "Absolument, la sécurité de vos données est une priorité pour nous. Vos informations personnelles sont cryptées et protégées conformément à nos politiques de confidentialité."
         }
     },
     "profilePage": {
@@ -170,7 +202,9 @@
         "generate": "Générer l'itinéraire",
         "error": "Champs requis",
         "noGroup": "Aucun groupe",
-        "group": "Choix du groupe"
+        "group": "Choix du groupe",
+        "profile": "Choix du profil",
+        "profileButton": "Créer un profil"
     },
     "screenSizePage": {
         "screenSizeTooSmall": "Désolé, l'accès à notre application web est actuellement bloqué car votre écran est trop petit.",
@@ -316,6 +350,11 @@
     },
     "languagesModal": {
       "selectLanguage": "Sélectionner la langue"
+    },
+    "tripProfile": {
+        "profileName": "Nom du profil de voyage:",
+        "profileCreate": "Création d'un nouveau profil de voyage",
+        "interest": "Centres d'intérêts",
+        "profileButtonConfirmation": "Créer le profil"
     }
-    
 }

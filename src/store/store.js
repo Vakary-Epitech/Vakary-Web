@@ -5,6 +5,7 @@ import mapStore from './mapStore';
 import VuexPersistence from 'vuex-persist'
 import groupStore from './groupStore';
 import itineraryStore from './itineraryStore';
+import profileStore from './profileStore';
 
 //Make the userStore persistent
 const vuexLocal = new VuexPersistence({
@@ -19,6 +20,7 @@ const store = createStore({
         mapStore: mapStore, //Store every map information, action and mutation
         groupStore: groupStore,
         itineraryStore: itineraryStore,
+        profileStore: profileStore,
     },
     plugins: [vuexLocal.plugin],
 });

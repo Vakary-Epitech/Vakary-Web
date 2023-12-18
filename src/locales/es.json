@@ -8,7 +8,8 @@
             "obtain": "Obtener Vakary",
             "close": "Cerrar",
             "download": "Descarga nuestra aplicación directamente para probarla.",
-            "scan": "Escanea el código QR con tu dispositivo móvil para descargar la aplicación."
+            "scan": "Escanea el código QR con tu dispositivo móvil para descargar la aplicación.",
+            "tests": "<p>¡Por favor, dénos su opinión sobre la aplicación Vakary siguiendo este <a target='_blank' href='https://forms.gle/aMff6D7KnDiewBay7'>enlace</a>!</p>"
         },
         "learnMore": "Descubre la emocionante historia de nuestro proyecto y conoce al talentoso equipo que lo hace posible. Haz clic aquí para obtener más información sobre nuestro viaje y ambiciones.",
         "learnMoreButton": "Más información",
@@ -137,6 +138,37 @@
             "messageError": "Por favor, inténtalo nuevamente más tarde."
         },
         "button": "Restablecer contraseña"
+    },
+    "presentationVakaryTeam": {
+        "faq": {
+            "title": "Preguntas frecuentes",
+            "faq1": "1. ¿Qué es Vakary?",
+            "ans1": "Vakary es una aplicación móvil que te permite crear rutas personalizadas según tus preferencias y centros de interés.",
+            "faq2": "2. ¿Cómo descargo Vakary en mi teléfono?",
+            "ans2": "Puedes descargar Vakary de forma gratuita desde la App Store (para dispositivos iOS) o desde Google Play Store (para dispositivos Android). Vakary también está disponible en versión web.",
+            "faq3": "3. ¿Cómo crear rutas personalizadas?",
+            "ans3": "Vakary utiliza un algoritmo inteligente que tiene en cuenta tus preferencias de viaje, intereses, presupuesto y la duración de tu estancia para generar rutas únicas y adaptadas a tus necesidades.",
+            "faq4": "4. ¿Cómo planificar mi viaje con Vakary?",
+            "ans4": "Una vez instalada la aplicación, ábrela y responde algunas preguntas sobre tus preferencias de viaje. Vakary utilizará esta información para elaborar una ruta inicial que luego podrás personalizar.",
+            "faq5": "5. ¿Puedo agregar mis propios destinos?",
+            "ans5": "¡Por supuesto! Puedes agregar, eliminar o modificar destinos en la ruta generada por Vakary. La aplicación te ofrece total flexibilidad para crear la ruta perfecta.",
+            "faq6": "6. ¿Se tiene en cuenta mi presupuesto?",
+            "ans6": "Sí, durante la planificación puedes especificar tu presupuesto previsto para el viaje. Vakary tendrá en cuenta esta información para recomendar actividades, alojamientos y restaurantes adaptados a tu presupuesto.",
+            "faq7": "7. ¿Cómo cambio una parte de la ruta?",
+            "ans7": "¡Sin problema! Puedes modificar tu ruta en cualquier momento. Agrega, reorganiza o elimina etapas según tus nuevas elecciones.",
+            "faq8": "8. ¿Hay sugerencias de actividades y restaurantes locales?",
+            "ans8": "Sí, Vakary te recomendará actividades, atracciones turísticas, restaurantes y mucho más, según tus preferencias y ubicación.",
+            "faq9": "9. ¿Puedo compartir mi ruta con otros viajeros?",
+            "ans9": "Claro, puedes compartir tu ruta con amigos, familiares u otros viajeros a través de redes sociales, correo electrónico o incluso generando un enlace directo.",
+            "faq10": "10. ¿Funciona Vakary sin conexión?",
+            "ans10": "No, lamentablemente, esta función está en desarrollo y estará disponible muy pronto.",
+            "faq11": "11. ¿Cómo obtengo ayuda?",
+            "ans11": "La aplicación cuenta con una sección de ayuda completa donde encontrarás respuestas a preguntas frecuentes. Si no encuentras respuestas, también puedes contactar a nuestro equipo de soporte a través de la aplicación.",
+            "faq12": "12. ¿Hay ofertas especiales/descuentos para actividades?",
+            "ans12": "No, actualmente estamos trabajando en asociaciones para ofrecerte tarifas interesantes.",
+            "faq13": "13. ¿Están seguros mis datos personales?",
+            "ans13": "Absolutamente, la seguridad de tus datos es una prioridad para nosotros. Tu información personal está encriptada y protegida de acuerdo con nuestras políticas de privacidad."
+        }        
     },
     "profilePage": {
         "edit": "Editar",
@@ -310,5 +342,11 @@
     },
     "languagesModal": {
         "selectLanguage": "Seleccionar idioma"
+    },
+    "tripProfile": {
+        "profileName": "Nombre del perfil de viaje:",
+        "profileCreate": "Creación de un nuevo perfil de viaje",
+        "interest": "Intereses",
+        "profileButtonConfirmation": "Crear perfil"
     }
 }

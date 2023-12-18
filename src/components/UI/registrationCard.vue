@@ -63,10 +63,10 @@ export default {
     }
   },
   methods: {
-    /*authenticateWithGoogle() {
+    authenticateWithGoogle() {
       // Rediriger vers l'URL d'authentification Google
-      //window.location.href = "http://localhost:8080/v1/auth/google";
-    },*/
+      window.location.href = "https://eip.vakary.fr/v1/auth/google";
+    },
     openLoginPage() {
       this.$emit("openLogin");
     },
