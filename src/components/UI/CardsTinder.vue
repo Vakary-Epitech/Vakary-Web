@@ -1,56 +1,63 @@
 <template>
-    <div class="card" :style="cardStyle" :key="currentCardIndex" v-if="!endList && likedPOI.length < 7 && !skip"
-        @mousedown="startDrag"
-        @mousemove="dragCard"
-        @mouseup="stopDrag">
-        <div class="card-header">
-            <div class="col-10">
-                {{ cardsTest[currentCardIndex].name }}
-            </div>
-            <div class="col-2">
-                {{ likedPOI.length }} / 7
-            </div>
-        </div>
-        
-        <div class="card-body" :class="{ expanded: expandedCardContent }" :style="{ backgroundImage: `url(${cardsTest[currentCardIndex].pic})`, backgroundSize: 'cover', backgroundPosition: 'center' }">
-            <div class="card-body-overlay"></div>
-            <div class="card-body-content">
-                <div class="row">
-                    <div class="col-8">
-                        <p class="ms-2"><i class="fa-regular fa-clock custom-size"></i>{{ cardsTest[currentCardIndex].sch }}</p>
+   <div v-if="!loading">       
+       <div class="card" :style="cardStyle" :key="currentCardIndex" v-if="!endList && likedPOI.length < 7 && !skip"
+                @mousedown="startDrag"
+                @mousemove="dragCard"
+                @mouseup="stopDrag">
+                <div class="card-header">
+                    <div class="col-10">
+                        {{ cardsTest[currentCardIndex].name }}
+                        {{ getCurrentPOIName() }}
                     </div>
-                    <div class="col-4 text-end mt-2">
-                        <button v-if="!expandedCardContent" @click="toggleCardContent" class="toggle-button me-2"><i class="fa-solid fa-info custom-size"></i></button>
-                        <button v-if="expandedCardContent" @click="toggleCardContent" class="toggle-button me-2"><i class="fa-solid fa-arrow-down custom-size"></i></button>
-                    </div>
-                    <div class="col-12" v-if="expandedCardContent">
-                        <p class="ms-2"><i class="fa-solid fa-euro-sign custom-size"></i>{{ cardsTest[currentCardIndex].price }}</p>
-                        <p class="ms-2"><i class="fa-solid fa-circle-info custom-size"></i>{{ cardsTest[currentCardIndex].desc }}</p>
+                    <div class="col-2">
+                        {{ likedPOI.length }} / 7
                     </div>
                 </div>
-            </div>
-        </div>
-        
-        <div class="card-footer">
-            <div class="row">
-                <div class="col text-start">
-                    <button @click="disliked()" class="button-custom"><i class="fa-solid fa-xmark fa-xl custom-size xmark-icon"></i></button>
+                
+                <div class="card-body" :class="{ expanded: expandedCardContent }" :style="{ backgroundImage: `url(${getCurrentPOIImage()})`, backgroundSize: 'cover', backgroundPosition: 'center' }">
+                    {{ selectedItinerary ||json }}
+                    <div class="card-body-overlay"></div>
+                    <div class="card-body-content">
+                        <div class="row">
+                            <div class="col-8">
+                                <p class="ms-2"><i class="fa-regular fa-clock custom-size"></i>{{ getCurrentPOIOpenHours() }}</p>
+                            </div>
+                            <div class="col-4 text-end mt-2">
+                                <button v-if="!expandedCardContent" @click="toggleCardContent" class="toggle-button me-2"><i class="fa-solid fa-info custom-size"></i></button>
+                                <button v-if="expandedCardContent" @click="toggleCardContent" class="toggle-button me-2"><i class="fa-solid fa-arrow-down custom-size"></i></button>
+                            </div>
+                            <div class="col-12" v-if="expandedCardContent">
+                                <!-- <p class="ms-2"><i class="fa-solid fa-euro-sign custom-size"></i>{{ getCurrentPOIPrice() }}</p> -->
+                                <p class="ms-2"><i class="fa-solid fa-circle-info custom-size"></i>{{ getCurrentPOIDescription() }}</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="col text-center">
-                    <button @click="skip = true" class="button-custom"><i class="fa-solid fa-forward custom-size"></i></button>
-                </div>   
-                <div class="col text-end">
-                    <button @click="liked()" class="button-custom"><i class="fa-solid fa-heart fa-xl custom-size heart-icon"></i></button>
+                
+                <div class="card-footer">
+                    <div class="row">
+                        <div class="col text-start">
+                            <button @click="disliked()" class="button-custom"><i class="fa-solid fa-xmark fa-xl custom-size xmark-icon"></i></button>
+                        </div>
+                        <div class="col text-center">
+                            <button @click="skip = true" class="button-custom"><i class="fa-solid fa-forward custom-size"></i></button>
+                        </div>   
+                        <div class="col text-end">
+                            <button @click="liked()" class="button-custom"><i class="fa-solid fa-heart fa-xl custom-size heart-icon"></i></button>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
-    </div>
-    <div class="text-center" v-if="likedPOI.length ===  7 || skip">
-        <loadingSpinner text="loadingSpin.loadingItinerary"/>
-    </div>
-    <div class="text-center" v-if="endList">
-        <loadingSpinner text="loadingSpin.loadMore"/>
-    </div>
+       </div>
+   </div>
+   <div class="text-center" v-if="likedPOI.length ===  7 || skip">
+       <loadingSpinner text="loadingSpin.loadingItinerary"/>
+   </div>
+   <div class="text-center" v-if="endList">
+       <loadingSpinner text="loadingSpin.loadMore"/>
+   </div>
+   <div v-if="loading">
+        <loadingSpinner/>
+   </div>
 </template>
   
 <script>
@@ -58,6 +65,7 @@ import loadingSpinner from "../UI/loadingSpin.vue";
 export default {
     props: {
       index: Number,
+      selectedItineraryInfo: Array,
     },
     components: {
         loadingSpinner,
@@ -152,6 +160,7 @@ export default {
         dragging: false,
         xOffset: 0,
         yOffset: 0,
+        localeLanguage: this.$i18n.locale,
         swiped: false,
         currentCardIndex: 0,
         likedPOI: [],
@@ -159,6 +168,7 @@ export default {
         swipeThreshold: 100,
         initialX: 0,
         initialY: 0,
+        loading: true,
         expandedCardContent: false,
       };
     },
@@ -170,7 +180,52 @@ export default {
         };
       },
     },
+    mounted() {
+        console.log(this.$store.state.itineraryStore.itinerary.length);
+        console.log(this.$store.state.itineraryStore.itinerary[this.$store.state.itineraryStore.itinerary.length - 1]);
+        this.cardsTest = this.$store.state.itineraryStore.itinerary[this.$store.state.itineraryStore.itinerary.length - 1]?.itineraryPOI;
+        this.loading = false;
+        // this.selectedItineraryInfo.forEach((element) => {
+        //     this.cardsTest.push(element);
+        // });
+
+    },
     methods: {
+        getCurrentPOIName() {
+            return (this.cardsTest[this.currentCardIndex].name);
+        },
+        getCurrentPOIDescription() {
+            return (this.cardsTest[this.currentCardIndex].Description[this.$i18n.locale]);
+        },
+        getCurrentPOIImage() {
+            return (this.cardsTest[this.currentCardIndex].image);
+        },
+        getCurrentPOIOpenHours() {
+            if (this.cardsTest[this.currentCardIndex].openingHours === "false") {
+                return (this.$t("mapPage.noOpeningHours"));
+            }
+            console.log(this.cardsTest[this.currentCardIndex]);
+            let timeStamp = JSON.parse(this.cardsTest[this.currentCardIndex].openingHours);
+            try {
+                let timeString = "";
+                for (let i in timeStamp.label[this.$i18n.locale])
+                    timeString += timeStamp.label[this.$i18n.locale][i];
+                return (timeString);
+            } catch (error) {
+                let timeString = "";
+                for (let i in timeStamp[0]['opens'])
+                    timeString += timeStamp[0]['opens'][i];
+                timeString += " - ";
+                for (let i in timeStamp[0]['closes'])
+                    timeString += timeStamp[0]['closes'][i];
+                if (timeString.includes("false"))
+                    return (this.$t("mapPage.noOpeningHours"))
+                return (timeString);
+            }
+        },
+        getCurrentPOIPrice() {
+            return (this.cardsTest[this.currentCardIndex].averagePrice);
+        },
         liked() {
             this.xOffset = 500;
             this.swiped = true;
@@ -260,8 +315,8 @@ export default {
 <style scoped>
 .card {
     position: absolute;
-    width: 30%;
-    height: 80%;
+    width: 30vw;
+    height: 80vh;
     background-color: #fff;
     box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
     border-radius: 10px;
@@ -345,5 +400,4 @@ export default {
 .custom-size {
     width: 1.5rem;
 }
-
 </style>

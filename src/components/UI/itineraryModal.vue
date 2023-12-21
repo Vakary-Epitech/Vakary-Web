@@ -1,5 +1,5 @@
 <template>
-    <MapWindows dropdown="true">
+    <MapWindows dropdown>
         <div v-if="!loading">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">{{ $t("itineraryModal.creation") }}</h5>
@@ -269,8 +269,11 @@ export default {
                 //group: this.groups[this.activeIndex]?.default ? null : this.groups[this.activeIndex],
                 handicapAccess: false,
             }).then(() => {
-                this.loading = false;
-                this.$emit("goBackToItineraryDropdown");
+                this.$store.dispatch("getItinerary").then(() => {
+                    this.loading = false;
+                    this.$emit("goBackToItineraryDropdown");
+                    this.$emit("itineraryCreated");
+                });
             }).catch((error) => {
                 this.loading = false;
                 this.error = error?.response?.data;

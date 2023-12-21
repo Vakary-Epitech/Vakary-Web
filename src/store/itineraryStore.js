@@ -119,6 +119,23 @@ const itineraryStore = {
             })
         },
 
+        getItineraryById({ getters, commit }, data) {
+            return new Promise((resolve, reject) => {
+                try {
+                    let config = getters.getConfig({ url: "itinerary/" + data.itineraryId, data: null, method: "get" })
+
+                    axios.request(config).then((itinerary) => {
+                        commit('UPDATE_MARKER', itinerary.data);
+                        resolve(itinerary);
+                    }).catch((error) => {
+                        reject(error);
+                    })
+                } catch (error) {
+                    reject(error);
+                }
+            })
+        },
+
         addItinerary({ getters, dispatch }, data) {
             return new Promise((resolve, reject) => {
                 try {

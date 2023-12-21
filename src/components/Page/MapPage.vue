@@ -2,7 +2,7 @@
      It is not using the i18n system yet for a translation system => only available in english atm -->
 
 <template>
-  <div class="fadeshow1">
+  <div class="fadeshow1" :style="showCardsTinder ? 'display: none' : null">
     <GMapMap :center="getCenterOfMap" :options="options" :zoom="mapZoom" style="width: 100vw; height: 100vh"
       ref="myMapRef">
 
@@ -21,7 +21,7 @@
   <div class="boxPosition fadeshow1">
     <Transition name="slide-fade">
 
-      <div v-if="!displayItineraryInformation && !showItineraryCreationModal" :class="(itineraryDropdownStatus)">
+      <div v-if="!displayItineraryInformation && !showItineraryCreationModal && !showCardsTinder" :class="(itineraryDropdownStatus)">
         <div class="dropdown-trigger" @click="setItineraryDropdownState()">
           <button class="dropdownDesignMapPage" :style="itineraryCssDropdown" aria-haspopup="true"
             aria-controls="dropdown-menu2">
@@ -60,8 +60,11 @@
       </div>
 
       <div v-else-if="showItineraryCreationModal">
-        <itineraryModal @goBackToItineraryDropdown="showItineraryCreationModal = false; displayTripProfileCreation = false"
+        <itineraryModal @goBackToItineraryDropdown="showItineraryCreationModal = false; displayTripProfileCreation = false" @itineraryCreated="showCardsTinder = true"
         @createProfil="displayTripProfileCreation = true" />
+      </div>
+      <div v-else-if="showCardsTinder" class="cardsTinderPosition">
+            <cardsTinder :selectedItineraryInfo="selectedItineraryInfo" />
       </div>
 
       <div v-else>
@@ -70,6 +73,7 @@
       </div>
     </Transition>
   </div>
+
 
   <div class="langButtonPos fadeshow1">
     <img :src="this.$store.state.userStore.userProfileImage" class="flag-button profileIcon"
@@ -180,6 +184,7 @@ import itineraryModal from '../UI/itineraryModal.vue';
 import profileModal from '../UI/profileModal.vue';
 import showMembers from '@/components/UI/ShowMembers.vue';
 import profileTrip from '@/components/UI/ProfileTrip.vue'
+import cardsTinder from '@/components/UI/CardsTinder.vue'
 
 export default {
   name: 'App',
@@ -193,11 +198,13 @@ export default {
     showMembers,
     ScreenSizeTooSmall,
     languages,
+    cardsTinder
   },
   data() {
     return {
       displayItineraryInformation: false,
       showItineraryCreationModal: false,
+      showCardsTinder: false,
       itineraryDropdown: false,
       groupDropdown: false,
       showGroupCreationModal: false,
@@ -538,6 +545,14 @@ export default {
   position: absolute;
   right: 20px;
   top: 10vh;
+}
+
+
+.cardsTinderPosition {
+  position: absolute;
+  left:30vw;
+  z-index: 2;
+  top: 50%;
 }
 
 .dropdownPlusPlacement {

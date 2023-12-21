@@ -1,5 +1,5 @@
 <template>
-    <MapWindows dropdown="true">
+    <MapWindows dropdown>
         <div v-if="!loading">
             <div class="modal-header" style="margin-bottom: 20px;">
                 <h5 class="modal-title" id="exampleModalLabel">{{ $t("tripProfile.profileCreate") }}</h5>
