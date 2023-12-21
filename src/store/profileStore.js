@@ -11,7 +11,6 @@ const profileStore = {
             state.userTravelProfile = [];
             if (newProfile) {
                 for (let indexProfile in newProfile) {
-                    console.log(newProfile[indexProfile])
                     state.userTravelProfile.push({
                         name: newProfile[indexProfile].name,
                         id: newProfile[indexProfile].id,
@@ -59,7 +58,6 @@ const profileStore = {
                     let conf = getters.getConfig({ url: "me/profil", data: null, method: "get" })
 
                     axios.request(conf).then((canAuthentify) => {
-                        console.log(canAuthentify.data.profils)
                         commit('UPDATE_USER_TRAVEL_PROFILE', canAuthentify.data.profils);
                         resolve(canAuthentify);
                     }).catch((error) => {
