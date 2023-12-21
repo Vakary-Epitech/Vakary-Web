@@ -48,7 +48,6 @@ const userStore = {
                 try {
                     let conf = getters.getConfig({ url: "me", data: null, method: "get" })
                     axios.request(conf).then((canAuthentify) => {
-                        console.log(canAuthentify)
                         commit('UPDATE_USER_INFO', canAuthentify);
                         resolve(canAuthentify);
                     }).catch((error) => {
