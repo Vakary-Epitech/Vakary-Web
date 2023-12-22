@@ -79,7 +79,7 @@
                     <span>{{ $t("itineraryModal.startingDate") }}</span><br>
                     <input class="form-control ms-1" type="date" v-model="date">
                 </div>
-                <div class="col-12" v-if="$store.state.groupStore.groups.length > 0">
+                <!-- <div class="col-12" v-if="$store.state.groupStore.groups.length > 0">
                     <hr class="separationBar" v-if="$store.state.groupStore.groups.length > 0">
                     <div class="row">
                         <div id="carouselExample" class="carousel slide">
@@ -109,7 +109,7 @@
                         </div>
                     </div>
                 </div>
-                <hr class="separationBar">
+                <hr class="separationBar"> -->
             </div>
             <span v-if="error" class="text-danger">{{ error['message'] }}</span>
             <div class="modal-footer">
@@ -123,12 +123,12 @@
   
 <script>
 import Loading from "../UI/loadingSpin.vue";
-import cardsGroup from "../UI/CardsGroup.vue";
+// import cardsGroup from "../UI/CardsGroup.vue";
 import MapWindows from "../UI/MapWindows.vue";
 import CardsProfile from './CardsProfile.vue';
 export default {
     components: {
-        cardsGroup,
+        // cardsGroup,
         Loading,
         MapWindows,
         CardsProfile
@@ -163,15 +163,15 @@ export default {
         this.profileTotalItems = this.$store.state.profileStore.userTravelProfile.length;
     },
     created() {
-        const noGroup = {
-            name: this.$t('itineraryModal.noGroup'),
-            photo: "https://eip.vakary.fr/uploads/group/base/basic_group_image_1.jpg",
-            default: true
-        };
-        this.groups.push(noGroup);
-        this.$store.state.groupStore.groups.forEach(group => {
-            this.groups.push(group);
-        });
+        // const noGroup = {
+        //     name: this.$t('itineraryModal.noGroup'),
+        //     photo: "https://eip.vakary.fr/uploads/group/base/basic_group_image_1.jpg",
+        //     default: true
+        // };
+        // this.groups.push(noGroup);
+        // this.$store.state.groupStore.groups.forEach(group => {
+        //     this.groups.push(group);
+        // });
 
         if (this.$store.state.profileStore.userTravelProfile)
             this.$store.state.profileStore.userTravelProfile.forEach(profile => {

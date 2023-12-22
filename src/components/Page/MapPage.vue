@@ -46,7 +46,7 @@
             </div>
             <div v-for="(itineraryDisplay, index) of this.$store.state.itineraryStore.itinerary"
               :key="itineraryDisplay.id">
-              <Transition name="slide-fade">
+              <Transition name="slide-fade" v-if="itineraryDisplay?.itineraryPOI?.length > 0">
                 <mapCards @click="itineraryCardsHasBeenClicked(index)" class="card cardOnDropdown mt-2"
                   :itinerary="itineraryDisplay" :index="index" />
               </Transition>
@@ -64,7 +64,7 @@
         @createProfil="displayTripProfileCreation = true" />
       </div>
       <div v-else-if="showCardsTinder" class="cardsTinderPosition">
-            <cardsTinder :selectedItineraryInfo="selectedItineraryInfo" />
+            <cardsTinder :selectedItineraryInfo="selectedItineraryInfo" @goBackToItineraryDropdown="showCardsTinder = false"/>
       </div>
 
       <div v-else>

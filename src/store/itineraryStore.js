@@ -119,6 +119,22 @@ const itineraryStore = {
             })
         },
 
+        removePOI({ getters, dispatch }, data) {
+            return new Promise((resolve, reject) => {
+                try {
+                    let config = getters.getConfig({ url: "itinerary/removePOI", data: data, method: "post" })
+
+                    axios.request(config).then((itinerary) => {
+                        dispatch("getItinerary");
+                        resolve(itinerary);
+                    }).catch((error) => {
+                        reject(error);
+                    })
+                } catch (error) {
+                    reject(error);
+                }
+            })
+        },
         getItineraryById({ getters, commit }, data) {
             return new Promise((resolve, reject) => {
                 try {
