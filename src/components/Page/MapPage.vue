@@ -13,7 +13,6 @@
         :title="this.markersData[this.currentWaypointIndex].label" :clickable="false"
         :icon='{ url: "https://cdn-icons-png.flaticon.com/512/7310/7310018.png", scaledSize: { width: 44, height: 44 } }' />
 
-      <map-info></map-info>
       <GMapPolyline :options="{ strokeColor: '#000642' }" :path="selectedPath" ref="polyline" />
     </GMapMap>
   </div>

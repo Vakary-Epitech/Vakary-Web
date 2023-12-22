@@ -56,20 +56,22 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row mt-3" v-for="(member, index) in groupInformations.emails" :key="index">
-                        <div class="col-6 text-start">
-                            {{ member.emails }}
-                        </div>
-                        <div class="col-4 status" :class="getStatus(index)">
-                            {{ member.status }}
-                        </div>
-                        <div class="col-2 text-center"
-                            v-if="role == 'admin' && this.groupInformations.emails[index].role != 'admin'">
-                            <button class="trashIcon" @click="deleteMember(index)"><i
-                                    class="fa-solid fa-trash"></i></button>
-                        </div>
-                        <div class="col-2 text-center" v-if="this.groupInformations.emails[index].role == 'admin'">
-                            <i class="fas fa-crown goldCrown" aria-hidden="true"></i>
+                    <div class="row mt-3 cardsCenter" v-for="(member, index) in groupInformations.emails" :key="index">
+                        <div class="card membersCards row">
+                            <div class="col-6 text-start">
+                                {{ member.emails }}
+                            </div>
+                            <div class="col-4 status" :class="getStatus(index)">
+                                {{ member.status }}
+                            </div>
+                            <div class="col-2 text-center"
+                                v-if="role == 'admin' && this.groupInformations.emails[index].role != 'admin'">
+                                <button class="trashIcon" @click="deleteMember(index)"><i
+                                        class="fa-solid fa-trash"></i></button>
+                            </div>
+                            <div class="col-2 text-center" v-if="this.groupInformations.emails[index].role == 'admin'">
+                                <i class="fas fa-crown goldCrown" aria-hidden="true"></i>
+                            </div>
                         </div>
                     </div>
                 </section>
@@ -491,6 +493,7 @@ export default {
 .status {
     border-radius: 1em;
     text-align: center;
+    height: 60%;
 }
 
 .goldCrown {
@@ -506,5 +509,26 @@ export default {
 
 .trashIcon:hover {
     box-shadow: 0 0 0 2px #dc3545;
+}
+
+.membersCards {
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    cursor: pointer;
+    margin: auto;
+    height: 50px;
+    width: 90%;
+}
+
+.card {
+    background-color: var(--background-cards-color);
+}
+
+.cardsCenter {
+    display: flex;
+    align-content: center;
+    align-items: center;
+    margin-bottom: 10px;
 }
 </style>
