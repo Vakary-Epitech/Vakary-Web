@@ -2,7 +2,7 @@
      It is not using the i18n system yet for a translation system => only available in english atm -->
 
 <template>
-  <div class="fadeshow1" :style="showCardsTinder ? 'display: none' : null">
+  <div class="fadeshow1">
     <GMapMap :center="getCenterOfMap" :options="options" :zoom="mapZoom" style="width: 100vw; height: 100vh"
       ref="myMapRef">
 
@@ -76,7 +76,7 @@
 
 
   <div class="langButtonPos fadeshow1">
-    <img :src="this.$store.state.userStore.userProfileImage" class="flag-button profileIcon"
+    <img v-if="!showCardsTinder" :src="this.$store.state.userStore.userProfileImage" class="flag-button profileIcon"
       @click="showProfile = !showProfile; showGroupCreationModal = false; showItineraryCreationModal = false" />
     <languages></languages>
   </div>
@@ -87,7 +87,7 @@
     </div>
   </Transition>
 
-  <section name="groupDropdown">
+  <section name="groupDropdown" v-if="!showCardsTinder">
     <div class="groupDropdownPosition fadeshow1">
       <Transition name="slide-fade">
         <div v-if="!displayItineraryInformation && !showGroupCreationModal && !groupHasBeenClicked"

@@ -18,6 +18,7 @@
                         <div class="row">
                             <div class="col-8">
                                 <p class="ms-2"><i class="fa-regular fa-clock custom-size"></i>{{ getCurrentPOIOpenHours() }}</p>
+                                <button v-if="!expandedCardContent" @click="toggleCardContent" class="btn toggle-text-button ms-2">{{ $t("landingPage.learnMoreButton") }}<i class="fa-solid fa-arrow-down custom-size"></i></button>
                             </div>
                             <div class="col-4 text-end mt-2">
                                 <button v-if="!expandedCardContent" @click="toggleCardContent" class="toggle-button me-2"><i class="fa-solid fa-info custom-size"></i></button>
@@ -303,6 +304,14 @@ export default {
     border-radius: 100%;
     padding: 10px;
     cursor: pointer;
+}
+
+.toggle-text-button {
+    background-color: #fff;
+    border: 1px solid #000;
+    border-radius: 8px;
+    padding: 10px;
+    color: #000;
 }
 
 .custom-size {
