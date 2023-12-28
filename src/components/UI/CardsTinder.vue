@@ -25,7 +25,6 @@
                                 <button v-if="expandedCardContent" @click="toggleCardContent" class="toggle-button me-2"><i class="fa-solid fa-arrow-down custom-size"></i></button>
                             </div>
                             <div class="col-12" v-if="expandedCardContent">
-                                <!-- <p class="ms-2"><i class="fa-solid fa-euro-sign custom-size"></i>{{ getCurrentPOIPrice() }}</p> -->
                                 <p class="ms-2"><i class="fa-solid fa-circle-info custom-size"></i>{{ getCurrentPOIDescription() }}</p>
                             </div>
                         </div>

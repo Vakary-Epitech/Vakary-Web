@@ -20,7 +20,6 @@
             </div>
           </div>
         </div>
-        <!-- Ajouter autant de membres que nécessaire -->
       </div>
     </div>
   </template>

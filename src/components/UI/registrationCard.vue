@@ -64,7 +64,6 @@ export default {
   },
   methods: {
     authenticateWithGoogle() {
-      // Rediriger vers l'URL d'authentification Google
       window.location.href = "https://eip.vakary.fr/v1/auth/google";
     },
     openLoginPage() {
