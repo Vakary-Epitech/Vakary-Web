@@ -1,8 +1,9 @@
 <template>
     <div class="cardBasicContainer">
-        <div>
+        <div v-if="this.itinerary?.itineraryPOI?.length > 0">
+           
             <span>{{ this.index + 1 }}. </span>
-            <span>{{ this.itinerary.itineraryPOI[0].City.name }}</span>
+            <span>{{ this.itinerary?.itineraryPOI[0]?.City?.name }}</span>
             <span class="float-end">{{ this.groupName ? this.groupName :
                 $t("mapCards.noGroups") }}</span>
         </div>

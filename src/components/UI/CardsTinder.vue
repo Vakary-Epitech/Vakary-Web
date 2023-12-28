@@ -1,164 +1,83 @@
 <template>
-    <div class="card" :style="cardStyle" :key="currentCardIndex" v-if="!endList && likedPOI.length < 7 && !skip"
-        @mousedown="startDrag"
-        @mousemove="dragCard"
-        @mouseup="stopDrag">
-        <div class="card-header">
-            <div class="col-10">
-                {{ cardsTest[currentCardIndex].name }}
-            </div>
-            <div class="col-2">
-                {{ likedPOI.length }} / 7
-            </div>
-        </div>
-        
-        <div class="card-body" :class="{ expanded: expandedCardContent }" :style="{ backgroundImage: `url(${cardsTest[currentCardIndex].pic})`, backgroundSize: 'cover', backgroundPosition: 'center' }">
-            <div class="card-body-overlay"></div>
-            <div class="card-body-content">
-                <div class="row">
-                    <div class="col-8">
-                        <p class="ms-2"><i class="fa-regular fa-clock custom-size"></i>{{ cardsTest[currentCardIndex].sch }}</p>
-                    </div>
-                    <div class="col-4 text-end mt-2">
-                        <button v-if="!expandedCardContent" @click="toggleCardContent" class="toggle-button me-2"><i class="fa-solid fa-info custom-size"></i></button>
-                        <button v-if="expandedCardContent" @click="toggleCardContent" class="toggle-button me-2"><i class="fa-solid fa-arrow-down custom-size"></i></button>
-                    </div>
-                    <div class="col-12" v-if="expandedCardContent">
-                        <p class="ms-2"><i class="fa-solid fa-euro-sign custom-size"></i>{{ cardsTest[currentCardIndex].price }}</p>
-                        <p class="ms-2"><i class="fa-solid fa-circle-info custom-size"></i>{{ cardsTest[currentCardIndex].desc }}</p>
+   <div v-if="!loading">       
+       <div class="card" :style="cardStyle" :key="currentCardIndex" v-if="!skip"
+                @mousedown="startDrag"
+                @mousemove="dragCard"
+                @mouseup="stopDrag">
+                <div class="card-header">
+                    <div class="col-12">
+                        {{ cardsTinder[currentCardIndex].name }}
+                        {{ getCurrentPOIName() }}
                     </div>
                 </div>
-            </div>
-        </div>
-        
-        <div class="card-footer">
-            <div class="row">
-                <div class="col text-start">
-                    <button @click="disliked()" class="button-custom"><i class="fa-solid fa-xmark fa-xl custom-size xmark-icon"></i></button>
+                
+                <div class="card-body" :class="{ expanded: expandedCardContent }" :style="{ backgroundImage: `url(${getCurrentPOIImage()})`, backgroundSize: 'cover', backgroundPosition: 'center' }">
+                    {{ selectedItinerary ||json }}
+                    <div class="card-body-overlay"></div>
+                    <div class="card-body-content">
+                        <div class="row">
+                            <div class="col-8">
+                                <p class="ms-2"><i class="fa-regular fa-clock custom-size"></i>{{ getCurrentPOIOpenHours() }}</p>
+                                <button v-if="!expandedCardContent" @click="toggleCardContent" class="btn toggle-text-button ms-2">{{ $t("landingPage.learnMoreButton") }}<i class="fa-solid fa-arrow-down custom-size"></i></button>
+                            </div>
+                            <div class="col-4 text-end mt-2">
+                                <button v-if="!expandedCardContent" @click="toggleCardContent" class="toggle-button me-2"><i class="fa-solid fa-info custom-size"></i></button>
+                                <button v-if="expandedCardContent" @click="toggleCardContent" class="toggle-button me-2"><i class="fa-solid fa-arrow-down custom-size"></i></button>
+                            </div>
+                            <div class="col-12" v-if="expandedCardContent">
+                                <p class="ms-2"><i class="fa-solid fa-circle-info custom-size"></i>{{ getCurrentPOIDescription() }}</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="col text-center">
-                    <button @click="skip = true" class="button-custom"><i class="fa-solid fa-forward custom-size"></i></button>
-                </div>   
-                <div class="col text-end">
-                    <button @click="liked()" class="button-custom"><i class="fa-solid fa-heart fa-xl custom-size heart-icon"></i></button>
+                
+                <div class="card-footer">
+                    <div class="row">
+                        <div class="col text-start">
+                            <button @click="disliked()" class="button-custom"><i class="fa-solid fa-xmark fa-xl custom-size xmark-icon"></i></button>
+                        </div>
+                        <div class="col text-center">
+                            <button @click="pass()" class="button-custom"><i class="fa-solid fa-forward custom-size"></i></button>
+                        </div>   
+                        <div class="col text-end">
+                            <button @click="liked()" class="button-custom"><i class="fa-solid fa-heart fa-xl custom-size heart-icon"></i></button>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
-    </div>
-    <div class="text-center" v-if="likedPOI.length ===  7 || skip">
-        <loadingSpinner text="loadingSpin.loadingItinerary"/>
-    </div>
-    <div class="text-center" v-if="endList">
-        <loadingSpinner text="loadingSpin.loadMore"/>
-    </div>
+       </div>
+   </div>
+   <div class="text-center" v-if="skip">
+       <loadingSpinner text="loadingSpin.loadingItinerary"/>
+   </div>
+   <div v-if="loading">
+        <loadingSpinner/>
+   </div>
 </template>
   
 <script>
 import loadingSpinner from "../UI/loadingSpin.vue";
 export default {
     props: {
-      index: Number,
+      selectedItineraryInfo: Array,
     },
     components: {
         loadingSpinner,
     },
     data() {
       return {
-        cardsTest: [
-            {
-                name: "Parc Chappeau Rouge",
-                pic: "https://upload.wikimedia.org/wikipedia/commons/7/74/Paris_parc_chapeau_rouge6.jpg",
-                desc: "Le musée lorrain, au cœur de la Ville Vieille, témoigne de la remarquable vie artistique et culturelle régionale. Au sein du palais ducal, collections archéologiques et médiévales manifestent cet éclat au même titre que les toiles de Georges de La Tour et les gravures de Jacques Callot. Et dans l’ancien couvent des Cordeliers, des intérieurs lorrains reconstitués évoquent le cadre de la vie rurale en Lorraine au XIXème siècle. FERMETURE POUR RÉNOVATION Dans le cadre du projet de rénovation du Musée Lorrain - palais des ducs de Lorraine, les espaces d’exposition du palais ducal sont fermés au public. Seule l’église des Cordeliers reste ouverte à la visite.",
-                sch: "Lundi-Vendredi : 10h-18h Samedi-Dimanche : 10h-19h Fermé le mardi et les 1er janvier, 1er mai, 1er novembre et 25 décembre. Fermeture des caisses 45 minutes avant la fermeture du musée.",
-                price: "10€",
-            },
-            {
-                name: "Tour Eiffel",
-                pic: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Tour_Eiffel_Wikimedia_Commons_%28cropped%29.jpg/1200px-Tour_Eiffel_Wikimedia_Commons_%28cropped%29.jpg",
-                desc: "Découvrez Metz d'une façon originale et unique avec une balade sur notre bateau électro solaire. Chauffé ou climatisé selon les saisons, Il navigue sans bruit, pour votre plus grand plaisir. Nous vous ferons découvrir des paysages insoupçonnés. Trois environnements différents, la Moselle et ses bateaux marchands puis une partie beaucoup plus sauvage méconnue, même pour les messins, une faune et une flore variées tout au long de cette croisière. Enfin nous arriverons dans un environnement chargé d'histoire en plein cœur de Metz avec la Cathédrale Saint Etienne, le plan d'eau et les remparts, le Pont Moyen et le Temple neuf. 3 balades vous sont proposées : la Balade au fil de l'eau (départ à côté du Moyen-Pont, tous les jours à 14h30 et 16h00, sauf en cas de privatisation du bateau), le Repas au fil de l'eau (départ au 512 Promenade de la Goulotte à Longeville-lès-Metz) et l'Apéro'Boat (départ à côté du Moyen-Pont). Réservation par téléphone ou sur le site internet.",
-                sch: "Lundi-Vendredi : 10h-18h Samedi-Dimanche : 10h-19h Fermé le mardi et les 1er janvier, 1er mai, 1er novembre et 25 décembre. Fermeture des caisses 45 minutes avant la fermeture du musée.",
-                price: "Gratuit",
-            },
-            {
-                name: "Parc Monceau",
-                pic: "https://upload.wikimedia.org/wikipedia/commons/b/b5/Parc_Monceau_20060812_35.jpg",
-                desc: "Sensation forte, équilibre et sport, bienvenue au club motonautique de Thionville ! Le vent qui glisse sur votre visage, les gouttes d'eau qui explosent à votre passage, la rapidité de votre conducteur. Ou votre rapidité si vous êtes diplômé ! Ski nautique, Wakeboard, Wakesurf, Wakeskate ,kneeboard,bouée autant d'activités nautiques qui vous en feront voir de toutes les couleurs et vous donneront envie de revenir la session suivante pour toujours se dépasser ! Nous vous accueillons dans un cadre verdoyant et convivial pour des initiations avec nos pilotes et moniteurs.",
-                sch: "Lundi-Vendredi : 10h-18h Samedi-Dimanche : 10h-19h Fermé le mardi et les 1er janvier, 1er mai, 1er novembre et 25 décembre. Fermeture des caisses 45 minutes avant la fermeture du musée.",
-                price: "Gratuit",
-            },
-            {
-                name: "Musée Rodin",
-                pic: "https://upload.wikimedia.org/wikipedia/commons/4/4f/Musee_Rodin.jpg",
-                desc: "SITE FERMÉ EN 2023 POUR CAUSE DE TRAVAUX D'ENVERGURE. Dans son cadre de bois, elle compte les visiteurs passer. C’est la petite benjamine du groupe. Née à la fin du 18ème siècle, le pinceau a immortalisé son trait à tout jamais. Et quel pinceau ! Celui, délicat et émouvant, de la peintre officielle de la reine. La petite Louise Reine repense avec nostalgie à toute son enfance dans ce château. Son salon bleu, son salon rouge. Qu’elle y a couru dans ces escaliers de marbre. Combien de fois s’est-elle cachée derrière ces lourdes draperies ? Mais sa pièce préférée reste la bibliothèque. Ces murs rouge sang, ses milliers de livres parfaitement alignés. Cette cheminée monumentale où trônent les insignes familiaux. Ici elle pouvait rêver et vagabonder librement. Son esprit s’envolait dans ses lectures. Au loin, elle entend le doux son de la harpe qui résonne depuis le salon bleu. Les délicieuses odeurs de la cuisine chatouillent ses narines. Ça s’active là-bas. Elle adorait voir cuire les grosses marmites dans l’énorme conduit de cheminée. Venait ensuite le défilée des serveurs qui installaient délicatement les mets dans la grande salle à manger. On y trouve toute sorte de vaisselle ! Attention à ne rien casser Reinette, ne cessait de répéter sa maman. Le soleil entre dans la grande fenêtre. Le printemps arrive et déjà le buis reprend bel allure. Vous aussi vous pouvez marcher dans les pas de Louise Reine. Le château de la Grange se visite tous les jours à partir du weekend de Paques et jusqu’au 30 septembre.",
-                sch: "Lundi-Vendredi : 10h-18h Samedi-Dimanche : 10h-19h Fermé le mardi et les 1er janvier, 1er mai, 1er novembre et 25 décembre. Fermeture des caisses 45 minutes avant la fermeture du musée.",
-                price: "Gratuit",
-            },            {
-                name: "Parc Chappeau Rouge",
-                pic: "https://upload.wikimedia.org/wikipedia/commons/7/74/Paris_parc_chapeau_rouge6.jpg",
-                desc: "Le musée lorrain, au cœur de la Ville Vieille, témoigne de la remarquable vie artistique et culturelle régionale. Au sein du palais ducal, collections archéologiques et médiévales manifestent cet éclat au même titre que les toiles de Georges de La Tour et les gravures de Jacques Callot. Et dans l’ancien couvent des Cordeliers, des intérieurs lorrains reconstitués évoquent le cadre de la vie rurale en Lorraine au XIXème siècle. FERMETURE POUR RÉNOVATION Dans le cadre du projet de rénovation du Musée Lorrain - palais des ducs de Lorraine, les espaces d’exposition du palais ducal sont fermés au public. Seule l’église des Cordeliers reste ouverte à la visite.",
-                sch: "Lundi-Vendredi : 10h-18h Samedi-Dimanche : 10h-19h Fermé le mardi et les 1er janvier, 1er mai, 1er novembre et 25 décembre. Fermeture des caisses 45 minutes avant la fermeture du musée.",
-                price: "10€",
-            },
-            {
-                name: "Tour Eiffel",
-                pic: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Tour_Eiffel_Wikimedia_Commons_%28cropped%29.jpg/1200px-Tour_Eiffel_Wikimedia_Commons_%28cropped%29.jpg",
-                desc: "Découvrez Metz d'une façon originale et unique avec une balade sur notre bateau électro solaire. Chauffé ou climatisé selon les saisons, Il navigue sans bruit, pour votre plus grand plaisir. Nous vous ferons découvrir des paysages insoupçonnés. Trois environnements différents, la Moselle et ses bateaux marchands puis une partie beaucoup plus sauvage méconnue, même pour les messins, une faune et une flore variées tout au long de cette croisière. Enfin nous arriverons dans un environnement chargé d'histoire en plein cœur de Metz avec la Cathédrale Saint Etienne, le plan d'eau et les remparts, le Pont Moyen et le Temple neuf. 3 balades vous sont proposées : la Balade au fil de l'eau (départ à côté du Moyen-Pont, tous les jours à 14h30 et 16h00, sauf en cas de privatisation du bateau), le Repas au fil de l'eau (départ au 512 Promenade de la Goulotte à Longeville-lès-Metz) et l'Apéro'Boat (départ à côté du Moyen-Pont). Réservation par téléphone ou sur le site internet.",
-                sch: "Lundi-Vendredi : 10h-18h Samedi-Dimanche : 10h-19h Fermé le mardi et les 1er janvier, 1er mai, 1er novembre et 25 décembre. Fermeture des caisses 45 minutes avant la fermeture du musée.",
-                price: "Gratuit",
-            },
-            {
-                name: "Parc Monceau",
-                pic: "https://upload.wikimedia.org/wikipedia/commons/b/b5/Parc_Monceau_20060812_35.jpg",
-                desc: "Sensation forte, équilibre et sport, bienvenue au club motonautique de Thionville ! Le vent qui glisse sur votre visage, les gouttes d'eau qui explosent à votre passage, la rapidité de votre conducteur. Ou votre rapidité si vous êtes diplômé ! Ski nautique, Wakeboard, Wakesurf, Wakeskate ,kneeboard,bouée autant d'activités nautiques qui vous en feront voir de toutes les couleurs et vous donneront envie de revenir la session suivante pour toujours se dépasser ! Nous vous accueillons dans un cadre verdoyant et convivial pour des initiations avec nos pilotes et moniteurs.",
-                sch: "Lundi-Vendredi : 10h-18h Samedi-Dimanche : 10h-19h Fermé le mardi et les 1er janvier, 1er mai, 1er novembre et 25 décembre. Fermeture des caisses 45 minutes avant la fermeture du musée.",
-                price: "Gratuit",
-            },
-            {
-                name: "Musée Rodin",
-                pic: "https://upload.wikimedia.org/wikipedia/commons/4/4f/Musee_Rodin.jpg",
-                desc: "SITE FERMÉ EN 2023 POUR CAUSE DE TRAVAUX D'ENVERGURE. Dans son cadre de bois, elle compte les visiteurs passer. C’est la petite benjamine du groupe. Née à la fin du 18ème siècle, le pinceau a immortalisé son trait à tout jamais. Et quel pinceau ! Celui, délicat et émouvant, de la peintre officielle de la reine. La petite Louise Reine repense avec nostalgie à toute son enfance dans ce château. Son salon bleu, son salon rouge. Qu’elle y a couru dans ces escaliers de marbre. Combien de fois s’est-elle cachée derrière ces lourdes draperies ? Mais sa pièce préférée reste la bibliothèque. Ces murs rouge sang, ses milliers de livres parfaitement alignés. Cette cheminée monumentale où trônent les insignes familiaux. Ici elle pouvait rêver et vagabonder librement. Son esprit s’envolait dans ses lectures. Au loin, elle entend le doux son de la harpe qui résonne depuis le salon bleu. Les délicieuses odeurs de la cuisine chatouillent ses narines. Ça s’active là-bas. Elle adorait voir cuire les grosses marmites dans l’énorme conduit de cheminée. Venait ensuite le défilée des serveurs qui installaient délicatement les mets dans la grande salle à manger. On y trouve toute sorte de vaisselle ! Attention à ne rien casser Reinette, ne cessait de répéter sa maman. Le soleil entre dans la grande fenêtre. Le printemps arrive et déjà le buis reprend bel allure. Vous aussi vous pouvez marcher dans les pas de Louise Reine. Le château de la Grange se visite tous les jours à partir du weekend de Paques et jusqu’au 30 septembre.",
-                sch: "Lundi-Vendredi : 10h-18h Samedi-Dimanche : 10h-19h Fermé le mardi et les 1er janvier, 1er mai, 1er novembre et 25 décembre. Fermeture des caisses 45 minutes avant la fermeture du musée.",
-                price: "Gratuit",
-            },            {
-                name: "Parc Chappeau Rouge",
-                pic: "https://upload.wikimedia.org/wikipedia/commons/7/74/Paris_parc_chapeau_rouge6.jpg",
-                desc: "Le musée lorrain, au cœur de la Ville Vieille, témoigne de la remarquable vie artistique et culturelle régionale. Au sein du palais ducal, collections archéologiques et médiévales manifestent cet éclat au même titre que les toiles de Georges de La Tour et les gravures de Jacques Callot. Et dans l’ancien couvent des Cordeliers, des intérieurs lorrains reconstitués évoquent le cadre de la vie rurale en Lorraine au XIXème siècle. FERMETURE POUR RÉNOVATION Dans le cadre du projet de rénovation du Musée Lorrain - palais des ducs de Lorraine, les espaces d’exposition du palais ducal sont fermés au public. Seule l’église des Cordeliers reste ouverte à la visite.",
-                sch: "Lundi-Vendredi : 10h-18h Samedi-Dimanche : 10h-19h Fermé le mardi et les 1er janvier, 1er mai, 1er novembre et 25 décembre. Fermeture des caisses 45 minutes avant la fermeture du musée.",
-                price: "10€",
-            },
-            {
-                name: "Tour Eiffel",
-                pic: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Tour_Eiffel_Wikimedia_Commons_%28cropped%29.jpg/1200px-Tour_Eiffel_Wikimedia_Commons_%28cropped%29.jpg",
-                desc: "Découvrez Metz d'une façon originale et unique avec une balade sur notre bateau électro solaire. Chauffé ou climatisé selon les saisons, Il navigue sans bruit, pour votre plus grand plaisir. Nous vous ferons découvrir des paysages insoupçonnés. Trois environnements différents, la Moselle et ses bateaux marchands puis une partie beaucoup plus sauvage méconnue, même pour les messins, une faune et une flore variées tout au long de cette croisière. Enfin nous arriverons dans un environnement chargé d'histoire en plein cœur de Metz avec la Cathédrale Saint Etienne, le plan d'eau et les remparts, le Pont Moyen et le Temple neuf. 3 balades vous sont proposées : la Balade au fil de l'eau (départ à côté du Moyen-Pont, tous les jours à 14h30 et 16h00, sauf en cas de privatisation du bateau), le Repas au fil de l'eau (départ au 512 Promenade de la Goulotte à Longeville-lès-Metz) et l'Apéro'Boat (départ à côté du Moyen-Pont). Réservation par téléphone ou sur le site internet.",
-                sch: "Lundi-Vendredi : 10h-18h Samedi-Dimanche : 10h-19h Fermé le mardi et les 1er janvier, 1er mai, 1er novembre et 25 décembre. Fermeture des caisses 45 minutes avant la fermeture du musée.",
-                price: "Gratuit",
-            },
-            {
-                name: "Parc Monceau",
-                pic: "https://upload.wikimedia.org/wikipedia/commons/b/b5/Parc_Monceau_20060812_35.jpg",
-                desc: "Sensation forte, équilibre et sport, bienvenue au club motonautique de Thionville ! Le vent qui glisse sur votre visage, les gouttes d'eau qui explosent à votre passage, la rapidité de votre conducteur. Ou votre rapidité si vous êtes diplômé ! Ski nautique, Wakeboard, Wakesurf, Wakeskate ,kneeboard,bouée autant d'activités nautiques qui vous en feront voir de toutes les couleurs et vous donneront envie de revenir la session suivante pour toujours se dépasser ! Nous vous accueillons dans un cadre verdoyant et convivial pour des initiations avec nos pilotes et moniteurs.",
-                sch: "Lundi-Vendredi : 10h-18h Samedi-Dimanche : 10h-19h Fermé le mardi et les 1er janvier, 1er mai, 1er novembre et 25 décembre. Fermeture des caisses 45 minutes avant la fermeture du musée.",
-                price: "Gratuit",
-            },
-            {
-                name: "Musée Rodin",
-                pic: "https://upload.wikimedia.org/wikipedia/commons/4/4f/Musee_Rodin.jpg",
-                desc: "SITE FERMÉ EN 2023 POUR CAUSE DE TRAVAUX D'ENVERGURE. Dans son cadre de bois, elle compte les visiteurs passer. C’est la petite benjamine du groupe. Née à la fin du 18ème siècle, le pinceau a immortalisé son trait à tout jamais. Et quel pinceau ! Celui, délicat et émouvant, de la peintre officielle de la reine. La petite Louise Reine repense avec nostalgie à toute son enfance dans ce château. Son salon bleu, son salon rouge. Qu’elle y a couru dans ces escaliers de marbre. Combien de fois s’est-elle cachée derrière ces lourdes draperies ? Mais sa pièce préférée reste la bibliothèque. Ces murs rouge sang, ses milliers de livres parfaitement alignés. Cette cheminée monumentale où trônent les insignes familiaux. Ici elle pouvait rêver et vagabonder librement. Son esprit s’envolait dans ses lectures. Au loin, elle entend le doux son de la harpe qui résonne depuis le salon bleu. Les délicieuses odeurs de la cuisine chatouillent ses narines. Ça s’active là-bas. Elle adorait voir cuire les grosses marmites dans l’énorme conduit de cheminée. Venait ensuite le défilée des serveurs qui installaient délicatement les mets dans la grande salle à manger. On y trouve toute sorte de vaisselle ! Attention à ne rien casser Reinette, ne cessait de répéter sa maman. Le soleil entre dans la grande fenêtre. Le printemps arrive et déjà le buis reprend bel allure. Vous aussi vous pouvez marcher dans les pas de Louise Reine. Le château de la Grange se visite tous les jours à partir du weekend de Paques et jusqu’au 30 septembre.",
-                sch: "Lundi-Vendredi : 10h-18h Samedi-Dimanche : 10h-19h Fermé le mardi et les 1er janvier, 1er mai, 1er novembre et 25 décembre. Fermeture des caisses 45 minutes avant la fermeture du musée.",
-                price: "Gratuit",
-            }
-        ],
+        cardsTinder: [],
+        cardsId: null,
         skip: false,
         dragging: false,
         xOffset: 0,
         yOffset: 0,
+        localeLanguage: this.$i18n.locale,
         swiped: false,
         currentCardIndex: 0,
-        likedPOI: [],
-        endList: false,
         swipeThreshold: 100,
         initialX: 0,
         initialY: 0,
+        loading: true,
         expandedCardContent: false,
       };
     },
@@ -170,39 +89,83 @@ export default {
         };
       },
     },
+    mounted() {
+        this.cardsTinder = this.$store.state.itineraryStore.itinerary[this.$store.state.itineraryStore.itinerary.length - 1]?.itineraryPOI;
+        this.cardsId = this.$store.state.itineraryStore.itinerary[this.$store.state.itineraryStore.itinerary.length - 1]?.id;
+        this.loading = false;
+    },
     methods: {
+        getCurrentPOIName() {
+            return (this.cardsTinder[this.currentCardIndex].name);
+        },
+        getCurrentPOIDescription() {
+            return (this.cardsTinder[this.currentCardIndex].Description[this.$i18n.locale]);
+        },
+        getCurrentPOIImage() {
+            return (this.cardsTinder[this.currentCardIndex].image);
+        },
+        getCurrentPOIOpenHours() {
+            if (this.cardsTinder[this.currentCardIndex].openingHours === "false") {
+                return (this.$t("mapPage.noOpeningHours"));
+            }
+            let timeStamp = JSON.parse(this.cardsTinder[this.currentCardIndex].openingHours);
+            try {
+                let timeString = "";
+                for (let i in timeStamp.label[this.$i18n.locale])
+                    timeString += timeStamp.label[this.$i18n.locale][i];
+                return (timeString);
+            } catch (error) {
+                let timeString = "";
+                for (let i in timeStamp[0]['opens'])
+                    timeString += timeStamp[0]['opens'][i];
+                timeString += " - ";
+                for (let i in timeStamp[0]['closes'])
+                    timeString += timeStamp[0]['closes'][i];
+                if (timeString.includes("false"))
+                    return (this.$t("mapPage.noOpeningHours"))
+                return (timeString);
+            }
+        },
+        getCurrentPOIPrice() {
+            return (this.cardsTinder[this.currentCardIndex].averagePrice);
+        },
         liked() {
             this.xOffset = 500;
             this.swiped = true;
             setTimeout(() => {
-                this.currentCardIndex === this.cardsTest.length - 1 ? this.endList = true : this.currentCardIndex++;
+                this.currentCardIndex++;
                 this.xOffset = 0;
                 this.swiped = false;
             }, 300);
-            this.likedPOI.push(this.cardsTest[this.currentCardIndex]);
-            if (this.likedPOI.length === 7) {
-                // this.$store.commit("sendLikedPOI", { likedPOI: this.likedPOI }).catch((err) => {
-                //     console.log(err);
-                // })
+            if (this.currentCardIndex === this.cardsTinder.length - 1) {
+                this.$emit("goBackToItineraryDropdown");
             }
         },
         disliked() {  
+            this.loading = true;
             this.xOffset = -500;
             this.swiped = true;
             setTimeout(() => {
-                this.currentCardIndex === this.cardsTest.length - 1 ? this.endList = true : this.currentCardIndex++;
                 this.xOffset = 0;
                 this.swiped = false;
             }, 300);
-            if (this.endList) {
-                // this.$store.dispatch("getNewCards").then(() => {
-                //     this.endList = false;
-                //     this.currentCardIndex = 0;
-                //     this.cardsTest = this.$store.state.cards;
-                // }).catch((err) => {
-                //     console.log(err);
-                // });
-            }
+            this.$store.dispatch("removePOI", {
+                itineraryId: this.cardsId,
+                POIId: this.cardsTinder[this.currentCardIndex].id
+            }).then(() => {
+                if (this.currentCardIndex === this.cardsTinder.length - 1) {
+                    this.$emit("goBackToItineraryDropdown");
+                }
+                this.currentCardIndex++;
+                this.loading = false;
+            }).catch((err) => {
+                console.log(err);
+                this.loading = false;
+            });
+        },
+        pass() {
+            this.skip = true;
+            this.$emit("goBackToItineraryDropdown");
         },
         toggleCardContent() {
             this.expandedCardContent = !this.expandedCardContent;
@@ -260,8 +223,8 @@ export default {
 <style scoped>
 .card {
     position: absolute;
-    width: 30%;
-    height: 80%;
+    width: 30vw;
+    height: 80vh;
     background-color: #fff;
     box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
     border-radius: 10px;
@@ -342,8 +305,15 @@ export default {
     cursor: pointer;
 }
 
+.toggle-text-button {
+    background-color: #fff;
+    border: 1px solid #000;
+    border-radius: 8px;
+    padding: 10px;
+    color: #000;
+}
+
 .custom-size {
     width: 1.5rem;
 }
-
 </style>

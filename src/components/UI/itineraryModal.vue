@@ -1,5 +1,5 @@
 <template>
-    <MapWindows dropdown="true">
+    <MapWindows dropdown>
         <div v-if="!loading">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">{{ $t("itineraryModal.creation") }}</h5>
@@ -82,37 +82,6 @@
                     <span>{{ $t("itineraryModal.startingDate") }}</span><br>
                     <input class="form-control ms-1" type="date" v-model="date">
                 </div>
-                <div class="col-12" v-if="$store.state.groupStore.groups.length > 0">
-                    <hr class="separationBar" v-if="$store.state.groupStore.groups.length > 0">
-                    <div class="row">
-                        <div id="carouselExample" class="carousel slide">
-                            <div class="row">
-                                <div class="col-3 text-start">
-                                    <button @click="prevSlide" class="arrowButton" type="button"
-                                        data-bs-target="#carouselExample" data-bs-slide="prev">
-                                        <i class="fa-solid fa-xl fa-arrow-left"></i>
-                                    </button>
-                                </div>
-                                <div class="col-6 text-center">
-                                    {{ $t("itineraryModal.group") }}
-                                </div>
-                                <div class="col-3 text-end">
-                                    <button @click="nextSlide" class="arrowButton" type="button"
-                                        data-bs-target="#carouselExample" data-bs-slide="next">
-                                        <i class="fa-solid fa-xl fa-arrow-right"></i>
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="carousel-inner mt-2">
-                                <div class="carousel-item" v-for="(group, index) in groups" :key="index"
-                                    :class="{ 'active': index === activeIndex }">
-                                    <cardsGroup :group="group"></cardsGroup>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <hr class="separationBar">
             </div>
             <span v-if="error" class="text-danger">{{ error['message'] }}</span>
             <div class="modal-footer">
@@ -126,12 +95,10 @@
   
 <script>
 import Loading from "../UI/loadingSpin.vue";
-import cardsGroup from "../UI/CardsGroup.vue";
 import MapWindows from "../UI/MapWindows.vue";
 import CardsProfile from './CardsProfile.vue';
 export default {
     components: {
-        cardsGroup,
         Loading,
         MapWindows,
         CardsProfile
@@ -171,16 +138,6 @@ export default {
         this.profileTotalItems = this.$store.state.profileStore.userTravelProfile.length;
     },
     created() {
-        const noGroup = {
-            name: this.$t('itineraryModal.noGroup'),
-            photo: "https://eip.vakary.fr/uploads/group/base/basic_group_image_1.jpg",
-            default: true
-        };
-        this.groups.push(noGroup);
-        this.$store.state.groupStore.groups.forEach(group => {
-            this.groups.push(group);
-        });
-
         if (this.$store.state.profileStore.userTravelProfile)
             this.$store.state.profileStore.userTravelProfile.forEach(profile => {
                 this.profile.push(profile);
@@ -218,7 +175,7 @@ export default {
                     this.activeIndex--;
                 }
                 this.isAnimating = false;
-            }, 500); // Temps d'animation (ajustez selon vos besoins)
+            }, 500);
         },
         nextSlide() {
             if (this.isAnimating) return;
@@ -227,7 +184,7 @@ export default {
             setTimeout(() => {
                 this.activeIndex = (this.activeIndex + 1) % this.totalItems;
                 this.isAnimating = false;
-            }, 500); // Temps d'animation (ajustez selon vos besoins)
+            }, 500);
         },
         prevSlideProfile() {
             if (this.isAnimating) return;
@@ -241,7 +198,7 @@ export default {
                     this.profileActiveIndex--;
                 }
                 this.isAnimating = false;
-            }, 500); // Temps d'animation (ajustez selon vos besoins)
+            }, 500);
         },
         nextSlideProfile() {
             if (this.isAnimating) return;
@@ -253,7 +210,7 @@ export default {
                 else
                     this.profileActiveIndex++;
                 this.isAnimating = false;
-            }, 500); // Temps d'animation (ajustez selon vos besoins)
+            }, 500);
         },
         generateItinerary() {
             this.loading = true;
@@ -274,11 +231,13 @@ export default {
                 nbPeople: this.people,
                 nbChild: this.children,
                 typeResearchLocations: this.$store.state.profileStore.userTravelProfile[this.profileActiveIndex].InterestPointTypes,
-                //group: this.groups[this.activeIndex]?.default ? null : this.groups[this.activeIndex],
                 handicapAccess: false,
             }).then(() => {
-                this.loading = false;
-                this.$emit("goBackToItineraryDropdown");
+                this.$store.dispatch("getItinerary").then(() => {
+                    this.loading = false;
+                    this.$emit("goBackToItineraryDropdown");
+                    this.$emit("itineraryCreated");
+                });
             }).catch((error) => {
                 this.loading = false;
                 this.error = error?.response?.data;
