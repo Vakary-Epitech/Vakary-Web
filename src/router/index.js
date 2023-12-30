@@ -4,7 +4,6 @@ import LandingPage from "@/components/Page/LandingPage.vue"
 import LearnMorePage from "@/components/Page/LearnMorePage.vue";
 import ConnexionPage from "@/components/Page/ConnexionPage.vue";
 import resetPasswordPage from "@/components/Page/ResetPassword.vue";
-import TestPage from "@/components/Page/TestPage.vue";
 import VakaryTeam from "@/components/Page/PresentationVakaryTeam.vue";
 
 const routes = [
@@ -32,11 +31,6 @@ const routes = [
         path: '/resetPasswordPage/:id',
         name: 'resetPasswordPage',
         component: resetPasswordPage,
-    },
-    {
-        path: '/testPage',
-        name: 'TestPage',
-        component: TestPage,
     },
     {
         path: '/vakaryTeam',

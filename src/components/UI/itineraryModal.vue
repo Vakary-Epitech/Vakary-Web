@@ -1,5 +1,5 @@
 <template>
-    <MapWindows dropdown="true">
+    <MapWindows dropdown>
         <div v-if="!loading">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">{{ $t("itineraryModal.creation") }}</h5>
@@ -10,17 +10,20 @@
                     <hr class="separationBar" v-if="$store.state.profileStore.userTravelProfile.length > 0">
                     <div class="row">
                         <div id="carouselExample" class="carousel slide">
-                            <div class="row">
-                                <div class="col-3 text-start">
+                            <div class="alignItem">
+                                <div class="text-start" v-if="$store.state.profileStore.userTravelProfile.length > 1">
                                     <button @click="prevSlideProfile" class="arrowButton" type="button"
                                         data-bs-target="#carouselExample" data-bs-slide="prev">
                                         <i class="fa-solid fa-xl fa-arrow-left"></i>
                                     </button>
                                 </div>
-                                <div class="col-6 text-center">
+                                <div class="text-center"  v-if="$store.state.profileStore.userTravelProfile.length > 1">
                                     {{ $t("itineraryModal.profile") }}
                                 </div>
-                                <div class="col-3 text-end">
+                                <div style="margin: auto;" v-if="$store.state.profileStore.userTravelProfile.length <= 1">
+                                    {{ $t("itineraryModal.profile") }}
+                                </div>
+                                <div class="text-end"  v-if="$store.state.profileStore.userTravelProfile.length > 1">
                                     <button @click="nextSlideProfile" class="arrowButton" type="button"
                                         data-bs-target="#carouselExample" data-bs-slide="next">
                                         <i class="fa-solid fa-xl fa-arrow-right"></i>
@@ -51,7 +54,7 @@
                 <hr class="separationBar">
                 <div class="col-12">
                     <span>{{ $t("itineraryModal.startingCity") }} </span><br>
-                    <input class="w-100 form-control" type="text" v-model="city" :placeholder="placeholderCity">
+                        <input class="w-100 form-control" type="text" v-model="city" :placeholder="placeholderCity">
                 </div>
                 <hr class="separationBar">
                 <span>{{ $t("itineraryModal.howLong") }}</span><br>
@@ -79,42 +82,11 @@
                     <span>{{ $t("itineraryModal.startingDate") }}</span><br>
                     <input class="form-control ms-1" type="date" v-model="date">
                 </div>
-                <div class="col-12" v-if="$store.state.groupStore.groups.length > 0">
-                    <hr class="separationBar" v-if="$store.state.groupStore.groups.length > 0">
-                    <div class="row">
-                        <div id="carouselExample" class="carousel slide">
-                            <div class="row">
-                                <div class="col-3 text-start">
-                                    <button @click="prevSlide" class="arrowButton" type="button"
-                                        data-bs-target="#carouselExample" data-bs-slide="prev">
-                                        <i class="fa-solid fa-xl fa-arrow-left"></i>
-                                    </button>
-                                </div>
-                                <div class="col-6 text-center">
-                                    {{ $t("itineraryModal.group") }}
-                                </div>
-                                <div class="col-3 text-end">
-                                    <button @click="nextSlide" class="arrowButton" type="button"
-                                        data-bs-target="#carouselExample" data-bs-slide="next">
-                                        <i class="fa-solid fa-xl fa-arrow-right"></i>
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="carousel-inner mt-2">
-                                <div class="carousel-item" v-for="(group, index) in groups" :key="index"
-                                    :class="{ 'active': index === activeIndex }">
-                                    <cardsGroup :group="group"></cardsGroup>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <hr class="separationBar">
             </div>
             <span v-if="error" class="text-danger">{{ error['message'] }}</span>
             <div class="modal-footer">
                 <button @click="generateItinerary" type="button" class="btn btn-primary"
-                    style="margin: auto; margin-top: 10px; margin-bottom: 10px">{{ $t("itineraryModal.generate") }}</button>
+                    style="margin: auto; margin-top: 10px; margin-bottom: 10px" :disabled="userHasAProfile">{{ $t("itineraryModal.generate") }}</button>
             </div>
         </div>
         <Loading v-if="loading" />
@@ -123,12 +95,10 @@
   
 <script>
 import Loading from "../UI/loadingSpin.vue";
-import cardsGroup from "../UI/CardsGroup.vue";
 import MapWindows from "../UI/MapWindows.vue";
 import CardsProfile from './CardsProfile.vue';
 export default {
     components: {
-        cardsGroup,
         Loading,
         MapWindows,
         CardsProfile
@@ -157,22 +127,17 @@ export default {
         placeholderCity() {
             return (this.$t('itineraryModal.city'));
         },
+        userHasAProfile() {
+            if  (this.$store.state.profileStore.userTravelProfile.length > 0)
+                return false;
+            return true;
+        },
     },
     mounted() {
         this.totalItems = this.$store.state.groupStore.groups.length + 1;
         this.profileTotalItems = this.$store.state.profileStore.userTravelProfile.length;
     },
     created() {
-        const noGroup = {
-            name: this.$t('itineraryModal.noGroup'),
-            photo: "https://eip.vakary.fr/uploads/group/base/basic_group_image_1.jpg",
-            default: true
-        };
-        this.groups.push(noGroup);
-        this.$store.state.groupStore.groups.forEach(group => {
-            this.groups.push(group);
-        });
-
         if (this.$store.state.profileStore.userTravelProfile)
             this.$store.state.profileStore.userTravelProfile.forEach(profile => {
                 this.profile.push(profile);
@@ -210,7 +175,7 @@ export default {
                     this.activeIndex--;
                 }
                 this.isAnimating = false;
-            }, 500); // Temps d'animation (ajustez selon vos besoins)
+            }, 500);
         },
         nextSlide() {
             if (this.isAnimating) return;
@@ -219,7 +184,7 @@ export default {
             setTimeout(() => {
                 this.activeIndex = (this.activeIndex + 1) % this.totalItems;
                 this.isAnimating = false;
-            }, 500); // Temps d'animation (ajustez selon vos besoins)
+            }, 500);
         },
         prevSlideProfile() {
             if (this.isAnimating) return;
@@ -233,7 +198,7 @@ export default {
                     this.profileActiveIndex--;
                 }
                 this.isAnimating = false;
-            }, 500); // Temps d'animation (ajustez selon vos besoins)
+            }, 500);
         },
         nextSlideProfile() {
             if (this.isAnimating) return;
@@ -245,7 +210,7 @@ export default {
                 else
                     this.profileActiveIndex++;
                 this.isAnimating = false;
-            }, 500); // Temps d'animation (ajustez selon vos besoins)
+            }, 500);
         },
         generateItinerary() {
             this.loading = true;
@@ -266,11 +231,13 @@ export default {
                 nbPeople: this.people,
                 nbChild: this.children,
                 typeResearchLocations: this.$store.state.profileStore.userTravelProfile[this.profileActiveIndex].InterestPointTypes,
-                //group: this.groups[this.activeIndex]?.default ? null : this.groups[this.activeIndex],
                 handicapAccess: false,
             }).then(() => {
-                this.loading = false;
-                this.$emit("goBackToItineraryDropdown");
+                this.$store.dispatch("getItinerary").then(() => {
+                    this.loading = false;
+                    this.$emit("goBackToItineraryDropdown");
+                    this.$emit("itineraryCreated");
+                });
             }).catch((error) => {
                 this.loading = false;
                 this.error = error?.response?.data;
@@ -311,53 +278,18 @@ export default {
     cursor: pointer;
 }
 
-.dropDownButton {
-    background-color: var(--background-color-primary);
-    border: 1px solid rgb(192, 150, 40);
-    border-radius: 10px;
-    color: var(--text-primary-color);
-    padding: 5px 10px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-}
-
 .form-control {
     width: auto !important;
 }
 
-.sameSize {
-    width: 30px;
-    height: 30px;
-}
 
 .form-check {
     padding-left: 0 !important;
 }
 
-.small-input {
-    width: 50px !important;
-}
-
-.medium-input {
-    width: 100px !important;
-}
-
-.custom-maths {
-    color: var(--text-primary-color);
-    border: 1px solid var(--text-primary-color);
-    border-radius: 50%;
-    padding: 5px;
-    cursor: pointer;
-}
-
-.remove-decoration {
-    background-color: var(--background-color-primary);
-    border: none;
-}
-
-.form-range {
-    color: red;
+.alignItem {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
 </style>

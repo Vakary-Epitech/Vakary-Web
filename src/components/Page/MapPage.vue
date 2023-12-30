@@ -13,7 +13,6 @@
         :title="this.markersData[this.currentWaypointIndex].label" :clickable="false"
         :icon='{ url: "https://cdn-icons-png.flaticon.com/512/7310/7310018.png", scaledSize: { width: 44, height: 44 } }' />
 
-      <map-info></map-info>
       <GMapPolyline :options="{ strokeColor: '#000642' }" :path="selectedPath" ref="polyline" />
     </GMapMap>
   </div>
@@ -21,8 +20,8 @@
   <div class="boxPosition fadeshow1">
     <Transition name="slide-fade">
 
-      <div v-if="!displayItineraryInformation && !showItineraryCreationModal" :class="(itineraryDropdownStatus)">
-        <div class="dropdown-trigger" @click="(setItineraryDropdownState())">
+      <div v-if="!displayItineraryInformation && !showItineraryCreationModal && !showCardsTinder" :class="(itineraryDropdownStatus)">
+        <div class="dropdown-trigger" @click="setItineraryDropdownState()">
           <button class="dropdownDesignMapPage" :style="itineraryCssDropdown" aria-haspopup="true"
             aria-controls="dropdown-menu2">
             <span class="dropdownTextPosition">{{ $t("mapPage.itinerary") }}</span>
@@ -46,7 +45,7 @@
             </div>
             <div v-for="(itineraryDisplay, index) of this.$store.state.itineraryStore.itinerary"
               :key="itineraryDisplay.id">
-              <Transition name="slide-fade">
+              <Transition name="slide-fade" v-if="itineraryDisplay?.itineraryPOI?.length > 0">
                 <mapCards @click="itineraryCardsHasBeenClicked(index)" class="card cardOnDropdown mt-2"
                   :itinerary="itineraryDisplay" :index="index" />
               </Transition>
@@ -60,9 +59,11 @@
       </div>
 
       <div v-else-if="showItineraryCreationModal">
-        <itineraryModal
-          @goBackToItineraryDropdown="showItineraryCreationModal = false; displayTripProfileCreation = false"
-          @createProfil="displayTripProfileCreation = true" />
+        <itineraryModal @goBackToItineraryDropdown="showItineraryCreationModal = false; displayTripProfileCreation = false" @itineraryCreated="showCardsTinder = true"
+        @createProfil="displayTripProfileCreation = true" />
+      </div>
+      <div v-else-if="showCardsTinder" class="cardsTinderPosition">
+            <cardsTinder :selectedItineraryInfo="selectedItineraryInfo" @goBackToItineraryDropdown="showCardsTinder = false"/>
       </div>
 
       <div v-else>
@@ -72,8 +73,10 @@
     </Transition>
   </div>
 
+
   <div class="langButtonPos fadeshow1">
-    <img :src="this.$store.state.userStore.userProfileImage" class="flag-button profileIcon" @click="showUserProfil" />
+    <img v-if="!showCardsTinder" :src="this.$store.state.userStore.userProfileImage" class="flag-button profileIcon"
+      @click="showUserProfil" />
     <languages></languages>
   </div>
 
@@ -83,7 +86,7 @@
     </div>
   </Transition>
 
-  <section name="groupDropdown">
+  <section name="groupDropdown" v-if="!showCardsTinder">
     <div class="groupDropdownPosition fadeshow1">
       <Transition name="slide-fade">
         <div v-if="!displayItineraryInformation && !showGroupCreationModal && !groupHasBeenClicked"
@@ -181,6 +184,7 @@ import itineraryModal from '../UI/itineraryModal.vue';
 import profileModal from '../UI/profileModal.vue';
 import showMembers from '@/components/UI/ShowMembers.vue';
 import profileTrip from '@/components/UI/ProfileTrip.vue'
+import cardsTinder from '@/components/UI/CardsTinder.vue'
 
 export default {
   name: 'App',
@@ -194,11 +198,13 @@ export default {
     showMembers,
     ScreenSizeTooSmall,
     languages,
+    cardsTinder
   },
   data() {
     return {
       displayItineraryInformation: false,
       showItineraryCreationModal: false,
+      showCardsTinder: false,
       itineraryDropdown: false,
       groupDropdown: false,
       showGroupCreationModal: false,
@@ -559,6 +565,14 @@ export default {
   position: absolute;
   right: 20px;
   top: 10vh;
+}
+
+
+.cardsTinderPosition {
+  position: absolute;
+  left:30vw;
+  z-index: 2;
+  top: 50%;
 }
 
 .dropdownPlusPlacement {

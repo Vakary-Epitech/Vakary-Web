@@ -1,5 +1,5 @@
 <template>
-    <MapWindows style="min-height: 80vh;" dropdown="true">
+    <MapWindows style="min-height: 80vh;" dropdown>
         <div class="row" v-if="!loading">
             <div class="col-2 my-auto">
                 <div class="backArrow" @click="goBackToItineraryDropdown"></div>
