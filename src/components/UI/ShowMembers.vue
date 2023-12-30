@@ -57,7 +57,9 @@
                         </div>
                     </div>
                     <div class="row mt-3" v-for="(member, index) in groupInformations.emails" :key="index">
-                        <div class="col-6 text-start">
+                        <div class="col-6 text-start" @click="openUserProfil(this.groupInformations.emails[index])">
+                            <i class="fas fa-eye xMark" aria-hidden="true"  v-if="this.$store.state.userStore.userInfo.email !=  member.emails"></i>
+                            <i class="fas icon-sign-blank xMarkWithoutHover" v-else> </i>
                             {{ member.emails }}
                         </div>
                         <div class="col-4 status" :class="getStatus(index)">
@@ -70,9 +72,6 @@
                         </div>
                         <div class="col-2 text-center" v-if="this.groupInformations.emails[index].role == 'admin'">
                             <i class="fas fa-crown goldCrown" aria-hidden="true"></i>
-                        </div>
-                        <div class="col-2 text-center" @click="openUserProfil(this.groupInformations.emails[index])" v-else>
-                            <i class="fas fa-eye xMark" aria-hidden="true"></i>
                         </div>
                     </div>
                 </section>
@@ -417,6 +416,14 @@ export default {
 }
 
 .xMark {
+    background-color: var(--background-color-primary);
+    border: none;
+    border-radius: 5px;
+    padding: 2px 5px;
+    color: var(--text-primary-color);
+}
+
+.xMarkWithoutHover {
     background-color: var(--background-color-primary);
     border: none;
     border-radius: 5px;
