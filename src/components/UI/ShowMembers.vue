@@ -71,6 +71,9 @@
                         <div class="col-2 text-center" v-if="this.groupInformations.emails[index].role == 'admin'">
                             <i class="fas fa-crown goldCrown" aria-hidden="true"></i>
                         </div>
+                        <div class="col-2 text-center" @click="openUserProfil(this.groupInformations.emails[index])" v-else>
+                            <i class="fas fa-eye xMark" aria-hidden="true"></i>
+                        </div>
                     </div>
                 </section>
                 <section name="picture">
@@ -303,6 +306,9 @@ export default {
             if (file) {
                 reader.readAsDataURL(file);
             }
+        },
+        openUserProfil(emails) {
+            this.$emit("openUserProfilOf", emails.emails);
         },
     },
     props: {

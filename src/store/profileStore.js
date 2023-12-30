@@ -91,6 +91,21 @@ const profileStore = {
                 }
             })
         },
+        getOtherUserProfil({ getters }, otherUserMail) {
+            return new Promise((resolve, reject) => {
+                try {
+                    let conf = getters.getConfig({ url: "user/email/" + otherUserMail, data: null, method: "get" })
+
+                    axios.request(conf).then((otherUserData) => {
+                        resolve(otherUserData);
+                    }).catch((error) => {
+                        reject(error);
+                    })
+                } catch (error) {
+                    reject(error);
+                }
+            })
+        },
     }
 };
 
