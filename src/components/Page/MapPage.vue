@@ -76,13 +76,13 @@
 
   <div class="langButtonPos fadeshow1">
     <img v-if="!showCardsTinder" :src="this.$store.state.userStore.userProfileImage" class="flag-button profileIcon"
-      @click="showProfile = !showProfile; showGroupCreationModal = false; showItineraryCreationModal = false" />
+      @click="showUserProfil" />
     <languages></languages>
   </div>
 
   <Transition name="slide-fade">
     <div class="profileModalPosition fadeshow1" v-if="showProfile">
-      <profileModal />
+      <profileModal :profil="this.selectedProfil" />
     </div>
   </Transition>
 
@@ -161,7 +161,8 @@
           <Transition name="slide-fade">
             <showMembers @change-group-photo="changeGroupPhoto" :groups=this.$store.state.groupStore.groups[selectedGroup]
               :key="keyShowGroup"
-              @goBackToGroupDropdown=" groupHasBeenClicked = false; showGroupCreationModal = false; displayItineraryInformation = false" />
+              @goBackToGroupDropdown=" groupHasBeenClicked = false; showGroupCreationModal = false; displayItineraryInformation = false"
+              @openUserProfilOf="checkUserProfil" />
           </Transition>
         </div>
 
@@ -237,6 +238,8 @@ export default {
           }
         ],
       },
+
+      selectedProfil: [],
     }
   },
   mounted() {
@@ -252,8 +255,8 @@ export default {
           console.log(error);
         })
       }).catch((error) => {
-          console.log(error);
-        })
+        console.log(error);
+      })
     }).catch((error) => {
       console.log(error);
     });
@@ -318,6 +321,24 @@ export default {
     },
   },
   methods: {
+    checkUserProfil(emails) {
+      this.$store.dispatch("getOtherUserProfil", emails).then((otherUserData) => {
+        this.selectedProfil = otherUserData.data.user;
+
+        this.showProfile = true;
+        this.showGroupCreationModal = false;
+        this.showItineraryCreationModal = false;
+
+      }).catch((error) => {
+        console.log(error);
+      })
+    },
+    showUserProfil() {
+      this.showProfile = !this.showProfile;
+      this.showGroupCreationModal = false;
+      this.showItineraryCreationModal = false;
+      this.selectedProfil = this.$store.state.userStore.userInfo;
+    },
     shouldDisplayButton(emails) {
       for (let mail in emails) {
         if (emails[mail].emails == this.$store.state.userStore.mail) {

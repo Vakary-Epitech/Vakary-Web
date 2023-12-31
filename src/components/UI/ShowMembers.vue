@@ -58,7 +58,10 @@
                     </div>
                     <div class="row mt-3 cardsCenter" v-for="(member, index) in groupInformations.emails" :key="index">
                         <div class="card membersCards row">
-                            <div class="col-6 text-start">
+                            <div class="col-6 text-start" @click="openUserProfil(this.groupInformations.emails[index])">
+                                <i class="fas fa-eye xMark" aria-hidden="true"
+                                    v-if="this.$store.state.userStore.userInfo.email != member.emails"></i>
+                                <i class="fas icon-sign-blank xMarkWithoutHover" v-else> </i>
                                 {{ member.emails }}
                             </div>
                             <div class="col-4 status" :class="getStatus(index)">
@@ -306,6 +309,9 @@ export default {
                 reader.readAsDataURL(file);
             }
         },
+        openUserProfil(emails) {
+            this.$emit("openUserProfilOf", emails.emails);
+        },
     },
     props: {
         groups: {
@@ -420,6 +426,14 @@ export default {
     color: var(--text-primary-color);
 }
 
+.xMarkWithoutHover {
+    background-color: var(--background-color-primary);
+    border: none;
+    border-radius: 5px;
+    padding: 2px 5px;
+    color: var(--text-primary-color);
+}
+
 .xMark:hover {
     box-shadow: 0 0 0 2px var(--accent-color);
 }
@@ -517,7 +531,7 @@ export default {
     align-content: center;
     cursor: pointer;
     margin: auto;
-    height: 50px;
+    min-height: 50px;
     width: 90%;
 }
 

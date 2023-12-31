@@ -49,21 +49,21 @@
                         <p v-if="user?.verified === 'false'"><i class="fa-solid fa-xmark red-xmark"></i></p>
                     </div>
                 </div>
-                <div class="row mt-3" v-if="$store.state.profileStore.userTravelProfile.length > 0">
+                <div class="row mt-3" v-if="$store.state.profileStore.userTravelProfile.length > 0 && isCurrentUserProfil">
                     <div class="col-12">
                         <h5>Profil favori</h5>
                     </div>
                     <CardsProfile :profile="$store.state.profileStore.userTravelProfile[0]" />
                     <div>
                         <div class="col-12 text-center">
-                            <h7  style="margin-top: 10px; margin-bottom: 10px;">Types Favoris:</h7>
+                            <h7 style="margin-top: 10px; margin-bottom: 10px;">Types Favoris:</h7>
                             <div v-for="(type, index) in topThreeInterestPointTypes" :key="index">
                                 {{ $t(type) }}
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="row text-center">
+                <div class="row text-center" v-if="isCurrentUserProfil">
                     <div class="col-12 col-xxxl-6">
                         <button class="btn btn-edit" @click="edit"><i class="fa-solid fa-pen me-2"></i>{{
                             $t("profilePage.edit") }}</button>
@@ -78,7 +78,6 @@
                                 }}</button>
                     </div>
                 </div>
-
             </div>
         </div>
         <Loading v-if="loading" />
@@ -92,6 +91,7 @@ import CardsProfile from './CardsProfile.vue';
 import { IPTNatural, IPTActivity, IPTDrinking, IPTCultural, IPTEating, IPTEvent, IPTTour, IPTTypeGroup } from "@/utils/poiTypes.js";
 
 export default {
+    props: ['profil', 'isCurrentUser'],
     components: {
         MapWindows,
         Loading,
@@ -101,10 +101,10 @@ export default {
         return {
             loading: false,
             editMode: false,
-            description: this.$store.state.userStore.userInfo.description,
-            user: this.$store.state.userStore.userInfo,
-            picture: this.$store.state.userStore.userProfileImage,
-            photoDisplay: this.$store.state.userStore.userProfileImage,
+            description: this.profil.description,
+            user: this.profil,
+            picture: this.profil.picture,
+            photoDisplay: this.profil.picture,
             likes: 0,
         }
     },
@@ -116,6 +116,11 @@ export default {
         })
     },
     computed: {
+        isCurrentUserProfil() {
+            if (this.$store.state.userStore.userInfo.email == this.profil.email)
+                return true;
+            return false;
+        },
         topThreeInterestPointTypes() {
             const combinedEnums = {
                 ...IPTTour,
