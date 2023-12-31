@@ -310,7 +310,8 @@ export default {
             }
         },
         openUserProfil(emails) {
-            this.$emit("openUserProfilOf", emails.emails);
+            if (emails.emails != this.$store.state.userStore.userInfo.email)
+                this.$emit("openUserProfilOf", emails.emails);
         },
     },
     props: {
