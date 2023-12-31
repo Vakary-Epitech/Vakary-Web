@@ -63,19 +63,14 @@ export default {
     },
     computed: {
         calculNumber() {
-            console.log(Object.keys(this.itinerary.itineraryPOI).length);
             return this.itinerary.itineraryPOI.length;
         }
     },
     methods: {
-        test() {
-            console.log(this.itinerary);
-        },
         calculateData() {
             this.numberOfPoints = Object.keys(this.itinerary.itineraryPOI).length;
             this.budget = this.itinerary.itineraryPOI.reduce((acc, poi) => acc + poi.averagePrice, 0);
             this.time = this.itinerary.itineraryPOI.reduce((acc, poi) => acc + poi.averageTime, 0);
-            console.log(this.itinerary.itineraryPOI[0].City.name);
         },
         nextSlide() {
             if (this.isAnimating) return;

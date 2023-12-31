@@ -1,7 +1,7 @@
 <template>
     <div id="app" v-if="showMembers">
         <section name="groupManagement">
-            <MapWindows dropdown="true">
+            <MapWindows dropdown>
                 <div class="row">
                     <div class="col-12 text-end">
                         <button class="xMark" @click="goBackToGroupDropdown()"><i

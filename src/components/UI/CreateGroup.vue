@@ -1,6 +1,6 @@
 <template>
     <div id="app">
-        <MapWindows dropdown="true">
+        <MapWindows dropdown>
             <div class="row">
                 <div class="col-12 text-end">
                     <button class="xMark" @click="goBackToGroupDropdown()"><i class="fa-solid fa-xmark fa-lg"></i></button>
