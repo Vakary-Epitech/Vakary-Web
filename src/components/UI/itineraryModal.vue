@@ -254,7 +254,7 @@ export default {
                     budget: this.budget,
                     nbPeople: this.people,
                     nbChild: this.children,
-                    typeResearchLocations: [cityType], 
+                    typeResearchLocations: cityType, 
                     handicapAccess: false,
                 }).then(() => {
                     this.$store.dispatch("getItinerary").then(() => {
