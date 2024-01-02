@@ -243,9 +243,12 @@ export default {
     const params = (new URL(document.location)).searchParams;
     const token = params.get('token');
 
+    console.log("token " + token)
+
     if (token != null) {
       this.$store.state.config.headers.Authorization = token;
     }
+    console.log("Authorization " + this.$store.state.config.headers.Authorization)
     this.$store.dispatch("getGroup").then(() => {
       this.$store.dispatch("getItinerary").then(() => {
         this.$store.dispatch("getUserTravelProfile").catch((error) => {
