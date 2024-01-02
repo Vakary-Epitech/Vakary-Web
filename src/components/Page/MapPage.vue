@@ -118,9 +118,9 @@
                 </div>
               </div>
 
-              <div class="cursorOnButton card cardOnDropdown"
-                v-for="(group, index) in this.$store.state.groupStore.groups" :key="group.id">
-                <div class="row my-auto" @click="groupCardsHasBeenClicked(group, index)">
+              <div class="card my-2"
+                v-for="(group, index) in this.$store.state.groupStore.groups" :key="group.id" style="margin: 1vh">
+                <div class="row my-auto cardOnDropdown" @click="groupCardsHasBeenClicked(group, index)">
                   <div class="col-2 my-auto text-center">
                     <img class="ms-2" :src="group.photo" style="max-width: 40px">
                   </div>
