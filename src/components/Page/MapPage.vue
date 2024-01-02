@@ -246,11 +246,12 @@ export default {
   mounted() {
     this.$store.state.userStore.userInfo = null;
     if (!this.$store.state.userStore.userInfo) {
-      const route = useRoute()
+      const route = useRoute();
       const token = route.query.token;
 
       if (token != null) {
-        this.$store.commit("UPDATE_USER_TOKEN", token)
+        this.$store.commit("UPDATE_USER_TOKEN", token);
+        this.$store.dispatch("fetchUserData");
       }
     }
 
