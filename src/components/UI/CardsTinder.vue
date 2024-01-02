@@ -6,7 +6,6 @@
                 @mouseup="stopDrag">
                 <div class="card-header">
                     <div class="col-12">
-                        {{ cardsTinder[currentCardIndex].name }}
                         {{ getCurrentPOIName() }}
                     </div>
                 </div>
