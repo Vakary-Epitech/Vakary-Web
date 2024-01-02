@@ -40,7 +40,7 @@ const userStore = {
         CLEAR_USER_INFO(state) {
             state.userInfo = null;
             state.token = "";
-        }
+        },
     },
     actions: {
         fetchUserData({ commit, getters }) {
