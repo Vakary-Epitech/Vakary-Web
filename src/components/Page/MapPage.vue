@@ -20,7 +20,8 @@
   <div class="boxPosition fadeshow1">
     <Transition name="slide-fade">
 
-      <div v-if="!displayItineraryInformation && !showItineraryCreationModal && !showCardsTinder" :class="(itineraryDropdownStatus)">
+      <div v-if="!displayItineraryInformation && !showItineraryCreationModal && !showCardsTinder"
+        :class="(itineraryDropdownStatus)">
         <div class="dropdown-trigger" @click="setItineraryDropdownState()">
           <button class="dropdownDesignMapPage" :style="itineraryCssDropdown" aria-haspopup="true"
             aria-controls="dropdown-menu2">
@@ -59,11 +60,13 @@
       </div>
 
       <div v-else-if="showItineraryCreationModal">
-        <itineraryModal @goBackToItineraryDropdown="showItineraryCreationModal = false; displayTripProfileCreation = false" @itineraryCreated="showCardsTinder = true"
-        @createProfil="displayTripProfileCreation = true" />
+        <itineraryModal
+          @goBackToItineraryDropdown="showItineraryCreationModal = false; displayTripProfileCreation = false"
+          @itineraryCreated="showCardsTinder = true" @createProfil="displayTripProfileCreation = true" />
       </div>
       <div v-else-if="showCardsTinder" class="cardsTinderPosition">
-            <cardsTinder :selectedItineraryInfo="selectedItineraryInfo" @goBackToItineraryDropdown="showCardsTinder = false"/>
+        <cardsTinder :selectedItineraryInfo="selectedItineraryInfo"
+          @goBackToItineraryDropdown="showCardsTinder = false" />
       </div>
 
       <div v-else>
@@ -185,6 +188,7 @@ import profileModal from '../UI/profileModal.vue';
 import showMembers from '@/components/UI/ShowMembers.vue';
 import profileTrip from '@/components/UI/ProfileTrip.vue'
 import cardsTinder from '@/components/UI/CardsTinder.vue'
+import { useRoute } from 'vue-router'
 
 export default {
   name: 'App',
@@ -243,12 +247,17 @@ export default {
     }
   },
   mounted() {
-    const params = (new URL(document.location)).searchParams;
-    const token = params.get('token');
+    this.$store.state.userStore.userInfo = null;
+    if (!this.$store.state.userStore.userInfo) {
+      const route = useRoute();
+      const token = route.query.token;
 
-    if (token != null) {
-      this.$store.state.config.headers.Authorization = token;
+      if (token != null) {
+        this.$store.commit("UPDATE_USER_TOKEN", token);
+        this.$store.dispatch("fetchUserData");
+      }
     }
+
     this.$store.dispatch("getGroup").then(() => {
       this.$store.dispatch("getItinerary").then(() => {
         this.$store.dispatch("getUserTravelProfile").catch((error) => {
@@ -260,7 +269,6 @@ export default {
     }).catch((error) => {
       console.log(error);
     });
-
   },
   computed: {
     unselectedWaypoint() {
@@ -576,7 +584,7 @@ export default {
 
 .cardsTinderPosition {
   position: absolute;
-  left:30vw;
+  left: 30vw;
   z-index: 2;
   top: 50%;
 }
