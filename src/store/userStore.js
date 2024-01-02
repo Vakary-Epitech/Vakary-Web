@@ -16,6 +16,7 @@ const userStore = {
     },
     getters: {
         getConfig: (state) => ({ url, data, method }) => {
+            console.log(state.config)
             let conf = { ...state.config };
             conf.url += url;
             if (data)
@@ -40,7 +41,7 @@ const userStore = {
         CLEAR_USER_INFO(state) {
             state.userInfo = null;
             state.token = "";
-        }
+        },
     },
     actions: {
         fetchUserData({ commit, getters }) {

@@ -244,12 +244,13 @@ export default {
     }
   },
   mounted() {
-    if (this.$store.state.userStore.userInfo) {
+    this.$store.state.userStore.userInfo = null;
+    if (!this.$store.state.userStore.userInfo) {
       const route = useRoute()
       const token = route.query.token;
 
       if (token != null) {
-        this.$store.state.config.headers.Authorization = token;
+        this.$store.commit("UPDATE_USER_TOKEN", token)
       }
     }
 
