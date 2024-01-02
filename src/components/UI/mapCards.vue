@@ -32,7 +32,7 @@ export default {
                 }
             })
         })
-        const date = new Date(this.itinerary.itineraryPOI[0].Description.createdAt);
+        const date = new Date(this.itinerary.itineraryPOI[0]?.Description?.createdAt);
         this.formattedDate = date.toLocaleString();
     }
 }

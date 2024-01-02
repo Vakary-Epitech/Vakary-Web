@@ -79,13 +79,13 @@
 
   <div class="langButtonPos fadeshow1">
     <img v-if="!showCardsTinder" :src="this.$store.state.userStore.userProfileImage" class="flag-button profileIcon"
-      @click="showProfile = !showProfile; showGroupCreationModal = false; showItineraryCreationModal = false" />
+      @click="showUserProfil" />
     <languages></languages>
   </div>
 
   <Transition name="slide-fade">
     <div class="profileModalPosition fadeshow1" v-if="showProfile">
-      <profileModal />
+      <profileModal :profil="this.selectedProfil" />
     </div>
   </Transition>
 
@@ -118,9 +118,9 @@
                 </div>
               </div>
 
-              <div class="cursorOnButton card cardOnDropdown"
-                v-for="(group, index) in this.$store.state.groupStore.groups" :key="group.id">
-                <div class="row my-auto" @click="groupCardsHasBeenClicked(group, index)">
+              <div class="card my-2"
+                v-for="(group, index) in this.$store.state.groupStore.groups" :key="group.id" style="margin: 1vh">
+                <div class="row my-auto cardOnDropdown" @click="groupCardsHasBeenClicked(group, index)">
                   <div class="col-2 my-auto text-center">
                     <img class="ms-2" :src="group.photo" style="max-width: 40px">
                   </div>
@@ -164,7 +164,8 @@
           <Transition name="slide-fade">
             <showMembers @change-group-photo="changeGroupPhoto" :groups=this.$store.state.groupStore.groups[selectedGroup]
               :key="keyShowGroup"
-              @goBackToGroupDropdown=" groupHasBeenClicked = false; showGroupCreationModal = false; displayItineraryInformation = false" />
+              @goBackToGroupDropdown=" groupHasBeenClicked = false; showGroupCreationModal = false; displayItineraryInformation = false"
+              @openUserProfilOf="checkUserProfil" />
           </Transition>
         </div>
 
@@ -241,6 +242,8 @@ export default {
           }
         ],
       },
+
+      selectedProfil: [],
     }
   },
   mounted() {
@@ -326,6 +329,24 @@ export default {
     },
   },
   methods: {
+    checkUserProfil(emails) {
+      this.$store.dispatch("getOtherUserProfil", emails).then((otherUserData) => {
+        this.selectedProfil = otherUserData.data.user;
+
+        this.showProfile = true;
+        this.showGroupCreationModal = false;
+        this.showItineraryCreationModal = false;
+
+      }).catch((error) => {
+        console.log(error);
+      })
+    },
+    showUserProfil() {
+      this.showProfile = !this.showProfile;
+      this.showGroupCreationModal = false;
+      this.showItineraryCreationModal = false;
+      this.selectedProfil = this.$store.state.userStore.userInfo;
+    },
     shouldDisplayButton(emails) {
       for (let mail in emails) {
         if (emails[mail].emails == this.$store.state.userStore.mail) {
