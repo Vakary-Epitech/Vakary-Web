@@ -28,7 +28,7 @@
             <div>
                 <div class="presentationImg">
                     <img class="imgDesign"
-                        src="https://media.licdn.com/dms/image/D4E03AQEfQa9OSa0tXg/profile-displayphoto-shrink_100_100/0/1686496696195?e=1701302400&v=beta&t=vRH8bz_wVZA2VXGPYoaS3DrgEPl4reku9j5W-tFYX68">
+                        src="https://media.licdn.com/dms/image/D4E03AQEfQa9OSa0tXg/profile-displayphoto-shrink_100_100/0/1686496697224?e=1709769600&v=beta&t=BKZ6fNlsQwvGNL9INdlTG6hgDoHQA6RjkbW4pipkblc">
                     <div style="display: flex; flex-direction: column; text-align:center;">
                         <span>Floriane Mantey</span>
                         <span>Android</span>
@@ -49,7 +49,7 @@
             <div>
                 <div class="midImagePresentation">
                     <img class="imgDesign"
-                        src="https://media.licdn.com/dms/image/C4D03AQEtgLYysAP2AQ/profile-displayphoto-shrink_100_100/0/1580742852004?e=1701302400&v=beta&t=3nKwbTI2BqvYjt0SpUtsb8ShjPC5QNSyUarQCvHm1FE">
+                        src="https://media.licdn.com/dms/image/C4D03AQEtgLYysAP2AQ/profile-displayphoto-shrink_100_100/0/1580742852629?e=1709769600&v=beta&t=YTYovY-PdgM4-vvo_WJX7Iv-yoEAxJ2wq8AXWJ64w4Y">
                     <div style="display: flex; flex-direction: column; text-align:center;">
                         <span>Maxence Marques</span>
                         <span>IOS</span>
@@ -59,7 +59,7 @@
             <div>
                 <div class="midImagePresentation">
                     <img class="imgDesign"
-                        src="https://media.licdn.com/dms/image/D4E35AQE29T9mT9cbAg/profile-framedphoto-shrink_800_800/0/1697876291654?e=1700416800&v=beta&t=__y9ZISco9lnOAv--zkupUjGqOnDFgl9QY_8Ldj44CA">
+                        src="https://media.licdn.com/dms/image/D4E03AQETXN58hcUigA/profile-displayphoto-shrink_100_100/0/1697876290831?e=1709769600&v=beta&t=kXKSwQyhAfJHK8Xch6xT2R79GUpuxliq6UpDr3NJRYs">
                     <div style="display: flex; flex-direction: column; text-align:center;">
                         <span>Thibault Humbert</span>
                         <span>IOS</span>
@@ -69,7 +69,7 @@
             <div>
                 <div class="midImagePresentation">
                     <img class="imgDesign"
-                        src="https://media.licdn.com/dms/image/C4E03AQG_JDat2YCVgA/profile-displayphoto-shrink_100_100/0/1547138310964?e=1701302400&v=beta&t=xKya_OC7Z1D0Uwoku8cC3rnZXYn6xh1j7zD-uvKlJ00">
+                        src="https://media.licdn.com/dms/image/C4E03AQG_JDat2YCVgA/profile-displayphoto-shrink_100_100/0/1547138314562?e=1709769600&v=beta&t=Cy8yLhkvFL5WAHD8jJia1r3I4L2CdaGV7KtOq7yEDBw">
                     <div style="display: flex; flex-direction: column; text-align:center;">
                         <span>Jules Martin</span>
                         <span>WebPro & Back</span>
@@ -98,7 +98,7 @@
             <div>
                 <div class="presentationImg">
                     <img class="imgDesign"
-                        src="https://media.licdn.com/dms/image/C4D03AQFcq2Vk8VarKA/profile-displayphoto-shrink_100_100/0/1615566065574?e=1701302400&v=beta&t=32CCYRBkP_iN8lVhnk4hodgGxf0Gcqnt6GKv3lZGVuE">
+                        src="https://media.licdn.com/dms/image/C4D03AQFcq2Vk8VarKA/profile-displayphoto-shrink_100_100/0/1615566066095?e=1709769600&v=beta&t=4q12uA5tnK53Pyae4wcUWsHx6EmaclYJhgoJgMFDZpc">
                     <div style="display: flex; flex-direction: column; text-align:center;">
                         <span>Jason Lucas</span>
                         <span>WebPro & Back</span>
