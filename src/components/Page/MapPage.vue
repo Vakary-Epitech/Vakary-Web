@@ -247,8 +247,9 @@ export default {
     }
   },
   mounted() {
-    this.$store.state.userStore.userInfo = null;
     if (!this.$store.state.userStore.userInfo) {
+      this.$store.state.userStore.userInfo = null;
+      
       const route = useRoute();
       const token = route.query.token;
 
@@ -346,6 +347,7 @@ export default {
       this.showGroupCreationModal = false;
       this.showItineraryCreationModal = false;
       this.selectedProfil = this.$store.state.userStore.userInfo;
+      console.log(this.selectedProfil)
     },
     shouldDisplayButton(emails) {
       for (let mail in emails) {
