@@ -204,7 +204,8 @@
         "noGroup": "Aucun groupe",
         "group": "Choix du groupe",
         "profile": "Choix du profil",
-        "profileButton": "Créer un profil"
+        "profileButton": "Créer un profil",
+        "errorCreationIinerary": "Pas d'itinéraire trouvé, voici le type de centres d'intérêts disponible dans la ville:"
     },
     "screenSizePage": {
         "screenSizeTooSmall": "Désolé, l'accès à notre application web est actuellement bloqué car votre écran est trop petit.",

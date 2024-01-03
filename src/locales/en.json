@@ -202,7 +202,8 @@
     "generate": "Generate the Itinerary",
     "error": "Required",
     "noGroup": "No group",
-    "group": "Chose a group"
+    "group": "Choose a group",
+    "errorCreationIinerary": "No itinerary found, here are the available points of interest types in the city."
   },
   "screenSizePage": {
     "screenSizeTooSmall": "Sorry, access to our web application is currently blocked because your screen is too small.",

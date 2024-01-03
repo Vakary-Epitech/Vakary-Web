@@ -200,7 +200,8 @@
         "child": "Kind",
         "interest": "Interessensgebiet",
         "generate": "Reiseroute generieren",
-        "error": "Erforderlich"
+        "error": "Erforderlich",
+        "errorCreationIinerary": "Keine Route gefunden, hier sind die verfügbaren Arten von Sehenswürdigkeiten in der Stadt."
     },
     "screenSizePage": {
         "screenSizeTooSmall": "Entschuldigung, der Zugriff auf unsere Webanwendung ist derzeit aufgrund der zu kleinen Bildschirmgröße blockiert.",
