@@ -247,8 +247,9 @@ export default {
     }
   },
   mounted() {
-    this.$store.state.userStore.userInfo = null;
     if (!this.$store.state.userStore.userInfo) {
+      this.$store.state.userStore.userInfo = null;
+
       const route = useRoute();
       const token = route.query.token;
 
