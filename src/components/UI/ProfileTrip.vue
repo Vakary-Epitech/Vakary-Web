@@ -8,7 +8,7 @@
             <div class="modal-body">
                 <div class="col-12">
                     <span>{{ $t("tripProfile.profileName") }} </span><br>
-                    <input class="w-100 form-control" type="text" v-model="profileName" :placeholder="placeholderCity"
+                    <input class="w-100 form-control" type="text" v-model="profileName"
                         style="margin-top: 5px;">
                 </div>
                 <hr class="separationBar" style="margin-bottom: 10px; margin-top: 10px;">
@@ -133,19 +133,21 @@ export default {
             return goodFormat;
         },
         generateProfile() {
-            this.$store.dispatch('createNewTravelProfil', {
-                typeOfPoi: this.generateGoodFormat(this.selectedPOIs),
-                profilFields: {
-                    name: this.profileName,
-                    adultCount: 0,
-                    childCount: 0,
-                    babyCount: 0,
-                }
-            }).then(() => {
-                this.$store.dispatch('getUserTravelProfile').then(() => {
-                    this.$emit("goBackToItineraryDropdown");
-                });
-            })
+            if (Object.keys(this.selectedPOIs).length > 0)
+                this.$store.dispatch('createNewTravelProfil', {
+                    typeOfPoi: this.generateGoodFormat(this.selectedPOIs),
+                    profilFields: {
+                        name: this.profileName,
+                        adultCount: 0,
+                        childCount: 0,
+                        babyCount: 0,
+                    }
+                }).then(() => {
+                    this.$store.dispatch('getUserTravelProfile')
+                    .then(() => {
+                        this.$emit("goBackToItineraryDropdown");
+                    });
+                })
         }
     }
 }
