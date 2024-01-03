@@ -162,12 +162,7 @@
               <div class="modal-body">
                 <p>{{ $t("landingPage.modal.download") }}</p>
                 <div class="row">
-                  <div class="row" v-if="downloadLink !== 64">
-                    <a v-if="downloadLink === 'x86_64'" target="_blank" href="@/assets/apk/app-x86_64-release.apk" download></a>
-                    <a v-if="downloadLink === 'arm64'" target="_blank" href="@/assets/apk/app-arm64-v8a-release.apk" download></a>
-                    <a v-if="downloadLink === 'arm'" target="_blank" href="@/assets/apk/app-armeabi-v7a-release.apk" download></a>
-                  </div>
-                  <div class="row" v-if="downloadLink === 64">
+                  <div class="row">
                     <a target="_blank" href="@/assets/apk/app-x86_64-release.apk" download>x86_64</a>
                     <a target="_blank" href="@/assets/apk/app-arm64-v8a-release.apk" download>ARM64-v8a</a>
                     <a target="_blank" href="@/assets/apk/app-armeabi-v7a-release.apk" download>ARMv7a</a>
