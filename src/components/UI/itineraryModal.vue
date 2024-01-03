@@ -224,13 +224,16 @@ export default {
                 duration = 3600 * 8;
 
             this.error = "";
+            
+            const selectedProfile = this.$store.state.profileStore.userTravelProfile[this.profileActiveIndex];
+
             this.$store.dispatch("addItinerary", {
                 city: this.city,
                 availableTime: duration,
                 budget: this.budget,
                 nbPeople: this.people,
                 nbChild: this.children,
-                typeResearchLocations: this.$store.state.profileStore.userTravelProfile[this.profileActiveIndex].InterestPointTypes,
+                typeResearchLocations: selectedProfile.InterestPointTypes,
                 handicapAccess: false,
             }).then(() => {
                 this.$store.dispatch("getItinerary").then(() => {
@@ -238,10 +241,16 @@ export default {
                     this.$emit("goBackToItineraryDropdown");
                     this.$emit("itineraryCreated");
                 });
-            }).catch((error) => {
+            }).catch(() => {
                 this.loading = false;
-                this.error = error?.response?.data;
-            })
+                this.$store.dispatch("getCityTypeByName", this.city)
+                .then(result => {
+                    this.error = { message: `${this.$t("itineraryModal.errorCreationIinerary")} ${result.join(', ')}` };
+                })
+                .catch(() => {
+                    this.error = { message: "An error occurred while getting city types" };
+                });
+            });
         },
     }
 }

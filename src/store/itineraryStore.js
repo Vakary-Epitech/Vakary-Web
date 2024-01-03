@@ -152,6 +152,25 @@ const itineraryStore = {
             })
         },
 
+        getCityTypeByName({ getters }, cityName) {
+            return new Promise((resolve, reject) => {
+              try {
+                let config = getters.getConfig({
+                  url: `cityType/${cityName}`,
+                  method: "get"
+                });
+          
+                axios.request(config).then((response) => {
+                  resolve(response.data);
+                }).catch((error) => {
+                  reject(error);
+                });
+              } catch (error) {
+                reject(error);
+              }
+            });
+        },
+
         addItinerary({ getters, dispatch }, data) {
             return new Promise((resolve, reject) => {
                 try {

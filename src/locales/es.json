@@ -200,7 +200,8 @@
         "child": "Niño",
         "interest": "Centro de interés",
         "generate": "Generar el itinerario",
-        "error": "Requerido"
+        "error": "Requerido",
+        "errorCreationIinerary": "No se encontró itinerario, aquí están los tipos de puntos de interés disponibles en la ciudad."
     },
     "screenSizePage": {
         "screenSizeTooSmall": "Lo sentimos, el acceso a nuestra aplicación web está bloqueado actualmente porque tu pantalla es demasiado pequeña.",
